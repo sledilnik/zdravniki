@@ -13,8 +13,8 @@ function DoctorsProvider({ children }) {
   const _dentists = useFetchAndParseCsv(url.DENTISTS_URL);
 
   const doctors = _doctors.parsed && createDoctors(_doctors.parsed, 'zdravnik');
-  const gyno = _doctors.parsed && createDoctors(_gyno.parsed, 'zdravnik');
-  const dentists = _doctors.parsed && createDoctors(_dentists.parsed, 'zdravnik');
+  const gyno = _gyno.parsed && createDoctors(_gyno.parsed, 'ginekolog');
+  const dentists = _dentists.parsed && createDoctors(_dentists.parsed, 'zobozdravnik');
 
   return (
     <DoctorsContext.Provider value={{ doctors, gyno, dentists }}>
