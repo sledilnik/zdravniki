@@ -35,6 +35,7 @@ const useFetchAndParseCsv = url => {
     };
 
     fetchCsv();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { parsed, isFetching, error };
 };
