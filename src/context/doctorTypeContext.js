@@ -10,7 +10,7 @@ function DoctorsByTypeProvider({ children }) {
   const allDoctors = useDoctors();
   const doctors = allDoctors[doctorType];
 
-  const value = { doctors, setDoctorType };
+  const value = { doctors, doctorType, setDoctorType };
 
   return <DoctorsByTypeContext.Provider value={value}>{children}</DoctorsByTypeContext.Provider>;
 }
