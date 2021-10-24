@@ -9,6 +9,12 @@ import { Search } from './styles';
 import { doctorsByTypeContext } from '../../context';
 
 export default function SearchAppBar() {
+  const { searchValue, setSearchValue } = doctorsByTypeContext.useDoctorsByType();
+
+  const handleSearchChange = event => {
+    setSearchValue(event.target.value);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
