@@ -12,7 +12,7 @@ const DoctorCard = ({ doctor }) => {
     setExpanded(!expanded);
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, alignSelf: 'start' }}>
       <CardHeader
         title={doctor.name}
         subheader={<Chip.Accepts text={doctor.acceptText} accept={doctor.accept} />}
