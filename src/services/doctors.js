@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { doctors } from '../constants';
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
@@ -74,7 +75,7 @@ export default function createDoctors(doctors = [], doctorType = 'zdravnik') {
   const result = doctors
     .filter(doctor => doctor[0])
     .map(doctor => {
-      const id = Math.random(); // TODO use uuid
+      const id = uuidv4();
       const [
         munUnit,
         provider,
