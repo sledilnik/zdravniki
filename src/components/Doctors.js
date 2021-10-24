@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { doctorsByTypeContext } from '../context';
 import { Grid, Pagination, Loader } from './Shared';
 import DoctorCard from './DoctorCard';
+import LeafletMap from './LeafletMap';
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors } = doctorsByTypeContext.useDoctorsByType();
@@ -13,11 +14,11 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     setPage(value);
   };
 
-  const doctorCards = doctors
-    ?.slice(itemsPerPage * page - itemsPerPage, itemsPerPage * page)
-    .map(doctor => <DoctorCard key={doctor.id} doctor={doctor} />);
+  const pageDoctors = doctors?.slice(itemsPerPage * page - itemsPerPage, itemsPerPage * page);
+  const doctorCards = pageDoctors?.map(doctor => <DoctorCard key={doctor.id} doctor={doctor} />);
   return (
     <>
+      <LeafletMap doctors={pageDoctors} />
       {doctorCards ? (
         <Grid.Doctors>
           <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
