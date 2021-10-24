@@ -1,0 +1,36 @@
+import { useState } from 'react';
+import { doctorsByTypeContext } from '../context';
+import { Grid, Pagination, Loader } from './Shared';
+import DoctorCard from './DoctorCard';
+
+const Doctors = ({ itemsPerPage = 10 }) => {
+  const { doctors } = doctorsByTypeContext.useDoctorsByType();
+  const [page, setPage] = useState(1);
+
+  const count = doctors?.length && Math.floor(doctors.length / itemsPerPage);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  const doctorCards = doctors
+    ?.slice(itemsPerPage * page - itemsPerPage, itemsPerPage * page)
+    .map(doctor => <DoctorCard key={doctor.id} doctor={doctor} />);
+  return (
+    <>
+      {doctorCards ? (
+        <Grid.Doctors>
+          <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          <Grid.Cards>{doctorCards}</Grid.Cards>
+          <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+        </Grid.Doctors>
+      ) : (
+        <Grid.Loader>
+          <Loader />
+        </Grid.Loader>
+      )}
+    </>
+  );
+};
+
+export default Doctors;
