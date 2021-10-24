@@ -12,8 +12,9 @@ function createDoctor({
   accept,
   geo_location,
 }) {
-  const _accept = doctors.Accepts[accept];
-  const _activity = doctors.Activities[trimString(activity.trim())];
+  const _accept = doctors.AcceptsBool[accept];
+  const _acceptText = doctors.AcceptsText[accept];
+  const _activity = doctors.Activities[trimString(activity.trim())] ?? activity;
   const _munUnit = trimString(munUnit);
   const _provider = trimString(provider).replace(doctors.Provider.ZD, 'ZD');
   const _name = trimString(fullName);
@@ -59,6 +60,9 @@ function createDoctor({
     },
     get accept() {
       return _accept;
+    },
+    get acceptText() {
+      return _acceptText;
     },
     get geoLocation() {
       return _geo_location;
