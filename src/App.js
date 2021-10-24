@@ -8,11 +8,16 @@ function App() {
     </div>
   );
 }
+
 function AppWrapper() {
   return (
     <>
       <CssBaseline />
+      <doctorsContext.DoctorsProvider>
+        <doctorsByTypeContext.DoctorsByTypeProvider>
           <App />
+        </doctorsByTypeContext.DoctorsByTypeProvider>
+      </doctorsContext.DoctorsProvider>
     </>
   );
 }
