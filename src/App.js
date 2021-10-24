@@ -1,7 +1,20 @@
-import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import { doctorsContext, doctorsByTypeContext } from './context';
 
 function App() {
-  return <div className="App">Hello World</div>;
+  return (
+    <div>
+      <h1>Zdravniki</h1>
+    </div>
+  );
+}
+function AppWrapper() {
+  return (
+    <>
+      <CssBaseline />
+          <App />
+    </>
+  );
 }
 
-export default App;
+export default AppWrapper;
