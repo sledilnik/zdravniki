@@ -1,23 +1,18 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+
 import { doctorsContext, doctorsByTypeContext } from './context';
 import SearchAppBar from './components/SearchAppBar';
 import ChooseDoctorType from './components/ChooseDoctorType';
-import Loader from './components/Loader';
+import Doctors from './components/Doctors';
 
 function App() {
-  const { doctors } = doctorsByTypeContext.useDoctorsByType();
-  const neki = doctors?.map(doctor => (
-    <div key={doctor.id}>
-      {doctor.type} {doctor.name} {doctor.accept}
-    </div>
-  ));
   return (
     <>
       <SearchAppBar />
-      <Container maxWidth="sm" component="main">
+      <Container maxWidth="xl " component="main">
         <ChooseDoctorType />
-        {doctors ? neki : <Loader />}
+        <Doctors />
       </Container>
     </>
   );
