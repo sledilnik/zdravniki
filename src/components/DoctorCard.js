@@ -38,7 +38,6 @@ const DoctorCard = ({ doctor }) => {
 };
 
 const propsAreEqual = (prevProps, nextProps) => {
-  console.log(prevProps, nextProps);
-  return prevProps.doctor.name === nextProps.doctor.name;
+  return prevProps.doctor.id === nextProps.doctor.id;
 };
 export default memo(DoctorCard, propsAreEqual);

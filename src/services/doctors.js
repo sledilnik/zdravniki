@@ -74,7 +74,7 @@ export default function createDoctors(doctors = [], doctorType = 'zdravnik') {
   const result = doctors
     .filter(doctor => doctor[0])
     .map(doctor => {
-      const id = Math.random();
+      const id = Math.random(); // TODO use uuid
       const [
         munUnit,
         provider,
