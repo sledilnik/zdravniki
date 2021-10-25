@@ -2,11 +2,11 @@ import { createContext, useCallback, useContext, useMemo, useState } from 'react
 import { useDoctors } from './doctorsContext';
 import { useDebounce } from 'hooks';
 
-const DoctorsByTypeContext = createContext();
+const FilterContext = createContext();
 
-export const DoctorsByTypeConsumer = DoctorsByTypeContext.Consumer;
+export const FilterConsumer = FilterContext.Consumer;
 
-function DoctorsByTypeProvider({ children }) {
+function FilterProvider({ children }) {
   const [doctorType, setDoctorType] = useState('doctors');
   const [searchValue, setSearchValue] = useState('');
 
@@ -24,16 +24,16 @@ function DoctorsByTypeProvider({ children }) {
 
   const value = { doctors, setDoctors, doctorType, setDoctorType, searchValue, setSearchValue };
 
-  return <DoctorsByTypeContext.Provider value={value}>{children}</DoctorsByTypeContext.Provider>;
+  return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 }
 
-function useDoctorsByType() {
-  const context = useContext(DoctorsByTypeContext);
+function useFilter() {
+  const context = useContext(FilterContext);
 
   if (!context) {
-    throw new Error('useDoctorsByType must be used within a DoctorTypeProvider');
+    throw new Error('useFilter must be used within a FilterProvider');
   }
   return context;
 }
 
-export { DoctorsByTypeProvider, useDoctorsByType };
+export { FilterProvider, useFilter };

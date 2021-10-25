@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 
-import { doctorsContext, doctorsByTypeContext } from './context';
+import { doctorsContext, filterContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
 import ChooseDoctorType from './components/ChooseDoctorType';
 import Doctors from './components/Doctors';
@@ -23,9 +23,9 @@ function AppWrapper() {
     <>
       <CssBaseline />
       <doctorsContext.DoctorsProvider>
-        <doctorsByTypeContext.DoctorsByTypeProvider>
+        <filterContext.FilterProvider>
           <App />
-        </doctorsByTypeContext.DoctorsByTypeProvider>
+        </filterContext.FilterProvider>
       </doctorsContext.DoctorsProvider>
     </>
   );

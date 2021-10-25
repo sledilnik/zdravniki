@@ -6,10 +6,10 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Search } from './styles';
-import { doctorsByTypeContext } from '../../context';
+import { filterContext } from 'context';
 
 export default function SearchAppBar() {
-  const { searchValue, setSearchValue } = doctorsByTypeContext.useDoctorsByType();
+  const { searchValue, setSearchValue } = filterContext.useFilter();
 
   const handleSearchChange = event => {
     setSearchValue(event.target.value);

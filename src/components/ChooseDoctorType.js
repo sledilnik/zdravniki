@@ -3,10 +3,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { doctorsByTypeContext } from '../context';
+import { filterContext } from 'context';
 
 export default function ChooseDoctorType() {
-  const { doctorType, setDoctorType } = doctorsByTypeContext.useDoctorsByType();
+  const { doctorType, setDoctorType } = filterContext.useFilter();
 
   const onChangeHandler = event => {
     setDoctorType(event.target.value);

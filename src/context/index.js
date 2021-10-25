@@ -1,2 +1,2 @@
 export * as doctorsContext from './doctorsContext';
-export * as doctorsByTypeContext from './doctorTypeContext';
+export * as filterContext from './filterContext';

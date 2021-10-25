@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { doctorsByTypeContext } from '../context';
+import { filterContext } from 'context';
 import { Grid, Pagination, Loader } from './Shared';
 import DoctorCard from './DoctorCard';
 import LeafletMap from './LeafletMap';
 
 const Doctors = ({ itemsPerPage = 10 }) => {
-  const { doctors } = doctorsByTypeContext.useDoctorsByType();
+  const { doctors } = filterContext.useFilter();
   const [page, setPage] = useState(1);
 
   const count = doctors?.length && Math.floor(doctors.length / itemsPerPage);
