@@ -13,8 +13,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
 
   const leafletChildren = useRef(null);
 
-  // todo rename count to pageCount
-  const count = doctors?.length && Math.floor(doctors.length / itemsPerPage);
+  const pageCount = doctors?.length && Math.floor(doctors.length / itemsPerPage);
 
   const pageDoctors = useMemo(
     () => doctors?.slice(itemsPerPage * page - itemsPerPage, itemsPerPage * page),
@@ -23,7 +22,6 @@ const Doctors = ({ itemsPerPage = 10 }) => {
 
   useEffect(() => {
     if (pageDoctors?.length) {
-      console.log('Should fly ');
       leafletChildren.current = [
         <FlyTo
           key={center.toString() + Math.random()}
@@ -67,12 +65,12 @@ const Doctors = ({ itemsPerPage = 10 }) => {
       />
       {doctorCards ? (
         <Grid.Doctors>
-          {count !== 0 && (
-            <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          {pageCount !== 0 && (
+            <Pagination.DoctorsSmall count={pageCount} page={page} onChange={handleChange} />
           )}
           <Grid.Cards>{doctorCards}</Grid.Cards>
-          {count !== 0 && (
-            <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          {pageCount !== 0 && (
+            <Pagination.DoctorsSmall count={pageCount} page={page} onChange={handleChange} />
           )}
         </Grid.Doctors>
       ) : (
