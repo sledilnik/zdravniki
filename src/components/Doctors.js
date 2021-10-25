@@ -30,9 +30,13 @@ const Doctors = ({ itemsPerPage = 10 }) => {
       <LeafletMap doctors={pageDoctors} center={center} zoom={zoom} />
       {doctorCards ? (
         <Grid.Doctors>
-          <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          {count !== 0 && (
+            <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          )}
           <Grid.Cards>{doctorCards}</Grid.Cards>
-          <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          {count !== 0 && (
+            <Pagination.DoctorsSmall count={count} page={page} onChange={handleChange} />
+          )}
         </Grid.Doctors>
       ) : (
         <Grid.Loader>
