@@ -4,7 +4,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Collapse from '@mui/material/Collapse';
-import { Chip, ExpandMore } from './Shared';
+import { Chip, ExpandMore } from '../Shared';
 
 const DoctorCard = ({ doctor }) => {
   const [expanded, setExpanded] = useState(false);

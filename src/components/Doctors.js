@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { filterContext } from 'context';
 import { Grid, Pagination, Loader } from './Shared';
-import DoctorCard from './DoctorCard';
 import LeafletMap from './LeafletMap';
+import DoctorCard from 'components/DoctorCard';
 import { geoLocation } from '../constants';
 
 const Doctors = ({ itemsPerPage = 10 }) => {
