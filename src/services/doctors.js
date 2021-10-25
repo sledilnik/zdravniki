@@ -41,7 +41,7 @@ function createDoctor({
     get provider() {
       return _provider;
     },
-    get fullAddres() {
+    get fullAddress() {
       return `${_address.street}, ${_address.code} ${_address.city}`;
     },
     get street() {
