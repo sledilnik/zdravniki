@@ -1,0 +1,3 @@
+const LATITUDE = 46.16;
+const LONGITUDE = 14.8276214;
+export const SL_CENTER = [LATITUDE, LONGITUDE];
