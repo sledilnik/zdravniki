@@ -2,6 +2,13 @@ import { useGeoLocation } from 'hooks';
 import { MapContainer, TileLayer, CircleMarker, Marker, Tooltip, useMap } from 'react-leaflet';
 import { geoLocation } from '../../constants';
 
+const SetCenter = ({ center = geoLocation.SL_CENTER }) => {
+  const map = useMap();
+  if (!center || center.some(val => isNaN(val))) return null;
+  map.setView(center);
+  return null;
+};
+
 const LeafletMap = ({ doctors, height = '500px', center = geoLocation.SL_CENTER, zoom = 8 }) => {
   const {
     isLoading,
@@ -38,8 +45,19 @@ const LeafletMap = ({ doctors, height = '500px', center = geoLocation.SL_CENTER,
       />
       {markers}
       {userMarker}
+      <SetCenter center={getCenter(doctors)} />
     </MapContainer>
   );
 };
 
 export default LeafletMap;
+
+function getCenter(doctors) {
+  const isArray = Array.isArray(doctors);
+  if (!isArray) return null;
+
+  const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+  const avgLatitude = average(doctors.map(doctor => doctor.geoLocation.lat));
+  const avgLongitude = average(doctors.map(doctor => doctor.geoLocation.lon));
+  return [avgLatitude, avgLongitude];
+}
