@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { useDoctors } from './doctorsContext';
+import { useDebounce } from 'hooks';
 
 const DoctorsByTypeContext = createContext();
 
@@ -13,11 +14,13 @@ function DoctorsByTypeProvider({ children }) {
   const _doctors = useMemo(() => allDoctors[doctorType], [allDoctors, doctorType]);
   const [doctors, setDoctors] = useState(_doctors);
 
-  useEffect(() => {
+  const setFilteredDoctors = useCallback(() => {
     !searchValue && setDoctors(_doctors);
     searchValue &&
       setDoctors(_doctors.filter(doctor => doctor.name.includes(searchValue.toUpperCase())));
   }, [searchValue, _doctors]);
+
+  useDebounce(() => setFilteredDoctors(), 700, [searchValue, _doctors]);
 
   const value = { doctors, setDoctors, doctorType, setDoctorType, searchValue, setSearchValue };
 
