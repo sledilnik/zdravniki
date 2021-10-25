@@ -1,6 +1,21 @@
-import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
+import { useGeoLocation } from 'hooks';
+import { MapContainer, TileLayer, CircleMarker, Marker, Tooltip, useMap } from 'react-leaflet';
+import { geoLocation } from '../../constants';
 
-const LeafletMap = ({ doctors }) => {
+const LeafletMap = ({ doctors, height = '500px', center = geoLocation.SL_CENTER, zoom = 8 }) => {
+  const {
+    isLoading,
+    error,
+    data: { latitude: userLat, longitude: userLon },
+  } = useGeoLocation(geoLocation.GET_CURRENT_POSITION_OPTIONS);
+
+  const showUserMarker = !isLoading && !error && userLat && userLon;
+  const userMarker = showUserMarker && (
+    <Marker position={[userLat, userLon]}>
+      <Tooltip>some tooltip</Tooltip>
+    </Marker>
+  );
+
   const markers = doctors?.map(doctor => {
     return (
       <CircleMarker
@@ -16,17 +31,13 @@ const LeafletMap = ({ doctors }) => {
   });
 
   return (
-    <MapContainer
-      style={{ height: '500px' }}
-      center={[46.16, 14.8276214]}
-      zoom={8}
-      scrollWheelZoom={false}
-    >
+    <MapContainer style={{ height }} center={center} zoom={zoom} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {markers}
+      {userMarker}
     </MapContainer>
   );
 };
