@@ -12,6 +12,7 @@ export const Doctors = styled('div')(({ theme }) => ({
   gridGap: '1rem',
   alignContent: 'stretch',
   alignItems: 'start',
+  margin: '16px 0 0',
 }));
 
 export const Loader = styled('div')(({ theme }) => ({
