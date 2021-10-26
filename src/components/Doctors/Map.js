@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMap } from 'react-leaflet';
+import { useTheme } from '@mui/material/styles';
 
 import { geoLocation } from '../../constants';
 import Leaflet, { Markers } from 'components/Shared/Leaflet';
@@ -18,24 +19,27 @@ export const UserMarker = () => {
   return position && <Markers.LeafletMarker position={position} tooltip="Tvoja lokacija" />;
 };
 
+const DoctorMarker = ({ doctor }) => {
+  const theme = useTheme();
+  const { palette } = theme;
+  const fillColor = doctor.accept ? palette.success.main : palette.error.main;
+  return (
+    <Markers.LeafletCircleMarker
+      center={doctor.geoLocation}
+      radius={12}
+      stroke={false}
+      fillOpacity={0.4}
+      fillColor={fillColor}
+      popup={<a href={`#${doctor.id}`}>{doctor.name}</a>}
+    />
+  );
+};
+
 function withLeaflet(Component) {
   const DoctorMap = props => {
     const { doctors, center = geoLocation.SL_CENTER, height = '500px', ...other } = props;
 
-    const markers = doctors?.map(doctor => {
-      const fillColor = doctor.accept ? 'green' : 'red';
-      return (
-        <Markers.LeafletCircleMarker
-          key={doctor.id}
-          center={doctor.geoLocation}
-          radius={12}
-          stroke={false}
-          fillOpacity={0.4}
-          fillColor={fillColor}
-          popup={<a href={`#${doctor.id}`}>{doctor.name}</a>}
-        />
-      );
-    });
+    const markers = doctors?.map(doctor => <DoctorMarker key={doctor.id} doctor={doctor} />);
 
     const injectedProps = {
       center,
