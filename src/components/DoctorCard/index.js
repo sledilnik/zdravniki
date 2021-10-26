@@ -9,9 +9,12 @@ import Stack from '@mui/material/Stack';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import { RoomIcon } from 'components/Shared/Icons';
+import CardMedia from '@mui/material/CardMedia';
+import DoctorMap from './Map';
 
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   const [expanded, setExpanded] = useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -22,6 +25,9 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         title={doctor.name}
         subheader={<Chip.Accepts text={doctor.acceptText} accept={doctor.accept} />}
       />
+      <CardMedia component="div">
+        <DoctorMap height="200px" doctor={doctor} />
+      </CardMedia>
       <CardActions disableSpacing>
         <IconButton onClick={handleRoomIconClick}>
           <RoomIcon />
