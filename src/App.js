@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
-import ChooseDoctorType from './components/ChooseDoctorType';
+import { ChooseDoctorType } from 'components/Filters';
 import Doctors from './components/Doctors/';
 
 function App() {
