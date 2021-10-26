@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 
-import { doctorsContext, filterContext } from 'context';
+import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
 import ChooseDoctorType from './components/ChooseDoctorType';
 import Doctors from './components/Doctors';
@@ -12,7 +12,9 @@ function App() {
       <SearchAppBar />
       <Container maxWidth="xl " component="main">
         <ChooseDoctorType />
-        <Doctors />
+        <leafletContext.LeafletProvider>
+          <Doctors />
+        </leafletContext.LeafletProvider>
       </Container>
     </>
   );
