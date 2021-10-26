@@ -17,11 +17,11 @@ const useFetchAndParseCsv = url => {
             const { data, errors } = results;
             if (errors.length > 0) {
               console.log(errors);
-              throw new Error('Somenthing went wrong during parsing csv file!');
+              setError(new Error('Somenthing went wrong during parsing csv file!'));
             }
 
             if (!data) {
-              throw new Error('No data in csv file!');
+              setError(new Error('No data in csv file!'));
             }
 
             data && setParsed(data);
