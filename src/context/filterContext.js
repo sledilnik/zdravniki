@@ -26,10 +26,12 @@ function FilterProvider({ children }) {
 
   const setFilteredDoctors = useCallback(() => {
     !searchValue && setDoctors(_doctorsByAccept);
-    searchValue &&
-      setDoctors(
-        _doctorsByAccept.filter(doctor => doctor.name.includes(searchValue.toUpperCase())),
-      );
+
+    const compareFunc = doctor =>
+      doctor.name.includes(searchValue.toUpperCase()) ||
+      doctor.fullAddress.includes(searchValue.toUpperCase());
+
+    searchValue && setDoctors(_doctorsByAccept.filter(compareFunc));
   }, [searchValue, _doctorsByAccept]);
 
   useEffect(() => setFilteredDoctors(), [setFilteredDoctors]);
