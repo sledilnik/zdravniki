@@ -5,14 +5,17 @@ import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
 import { ChooseDoctorType, ChooseAccept } from 'components/Filters';
 import Doctors from './components/Doctors/';
+import { Grid } from 'components/Shared';
 
 function App() {
   return (
     <>
       <SearchAppBar />
       <Container maxWidth="xl " component="main">
-        <ChooseDoctorType />
-        <ChooseAccept />
+        <Grid.Filter>
+          <ChooseDoctorType />
+          <ChooseAccept />
+        </Grid.Filter>
         <leafletContext.LeafletProvider>
           <Doctors />
         </leafletContext.LeafletProvider>

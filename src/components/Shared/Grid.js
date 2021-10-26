@@ -1,15 +1,19 @@
 import { styled } from '@mui/material/styles';
 
-export const Cards = styled('div')(({ theme }) => ({
+const BaseGrid = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
   gridGap: '1rem',
 }));
+export const Cards = styled(BaseGrid)(({ theme }) => ({
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+}));
 
-export const Doctors = styled('div')(({ theme }) => ({
-  display: 'grid',
+export const Filter = styled(Cards)(({ theme }) => ({
+  padding: '16px 0',
+}));
+
+export const Doctors = styled(BaseGrid)(({ theme }) => ({
   gridTemplateRows: '0.1fr 0.8fr 0.1fr',
-  gridGap: '1rem',
   alignContent: 'stretch',
   alignItems: 'start',
   margin: '16px 0 0',
