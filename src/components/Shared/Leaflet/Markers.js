@@ -9,10 +9,8 @@ export const LeafletCircleMarker = ({
   markerProps = { center: geoLocation.SL_CENTER, radius: 12, stroke: false, fillOpacity: 0.4 },
   popup,
   ...other
-}) => {
-  return (
-    <CircleMarker {...markerProps} {...other}>
-      <Popup>{popup}</Popup>
-    </CircleMarker>
-  );
-};
+}) => (
+  <CircleMarker {...markerProps} {...other}>
+    <Popup>{popup}</Popup>
+  </CircleMarker>
+);
