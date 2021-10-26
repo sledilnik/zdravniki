@@ -56,11 +56,23 @@ const Doctors = ({ itemsPerPage = 10 }) => {
       {doctorCards ? (
         <Grid.Doctors>
           {pageCount !== 0 && (
-            <Pagination.DoctorsSmall count={pageCount} page={page} onChange={handleChange} />
+            <Pagination.DoctorsSmall
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+              showFirstButton
+              showLastButton
+            />
           )}
           <Grid.Cards>{doctorCards}</Grid.Cards>
           {pageCount !== 0 && (
-            <Pagination.DoctorsSmall count={pageCount} page={page} onChange={handleChange} />
+            <Pagination.DoctorsSmall
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+              showFirstButton
+              showLastButton
+            />
           )}
         </Grid.Doctors>
       ) : (
