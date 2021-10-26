@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState, useEffect } from 'react';
 import { useDoctors } from './doctorsContext';
 import { useDebounce } from 'hooks';
 
@@ -8,21 +8,44 @@ export const FilterConsumer = FilterContext.Consumer;
 
 function FilterProvider({ children }) {
   const [doctorType, setDoctorType] = useState('doctors');
+  const [accept, setAccept] = useState('sprejema');
   const [searchValue, setSearchValue] = useState('');
 
   const allDoctors = useDoctors();
-  const _doctors = useMemo(() => allDoctors[doctorType], [allDoctors, doctorType]);
-  const [doctors, setDoctors] = useState(_doctors);
+
+  const _doctorsByType = useMemo(() => allDoctors[doctorType], [allDoctors, doctorType]);
+  const _doctorsByAccept = useMemo(
+    () =>
+      accept === 'vsi'
+        ? _doctorsByType
+        : _doctorsByType?.filter(doctor => accept === doctor.acceptText),
+    [_doctorsByType, accept],
+  );
+
+  const [doctors, setDoctors] = useState(_doctorsByType);
 
   const setFilteredDoctors = useCallback(() => {
-    !searchValue && setDoctors(_doctors);
+    !searchValue && setDoctors(_doctorsByAccept);
     searchValue &&
-      setDoctors(_doctors.filter(doctor => doctor.name.includes(searchValue.toUpperCase())));
-  }, [searchValue, _doctors]);
+      setDoctors(
+        _doctorsByAccept.filter(doctor => doctor.name.includes(searchValue.toUpperCase())),
+      );
+  }, [searchValue, _doctorsByAccept]);
 
-  useDebounce(() => setFilteredDoctors(), 700, [searchValue, _doctors]);
+  useEffect(() => setFilteredDoctors(), [setFilteredDoctors]);
 
-  const value = { doctors, setDoctors, doctorType, setDoctorType, searchValue, setSearchValue };
+  useDebounce(() => setFilteredDoctors(), 700, [searchValue, _doctorsByType]);
+
+  const value = {
+    doctors,
+    setDoctors,
+    doctorType,
+    setDoctorType,
+    accept,
+    setAccept,
+    searchValue,
+    setSearchValue,
+  };
 
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 }
