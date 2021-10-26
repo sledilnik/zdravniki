@@ -1,7 +1,13 @@
 import doctors from '../data/zdravniki.csv';
 import gyno from '../data/ginekologi.csv';
 import dentists from '../data/zobozdravniki.csv';
-const PUBLIC_URL = 'http://localhost:3000/';
+const isProd = process.env.NODE_ENV === 'production';
+
+let PUBLIC_URL = process.env.PUBLIC_URL
+  ? process.env.PUBLIC_URL
+  : isProd
+  ? 'http://localhost:5000/'
+  : 'http://localhost:3000/';
 
 export const DOCTORS_URL = new URL(doctors, PUBLIC_URL);
 
