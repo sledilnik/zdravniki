@@ -27,11 +27,22 @@ function FilterProvider({ children }) {
   const setFilteredDoctors = useCallback(() => {
     !searchValue && setDoctors(_doctorsByAccept);
 
-    const compareFunc = doctor =>
-      doctor.name.includes(searchValue.toUpperCase()) ||
-      doctor.fullAddress.includes(searchValue.toUpperCase());
+    if (searchValue) {
+      const compareName = doctor => doctor.name.includes(searchValue.toUpperCase());
+      const comapreAddress = doctor => doctor.fullAddress.includes(searchValue.toUpperCase());
 
-    searchValue && setDoctors(_doctorsByAccept.filter(compareFunc));
+      const byName = _doctorsByAccept?.filter(compareName) ?? [];
+      const byAddress = _doctorsByAccept?.filter(comapreAddress) ?? [];
+
+      const combined = byName.length < byAddress.length ? [...byName] : [...byAddress];
+      byAddress.forEach(item => {
+        const oldDoctor = combined.find(doctor => doctor.id === item.id);
+        console.log(oldDoctor);
+        !oldDoctor && combined.push(item);
+      });
+
+      setDoctors(combined);
+    }
   }, [searchValue, _doctorsByAccept]);
 
   useEffect(() => setFilteredDoctors(), [setFilteredDoctors]);
