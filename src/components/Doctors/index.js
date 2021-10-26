@@ -1,17 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { filterContext } from 'context';
-import { Grid, Pagination, Loader } from '../Shared';
-import LeafletMap, { FlyTo, getCenter, SetCenter } from '../LeafletMap';
+import { Grid, Pagination, Loader } from 'components/Shared';
+import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
-import { geoLocation } from '../../constants';
+import { useLeafletContext } from 'context/leafletContext';
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors } = filterContext.useFilter();
   const [page, setPage] = useState(1);
-  const [center, setCenter] = useState(geoLocation.SL_CENTER);
-  const zoom = 8;
-
-  const leafletChildren = useRef(null);
+  const { map, setMap } = useLeafletContext();
 
   const pageCount = doctors?.length && Math.floor(doctors.length / itemsPerPage);
 
@@ -21,17 +18,11 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   );
 
   useEffect(() => {
-    if (pageDoctors?.length) {
-      leafletChildren.current = [
-        <FlyTo
-          key={center.toString() + Math.random()}
-          position={getCenter(pageDoctors)}
-          zoom={8}
-        />,
-        <SetCenter key={pageDoctors.toString()} center={getCenter(pageDoctors)} />,
-      ];
+    if (!pageDoctors?.length) {
+      return;
     }
-  }, [pageDoctors, center]);
+    map.flyTo(getCenter(pageDoctors), 8);
+  }, [map, pageDoctors]);
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -43,8 +34,8 @@ const Doctors = ({ itemsPerPage = 10 }) => {
       return;
     }
     window.scrollTo(0, 0);
-    setCenter([geoLocation.lat, geoLocation.lon]);
-    leafletChildren.current = <FlyTo position={[geoLocation.lat, geoLocation.lon]} zoom={14} />;
+    const { lat, lon } = geoLocation;
+    map.flyTo([lat, lon], 16);
   };
 
   const doctorCards = pageDoctors?.map(doctor => (
@@ -57,12 +48,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
 
   return (
     <>
-      <LeafletMap
-        doctors={pageDoctors}
-        center={center}
-        zoom={zoom}
-        children={leafletChildren.current}
-      />
+      <MainMap whenCreated={setMap} doctors={pageDoctors} />
       {doctorCards ? (
         <Grid.Doctors>
           {pageCount !== 0 && (
@@ -83,3 +69,13 @@ const Doctors = ({ itemsPerPage = 10 }) => {
 };
 
 export default Doctors;
+
+export function getCenter(doctors) {
+  const isArray = Array.isArray(doctors);
+  if (!isArray) return null;
+
+  const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+  const avgLatitude = average(doctors.map(doctor => doctor.geoLocation.lat));
+  const avgLongitude = average(doctors.map(doctor => doctor.geoLocation.lon));
+  return [avgLatitude, avgLongitude];
+}
