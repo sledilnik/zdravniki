@@ -25,7 +25,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   );
 
   useEffect(() => {
-    pageDoctors?.length && map.flyTo(getCenter(pageDoctors), 8);
+    pageDoctors?.length > 0 && map?.flyTo(getCenter(pageDoctors), 8);
   }, [map, pageDoctors]);
 
   const handleChange = (event, value) => {
