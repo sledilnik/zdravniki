@@ -16,8 +16,11 @@ function DoctorsProvider({ children }) {
   const gyno = _gyno.parsed && createDoctors(_gyno.parsed, 'ginekolog');
   const dentists = _dentists.parsed && createDoctors(_dentists.parsed, 'zobozdravnik');
 
+  const isFetching = _doctors.isFetching || _gyno.isFetching || _dentists.isFetching;
+  const errors = [_doctors.error, _gyno.error, _dentists.error];
+
   return (
-    <DoctorsContext.Provider value={{ doctors, gyno, dentists }}>
+    <DoctorsContext.Provider value={{ isFetching, errors, doctors, gyno, dentists }}>
       {children}
     </DoctorsContext.Provider>
   );
