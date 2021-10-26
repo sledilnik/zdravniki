@@ -1,9 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
+import { styled } from '@mui/material/styles';
+
 import { filterContext } from 'context';
 import { Grid, Pagination, Loader } from 'components/Shared';
 import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
+
+const StyledWrapper = styled('div')(({ theme }) => ({
+  scrollBehavior: 'smooth',
+}));
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors } = filterContext.useFilter();
@@ -47,7 +53,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   ));
 
   return (
-    <>
+    <StyledWrapper>
       <MainMap whenCreated={setMap} doctors={pageDoctors} />
       {doctorCards ? (
         <Grid.Doctors>
@@ -64,7 +70,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
           <Loader />
         </Grid.Loader>
       )}
-    </>
+    </StyledWrapper>
   );
 };
 
