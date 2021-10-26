@@ -1,0 +1,24 @@
+# Global settings applied to the whole site.
+# “base” is directory to change to before starting build, and
+# “publish” is the directory to publish (relative to root of your repo).
+# “command” is your build command.
+
+[build]
+  base    = ""
+  publish = "build"
+  command = "REACT_APP_STAGE=development yarn run build"
+
+# production — a deploy generated from the production branch set in the UI
+[context.production]
+  command = "REACT_APP_STAGE=production yarn run build"
+
+# deploy-preview — a deploy generated from a pull request
+[context.deploy-preview]
+  command = "REACT_APP_STAGE=development yarn run build"
+
+# Always redirect any request to our index.html
+# and return the status code 200.
+[[redirects]]
+    from    = "/*"
+    to      = "/index.html"
+    status  = 200
