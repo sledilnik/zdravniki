@@ -1,3 +1,5 @@
+import MarkerClusterGroup from 'react-leaflet-markercluster';
+
 import { geoLocation } from '../../constants';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
@@ -18,7 +20,7 @@ function withLeaflet(Component) {
     };
     return (
       <Component {...injectedProps}>
-        {markers}
+        <MarkerClusterGroup>{markers}</MarkerClusterGroup>
         <Markers.User />
       </Component>
     );
