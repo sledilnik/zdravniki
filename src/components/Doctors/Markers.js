@@ -27,7 +27,7 @@ export const Doctor = ({ doctor }) => {
       center={doctor.geoLocation}
       radius={12}
       stroke={false}
-      fillOpacity={0.4}
+      fillOpacity={0.7}
       fillColor={fillColor}
       popup={<a href={`#${doctor.id}`}>{doctor.name}</a>}
     />
