@@ -25,8 +25,14 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         title={doctor.name}
         subheader={<Chip.Accepts text={doctor.acceptText} accept={doctor.accept} />}
       />
+      <CardContent>
+        <Stack>
+          <Typography>{doctor.activity}</Typography>
+          <Typography variant="body2">{doctor.provider}</Typography>
+        </Stack>
+      </CardContent>
       <CardMedia component="div">
-        <DoctorMap height="200px" doctor={doctor} />
+        <DoctorMap height="150px" doctor={doctor} />
       </CardMedia>
       <CardActions disableSpacing>
         <IconButton onClick={handleRoomIconClick}>
@@ -43,11 +49,14 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Stack>
-            <Typography>{doctor.provider}</Typography>
             <Typography>{doctor.activity}</Typography>
-            <Stack direction="row" spacing={1}>
-              <Typography>{doctor.street}</Typography>,<Typography>{doctor.city}</Typography>
-            </Stack>
+            <Typography variant="body2">{doctor.provider}</Typography>
+          </Stack>
+          <Stack>
+            <Typography variant="caption">{doctor.street}</Typography>
+            <Typography variant="caption">
+              {doctor.postalCode} {doctor.city}
+            </Typography>
           </Stack>
         </CardContent>
       </Collapse>
