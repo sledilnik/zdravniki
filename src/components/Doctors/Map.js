@@ -1,15 +1,14 @@
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-import { geoLocation } from '../../constants';
+import { GEO_LOCATION } from '../../constants';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 
 function withLeaflet(Component) {
   const DoctorMap = props => {
-    const { doctors, center = geoLocation.SL_CENTER, height = '500px', ...other } = props;
+    const { doctors, center = GEO_LOCATION.SL_CENTER, height = '500px', ...other } = props;
 
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
-
     const injectedProps = {
       center,
       height,

@@ -6,7 +6,7 @@ import { Grid, Pagination, Loader } from 'components/Shared';
 import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
-import { geoLocation } from 'constants/index';
+import { GEO_LOCATION } from 'constants/index';
 
 const StyledWrapper = styled('div')(({ theme }) => ({
   scrollBehavior: 'smooth',
@@ -88,7 +88,7 @@ export default Doctors;
 
 export function getCenter(doctors) {
   const isArray = Array.isArray(doctors);
-  if (!isArray) return [geoLocation.SL_CENTER];
+  if (!isArray) return [GEO_LOCATION.SL_CENTER];
 
   const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
   const avgLatitude = average(doctors.map(doctor => doctor.geoLocation.lat));

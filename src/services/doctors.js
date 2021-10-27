@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { doctors } from '../constants';
+import { DOCTORS } from '../constants';
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
 function createDoctor({
@@ -13,11 +13,11 @@ function createDoctor({
   accept,
   geo_location,
 }) {
-  const _accept = doctors.AcceptsBool[accept];
-  const _acceptText = doctors.AcceptsText[accept];
-  const _activity = doctors.Activities[trimString(activity.trim())] ?? activity;
+  const _accept = DOCTORS.AcceptsBool[accept];
+  const _acceptText = DOCTORS.AcceptsText[accept];
+  const _activity = DOCTORS.Activities[trimString(activity.trim())] ?? activity;
   const _munUnit = trimString(munUnit);
-  const _provider = trimString(provider).replace(doctors.Provider.ZD, 'ZD');
+  const _provider = trimString(provider).replace(DOCTORS.Provider.ZD, 'ZD');
   const _name = trimString(fullName);
 
   const [code, city] = address.city.split(' ');

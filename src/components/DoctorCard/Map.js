@@ -1,8 +1,8 @@
-import { geoLocation } from '../../constants';
+import { GEO_LOCATION } from '../../constants';
 import Leaflet, { Markers } from '../Shared/Leaflet';
 
 function withLeaflet(Component) {
-  const defaultGeoLocation = { lat: geoLocation.SL_CENTER[0], lon: geoLocation.SL_CENTER[1] };
+  const defaultGeoLocation = { lat: GEO_LOCATION.SL_CENTER[0], lon: GEO_LOCATION.SL_CENTER[1] };
 
   const DoctorMap = ({ doctor, height = '200px', ...other }) => {
     const {

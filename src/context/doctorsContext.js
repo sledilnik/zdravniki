@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { url } from '../constants';
+import { APP_URL } from '../constants';
 import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
 import { createDoctors } from '../services';
 
@@ -8,9 +8,9 @@ const DoctorsContext = createContext({});
 export const DoctorsConsumer = DoctorsContext.Consumer;
 
 function DoctorsProvider({ children }) {
-  const _doctors = useFetchAndParseCsv(url.DOCTORS_URL);
-  const _gyno = useFetchAndParseCsv(url.GYNAECOLOGISTS_URL);
-  const _dentists = useFetchAndParseCsv(url.DENTISTS_URL);
+  const _doctors = useFetchAndParseCsv(APP_URL.DOCTORS_URL);
+  const _gyno = useFetchAndParseCsv(APP_URL.GYNAECOLOGISTS_URL);
+  const _dentists = useFetchAndParseCsv(APP_URL.DENTISTS_URL);
 
   const doctors = _doctors.parsed && createDoctors(_doctors.parsed, 'zdravnik');
   const gyno = _gyno.parsed && createDoctors(_gyno.parsed, 'ginekolog');

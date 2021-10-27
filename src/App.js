@@ -8,7 +8,7 @@ import Doctors from './components/Doctors/';
 import { Grid, Loader } from 'components/Shared';
 import { useDoctors } from 'context/doctorsContext';
 import { Accessibility } from 'components/Shared';
-import { doctors } from './constants';
+import { DOCTORS } from './constants';
 
 function App() {
   const { isFetching, errors } = useDoctors();
@@ -31,7 +31,7 @@ function App() {
           </Grid.Filter>
 
           <leafletContext.LeafletProvider>
-            <Doctors itemsPerPage={doctors.PER_PAGE} />
+            <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
           </leafletContext.LeafletProvider>
         </Container>
       )}
