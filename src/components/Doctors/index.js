@@ -77,7 +77,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
         </Grid.Doctors>
       ) : (
         <Grid.Loader>
-          <Loader />
+          <Loader.Center />
         </Grid.Loader>
       )}
     </StyledWrapper>

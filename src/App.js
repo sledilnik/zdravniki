@@ -21,7 +21,7 @@ function App() {
     <>
       <SearchAppBar />
       {isFetching && !hasError ? (
-        <Loader />
+        <Loader.Center />
       ) : (
         <Container id="main-content" maxWidth="xl " component="main">
           <Grid.Filter>
