@@ -32,6 +32,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         <IconButton onClick={handleRoomIconClick}>
           <RoomIcon />
         </IconButton>
+        <Typography variant="caption">{doctor.fullAddress}</Typography>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
