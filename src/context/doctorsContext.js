@@ -8,9 +8,9 @@ const DoctorsContext = createContext({});
 export const DoctorsConsumer = DoctorsContext.Consumer;
 
 function DoctorsProvider({ children }) {
-  const _doctors = useFetchAndParseCsv(APP_URL.DOCTORS_URL);
-  const _gyno = useFetchAndParseCsv(APP_URL.GYNAECOLOGISTS_URL);
-  const _dentists = useFetchAndParseCsv(APP_URL.DENTISTS_URL);
+  const _doctors = useFetchAndParseCsv(APP_URL.DOCTORS);
+  const _gyno = useFetchAndParseCsv(APP_URL.GYNAECOLOGISTS);
+  const _dentists = useFetchAndParseCsv(APP_URL.DENTISTS);
 
   const doctors = _doctors.parsed && createDoctors(_doctors.parsed, 'zdravnik');
   const gyno = _gyno.parsed && createDoctors(_gyno.parsed, 'ginekolog');
