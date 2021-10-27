@@ -34,10 +34,10 @@ function FilterProvider({ children }) {
       const byName = _doctorsByAccept?.filter(compareName) ?? [];
       const byAddress = _doctorsByAccept?.filter(comapreAddress) ?? [];
 
-      const combined = byName.length < byAddress.length ? [...byName] : [...byAddress];
+      const combined = [...byName];
+
       byAddress.forEach(item => {
-        const oldDoctor = combined.find(doctor => doctor.id === item.id);
-        console.log(oldDoctor);
+        const oldDoctor = byName.find(doctor => doctor.id === item.id);
         !oldDoctor && combined.push(item);
       });
 
