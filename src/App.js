@@ -34,9 +34,6 @@ function App() {
           </leafletContext.LeafletProvider>
         </Container>
       )}
-      <div>
-        <footer>THIS IS FOOTER</footer>
-      </div>
     </Grid.App>
   );
 }
