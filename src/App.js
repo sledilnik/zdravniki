@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
@@ -8,6 +7,7 @@ import { ChooseDoctorType, ChooseAccept } from 'components/Filters';
 import Doctors from './components/Doctors/';
 import { Grid, Loader } from 'components/Shared';
 import { useDoctors } from 'context/doctorsContext';
+import { Accessibility } from 'components/Shared';
 
 function App() {
   const { isFetching, errors } = useDoctors();
@@ -23,7 +23,7 @@ function App() {
       {isFetching && !hasError ? (
         <Loader />
       ) : (
-        <Container maxWidth="xl " component="main">
+        <Container id="main-content" maxWidth="xl " component="main">
           <Grid.Filter>
             <ChooseDoctorType />
             <ChooseAccept />
@@ -34,20 +34,19 @@ function App() {
           </leafletContext.LeafletProvider>
         </Container>
       )}
+      <div>
+        <footer>THIS IS FOOTER</footer>
+      </div>
     </>
   );
 }
 
-const HiddenH1 = styled('h1')(({ theme }) => ({
-  position: 'absolute',
-  top: '-500vh',
-}));
-
 function AppWrapper() {
   return (
     <>
-      <HiddenH1>Najdi prostega zdravnika</HiddenH1>
       <CssBaseline />
+      <Accessibility.A href="#main-content">Na vsebino</Accessibility.A>
+      <Accessibility.H1>Najdi prostega zdravnika</Accessibility.H1>
       <doctorsContext.DoctorsProvider>
         <filterContext.FilterProvider>
           <App />
