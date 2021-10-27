@@ -9,6 +9,8 @@ import { Grid, Loader } from 'components/Shared';
 import { useDoctors } from 'context/doctorsContext';
 import { Accessibility } from 'components/Shared';
 import { DOCTORS } from './constants';
+import { Toolbar } from '@mui/material';
+import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
 function App() {
   const { isFetching, errors } = useDoctors();
@@ -19,23 +21,27 @@ function App() {
   }
 
   return (
-    <Grid.App>
-      <SearchAppBar />
-      {isFetching && !hasError ? (
-        <Loader.Center />
-      ) : (
-        <Container id="main-content" maxWidth="xl " component="main">
-          <Grid.Filter>
-            <ChooseDoctorType />
-            <ChooseAccept />
-          </Grid.Filter>
+    <>
+      <Grid.App>
+        <SearchAppBar />
+        <Toolbar id="back-to-top-anchor" />
+        {isFetching && !hasError ? (
+          <Loader.Center />
+        ) : (
+          <Container id="main-content" maxWidth="xl " component="main">
+            <Grid.Filter>
+              <ChooseDoctorType />
+              <ChooseAccept />
+            </Grid.Filter>
 
-          <leafletContext.LeafletProvider>
-            <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-          </leafletContext.LeafletProvider>
-        </Container>
-      )}
-    </Grid.App>
+            <leafletContext.LeafletProvider>
+              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
+            </leafletContext.LeafletProvider>
+          </Container>
+        )}
+      </Grid.App>
+      <ScrollTop />
+    </>
   );
 }
 
