@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <>
+    <Grid.App>
       <SearchAppBar />
       {isFetching && !hasError ? (
         <Loader.Center />
@@ -37,7 +37,7 @@ function App() {
       <div>
         <footer>THIS IS FOOTER</footer>
       </div>
-    </>
+    </Grid.App>
   );
 }
 
