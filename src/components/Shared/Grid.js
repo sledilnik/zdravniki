@@ -13,7 +13,7 @@ export const Filter = styled(Cards)(({ theme }) => ({
 }));
 
 export const Doctors = styled(BaseGrid)(({ theme }) => ({
-  gridTemplateRows: 'min-content, 1fr, min-content',
+  gridTemplateRows: 'min-content 1fr min-content',
   alignContent: 'stretch',
   alignItems: 'start',
   margin: '16px 0 0',
