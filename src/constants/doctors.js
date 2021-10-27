@@ -19,3 +19,5 @@ export const Activities = {
 export const Provider = {
   ZD: 'ZDRAVSTVENI DOM',
 };
+
+export const PER_PAGE = 20;
