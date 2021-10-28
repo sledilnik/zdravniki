@@ -13,7 +13,7 @@ const StyledWrapper = styled('div')(({ theme }) => ({
 }));
 
 const Doctors = ({ itemsPerPage = 10 }) => {
-  const { doctors } = filterContext.useFilter();
+  const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [page, setPage] = useState(1);
   const { map, setMap } = useLeafletContext();
 
@@ -27,6 +27,10 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   useEffect(() => {
     pageDoctors?.length > 0 && map?.flyTo(getCenter(pageDoctors), 8);
   }, [map, pageDoctors]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [doctorType, accept, searchValue]);
 
   const handleChange = (event, value) => {
     setPage(value);
