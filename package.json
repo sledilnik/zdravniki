@@ -41,5 +41,10 @@
     "env-cmd": "^10.1.0",
     "install-peers": "^1.0.3",
     "netlify-cli": "^6.14.5"
+  },
+  "engines": {
+    "node": ">= 16.13.0",
+    "npm": "please-use-yarn",
+    "yarn": ">=1.22.15"
   }
 }
