@@ -19,6 +19,9 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
     setExpanded(!expanded);
   };
 
+  const color = doctor.accept ? 'success.contrastText' : 'error.contrastText';
+  const bgColor = doctor.accept ? 'success.main' : 'error.main';
+
   return (
     <Card
       id={doctor.id}
@@ -26,7 +29,8 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
     >
       <CardHeader
         title={doctor.name}
-        subheader={<Chip.Accepts text={doctor.acceptText} accept={doctor.accept} />}
+        subheader={<Chip.FilledAccepts text={doctor.acceptText} accept={doctor.accept} />}
+        sx={{ bgcolor: bgColor, color }}
       />
       <CardContent>
         <Stack>
