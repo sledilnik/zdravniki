@@ -7,13 +7,14 @@ import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { GEO_LOCATION } from 'constants/index';
+import { Button } from '@mui/material';
 
 const StyledWrapper = styled('div')(({ theme }) => ({
   scrollBehavior: 'smooth',
 }));
 
 const Doctors = ({ itemsPerPage = 10 }) => {
-  const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
+  const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
@@ -27,19 +28,27 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     setItems(Array.from({ length: 20 }));
   }, [doctorType, accept, searchValue]);
 
-  const handleFlyToDoctor = (event, geoLocation) => {
+  const handleFlyToDoctor = (event, { geoLocation, id }) => {
     if (!geoLocation) {
       console.warn('No geo location!');
       return;
     }
     window.scrollTo(0, 0);
+    setIds([id]);
     const { lat, lon } = geoLocation;
+    map.setView([lat, lon]);
     map.flyTo([lat, lon], 16);
+  };
+
+  const handleShowAll = () => {
+    map.flyTo(GEO_LOCATION.SL_CENTER, 8);
+    setIds([]);
   };
 
   return (
     <StyledWrapper>
       <MainMap whenCreated={setMap} doctors={doctors} />
+      {ids.length === 1 && <Button onClick={handleShowAll}>Pokaži vse</Button>}
       <InfiniteScroll
         dataLength={_doctors?.length ?? 0}
         next={fetchMore}
@@ -56,7 +65,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
           <DoctorCard
             key={doctor.id}
             doctor={doctor}
-            handleRoomIconClick={event => handleFlyToDoctor(event, doctor.geoLocation)}
+            handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
           />
         ))}
       </InfiniteScroll>
