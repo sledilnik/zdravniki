@@ -48,7 +48,11 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   return (
     <StyledWrapper>
       <MainMap whenCreated={setMap} doctors={doctors} />
-      {ids.length === 1 && <Button onClick={handleShowAll}>Pokaži vse</Button>}
+      {ids.length === 1 && (
+        <div style={{ marginTop: '1rem', width: '100%' }}>
+          <Button onClick={handleShowAll}>Pokaži vse</Button>
+        </div>
+      )}
       <InfiniteScroll
         dataLength={_doctors?.length ?? 0}
         next={fetchMore}
