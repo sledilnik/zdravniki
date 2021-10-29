@@ -10,6 +10,7 @@ function FilterProvider({ children }) {
   const [doctorType, setDoctorType] = useState('doctors');
   const [accept, setAccept] = useState('sprejema');
   const [searchValue, setSearchValue] = useState('');
+  const [ids, setIds] = useState([]);
 
   const allDoctors = useDoctors();
 
@@ -49,6 +50,23 @@ function FilterProvider({ children }) {
 
   useDebounce(() => setFilteredDoctors(), 700, [searchValue, _doctorsByType]);
 
+  useEffect(() => {
+    if (ids.length === 0) {
+      setDoctors(_doctorsByAccept);
+    }
+  }, [_doctorsByAccept, ids.length]);
+
+  const isByIds = ids.length > 0;
+
+  useEffect(() => {
+    if (isByIds) {
+      setSearchValue('');
+
+      const doctorsById = _doctorsByType.filter(doctor => ids.includes(doctor.id));
+      setDoctors(doctorsById);
+    }
+  }, [ids, isByIds, _doctorsByType]);
+
   const value = {
     doctors,
     setDoctors,
@@ -58,6 +76,8 @@ function FilterProvider({ children }) {
     setAccept,
     searchValue,
     setSearchValue,
+    ids,
+    setIds,
   };
 
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
