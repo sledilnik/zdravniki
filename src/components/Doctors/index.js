@@ -13,6 +13,12 @@ const StyledWrapper = styled('div')(({ theme }) => ({
   scrollBehavior: 'smooth',
 }));
 
+const ButtonWrapper = styled('div')(({ theme }) => ({
+  marginTop: '1rem',
+  width: '100%',
+  textAlign: 'center',
+}));
+
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
   const { map, setMap } = useLeafletContext();
@@ -49,9 +55,9 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     <StyledWrapper>
       <MainMap whenCreated={setMap} doctors={doctors} />
       {ids.length === 1 && (
-        <div style={{ marginTop: '1rem', width: '100%' }}>
+        <ButtonWrapper>
           <Button onClick={handleShowAll}>Pokaži vse</Button>
-        </div>
+        </ButtonWrapper>
       )}
       <InfiniteScroll
         dataLength={_doctors?.length ?? 0}
