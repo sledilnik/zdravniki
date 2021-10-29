@@ -17,9 +17,10 @@ function withLeaflet(Component) {
       maxZoom: 16,
       ...other,
     };
+
     return (
       <Component {...injectedProps}>
-        <MarkerClusterGroup>{markers}</MarkerClusterGroup>
+        <MarkerClusterGroup maxClusterRadius={40}>{markers}</MarkerClusterGroup>
         <Markers.User />
       </Component>
     );
