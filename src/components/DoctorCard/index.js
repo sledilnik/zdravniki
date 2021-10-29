@@ -20,7 +20,10 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   };
 
   return (
-    <Card id={doctor.id} sx={{ maxWidth: 345, alignSelf: 'start' }}>
+    <Card
+      id={doctor.id}
+      sx={{ alignSelf: 'start', marginBottom: '1rem', marginRight: '1rem', maxWidth: '300px' }}
+    >
       <CardHeader
         title={doctor.name}
         subheader={<Chip.Accepts text={doctor.acceptText} accept={doctor.accept} />}

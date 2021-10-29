@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { styled } from '@mui/material/styles';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { filterContext } from 'context';
-import { Grid, Pagination, Loader } from 'components/Shared';
 import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
@@ -14,27 +14,18 @@ const StyledWrapper = styled('div')(({ theme }) => ({
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
-  const [page, setPage] = useState(1);
   const { map, setMap } = useLeafletContext();
+  const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
-  const pageCount = doctors?.length && Math.floor(doctors.length / itemsPerPage);
+  const _doctors = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
 
-  const pageDoctors = useMemo(
-    () => doctors?.slice(itemsPerPage * page - itemsPerPage, itemsPerPage * page),
-    [doctors, itemsPerPage, page],
-  );
-
-  useEffect(() => {
-    pageDoctors?.length > 0 && map?.flyTo(getCenter(pageDoctors), 8);
-  }, [map, pageDoctors]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [doctorType, accept, searchValue]);
-
-  const handleChange = (event, value) => {
-    setPage(value);
+  const fetchMore = () => {
+    setItems(items.concat(Array.from({ length: itemsPerPage })));
   };
+
+  useEffect(() => {
+    setItems(Array.from({ length: 20 }));
+  }, [doctorType, accept, searchValue]);
 
   const handleFlyToDoctor = (event, geoLocation) => {
     if (!geoLocation) {
@@ -46,44 +37,29 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     map.flyTo([lat, lon], 16);
   };
 
-  const doctorCards = pageDoctors?.map(doctor => (
-    <DoctorCard
-      key={doctor.id}
-      doctor={doctor}
-      handleRoomIconClick={event => handleFlyToDoctor(event, doctor.geoLocation)}
-    />
-  ));
-
   return (
     <StyledWrapper>
-      <MainMap whenCreated={setMap} doctors={pageDoctors} />
-      {doctorCards ? (
-        <Grid.Doctors>
-          {pageCount !== 0 && (
-            <Pagination.DoctorsSmall
-              count={pageCount}
-              page={page}
-              onChange={handleChange}
-              showFirstButton
-              showLastButton
-            />
-          )}
-          <Grid.Cards>{doctorCards}</Grid.Cards>
-          {pageCount !== 0 && (
-            <Pagination.DoctorsSmall
-              count={pageCount}
-              page={page}
-              onChange={handleChange}
-              showFirstButton
-              showLastButton
-            />
-          )}
-        </Grid.Doctors>
-      ) : (
-        <Grid.Loader>
-          <Loader.Center />
-        </Grid.Loader>
-      )}
+      <MainMap whenCreated={setMap} doctors={doctors} />
+      <InfiniteScroll
+        dataLength={_doctors?.length ?? 0}
+        next={fetchMore}
+        hasMore={_doctors?.length < doctors?.length}
+        loader={<div>Loading</div>}
+        style={{
+          marginTop: '1rem',
+          display: 'inline-flex',
+          flexWrap: 'wrap',
+          justifyContent: 'flex-start',
+        }}
+      >
+        {_doctors?.map(doctor => (
+          <DoctorCard
+            key={doctor.id}
+            doctor={doctor}
+            handleRoomIconClick={event => handleFlyToDoctor(event, doctor.geoLocation)}
+          />
+        ))}
+      </InfiniteScroll>
     </StyledWrapper>
   );
 };
