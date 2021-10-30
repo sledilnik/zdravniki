@@ -21,7 +21,7 @@ export default function ChooseDoctorType() {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" disabled={!doctors}>
       <FormLabel component="legend">Sprejema</FormLabel>
       <RadioGroup
         row
