@@ -4,15 +4,24 @@ import { useDebounce } from 'hooks';
 
 const FilterContext = createContext();
 
+const doctorsType = ['doctors', 'gyno', 'dentists'];
+
 export const FilterConsumer = FilterContext.Consumer;
 
 function FilterProvider({ children }) {
-  const [doctorType, setDoctorType] = useState('doctors');
+  const { errors, ...allDoctors } = useDoctors();
+
+  let indexType = null;
+  errors.forEach((error, index) => {
+    if (!error) {
+      indexType = indexType ?? index;
+    }
+  });
+
+  const [doctorType, setDoctorType] = useState(doctorsType[indexType]);
   const [accept, setAccept] = useState('sprejema');
   const [searchValue, setSearchValue] = useState('');
   const [ids, setIds] = useState([]);
-
-  const allDoctors = useDoctors();
 
   const _doctorsByType = useMemo(() => allDoctors[doctorType], [allDoctors, doctorType]);
   const _doctorsByAccept = useMemo(
