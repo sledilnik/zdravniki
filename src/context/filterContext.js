@@ -25,8 +25,10 @@ function FilterProvider({ children }) {
 
   const [doctors, setDoctors] = useState(_doctorsByType);
 
+  const isByIds = ids.length > 0;
+
   const setFilteredDoctors = useCallback(() => {
-    !searchValue && setDoctors(_doctorsByAccept);
+    !searchValue && !isByIds && setDoctors(_doctorsByAccept);
 
     if (searchValue) {
       const compareName = doctor => doctor.name.includes(searchValue.toUpperCase());
@@ -44,9 +46,7 @@ function FilterProvider({ children }) {
 
       setDoctors(combined);
     }
-  }, [searchValue, _doctorsByAccept]);
-
-  useEffect(() => setFilteredDoctors(), [setFilteredDoctors]);
+  }, [searchValue, _doctorsByAccept, isByIds]);
 
   useDebounce(() => setFilteredDoctors(), 700, [searchValue, _doctorsByType]);
 
@@ -55,8 +55,6 @@ function FilterProvider({ children }) {
       setDoctors(_doctorsByAccept);
     }
   }, [_doctorsByAccept, ids.length]);
-
-  const isByIds = ids.length > 0;
 
   useEffect(() => {
     if (isByIds) {
