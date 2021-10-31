@@ -5,10 +5,6 @@ const BaseGrid = styled('div')(({ theme }) => ({
   gridGap: '1rem',
 }));
 
-export const App = styled(BaseGrid)(({ theme }) => ({
-  gridTemplateRows: 'min-content 1fr min-content',
-  gridGap: 0,
-}));
 export const Cards = styled(BaseGrid)(({ theme }) => ({
   gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 }));

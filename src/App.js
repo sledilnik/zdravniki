@@ -7,7 +7,7 @@ import SearchAppBar from './components/SearchAppBar/';
 import Filters from 'components/Filters';
 import Doctors from './components/Doctors/';
 
-import { Grid, Loader } from 'components/Shared';
+import { Loader } from 'components/Shared';
 import { Accessibility } from 'components/Shared';
 import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
@@ -23,21 +23,18 @@ function App() {
 
   return (
     <>
-      <Grid.App>
-        <SearchAppBar />
-        <Toolbar id="back-to-top-anchor" />
-        {isFetching && !hasError ? (
-          <Loader.Center />
-        ) : (
-          <Container id="main-content" maxWidth="xl " component="main">
-            <Filters />
-
-            <leafletContext.LeafletProvider>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-            </leafletContext.LeafletProvider>
-          </Container>
-        )}
-      </Grid.App>
+      <SearchAppBar />
+      <Toolbar id="back-to-top-anchor" />
+      {isFetching && !hasError ? (
+        <Loader.Center />
+      ) : (
+        <Container id="main-content" maxWidth="xl " component="main">
+          <Filters />
+          <leafletContext.LeafletProvider>
+            <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
+          </leafletContext.LeafletProvider>
+        </Container>
+      )}
       <ScrollTop />
     </>
   );
