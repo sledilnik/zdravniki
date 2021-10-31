@@ -28,7 +28,7 @@ function App() {
       {isFetching && !hasError ? (
         <Loader.Center />
       ) : (
-        <Container id="main-content" maxWidth="xl " component="main">
+        <Container id="main-content" maxWidth="xl" component="main">
           <Filters />
           <leafletContext.LeafletProvider>
             <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
