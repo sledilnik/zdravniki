@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { DOCTORS } from '../constants';
+import { DOCTORS } from 'const';
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
 function createDoctor({

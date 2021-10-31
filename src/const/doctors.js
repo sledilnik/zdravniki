@@ -20,4 +20,10 @@ export const Provider = {
   ZD: 'ZDRAVSTVENI DOM',
 };
 
+export const DoctorTypes = {
+  doctors: 'Splošni',
+  gyno: 'Ginekologi',
+  dentists: 'Zobozdravniki',
+};
+
 export const PER_PAGE = 20;

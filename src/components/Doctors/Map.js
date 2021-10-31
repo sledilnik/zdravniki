@@ -2,7 +2,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-import { GEO_LOCATION } from '../../constants';
+import { GEO_LOCATION } from 'const';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 

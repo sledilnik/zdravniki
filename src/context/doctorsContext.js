@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { APP_URL } from '../constants';
+import { APP_URL } from 'const';
 import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
 import { createDoctors } from '../services';
 

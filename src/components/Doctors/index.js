@@ -5,7 +5,7 @@ import { filterContext } from 'context';
 import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
-import { GEO_LOCATION } from 'constants/index';
+import { GEO_LOCATION } from 'const';
 import Button from '@mui/material/Button';
 import * as Styled from './styles';
 

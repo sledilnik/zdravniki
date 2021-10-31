@@ -4,15 +4,15 @@ import { Toolbar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
-import SearchAppBar from './components/SearchAppBar/';
+import SearchAppBar from 'components/SearchAppBar/';
 import Filters from 'components/Filters';
-import Doctors from './components/Doctors/';
+import Doctors from 'components/Doctors/';
 
 import { Loader } from 'components/Shared';
 import { Accessibility } from 'components/Shared';
 import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
-import { DOCTORS } from './constants';
+import { DOCTORS } from 'const';
 
 function App() {
   const { isFetching, errors } = doctorsContext.useDoctors();

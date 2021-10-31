@@ -5,15 +5,15 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { filterContext } from 'context';
 import Badge from '@mui/material/Badge';
-import { AcceptsText } from 'constants/doctors';
+import { DOCTORS } from 'const';
 
 export default function ChooseDoctorType() {
   const { doctors, accept, setAccept } = filterContext.useFilter();
 
   const badgeContent = {
     all: accept === 'vsi' ? doctors?.length : 0,
-    yes: accept === AcceptsText.DA ? doctors?.length : 0,
-    no: accept === AcceptsText.NE ? doctors?.length : 0,
+    yes: accept === DOCTORS.AcceptsText.DA ? doctors?.length : 0,
+    no: accept === DOCTORS.AcceptsText.NE ? doctors?.length : 0,
   };
 
   const onChangeHandler = event => {

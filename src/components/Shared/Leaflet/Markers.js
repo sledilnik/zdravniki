@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { CircleMarker, Marker, Popup, Tooltip } from 'react-leaflet';
-import { GEO_LOCATION } from '../../../constants';
+import { GEO_LOCATION } from 'const';
 
 export const LeafletMarker = ({ position = [], tooltip }) => {
   return <Marker position={position}>{tooltip && <Tooltip>{tooltip}</Tooltip>}</Marker>;
