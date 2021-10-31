@@ -1,19 +1,20 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
+import { Toolbar } from '@mui/material';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
-import { ChooseDoctorType, ChooseAccept } from 'components/Filters';
+import Filters from 'components/Filters';
 import Doctors from './components/Doctors/';
+
 import { Grid, Loader } from 'components/Shared';
-import { useDoctors } from 'context/doctorsContext';
 import { Accessibility } from 'components/Shared';
-import { DOCTORS } from './constants';
-import { Toolbar } from '@mui/material';
 import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
+import { DOCTORS } from './constants';
+
 function App() {
-  const { isFetching, errors } = useDoctors();
+  const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
   if (hasError) {
@@ -29,10 +30,7 @@ function App() {
           <Loader.Center />
         ) : (
           <Container id="main-content" maxWidth="xl " component="main">
-            <Grid.Filter>
-              <ChooseDoctorType />
-              <ChooseAccept />
-            </Grid.Filter>
+            <Filters />
 
             <leafletContext.LeafletProvider>
               <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
