@@ -1,6 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { Toolbar } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
 import SearchAppBar from './components/SearchAppBar/';
@@ -41,6 +42,7 @@ function App() {
 }
 
 function AppWrapper() {
+  const theme = createTheme();
   return (
     <>
       <CssBaseline />
@@ -48,7 +50,9 @@ function AppWrapper() {
       <Accessibility.H1>Najdi prostega zdravnika</Accessibility.H1>
       <doctorsContext.DoctorsProvider>
         <filterContext.FilterProvider>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </filterContext.FilterProvider>
       </doctorsContext.DoctorsProvider>
     </>
