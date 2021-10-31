@@ -2,14 +2,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-import { GEO_LOCATION } from 'const';
+import { GEO_LOCATION, SIZES } from 'const';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 
 function withLeaflet(Component) {
-  const upXS = json2mq({ screen: true, minWidth: 350 });
-  const defaultHeight = 500;
-  const _mqHeights = [300, defaultHeight];
+  const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
+  const upXSHeight = json2mq({ screen: true, minHeight: SIZES.DEVICES.s });
+  const DEFAULT_HEIGHT = SIZES.MAP_HEIGHT.large;
+  const _mqHeights = [SIZES.MAP_HEIGHT.small, DEFAULT_HEIGHT];
 
   const validateMqHeights = (mqHeights = []) => {
     if (_mqHeights.length === mqHeights.length) {
@@ -25,7 +26,7 @@ function withLeaflet(Component) {
 
     if (_mqHeights.length > mqHeights.length) {
       console.warn(
-        `Not enough heights: ${mqHeights.length}! I will populate rest with default value: ${defaultHeight}.`,
+        `Not enough heights: ${mqHeights.length}! I will populate rest with default value: ${DEFAULT_HEIGHT}.`,
       );
       return 'less';
     }
@@ -40,7 +41,8 @@ function withLeaflet(Component) {
     maxZoom = 16,
     ...other
   }) => {
-    const isUpXS = useMediaQuery(upXS);
+    const isUpXS = useMediaQuery(upXSWidth);
+    const isUpXSHeight = useMediaQuery(upXSHeight);
 
     const Heights = {
       ok: () => mqHeights,
@@ -50,7 +52,7 @@ function withLeaflet(Component) {
         const wantedLength = _mqHeights.length;
         const missingValues = Array.from(
           { length: wantedLength - currentLength },
-          () => defaultHeight,
+          () => DEFAULT_HEIGHT,
         );
         return [...mqHeights, ...missingValues];
       },
@@ -59,7 +61,7 @@ function withLeaflet(Component) {
     const getHeights = Heights[validateMqHeights(mqHeights)];
     const [xs, xl] = getHeights();
 
-    const mapHeight = isUpXS ? xl : xs;
+    const mapHeight = isUpXS && isUpXSHeight ? xl : xs;
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
     const injectedProps = {
       center,
