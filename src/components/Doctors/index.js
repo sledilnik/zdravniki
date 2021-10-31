@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { styled } from '@mui/material/styles';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { filterContext } from 'context';
@@ -8,16 +7,7 @@ import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { GEO_LOCATION } from 'constants/index';
 import Button from '@mui/material/Button';
-
-const StyledWrapper = styled('div')(({ theme }) => ({
-  scrollBehavior: 'smooth',
-}));
-
-const ButtonWrapper = styled('div')(({ theme }) => ({
-  marginTop: '1rem',
-  width: '100%',
-  textAlign: 'center',
-}));
+import * as Styled from './styles';
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
@@ -52,12 +42,12 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   };
 
   return (
-    <StyledWrapper>
+    <Styled.Wrapper>
       <MainMap whenCreated={setMap} doctors={doctors} />
       {ids.length === 1 && (
-        <ButtonWrapper>
+        <Styled.ButtonWrapper>
           <Button onClick={handleShowAll}>Pokaži vse</Button>
-        </ButtonWrapper>
+        </Styled.ButtonWrapper>
       )}
       <InfiniteScroll
         dataLength={_doctors?.length ?? 0}
@@ -79,7 +69,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
           />
         ))}
       </InfiniteScroll>
-    </StyledWrapper>
+    </Styled.Wrapper>
   );
 };
 
