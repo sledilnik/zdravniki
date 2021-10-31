@@ -81,6 +81,9 @@ function FilterProvider({ children }) {
     setSearchValue,
     ids,
     setIds,
+    get allDoctors() {
+      return _doctorsByAccept;
+    },
   };
 
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
