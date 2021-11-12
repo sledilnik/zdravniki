@@ -17,6 +17,7 @@ function withLeaflet(Component) {
       dragging: false,
       zoomControl: false,
       scrollWheelZoom: false,
+      doubleClickZoom: false,
       ...other,
     };
     return (
