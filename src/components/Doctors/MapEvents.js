@@ -2,7 +2,6 @@ import L from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import { useFilter } from 'context/filterContext';
 
-// TODO not finished yet -
 const MapEvents = () => {
   const { allDoctors, setDoctors, ids } = useFilter();
 
