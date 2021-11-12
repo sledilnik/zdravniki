@@ -33,7 +33,7 @@ function withLeaflet(Component) {
     }
   };
 
-  const DoctorMap = ({
+  const DoctorsMap = ({
     doctors,
     mqHeights = [..._mqHeights],
     center = GEO_LOCATION.SL_CENTER,
@@ -86,7 +86,7 @@ function withLeaflet(Component) {
     );
   };
 
-  return DoctorMap;
+  return DoctorsMap;
 }
 
 export default withLeaflet(Leaflet);
