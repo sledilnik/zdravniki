@@ -1,3 +1,4 @@
+import L from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import { useFilter } from 'context/filterContext';
 
@@ -11,33 +12,30 @@ const MapEvents = () => {
         return;
       }
 
-      const markersLatLng = [];
-      event.target.eachLayer(layer => {
-        if (layer?.getLatLng && map.getBounds().contains(layer.getLatLng())) {
-          if (layer.options.pane === 'overlayPane') {
-            markersLatLng.push(layer.getLatLng());
-          }
-          if (layer.options.pane === 'markerPane') {
-            try {
-              const childMarkers = layer.getAllChildMarkers && layer.getAllChildMarkers();
-              childMarkers?.forEach(marker => markersLatLng.push(marker.getLatLng()));
-            } catch (error) {
-              console.log(layer);
-              console.error(error);
-            }
-          }
-        }
+      const bounds = map.getBounds();
+      const mapDoctors = allDoctors?.filter(doctor => {
+        const { lat, lon } = doctor.geoLocation;
+        const corner = L.latLng(lat, lon);
+        const _bounds = L.latLngBounds(corner, corner);
+        return bounds.intersects(_bounds);
       });
 
-      const doctorsFound = markersLatLng.map(LatLng => {
-        const { lat, lng } = LatLng;
-        const doctor = allDoctors.filter(
-          ({ geoLocation }) => geoLocation.lat === lat && geoLocation.lon === lng,
-        );
-        return doctor;
+      allDoctors && setDoctors(mapDoctors);
+    },
+    moveend(event) {
+      if (ids.length > 0) {
+        return;
+      }
+
+      const bounds = map.getBounds();
+      const mapDoctors = allDoctors?.filter(doctor => {
+        const { lat, lon } = doctor.geoLocation;
+        const corner = L.latLng(lat, lon);
+        const _bounds = L.latLngBounds(corner, corner);
+        return bounds.intersects(_bounds);
       });
-      const onlyIds = [...new Set(doctorsFound.flat().map(({ id }) => id))];
-      allDoctors && setDoctors(allDoctors.filter(({ id }) => onlyIds.includes(id)));
+
+      allDoctors && setDoctors(mapDoctors);
     },
   });
   return null;

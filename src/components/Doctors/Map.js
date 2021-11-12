@@ -5,6 +5,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { GEO_LOCATION, SIZES } from 'const';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
+import MapEvents from './MapEvents';
 
 function withLeaflet(Component) {
   const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
@@ -80,6 +81,7 @@ function withLeaflet(Component) {
       <Component key={mapHeight} {...injectedProps}>
         <MarkerClusterGroup maxClusterRadius={40}>{markers}</MarkerClusterGroup>
         <Markers.User />
+        <MapEvents />
       </Component>
     );
   };
