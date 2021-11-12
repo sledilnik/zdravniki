@@ -11,9 +11,15 @@ import IconButton from '@mui/material/IconButton';
 import { RoomIcon } from 'components/Shared/Icons';
 import CardMedia from '@mui/material/CardMedia';
 import DoctorMap from './Map';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import json2mq from 'json2mq';
+import { SIZES } from 'const';
 
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   const [expanded, setExpanded] = useState(false);
+
+  const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
+  const isUpXS = useMediaQuery(upXSWidth);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -21,6 +27,12 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
 
   const color = doctor.accept ? 'success.contrastText' : 'error.contrastText';
   const bgColor = doctor.accept ? 'success.main' : 'error.main';
+
+  const cardMedia = (
+    <CardMedia component="div">
+      <DoctorMap height="150px" doctor={doctor} />
+    </CardMedia>
+  );
 
   return (
     <Card
@@ -38,9 +50,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
           <Typography variant="body2">{doctor.provider}</Typography>
         </Stack>
       </CardContent>
-      <CardMedia component="div">
-        <DoctorMap height="150px" doctor={doctor} />
-      </CardMedia>
+      {isUpXS && cardMedia}
       <CardActions disableSpacing>
         <IconButton onClick={handleRoomIconClick}>
           <RoomIcon />
@@ -54,6 +64,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         />
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
+        {!isUpXS && cardMedia}
         <CardContent>
           <Stack>
             <Typography>{doctor.activity}</Typography>
