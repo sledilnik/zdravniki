@@ -36,7 +36,7 @@ export default function SearchAppBar() {
           >
             Zdravniki
           </Typography>
-          <Tooltip title="Išči po imenu ali naslovu">
+          <Tooltip title="Išči po imenu ali naslovu med zdravniki na zemljevidu!">
             <Search.Search>
               <Search.SearchIconWrapper>
                 <SearchIcon />
