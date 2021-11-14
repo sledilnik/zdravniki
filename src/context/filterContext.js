@@ -1,68 +1,55 @@
-import { createContext, useCallback, useContext, useMemo, useState, useEffect } from 'react';
+import { createContext, useCallback, useContext, useState, useEffect } from 'react';
 import { useDoctors } from './doctorsContext';
 import { useDebounce } from 'hooks';
 
 const FilterContext = createContext();
 
-const doctorsType = ['doctors', 'gyno', 'dentists'];
-
 export const FilterConsumer = FilterContext.Consumer;
 
 function FilterProvider({ children }) {
-  const { errors, ...allDoctors } = useDoctors();
+  const { doctors: _doctors } = useDoctors();
 
-  let indexType = null;
-  errors.forEach((error, index) => {
-    if (!error) {
-      indexType = indexType ?? index;
-    }
-  });
-
-  const [doctorType, setDoctorType] = useState(doctorsType[indexType]);
-  const [accept, setAccept] = useState('sprejema');
+  const [doctorType, setDoctorType] = useState('gp');
+  const [accept, setAccept] = useState('vsi');
   const [searchValue, setSearchValue] = useState('');
   const [ids, setIds] = useState([]);
 
-  const _doctorsByType = useMemo(() => allDoctors[doctorType], [allDoctors, doctorType]);
-  const _doctorsByAccept = useMemo(
-    () =>
-      accept === 'vsi'
-        ? _doctorsByType
-        : _doctorsByType?.filter(doctor => accept === doctor.acceptText),
-    [_doctorsByType, accept],
-  );
-
-  const [doctors, setDoctors] = useState(_doctorsByAccept);
+  const [doctors, setDoctors] = useState(_doctors);
+  const [filtered, setFiltered] = useState(null);
 
   const isByIds = ids.length > 0;
 
   const setFilteredDoctors = useCallback(() => {
-    !searchValue && !isByIds && setDoctors(_doctorsByAccept);
+    console.log('setFilteredDoctors');
+    if (!filtered) {
+      return;
+    }
+
+    !searchValue && !isByIds && setDoctors(filtered);
 
     if (isByIds) {
       searchValue && setSearchValue('');
-
-      const doctorsById = _doctorsByType.filter(doctor => ids.includes(doctor.id));
+      const doctorsById = filtered.filter(doctor => ids.includes(doctor.id));
       setDoctors(doctorsById);
     }
 
     if (searchValue) {
-      const compareName = doctor => doctor.name.includes(searchValue.toUpperCase());
-      const comapreAddress = doctor => doctor.fullAddress.includes(searchValue.toUpperCase());
-
-      const byName = _doctorsByAccept?.filter(compareName) ?? [];
-      const byAddress = _doctorsByAccept?.filter(comapreAddress) ?? [];
-
-      const combined = [...byName];
-
-      byAddress.forEach(item => {
-        const oldDoctor = byName.find(doctor => doctor.id === item.id);
-        !oldDoctor && combined.push(item);
-      });
+      const compare = doctor =>
+        doctor.name.includes(searchValue.toUpperCase()) ||
+        doctor.fullAddress.includes(searchValue.toUpperCase());
+      const combined = filtered.filter(compare);
 
       setDoctors(combined);
     }
-  }, [searchValue, _doctorsByAccept, ids, isByIds, _doctorsByType]);
+  }, [filtered, searchValue, isByIds, ids]);
+
+  useEffect(() => {
+    if (!_doctors) {
+      return;
+    }
+
+    setFiltered(_doctors.filter(doctorType, accept));
+  }, [_doctors, accept, doctorType]);
 
   useDebounce(() => setFilteredDoctors(), 500, [searchValue]);
 
@@ -82,10 +69,9 @@ function FilterProvider({ children }) {
     ids,
     setIds,
     get allDoctors() {
-      return _doctorsByAccept;
+      return filtered;
     },
   };
-
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 }
 

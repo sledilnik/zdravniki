@@ -7,11 +7,18 @@ import { doctorsContext, filterContext } from 'context';
 
 export default function ChooseDoctorType() {
   const { doctorType, setDoctorType } = filterContext.useFilter();
-  const { doctors, gyno, dentists } = doctorsContext.useDoctors();
+  const { doctors } = doctorsContext.useDoctors();
+
+  const types = doctors?.types ?? [];
+  const typesDict = doctors?.typesDict;
 
   const onChangeHandler = event => {
     setDoctorType(event.target.value);
   };
+
+  if (types.length === 0) {
+    return null;
+  }
 
   return (
     <FormControl component="fieldset">
@@ -23,14 +30,15 @@ export default function ChooseDoctorType() {
         value={doctorType}
         onChange={onChangeHandler}
       >
-        <FormControlLabel disabled={!doctors} value="doctors" control={<Radio />} label="Splošni" />
-        <FormControlLabel disabled={!gyno} value="gyno" control={<Radio />} label="Ginekolog" />
-        <FormControlLabel
-          disabled={!dentists}
-          value="dentists"
-          control={<Radio />}
-          label="Zobozdravnik"
-        />
+        {types.map(type => (
+          <FormControlLabel
+            key={type}
+            disabled={!doctors}
+            value={type}
+            control={<Radio />}
+            label={typesDict[type]['description-sl']}
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   );

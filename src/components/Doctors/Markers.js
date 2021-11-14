@@ -51,7 +51,7 @@ export const Doctor = ({ doctor }) => {
   const ref = createRef(null);
   const theme = useTheme();
   const { palette } = theme;
-  const fillColor = doctor.accept ? palette.success.main : palette.error.main;
+  const fillColor = doctor.accepts === 'y' ? palette.success.main : palette.error.main;
   return (
     <Markers.LeafletCircleMarker
       ref={ref}

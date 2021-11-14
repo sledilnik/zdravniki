@@ -14,7 +14,10 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
-  const _doctors = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
+  const _doctors = useMemo(
+    () => doctors ?? doctors?.slice(0, items.length),
+    [doctors, items.length],
+  );
 
   const fetchMore = () => {
     setItems(items.concat(Array.from({ length: itemsPerPage })));

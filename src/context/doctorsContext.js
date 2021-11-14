@@ -1,38 +1,39 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { APP_URL } from 'const';
+import { CSV_URL } from 'const';
 import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
-import { createDoctors } from '../services';
+import { createDoctors } from 'services';
+import { fromArrayWithHeader } from 'utils';
 
 const DoctorsContext = createContext({});
 
 export const DoctorsConsumer = DoctorsContext.Consumer;
 
 function DoctorsProvider({ children }) {
-  const [all, setAll] = useState({ doctors: null, gyno: null, dentists: null });
+  const [doctors, setDoctors] = useState(null);
 
-  const _doctors = useFetchAndParseCsv(APP_URL.DOCTORS);
-  const _gyno = useFetchAndParseCsv(APP_URL.GYNAECOLOGISTS);
-  const _dentists = useFetchAndParseCsv(APP_URL.DENTISTS);
-  const isFetching = _doctors.isFetching || _gyno.isFetching || _dentists.isFetching;
-  const errors = [_doctors.error, _gyno.error, _dentists.error];
+  const _institutions = useFetchAndParseCsv(CSV_URL.INSTITUTIONS);
+  const _doctorTypes = useFetchAndParseCsv(CSV_URL.DOCTOR_TYPES);
+  const _doctors = useFetchAndParseCsv(CSV_URL.DOCTORS);
+
+  const isFetching = _doctors.isFetching || _institutions.isFetching || _doctorTypes.isFetching;
+  const errors = [_doctors.error, _institutions.error, _doctorTypes.error];
   const doctorsFetched =
     (!!_doctors.parsed || _doctors.error) &&
-    (!!_gyno.parsed || _gyno.error) &&
-    (!!_dentists.parsed || _dentists.error);
+    (!!_institutions.parsed || _institutions.error) &&
+    (!!_doctorTypes.parsed || _doctorTypes.error);
 
   useEffect(() => {
-    doctorsFetched &&
-      setAll({
-        doctors: isFetching && !_doctors.error ? null : createDoctors(_doctors.parsed, 'zdravnik'),
-        gyno: isFetching && !_gyno.error ? null : createDoctors(_gyno.parsed, 'ginekolog'),
-        dentists:
-          isFetching && !_dentists.error ? null : createDoctors(_dentists.parsed, 'zobozdravnik'),
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [doctorsFetched]);
+    if (doctorsFetched) {
+      const doctorsDict = fromArrayWithHeader(_doctors.parsed);
+      const institutionsDict = fromArrayWithHeader(_institutions.parsed);
+      const typesDict = fromArrayWithHeader(_doctorTypes.parsed);
+
+      setDoctors(createDoctors(doctorsDict, institutionsDict, typesDict));
+    }
+  }, [_doctorTypes.parsed, _doctors.parsed, _institutions.parsed, doctorsFetched]);
 
   return (
-    <DoctorsContext.Provider value={{ isFetching, errors, ...all }}>
+    <DoctorsContext.Provider value={{ isFetching, errors, doctors }}>
       {children}
     </DoctorsContext.Provider>
   );
