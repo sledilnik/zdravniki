@@ -1,5 +1,4 @@
 import { memo, useState } from 'react';
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -14,6 +13,7 @@ import DoctorMap from './Map';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
 import { SIZES } from 'const';
+import * as Styled from './styles';
 
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   const [expanded, setExpanded] = useState(false);
@@ -36,10 +36,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   );
 
   return (
-    <Card
-      id={doctor.id}
-      sx={{ alignSelf: 'start', marginBottom: '1rem', marginRight: '1rem', maxWidth: '300px' }}
-    >
+    <Styled.Card id={doctor.id}>
       <CardHeader
         title={doctor.name}
         subheader={<Chip.FilledAccepts text={doctor.getAcceptText()} accept={accepts} />}
@@ -79,7 +76,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
           </Stack>
         </CardContent>
       </Collapse>
-    </Card>
+    </Styled.Card>
   );
 };
 

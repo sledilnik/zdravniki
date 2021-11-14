@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { filterContext } from 'context';
 import MainMap from './Map';
@@ -49,17 +48,12 @@ const Doctors = ({ itemsPerPage = 10 }) => {
           <Button onClick={handleShowAll}>Pokaži vse</Button>
         </Styled.ButtonWrapper>
       )}
-      <InfiniteScroll
+      <Styled.InfiniteScroll
         dataLength={_doctors?.length ?? 0}
         next={fetchMore}
         hasMore={_doctors?.length < doctors?.length}
         loader={<div>Loading</div>}
-        style={{
-          marginTop: '1rem',
-          display: 'inline-flex',
-          flexWrap: 'wrap',
-          justifyContent: 'flex-start',
-        }}
+        style={{}}
       >
         {_doctors?.map(doctor => (
           <DoctorCard
@@ -68,7 +62,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
             handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
           />
         ))}
-      </InfiniteScroll>
+      </Styled.InfiniteScroll>
     </Styled.Wrapper>
   );
 };
