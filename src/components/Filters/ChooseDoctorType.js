@@ -1,8 +1,7 @@
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { doctorsContext, filterContext } from 'context';
 
 export default function ChooseDoctorType() {
@@ -21,25 +20,26 @@ export default function ChooseDoctorType() {
   }
 
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Tip zdravnika</FormLabel>
-      <RadioGroup
-        row
-        aria-label="tip"
-        name="row-radio-buttons-group"
+    <FormControl sx={{ minWidth: 120, maxWidth: 220 }}>
+      <InputLabel id="doctor-type-label">Tip</InputLabel>
+      <Select
+        labelId="doctor-type-label"
+        id="doctor-type"
         value={doctorType}
+        label="Tip"
         onChange={onChangeHandler}
       >
         {types.map(type => (
-          <FormControlLabel
+          <MenuItem
             key={type}
             disabled={!doctors}
             value={type}
-            control={<Radio />}
             label={typesDict[type]['description-sl']}
-          />
+          >
+            {typesDict[type]['description-sl']}
+          </MenuItem>
         ))}
-      </RadioGroup>
+      </Select>
     </FormControl>
   );
 }
