@@ -10,6 +10,7 @@ export const DoctorsConsumer = DoctorsContext.Consumer;
 
 function DoctorsProvider({ children }) {
   const [doctors, setDoctors] = useState(null);
+  const [dicts, setDicts] = useState({ doctors: null, institutions: null, types: null });
 
   const _institutions = useFetchAndParseCsv(CSV_URL.INSTITUTIONS);
   const _doctorTypes = useFetchAndParseCsv(CSV_URL.DOCTOR_TYPES);
@@ -29,11 +30,12 @@ function DoctorsProvider({ children }) {
       const typesDict = fromArrayWithHeader(_doctorTypes.parsed);
 
       setDoctors(createDoctors(doctorsDict, institutionsDict, typesDict));
+      setDicts({ doctors: doctorsDict, institutions: institutionsDict, types: typesDict });
     }
   }, [_doctorTypes.parsed, _doctors.parsed, _institutions.parsed, doctorsFetched]);
 
   return (
-    <DoctorsContext.Provider value={{ isFetching, errors, doctors }}>
+    <DoctorsContext.Provider value={{ isFetching, errors, doctors, dicts }}>
       {children}
     </DoctorsContext.Provider>
   );
