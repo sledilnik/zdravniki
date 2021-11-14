@@ -2,10 +2,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-import { GEO_LOCATION, SIZES } from 'const';
+import { MAP, SIZES } from 'const';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 import MapEvents from './MapEvents';
+
+const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
   const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
@@ -37,9 +39,9 @@ function withLeaflet(Component) {
     doctors,
     mqHeights = [..._mqHeights],
     center = GEO_LOCATION.SL_CENTER,
-    zoom = 8,
-    minZoom = 8,
-    maxZoom = 16,
+    zoom = MAP.ZOOM,
+    minZoom = MAP.MIN_ZOOM,
+    maxZoom = MAP.MAX_ZOOM,
     ...other
   }) => {
     const isUpXS = useMediaQuery(upXSWidth);

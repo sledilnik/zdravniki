@@ -1,5 +1,7 @@
-import { GEO_LOCATION } from 'const';
+import { MAP } from 'const';
 import Leaflet, { Markers } from 'components/Shared/Leaflet';
+
+const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
   const defaultGeoLocation = { lat: GEO_LOCATION.SL_CENTER[0], lon: GEO_LOCATION.SL_CENTER[1] };

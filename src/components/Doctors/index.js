@@ -4,9 +4,11 @@ import { filterContext } from 'context';
 import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
-import { GEO_LOCATION } from 'const';
+import { MAP } from 'const';
 import Button from '@mui/material/Button';
 import * as Styled from './styles';
+
+const { GEO_LOCATION } = MAP;
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
@@ -23,6 +25,10 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     setItems(Array.from({ length: 20 }));
   }, [doctorType, accept, searchValue]);
 
+  useEffect(() => {
+    map?.flyTo(GEO_LOCATION.SL_CENTER, MAP.ZOOM);
+  }, [map, doctorType, accept]);
+
   const handleFlyToDoctor = (event, { geoLocation, id }) => {
     if (!geoLocation) {
       console.warn('No geo location!');
@@ -32,11 +38,11 @@ const Doctors = ({ itemsPerPage = 10 }) => {
     setIds([id]);
     const { lat, lon } = geoLocation;
     map.setView([lat, lon]);
-    map.flyTo([lat, lon], 16);
+    map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
   const handleShowAll = () => {
-    map.flyTo(GEO_LOCATION.SL_CENTER, 8);
+    map.flyTo(GEO_LOCATION.SL_CENTER, MAP.ZOOM);
     setIds([]);
   };
 

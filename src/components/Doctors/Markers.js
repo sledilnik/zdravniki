@@ -7,6 +7,7 @@ import { Markers } from 'components/Shared/Leaflet';
 import Typography from '@mui/material/Typography';
 import { filterContext } from 'context';
 import { useLeafletContext } from 'context/leafletContext';
+import { MAP } from 'const';
 
 export const User = () => {
   const [position, setPosition] = useState(null);
@@ -34,7 +35,7 @@ const PopUpData = ({ doctor, popUpRef }) => {
       geoLocation: { lat, lon },
     } = doctor;
 
-    map.flyTo([lat, lon], 16);
+    map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
   return (
