@@ -20,7 +20,6 @@ function FilterProvider({ children }) {
   const isByIds = ids.length > 0;
 
   const setFilteredDoctors = useCallback(() => {
-    console.log('setFilteredDoctors');
     if (!filtered) {
       return;
     }
