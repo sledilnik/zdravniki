@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState, useEffect } from 'react';
+import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
 import { useDoctors } from './doctorsContext';
 import { useDebounce } from 'hooks';
 
@@ -43,13 +43,18 @@ function FilterProvider({ children }) {
     }
   }, [filtered, searchValue, isByIds, ids]);
 
+  const memoFiltered = useMemo(
+    () => _doctors?.filter(doctorType, accept),
+    [accept, doctorType, _doctors],
+  );
+
   useEffect(() => {
     if (!_doctors) {
       return;
     }
 
-    setFiltered(_doctors.filter(doctorType, accept));
-  }, [_doctors, accept, doctorType]);
+    setFiltered(memoFiltered);
+  }, [_doctors, memoFiltered]);
 
   useDebounce(() => setFilteredDoctors(), 500, [searchValue]);
 
