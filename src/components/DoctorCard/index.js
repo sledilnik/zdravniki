@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useLayoutEffect, useState } from 'react';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -16,10 +16,13 @@ import { SIZES } from 'const';
 import * as Styled from './styles';
 
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
-  const [expanded, setExpanded] = useState(false);
-
   const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
   const isUpXS = useMediaQuery(upXSWidth);
+  const [expanded, setExpanded] = useState(isUpXS);
+
+  useLayoutEffect(() => {
+    setExpanded(isUpXS);
+  }, [isUpXS]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -48,7 +51,6 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
           <Typography variant="body2">{doctor.provider}</Typography>
         </Stack>
       </CardContent>
-      {isUpXS && cardMedia}
       <CardActions disableSpacing>
         <IconButton onClick={handleRoomIconClick}>
           <RoomIcon />
@@ -62,19 +64,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         />
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {!isUpXS && cardMedia}
-        <CardContent>
-          <Stack>
-            <Typography>{doctor.activity}</Typography>
-            <Typography variant="body2">{doctor.provider}</Typography>
-          </Stack>
-          <Stack>
-            <Typography variant="caption">{doctor.street}</Typography>
-            <Typography variant="caption">
-              {doctor.postalCode} {doctor.city}
-            </Typography>
-          </Stack>
-        </CardContent>
+        <CardContent>{cardMedia}</CardContent>
       </Collapse>
     </Styled.Card>
   );
