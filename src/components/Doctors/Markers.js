@@ -1,14 +1,12 @@
 import { useEffect, useState, createRef, memo } from 'react';
 import { useMap } from 'react-leaflet';
 import { useTheme } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 
 import { Markers } from 'components/Shared/Leaflet';
 import Typography from '@mui/material/Typography';
-import { filterContext } from 'context';
-import { useLeafletContext } from 'context/leafletContext';
-import { MAP } from 'const';
 
+import { Chip } from '../Shared';
+import Stack from '@mui/material/Stack';
 export const User = () => {
   const [position, setPosition] = useState(null);
   const map = useMap();
@@ -23,31 +21,22 @@ export const User = () => {
   return position && <Markers.LeafletMarker position={position} tooltip="Tvoja lokacija" />;
 };
 
-const PopUpData = ({ doctor, popUpRef }) => {
-  const { setIds } = filterContext.useFilter();
-  const { map } = useLeafletContext();
-
-  const goToHandlers = () => {
-    popUpRef.current.togglePopup();
-    setIds([doctor.id]);
-
-    const {
-      geoLocation: { lat, lon },
-    } = doctor;
-
-    map.flyTo([lat, lon], MAP.MAX_ZOOM);
-  };
+const PopUpData = ({ doctor }) => {
+  const accepts = doctor.accepts === 'y';
 
   return (
-    <>
+    <div style={{ maxWidth: '180px' }}>
       <Typography variant="subtitle2">{doctor.name}</Typography>
-      <Typography variant="subtitle2">{doctor.activity}</Typography>
-      <Typography variant="subtitle2">{doctor.provider}</Typography>
-      <Button onClick={goToHandlers}>Pojdi</Button>
-    </>
+      <Typography variant="caption">{doctor.provider}</Typography>
+      <Stack sx={{ alignItems: 'start', marginTop: '0.5em' }} spacing={1}>
+        <Chip.Info text={doctor.getTypeText()} />
+        <Chip.Accepts text={doctor.getAcceptText()} accept={accepts} />
+      </Stack>
+    </div>
   );
 };
 
+const areEqual = (prevProps, nextProps) => prevProps.doctor.id === nextProps.doctor.id;
 export const Doctor = memo(({ doctor }) => {
   const ref = createRef(null);
   const theme = useTheme();
