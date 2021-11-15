@@ -38,16 +38,18 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
     </CardMedia>
   );
 
+  const subheader = (
+    <Stack sx={{ alignItems: 'start' }} spacing={1}>
+      <Chip.Info text={doctor.getTypeText()} />
+      <Chip.FilledAccepts text={doctor.getAcceptText()} accept={accepts} />
+    </Stack>
+  );
+
   return (
     <Styled.Card id={doctor.id}>
-      <CardHeader
-        title={doctor.name}
-        subheader={<Chip.FilledAccepts text={doctor.getAcceptText()} accept={accepts} />}
-        sx={{ bgcolor: bgColor, color }}
-      />
+      <CardHeader title={doctor.name} subheader={subheader} sx={{ bgcolor: bgColor, color }} />
       <CardContent>
         <Stack>
-          <Typography>{doctor.getTypeText()}</Typography>
           <Typography variant="body2">{doctor.provider}</Typography>
         </Stack>
       </CardContent>
