@@ -1,4 +1,4 @@
-import { useEffect, useState, createRef } from 'react';
+import { useEffect, useState, createRef, memo } from 'react';
 import { useMap } from 'react-leaflet';
 import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -48,7 +48,7 @@ const PopUpData = ({ doctor, popUpRef }) => {
   );
 };
 
-export const Doctor = ({ doctor }) => {
+export const Doctor = memo(({ doctor }) => {
   const ref = createRef(null);
   const theme = useTheme();
   const { palette } = theme;
@@ -64,4 +64,4 @@ export const Doctor = ({ doctor }) => {
       popup={<PopUpData doctor={doctor} popUpRef={ref} />}
     />
   );
-};
+}, areEqual);
