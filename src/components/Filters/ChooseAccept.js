@@ -21,7 +21,9 @@ export default function ChooseDoctorType() {
 
   return (
     <FormControl component="fieldset" disabled={!doctors}>
-      <FormLabel component="legend">Sprejema</FormLabel>
+      <FormLabel sx={{ fontSize: '0.75em' }} component="legend">
+        Sprejema
+      </FormLabel>
       <RadioGroup
         row
         aria-label="vsi, sprejema, ne sprejema"
@@ -31,7 +33,7 @@ export default function ChooseDoctorType() {
       >
         <FormControlLabel
           value="vsi"
-          control={<Radio />}
+          control={<Radio size="small" />}
           label={
             <Badge badgeContent={badgeContent.all} color="primary" max={99}>
               Vsi
@@ -40,7 +42,7 @@ export default function ChooseDoctorType() {
         />
         <FormControlLabel
           value="y"
-          control={<Radio />}
+          control={<Radio size="small" />}
           label={
             <Badge badgeContent={badgeContent.yes} color="success" max={99}>
               Sprejema
@@ -49,7 +51,7 @@ export default function ChooseDoctorType() {
         />
         <FormControlLabel
           value="n"
-          control={<Radio />}
+          control={<Radio size="small" />}
           label={
             <Badge badgeContent={badgeContent.no} color="error" max={99}>
               Ne sprejema
