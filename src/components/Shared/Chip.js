@@ -15,8 +15,8 @@ export const Error = ({ text, ...props }) => (
 export const Accepts = ({ text, accept, ...props }) =>
   accept ? <Success {...props} text={text} /> : <Error {...props} text={text} />;
 
-export const FilledError = ({ text }) => (
-  <Chip
+export const Outlined = ChipSmallOutlined;
+
     label={text}
 export const FilledError = ({ text, ...props }) => (
   <ChipSmallFilled
