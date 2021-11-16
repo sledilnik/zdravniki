@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
 import { useDoctors } from './doctorsContext';
-import { useDebounce } from 'hooks';
 
 const FilterContext = createContext();
 
@@ -54,8 +53,6 @@ function FilterProvider({ children }) {
 
     setFiltered(memoFiltered);
   }, [_doctors, memoFiltered]);
-
-  useDebounce(() => setFilteredDoctors(), 500, [searchValue]);
 
   useEffect(() => {
     setFilteredDoctors();

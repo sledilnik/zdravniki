@@ -7,13 +7,18 @@ import Tooltip from '@mui/material/Tooltip';
 import { MenuIcon, SearchIcon } from 'components/Shared/Icons';
 import { Search } from './styles';
 import { filterContext } from 'context';
+import { useState } from 'react';
+import { useDebounce } from 'hooks';
 
 export default function SearchAppBar() {
-  const { searchValue, setSearchValue } = filterContext.useFilter();
+  const { setSearchValue } = filterContext.useFilter();
+  const [value, setValue] = useState('');
 
   const handleSearchChange = event => {
-    setSearchValue(event.target.value);
+    setValue(event.target.value);
   };
+
+  useDebounce(() => setSearchValue(value), 500, [value]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -44,7 +49,7 @@ export default function SearchAppBar() {
               <Search.StyledInputBase
                 placeholder="Išči…"
                 inputProps={{ 'aria-label': 'išči' }}
-                value={searchValue}
+                value={value}
                 onChange={handleSearchChange}
               />
             </Search.Search>
