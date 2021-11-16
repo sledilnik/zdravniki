@@ -1,19 +1,25 @@
 import { memo, useLayoutEffect, useState } from 'react';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Collapse from '@mui/material/Collapse';
-import { Chip, ExpandMore } from '../Shared';
-import Stack from '@mui/material/Stack';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import { RoomIcon } from 'components/Shared/Icons';
-import CardMedia from '@mui/material/CardMedia';
-import DoctorMap from './Map';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import json2mq from 'json2mq';
-import { SIZES } from 'const';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CardHeader from '@mui/material/CardHeader';
+
+import Collapse from '@mui/material/Collapse';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+
+import { ExpandMore } from '../Shared';
+import { RoomIcon } from 'components/Shared/Icons';
+import DoctorMap from './Map';
+import SubHeader from './SubHeader';
 import * as Styled from './styles';
+
+import { SIZES } from 'const';
 
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
@@ -39,10 +45,13 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   );
 
   const subheader = (
-    <Stack sx={{ alignItems: 'start' }} spacing={1}>
-      <Chip.Info text={doctor.getTypeText()} />
-      <Chip.FilledAccepts text={doctor.getAcceptText()} accept={accepts} />
-    </Stack>
+    <SubHeader
+      availability={doctor.availability}
+      load={doctor.load}
+      typeText={doctor.getTypeText()}
+      acceptText={doctor.getAcceptText()}
+      accepts={accepts}
+    />
   );
 
   return (
