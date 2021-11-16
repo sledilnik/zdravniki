@@ -1,28 +1,38 @@
 import Chip from '@mui/material/Chip';
 
-export const Info = ({ text }) => <Chip label={text} size="small" color="info" />;
-export const Success = ({ text }) => <Chip label={text} size="small" color="success" />;
-export const Error = ({ text }) => <Chip label={text} size="small" color="error" />;
+const ChipBaseSmall = props => <Chip {...props} size="small" />;
+const ChipSmallFilled = props => <ChipBaseSmall {...props} variant="filled" />;
+const ChipSmallOutlined = props => <ChipBaseSmall {...props} variant="outlined" />;
 
-export const Accepts = ({ text, accept }) =>
-  accept ? <Success text={text} /> : <Error text={text} />;
+export const Info = ({ text, ...props }) => <ChipBaseSmall {...props} label={text} color="info" />;
+export const Success = ({ text, ...props }) => (
+  <ChipBaseSmall {...props} label={text} color="success" />
+);
+export const Error = ({ text, ...props }) => (
+  <ChipBaseSmall {...props} label={text} color="error" />
+);
+
+export const Accepts = ({ text, accept, ...props }) =>
+  accept ? <Success {...props} text={text} /> : <Error {...props} text={text} />;
 
 export const FilledError = ({ text }) => (
   <Chip
     label={text}
-    size="small"
-    variant="filled"
+export const FilledError = ({ text, ...props }) => (
+  <ChipSmallFilled
+    {...props}
+    label={text}
     sx={{ color: 'error.dark', bgcolor: 'error.contrastText' }}
   />
 );
-export const FilledSuccess = ({ text }) => (
-  <Chip
+export const FilledSuccess = ({ text, ...props }) => (
+  <ChipSmallFilled
+    {...props}
     label={text}
-    size="small"
     variant="filled"
     sx={{ color: 'success.dark', bgcolor: 'success.contrastText' }}
   />
 );
 
-export const FilledAccepts = ({ text, accept }) =>
-  accept ? <FilledSuccess text={text} /> : <FilledError text={text} />;
+export const FilledAccepts = ({ text, accept, ...props }) =>
+  accept ? <FilledSuccess {...props} text={text} /> : <FilledError {...props} text={text} />;
