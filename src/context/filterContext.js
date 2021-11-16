@@ -35,7 +35,7 @@ function FilterProvider({ children }) {
     if (searchValue) {
       const compare = doctor =>
         doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.fullAddress.toLowerCase().includes(searchValue.toLowerCase());
+        doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase());
       const combined = filtered.filter(compare);
 
       setDoctors(combined);

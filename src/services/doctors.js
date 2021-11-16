@@ -20,12 +20,15 @@ export function createDoctor(doctor, type, institution) {
   const getAcceptText = (lang = 'SL') => ACCEPT_TRANSLATE[lang.toUpperCase()][doctor.accepts];
 
   const _name = trimString(doctor.doctor);
+
   const _munUnit = trimString(institution.unit);
   const _provider = trimString(institution.name);
-  const [code, city] = institution.city.split(' ');
-  const _address = { street: institution.address, code, city };
-
+  const { address, city, municipality, post } = institution;
+  const [_code, _post] = post.split(' ');
   const _geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
+
+  const _address = { street: address, postalCode: _code, city, municipality, post: _post };
+
   const _key = uuidv4();
   const _availability = doctor.availability;
   const _load = doctor.load;
@@ -53,16 +56,10 @@ export function createDoctor(doctor, type, institution) {
       return _munUnit;
     },
     get fullAddress() {
-      return `${_address.street}, ${_address.code} ${_address.city}`;
+      return `${_address.street}, ${_address.city}`;
     },
-    get street() {
-      return _address.street;
-    },
-    get city() {
-      return _address.city;
-    },
-    get postalCode() {
-      return _address.code;
+    get searchAddress() {
+      return `${_address.street}, ${_address.postalCode} ${_address.city} ${_address.municipality}`;
     },
     get geoLocation() {
       return _geoLocation;
