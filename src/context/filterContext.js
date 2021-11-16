@@ -47,12 +47,12 @@ function FilterProvider({ children }) {
   );
 
   useEffect(() => {
-    if (!_doctors) {
+    if (!memoFiltered) {
       return;
     }
 
     setFiltered(memoFiltered);
-  }, [_doctors, memoFiltered]);
+  }, [memoFiltered]);
 
   useEffect(() => {
     setFilteredDoctors();
