@@ -34,7 +34,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
 
   const cardMedia = (
     <CardMedia component="div">
-      <DoctorMap height="150px" doctor={doctor} />
+      <DoctorMap height="150px" doctor={doctor} handleRoomIconClick={handleRoomIconClick} />
     </CardMedia>
   );
 
