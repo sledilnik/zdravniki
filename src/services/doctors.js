@@ -91,30 +91,27 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
   const doctorsValues = Object.values(doctors);
 
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
-  const filterByAccept = accepts =>
-    accepts === 'vsi ' ? doctorsValues : doctorsValues.filter(doctor => doctor.accepts === accepts);
-
-  const filter = (type, accepts) => {
-    if (accepts !== 'y' && accepts !== 'n') {
-      return filterByType(type);
-    }
-
-    return doctorsValues.filter(doctor => doctor.type === type && doctor.accepts === accepts);
-  };
 
   const types = Object.keys(typesDict);
 
-  // const byType = types.reduce((acc, type) => {
-  //   acc[type] = filterByType(type);
-  //   return acc;
-  // }, {});
+  const byType = types.reduce((acc, type) => {
+    acc[type] = filterByType(type);
+    return acc;
+  }, {});
+
+  const filter = (type, accepts) => {
+    if (accepts !== 'y' && accepts !== 'n') {
+      return byType[type];
+    }
+
+    return byType[type].filter(doctor => doctor.accepts === accepts);
+  };
 
   return Object.freeze({
     all: doctorsValues,
     getById,
     types,
     filterByType,
-    filterByAccept,
     typesDict,
     filter,
   });
