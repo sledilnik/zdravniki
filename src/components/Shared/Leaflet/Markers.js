@@ -4,8 +4,12 @@ import { MAP } from 'const';
 
 const { GEO_LOCATION } = MAP;
 
-export const LeafletMarker = ({ position = [], tooltip }) => {
-  return <Marker position={position}>{tooltip && <Tooltip>{tooltip}</Tooltip>}</Marker>;
+export const LeafletMarker = ({ position = [], tooltip, ...other }) => {
+  return (
+    <Marker position={position} {...other}>
+      {tooltip && <Tooltip>{tooltip}</Tooltip>}
+    </Marker>
+  );
 };
 
 export const LeafletCircleMarker = forwardRef((props, ref) => {

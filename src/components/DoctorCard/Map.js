@@ -12,6 +12,12 @@ function withLeaflet(Component) {
     } = doctor ?? { geoLocation: defaultGeoLocation };
     const position = [lat, lon];
 
+    const eventHandlers = {
+      click: () => {
+        other.handleRoomIconClick();
+      },
+    };
+
     const injectedProps = {
       center: position,
       height,
@@ -24,7 +30,7 @@ function withLeaflet(Component) {
     };
     return (
       <Component {...injectedProps}>
-        <Markers.LeafletMarker position={position} />
+        <Markers.LeafletMarker position={position} eventHandlers={eventHandlers} />
       </Component>
     );
   };
