@@ -17,7 +17,14 @@ export const Accepts = ({ text, accept, ...props }) =>
 
 export const Outlined = ChipSmallOutlined;
 
+export const OutlinedInfo = ({ text, ...props }) => (
+  <ChipSmallOutlined
+    {...props}
     label={text}
+    sx={{ color: 'info.main', bgcolor: 'info.contrastText' }}
+  />
+);
+
 export const FilledError = ({ text, ...props }) => (
   <ChipSmallFilled
     {...props}
