@@ -27,6 +27,8 @@ export function createDoctor(doctor, type, institution) {
 
   const _geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
   const _key = uuidv4();
+  const _availability = doctor.availability;
+  const _load = doctor.load;
 
   return Object.freeze({
     get key() {
@@ -64,6 +66,12 @@ export function createDoctor(doctor, type, institution) {
     },
     get geoLocation() {
       return _geoLocation;
+    },
+    get availability() {
+      return _availability;
+    },
+    get load() {
+      return _load;
     },
     getTypeText,
     getAcceptText,
