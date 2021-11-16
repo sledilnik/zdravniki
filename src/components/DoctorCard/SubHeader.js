@@ -3,8 +3,9 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 
 import { Chip } from '../Shared';
-import { EmojiPeopleIcon } from 'components/Shared/Icons';
 import * as Styled from './styles';
+
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const SubHeader = ({ availability, load, typeText, acceptText, accepts }) => {
   const tooltip = (
@@ -25,15 +26,19 @@ const SubHeader = ({ availability, load, typeText, acceptText, accepts }) => {
 
   return (
     <Stack sx={{ alignItems: 'start' }} spacing={1}>
-      <Stack spacing={1} direction="row" marginTop="0.75rem">
+      <Stack
+        direction="row"
+        marginTop="0.75rem"
+        sx={{ justifyContent: 'space-between', width: '100%' }}
+      >
         <Chip.Info text={typeText} />
-        <Tooltip title={tooltip} placement="right-start" sx={{ cursor: 'help', margin: '1rem' }}>
+        <Tooltip title={tooltip} placement="right-start">
           <Styled.AvailabilityBadge
             color={getBadgeColor(availability)}
             badgeContent={availabilityText}
             sx={{ cursor: 'help' }}
           >
-            <EmojiPeopleIcon sx={{ marginRight: '1.1rem', color: 'white' }} />
+            <DateRangeIcon sx={{ marginRight: '0.5rem', color: 'white' }} />
           </Styled.AvailabilityBadge>
         </Tooltip>
       </Stack>
