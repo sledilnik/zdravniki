@@ -2,12 +2,19 @@ import MuiCard from '@mui/material/Card';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 
-export const Card = styled(MuiCard)(({ theme }) => ({
-  alignSelf: 'start',
-  marginBottom: '1rem',
-  marginRight: '1rem',
-  width: '280px',
-}));
+export const Card = styled(MuiCard)(({ theme, accepts }) => {
+  const { palette } = theme;
+
+  const acceptsColor = accepts ? palette.success.main : palette.error.main;
+
+  return {
+    alignSelf: 'start',
+    marginBottom: '1rem',
+    marginRight: '1rem',
+    width: '100%',
+    borderLeft: `solid 4px ${acceptsColor}`,
+  };
+});
 
 export const AvailabilityBadge = styled(Badge)(({ theme, color, badgeTextColor }) => {
   return {
