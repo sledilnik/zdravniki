@@ -54,21 +54,23 @@ const Doctors = ({ itemsPerPage = 10 }) => {
           <Button onClick={handleShowAll}>Pokaži vse</Button>
         </Styled.ButtonWrapper>
       )}
-      <Styled.InfiniteScroll
-        dataLength={_doctors?.length ?? 0}
-        next={fetchMore}
-        hasMore={_doctors?.length < doctors?.length}
-        loader={<div>Loading</div>}
-        style={{}}
-      >
-        {_doctors?.map(doctor => (
-          <DoctorCard
-            key={doctor.key}
-            doctor={doctor}
-            handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
-          />
-        ))}
-      </Styled.InfiniteScroll>
+      <Styled.WrapperInfinite id="scrollableDiv">
+        <Styled.InfiniteScroll
+          dataLength={_doctors?.length ?? 0}
+          next={fetchMore}
+          hasMore={_doctors?.length < doctors?.length}
+          loader={<div>Loading</div>}
+          scrollableTarget="scrollableDiv"
+        >
+          {_doctors?.map(doctor => (
+            <DoctorCard
+              key={doctor.key}
+              doctor={doctor}
+              handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
+            />
+          ))}
+        </Styled.InfiniteScroll>
+      </Styled.WrapperInfinite>
     </Styled.Wrapper>
   );
 };

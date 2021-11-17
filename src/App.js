@@ -1,5 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import { Toolbar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -12,7 +12,13 @@ import { Loader } from 'components/Shared';
 import { Accessibility } from 'components/Shared';
 import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
+import { styled } from '@mui/material/styles';
+
 import { DOCTORS } from 'const';
+
+const Main = styled(Box)(({ theme }) => ({
+  overflow: 'hidden',
+}));
 
 function App() {
   const { isFetching, errors } = doctorsContext.useDoctors();
@@ -29,12 +35,14 @@ function App() {
       {isFetching && !hasError ? (
         <Loader.Center />
       ) : (
-        <Container id="main-content" maxWidth="xl" component="main">
+        <>
           <Filters />
-          <leafletContext.LeafletProvider>
-            <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-          </leafletContext.LeafletProvider>
-        </Container>
+          <Main id="main-content" component="main">
+            <leafletContext.LeafletProvider>
+              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
+            </leafletContext.LeafletProvider>
+          </Main>
+        </>
       )}
       <ScrollTop />
     </>
