@@ -18,6 +18,7 @@ import { DOCTORS } from 'const';
 
 const Main = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
+  backgroundColor: theme.palette.grey[200],
 }));
 
 function App() {
