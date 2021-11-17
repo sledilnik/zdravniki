@@ -21,7 +21,7 @@ function withLeaflet(Component) {
     const injectedProps = {
       center: position,
       height,
-      zoom: 13,
+      zoom: 10,
       dragging: false,
       zoomControl: false,
       scrollWheelZoom: false,
