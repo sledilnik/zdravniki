@@ -10,7 +10,8 @@ export const Cards = styled(BaseGrid)(({ theme }) => ({
 }));
 
 export const Filter = styled(Cards)(({ theme }) => ({
-  padding: '16px 0',
+  marginInline: '0.5rem',
+  padding: '0.5rem 0',
 }));
 
 export const Doctors = styled(BaseGrid)(({ theme }) => ({
