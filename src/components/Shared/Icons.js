@@ -6,3 +6,4 @@ export { default as BlockIcon } from '@mui/icons-material/Block';
 export { default as CheckCircleOutlineIcon } from '@mui/icons-material/CheckCircleOutline';
 export { default as GroupsIcon } from '@mui/icons-material/Groups';
 export { default as ContactPageIcon } from '@mui/icons-material/ContactPage';
+export { default as CheckIcon } from '@mui/icons-material/Check';
