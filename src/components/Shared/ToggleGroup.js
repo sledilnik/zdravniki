@@ -11,7 +11,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     border: 0,
     '&.MuiToggleButton-root': {
       opacity: 0.56,
-      color: '#212529',
+      color: theme.customColors.dark,
       letterSpacing: 0,
       fontWeight: 600,
       borderRadius: '24px',
@@ -28,7 +28,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     },
     '&.Mui-selected': {
       color: theme.palette.common.white,
-      background: '#09AFDA',
+      background: theme.customColors.accent,
       opacity: 1,
     },
   },
