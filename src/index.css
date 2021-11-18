@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+body {
+  font-family: 'IMB Plex Sans', 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+}
+
 main > .leaflet-container {
   height: 500px;
 }
