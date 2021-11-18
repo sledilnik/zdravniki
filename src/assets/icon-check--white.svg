@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-check--white</title>
+    <g id="icon-check--white" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-check" transform="translate(0.828125, 2.468750)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M12.796875,0.125 C12.9635417,-0.0416666667 13.140625,-0.0416666667 13.328125,0.125 L14.203125,1.03125 C14.390625,1.19791667 14.390625,1.375 14.203125,1.5625 L4.828125,10.9375 C4.66145833,11.1041667 4.484375,11.1041667 4.296875,10.9375 L0.140625,6.75 C-0.046875,6.58333333 -0.046875,6.40625 0.140625,6.21875 L1.015625,5.34375 C1.203125,5.15625 1.38020833,5.15625 1.546875,5.34375 L4.578125,8.375 L12.796875,0.125 Z" id=""></path>
+        </g>
+    </g>
+</svg>
