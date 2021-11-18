@@ -21,8 +21,10 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 export default function ToggleGroup({ children, value, setValue }) {
-  const handleAlignment = (event, newAlignment) => {
-    setValue(newAlignment);
+  const handleValue = (event, newValue) => {
+    if (newValue !== null) {
+      setValue(newValue);
+    }
   };
 
   return (
@@ -39,7 +41,7 @@ export default function ToggleGroup({ children, value, setValue }) {
         size="small"
         value={value}
         exclusive
-        onChange={handleAlignment}
+        onChange={handleValue}
         aria-label="text alignment"
       >
         {children}
