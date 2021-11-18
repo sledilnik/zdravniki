@@ -5,17 +5,30 @@ import Paper from '@mui/material/Paper';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  fontSize: '0.75rem',
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
     border: 0,
+    '&.MuiToggleButton-root': {
+      opacity: 0.56,
+      color: '#212529',
+      letterSpacing: 0,
+      fontWeight: 600,
+      borderRadius: '24px',
+      paddingInline: theme.spacing(2),
+    },
     '&.Mui-disabled': {
       border: 0,
     },
     '&:not(:first-of-type)': {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: '24px',
     },
     '&:first-of-type': {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: '24px',
+    },
+    '&.Mui-selected': {
+      color: theme.palette.common.white,
+      background: '#09AFDA',
     },
   },
 }));
@@ -33,6 +46,8 @@ export default function ToggleGroup({ children, value, setValue }) {
       sx={{
         display: 'flex',
         border: theme => `1px solid ${theme.palette.divider}`,
+        background: '#F0F0E8',
+        borderRadius: '24px',
         flexWrap: 'wrap',
         width: 'max-content',
       }}
@@ -43,6 +58,7 @@ export default function ToggleGroup({ children, value, setValue }) {
         exclusive
         onChange={handleValue}
         aria-label="text alignment"
+        sx={{ borderRadius: '24px' }}
       >
         {children}
       </StyledToggleButtonGroup>
