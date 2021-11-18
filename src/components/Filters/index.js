@@ -1,12 +1,19 @@
-import { Grid } from 'components/Shared';
-import ChooseDoctorType from './ChooseDoctorType';
+import Container from '@mui/material/Container';
 import ToggleAccepts from './ToggleAccepts';
+import ToggleDoctorType from './ToggleDoctorType';
 
 export default function Filters() {
   return (
-    <Grid.Filter>
-      <ChooseDoctorType />
+    <Container
+      maxWidth="false"
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+      }}
+    >
+      <ToggleDoctorType />
       <ToggleAccepts />
-    </Grid.Filter>
+    </Container>
   );
 }

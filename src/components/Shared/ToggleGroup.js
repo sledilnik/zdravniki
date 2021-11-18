@@ -29,17 +29,17 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '&.Mui-selected': {
       color: theme.palette.common.white,
       background: '#09AFDA',
+      opacity: 1,
     },
   },
 }));
 
-export default function ToggleGroup({ children, value, setValue }) {
+export default function ToggleGroup({ children, value, setValue, ...props }) {
   const handleValue = (event, newValue) => {
     if (newValue !== null) {
       setValue(newValue);
     }
   };
-
   return (
     <Paper
       elevation={0}
@@ -50,6 +50,8 @@ export default function ToggleGroup({ children, value, setValue }) {
         borderRadius: '24px',
         flexWrap: 'wrap',
         width: 'max-content',
+        marginInline: '8px',
+        marginBlock: '16px',
       }}
     >
       <StyledToggleButtonGroup
