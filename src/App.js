@@ -51,7 +51,11 @@ function App() {
 }
 
 function AppWrapper() {
-  const theme = createTheme();
+  const theme = createTheme({
+    typography: {
+      fontFamily: ['IBM Plex Sans', 'Roboto', 'sans-serif'].join(','),
+    },
+  });
   return (
     <>
       <CssBaseline />
