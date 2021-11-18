@@ -18,7 +18,7 @@ import { DOCTORS } from 'const';
 
 const Main = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
-  backgroundColor: theme.palette.grey[200],
+  backgroundColor: theme.customColors.lightGrey,
 }));
 
 function App() {
@@ -54,6 +54,13 @@ function AppWrapper() {
   const theme = createTheme({
     typography: {
       fontFamily: ['IBM Plex Sans', 'Roboto', 'sans-serif'].join(','),
+    },
+    customColors: {
+      accent: '#09AFDA',
+      brand: '#95C83F',
+      danger: '#DC3435',
+      dark: '#212529',
+      lightGrey: '#CDCDCD',
     },
   });
   return (
