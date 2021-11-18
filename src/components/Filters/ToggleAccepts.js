@@ -1,15 +1,16 @@
 import ToggleButton from '@mui/material/ToggleButton';
 
 import ToggleGroup from 'components/Shared/ToggleGroup';
-import * as Icons from 'components/Shared/Icons';
+import { Icon } from './styles/Icon';
 
 import { useFilter } from 'context/filterContext';
 
 function withToggleGroup(Component) {
-  const ToggleAccepts = () => {
+  const ToggleAccepts = props => {
     const { accept, setAccept } = useFilter();
 
     const injectedProps = {
+      ...props,
       value: accept,
       setValue: setAccept,
     };
@@ -17,14 +18,15 @@ function withToggleGroup(Component) {
     return (
       <Component {...injectedProps}>
         <ToggleButton value="y" aria-label="accepts">
-          <Icons.CheckIcon />
+          {accept === 'y' ? <Icon name="CheckWhite" /> : <Icon name="Check" />}
           sprejema
         </ToggleButton>
         <ToggleButton value="n" aria-label="rejects">
-          <Icons.BlockIcon />
+          {accept === 'n' ? <Icon name="BanWhite" /> : <Icon name="Ban" />}
           ne sprejema
         </ToggleButton>
         <ToggleButton value="vsi" aria-label="all">
+          {accept === 'vsi' ? <Icon name="AllWhite" /> : <Icon name="All" />}
           Vsi
         </ToggleButton>
       </Component>
