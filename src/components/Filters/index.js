@@ -10,6 +10,7 @@ export default function Filters() {
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap',
+        boxShadow: '0 3px 10px 0 rgba(0,0,0,0.06)',
       }}
     >
       <ToggleDoctorType />
