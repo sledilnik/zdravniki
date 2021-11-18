@@ -17,7 +17,7 @@ import { ReactComponent as GynoWhite } from 'assets/icon-gynecologist--white.svg
 import { ReactComponent as Gyno } from 'assets/icon-gynecologist.svg';
 import { ReactComponent as IdCard } from 'assets/icon-id-card.svg';
 import { ReactComponent as MapMarker } from 'assets/icon-map-marker.svg';
-import { ReactComponent as SearchWhite } from 'assets/icon-search-white.svg';
+import { ReactComponent as SearchWhite } from 'assets/icon-search--white.svg';
 import { ReactComponent as Search } from 'assets/icon-search.svg';
 import { ReactComponent as Logo } from 'assets/zdravniki-sledilnik-logo.svg';
 
