@@ -4,8 +4,7 @@ import { styled } from '@mui/material/styles';
 
 export const Card = styled(MuiCard)(({ theme, accepts }) => {
   const { palette } = theme;
-
-  const acceptsColor = accepts ? palette.success.main : palette.error.main;
+  const acceptsColor = accepts === 'true' ? palette.success.main : palette.error.main;
 
   return {
     alignSelf: 'start',

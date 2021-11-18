@@ -32,7 +32,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   );
 
   return (
-    <Styled.Card id={doctor.id} accepts={accepts}>
+    <Styled.Card id={doctor.id} accepts={accepts.toString()}>
       <CardContent>
         <Stack
           direction="row"
