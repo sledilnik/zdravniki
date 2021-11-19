@@ -18,7 +18,7 @@ import { DOCTORS } from 'const';
 
 const Main = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
-  backgroundColor: theme.customColors.lightGrey,
+  backgroundColor: theme.customColors.background,
 }));
 
 function App() {
@@ -61,6 +61,7 @@ function AppWrapper() {
       danger: '#DC3435',
       dark: '#212529',
       lightGrey: '#CDCDCD',
+      background: '#F0F0E8',
     },
   });
   return (
