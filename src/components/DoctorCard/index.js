@@ -34,50 +34,23 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   return (
     <Styled.Card id={doctor.id} accepts={accepts.toString()}>
       <CardContent>
-        <Stack
-          direction="row"
-          spacing={1.5}
-          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
-        >
-          <Stack>
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+          <Stack sx={{ marginRight: 'auto' }}>
             <Typography variant="body2">{doctor.name}</Typography>
             <Typography variant="caption">{doctor.provider}</Typography>
             <Typography variant="caption">{doctor.fullAddress}</Typography>
           </Stack>
           <Stack direction="row" spacing={2}>
-            {accepts && (
-              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
-                <Icons.Icon name="CheckGreen" />
-                <Typography
-                  fontWeight={600}
-                  variant="caption"
-                  sx={{ color: theme => theme.customColors.brand }}
-                >
-                  SPREJEMA
-                </Typography>
-              </Stack>
-            )}
-            {!accepts && (
-              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
-                <Icons.Icon name="BanRed" />
-                <Typography
-                  fontWeight={600}
-                  variant="caption"
-                  sx={{ color: theme => theme.customColors.danger }}
-                >
-                  NE SPREJEMA
-                </Typography>
-              </Stack>
-            )}
+            <Styled.Accepts accepts={accepts.toString()} />
             <Tooltip title={tooltip}>
-              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
-                <Icons.Icon name="Group" />
-                <Typography variant="caption">{availabilityText}</Typography>
+              <Stack direction="row" sx={{ alignItems: 'center', cursor: 'help' }} spacing={1}>
+                <Icons.Icon name="Group" style={{ opacity: 0.2 }} />
+                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
               </Stack>
             </Tooltip>
           </Stack>
           <Divider orientation="vertical" flexItem />
-          <Stack direction="row" sx={{ alignItems: 'center' }}>
+          <Stack direction="row" sx={{ alignItems: 'center', minWidth: '74.5px' }}>
             <IconButton onClick={() => console.log('Click room icon')}>
               <Icons.Icon name="MapMarker" />
             </IconButton>
