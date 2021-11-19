@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Divider from '@mui/material/Divider';
 
+import Accepts from './Accepts';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 
@@ -41,7 +42,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
             <Typography variant="caption">{doctor.fullAddress}</Typography>
           </Stack>
           <Stack direction="row" spacing={2}>
-            <Styled.Accepts accepts={accepts.toString()} />
+            <Accepts accepts={accepts.toString()} />
             <Tooltip title={tooltip}>
               <Stack direction="row" sx={{ alignItems: 'center', cursor: 'help' }} spacing={1}>
                 <Icons.Icon name="Group" style={{ opacity: 0.2 }} />
