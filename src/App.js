@@ -63,6 +63,9 @@ function AppWrapper() {
       lightGrey: '#CDCDCD',
       background: '#F0F0E8',
     },
+    customOpacity: {
+      half: 0.56,
+    },
   });
   return (
     <>
