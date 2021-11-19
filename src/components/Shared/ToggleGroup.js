@@ -46,7 +46,7 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
       sx={{
         display: 'flex',
         border: theme => `1px solid ${theme.palette.divider}`,
-        background: '#F0F0E8',
+        background: theme => theme.customColors.background,
         borderRadius: '24px',
         flexWrap: 'wrap',
         width: 'max-content',
