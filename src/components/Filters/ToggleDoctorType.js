@@ -35,6 +35,10 @@ function withToggleGroup(Component) {
 
       const _doctorType = `${drType}_${ageGroup}`;
 
+      if (!TypeTranslate[_doctorType]) {
+        setAgeGroup('adults');
+      }
+
       doctorType !== _doctorType && setDoctorType(TypeTranslate[_doctorType]);
     }, [drType, ageGroup, doctorType, setDoctorType]);
 
