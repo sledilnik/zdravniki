@@ -1,5 +1,6 @@
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
+import MuiInputBase from '@mui/material/InputBase';
+import MuiTextField from '@mui/material/TextField';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -29,7 +30,7 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-export const StyledInputBase = styled(InputBase)(({ theme }) => ({
+export const InputBase = styled(MuiInputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     lineHeight: 'normal',
@@ -54,3 +55,20 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+export const TextField = styled(MuiTextField)({
+  '& .MuiOutlinedInput-root': {
+    fontSize: '13px',
+    fontWeight: 600,
+    letterSpacing: 0,
+
+    borderRadius: '24px',
+    '& fieldset': { border: 'none' },
+    '&:hover fieldset': {
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    },
+    '&.Mui-focused fieldset': {
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    },
+  },
+});
