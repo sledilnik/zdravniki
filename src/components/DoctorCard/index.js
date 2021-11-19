@@ -44,14 +44,18 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
           <Stack direction="row" spacing={2}>
             <Accepts accepts={accepts.toString()} />
             <Tooltip title={tooltip}>
-              <Stack direction="row" sx={{ alignItems: 'center', cursor: 'help' }} spacing={1}>
+              <Stack
+                direction="row"
+                sx={{ alignItems: 'center', cursor: 'help', minWidth: '74.5px' }}
+                spacing={1}
+              >
                 <Icons.Icon name="Group" style={{ opacity: 0.2 }} />
                 <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
               </Stack>
             </Tooltip>
           </Stack>
           <Divider orientation="vertical" flexItem />
-          <Stack direction="row" sx={{ alignItems: 'center', minWidth: '74.5px' }}>
+          <Stack direction="row" sx={{ alignItems: 'center' }}>
             <IconButton onClick={() => console.log('Click room icon')}>
               <Icons.Icon name="MapMarker" />
             </IconButton>
