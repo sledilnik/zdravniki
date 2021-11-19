@@ -1,6 +1,7 @@
 import Container from '@mui/material/Container';
 import ToggleAccepts from './ToggleAccepts';
 import ToggleDoctorType from './ToggleDoctorType';
+import Search from './Search';
 
 export default function Filters() {
   return (
@@ -15,6 +16,7 @@ export default function Filters() {
     >
       <ToggleDoctorType />
       <ToggleAccepts />
+      <Search />
     </Container>
   );
 }
