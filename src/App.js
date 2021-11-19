@@ -4,7 +4,7 @@ import { Toolbar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
-import SearchAppBar from 'components/SearchAppBar/';
+import Header from 'components/Header';
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors/';
 
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-      <SearchAppBar />
+      <Header />
       <Toolbar id="back-to-top-anchor" />
       {isFetching && !hasError ? (
         <Loader.Center />
