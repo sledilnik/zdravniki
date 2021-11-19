@@ -27,10 +27,13 @@ function withToggleGroup(Component) {
       const TypeTranslate = {
         gp_adults: 'gp',
         gp_youth: 'gp-y',
+        gp_students: 'gp',
         den_adults: 'den',
         den_students: 'den-s',
         den_youth: 'den-y',
-        gyn: 'gyn',
+        gyn_adults: 'gyn',
+        gyn_students: 'gyn',
+        gyn_youth: 'gyn',
       };
 
       const _doctorType = `${drType}_${ageGroup}`;
