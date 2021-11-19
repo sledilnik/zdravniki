@@ -58,6 +58,7 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
 
 export const TextField = styled(MuiTextField)({
   '& .MuiOutlinedInput-root': {
+    paddingBlock: '2px',
     fontSize: '13px',
     fontWeight: 600,
     letterSpacing: 0,

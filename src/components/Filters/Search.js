@@ -17,20 +17,31 @@ export default function Search() {
 
   useDebounce(() => setSearchValue(value), 500, [value]);
   return (
-    <Paper
-      elevation={0}
+    <Box
       sx={{
-        color: theme => theme.customColors.dark,
-        border: theme => `1px solid ${theme.palette.divider}`,
-        background: theme => theme.customColors.background,
+        display: 'flex',
+        alignItems: 'center',
         borderRadius: '24px',
-        flexWrap: 'wrap',
-        width: 'max-content',
+        margin: '4px',
+        height: '48px',
         marginInline: 'auto 8px',
         marginBlock: '16px',
+        border: theme => `1px solid ${theme.palette.divider}`,
+        background: theme => theme.customColors.background,
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', borderRadius: '24px', margin: '4px' }}>
+      <Paper
+        elevation={0}
+        sx={{
+          color: theme => theme.customColors.dark,
+          background: 'transparent',
+          borderRadius: '24px',
+          width: 'max-content',
+          display: 'flex',
+          alignItems: 'center',
+          marginInline: '4px',
+        }}
+      >
         <Icons.Icon name="Search" style={{ marginInline: '8px', opacity: 0.5 }} />
         <Styled.Search.TextField
           placeholder="Išči..."
@@ -38,7 +49,7 @@ export default function Search() {
           value={value}
           onChange={handleSearchChange}
         />
-      </Box>
-    </Paper>
+      </Paper>
+    </Box>
   );
 }

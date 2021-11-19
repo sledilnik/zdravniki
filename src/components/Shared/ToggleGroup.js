@@ -52,6 +52,7 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
         width: 'max-content',
         marginInline: '8px',
         marginBlock: '16px',
+        minHeight: '48px',
       }}
     >
       <StyledToggleButtonGroup
@@ -59,7 +60,6 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
         value={value}
         exclusive
         onChange={handleValue}
-        aria-label="text alignment"
         sx={{ borderRadius: '24px' }}
       >
         {children}
