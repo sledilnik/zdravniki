@@ -42,13 +42,17 @@ export default function Search() {
           marginInline: '4px',
         }}
       >
-        <Icons.Icon name="Search" style={{ marginInline: '8px', opacity: 0.5 }} />
-        <Styled.Search.TextField
-          placeholder="Išči..."
-          size="small"
-          value={value}
-          onChange={handleSearchChange}
-        />
+        <Styled.Search.Search>
+          <Styled.Search.SearchIconWrapper>
+            <Icons.SearchIcon />
+          </Styled.Search.SearchIconWrapper>
+          <Styled.Search.InputBase
+            placeholder="Išči..."
+            value={value}
+            onChange={handleSearchChange}
+            aria-label="search"
+          />
+        </Styled.Search.Search>
       </Paper>
     </Box>
   );
