@@ -14,7 +14,7 @@ export const ButtonWrapper = styled('div')(({ theme }) => ({
 }));
 
 export const WrapperInfinite = styled('div')(({ theme }) => ({
-  height: 'calc(100vh - 200px)', // exact calculation will be done after we re-design header and filter re-design
+  height: 'calc(100vh - 64px - 80px)', // exact calculation will be done after we re-design header and filter re-design
   overflow: 'auto',
   display: 'flex',
 }));
