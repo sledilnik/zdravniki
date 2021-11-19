@@ -3,8 +3,8 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 
 export const Card = styled(MuiCard)(({ theme, accepts }) => {
-  const { palette } = theme;
-  const acceptsColor = accepts === 'true' ? palette.success.main : palette.error.main;
+  const { customColors } = theme;
+  const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
 
   return {
     alignSelf: 'start',
@@ -12,6 +12,7 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
     marginRight: '1rem',
     width: '100%',
     borderLeft: `solid 4px ${acceptsColor}`,
+    borderRadius: '5px',
   };
 });
 

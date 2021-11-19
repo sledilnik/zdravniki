@@ -36,7 +36,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
       <CardContent>
         <Stack
           direction="row"
-          spacing={1}
+          spacing={1.5}
           sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
           <Stack>
@@ -44,37 +44,45 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
             <Typography variant="caption">{doctor.provider}</Typography>
             <Typography variant="caption">{doctor.fullAddress}</Typography>
           </Stack>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={2}>
             {accepts && (
-              <Stack direction="row" sx={{ alignItems: 'center' }}>
-                <Icons.CheckCircleOutlineIcon color="success" />
-                <Typography color="success" variant="body2">
+              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
+                <Icons.Icon name="CheckGreen" />
+                <Typography
+                  fontWeight={600}
+                  variant="caption"
+                  sx={{ color: theme => theme.customColors.brand }}
+                >
                   SPREJEMA
                 </Typography>
               </Stack>
             )}
             {!accepts && (
-              <Stack direction="row" sx={{ alignItems: 'center' }}>
-                <Icons.BlockIcon color="error" />
-                <Typography color="error" variant="body2">
+              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
+                <Icons.Icon name="BanRed" />
+                <Typography
+                  fontWeight={600}
+                  variant="caption"
+                  sx={{ color: theme => theme.customColors.danger }}
+                >
                   NE SPREJEMA
                 </Typography>
               </Stack>
             )}
             <Tooltip title={tooltip}>
-              <Stack direction="row" sx={{ alignItems: 'center' }}>
-                <Icons.GroupsIcon />
-                <Typography variant="body2">{availabilityText}</Typography>
+              <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
+                <Icons.Icon name="Group" />
+                <Typography variant="caption">{availabilityText}</Typography>
               </Stack>
             </Tooltip>
           </Stack>
           <Divider orientation="vertical" flexItem />
           <Stack direction="row" sx={{ alignItems: 'center' }}>
             <IconButton onClick={() => console.log('Click room icon')}>
-              <Icons.RoomIcon />
+              <Icons.Icon name="MapMarker" />
             </IconButton>
             <IconButton onClick={() => console.log('Click room icon')}>
-              <Icons.ContactPageIcon />
+              <Icons.Icon name="IdCard" />
             </IconButton>
           </Stack>
         </Stack>
