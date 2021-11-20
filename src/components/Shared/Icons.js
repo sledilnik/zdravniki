@@ -20,6 +20,9 @@ import { ReactComponent as MapMarker } from 'assets/icon-map-marker.svg';
 import { ReactComponent as SearchWhite } from 'assets/icon-search--white.svg';
 import { ReactComponent as Search } from 'assets/icon-search.svg';
 import { ReactComponent as Logo } from 'assets/zdravniki-sledilnik-logo.svg';
+import { ReactComponent as Facebook } from 'assets/icon-facebook-f.svg';
+import { ReactComponent as Share } from 'assets/icon-share.svg';
+import { ReactComponent as Twitter } from 'assets/icon-twitter.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -30,6 +33,7 @@ export { default as CheckCircleOutlineIcon } from '@mui/icons-material/CheckCirc
 export { default as GroupsIcon } from '@mui/icons-material/Groups';
 export { default as ContactPageIcon } from '@mui/icons-material/ContactPage';
 export { default as CheckIcon } from '@mui/icons-material/Check';
+export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
 
 const icons = {
   All,
@@ -52,6 +56,9 @@ const icons = {
   SearchWhite,
   Search,
   Logo,
+  Facebook,
+  Share,
+  Twitter,
 };
 
 export const Icon = ({ name, ...props }) => {
