@@ -1,4 +1,4 @@
-import { useRef, memo } from 'react';
+import { useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -122,4 +122,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;
