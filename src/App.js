@@ -62,6 +62,8 @@ function AppWrapper() {
       dark: '#212529',
       lightGrey: '#CDCDCD',
       background: '#F0F0E8',
+      text: 'rgba(0,0,0,.56)',
+      link: 'rgba(33,37,41,0.56);',
     },
     customOpacity: {
       half: 0.56,
