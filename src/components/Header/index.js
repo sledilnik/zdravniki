@@ -41,7 +41,7 @@ const Header = () => {
             id="nav-links"
             direction="row"
             spacing={3}
-            sx={{ marginLeft: 'auto', display: { sm: 'none', md: 'flex' } }}
+            sx={{ marginLeft: 'auto', display: { xs: 'none', md: 'flex' } }}
           >
             <Styled.NavLink component="button" tabIndex={0} underline="none" className="active">
               Imenik
@@ -80,7 +80,7 @@ const Header = () => {
             id="nav-social"
             direction="row"
             spacing={0}
-            sx={{ marginLeft: '16px', display: { sm: 'none', md: 'flex' } }}
+            sx={{ marginLeft: '16px', display: { xs: 'none', md: 'flex' } }}
           >
             <Styled.IconButton
               href="https://www.facebook.com/COVID19Sledilnik"
@@ -112,7 +112,11 @@ const Header = () => {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2, marginInline: 'auto 0', display: { sm: 'inline-flex', md: 'none' } }}
+            sx={{
+              mr: 2,
+              marginInline: 'auto 0',
+              display: { xs: 'inline-flex', md: 'none' },
+            }}
           >
             <Icons.MenuIcon />
           </IconButton>
