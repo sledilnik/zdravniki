@@ -5,7 +5,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
 import Header from 'components/Header';
-import Filters from 'components/Filters';
 import Doctors from 'components/Doctors/';
 
 import { Loader } from 'components/Shared';
