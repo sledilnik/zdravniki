@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -7,9 +7,14 @@ import Stack from '@mui/material/Stack';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 import { useEventListener } from 'hooks';
+import SearchModal from './SearchModal';
 
 const Header = () => {
   const navLinksRef = useRef();
+
+  const [openSearch, setOpenSearch] = useState(false);
+
+  const handleOpen = () => setOpenSearch(true);
 
   useEventListener(
     'click',
@@ -36,6 +41,16 @@ const Header = () => {
       >
         <Toolbar>
           <Icons.Icon name="Logo" style={{ height: '2rem' }} />
+          <IconButton
+            size="medium"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ ml: 1 }}
+            onClick={handleOpen}
+          >
+            <Icons.SearchIcon />
+          </IconButton>
           <Stack
             ref={navLinksRef}
             id="nav-links"
@@ -118,6 +133,7 @@ const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      <SearchModal open={openSearch} setOpen={setOpenSearch} />
     </Box>
   );
 };

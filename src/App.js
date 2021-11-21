@@ -37,7 +37,7 @@ function App() {
         <Loader.Center />
       ) : (
         <>
-          <Filters />
+          {/* <Filters /> */}
           <Main id="main-content" component="main">
             <leafletContext.LeafletProvider>
               <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
