@@ -37,6 +37,7 @@ export default function Search() {
           background: 'transparent',
           borderRadius: '24px',
           width: 'max-content',
+          height: '46px',
           display: 'flex',
           alignItems: 'center',
           marginInline: '4px',
