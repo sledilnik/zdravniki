@@ -1,10 +1,8 @@
-import ToggleButton from '@mui/material/ToggleButton';
-
 import ToggleGroup from 'components/Shared/ToggleGroup';
-import { Icon } from './styles/Icon';
 
 import { useFilter } from 'context/filterContext';
 import { useEffect, useState } from 'react';
+import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   const ToggleDoctorType = props => {
@@ -48,32 +46,53 @@ function withToggleGroup(Component) {
     return (
       <>
         <Component {...injectedPropsDrType}>
-          <ToggleButton value="gp" aria-label="general practitioner">
-            {drType === 'gp' ? <Icon name="FamilyDrWhite" /> : <Icon name="Family" />}
-            splošni
-          </ToggleButton>
-          <ToggleButton value="den" aria-label="dentist">
-            {drType === 'den' ? <Icon name="DentistWhite" /> : <Icon name="Dentist" />}
-            zobozdravnik
-          </ToggleButton>
-          <ToggleButton value="gyn" aria-label="gynecologist">
-            {drType === 'gyn' ? <Icon name="GynoWhite" /> : <Icon name="Gyno" />}
-            ginekolog
-          </ToggleButton>
+          <IconToggleButton
+            value="gp"
+            aria-label="general practitioner"
+            accept={drType}
+            text="splošni"
+            iconNames={['FamilyDrWhite', 'Family']}
+          />
+          <IconToggleButton
+            value="den"
+            aria-label="dentist"
+            accept={drType}
+            text="zobozdravnik"
+            iconNames={['DentistWhite', 'Dentist']}
+          />
+          <IconToggleButton
+            value="gyn"
+            aria-label="gynecologist"
+            accept={drType}
+            text="ginekolog"
+            iconNames={['GynoWhite', 'Gyno']}
+          />
         </Component>
         {drType !== 'gyn' && (
           <Component {...injectedPropsAgeGroup}>
-            <ToggleButton value="adults" aria-label="adults">
-              odrasli
-            </ToggleButton>
+            <IconToggleButton
+              value="adults"
+              aria-label="adults"
+              accept={ageGroup}
+              text="odrasli"
+              iconNames={['CheckWhite', 'Ban']}
+            />
             {drType === 'den' && (
-              <ToggleButton value="students" aria-label="students">
-                študenti
-              </ToggleButton>
+              <IconToggleButton
+                value="students"
+                aria-label="students"
+                accept={ageGroup}
+                text="študenti"
+                iconNames={['CheckWhite', 'Ban']}
+              />
             )}
-            <ToggleButton value="youth" aria-label="youth">
-              mladina
-            </ToggleButton>
+            <IconToggleButton
+              value="youth"
+              aria-label="youth"
+              accept={ageGroup}
+              text="mladina"
+              iconNames={['CheckWhite', 'Ban']}
+            />
           </Component>
         )}
       </>

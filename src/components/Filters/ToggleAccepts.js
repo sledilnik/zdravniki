@@ -1,7 +1,5 @@
-import ToggleButton from '@mui/material/ToggleButton';
-
 import ToggleGroup from 'components/Shared/ToggleGroup';
-import { Icon } from './styles/Icon';
+import { IconToggleButton } from './Shared';
 
 import { useFilter } from 'context/filterContext';
 
@@ -17,18 +15,27 @@ function withToggleGroup(Component) {
 
     return (
       <Component {...injectedProps}>
-        <ToggleButton value="y" aria-label="accepts">
-          {accept === 'y' ? <Icon name="CheckWhite" /> : <Icon name="Check" />}
-          sprejema
-        </ToggleButton>
-        <ToggleButton value="n" aria-label="rejects">
-          {accept === 'n' ? <Icon name="BanWhite" /> : <Icon name="Ban" />}
-          ne sprejema
-        </ToggleButton>
-        <ToggleButton value="vsi" aria-label="all">
-          {accept === 'vsi' ? <Icon name="AllWhite" /> : <Icon name="All" />}
-          Vsi
-        </ToggleButton>
+        <IconToggleButton
+          value="y"
+          aria-label="accepts"
+          accept={accept}
+          text="sprejema"
+          iconNames={['CheckWhite', 'Check']}
+        />
+        <IconToggleButton
+          value="n"
+          aria-label="rejects"
+          accept={accept}
+          text="ne sprejema"
+          iconNames={['BanWhite', 'Ban']}
+        />
+        <IconToggleButton
+          value="vsi"
+          aria-label="all"
+          accept={accept}
+          text="vsi"
+          iconNames={['AllWhite', 'All']}
+        />
       </Component>
     );
   };
