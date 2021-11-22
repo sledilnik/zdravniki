@@ -23,6 +23,7 @@ import { ReactComponent as Logo } from 'assets/zdravniki-sledilnik-logo.svg';
 import { ReactComponent as Facebook } from 'assets/icon-facebook-f.svg';
 import { ReactComponent as Share } from 'assets/icon-share.svg';
 import { ReactComponent as Twitter } from 'assets/icon-twitter.svg';
+import { ReactComponent as IconCircle } from 'assets/icon-circle.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -60,6 +61,7 @@ const icons = {
   Facebook,
   Share,
   Twitter,
+  IconCircle,
 };
 
 export const Icon = ({ name, ...props }) => {
