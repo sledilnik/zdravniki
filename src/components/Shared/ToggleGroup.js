@@ -19,6 +19,8 @@ const Paper = styled(MuiPaper)(({ theme }) => {
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   fontSize: '0.75rem',
+  borderRadius: '24px',
+  width: 'max-content',
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
     border: 0,
@@ -55,13 +57,7 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
   };
   return (
     <Paper elevation={0}>
-      <StyledToggleButtonGroup
-        size="small"
-        value={value}
-        exclusive
-        onChange={handleValue}
-        sx={{ borderRadius: '24px', width: 'max-content' }}
-      >
+      <StyledToggleButtonGroup size="small" value={value} exclusive onChange={handleValue}>
         {children}
       </StyledToggleButtonGroup>
     </Paper>
