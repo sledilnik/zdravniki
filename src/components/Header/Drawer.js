@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -12,6 +12,7 @@ import Stack from '@mui/material/Stack';
 
 const Drawer = styled(MuiDrawer)(({ theme }) => {
   return {
+    zIndex: 10_000, // ScrollTop has z-index: 9999
     '.MuiDrawer-paper': {
       width: 'clamp(300px, 40%,100vw)',
       backgroundColor: theme.customColors.brand,
@@ -21,6 +22,11 @@ const Drawer = styled(MuiDrawer)(({ theme }) => {
 
 export default function TemporaryDrawer({ open, setOpen }) {
   const [activeBtn, setActiveBtn] = useState();
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return (document.body.style.overflow = 'unset');
+  });
 
   const toggleDrawer = event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
