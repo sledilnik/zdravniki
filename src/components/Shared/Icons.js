@@ -34,6 +34,7 @@ export { default as GroupsIcon } from '@mui/icons-material/Groups';
 export { default as ContactPageIcon } from '@mui/icons-material/ContactPage';
 export { default as CheckIcon } from '@mui/icons-material/Check';
 export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
+export { default as CloseIcon } from '@mui/icons-material/Close';
 
 const icons = {
   All,
