@@ -1,8 +1,21 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 
-import Paper from '@mui/material/Paper';
+import MuiPaper from '@mui/material/Paper';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
+const Paper = styled(MuiPaper)(({ theme }) => {
+  return {
+    display: 'flex',
+    border: theme => `1px solid ${theme.palette.divider}`,
+    background: theme.customColors.background,
+    borderRadius: '24px',
+    flexWrap: 'wrap',
+    width: 'min-content',
+    marginBlock: '16px',
+    minHeight: '48px',
+    '&:not(:last-child)': { marginRight: '4px' },
+  };
+});
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   fontSize: '0.75rem',
@@ -15,7 +28,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
       letterSpacing: 0,
       fontWeight: 600,
       borderRadius: '24px',
-      paddingInline: theme.spacing(2),
+      paddingInline: theme.spacing(1),
     },
     '&.Mui-disabled': {
       border: 0,
@@ -41,26 +54,13 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
     }
   };
   return (
-    <Paper
-      elevation={0}
-      sx={{
-        display: 'flex',
-        border: theme => `1px solid ${theme.palette.divider}`,
-        background: theme => theme.customColors.background,
-        borderRadius: '24px',
-        flexWrap: 'wrap',
-        width: 'max-content',
-        marginInline: '8px',
-        marginBlock: '16px',
-        minHeight: '48px',
-      }}
-    >
+    <Paper elevation={0}>
       <StyledToggleButtonGroup
         size="small"
         value={value}
         exclusive
         onChange={handleValue}
-        sx={{ borderRadius: '24px' }}
+        sx={{ borderRadius: '24px', width: 'max-content' }}
       >
         {children}
       </StyledToggleButtonGroup>
