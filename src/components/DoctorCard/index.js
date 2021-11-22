@@ -7,19 +7,12 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 
-import Divider from '@mui/material/Divider';
-
 import Accepts from './Accepts';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 import SingleChart from 'components/Shared/CircleChart';
 
-// import { SIZES } from 'const';
-
 const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
-  // const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
-  // const isUpXS = useMediaQuery(upXSWidth);
-
   const accepts = doctor.accepts === 'y';
 
   const availabilityText = new Intl.NumberFormat('sl-SL', {
@@ -36,35 +29,33 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
   return (
     <Styled.Card id={doctor.id} accepts={accepts.toString()}>
       <CardContent>
-        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-          <Stack sx={{ marginRight: 'auto' }}>
-            <Typography variant="body2">{doctor.name}</Typography>
-            <Typography variant="caption">{doctor.provider}</Typography>
-            <Typography variant="caption">{doctor.fullAddress}</Typography>
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <Accepts accepts={accepts.toString()} />
-            <Tooltip title={tooltip}>
-              <Stack
-                direction="row"
-                sx={{ alignItems: 'center', cursor: 'help', minWidth: '74.5px' }}
-                spacing={1}
-              >
-                <SingleChart size="26px" percent={doctor.availability} />
-                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-              </Stack>
-            </Tooltip>
-          </Stack>
-          <Divider orientation="vertical" flexItem />
-          <Stack direction="row" sx={{ alignItems: 'center' }}>
-            <IconButton onClick={() => console.log('Click room icon')}>
-              <Icons.Icon name="MapMarker" />
-            </IconButton>
-            <IconButton onClick={() => console.log('Click room icon')}>
-              <Icons.Icon name="IdCard" />
-            </IconButton>
-          </Stack>
-        </Stack>
+        <Styled.DataWrapper>
+          <Styled.MainInfo sx={{ marginRight: 'auto' }}>
+            <Styled.Title component="h2">{doctor.name}</Styled.Title>
+            <Styled.SubTitle>{doctor.provider}</Styled.SubTitle>
+            <Styled.Text>{doctor.fullAddress}</Styled.Text>
+          </Styled.MainInfo>
+          {/* <Divider orientation="horizontal" flexItem /> */}
+          <Styled.OtherInfo>
+            <Styled.OtherInfoElement>
+              <Accepts accepts={accepts.toString()} />
+              <Tooltip title={tooltip}>
+                <Styled.AvailabilityInfo>
+                  <SingleChart size="26px" percent={doctor.availability} />
+                  <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
+                </Styled.AvailabilityInfo>
+              </Tooltip>
+            </Styled.OtherInfoElement>
+            <Styled.OtherInfoElement>
+              <IconButton onClick={() => console.log('Click room icon')}>
+                <Icons.Icon name="MapMarker" />
+              </IconButton>
+              <IconButton onClick={() => console.log('Click room icon')}>
+                <Icons.Icon name="IdCard" />
+              </IconButton>
+            </Styled.OtherInfoElement>
+          </Styled.OtherInfo>
+        </Styled.DataWrapper>
       </CardContent>
     </Styled.Card>
   );
