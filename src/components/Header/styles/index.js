@@ -2,6 +2,70 @@ import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import IconButtonBase from '@mui/material/IconButton';
 
+import MuiStack from '@mui/material/Stack';
+
+export const StackLarge = styled(MuiStack)(({ theme }) => {
+  return {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginLeft: 'auto',
+      '& > :not(:first-child)': { marginLeft: theme.spacing(3) },
+    },
+  };
+});
+export const StackSmall = styled(MuiStack)(({ theme }) => {
+  return {
+    display: 'flex',
+    marginLeft: theme.spacing(3),
+    marginTop: theme.spacing(1),
+    '& > *': {
+      width: 'min-content',
+      minHeight: 'unset',
+      marginBottom: theme.spacing(1),
+      marginRight: 'auto',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  };
+});
+
+export const StackSocialLarge = styled(MuiStack)(({ theme }) => {
+  return {
+    display: 'none',
+    svg: {
+      height: '0.75rem',
+      width: '0.75rem',
+      fill: theme => theme.customColors.link,
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginLeft: theme.spacing(1),
+      marginBlock: 0,
+    },
+  };
+});
+export const StackSocialSmall = styled(MuiStack)(({ theme }) => {
+  return {
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: theme.spacing(3),
+    marginTop: 'auto',
+    marginBottom: theme.spacing(2),
+    svg: {
+      height: '1rem',
+      width: '1rem',
+      fill: theme => theme.customColors.link,
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  };
+});
+
 export const NavLink = styled(MenuItem)(({ theme }) => ({
   color: theme.customColors.link,
   fontFamily: '"IBM Plex Sans", sans-serif !important',
