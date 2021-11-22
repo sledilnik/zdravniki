@@ -1,140 +1,76 @@
-import { useRef, useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import * as React from "react";
+import { useState, useEffect } from 'react';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import * as Icons from 'components/Shared/Icons';
-import * as Styled from './styles';
-import { useEventListener } from 'hooks';
 import SearchModal from './SearchModal';
+import './navbar.scss';
 
-const Header = () => {
-  const navLinksRef = useRef();
-
-  const [openSearch, setOpenSearch] = useState(false);
-
-  const handleOpen = () => setOpenSearch(true);
-
-  useEventListener(
-    'click',
-    event => {
-      const { target, currentTarget } = event;
-      const navLinks = currentTarget.children;
-      const [active] = [...navLinks].filter(link => link.classList.contains('active'));
-      if (active && active !== target) {
-        active.classList.remove('active');
-        target.classList.add('active');
-      }
-    },
-    navLinksRef.current,
-  );
+function CustomLink({ children, to, ...props }) {
+  const resolved = useResolvedPath(to);
+  const match = useMatch({ path: resolved.pathname, end: true });
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        sx={{
-          backgroundColor: theme => theme.customColors.brand,
-          color: theme => theme.customColors.dark,
-          boxShadow: 'none',
-        }}
+    <Link
+      className={`router-link ${match ? "router-link-active" : ""}`}
+      to={to}
+      {...props}
+    >
+      {children}
+    </Link>
+  );
+}
+
+const Header = () => {
+  const [openSearch, setOpenSearch] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [navbarClosing, setNavbarClosing] = useState(false);
+
+  useEffect(() => {
+    setNavbarClosing(true);
+    const timer = setTimeout(() => {
+      setNavbarClosing(false);
+    }, 650);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className={`navbar-container ${navbarOpen ? "menuOpen" : ""} ${navbarClosing ? "closingMenu" : ""}`}>
+      <CustomLink to="/" className="navbar-logo" />
+      <div className="🍔" onClick={() => setNavbarOpen(!navbarOpen)}>
+        <div className="line line-1"></div>
+        <div className="line line-2"></div>
+        <div className="line line-3"></div>
+      </div>
+      <div className="nav-overlay" />
+      <IconButton
+        size="medium"
+        edge="start"
+        color="inherit"
+        aria-label="open drawer"
+        sx={{ ml: 1 }}
+        onClick={() => setOpenSearch(!openSearch)}
       >
-        <Toolbar>
-          <Icons.Icon name="Logo" style={{ height: '2rem' }} />
-          <IconButton
-            size="medium"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ ml: 1 }}
-            onClick={handleOpen}
-          >
-            <Icons.SearchIcon />
-          </IconButton>
-          <Stack
-            ref={navLinksRef}
-            id="nav-links"
-            direction="row"
-            spacing={3}
-            sx={{ marginLeft: 'auto', display: { sm: 'none', md: 'flex' } }}
-          >
-            <Styled.NavLink component="button" tabIndex={0} underline="none" className="active">
-              Imenik
-            </Styled.NavLink>
-            <Styled.NavLink component="button" tabIndex={0} underline="none">
-              Prijavi napako
-            </Styled.NavLink>
-            <Styled.NavLink component="button" tabIndex={0} underline="none">
-              FAQ
-            </Styled.NavLink>
-            <Styled.NavLink component="button" tabIndex={0} underline="none">
-              O projektu
-            </Styled.NavLink>
-            <Styled.NavLink
-              href="https://covid-19.sledilnik.org/sl/donate"
-              target="_blank"
-              rel="noopener"
-              component="button"
-              tabIndex={0}
-              underline="none"
-            >
-              Podpri!
-            </Styled.NavLink>
-            <Styled.NavLink
-              href="https://covid-19.sledilnik.org/stats"
-              target="_blank"
-              rel="noopener"
-              component="button"
-              tabIndex={0}
-              underline="none"
-            >
-              Covid-19 sledilnik
-            </Styled.NavLink>
-          </Stack>
-          <Stack
-            id="nav-social"
-            direction="row"
-            spacing={0}
-            sx={{ marginLeft: '16px', display: { sm: 'none', md: 'flex' } }}
-          >
-            <Styled.IconButton
-              href="https://www.facebook.com/COVID19Sledilnik"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icons.Icon
-                name="Facebook"
-                style={{
-                  height: '0.75rem',
-                  width: '0.75rem',
-                  fill: theme => theme.customColors.link,
-                }}
-              />
-            </Styled.IconButton>
-            <Styled.IconButton href="https://twitter.com/sledilnik" target="_blank" rel="noopener">
-              <Icons.Icon
-                name="Twitter"
-                style={{
-                  height: '0.75rem',
-                  width: '0.75rem',
-                  fill: theme => theme.customColors.link,
-                }}
-              />
-            </Styled.IconButton>
-          </Stack>
-          <IconButton
-            size="medium"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2, marginInline: 'auto 0', display: { sm: 'inline-flex', md: 'none' } }}
-          >
-            <Icons.MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+        <Icons.SearchIcon />
+      </IconButton>
+      <div className="nav-links">
+        <CustomLink to="/"><span>Imenik</span></CustomLink>
+        <CustomLink to="/report"><span>Prijavi napako</span></CustomLink>
+        <CustomLink to="/faq"><span>FAQ</span></CustomLink>
+        <CustomLink to="/about"><span>O projektu</span></CustomLink>
+        <CustomLink to="https://covid-19.sledilnik.org/sl/donate" target="_blank" rel="noreferrer"><span>Podpri!</span></CustomLink>
+        <CustomLink to="https://covid-19.sledilnik.org/stats" target="_blank" rel="noreferrer"><span>Covid-19 sledilnik</span></CustomLink>
+        <div className="social">
+          <a className="router-link" href="https://www.facebook.com/COVID19Sledilnik" target="_blank" rel="noreferrer">
+            <img src="../../assets/icon-facebook.svg" alt="Facebook" />
+          </a>
+          <a className="router-link" href="https://twitter.com/sledilnik" target="_blank" rel="noreferrer">
+            <img src="../../assets/icon-twitter.svg" alt="Twitter" />
+          </a>
+        </div>
+      </div>
       <SearchModal open={openSearch} setOpen={setOpenSearch} />
-    </Box>
+    </div>
   );
 };
 

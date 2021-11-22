@@ -43,7 +43,9 @@
   "devDependencies": {
     "env-cmd": "^10.1.0",
     "install-peers": "^1.0.3",
-    "netlify-cli": "^6.14.5"
+    "netlify-cli": "^6.14.5",
+    "react-router-dom": "^6.0.2",
+    "sass": "^1.43.4"
   },
   "engines": {
     "node": ">= 16",
