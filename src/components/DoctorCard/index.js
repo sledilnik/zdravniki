@@ -12,6 +12,7 @@ import Divider from '@mui/material/Divider';
 import Accepts from './Accepts';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
+import SingleChart from 'components/Shared/CircleChart';
 
 // import { SIZES } from 'const';
 
@@ -49,7 +50,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
                 sx={{ alignItems: 'center', cursor: 'help', minWidth: '74.5px' }}
                 spacing={1}
               >
-                <Icons.Icon name="Group" style={{ opacity: 0.2 }} />
+                <SingleChart size="26px" percent={doctor.availability} />
                 <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
               </Stack>
             </Tooltip>
