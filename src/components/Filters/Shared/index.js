@@ -9,6 +9,20 @@ export const Text = ({ children, show }) => {
       sx={{
         fontSize: 'inherit',
         fontWeight: 'inherit',
+        display: { xs: 'none', sm: show ? 'inline-flex' : 'none', md: 'inline-flex' },
+      }}
+    >
+      {children}
+    </Typography>
+  );
+};
+export const TextAllways = ({ children, show }) => {
+  return (
+    <Typography
+      component="span"
+      sx={{
+        fontSize: 'inherit',
+        fontWeight: 'inherit',
         display: { xs: show ? 'inline-flex' : 'none', md: 'inline-flex' },
       }}
     >
@@ -17,13 +31,13 @@ export const Text = ({ children, show }) => {
   );
 };
 
-export const IconToggleButton = ({ accept, text, iconNames = [], ...props }) => {
+export const IconToggleButton = ({ accept, text, iconNames = [], always = false, ...props }) => {
   const show = accept === props.value;
 
   return (
     <ToggleButton {...props}>
       {show ? <Icon name={iconNames[0]} /> : <Icon name={iconNames[1]} />}
-      <Text show={show}>{text}</Text>
+      {always ? <TextAllways show={show}>{text}</TextAllways> : <Text show={show}>{text}</Text>}
     </ToggleButton>
   );
 };
