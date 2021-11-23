@@ -14,11 +14,13 @@ function withToggleGroup(Component) {
       ...props,
       value: drType,
       setValue: setDrType,
+      sx: { gridArea: 'doctor-type' },
     };
     const injectedPropsAgeGroup = {
       ...props,
       value: ageGroup,
       setValue: setAgeGroup,
+      sx: { gridArea: 'age-group' },
     };
 
     useEffect(() => {

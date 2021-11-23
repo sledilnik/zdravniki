@@ -6,10 +6,10 @@ import * as Styled from './styles';
 
 export default function Filters() {
   return (
-    <Styled.Container maxWidth="false">
+    <Styled.Grid>
       <ToggleDoctorType />
       <ToggleAccepts />
       <Search />
-    </Styled.Container>
+    </Styled.Grid>
   );
 }

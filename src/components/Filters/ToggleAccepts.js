@@ -11,6 +11,7 @@ function withToggleGroup(Component) {
       ...props,
       value: accept,
       setValue: setAccept,
+      sx: { gridArea: 'accepts' },
     };
 
     return (
