@@ -22,12 +22,9 @@ export default function Search() {
         display: 'flex',
         alignItems: 'center',
         borderRadius: '24px',
-        margin: '4px',
-        height: '48px',
-        marginInline: 'auto 8px',
-        marginBlock: '16px',
         border: theme => `1px solid ${theme.palette.divider}`,
         background: theme => theme.customColors.background,
+        gridArea: 'search',
       }}
     >
       <Paper
@@ -36,8 +33,7 @@ export default function Search() {
           color: theme => theme.customColors.dark,
           background: 'transparent',
           borderRadius: '24px',
-          width: 'max-content',
-          height: '46px',
+          width: '100%',
           display: 'flex',
           alignItems: 'center',
           marginInline: '4px',

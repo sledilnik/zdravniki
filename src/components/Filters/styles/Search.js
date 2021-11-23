@@ -7,6 +7,7 @@ export const Search = styled('div')(({ theme }) => ({
   borderRadius: '24px',
   backgroundColor: 'transparent',
   opacity: 0.56,
+  width: '100%',
   '&:hover': {
     backgroundColor: ' rgba(0, 0, 0, 0.04)',
   },
@@ -15,8 +16,6 @@ export const Search = styled('div')(({ theme }) => ({
     backgroundColor: theme.customColors.accent,
     opacity: 1,
   },
-  marginLeft: 0,
-  width: '100%',
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -37,7 +36,7 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
     fontWeight: 600,
     letterSpacing: 0,
     fontSize: '13px',
-    height: '38px',
+    height: '34px',
     padding: theme.spacing(0, 1, 0, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,

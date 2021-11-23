@@ -6,14 +6,13 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 const Paper = styled(MuiPaper)(({ theme }) => {
   return {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     border: theme => `1px solid ${theme.palette.divider}`,
     background: theme.customColors.background,
     borderRadius: '24px',
     flexWrap: 'wrap',
     width: 'min-content',
-    marginBlock: '16px',
-    minHeight: '48px',
-    '&:not(:last-child)': { marginRight: '4px' },
   };
 });
 
@@ -30,7 +29,6 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
       letterSpacing: 0,
       fontWeight: 600,
       borderRadius: '24px',
-      paddingInline: theme.spacing(1),
     },
     '&.Mui-disabled': {
       border: 0,
