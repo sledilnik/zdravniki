@@ -54,7 +54,7 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
     }
   };
   return (
-    <Paper elevation={0}>
+    <Paper elevation={0} {...props}>
       <StyledToggleButtonGroup size="small" value={value} exclusive onChange={handleValue}>
         {children}
       </StyledToggleButtonGroup>
