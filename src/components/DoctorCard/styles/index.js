@@ -18,6 +18,12 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
     '.MuiCardContent-root:last-child': {
       paddingBottom: theme.spacing(1),
     },
+    [theme.breakpoints.up('sm')]: {
+      marginInline: '1em',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginInline: '2em',
+    },
   };
 });
 
