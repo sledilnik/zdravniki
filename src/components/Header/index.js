@@ -34,6 +34,7 @@ const Header = () => {
   return (
     <Box id="drawer" sx={{ flexGrow: 1 }}>
       <AppBar
+        position="static"
         sx={{
           backgroundColor: theme => theme.customColors.brand,
           color: theme => theme.customColors.dark,

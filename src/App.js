@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import { Toolbar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { doctorsContext, filterContext, leafletContext } from 'context';
@@ -10,7 +9,6 @@ import Doctors from 'components/Doctors/';
 
 import { Loader } from 'components/Shared';
 import { Accessibility } from 'components/Shared';
-import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
 import { styled } from '@mui/material/styles';
 
@@ -50,7 +48,6 @@ function App() {
   return (
     <Wrapper>
       <Header />
-      <Toolbar id="back-to-top-anchor" />
       {isFetching && !hasError ? (
         <Loader.Center />
       ) : (
@@ -63,7 +60,6 @@ function App() {
           </Main>
         </>
       )}
-      <ScrollTop />
     </Wrapper>
   );
 }
