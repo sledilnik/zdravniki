@@ -7,6 +7,7 @@ import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
 import Button from '@mui/material/Button';
 import * as Styled from './styles';
+import { MainScrollTop } from './../Shared/ScrollTop';
 
 const { GEO_LOCATION } = MAP;
 
@@ -55,6 +56,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
         </Styled.ButtonWrapper>
       )}
       <Styled.WrapperInfinite id="scrollableDiv">
+        <span id="back-to-top-anchor"></span>
         <Styled.InfiniteScroll
           dataLength={_doctors?.length ?? 0}
           next={fetchMore}
@@ -70,6 +72,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
             />
           ))}
         </Styled.InfiniteScroll>
+        <MainScrollTop />
       </Styled.WrapperInfinite>
     </Styled.Wrapper>
   );
