@@ -8,9 +8,6 @@ import MapEvents from './MapEvents';
 const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
-  // const upXSWidth = json2mq({ screen: true, minWidth: SIZES.DEVICES.xs });
-  // const upXSHeight = json2mq({ screen: true, minHeight: SIZES.DEVICES.s });
-
   const DoctorsMap = ({
     doctors,
     center = GEO_LOCATION.SL_CENTER,
@@ -19,9 +16,6 @@ function withLeaflet(Component) {
     maxZoom = MAP.MAX_ZOOM,
     ...other
   }) => {
-    // const isUpXS = useMediaQuery(upXSWidth);
-    // const isUpXSHeight = useMediaQuery(upXSHeight);
-
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
     const injectedProps = {
       center,
@@ -29,7 +23,6 @@ function withLeaflet(Component) {
       minZoom,
       maxZoom,
       ...other,
-      height: '100%',
     };
 
     return (

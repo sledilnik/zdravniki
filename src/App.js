@@ -14,11 +14,24 @@ import { MainScrollTop as ScrollTop } from 'components/Shared/ScrollTop';
 
 import { styled } from '@mui/material/styles';
 
-import { DOCTORS } from 'const';
+import { DOCTORS, SIZES } from 'const';
 
 const Main = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
-  backgroundColor: theme.customColors.background,
+  backgroundColor: theme.palette.common.white,
+  '& .leaflet-container': {
+    height: SIZES.MAP_HEIGHT.default,
+  },
+  [theme.breakpoints.up('sm')]: {
+    '& .leaflet-container': {
+      height: SIZES.MAP_HEIGHT.upSmall,
+    },
+  },
+  [theme.breakpoints.up('md')]: {
+    '& .leaflet-container': {
+      height: 'clamp(400px, 100%, 100vh)', // ? not sure but it's working
+    },
+  },
 }));
 
 function App() {

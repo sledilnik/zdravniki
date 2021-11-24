@@ -9,6 +9,6 @@ export const DEVICES = {
 };
 
 export const MAP_HEIGHT = {
-  small: 280,
-  large: 500,
+  default: '30vh',
+  upSmall: '35vh',
 };
