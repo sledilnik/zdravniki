@@ -27,8 +27,26 @@ export const Grid = styled(MuiBox)(({ theme }) => {
     gridAutoFlow: 'row',
     gridTemplateAreas: `
       "doctor-type doctor-type"
-      "age-group accepts"
+      "accepts age-group"
       "search search"`,
+    [theme.breakpoints.up('sm')]: {
+      margin: '8px 16px',
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: '1fr 1fr',
+      gap: '0.5em 0.5em',
+      gridAutoFlow: 'row',
+      gridTemplateAreas: `
+        "doctor-type age-group"
+        "accepts search"`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      margin: '12px 24px',
+      gridTemplateColumns: '1fr 1fr 1fr 1fr',
+      gridTemplateRows: '1fr',
+      gap: '0.5em 0.5em',
+      gridAutoFlow: 'row',
+      gridTemplateAreas: `
+        "doctor-type age-group accepts search"`,
+    },
   };
 });
-

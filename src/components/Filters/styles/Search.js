@@ -31,6 +31,7 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 export const InputBase = styled(MuiInputBase)(({ theme }) => ({
   color: 'inherit',
+  width: '100%',
   '& .MuiInputBase-input': {
     lineHeight: 'normal',
     fontWeight: 600,
