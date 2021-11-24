@@ -1,6 +1,10 @@
 import { styled } from '@mui/material/styles';
-import CircularProgress from '@mui/material/CircularProgress';
+import MuiCircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+
+const CircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
+  color: theme.customColors.brand,
+}));
 
 const Wrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
