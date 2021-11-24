@@ -54,7 +54,7 @@ function withToggleGroup(Component) {
             value="gp"
             aria-label="general practitioner"
             accept={drType}
-            text={t("generalPractitioner")}
+            text={t('generalPractitioner')}
             iconNames={['FamilyDrWhite', 'Family']}
           />
           <IconToggleButton
@@ -62,7 +62,7 @@ function withToggleGroup(Component) {
             value="den"
             aria-label="dentist"
             accept={drType}
-            text={t("dentist")}
+            text={t('dentist')}
             iconNames={['DentistWhite', 'Dentist']}
           />
           <IconToggleButton
@@ -70,7 +70,7 @@ function withToggleGroup(Component) {
             value="gyn"
             aria-label="gynecologist"
             accept={drType}
-            text={t("gynecologist")}
+            text={t('gynecologist')}
             iconNames={['GynoWhite', 'Gyno']}
           />
         </Component>
@@ -80,24 +80,24 @@ function withToggleGroup(Component) {
               value="adults"
               aria-label="adults"
               accept={ageGroup}
-              text={t("adults")}
-              iconNames={['CheckWhite', 'Ban']}
+              text={t('adults')}
+              iconNames={['AdultsWhite', 'Adults']}
             />
             {drType === 'den' && (
               <IconToggleButton
                 value="students"
                 aria-label="students"
                 accept={ageGroup}
-                text={t("students")}
-                iconNames={['CheckWhite', 'Ban']}
+                text={t('students')}
+                iconNames={['StudentsWhite', 'Students']}
               />
             )}
             <IconToggleButton
               value="youth"
               aria-label="youth"
               accept={ageGroup}
-              text={t("youth")}
-              iconNames={['CheckWhite', 'Ban']}
+              text={t('youth')}
+              iconNames={['KidsWhite', 'Kids']}
             />
           </Component>
         )}
