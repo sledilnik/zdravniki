@@ -10,8 +10,8 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
 
   return {
     alignSelf: 'start',
-    marginBottom: '1rem',
-    marginRight: '1rem',
+    marginBottom: '1em',
+    marginInline: '0.5em',
     width: '100%',
     borderLeft: `solid 4px ${acceptsColor}`,
     borderRadius: '5px',
