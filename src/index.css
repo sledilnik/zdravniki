@@ -16,3 +16,29 @@ body {
 main > .leaflet-container {
   height: 500px;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: hsla(81.9, 55.4%, 51.6%, 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: hsla(81.9, 55.4%, 51.6%, 0.3);
+  border: solid 1px hsla(81.9, 55.4%, 51.6%, 0.75);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(81.9, 55.4%, 51.6%, 1);
+}
