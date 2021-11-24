@@ -80,7 +80,7 @@ function withToggleGroup(Component) {
               aria-label="adults"
               accept={ageGroup}
               text="odrasli"
-              iconNames={['CheckWhite', 'Ban']}
+              iconNames={['AdultsWhite', 'Adults']}
             />
             {drType === 'den' && (
               <IconToggleButton
@@ -88,7 +88,7 @@ function withToggleGroup(Component) {
                 aria-label="students"
                 accept={ageGroup}
                 text="študenti"
-                iconNames={['CheckWhite', 'Ban']}
+                iconNames={['StudentsWhite', 'Students']}
               />
             )}
             <IconToggleButton
@@ -96,7 +96,7 @@ function withToggleGroup(Component) {
               aria-label="youth"
               accept={ageGroup}
               text="mladina"
-              iconNames={['CheckWhite', 'Ban']}
+              iconNames={['KidsWhite', 'Kids']}
             />
           </Component>
         )}
