@@ -16,6 +16,11 @@ import { styled } from '@mui/material/styles';
 
 import { DOCTORS, SIZES } from 'const';
 
+const Wrapper = styled('div')(({ theme }) => ({
+  height: '100vh',
+  overflow: 'hidden',
+}));
+
 const Main = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
   backgroundColor: theme.palette.common.white,
@@ -43,11 +48,11 @@ function App() {
   }
 
   return (
-    <>
+    <Wrapper>
       <Header />
       <Toolbar id="back-to-top-anchor" />
       {isFetching && !hasError ? (
-        <Loader.Center />
+        <Loader.Base />
       ) : (
         <>
           <Filters />
@@ -59,7 +64,7 @@ function App() {
         </>
       )}
       <ScrollTop />
-    </>
+    </Wrapper>
   );
 }
 
