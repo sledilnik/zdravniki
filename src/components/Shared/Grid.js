@@ -15,5 +15,8 @@ export const Filter = styled(Cards)(({ theme }) => ({
 }));
 
 export const Doctors = styled(BaseGrid)(({ theme }) => ({
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateColumns: '1fr',
+  [theme.breakpoints.up('md')]: {
+    gridTemplateColumns: '1fr 1fr',
+  },
 }));
