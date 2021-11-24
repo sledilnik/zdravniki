@@ -1,66 +1,28 @@
+import { Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import { doctorsContext, filterContext, leafletContext } from 'context';
-import Header from 'components/Header';
-import Filters from 'components/Filters';
-import Doctors from 'components/Doctors/';
-
-import { Loader } from 'components/Shared';
+import { doctorsContext, filterContext } from 'context';
 import { Accessibility } from 'components/Shared';
-
-import { styled } from '@mui/material/styles';
-
-import { DOCTORS, SIZES } from 'const';
-
-const Wrapper = styled('div')(({ theme }) => ({
-  height: '100vh',
-  overflow: 'hidden',
-}));
-
-const Main = styled(Box)(({ theme }) => ({
-  overflow: 'hidden',
-  backgroundColor: theme.palette.common.white,
-  '& .leaflet-container': {
-    height: SIZES.MAP_HEIGHT.default,
-  },
-  [theme.breakpoints.up('sm')]: {
-    '& .leaflet-container': {
-      height: SIZES.MAP_HEIGHT.upSmall,
-    },
-  },
-  [theme.breakpoints.up('md')]: {
-    '& .leaflet-container': {
-      height: 'clamp(400px, 100%, 100vh)', // ? not sure but it's working
-    },
-  },
-}));
+import Header from 'components/Header';
+import Home from 'pages/Home';
+import About from 'pages/About';
 
 function App() {
-  const { isFetching, errors } = doctorsContext.useDoctors();
-  const hasError = errors.some(error => error instanceof Error);
 
-  if (hasError) {
-    return <div>Nekaj je narobe!</div>;
-  }
+  const lng = localStorage.getItem("i18nextLng") || "sl";
 
   return (
-    <Wrapper>
+    <div>
       <Header />
-      {isFetching && !hasError ? (
-        <Loader.Center />
-      ) : (
-        <>
-          <Filters />
-          <Main id="main-content" component="main">
-            <leafletContext.LeafletProvider>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-            </leafletContext.LeafletProvider>
-          </Main>
-        </>
-      )}
-    </Wrapper>
+      <Routes>
+        <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
+        <Route exact path="/en/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
+        <Route exact path="/sl/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
+        <Route exact path="/en/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
+        <Route exact path="/sl/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
+      </Routes>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import ToggleGroup from 'components/Shared/ToggleGroup';
 import { IconToggleButton } from './Shared';
 
 import { useFilter } from 'context/filterContext';
+import { t } from 'i18next';
 
 function withToggleGroup(Component) {
   const ToggleAccepts = props => {
@@ -20,21 +21,21 @@ function withToggleGroup(Component) {
           value="y"
           aria-label="accepts"
           accept={accept}
-          text="sprejema"
+          text={t('accepts')}
           iconNames={['CheckWhite', 'Check']}
         />
         <IconToggleButton
           value="n"
           aria-label="rejects"
           accept={accept}
-          text="ne sprejema"
+          text={t('rejects')}
           iconNames={['BanWhite', 'Ban']}
         />
         <IconToggleButton
           value="vsi"
           aria-label="all"
           accept={accept}
-          text="vsi"
+          text={t('all')}
           iconNames={['AllWhite', 'All']}
         />
       </Component>

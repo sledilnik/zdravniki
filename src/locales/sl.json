@@ -1,0 +1,21 @@
+{
+    "loading": "Nalagam ...",
+    "header": {
+        "home": "Imenik",
+        "reportError": "Prijavi napako",
+        "about": "O projektu",
+        "support": "Podpri!",
+        "sledilnik": "COVID-19 Sledilnik"
+    },
+    "accepts": "sprejema",
+    "rejects": "ne sprejema",
+    "all": "vsi",
+    "generalPractitioner": "splošni zdravnik",
+    "dentist": "zobozdravnik",
+    "gynecologist": "ginekolog",
+    "adults": "odrasli",
+    "students": "študenti",
+    "youth": "mladina",
+    "search": "Išči...",
+    "glavarinskiKolicnik": "Glavarinski količnik"
+}

@@ -1,0 +1,21 @@
+{
+    "loading": "Loading...",
+    "header": {
+        "home": "Home",
+        "reportError": "Report error",
+        "about": "About",
+        "support": "Support!",
+        "sledilnik": "COVID-19 Tracking"
+    },
+    "accepts": "accepts",
+    "rejects": "rejects",
+    "all": "all",
+    "generalPractitioner": "general practitioner",
+    "dentist": "dentist",
+    "gynecologist": "gynecologist",
+    "adults": "adults",
+    "students": "students",
+    "youth": "youth",
+    "search": "Search...",
+    "glavarinskiKolicnik": "Glavarinski količnik"
+}

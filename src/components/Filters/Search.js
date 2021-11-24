@@ -6,6 +6,7 @@ import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
 import { useState } from 'react';
 import { useDebounce } from 'hooks';
+import { t } from 'i18next';
 
 export default function Search() {
   const { setSearchValue } = useFilter();
@@ -44,7 +45,7 @@ export default function Search() {
             <Icons.SearchIcon />
           </Styled.Search.SearchIconWrapper>
           <Styled.Search.InputBase
-            placeholder="Išči..."
+            placeholder={t("search")}
             value={value}
             onChange={handleSearchChange}
             aria-label="search"
