@@ -13,8 +13,8 @@ const Wrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const WrapperCenter = styled(Wrapper)(({ theme }) => ({
-  marginBlock: '50%',
-  marginInline: 'auto',
+  height: '100%',
+  alignItems: 'center',
 }));
 export const Base = () => (
   <Wrapper>
@@ -23,7 +23,9 @@ export const Base = () => (
 );
 export const Center = () => (
   <WrapperCenter>
-    <CircularProgress />
+    <Wrapper>
+      <CircularProgress />
+    </Wrapper>
   </WrapperCenter>
 );
 

@@ -52,7 +52,7 @@ function App() {
       <Header />
       <Toolbar id="back-to-top-anchor" />
       {isFetching && !hasError ? (
-        <Loader.Base />
+        <Loader.Center />
       ) : (
         <>
           <Filters />
