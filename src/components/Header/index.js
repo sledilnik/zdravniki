@@ -75,10 +75,14 @@ const Header = () => {
           >
             <Icons.MenuIcon />
           </IconButton>
-
           <Styled.Autocomplete
             id="language-switcher"
             size="small"
+            sx={{
+              pl: 2,
+              width: 100,
+              display: { xs: 'none', md: 'flex' },
+            }}
             options={languages}
             disableClearable
             defaultValue={languages[1]}

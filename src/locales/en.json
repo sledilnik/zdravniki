@@ -1,6 +1,7 @@
 {
     "loading": "Loading...",
     "header": {
+        "menu": "Menu",
         "home": "Home",
         "reportError": "Report error",
         "about": "About",

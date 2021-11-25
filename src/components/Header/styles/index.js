@@ -53,6 +53,7 @@ export const StackSocialSmall = styled(MuiStack)(({ theme }) => {
   return {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginLeft: theme.spacing(3),
     marginTop: 'auto',
     marginBottom: theme.spacing(2),
@@ -103,6 +104,7 @@ export const NavMenuLink = styled(NavLink)(({ theme }) => ({
   lineHeight: '30px',
   transition: 'all 0.5s ease',
   textDecoration: 'none',
+  whiteSpace: 'nowrap',
   outline: 'none',
   whiteSpace: 'nowrap',
   '&:focus, :hover': {

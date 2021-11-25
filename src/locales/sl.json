@@ -1,6 +1,7 @@
 {
     "loading": "Nalagam ...",
     "header": {
+        "menu": "Meni",
         "home": "Imenik",
         "reportError": "Prijavi napako",
         "about": "O projektu",

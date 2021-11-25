@@ -6,9 +6,11 @@ import Typography from '@mui/material/Typography';
 import * as Styled from './styles';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
+import Languages from './Languages';
 import IconButton from '@mui/material/IconButton';
 import * as Icons from 'components/Shared/Icons';
 import Stack from '@mui/material/Stack';
+import { t } from 'i18next';
 
 const Drawer = styled(MuiDrawer)(({ theme }) => {
   return {
@@ -60,7 +62,7 @@ export default function TemporaryDrawer({ open, setOpen }) {
           sx={{ alignItems: 'center', justifyContent: 'space-between', width: '100%' }}
         >
           <Typography variant="h6" component="span">
-            Meni
+            {t('header.menu')}
           </Typography>
           <IconButton
             size="medium"
@@ -79,6 +81,7 @@ export default function TemporaryDrawer({ open, setOpen }) {
       </Styled.StackSmall>
       <Styled.StackSocialSmall>
         <SocialLinks />
+        <Languages />
       </Styled.StackSocialSmall>
     </Drawer>
   );
