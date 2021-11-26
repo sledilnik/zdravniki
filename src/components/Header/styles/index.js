@@ -4,6 +4,7 @@ import IconButtonBase from '@mui/material/IconButton';
 import MuiStack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
 
+export { Autocomplete, Popper } from './Autocomplete';
 export const StackLarge = styled(MuiStack)(({ theme }) => {
   return {
     display: 'none',
