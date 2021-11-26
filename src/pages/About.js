@@ -9,6 +9,10 @@ export default function MarkdownToHtml() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
+    document.body.style.overflow = 'auto';
+  });
+
+  useEffect(() => {
     let theTextFile = slAbout;
     if (lng === 'en') {
       theTextFile = enAbout;

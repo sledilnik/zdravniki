@@ -25,7 +25,6 @@ export default function TemporaryDrawer({ open, setOpen }) {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return (document.body.style.overflow = 'unset');
   });
 
   const toggleDrawer = event => {
