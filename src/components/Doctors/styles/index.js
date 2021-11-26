@@ -17,6 +17,7 @@ export const ButtonWrapper = styled('div')(({ theme }) => ({
 }));
 
 export const WrapperInfinite = styled('div')(({ theme }) => ({
+  width: '100%',
   height: `calc(100vh - ${SIZES.MAP_HEIGHT.default} - 56px - 140.5px)`,
   overflow: 'auto',
   display: 'flex',
@@ -31,8 +32,11 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
   },
 }));
 export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
-  marginTop: '1rem',
-  display: 'inline-flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-evenly',
+  marginTop: '0',
+  display: 'grid',
+  gap: '1rem',
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginTop: '1rem',
+  },
 }));

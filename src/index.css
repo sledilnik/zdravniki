@@ -42,3 +42,7 @@ main > .leaflet-container {
 ::-webkit-scrollbar-thumb:hover {
   background: hsla(81.9, 55.4%, 51.6%, 1);
 }
+
+.infinite-scroll-component__outerdiv {
+  width: 100%;
+}

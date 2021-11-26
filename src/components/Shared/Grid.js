@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 
 const BaseGrid = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridGap: '1rem',
+  gap: '1rem',
 }));
 
 export const Cards = styled(BaseGrid)(({ theme }) => ({

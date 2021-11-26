@@ -4,7 +4,7 @@ import enAbout from '../content/en/about.md';
 import slAbout from '../content/sl/about.md';
 import './style.scss';
 
-export default function MarkdownToHtml() {
+export default function About() {
   const [postMarkdown, setPostMarkdown] = useState('');
 
   const lng = localStorage.getItem("i18nextLng") || "sl";

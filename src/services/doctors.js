@@ -26,6 +26,7 @@ export function createDoctor(doctor, type, institution) {
   const _munUnit = trimString(institution.unit);
   const _provider = trimString(institution.name);
   const _website = trimString(institution.website);
+  const _phone = trimString(institution.phone);
   const { address, city, municipality, post } = institution;
   const [_code, _post] = post.split(' ');
   const _geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
@@ -57,6 +58,9 @@ export function createDoctor(doctor, type, institution) {
     },
     get website() {
       return _website;
+    },
+    get phone() {
+      return _phone;
     },
     get munUnit() {
       return _munUnit;

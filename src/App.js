@@ -7,6 +7,8 @@ import { Accessibility } from 'components/Shared';
 import Header from 'components/Header';
 import Home from 'pages/Home';
 import About from 'pages/About';
+import Doctor from 'pages/Doctor';
+import { t } from 'i18next';
 
 function App() {
 
@@ -19,8 +21,13 @@ function App() {
         <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
         <Route exact path="/en/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
         <Route exact path="/sl/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
-        <Route exact path="/en/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
-        <Route exact path="/sl/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
+        <Route exact path="/sl/o-strani" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
+        <Route path="/sl/zdravnik/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
+        <Route path="/en/zdravnik/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
+        <Route path="/sl/zobozdravnik/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
+        <Route path="/en/zobozdravnik/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
+        <Route path="/sl/ginekolog/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
+        <Route path="/en/ginekolog/:priimekIme" element={<Suspense fallback={<>t{'loading'}</>}><Doctor /></Suspense>} />
       </Routes>
     </div>
   );
@@ -48,8 +55,8 @@ function AppWrapper() {
   return (
     <>
       <CssBaseline />
-      <Accessibility.A href="#main-content">Na vsebino</Accessibility.A>
-      <Accessibility.H1>Najdi prostega zdravnika</Accessibility.H1>
+      <Accessibility.A href="#main-content">{t('toContent')}</Accessibility.A>
+      <Accessibility.H1>{t('findAvailableDoctor')}</Accessibility.H1>
       <doctorsContext.DoctorsProvider>
         <filterContext.FilterProvider>
           <ThemeProvider theme={theme}>
