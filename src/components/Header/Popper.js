@@ -7,7 +7,7 @@ export default function Popper(props) {
           phase: 'main',
           name: 'offset',
           options: {
-            offset: [-55, 0],
+            offset: [-47, 0],
           },
         },
       ]}
