@@ -106,7 +106,6 @@ export const NavMenuLink = styled(NavLink)(({ theme }) => ({
   textDecoration: 'none',
   whiteSpace: 'nowrap',
   outline: 'none',
-  whiteSpace: 'nowrap',
   '&:focus, :hover': {
     backgroundColor: 'transparent',
     boxShadow: `inset 0px -10px 0 ${theme.customColors.background}`,
