@@ -1,13 +1,12 @@
-import Markdown from 'markdown-to-jsx';
-import React, { useEffect, useState } from 'react';
-import enAbout from '../content/en/about.md';
-import slAbout from '../content/sl/about.md';
-import './style.scss';
+import { useEffect, useState } from 'react';
+import enAbout from 'content/en/about.md';
+import slAbout from 'content/sl/about.md';
+import * as Styled from './styles/Markdown';
 
 export default function MarkdownToHtml() {
   const [postMarkdown, setPostMarkdown] = useState('');
 
-  const lng = localStorage.getItem("i18nextLng") || "sl";
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
     let theTextFile = slAbout;
@@ -16,21 +15,19 @@ export default function MarkdownToHtml() {
     }
 
     fetch(theTextFile)
-      .then((response) => response.text())
-      .then((text) => {
+      .then(response => response.text())
+      .then(text => {
         setPostMarkdown(text);
       });
   }, [lng]);
 
   return (
-    <div className="custom-container">
-      <div className="static-page-wrapper">
+    <Styled.CustomContainer>
+      <Styled.StaticPageWrapper>
         <span>
-          <Markdown>
-            {postMarkdown}
-          </Markdown>
+          <Styled.Markdown>{postMarkdown}</Styled.Markdown>
         </span>
-      </div>
-    </div>
-  )
+      </Styled.StaticPageWrapper>
+    </Styled.CustomContainer>
+  );
 }
