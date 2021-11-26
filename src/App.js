@@ -9,18 +9,49 @@ import Home from 'pages/Home';
 import About from 'pages/About';
 
 function App() {
-
-  const lng = localStorage.getItem("i18nextLng") || "sl";
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (
     <div>
       <Header />
       <Routes>
         <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
-        <Route exact path="/en/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
-        <Route exact path="/sl/" element={<Suspense fallback={<>t{'loading'}</>}><Home /></Suspense>} />
-        <Route exact path="/en/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
-        <Route exact path="/sl/about" element={<Suspense fallback={<>t{'loading'}</>}><About /></Suspense>} />
+        <Route
+          exact
+          path="/en/"
+          element={
+            <Suspense fallback={<>t{'loading'}</>}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/sl/"
+          element={
+            <Suspense fallback={<>t{'loading'}</>}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/en/about"
+          element={
+            <Suspense fallback={<>t{'loading'}</>}>
+              <About />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/sl/about"
+          element={
+            <Suspense fallback={<>t{'loading'}</>}>
+              <About />
+            </Suspense>
+          }
+        />
       </Routes>
     </div>
   );
