@@ -1,6 +1,6 @@
 # O projektu: Iskalnik po osebnih zdravnikih
 
-Dostop do zdravstva se začne z izbiro osebnega zdravnika, pa naj gre za splošnega zdravnika, ginekologa in zobozdravnika. 
+Dostop do zdravstva se začne z izbiro osebnega zdravnika, pa naj gre za splošnega zdravnika, ginekologa in zobozdravnika.
 Predvsem pri splošnih zdravnikih je v določenih predelih države veliko pomanjkanje, zato marsikdo ne pride do osebnega zdravnika in ima tako otežen pristop do zdravstvenih storitev.
 Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja seznam zdravnikov, ki so lahko osebni zdravniki. Pred leti je Sebastian Pleško te podatke že objavil v bolj uporabni obliki in dobil pozitiven odziv, žal pa se stran potem ni več redno vzdrževala zaradi pogostih sprememb na podatkih ZZZS.
 Pri Znanstvenem društvu Sledilnik smo se odločili, da te podatke predstavimo v uporabniku prijaznejši obliki: preko imenika in iskalnika, kjer lahko uporabniki hitro vidijo dostopnost zdravnikov v njihovi bližini.
@@ -9,14 +9,14 @@ Pri Znanstvenem društvu Sledilnik smo se odločili, da te podatke predstavimo v
 
 Sodelavci projekta:
 
--   [Branko Jevtić]() — grafično oblikovanje
--   [Jaka Daneu]() — spletna stran
--   [Joh Dokler]() — spletna stran
--   [Luka Petravić]() — FAQ
--   [Luka Renko]() — podatki
--   [Mojca Miklavec]() — podatki
--   [Sebastian Pleško]() — pobuda za storitev
--   [Štefan Baebler]() — podatki
+- [Branko Jevtić]() — grafično oblikovanje
+- [Jaka Daneu]() — spletna stran
+- [Joh Dokler]() — spletna stran
+- [Luka Petravić]() — FAQ
+- [Luka Renko]() — podatki
+- [Mojca Miklavec]() — podatki
+- [Sebastian Pleško]() — pobuda za storitev
+- [Štefan Baebler]() — podatki
 
 ## Pogoji uporabe
 
@@ -26,9 +26,9 @@ Za druge oblike sodelovanja nas kontaktirajte na podpora-zdravniki@sledilnik.org
 
 ## Varstvo osebnih podatkov in piškotki
 
-VPodajamo informacije o obdelavah osebnih podatkov po 13. in 14. členu oz. 30. členu Splošne uredbe o varstvu podatkov ter prostemu pretoku podatkov (GDPR) ter o rabi spletnih piškotkov po 157. členu Zakona o elektronskih komunikacijah (ZEKom-1).
+Podajamo informacije o obdelavah osebnih podatkov po 13. in 14. členu oz. 30. členu Splošne uredbe o varstvu podatkov ter prostemu pretoku podatkov (GDPR) ter o rabi spletnih piškotkov po 157. členu Zakona o elektronskih komunikacijah (ZEKom-1).
 
-Projekt “Zdravniki” obdeluje osebne podatke o osebnih zdravnikih ter podatke o uporabnikih spletne strani. 
+Projekt “Zdravniki” obdeluje osebne podatke o osebnih zdravnikih ter podatke o uporabnikih spletne strani.
 
 Podlaga za obdelavo je zasledovanje legitimnih interesov upravljavca (točka (f) člena 6(1) GDPR), in sicer pomoči javnosti pri izbiri osebnega zdravnika.
 
@@ -36,7 +36,7 @@ Upravljavec je /Znanstveno društvo Sledilnik, naslov, e-pošta/.
 
 ## Obdelava podatkov o osebnih zdravnikih
 
-Namen obdelave podatkov o zdravnikih je olajšati postopek izbire osebnega zdravnika /link na ustrezno vprašanje zgoraj/. 
+Namen obdelave podatkov o zdravnikih je olajšati postopek izbire osebnega zdravnika /link na ustrezno vprašanje zgoraj/.
 
 Upravljavec v ta namen zbira in obdeluje sledeče javno dostopne podatke o zdravnikih, dobljene iz spletne strani ZZZS:
 ime in priimek zdravnika;
@@ -57,7 +57,7 @@ pretvorba v strojno berljivo;
 dodatne predelave zaradi lažje uporabe na spletni strani (priprava šifrantov idr.);
 odlaganje strojno berljive oblike podatkov na odložišču github /link/.
 vizualizacija v obliki imenika osebnih zdravnikov
-vizualizacija v obliki zemljevida osebnih zdravnikov 
+vizualizacija v obliki zemljevida osebnih zdravnikov
 možnost iskanja po osebnih zdravnikih;
 
 Osebni podatki se hranijo, dokler so veljavni, potem pa zamenjajo z veljavnimi podatki. Izbris neveljavnih podatkov bo izveden v roku /1 leta - izberite/ po zaključku koledarskega leta, v katerem bodo podatki postali neveljavni.
