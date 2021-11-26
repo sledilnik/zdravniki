@@ -1,36 +1,34 @@
+import { t } from 'i18next';
 import * as Styled from './styles';
+
+const lng = localStorage.getItem("i18nextLng") || "sl";
 
 const NavLinks = ({ containerId = '', active }) => {
   return (
     <>
-      <Styled.NavLink
-        id={`${containerId}-0`}
+      <Styled.NavMenuLink
+        to={`/${lng}/`}
+        activeclassname="active"
+      >
+        {t('header.home')}
+      </Styled.NavMenuLink>
+      <Styled.NavMenuItemLink
+        href="mailto:podpora-zdravniki@sledilnik.org"
+        target="_blank"
+        rel="noopener"
         component="button"
         tabIndex={0}
         underline="none"
-        className={active === 0 || !active ? 'active' : ''}
       >
-        Imenik
-      </Styled.NavLink>
-      <Styled.NavLink
-        id={`${containerId}-1`}
-        component="button"
-        tabIndex={0}
-        underline="none"
-        className={active === 1 ? 'active' : ''}
+        {t('header.reportError')}
+      </Styled.NavMenuItemLink>
+      <Styled.NavMenuLink
+        to={`/${lng}/about`}
+        activeclassname="active"
       >
-        Prijavi napako
-      </Styled.NavLink>
-      <Styled.NavLink
-        id={`${containerId}-2`}
-        component="button"
-        tabIndex={0}
-        underline="none"
-        className={active === 2 ? 'active' : ''}
-      >
-        O projektu
-      </Styled.NavLink>
-      <Styled.NavLink
+        {t('header.about')}
+      </Styled.NavMenuLink>
+      <Styled.NavMenuItemLink
         href="https://covid-19.sledilnik.org/sl/donate"
         target="_blank"
         rel="noopener"
@@ -38,9 +36,9 @@ const NavLinks = ({ containerId = '', active }) => {
         tabIndex={0}
         underline="none"
       >
-        Podpri!
-      </Styled.NavLink>
-      <Styled.NavLink
+        {t('header.support')}
+      </Styled.NavMenuItemLink>
+      <Styled.NavMenuItemLink
         href="https://covid-19.sledilnik.org/stats"
         target="_blank"
         rel="noopener"
@@ -48,8 +46,8 @@ const NavLinks = ({ containerId = '', active }) => {
         tabIndex={0}
         underline="none"
       >
-        Covid-19 sledilnik
-      </Styled.NavLink>
+        {t('header.sledilnik')}
+      </Styled.NavMenuItemLink>
     </>
   );
 };

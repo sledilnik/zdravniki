@@ -1,18 +1,12 @@
 import { memo } from 'react';
-
-import CardContent from '@mui/material/CardContent';
-
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-
+import { CardContent, Stack, Typography, Tooltip, IconButton, Link } from '@mui/material';
 import Accepts from './Accepts';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 import SingleChart from 'components/Shared/CircleChart';
+import { t } from 'i18next';
 
-const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
+const DoctorCard = ({ doctor, handleRoomIconClick = () => { } }) => {
   const accepts = doctor.accepts === 'y';
 
   const availabilityText = new Intl.NumberFormat('sl-SL', {
@@ -21,10 +15,14 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
 
   const tooltip = (
     <Stack sx={{ textAlign: 'center' }}>
-      <Typography variant="caption">Glavarinski količnik</Typography>
+      <Typography variant="caption">{t('glavarinskiKolicnik')}</Typography>
       <Typography variant="body2">{parseFloat(doctor.load)}</Typography>
     </Stack>
   );
+
+  const ConditionalLink = ({ children, to, condition }) => (!!condition && to)
+      ? <Styled.SubTitle><Link rel="noopener noreferrer" target="_blank" href={to}>{children}</Link></Styled.SubTitle>
+      : <Styled.SubTitle>{children}</Styled.SubTitle>;
 
   return (
     <Styled.Card id={doctor.id} accepts={accepts.toString()}>
@@ -32,7 +30,9 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
         <Styled.DataWrapper>
           <Styled.MainInfo sx={{ marginRight: 'auto' }}>
             <Styled.Title component="h2">{doctor.name}</Styled.Title>
-            <Styled.SubTitle>{doctor.provider}</Styled.SubTitle>
+            <ConditionalLink to={doctor.website} condition={doctor.website !== ""}>
+              {doctor.provider}
+            </ConditionalLink>
             <Styled.Text>{doctor.fullAddress}</Styled.Text>
           </Styled.MainInfo>
           {/* <Divider orientation="horizontal" flexItem /> */}
@@ -57,7 +57,7 @@ const DoctorCard = ({ doctor, handleRoomIconClick = () => {} }) => {
           </Styled.OtherInfo>
         </Styled.DataWrapper>
       </CardContent>
-    </Styled.Card>
+    </Styled.Card >
   );
 };
 

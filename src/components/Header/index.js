@@ -1,14 +1,12 @@
 import { useRef, useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-
+import { useNavigate, useLocation } from "react-router-dom";
+import { AppBar, Toolbar, IconButton, Box, Autocomplete, TextField } from '@mui/material';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
+import i18next, { languages } from 'i18n';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -19,7 +17,7 @@ const Header = () => {
     const navLinks = ref.current?.children;
 
     const [active] = [...navLinks].filter(link => link.classList.contains('active'));
-    if (target.id && active !== target) {
+    if (active && target?.id && active !== target) {
       active.classList.remove('active');
       target.classList.add('active');
     }
@@ -30,6 +28,19 @@ const Header = () => {
   };
 
   const handleHamburger = () => setOpen(true);
+
+  const lng = localStorage.getItem("i18nextLng") || "sl";
+  // eslint-disable-next-line
+  const [language, setLanguage] = useState(lng);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleChangeLocale = (event, newValue) => {
+    const lang = newValue?.code;
+    setLanguage(lang);
+    i18next.changeLanguage(lang);
+    navigate(`/${lang}/${location.pathname.substring(4)}`);
+  };
 
   return (
     <Box id="drawer" sx={{ flexGrow: 1 }}>
@@ -63,6 +74,28 @@ const Header = () => {
           >
             <Icons.MenuIcon />
           </IconButton>
+
+          <Autocomplete
+            id="language-switcher"
+            size="small"
+            style={{
+              width: 100,
+              paddingLeft: "24px"
+            }}
+            options={languages}
+            disableClearable
+            defaultValue={languages[1]}
+            getOptionLabel={(option) => typeof option?.code === 'undefined' ? '' : option.code.toUpperCase() }
+            onChange={handleChangeLocale}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: 'new-password', // disable autocomplete and autofill
+                }}
+              />)}
+          />
         </Toolbar>
         <TemporaryDrawer open={open} setOpen={setOpen} />
       </AppBar>
