@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, IconButton, Box, Autocomplete, TextField } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Box, TextField } from '@mui/material';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 import i18next, { languages } from 'i18n';
+import Popper from './Popper';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ const Header = () => {
 
   const handleHamburger = () => setOpen(true);
 
-  const lng = localStorage.getItem("i18nextLng") || "sl";
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
   // eslint-disable-next-line
   const [language, setLanguage] = useState(lng);
   const navigate = useNavigate();
@@ -75,26 +76,35 @@ const Header = () => {
             <Icons.MenuIcon />
           </IconButton>
 
-          <Autocomplete
+          <Styled.Autocomplete
             id="language-switcher"
             size="small"
-            style={{
-              width: 100,
-              paddingLeft: "24px"
-            }}
             options={languages}
             disableClearable
             defaultValue={languages[1]}
-            getOptionLabel={(option) => typeof option?.code === 'undefined' ? '' : option.code.toUpperCase() }
+            getOptionLabel={option =>
+              typeof option?.code === 'undefined' ? '' : option.code.toUpperCase()
+            }
             onChange={handleChangeLocale}
-            renderInput={(params) => (
+            renderOption={(props, option) => {
+              const { name } = option;
+              return (
+                <span style={{ display: 'flex', justifyContent: 'end' }} {...props}>
+                  {name}
+                </span>
+              );
+            }}
+            renderInput={params => (
               <TextField
                 {...params}
                 inputProps={{
                   ...params.inputProps,
                   autoComplete: 'new-password', // disable autocomplete and autofill
                 }}
-              />)}
+              />
+            )}
+            disablePortal // not sure if needed
+            PopperComponent={Popper}
           />
         </Toolbar>
         <TemporaryDrawer open={open} setOpen={setOpen} />
