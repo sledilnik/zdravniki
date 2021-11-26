@@ -88,7 +88,10 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
 
   const getById = id => doctors[`${id}`];
 
-  const doctorsValues = Object.values(doctors);
+  const _doctorsValues = Object.values(doctors);
+  const doctorsValues = Intl.Collator
+    ? _doctorsValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+    : _doctorsValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
 
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 
