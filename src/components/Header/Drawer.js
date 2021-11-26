@@ -48,7 +48,12 @@ export default function TemporaryDrawer({ open, setOpen }) {
   };
 
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={toggleDrawer}
+      transitionDuration={{ enter: 1500, exit: 1250 }}
+    >
       <Styled.StackSmall id="nav-links-drawer" onClick={eventHandler}>
         <Stack
           direction="row"
