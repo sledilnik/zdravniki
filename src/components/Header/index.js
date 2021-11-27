@@ -8,6 +8,7 @@ import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 import i18next, { languages } from 'i18n';
 import Popper from './Popper';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,9 @@ const Header = () => {
         }}
       >
         <Toolbar>
-          <Icons.Icon name="Logo" style={{ height: '2rem' }} />
+          <NavLink to="/">
+            <Icons.Icon name="Logo" style={{ height: '2rem' }} />
+          </NavLink>
           <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
             <NavLinks containerId="nav-links" />
           </Styled.StackLarge>

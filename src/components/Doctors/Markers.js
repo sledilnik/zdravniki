@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 
 import { Chip } from '../Shared';
 import Stack from '@mui/material/Stack';
+import { t } from 'i18next';
+
 export const User = () => {
   const [position, setPosition] = useState(null);
   const map = useMap();
@@ -18,19 +20,20 @@ export const User = () => {
     });
   }, [map]);
 
-  return position && <Markers.LeafletMarker position={position} tooltip="Tvoja lokacija" />;
+  return position && <Markers.LeafletMarker position={position} tooltip={t("yourLocation")} />;
 };
 
 const PopUpData = ({ doctor }) => {
   const accepts = doctor.accepts === 'y';
+  const lng = localStorage.getItem("i18nextLng") || "sl";
 
   return (
     <div style={{ maxWidth: '180px' }}>
       <Typography variant="subtitle2">{doctor.name}</Typography>
       <Typography variant="caption">{doctor.provider}</Typography>
       <Stack sx={{ alignItems: 'start', marginTop: '0.5em' }} spacing={1}>
-        <Chip.Info text={doctor.getTypeText()} />
-        <Chip.Accepts text={doctor.getAcceptText()} accept={accepts} />
+        <Chip.Info text={doctor.getTypeText(lng)} />
+        <Chip.Accepts text={doctor.getAcceptText(lng)} accept={accepts} />
       </Stack>
     </div>
   );

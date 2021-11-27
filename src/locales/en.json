@@ -18,5 +18,9 @@
     "students": "students",
     "youth": "youth",
     "search": "Search...",
-    "glavarinskiKolicnik": "Glavarinski količnik"
+    "glavarinskiKolicnik": "Weighted patient list size",
+    "yourLocation": "Your location",
+    "toContent": "To content",
+    "findAvailableDoctor": "Find available doctor",
+    "showAll": "Show all"
 }

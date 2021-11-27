@@ -9,20 +9,19 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
   const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
 
   return {
-    alignSelf: 'start',
-    marginBottom: '1em',
-    marginInline: '0.5em',
-    width: '100%',
+    justifySelf: 'center',
+    width: '98%',
+    marginInline: '5em',
     borderLeft: `solid 4px ${acceptsColor}`,
     borderRadius: '5px',
     '.MuiCardContent-root:last-child': {
       paddingBottom: theme.spacing(1),
     },
     [theme.breakpoints.up('sm')]: {
-      marginInline: '1em',
+      width: '95%',
     },
     [theme.breakpoints.up('lg')]: {
-      marginInline: '2em',
+      width: '90%',
     },
   };
 });
