@@ -1,103 +1,38 @@
 import { memo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CardContent, Stack, Typography, Tooltip, IconButton, Link } from '@mui/material';
-import Accepts from './Accepts';
-import * as Icons from 'components/Shared/Icons';
+import { CardContent } from '@mui/material';
+import CardMedia from '@mui/material/CardMedia';
+
+import DoctorMap from './Map';
 import * as Styled from './styles';
-import SingleChart from 'components/Shared/CircleChart';
-import { t } from 'i18next';
+import Info from './Info';
 
-const DoctorCard = ({ doctor }) => {
+import { useLeafletContext } from 'context/leafletContext';
+
+const DoctorCard = ({ doctor, isPage = false }) => {
   const accepts = doctor.accepts === 'y';
+  const { map, setMap } = useLeafletContext();
 
-  const availabilityText = new Intl.NumberFormat('sl-SL', {
-    style: 'percent',
-  }).format(doctor.availability);
-
-  const tooltip = (
-    <Stack sx={{ textAlign: 'center' }}>
-      <Typography variant="caption">{t('glavarinskiKolicnik')}</Typography>
-      <Typography variant="body2">{parseFloat(doctor.load)}</Typography>
-    </Stack>
-  );
-
-  const navigate = useNavigate();
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
-
-  const handleDoctorCard = doctor => {
-    let type;
-    switch (doctor.type) {
-      case 'gp':
-      case 'gp-y':
-        type = 'zdravnik';
-        break;
-      case 'den':
-      case 'den-s':
-      case 'den-y':
-        type = 'zobozdravnik';
-        break;
-      case 'gyn':
-        type = 'ginekolog';
-        break;
-      default:
-        type = 'undefined';
-    }
-    navigate(`/${lng}/${type}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`);
-  };
-
-  // TODO: why we cannot use useMap here?
-  // const map = useMap();
   const handleZoom = e => {
-    // map.setView([lat, lon], 13);
+    const { lat, lon } = doctor.geoLocation;
+    map.flyTo([lat, lon], 13);
   };
 
-  const ConditionalLink = ({ children, to, condition }) =>
-    !!condition && to ? (
-      <Styled.SubTitle>
-        <Link rel="noopener noreferrer" target="_blank" href={to}>
-          {children}
-        </Link>
-      </Styled.SubTitle>
-    ) : (
-      <Styled.SubTitle>{children}</Styled.SubTitle>
+  if (isPage) {
+    return (
+      <Styled.PageCard id={doctor.id} accepts={accepts.toString()}>
+        <CardContent>
+          <CardMedia component="div">
+            <DoctorMap doctor={doctor} whenCreated={setMap} handleRoomIconClick={handleZoom} />
+          </CardMedia>
+        </CardContent>
+        <Info doctor={doctor} handleZoom={handleZoom} />
+      </Styled.PageCard>
     );
+  }
 
   return (
     <Styled.Card id={doctor.id} accepts={accepts.toString()}>
-      <CardContent>
-        <Styled.DataWrapper>
-          <Styled.MainInfo sx={{ marginRight: 'auto' }}>
-            <Styled.Title component="h2">{doctor.name}</Styled.Title>
-            <ConditionalLink to={doctor.website} condition={doctor.website !== ''}>
-              {doctor.provider}
-            </ConditionalLink>
-            <ConditionalLink to={`tel:${doctor.phone}`} condition={doctor.phone !== ''}>
-              {doctor.phone}
-            </ConditionalLink>
-            <Styled.Text>{doctor.fullAddress}</Styled.Text>
-          </Styled.MainInfo>
-          {/* <Divider orientation="horizontal" flexItem /> */}
-          <Styled.OtherInfo>
-            <Styled.OtherInfoElement>
-              <Accepts accepts={accepts.toString()} />
-              <Tooltip title={tooltip}>
-                <Styled.AvailabilityInfo>
-                  <SingleChart size="26px" percent={doctor.availability} />
-                  <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-                </Styled.AvailabilityInfo>
-              </Tooltip>
-            </Styled.OtherInfoElement>
-            <Styled.OtherInfoElement>
-              <IconButton onClick={handleZoom}>
-                <Icons.Icon name="MapMarker" />
-              </IconButton>
-              <IconButton onClick={() => handleDoctorCard(doctor)}>
-                <Icons.Icon name="IdCard" />
-              </IconButton>
-            </Styled.OtherInfoElement>
-          </Styled.OtherInfo>
-        </Styled.DataWrapper>
-      </CardContent>
+      <Info doctor={doctor} handleZoom={handleZoom} />
     </Styled.Card>
   );
 };
