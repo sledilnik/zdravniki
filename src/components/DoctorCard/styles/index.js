@@ -4,6 +4,23 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
+export const PageCard = styled(MuiCard)(({ theme, accepts }) => {
+  // const { customColors } = theme;
+  // const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
+  return {
+    width: '100%',
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: 0,
+    // borderRadiusBottom: '5px',
+    // borderBottom: `solid 4px ${acceptsColor}`,
+
+    '.MuiCardContent-root:first-child': {
+      paddingTop: 0,
+      paddingInline: 0,
+    },
+  };
+});
 export const Card = styled(MuiCard)(({ theme, accepts }) => {
   const { customColors } = theme;
   const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
@@ -11,7 +28,7 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
   return {
     justifySelf: 'center',
     width: '98%',
-    marginInline: '5em',
+    marginInline: '0.5em',
     borderLeft: `solid 4px ${acceptsColor}`,
     borderRadius: '5px',
     '.MuiCardContent-root:last-child': {
