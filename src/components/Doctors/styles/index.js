@@ -40,6 +40,10 @@ export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
   gap: '1rem',
   width: '100%',
 
+  '> *:last-child': {
+    marginBottom: theme.spacing(2),
+  },
+
   [theme.breakpoints.up('sm')]: {
     marginTop: '1rem',
   },
