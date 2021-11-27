@@ -49,9 +49,17 @@
   ],
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "eslint-config-airbnb": "19.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "install-peers": "^1.0.3",
     "netlify-cli": "^6.14.5",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "webpack-bundle-analyzer": "^4.5.0",
+    "prettier": "^2.5.0"
   },
   "engines": {
     "node": ">= 16",
