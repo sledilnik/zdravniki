@@ -1,0 +1,8 @@
+---
+image:
+  repository: ghcr.io/overlordtm/doctors-website
+
+ingressroute:
+  enabled: false
+
+fullnameOverride: website
