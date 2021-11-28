@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import MarkdownBase from 'markdown-to-jsx';
 
-export const CustomContainer = styled('div')(({ theme }) => {
+export const CustomContainer = styled('main')(({ theme }) => {
   return {
     margin: '24px auto 0 auto',
     maxWidth: '730px',

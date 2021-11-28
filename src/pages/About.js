@@ -26,7 +26,7 @@ export default function About() {
   }, [lng]);
 
   return (
-    <Styled.CustomContainer>
+    <Styled.CustomContainer id="main-content">
       <Styled.StaticPageWrapper>
         <span>
           <Styled.Markdown>{postMarkdown}</Styled.Markdown>

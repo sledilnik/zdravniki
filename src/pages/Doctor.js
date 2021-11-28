@@ -1,11 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { useFilter } from 'context/filterContext';
 import { useEffect, useState } from 'react';
-import { t } from 'i18next';
-import DoctorCard from 'components/DoctorCard';
+import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { leafletContext } from 'context';
+
+import DoctorCard from 'components/DoctorCard';
 import { Loader } from 'components/Shared';
+
+import { useFilter } from 'context/filterContext';
+import { leafletContext } from 'context';
 
 export default function Doctor() {
   const { allDoctors } = useFilter();
@@ -23,11 +24,12 @@ export default function Doctor() {
 
   return (
     <Box
+      id="main-content"
+      component="main"
       sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // marginInline: { sm: '0.5em', md: '1em' },
       }}
     >
       {doctor ? (
