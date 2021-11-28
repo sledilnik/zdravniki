@@ -1,8 +1,29 @@
-# Getting Started with Create React App
+# Zdravniki - available doctors in Slovenia
+
+## Develop
+
+For setting up development environment locally run:
+
+1. `yarn install`
+2. ...TODO
+
+## Data source
+
+See .csv files in the [csv/](https://github.com/sledilnik/zdravniki-data/tree/main/csv) directory of [zdravniki-data](https://github.com/sledilnik/zdravniki-data) repository.
+
+## Libraries
+
+Notable:
+
+* Map: [Leaflet](https://leafletjs.com/) via [React Leafleet](https://react-leaflet.js.org)
+* Internationalisation (i18n): TODO
+* ...
+
+All used libraries can be seen on [GitHub dependancies](https://github.com/sledilnik/zdravniki/network/dependencies).
+
+## Genric React App instructions (to be removed or minimized)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
