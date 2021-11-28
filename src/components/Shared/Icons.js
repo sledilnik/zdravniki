@@ -30,6 +30,8 @@ import { ReactComponent as KidsWhite } from 'assets/icon-kids--white.svg';
 import { ReactComponent as Kids } from 'assets/icon-kids.svg';
 import { ReactComponent as StudentsWhite } from 'assets/icon-students--white.svg';
 import { ReactComponent as Students } from 'assets/icon-students.svg';
+import { ReactComponent as ArrowBack } from 'assets/icon-back.svg';
+import { ReactComponent as Close } from 'assets/icon-close.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -74,6 +76,8 @@ const icons = {
   Kids,
   StudentsWhite,
   Students,
+  ArrowBack,
+  Close,
 };
 
 export const Icon = ({ name, ...props }) => {
