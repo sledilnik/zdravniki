@@ -1,5 +1,8 @@
 # Zdravniki - available doctors in Slovenia
 
+[![Build and deploy (production)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml)
+[![Build and deploy (staging)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml)
+
 ## Develop
 
 For setting up development environment locally run:
@@ -15,9 +18,9 @@ See .csv files in the [csv/](https://github.com/sledilnik/zdravniki-data/tree/ma
 
 Notable:
 
-* Map: [Leaflet](https://leafletjs.com/) via [React Leafleet](https://react-leaflet.js.org)
-* Internationalisation (i18n): TODO
-* ...
+* Map: [Leaflet](https://leafletjs.com/) via [React Leaflet](https://react-leaflet.js.org)
+* Internationalisation (i18n): [i18next](https://www.i18next.com/) via [react-i18next](https://react.i18next.com/)
+* ...TODO...
 
 All used libraries can be seen on [GitHub dependancies](https://github.com/sledilnik/zdravniki/network/dependencies).
 
