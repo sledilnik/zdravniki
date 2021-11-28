@@ -5,6 +5,7 @@ import { Navigate, Route, Routes as RRRoutes } from 'react-router';
 import Home from 'pages/Home';
 import About from 'pages/About';
 import Doctor from 'pages/Doctor';
+import { Loader } from 'components/Shared';
 
 const Routes = () => {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -16,7 +17,7 @@ const Routes = () => {
         exact
         path="/en/"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Home />
           </Suspense>
         }
@@ -25,7 +26,7 @@ const Routes = () => {
         exact
         path="/sl/"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Home />
           </Suspense>
         }
@@ -34,7 +35,7 @@ const Routes = () => {
         exact
         path="/en/about"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <About />
           </Suspense>
         }
@@ -43,7 +44,7 @@ const Routes = () => {
         exact
         path="/sl/about"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <About />
           </Suspense>
         }
@@ -52,7 +53,7 @@ const Routes = () => {
         exact
         path="/sl/o-projektu"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <About />
           </Suspense>
         }
@@ -60,7 +61,7 @@ const Routes = () => {
       <Route
         path="/sl/zdravnik/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }
@@ -68,7 +69,7 @@ const Routes = () => {
       <Route
         path="/en/zdravnik/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }
@@ -76,7 +77,7 @@ const Routes = () => {
       <Route
         path="/sl/zobozdravnik/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }
@@ -84,7 +85,7 @@ const Routes = () => {
       <Route
         path="/en/zobozdravnik/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }
@@ -92,7 +93,7 @@ const Routes = () => {
       <Route
         path="/sl/ginekolog/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }
@@ -100,7 +101,7 @@ const Routes = () => {
       <Route
         path="/en/ginekolog/:priimekIme"
         element={
-          <Suspense fallback={<>t{'loading'}</>}>
+          <Suspense fallback={<Loader.Center />}>
             <Doctor />
           </Suspense>
         }

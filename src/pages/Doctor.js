@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import DoctorCard from 'components/DoctorCard';
 import Box from '@mui/material/Box';
 import { leafletContext } from 'context';
+import { Loader } from 'components/Shared';
 
 export default function Doctor() {
   const { allDoctors } = useFilter();
@@ -34,7 +35,7 @@ export default function Doctor() {
           <DoctorCard doctor={doctor} isPage />
         </leafletContext.LeafletProvider>
       ) : (
-        t('loading')
+        <Loader.Center />
       )}
     </Box>
   );
