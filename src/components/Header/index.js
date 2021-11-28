@@ -54,8 +54,14 @@ const Header = () => {
           boxShadow: 'none',
         }}
       >
-        <Toolbar>
-          <NavLink to="/">
+        <Toolbar
+          sx={{
+            'a.logo': {
+              height: '2rem',
+            },
+          }}
+        >
+          <NavLink to="/" className="logo">
             <Icons.Icon name="Logo" style={{ height: '2rem' }} />
           </NavLink>
           <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
