@@ -1,6 +1,6 @@
 ---
 image:
-  repository: ghcr.io/overlordtm/doctors-website
+  repository: ghcr.io/sledilnik/doctors-website
 
 ingressroute:
   enabled: false
