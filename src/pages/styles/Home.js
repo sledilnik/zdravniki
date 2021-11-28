@@ -10,7 +10,6 @@ export const Main = styled('main')(({ theme }) => ({
 
 export const Box = styled(MuiBox)(({ theme }) => ({
   overflow: 'hidden',
-  backgroundColor: theme.palette.common.white,
   '& .leaflet-container': {
     height: SIZES.MAP_HEIGHT.default,
   },
