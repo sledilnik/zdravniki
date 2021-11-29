@@ -39,7 +39,7 @@ const NavLinks = ({ containerId = '', active }) => {
         {t('header.support')}
       </Styled.NavMenuItemLink>
       <Styled.NavMenuItemLink
-        href="https://covid-19.sledilnik.org/stats"
+        href="https://sledilnik.org/"
         target="_blank"
         rel="noopener"
         component="button"
