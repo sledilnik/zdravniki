@@ -13,10 +13,16 @@ const Info = ({ doctor, handleZoom = () => {} }) => {
     style: 'percent',
   }).format(doctor.availability);
 
-  const tooltip = (
+  const tooltipHeadQuotient = (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
       <Typography variant="body2">{parseFloat(doctor.load)}</Typography>
+    </Stack>
+  );
+
+  const tooltipAvailability = (
+    <Stack sx={{ textAlign: 'left' }}>
+      <Typography variant="caption">{t('doctorAvailability')}</Typography>
     </Stack>
   );
 
@@ -70,8 +76,12 @@ const Info = ({ doctor, handleZoom = () => {} }) => {
         </Styled.MainInfo>
         <Styled.OtherInfo>
           <Styled.OtherInfoElement>
-            <Accepts accepts={accepts.toString()} />
-            <Tooltip title={tooltip}>
+            <Tooltip title={tooltipHeadQuotient}>
+              <Styled.AvailabilityInfo>
+                <Accepts accepts={accepts.toString()} />
+              </Styled.AvailabilityInfo>
+            </Tooltip>
+            <Tooltip title={tooltipAvailability}>
               <Styled.AvailabilityInfo>
                 <SingleChart size="26px" percent={doctor.availability} />
                 <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>

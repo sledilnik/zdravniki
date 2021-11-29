@@ -19,6 +19,7 @@
     "youth": "youth",
     "search": "Search...",
     "headQuotient": "Weighted person quotient",
+    "doctorAvailability": "Doctor with availability below 100% does not work all days in the week or does not work full-time (e.g. dostor with 20% availability might work only one day in week).",
     "yourLocation": "Your location",
     "toContent": "To content",
     "findAvailableDoctor": "Find available doctor",
