@@ -1,26 +1,28 @@
 # Iskalnik po osebnih zdravnikih
 
-Dostop do zdravstva se začne [z izbiro osebnega zdravnika](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), pa naj gre za zdravnika družinske medicine, ginekologa in zobozdravnika.
-Predvsem pri zdravnikih družinske medicine je v določenih predelih države veliko pomanjkanje, zato marsikdo ne pride do osebnega zdravnika in ima tako otežen pristop do zdravstvenih storitev.
+Dostop do zdravstva se začne [z izbiro osebnega zdravnika](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), pa naj gre za zdravnika družinske medicine, pediatra, ginekologa ali zobozdravnika. Predvsem pri zdravnikih družinske medicine je v določenih predelih države veliko pomanjkanje, zato marsikdo ne pride do osebnega zdravnika in ima tako otežen pristop do zdravstvenih storitev.
+
 Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravnikov, ki so lahko osebni zdravniki](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci). Pred leti je [Sebastian Pleško](https://plesko.si/) te podatke že objavil v bolj uporabni obliki in dobil pozitiven odziv, žal pa se stran potem ni več redno vzdrževala zaradi pogostih sprememb na podatkih ZZZS.
+
 Pri Znanstvenem društvu Sledilnik smo se odločili, da te podatke predstavimo v uporabniku prijaznejši obliki: preko imenika in iskalnika, kjer lahko uporabniki hitro vidijo dostopnost zdravnikov v njihovi bližini.
 
 ## Ekipa
 
 Sodelavci projekta:
 
-- [Branko Jevtić]() — grafično oblikovanje
+- [Branko Jevtić]() — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
 - [Luka Petravić]() — FAQ
 - [Luka Renko](https://twitter.com/lukarenko) — podatki
+- [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Mojca Miklavec]() — podatki
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://www.linkedin.com/in/stefanbaebler/) — podatki
 
 ## Pogoji uporabe
 
-Uporaba podatkov, grafov in sodelovanje so zaželjeni: [podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
+Uporaba podatkov in sodelovanje so zaželjeni: [podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
 
 Za druge oblike sodelovanja nas kontaktirajte na podpora-zdravniki@sledilnik.org.
 
