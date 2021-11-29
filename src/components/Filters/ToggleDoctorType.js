@@ -83,6 +83,13 @@ function withToggleGroup(Component) {
               text={t('adults')}
               iconNames={['AdultsWhite', 'Adults']}
             />
+            <IconToggleButton
+              value="youth"
+              aria-label="youth"
+              accept={ageGroup}
+              text={t('youth')}
+              iconNames={['KidsWhite', 'Kids']}
+            />
             {drType === 'den' && (
               <IconToggleButton
                 value="students"
@@ -92,13 +99,6 @@ function withToggleGroup(Component) {
                 iconNames={['StudentsWhite', 'Students']}
               />
             )}
-            <IconToggleButton
-              value="youth"
-              aria-label="youth"
-              accept={ageGroup}
-              text={t('youth')}
-              iconNames={['KidsWhite', 'Kids']}
-            />
           </Component>
         )}
       </>
