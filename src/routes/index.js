@@ -4,8 +4,12 @@ import { Navigate, Route, Routes as RRRoutes } from 'react-router';
 
 import Home from 'pages/Home';
 import About from 'pages/About';
-import Doctor from 'pages/Doctor';
+// import Doctor from 'pages/Doctor';
 import { Loader } from 'components/Shared';
+
+const Temp = () => {
+  return <div>Comming soon...</div>;
+};
 
 const Routes = () => {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -49,7 +53,7 @@ const Routes = () => {
           </Suspense>
         }
       />
-      <Route
+      {/* <Route
         exact
         path="/sl/o-projektu"
         element={
@@ -105,7 +109,8 @@ const Routes = () => {
             <Doctor />
           </Suspense>
         }
-      />
+      /> */}
+      <Route path="*" element={<Temp />} />
     </RRRoutes>
   );
 };
