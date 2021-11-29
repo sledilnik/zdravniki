@@ -2,6 +2,7 @@
 
 [![Build and deploy (production)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml)
 [![Build and deploy (staging)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml)
+[![Stanje prevoda](https://hosted.weblate.org/widgets/sledilnik/-/zdravniki/svg-badge.svg)](https://hosted.weblate.org/projects/sledilnik/zdravniki/)
 
 ## Develop
 
@@ -13,6 +14,14 @@ For setting up development environment locally run:
 ## Data source
 
 See .csv files in the [csv/](https://github.com/sledilnik/zdravniki-data/tree/main/csv) directory of [zdravniki-data](https://github.com/sledilnik/zdravniki-data) repository.
+
+## Translations
+
+We use [Weblate](https://hosted.weblate.org/engage/sledilnik/?component=zdravniki) translation service. Your contributions are welcome.
+
+Current translation status:
+
+[![Stanje prevoda](https://hosted.weblate.org/widgets/sledilnik/-/zdravniki/multi-auto.svg)](https://hosted.weblate.org/projects/sledilnik/zdravniki/)
 
 ## Libraries
 
