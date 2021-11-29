@@ -3,6 +3,7 @@ import * as GEO_LOCATION from './geoLocation';
 export * as DOCTORS from './doctors';
 export * as SIZES from './sizes';
 export * as CSV_URL from './csvURL';
+export { default as THEME } from './theme';
 
 const ZOOM = 8;
 const MIN_ZOOM = 8;

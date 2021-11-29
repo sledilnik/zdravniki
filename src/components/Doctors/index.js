@@ -7,6 +7,8 @@ import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
 import Button from '@mui/material/Button';
 import * as Styled from './styles';
+import { MainScrollTop } from './../Shared/ScrollTop';
+import { t } from 'i18next';
 
 const { GEO_LOCATION } = MAP;
 
@@ -51,15 +53,15 @@ const Doctors = ({ itemsPerPage = 10 }) => {
       <MainMap whenCreated={setMap} doctors={doctors} />
       {ids.length === 1 && (
         <Styled.ButtonWrapper>
-          <Button onClick={handleShowAll}>Pokaži vse</Button>
+          <Button onClick={handleShowAll}>{t('showAll')}</Button>
         </Styled.ButtonWrapper>
       )}
       <Styled.WrapperInfinite id="scrollableDiv">
         <Styled.InfiniteScroll
+          id="infiniteScroll"
           dataLength={_doctors?.length ?? 0}
           next={fetchMore}
           hasMore={_doctors?.length < doctors?.length}
-          loader={<div>Loading</div>}
           scrollableTarget="scrollableDiv"
         >
           {_doctors?.map(doctor => (
@@ -70,6 +72,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
             />
           ))}
         </Styled.InfiniteScroll>
+        <MainScrollTop />
       </Styled.WrapperInfinite>
     </Styled.Wrapper>
   );

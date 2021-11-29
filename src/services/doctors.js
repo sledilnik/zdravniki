@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
+const lng = localStorage.getItem("i18nextLng") || "sl";
+
 const TYPE_TRANSLATE = {
   SL: 'description-sl',
   EN: 'description',
@@ -12,17 +14,19 @@ const ACCEPT_TRANSLATE = {
 };
 
 export function createDoctor(doctor, type, institution) {
-  const getTypeText = (lang = 'SL') => {
+  const getTypeText = (lang = lng) => {
     const field = TYPE_TRANSLATE[lang.toUpperCase()];
     return type[field];
   };
 
-  const getAcceptText = (lang = 'SL') => ACCEPT_TRANSLATE[lang.toUpperCase()][doctor.accepts];
+  const getAcceptText = (lang = lng) => ACCEPT_TRANSLATE[lang.toUpperCase()][doctor.accepts];
 
   const _name = trimString(doctor.doctor);
 
   const _munUnit = trimString(institution.unit);
   const _provider = trimString(institution.name);
+  const _website = trimString(institution.website);
+  const _phone = trimString(institution.phone);
   const { address, city, municipality, post } = institution;
   const [_code, _post] = post.split(' ');
   const _geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
@@ -51,6 +55,12 @@ export function createDoctor(doctor, type, institution) {
     },
     get provider() {
       return _provider;
+    },
+    get website() {
+      return _website;
+    },
+    get phone() {
+      return _phone;
     },
     get munUnit() {
       return _munUnit;
@@ -88,7 +98,10 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
 
   const getById = id => doctors[`${id}`];
 
-  const doctorsValues = Object.values(doctors);
+  const _doctorsValues = Object.values(doctors);
+  const doctorsValues = Intl.Collator
+    ? _doctorsValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+    : _doctorsValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
 
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 

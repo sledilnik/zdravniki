@@ -1,6 +1,8 @@
+import { t } from "i18next";
+
 export const AcceptsText = {
-  NE: 'ne sprejema',
-  DA: 'sprejema',
+  NE: t('rejects'),
+  DA: t('accepts'),
 };
 
 export const AcceptsBool = {

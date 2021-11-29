@@ -1,6 +1,7 @@
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
 import { useFilter } from 'context/filterContext';
+import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import { IconToggleButton } from './Shared';
 
@@ -53,7 +54,7 @@ function withToggleGroup(Component) {
             value="gp"
             aria-label="general practitioner"
             accept={drType}
-            text="splošni"
+            text={t('generalPractitioner')}
             iconNames={['FamilyDrWhite', 'Family']}
           />
           <IconToggleButton
@@ -61,7 +62,7 @@ function withToggleGroup(Component) {
             value="den"
             aria-label="dentist"
             accept={drType}
-            text="zobozdravnik"
+            text={t('dentist')}
             iconNames={['DentistWhite', 'Dentist']}
           />
           <IconToggleButton
@@ -69,7 +70,7 @@ function withToggleGroup(Component) {
             value="gyn"
             aria-label="gynecologist"
             accept={drType}
-            text="ginekolog"
+            text={t('gynecologist')}
             iconNames={['GynoWhite', 'Gyno']}
           />
         </Component>
@@ -79,24 +80,24 @@ function withToggleGroup(Component) {
               value="adults"
               aria-label="adults"
               accept={ageGroup}
-              text="odrasli"
-              iconNames={['CheckWhite', 'Ban']}
+              text={t('adults')}
+              iconNames={['AdultsWhite', 'Adults']}
             />
             {drType === 'den' && (
               <IconToggleButton
                 value="students"
                 aria-label="students"
                 accept={ageGroup}
-                text="študenti"
-                iconNames={['CheckWhite', 'Ban']}
+                text={t('students')}
+                iconNames={['StudentsWhite', 'Students']}
               />
             )}
             <IconToggleButton
               value="youth"
               aria-label="youth"
               accept={ageGroup}
-              text="mladina"
-              iconNames={['CheckWhite', 'Ban']}
+              text={t('youth')}
+              iconNames={['KidsWhite', 'Kids']}
             />
           </Component>
         )}

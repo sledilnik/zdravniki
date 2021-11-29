@@ -4,25 +4,41 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
+export const PageCard = styled(MuiCard)(({ theme, accepts }) => {
+  // const { customColors } = theme;
+  // const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
+  return {
+    width: '100%',
+    border: 'none',
+    boxShadow: 'none',
+    borderRadius: 0,
+    // borderRadiusBottom: '5px',
+    // borderBottom: `solid 4px ${acceptsColor}`,
+
+    '.MuiCardContent-root:first-child': {
+      paddingTop: 0,
+      paddingInline: 0,
+    },
+  };
+});
 export const Card = styled(MuiCard)(({ theme, accepts }) => {
   const { customColors } = theme;
   const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
 
   return {
-    alignSelf: 'start',
-    marginBottom: '1em',
+    justifySelf: 'center',
+    width: '98%',
     marginInline: '0.5em',
-    width: '100%',
     borderLeft: `solid 4px ${acceptsColor}`,
     borderRadius: '5px',
     '.MuiCardContent-root:last-child': {
       paddingBottom: theme.spacing(1),
     },
     [theme.breakpoints.up('sm')]: {
-      marginInline: '1em',
+      width: '95%',
     },
     [theme.breakpoints.up('lg')]: {
-      marginInline: '2em',
+      width: '90%',
     },
   };
 });

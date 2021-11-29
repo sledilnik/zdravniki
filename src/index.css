@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
+:root {
+  --bcg-color: #f0f0e8;
+}
+
 *,
 *::after,
 *::before {
@@ -11,6 +15,9 @@
 
 body {
   font-family: 'IMB Plex Sans', 'Roboto', 'Helvetica', 'Arial', sans-serif !important;
+  background-color: var(
+    --bcg-color
+  ) !important; /* this is temporary until I figure out MUI theme background */
 }
 
 main > .leaflet-container {

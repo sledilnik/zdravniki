@@ -1,11 +1,12 @@
 import Stack from '@mui/material/Stack';
 
 import * as Icons from 'components/Shared/Icons';
+import { t } from 'i18next';
 import * as Styled from './styles';
 
 const Accepts = ({ accepts }) => {
   const iconName = accepts === 'true' ? 'CheckGreen' : 'BanRed';
-  const text = accepts === 'true' ? 'SPREJEMA' : 'NE SPREJEMA';
+  const text = accepts === 'true' ? t('accepts').toUpperCase() : t('rejects').toUpperCase();
 
   return (
     <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
