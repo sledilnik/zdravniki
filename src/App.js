@@ -5,7 +5,7 @@ import { Accessibility } from 'components/Shared';
 import Header from 'components/Header';
 import { t } from 'i18next';
 import { THEME } from 'const';
-import Routes from 'components/routes';
+import Routes from 'routes';
 
 function App() {
   const theme = createTheme(THEME);
