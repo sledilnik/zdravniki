@@ -22,7 +22,7 @@ i18next
             sl: { translation: sl },
             en: { translation: en },
         },
-        lng: "sl", // if you're using a language detector, do not define the lng option
+        //lng: "sl", // if you're using a language detector, do not define the lng option
         fallbackLng: "sl",
         detection: {
             order: [
