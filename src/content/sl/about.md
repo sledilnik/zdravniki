@@ -26,7 +26,7 @@ Uporaba podatkov in sodelovanje so zaželjeni: [podatki](https://github.com/sled
 
 Za druge oblike sodelovanja nas kontaktirajte na podpora-zdravniki@sledilnik.org.
 
-## Varstvo osebnih podatkov in piškotki
+## Varstvo osebnih podatkov
 
 Podajamo informacije o obdelavah osebnih podatkov po 13. in 14. členu oz. 30. členu Splošne uredbe o varstvu podatkov ter prostemu pretoku podatkov (GDPR) ter o rabi spletnih piškotkov po 157. členu Zakona o elektronskih komunikacijah (ZEKom-1).
 
