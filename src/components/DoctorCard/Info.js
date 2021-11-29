@@ -15,7 +15,7 @@ const Info = ({ doctor, handleZoom = () => {} }) => {
 
   const tooltip = (
     <Stack sx={{ textAlign: 'center' }}>
-      <Typography variant="caption">{t('glavarinskiKolicnik')}</Typography>
+      <Typography variant="caption">{t('headQuotient')}</Typography>
       <Typography variant="body2">{parseFloat(doctor.load)}</Typography>
     </Stack>
   );
