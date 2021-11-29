@@ -29,7 +29,7 @@ const NavLinks = ({ containerId = '', active }) => {
         {t('header.about')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
-        href="https://covid-19.sledilnik.org/sl/donate"
+        href={`https://covid-19.sledilnik.org/${lng}/donate`}
         target="_blank"
         rel="noopener"
         component="button"
