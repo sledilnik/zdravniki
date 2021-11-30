@@ -9,7 +9,7 @@ export default function Faq() {
   const faqRef = useRef();
   const [response, setResponse] = useState();
 
-  // scroll element to when link with hash is passed  
+  // scroll element to when link with hash is passed
   const scroll = useCallback(node => {
     if (node !== null && node.id === window.location.hash.substr(1)) {
       node.open = true;
@@ -47,15 +47,14 @@ export default function Faq() {
 
   // fetch data
   useEffect(() => {
-    // TODO: later change "1" in url with an actual id
-    fetch(`https://backend.sledilnik.org/api/v1/faq/1/?lang=${lng}`)
+    fetch(`https://backend.sledilnik.org/api/v1/faq/3/?lang=${lng}`)
       .then(response => response.json())
       .then(json => {
         setResponse(json);
       });
   }, [lng]);
 
-  // append attribute 'title' with glossary definition to each element with attribute 'data-term' 
+  // append attribute 'title' with glossary definition to each element with attribute 'data-term'
   useEffect(() => {
     if (faqRef.current) {
       faqRef.current.querySelectorAll("span[data-term]").forEach((el) => {
