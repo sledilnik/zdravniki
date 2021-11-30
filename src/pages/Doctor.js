@@ -30,6 +30,7 @@ export default function Doctor() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        height: { md: 'calc(100vh - 64px)' },
       }}
     >
       {doctor ? (

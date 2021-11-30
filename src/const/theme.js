@@ -1,16 +1,39 @@
+const colors = {
+  accent: '#09AFDA',
+  brand: '#95C83F',
+  danger: '#DC3435',
+  dark: '#212529',
+  lightGrey: '#CDCDCD',
+  background: '#F0F0E8',
+  text: 'rgba(0,0,0,.56)',
+  link: 'rgba(33,37,41,0.56);',
+  nickel: '#6C7074',
+  philippineSilver: '#B1B1B1',
+};
+
 const theme = {
   typography: {
     fontFamily: ['IBM Plex Sans', 'Roboto', 'sans-serif'].join(','),
   },
   customColors: {
-    accent: '#09AFDA',
-    brand: '#95C83F',
-    danger: '#DC3435',
-    dark: '#212529',
-    lightGrey: '#CDCDCD',
-    background: '#F0F0E8',
-    text: 'rgba(0,0,0,.56)',
-    link: 'rgba(33,37,41,0.56);',
+    ...colors,
+    doctor: {
+      colors: {
+        name: colors.dark,
+        provider: colors.dark,
+        link: colors.accent,
+        address: colors.nickel,
+        availability: colors.dark,
+        load: colors.philippineSilver,
+        type: colors.dark,
+        chip: colors.dark,
+        chipBcg1: '#F5F5F1',
+        chipBcg2: '#EAEAE3',
+      },
+      opacity: {
+        type: 0.56,
+      },
+    },
   },
   customOpacity: {
     half: 0.56,
