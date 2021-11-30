@@ -26,6 +26,7 @@ const theme = {
         availability: colors.dark,
         load: colors.philippineSilver,
         type: colors.dark,
+        chip: colors.dark,
       },
       opacity: {
         type: 0.56,
