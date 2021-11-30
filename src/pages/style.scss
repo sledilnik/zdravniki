@@ -15,6 +15,9 @@ $green: #95C83F;
 .static-page-wrapper {
   padding: 32px 17px 27px 17px;
   background: #fff;
+  font-size: 14px;
+  color: rgba(0,0,0,.7);
+  line-height: 1.7;
 
   @media only screen and (min-width: 768px) {
     padding: 32px 32px 27px 32px;
@@ -52,8 +55,9 @@ $green: #95C83F;
     margin-bottom: 28px;
   }
 
-  ul {
+  ul, ol {
     padding-inline-start: 40px;
+    margin-bottom: 1rem;
   }
 
   //subtitle
@@ -95,6 +99,7 @@ $green: #95C83F;
     width: 100%;
     table-layout: fixed;
     text-align: left;
+    margin-bottom: 1rem;
   }
 
   table {

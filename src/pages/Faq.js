@@ -87,7 +87,7 @@ export default function Faq() {
             </div>
           )
         })}
-        <h2>Slovar izrazov</h2>
+        <h2>{t('glossary')}</h2>
         {response.glossary.map((glossary, key) => {
           return (
             <div className="collapsable" key={key}>
