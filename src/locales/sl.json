@@ -5,6 +5,7 @@
         "home": "Imenik",
         "reportError": "Prijavi napako",
         "about": "O projektu",
+        "faq": "FAQ",
         "support": "Podpri!",
         "sledilnik": "Sledilnik.org"
     },
@@ -23,5 +24,7 @@
     "yourLocation": "Tvoja lokacija",
     "toContent": "Na vsebino",
     "findAvailableDoctor": "Najdi prostega zdravnika",
-    "showAll": "Pokaži vse"
+    "showAll": "Pokaži vse",
+    "copy": "Kopiraj",
+    "copied": "Skopirano!"
 }

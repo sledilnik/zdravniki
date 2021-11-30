@@ -5,6 +5,7 @@
         "home": "Home",
         "reportError": "Report error",
         "about": "About",
+        "faq": "FAQ",
         "support": "Support!",
         "sledilnik": "Sledilnik.org"
     },
@@ -23,5 +24,7 @@
     "yourLocation": "Your location",
     "toContent": "To content",
     "findAvailableDoctor": "Find available doctor",
-    "showAll": "Show all"
+    "showAll": "Show all",
+    "copy": "Copy",
+    "copied": "Copied!"
 }

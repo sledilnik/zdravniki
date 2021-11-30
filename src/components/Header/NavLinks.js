@@ -30,6 +30,12 @@ const NavLinks = ({ containerId = '', active }) => {
       >
         {t('header.about')}
       </Styled.NavMenuLink>
+      <Styled.NavMenuLink
+        to={`/${lng}/faq`}
+        activeclassname="active"
+      >
+        {t('header.faq')}
+      </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
         href={`https://covid-19.sledilnik.org/${lng}/donate`}
         target="_blank"
