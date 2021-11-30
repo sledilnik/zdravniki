@@ -14,6 +14,7 @@ function withLeaflet(Component) {
     zoom = MAP.ZOOM,
     minZoom = MAP.MIN_ZOOM,
     maxZoom = MAP.MAX_ZOOM,
+    userLocation = false,
     ...other
   }) => {
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
@@ -28,7 +29,7 @@ function withLeaflet(Component) {
     return (
       <Component {...injectedProps}>
         <MarkerClusterGroup maxClusterRadius={40}>{markers}</MarkerClusterGroup>
-        <Markers.User />
+        {userLocation && <Markers.User />}
         <MapEvents />
       </Component>
     );
