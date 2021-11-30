@@ -1,36 +1,79 @@
 import MuiCard from '@mui/material/Card';
-import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import MuiLink from '@mui/material/Link';
 
-export const PageCard = styled(MuiCard)(({ theme, accepts }) => {
-  // const { customColors } = theme;
-  // const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
+export * as PageInfo from './PageInfo';
+
+const Card = styled(MuiCard)(({ theme }) => {
+  return {
+    marginInline: '0.5em',
+    borderRadius: '5px',
+
+    letterSpacing: 0,
+    lineHeight: 1.2,
+  };
+});
+
+export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
+  const { customColors } = theme;
+  const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
   return {
     width: '100%',
-    border: 'none',
-    boxShadow: 'none',
-    borderRadius: 0,
-    // borderRadiusBottom: '5px',
-    // borderBottom: `solid 4px ${acceptsColor}`,
-
-    '.MuiCardContent-root:first-child': {
+    marginTop: '1em',
+    borderTop: `solid 4px ${acceptsColor}`,
+    '.MuiTypography-h1': {
+      fontSize: '1.8rem',
+      fontWeight: 700,
+      color: theme.customColors.doctor.colors.name,
+      marginBottom: theme.spacing(0.5),
+    },
+    '.MuiTypography-h2': {
+      fontSize: '1rem',
+      fontWeight: 700,
+      color: theme.customColors.doctor.colors.provider,
+    },
+    'address.MuiTypography-body2': {
+      color: theme.customColors.doctor.colors.address,
+      fontSize: '0.875rem',
+      lineHeight: '0.875rem',
+      fontStyle: 'normal',
+    },
+    '.MuiCardContent-root:last-child': {
       paddingTop: 0,
       paddingInline: 0,
     },
+    '.MuiTypography-caption': {
+      lineHeight: 1.2,
+    },
   };
 });
-export const Card = styled(MuiCard)(({ theme, accepts }) => {
+export const InfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
   const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
 
   return {
     justifySelf: 'center',
     width: '98%',
-    marginInline: '0.5em',
     borderLeft: `solid 4px ${acceptsColor}`,
-    borderRadius: '5px',
+    '.MuiTypography-h2': {
+      fontSize: '1.25rem',
+      fontWeight: 700,
+      color: theme.customColors.doctor.colors.name,
+      marginBottom: theme.spacing(0),
+    },
+    '.MuiTypography-h3': {
+      fontSize: '0.75rem',
+      fontWeight: 700,
+      color: theme.customColors.doctor.colors.provider,
+    },
+    'address.MuiTypography-body2': {
+      color: theme.customColors.doctor.colors.address,
+      fontSize: '0.75rem',
+      lineHeight: '0.75rem',
+      fontStyle: 'normal',
+    },
     '.MuiCardContent-root:last-child': {
       paddingBottom: theme.spacing(1),
     },
@@ -43,77 +86,11 @@ export const Card = styled(MuiCard)(({ theme, accepts }) => {
   };
 });
 
-export const DataWrapper = styled(Stack)(({ theme }) => {
+export const InfoWrapper = styled(Stack)(({ theme }) => {
   return {
-    flexDirection: 'column',
-  };
-});
-
-export const MainInfo = styled(Stack)(({ theme }) => {
-  return {
-    width: '100%',
-  };
-});
-
-export const OtherInfo = styled(Stack)(({ theme }) => {
-  return {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginRight: 'auto',
-  };
-});
-
-export const OtherInfoElement = styled(Stack)(({ theme }) => {
-  return {
-    flexDirection: 'row',
-    alignItems: 'center',
-    '> *:not(:first-of-type)': {
-      marginLeft: theme.spacing(1),
-    },
-  };
-});
-
-export const AvailabilityInfo = styled(Stack)(({ theme }) => {
-  return {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    color: theme.customColors.doctor.availability,
     cursor: 'help',
     minWidth: '74.5px',
-  };
-});
-
-export const AvailabilityBadge = styled(Badge)(({ theme, color, badgeTextColor }) => {
-  return {
-    marginRight: '1rem',
-    '& .MuiBadge-badge': {
-      backgroundColor: theme.palette?.[color]?.main ?? color ?? theme.palette.grey[600],
-      color: theme.palette?.[color]?.contrastText ?? badgeTextColor ?? theme.palette.common.white,
-    },
-  };
-});
-export const Text = styled(TypographyBase)(({ theme }) => {
-  return {
-    fontSize: '0.75rem',
-    fontWeight: 400,
-    letterSpacing: 0,
-    opacity: 0.56,
-    lineHeight: 1.2,
-  };
-});
-
-export const SubTitle = styled(Text)(({ theme }) => {
-  return {
-    fontWeight: 600,
-  };
-});
-export const Title = styled(Text)(({ theme }) => {
-  return {
-    fontSize: '1.2rem',
-    fontWeight: 700,
-    opacity: 1,
-    marginBottom: theme.spacing(0.5),
   };
 });
 
@@ -134,5 +111,15 @@ export const Availability = styled(TypographyBase)(({ theme }) => {
     color: 'inherit',
     whiteSpace: 'nowrap',
     opacity: theme.customOpacity.half,
+    ':last-of-type': { opacity: 0.3 },
+  };
+});
+
+export const Link = styled(MuiLink)(({ theme }) => {
+  return {
+    fontSize: 'inherit',
+    fontWeight: 700,
+    color: theme.customColors.doctor.colors.link,
+    cursor: 'pointer',
   };
 });
