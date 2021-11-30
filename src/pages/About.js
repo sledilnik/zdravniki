@@ -14,7 +14,10 @@ export default function About() {
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
-  });
+    return () => {
+      document.body.style = null;
+    };
+  }, []);
 
   useEffect(() => {
     const theTextFile = MD?.[lng] ?? slAbout;

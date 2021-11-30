@@ -6,10 +6,18 @@ import * as Styled from './styles/Home';
 import { doctorsContext, leafletContext } from 'context';
 
 import { DOCTORS } from 'const';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style = null;
+    };
+  }, []);
 
   if (hasError) {
     return <div>Nekaj je narobe!</div>;
