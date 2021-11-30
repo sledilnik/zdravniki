@@ -18,7 +18,7 @@ Sodelavci projekta:
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Mojca Miklavec]() — podatki
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
-- [Štefan Baebler](https://www.linkedin.com/in/stefanbaebler/) — podatki
+- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki
 
 ## Pogoji uporabe
 

@@ -1,9 +1,11 @@
 import { t } from 'i18next';
 import * as Styled from './styles';
-
-const lng = localStorage.getItem("i18nextLng") || "sl";
+import i18next from 'i18n';
 
 const NavLinks = ({ containerId = '', active }) => {
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  i18next.changeLanguage(lng);
+
   return (
     <>
       <Styled.NavMenuLink
@@ -29,7 +31,7 @@ const NavLinks = ({ containerId = '', active }) => {
         {t('header.about')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
-        href="https://covid-19.sledilnik.org/sl/donate"
+        href={`https://covid-19.sledilnik.org/${lng}/donate`}
         target="_blank"
         rel="noopener"
         component="button"
