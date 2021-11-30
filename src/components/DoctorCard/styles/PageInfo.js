@@ -21,14 +21,14 @@ export const DCWrapper = styled(Stack)(({ theme }) => {
 
 export const First = styled(Stack)(({ theme }) => {
   return {
-    backgroundColor: '#F5F5F1',
+    backgroundColor: theme.customColors.doctor.colors.chipBcg1,
     padding: '6px 8px',
     borderRadius: '5px 0 0 5px',
   };
 });
 export const Second = styled(Stack)(({ theme }) => {
   return {
-    backgroundColor: '#EAEAE3',
+    backgroundColor: theme.customColors.doctor.colors.chipBcg2,
     padding: '6px 8px',
     borderRadius: '0 5px 5px 0',
   };
@@ -50,6 +50,7 @@ export const LinkWrapper = styled(Stack)(({ theme }) => {
 
 export const BackWrapper = styled(Stack)(({ theme }) => {
   return {
+    cursor: 'pointer',
     '.MuiTypography-body1': {
       fontSize: '0.875rem',
       fontWeight: 600,

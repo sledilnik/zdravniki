@@ -27,6 +27,8 @@ const theme = {
         load: colors.philippineSilver,
         type: colors.dark,
         chip: colors.dark,
+        chipBcg1: '#F5F5F1',
+        chipBcg2: '#EAEAE3',
       },
       opacity: {
         type: 0.56,

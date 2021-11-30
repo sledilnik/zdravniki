@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { CardContent } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
 import DoctorMap from './Map';
@@ -21,12 +21,14 @@ const DoctorCard = ({ doctor, isPage = false }) => {
   if (isPage) {
     return (
       <Styled.PageInfoCard id={doctor.id} accepts={accepts.toString()}>
-        <PageInfo doctor={doctor} handleZoom={handleZoom} />
-        <CardContent>
-          <CardMedia component="div">
-            <DoctorMap doctor={doctor} whenCreated={setMap} handleRoomIconClick={handleZoom} />
-          </CardMedia>
-        </CardContent>
+        <Styled.PageInfoBox id="doctor-box">
+          <PageInfo doctor={doctor} handleZoom={handleZoom} />
+          <CardContent>
+            <CardMedia component="div">
+              <DoctorMap doctor={doctor} whenCreated={setMap} handleRoomIconClick={handleZoom} />
+            </CardMedia>
+          </CardContent>
+        </Styled.PageInfoBox>
       </Styled.PageInfoCard>
     );
   }

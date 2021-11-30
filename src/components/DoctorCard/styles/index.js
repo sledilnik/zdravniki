@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
+import { SIZES } from 'const';
 
 export * as PageInfo from './PageInfo';
 
@@ -46,6 +47,55 @@ export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
     },
     '.MuiTypography-caption': {
       lineHeight: 1.2,
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      marginInline: '24px',
+      '.MuiTypography-h1': {
+        fontSize: '2rem',
+        marginBottom: theme.spacing(1),
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: 0,
+      marginInline: '48px',
+      borderTop: 0,
+      borderLeft: `solid 4px ${acceptsColor}`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginInline: '108px',
+    },
+  };
+});
+
+export const PageInfoBox = styled(Stack)(({ theme }) => {
+  return {
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
+
+    '.MuiCardContent-root:last-child': {
+      paddingBottom: 0,
+    },
+
+    '.MuiCardContent-root': {
+      width: '100%',
+      '.MuiCardMedia-root': {
+        background: 'green',
+        '.leaflet-container': {
+          height: SIZES.MAP_HEIGHT.default,
+        },
+        [theme.breakpoints.up('sm')]: {
+          '.leaflet-container': {
+            height: SIZES.MAP_HEIGHT.upSmall,
+          },
+        },
+        [theme.breakpoints.up('md')]: {
+          '.leaflet-container': {
+            height: 'clamp(400px, 50vh, 100vh)', // ? not sure but it's working
+          },
+        },
+      },
     },
   };
 });
