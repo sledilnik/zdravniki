@@ -37,10 +37,12 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleChangeLocale = (event, newValue) => {
+  const handleChangeLocale = (e, newValue) => {
+    e.preventDefault();
     const lang = newValue?.code;
     setLanguage(lang);
     i18next.changeLanguage(lang);
+    localStorage.setItem('i18nextLng', lang);
     navigate(`/${lang}/${location.pathname.substring(4)}`);
   };
 
@@ -94,7 +96,7 @@ const Header = () => {
             }}
             options={languages}
             disableClearable
-            defaultValue={languages[1]}
+            defaultValue={languages.find(l => l.code === lng)}
             getOptionLabel={option =>
               typeof option?.code === 'undefined' ? '' : option.code.toUpperCase()
             }

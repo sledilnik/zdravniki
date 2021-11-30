@@ -10,9 +10,11 @@ const Languages = () => {
   const location = useLocation();
 
   const handleChangeLocale = (e) => {
+    e.preventDefault();
     const lang = e.target.value;
     setLanguage(lang);
     i18next.changeLanguage(lang);
+    localStorage.setItem('i18nextLng', lang);
     navigate(`/${lang}/${location.pathname.substring(4)}`);
   };
 
