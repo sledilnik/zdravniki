@@ -13,8 +13,8 @@ Sodelavci projekta:
 - [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
-- [Krištof Zevnik]() — FAQ
-- [Luka Petravić]() — FAQ
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — FAQ
+- [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — FAQ
 - [Luka Renko](https://twitter.com/lukarenko) — podatki
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Mojca Miklavec]() — podatki
