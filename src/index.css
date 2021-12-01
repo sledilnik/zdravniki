@@ -49,3 +49,12 @@ main > .leaflet-container {
 ::-webkit-scrollbar-thumb:hover {
   background: hsla(81.9, 55.4%, 51.6%, 1);
 }
+
+/* Map styling */
+.leaflet-container {
+  background: #F0F0E8;
+}
+.leaflet-tile-pane {
+  opacity: 0.8;
+  filter: saturate(0.4) contrast(0.6) brightness(1.2);
+}
