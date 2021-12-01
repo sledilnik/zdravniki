@@ -47,7 +47,7 @@ If you also want to automatically fix the project errors:
 
 #### VSCode
 
-Have a look at step 3 of this article from DigitalOcan -> https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code
+Have a look at step 3 of [this article from DigitalOcean](https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code)
 
 #### WebStorm
 
