@@ -1,8 +1,9 @@
 import { useRef } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles/Markdown';
-import './style.scss';
 import { t } from 'i18next';
+import Tooltip from '@mui/material/Tooltip';
+import Icon from 'components/Shared/Icons';
 
 export default function Faq() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -15,18 +16,18 @@ export default function Faq() {
       node.open = true;
       window.scrollTo({
         top: node.getBoundingClientRect().top,
-        behavior: "smooth"
-      })
+        behavior: 'smooth',
+      });
     }
   }, []);
 
   // copy url of the definition
-  const handleCopy = (e) => {
+  const handleCopy = e => {
     const element = e.target;
     const dummy = document.createElement('input');
-    let text = window.location.href + "#" + element.nextSibling.id;
-    if (window.location.hash !== "") {
-      text = window.location.href.split("#")[0] + "#" + element.nextSibling.id;
+    let text = window.location.href + '#' + element.nextSibling.id;
+    if (window.location.hash !== '') {
+      text = window.location.href.split('#')[0] + '#' + element.nextSibling.id;
     }
     document.body.appendChild(dummy);
     dummy.value = text;
@@ -38,8 +39,8 @@ export default function Faq() {
     setTimeout(() => {
       element.className = 'icon copy';
       element.title = t('copy');
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
@@ -57,11 +58,11 @@ export default function Faq() {
   // append attribute 'title' with glossary definition to each element with attribute 'data-term'
   useEffect(() => {
     if (faqRef.current) {
-      faqRef.current.querySelectorAll("span[data-term]").forEach((el) => {
+      faqRef.current.querySelectorAll('span[data-term]').forEach(el => {
         for (let term of response.glossary) {
           if (term.slug === el.getAttribute('data-term')) {
-            el.setAttribute("title", term.definition.replace(/<[^>]*>?/gm, ''));
-            el.setAttribute("tabindex", 0);
+            el.setAttribute('title', term.definition.replace(/<[^>]*>?/gm, ''));
+            el.setAttribute('tabindex', 0);
           }
         }
       });
@@ -80,28 +81,36 @@ export default function Faq() {
         <br></br>
         {response.faq.map((faq, key) => {
           return (
-            <div className="collapsable" key={key}>
-              <img className="icon copy" onClick={handleCopy} title={t('copy')} alt={t('copy')} />
-              <details id={faq.slug} ref={scroll}>
-                <summary>{faq.question}</summary>
+            <Styled.Collapsable className="collapsable" key={key}>
+              <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                <Styled.IconWrapper>
+                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                </Styled.IconWrapper>
+              </Tooltip>
+              <Styled.Details id={faq.slug} ref={scroll}>
+                <Styled.Summary>{faq.question}</Styled.Summary>
                 <Styled.Markdown key={key}>{faq.answer}</Styled.Markdown>
-              </details>
-            </div>
-          )
+              </Styled.Details>
+            </Styled.Collapsable>
+          );
         })}
         <h2>{t('faq.glossary')}</h2>
         {response.glossary.map((glossary, key) => {
           return (
-            <div className="collapsable" key={key}>
-              <img className="icon copy" onClick={handleCopy} title={t('copy')} alt={t('copy')} />
-              <details id={glossary.slug} ref={scroll}>
-                <summary>{glossary.term}</summary>
+            <Styled.Collapsable className="collapsable" key={key}>
+              <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                <Styled.IconWrapper>
+                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                </Styled.IconWrapper>
+              </Tooltip>
+              <Styled.Details id={glossary.slug} ref={scroll}>
+                <Styled.Summary>{glossary.term}</Styled.Summary>
                 <Styled.Markdown key={key}>{glossary.definition}</Styled.Markdown>
-              </details>
-            </div>
-          )
+              </Styled.Details>
+            </Styled.Collapsable>
+          );
         })}
       </Styled.StaticPageWrapper>
-    </Styled.CustomContainer >
+    </Styled.CustomContainer>
   );
 }

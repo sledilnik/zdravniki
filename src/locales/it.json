@@ -1,1 +1,15 @@
-{}
+{
+    "header": {
+        "about": "Il progetto",
+        "faq": "FAQ",
+        "sledilnik": "Sledilnik.org"
+    },
+    "all": "tutti",
+    "dentist": "dentista",
+    "gynecologist": "ginecologo",
+    "students": "studenti",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "loading": "Caricamento…",
+    "adults": "adulti"
+}
