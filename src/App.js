@@ -5,7 +5,7 @@ import { Accessibility } from 'components/Shared';
 import Header from 'components/Header';
 import { t } from 'i18next';
 import { THEME } from 'const';
-import Routes from 'routes';
+import Router from 'routes';
 
 function App() {
   const theme = createTheme(THEME);
@@ -18,7 +18,7 @@ function App() {
         <filterContext.FilterProvider>
           <ThemeProvider theme={theme}>
             <Header />
-            <Routes />
+            <Router />
           </ThemeProvider>
         </filterContext.FilterProvider>
       </doctorsContext.DoctorsProvider>
