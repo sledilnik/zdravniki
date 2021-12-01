@@ -1,3 +1,4 @@
+import { styled } from '@mui/material/styles';
 import { memo } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 
@@ -15,4 +16,12 @@ const Leaflet = ({ children, height, ...other }) => {
   );
 };
 
-export default memo(Leaflet);
+const StyledLeaflet = styled(Leaflet)(({ theme }) => {
+  return {
+    '.leaflet-tile-pane': {
+      filter: 'hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2)',
+    },
+  };
+});
+
+export default memo(StyledLeaflet);
