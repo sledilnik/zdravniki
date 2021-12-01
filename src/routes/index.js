@@ -1,21 +1,19 @@
-import { Suspense } from 'react';
-
-import { Navigate, Route, Routes as RRRoutes } from 'react-router';
-
-import Home from 'pages/Home';
-import About from 'pages/About';
-import Doctor from 'pages/Doctor';
+import React, { Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import { Loader } from 'components/Shared';
+const Home = React.lazy(() => import('../pages/Home'));
+const About = React.lazy(() => import('../pages/About'));
+const Faq = React.lazy(() => import('../pages/Faq'));
 
 const Temp = () => {
-  return <div>Comming soon...</div>;
+  return <div>Coming soon...</div>;
 };
 
-const Routes = () => {
+const Router = () => {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (
-    <RRRoutes>
+    <Routes>
       <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
       <Route
         exact
@@ -55,13 +53,23 @@ const Routes = () => {
       />
       <Route
         exact
-        path="/sl/o-projektu"
+        path="/sl/faq"
         element={
           <Suspense fallback={<Loader.Center />}>
-            <About />
+            <Faq />
           </Suspense>
         }
       />
+      <Route
+        exact
+        path="/en/faq"
+        element={
+          <Suspense fallback={<Loader.Center />}>
+            <Faq />
+          </Suspense>
+        }
+      />
+      {/*
       <Route
         path="/sl/zdravnik/:priimekIme"
         element={
@@ -109,10 +117,10 @@ const Routes = () => {
             <Doctor />
           </Suspense>
         }
-      />
+      /> */}
       <Route path="*" element={<Temp />} />
-    </RRRoutes>
+    </Routes>
   );
 };
 
-export default Routes;
+export default Router;
