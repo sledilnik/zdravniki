@@ -1,10 +1,9 @@
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
-import Home from 'pages/Home';
-import About from 'pages/About';
-// import Doctor from 'pages/Doctor';
 import { Loader } from 'components/Shared';
-import Faq from 'pages/Faq';
+const Home = React.lazy(() => import('../pages/Home'));
+const About = React.lazy(() => import('../pages/About'));
+const Faq = React.lazy(() => import('../pages/Faq'));
 
 const Temp = () => {
   return <div>Coming soon...</div>;
