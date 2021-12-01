@@ -75,7 +75,9 @@ export default function Faq() {
   return (
     <Styled.CustomContainer className="custom-container">
       <Styled.StaticPageWrapper className="static-page-wrapper" ref={faqRef}>
-        <h1>{response.name}</h1>
+        <h1>{t('faq.title')}</h1>
+        <p>{t('faq.description')}</p>
+        <br></br>
         {response.faq.map((faq, key) => {
           return (
             <div className="collapsable" key={key}>
@@ -87,7 +89,7 @@ export default function Faq() {
             </div>
           )
         })}
-        <h2>{t('glossary')}</h2>
+        <h2>{t('faq.glossary')}</h2>
         {response.glossary.map((glossary, key) => {
           return (
             <div className="collapsable" key={key}>
