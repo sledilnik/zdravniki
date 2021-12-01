@@ -6,27 +6,31 @@ const CircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
   color: theme.customColors.brand,
 }));
 
-const Wrapper = styled(Box)(({ theme }) => ({
+const Wrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignContent: 'center',
 }));
 
-export const WrapperCenter = styled(Wrapper)(({ theme }) => ({
+export const WrapperCenter = styled(Wrapper)(() => ({
   height: '100%',
   alignItems: 'center',
 }));
-export const Base = () => (
-  <Wrapper>
-    <CircularProgress />
-  </Wrapper>
-);
-export const Center = () => (
-  <WrapperCenter>
+export const Base = function Base() {
+  return (
     <Wrapper>
       <CircularProgress />
     </Wrapper>
-  </WrapperCenter>
-);
+  );
+};
+export const Center = function Center() {
+  return (
+    <WrapperCenter>
+      <Wrapper>
+        <CircularProgress />
+      </Wrapper>
+    </WrapperCenter>
+  );
+};
 
 export default Base;

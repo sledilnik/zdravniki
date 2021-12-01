@@ -10,7 +10,7 @@ export const Wrapper = styled(Grid.Doctors)(({ theme }) => ({
   backgroundColor: theme.customColors.background,
 }));
 
-export const ButtonWrapper = styled('div')(({ theme }) => ({
+export const ButtonWrapper = styled('div')(() => ({
   marginTop: '1rem',
   width: '100%',
   textAlign: 'center',

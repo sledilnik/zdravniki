@@ -1,17 +1,14 @@
 import { t } from 'i18next';
-import * as Styled from './styles';
 import i18next from 'i18n';
+import * as Styled from './styles';
 
-const NavLinks = ({ containerId = '', active }) => {
+const NavLinks = function NavLinks() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   i18next.changeLanguage(lng);
 
   return (
     <>
-      <Styled.NavMenuLink
-        to={`/${lng}/`}
-        activeclassname="active"
-      >
+      <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active">
         {t('header.home')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
@@ -24,10 +21,7 @@ const NavLinks = ({ containerId = '', active }) => {
       >
         {t('header.reportError')}
       </Styled.NavMenuItemLink>
-      <Styled.NavMenuLink
-        to={`/${lng}/about`}
-        activeclassname="active"
-      >
+      <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}
       </Styled.NavMenuLink>
       <Styled.NavMenuLink

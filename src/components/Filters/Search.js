@@ -1,14 +1,14 @@
 import Paper from '@mui/material/Paper';
 import Box from '@mui/system/Box';
 
-import * as Styled from './styles';
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
 import { useState } from 'react';
 import { useDebounce } from 'hooks';
 import { t } from 'i18next';
+import * as Styled from './styles';
 
-export default function Search() {
+const Search = function Search() {
   const { setSearchValue } = useFilter();
   const [value, setValue] = useState('');
 
@@ -45,7 +45,7 @@ export default function Search() {
             <Icons.SearchIcon />
           </Styled.Search.SearchIconWrapper>
           <Styled.Search.InputBase
-            placeholder={t("search")}
+            placeholder={t('search')}
             value={value}
             onChange={handleSearchChange}
             aria-label="search"
@@ -54,4 +54,6 @@ export default function Search() {
       </Paper>
     </Box>
   );
-}
+};
+
+export default Search;

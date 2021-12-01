@@ -4,7 +4,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 
 export * as Markers from './Markers';
 
-const Leaflet = ({ children, height, ...other }) => {
+const Leaflet = function ({ children, height, ...other }) {
   return (
     <MapContainer style={{ height }} {...other}>
       <TileLayer

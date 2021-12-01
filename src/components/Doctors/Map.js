@@ -8,7 +8,7 @@ import MapEvents from './MapEvents';
 const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
-  const DoctorsMap = ({
+  const DoctorsMap = function ({
     doctors,
     center = GEO_LOCATION.SL_CENTER,
     zoom = MAP.ZOOM,
@@ -16,7 +16,7 @@ function withLeaflet(Component) {
     maxZoom = MAP.MAX_ZOOM,
     userLocation = false,
     ...other
-  }) => {
+  }) {
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
     const injectedProps = {
       center,
