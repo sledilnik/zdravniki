@@ -10,15 +10,18 @@ Pri Znanstvenem društvu Sledilnik smo se odločili, da te podatke predstavimo v
 
 Sodelavci projekta:
 
-- [Branko Jevtić]() — grafično oblikovanje, spletna stran
+- [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
+- [Krištof Zevnik]() — FAQ
 - [Luka Petravić]() — FAQ
 - [Luka Renko](https://twitter.com/lukarenko) — podatki
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Mojca Miklavec]() — podatki
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki
+- [Veronika Vezjak]() — FAQ
+
 
 ## Pogoji uporabe
 

@@ -9,7 +9,7 @@ export const DoctorTypeTranslate = {
 export const TypeTranslate = {
   gp: 'generalPractitioner',
   den: 'dentist',
-  gyno: 'gynecologist',
+  gyn: 'gynecologist',
 };
 
 export const AgeGroupTranslate = {
@@ -20,7 +20,7 @@ export const AgeGroupTranslate = {
 export const TypeIconTranslate = {
   gp: 'Family',
   den: 'Dentist',
-  gyno: 'Gyno',
+  gyn: 'Gyno',
 };
 
 export const AgeGroupIconTranslate = {
