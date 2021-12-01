@@ -10,7 +10,7 @@ Pri Znanstvenem društvu Sledilnik smo se odločili, da te podatke predstavimo v
 
 Sodelavci projekta:
 
-- [Branko Jevtić]() — grafično oblikovanje, spletna stran
+- [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
 - [Krištof Zevnik]() — FAQ
