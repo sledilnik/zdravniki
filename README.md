@@ -33,6 +33,26 @@ Notable:
 
 All used libraries can be seen on [GitHub dependancies](https://github.com/sledilnik/zdravniki/network/dependencies).
 
+## Linting
+
+### CLI Usage
+
+`yarn lint`
+
+If you also want to automatically fix the project errors:
+
+`yarn lint --fix`
+
+### IDE Usage
+
+#### VSCode
+
+Have a look at step 3 of this article from DigitalOcan -> https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-code
+
+#### WebStorm
+
+<img width="1157" alt="image" src="https://user-images.githubusercontent.com/142531/144209240-4f93daeb-f945-4e68-aca9-b9c244bc070b.png">
+
 ## Genric React App instructions (to be removed or minimized)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
