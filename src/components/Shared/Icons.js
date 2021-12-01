@@ -32,6 +32,9 @@ import { ReactComponent as StudentsWhite } from 'assets/icon-students--white.svg
 import { ReactComponent as Students } from 'assets/icon-students.svg';
 import { ReactComponent as ArrowBack } from 'assets/icon-back.svg';
 import { ReactComponent as Close } from 'assets/icon-close.svg';
+import { ReactComponent as Link } from 'assets/icon-link.svg';
+import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
+import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -44,40 +47,45 @@ export { default as ContactPageIcon } from '@mui/icons-material/ContactPage';
 export { default as CheckIcon } from '@mui/icons-material/Check';
 export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
 export { default as CloseIcon } from '@mui/icons-material/Close';
+export { default as LinkIcon } from '@mui/icons-material/Link';
+export { default as PhoneEnabledIcon } from '@mui/icons-material/PhoneEnabled';
 
 const icons = {
+  Adults,
+  AdultsWhite,
   All,
   AllWhite,
-  BanWhite,
-  BanRed,
-  Ban,
-  CheckWhite,
-  CheckGreen,
-  Check,
-  DentistWhite,
-  Dentist,
-  FamilyDrWhite,
-  Family,
-  Group,
-  GynoWhite,
-  Gyno,
-  IdCard,
-  MapMarker,
-  SearchWhite,
-  Search,
-  Logo,
-  Facebook,
-  Share,
-  Twitter,
-  IconCircle,
-  AdultsWhite,
-  Adults,
-  KidsWhite,
-  Kids,
-  StudentsWhite,
-  Students,
   ArrowBack,
+  Ban,
+  BanRed,
+  BanWhite,
+  Check,
+  CheckGreen,
+  CheckWhite,
   Close,
+  Dentist,
+  DentistWhite,
+  Facebook,
+  Family,
+  FamilyDrWhite,
+  Gyno,
+  GynoWhite,
+  Group,
+  IconCircle,
+  IdCard,
+  Kids,
+  KidsWhite,
+  Link,
+  Logo,
+  MapMarker,
+  Phone,
+  PhoneBig,
+  Search,
+  SearchWhite,
+  Share,
+  Students,
+  StudentsWhite,
+  Twitter,
 };
 
 export const Icon = ({ name, ...props }) => {

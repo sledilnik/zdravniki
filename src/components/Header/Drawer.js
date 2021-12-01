@@ -25,10 +25,6 @@ const Drawer = styled(MuiDrawer)(({ theme }) => {
 export default function TemporaryDrawer({ open, setOpen }) {
   const [activeBtn, setActiveBtn] = useState();
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  });
-
   const toggleDrawer = event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;

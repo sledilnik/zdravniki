@@ -117,7 +117,7 @@ const Router = () => {
             <Doctor />
           </Suspense>
         }
-      /> */}
+      />
       <Route path="*" element={<Temp />} />
     </Routes>
   );

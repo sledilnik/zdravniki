@@ -3,20 +3,24 @@ import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
 import * as Styled from './styles/Markdown';
 
+const MD = {
+  en: enAbout,
+  sl: slAbout,
+};
+
 export default function About() {
   const [postMarkdown, setPostMarkdown] = useState('');
-
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
-  });
+    return () => {
+      document.body.style = null;
+    };
+  }, []);
 
   useEffect(() => {
-    let theTextFile = slAbout;
-    if (lng === 'en') {
-      theTextFile = enAbout;
-    }
+    const theTextFile = MD?.[lng] ?? slAbout;
 
     fetch(theTextFile)
       .then(response => response.text())
