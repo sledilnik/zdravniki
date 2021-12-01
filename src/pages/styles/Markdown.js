@@ -5,9 +5,7 @@ import iconClose from 'assets/close-dd.svg';
 import iconCheck from 'assets/icon-check.svg';
 import iconCopy from 'assets/icon-copy.svg';
 
-import IconBase from 'components/Shared/Icons';
-
-export const Icon = styled(IconBase)(({ theme }) => {
+export const IconWrapper = styled('span')(({ theme }) => {
   return {
     width: '28px',
     cursor: 'pointer',

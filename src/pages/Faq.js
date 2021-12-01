@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles/Markdown';
 import { t } from 'i18next';
+import Tooltip from '@mui/material/Tooltip';
+import Icon from 'components/Shared/Icons';
 
 export default function Faq() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -80,7 +82,11 @@ export default function Faq() {
         {response.faq.map((faq, key) => {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
-              <Styled.Icon name="Copy" onClick={handleCopy} title={t('copy')} alt={t('copy')} />
+              <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                <Styled.IconWrapper>
+                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                </Styled.IconWrapper>
+              </Tooltip>
               <Styled.Details id={faq.slug} ref={scroll}>
                 <Styled.Summary>{faq.question}</Styled.Summary>
                 <Styled.Markdown key={key}>{faq.answer}</Styled.Markdown>
@@ -92,7 +98,11 @@ export default function Faq() {
         {response.glossary.map((glossary, key) => {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
-              <Styled.Icon name="Copy" onClick={handleCopy} title={t('copy')} alt={t('copy')} />
+              <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                <Styled.IconWrapper>
+                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                </Styled.IconWrapper>
+              </Tooltip>
               <Styled.Details id={glossary.slug} ref={scroll}>
                 <Styled.Summary>{glossary.term}</Styled.Summary>
                 <Styled.Markdown key={key}>{glossary.definition}</Styled.Markdown>
