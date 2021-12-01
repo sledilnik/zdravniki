@@ -1,5 +1,23 @@
 import { styled } from '@mui/material/styles';
 import MarkdownBase from 'markdown-to-jsx';
+import iconExpand from 'assets/expand-dd.svg';
+import iconClose from 'assets/close-dd.svg';
+import iconCheck from 'assets/icon-check.svg';
+import iconCopy from 'assets/icon-copy.svg';
+
+import IconBase from 'components/Shared/Icons';
+
+export const Icon = styled(IconBase)(({ theme }) => {
+  return {
+    width: '28px',
+    cursor: 'pointer',
+    padding: '5px',
+    position: 'absolute',
+    top: '-3px',
+    right: '30px',
+    zIndex: 10,
+  };
+});
 
 // Names of CustomContainer and StaticPageWrapper matches classes from 'style.scss'
 export const CustomContainer = styled('main')(({ theme }) => ({
@@ -13,14 +31,13 @@ export const CustomContainer = styled('main')(({ theme }) => ({
 }));
 
 export const StaticPageWrapper = styled('div')(({ theme }) => ({
+  fontSize: '14px',
   padding: '32px 17px 27px 17px',
 
   '@media only screen and (min-width: 768px)': {
     margin: '32px 32px 27px 32px',
   },
-}));
 
-export const Markdown = styled(MarkdownBase)(({ theme }) => ({
   h1: { marginBottom: '32px', fontSize: '28px' },
 
   'h2, h3, h4': {
@@ -34,7 +51,7 @@ export const Markdown = styled(MarkdownBase)(({ theme }) => ({
     marginBottom: '28px',
   },
 
-  ul: { paddingInlineStart: '40px', fontSize: '14px' },
+  'ul, ol': { paddingInlineStart: '40px', fontSize: '14px', marginBottom: '1rem' },
 
   'h1 + p > em': {
     display: 'block',
@@ -72,4 +89,128 @@ export const Markdown = styled(MarkdownBase)(({ theme }) => ({
     },
     strong: { fontWeight: 600 },
   },
+
+  'span[data-term]': {
+    cursor: 'help',
+    fontWeight: 600,
+    transition: 'all 0.35s ease-in-out',
+    boxShadow: theme.MD.dataTermBoxShadow,
+    textDecoration: 'none',
+    color: 'rgba(0, 0, 0, 0.8)',
+
+    '&:hover ': {
+      textDecoration: 'none',
+      color: 'rgba(0, 0, 0, 0.8)',
+      fontWeight: 600,
+      boxShadow: theme.MD.dataTermBoxShadowHover,
+    },
+  },
+
+  // 'tr + tr': {
+  //   marginTop: '27px',
+  // },
+  // table: {
+  //   width: '100%',
+  //   tableLayout: 'fixed',
+  //   textAlign: 'left',
+  //   marginBottom: '1rem',
+  //   td: {
+  //     padding: '15px 0',
+  //     width: '50%',
+  //     borderTop: `1px solid ${theme.MD.tableTdBorder}`,
+  //   },
+  // },
+
+  '@keyframes show-dd': {
+    from: {
+      transform: 'translateY(-8px)',
+      opacity: 0.1,
+    },
+    to: {
+      transform: 'translateY(0px)',
+      opacity: 1,
+    },
+  },
 }));
+
+export const Collapsable = styled('div')(({ theme }) => {
+  return {
+    position: 'relative',
+    fontSize: 'inherit',
+    '.icon': {
+      width: '28px',
+      cursor: 'pointer',
+      padding: '5px',
+      position: 'absolute',
+      top: '-3px',
+      right: '30px',
+      zIndex: 10,
+      '&.copy': {
+        content: `url(${iconCopy})`,
+      },
+      '&.check': {
+        content: `url(${iconCheck})`,
+      },
+    },
+  };
+});
+
+// !todo remove Markdown after everything is merged and use in MarkdownBase in  FAQ and About page
+export const Markdown = styled(MarkdownBase)(({ theme }) => ({}));
+
+export const Details = styled('details')(({ theme }) => {
+  return {
+    fontSize: 'inherit',
+    marginBottom: '24px',
+    '> *:not(summary)': {
+      position: 'relative',
+      display: 'none',
+      width: '90%',
+    },
+    '> *:nth-child(2)': {
+      marginTop: '2px',
+      paddingTop: '12px',
+    },
+    '&[open]': {
+      '> *:not(summary)': {
+        display: 'block',
+        animation: 'show-dd 0.5s ease-out',
+      },
+      'summary::after': {
+        content: `url(${iconClose})`,
+      },
+    },
+  };
+});
+
+export const Summary = styled('summary')(({ theme }) => {
+  return {
+    cursor: 'pointer',
+    userSelect: 'none',
+    fontSize: 'inherit',
+    fontWeight: 'bold',
+    fontStretch: 'normal',
+    fontStyle: 'normal',
+    lineHeight: 1.71,
+    color: theme.MD.summaryColor,
+    position: 'relative',
+    paddingRight: '18%',
+    '@media only screen and (min-width: 768px)': {
+      paddingRight: '10%',
+    },
+    '::marker': {
+      display: 'none',
+      content: '""',
+    },
+    '::after': {
+      content: `url(${iconExpand})`,
+      display: 'block',
+      position: 'absolute',
+      right: 0,
+      top: 0,
+    },
+    '$:focus': {
+      outline: 'none',
+    },
+  };
+});

@@ -44,6 +44,11 @@ const theme = {
     elementBoxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.15)',
     linkBoxShadow: 'inset 0 -1px 0 white, inset 0 -4px #95C83F',
     linkBoxShadowHover: 'inset 0 -1px 0 white, inset 0 -20px #95C83F',
+    summaryBorder: '#DEDEDE',
+    summaryText: 'rgba(0, 0, 0, 0.75)',
+    tableTdBorder: 'rgba(0, 0, 0, 0.45)',
+    dataTermBoxShadow: 'inset 0 -1px 0 white, inset 0 -4px #95C83F',
+    dataTermBoxShadowHover: 'inset 0 -1px 0 white, inset 0 -20px #95C83F',
   },
 };
 
