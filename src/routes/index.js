@@ -5,10 +5,7 @@ const Home = React.lazy(() => import('../pages/Home'));
 const About = React.lazy(() => import('../pages/About'));
 const Faq = React.lazy(() => import('../pages/Faq'));
 const Doctor = React.lazy(() => import('../pages/Doctor'));
-
-const Temp = () => {
-  return <div>Coming soon...</div>;
-};
+const PageNotFound = React.lazy(() => import('../pages/PageNotFound'));
 
 const Router = () => {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -16,6 +13,8 @@ const Router = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
+      <Route exact path="/faq" element={<Navigate to={`/${lng}/faq`} />} />
+      <Route exact path="/about" element={<Navigate to={`/${lng}/about`} />} />
       <Route
         exact
         path="/en/"
@@ -118,7 +117,11 @@ const Router = () => {
           </Suspense>
         }
       />
-      <Route path="*" element={<Temp />} />
+      <Route path="*" element={
+          <Suspense fallback={<Loader.Center />}>
+            <PageNotFound />
+          </Suspense>
+        }/>
     </Routes>
   );
 };
