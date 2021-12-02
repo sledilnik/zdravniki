@@ -22,8 +22,9 @@ const MapEvents = () => {
         }
 
         const isBySearchValue =
-          doctor.name.toUpperCase().includes(searchValue.toUpperCase()) ||
-          doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase());
+          doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+          doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
+          doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
 
         return bounds.intersects(_bounds) && isBySearchValue;
       });
