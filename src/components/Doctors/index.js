@@ -9,8 +9,13 @@ import Button from '@mui/material/Button';
 import * as Styled from './styles';
 import { MainScrollTop } from './../Shared/ScrollTop';
 import { t } from 'i18next';
+import L from 'leaflet';
 
-const { GEO_LOCATION } = MAP;
+const { GEO_LOCATION, BOUNDS } = MAP;
+
+const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
+const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
+const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = ({ itemsPerPage = 10 }) => {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
@@ -22,6 +27,10 @@ const Doctors = ({ itemsPerPage = 10 }) => {
   const fetchMore = () => {
     setItems(items.concat(Array.from({ length: itemsPerPage })));
   };
+
+  useEffect(() => {
+    map?.setMaxBounds(bounds);
+  }, [map]);
 
   useEffect(() => {
     setItems(Array.from({ length: 20 }));
@@ -50,7 +59,7 @@ const Doctors = ({ itemsPerPage = 10 }) => {
 
   return (
     <Styled.Wrapper>
-      <MainMap whenCreated={setMap} doctors={doctors} />
+      <MainMap whenCreated={setMap} doctors={doctors} minZoom={6} />
       {ids.length === 1 && (
         <Styled.ButtonWrapper>
           <Button onClick={handleShowAll}>{t('showAll')}</Button>
