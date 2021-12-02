@@ -104,20 +104,44 @@ export const StaticPageWrapper = styled('div')(({ theme }) => ({
     },
   },
 
-  // 'tr + tr': {
-  //   marginTop: '27px',
-  // },
-  // table: {
-  //   width: '100%',
-  //   tableLayout: 'fixed',
-  //   textAlign: 'left',
-  //   marginBottom: '1rem',
-  //   td: {
-  //     padding: '15px 0',
-  //     width: '50%',
-  //     borderTop: `1px solid ${theme.MD.tableTdBorder}`,
-  //   },
-  // },
+  '@media (pointer: coarse), (hover: none)': {
+    'span[data-term]': {
+      position: 'relative',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      outline: 'none',
+    },
+    'span[data-term]:focus::after': {
+      content: 'attr(title)',
+      position: 'absolute',
+      top: '90%',
+      width: '100px',
+      backgroundColor: theme.MD.dataTermBcgColor,
+      color: 'white',
+      border: '1px solid',
+      padding: '3px 6px',
+      margin: '10px',
+      fontSize: '10px',
+      fontWeight: 200,
+      lineHeight: 1.4,
+      zIndex: 1,
+    },
+  },
+
+  'tr + tr': {
+    marginTop: '27px',
+  },
+  table: {
+    width: '100%',
+    tableLayout: 'fixed',
+    textAlign: 'left',
+    marginBottom: '1rem',
+    td: {
+      padding: '15px 0',
+      width: '50%',
+      borderTop: `1px solid ${theme.MD.tableTdBorder}`,
+    },
+  },
 
   '@keyframes show-dd': {
     from: {
