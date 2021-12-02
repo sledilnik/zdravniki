@@ -4,6 +4,7 @@ import * as Styled from './styles/Markdown';
 import { t } from 'i18next';
 import Tooltip from '@mui/material/Tooltip';
 import Icon from 'components/Shared/Icons';
+import { Loader } from 'components/Shared';
 
 export default function Faq() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -25,9 +26,9 @@ export default function Faq() {
   const handleCopy = e => {
     const element = e.target;
     const dummy = document.createElement('input');
-    let text = window.location.href + '#' + element.nextSibling.id;
+    let text = `${window.location.href}#${element.nextSibling.id}`;
     if (window.location.hash !== '') {
-      text = window.location.href.split('#')[0] + '#' + element.nextSibling.id;
+      text = `${window.location.href.split('#')[0]}#${element.nextSibling.id}`;
     }
     document.body.appendChild(dummy);
     dummy.value = text;
@@ -78,7 +79,7 @@ export default function Faq() {
   }, [faqRef, response]);
 
   if (response == null) {
-    return t('loading');
+    return <Loader.Center />;
   }
 
   return (
