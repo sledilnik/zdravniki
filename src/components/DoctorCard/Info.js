@@ -59,7 +59,7 @@ const Info = ({ doctor, handleZoom = () => {} }) => {
           {doctor.phone && (
             <Tooltip title={doctor.phone}>
               <IconButton>
-                <Shared.Link href={`tel:${doctor.phone}`}>
+                <Shared.Link href={`tel:${doctor.phone}`} self>
                   <Icons.Icon name="Phone" />
                 </Shared.Link>
               </IconButton>

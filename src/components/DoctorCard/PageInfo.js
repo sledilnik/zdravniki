@@ -57,7 +57,11 @@ const PageInfo = ({ doctor }) => {
             <Typography component="div" variant="body1">
               <Icons.Icon name="Phone" />
             </Typography>
-            <Shared.ConditionalLink to={doctor?.phone && `tel:${doctor.phone}`} variant="body1">
+            <Shared.ConditionalLink
+              to={doctor?.phone && `tel:${doctor.phone}`}
+              self
+              variant="body1"
+            >
               {doctor.phone}
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>

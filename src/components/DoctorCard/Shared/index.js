@@ -11,15 +11,27 @@ import Typography from '@mui/material/Typography';
 import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
-export const Link = ({ children, ...props }) => (
-  <Styled.Link rel="noopener noreferrer" target="_blank" underline="none" {...props}>
-    {children}
-  </Styled.Link>
-);
-export const ConditionalLink = ({ children, to, component = 'div', ...props }) => {
+
+// todo find better solution
+export const Link = ({ children, self, ...props }) => {
+  const target = self ? {} : { target: '_blank' };
+  return (
+    <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
+      {children}
+    </Styled.Link>
+  );
+};
+export const ConditionalLink = ({ children, to, component = 'div', self, ...props }) => {
+  const link = self ? (
+    <Link href={to} self>
+      {children}
+    </Link>
+  ) : (
+    <Link href={to}>{children}</Link>
+  );
   return (
     <Typography component={component} {...props}>
-      {to ? <Link href={to}>{children}</Link> : <>{children}</>}
+      {to ? link : <>{children}</>}
     </Typography>
   );
 };
