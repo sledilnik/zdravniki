@@ -13,7 +13,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const WrapperCenter = styled(Wrapper)(({ theme }) => ({
-  height: '100%',
+  height: '100vh',
   alignItems: 'center',
 }));
 export const Base = () => (
