@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles/Markdown';
 import { t } from 'i18next';
 import Tooltip from '@mui/material/Tooltip';
-import Icon from 'components/Shared/Icons';
 import { Loader } from 'components/Shared';
 
 export default function Faq() {
@@ -24,17 +23,12 @@ export default function Faq() {
 
   // copy url of the definition
   const handleCopy = e => {
-    const element = e.target;
-    const dummy = document.createElement('input');
+    const element = e.currentTarget;
     let text = `${window.location.href}#${element.nextSibling.id}`;
     if (window.location.hash !== '') {
       text = `${window.location.href.split('#')[0]}#${element.nextSibling.id}`;
     }
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
+    navigator.clipboard.writeText(text);
     element.className = 'icon check';
     element.title = t('copied');
     setTimeout(() => {
@@ -92,9 +86,12 @@ export default function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
+                <Styled.IconWrapper
+                  className="icon copy"
+                  title={t('copy')}
+                  alt={t('copy')}
+                  onClick={handleCopy}
+                />
               </Tooltip>
               <Styled.Details id={faq.slug} ref={scroll}>
                 <Styled.Summary>{faq.question}</Styled.Summary>
@@ -108,9 +105,12 @@ export default function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
+                <Styled.IconWrapper
+                  className="icon copy"
+                  title={t('copy')}
+                  alt={t('copy')}
+                  onClick={handleCopy}
+                />
               </Tooltip>
               <Styled.Details id={glossary.slug} ref={scroll}>
                 <Styled.Summary>{glossary.term}</Styled.Summary>
