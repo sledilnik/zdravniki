@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 import DoctorCard from 'components/DoctorCard';
@@ -12,15 +12,20 @@ export default function Doctor() {
   const { allDoctors } = useFilter();
   const { priimekIme } = useParams();
   const [doctor, setDoctor] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    allDoctors?.find(doctor => {
-      if (doctor.name.toLowerCase() === priimekIme.replaceAll('-', ' ')) {
-        setDoctor(doctor);
-      }
-      return null;
-    });
-  }, [allDoctors, priimekIme]);
+    const _doctor = allDoctors?.find(
+      doctor => doctor.name.toLowerCase() === priimekIme.replaceAll('-', ' '),
+    );
+
+    allDoctors && _doctor && setDoctor(_doctor);
+
+    if (allDoctors && !_doctor) {
+      navigate('/');
+    }
+    return null;
+  }, [allDoctors, priimekIme, navigate]);
 
   return (
     <Box
