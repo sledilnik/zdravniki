@@ -66,6 +66,14 @@ export default function Faq() {
           }
         }
       });
+      // append attribute target="blank" to all external links
+      if (faqRef.current) {
+        faqRef.current.querySelectorAll('a').forEach(el => {
+          if (/^(https?:)?\/\//.test(el.getAttribute('href'))) {
+            el.target = '_blank';
+          }
+        });
+      }
     }
   }, [faqRef, response]);
 
