@@ -24,10 +24,7 @@ const NavLinks = function NavLinks() {
       <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}
       </Styled.NavMenuLink>
-      <Styled.NavMenuLink
-        to={`/${lng}/faq`}
-        activeclassname="active"
-      >
+      <Styled.NavMenuLink to={`/${lng}/faq`} activeclassname="active">
         {t('header.faq')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink

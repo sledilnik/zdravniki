@@ -16,12 +16,10 @@ const Leaflet = function ({ children, height, ...other }) {
   );
 };
 
-const StyledLeaflet = styled(Leaflet)(({ theme }) => {
-  return {
-    '.leaflet-tile-pane': {
-      filter: 'hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2)',
-    },
-  };
-});
+const StyledLeaflet = styled(Leaflet)(() => ({
+  '.leaflet-tile-pane': {
+    filter: 'hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2)',
+  },
+}));
 
 export default memo(StyledLeaflet);
