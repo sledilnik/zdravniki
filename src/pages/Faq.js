@@ -86,12 +86,7 @@ export default function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper
-                  className="icon copy"
-                  title={t('copy')}
-                  alt={t('copy')}
-                  onClick={handleCopy}
-                />
+                <Styled.IconWrapper className="icon copy" alt={t('copy')} onClick={handleCopy} />
               </Tooltip>
               <Styled.Details id={faq.slug} ref={scroll}>
                 <Styled.Summary>{faq.question}</Styled.Summary>
@@ -105,12 +100,7 @@ export default function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={key}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper
-                  className="icon copy"
-                  title={t('copy')}
-                  alt={t('copy')}
-                  onClick={handleCopy}
-                />
+                <Styled.IconWrapper className="icon copy" alt={t('copy')} onClick={handleCopy} />
               </Tooltip>
               <Styled.Details id={glossary.slug} ref={scroll}>
                 <Styled.Summary>{glossary.term}</Styled.Summary>
