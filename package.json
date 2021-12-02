@@ -33,18 +33,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "cross-env SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "lint": "eslint .",
-    "test": "react-scripts test",
+    "test": "cross-env SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject": "react-scripts eject",
     "analyze": "webpack-bundle-analyzer ./build/bundle-stats.json"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": [
     ">0.2%",
@@ -52,12 +46,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
+    "eslint": "^8.3.0",
     "eslint-config-airbnb": "19.0.1",
-    "eslint-config-prettier": "7",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "3",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "install-peers": "^1.0.3",
