@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { THEME } from 'const';
 import Router from 'routes';
 
-const App = function () {
+const App = function App() {
   const theme = createTheme(THEME);
   return (
     <>
