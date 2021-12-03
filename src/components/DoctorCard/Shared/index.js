@@ -22,12 +22,10 @@ export const Link = ({ children, self, ...props }) => {
   );
 };
 export const ConditionalLink = ({ children, to, component = 'div', self, ...props }) => {
-  const link = self ? (
-    <Link href={to} self>
+  const link = (
+    <Link href={to} self={self}>
       {children}
     </Link>
-  ) : (
-    <Link href={to}>{children}</Link>
   );
   return (
     <Typography component={component} {...props}>
