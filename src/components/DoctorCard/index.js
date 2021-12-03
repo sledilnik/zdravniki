@@ -2,18 +2,17 @@ import { memo } from 'react';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
+import { useLeafletContext } from 'context/leafletContext';
 import DoctorMap from './Map';
 import * as Styled from './styles';
 import Info from './Info';
 import PageInfo from './PageInfo';
 
-import { useLeafletContext } from 'context/leafletContext';
-
-const DoctorCard = ({ doctor, isPage = false }) => {
+const DoctorCard = function ({ doctor, isPage = false }) {
   const accepts = doctor.accepts === 'y';
   const { map, setMap } = useLeafletContext();
 
-  const handleZoom = e => {
+  const handleZoom = () => {
     const { lat, lon } = doctor.geoLocation;
     map.flyTo([lat, lon], 13);
   };
@@ -40,7 +39,5 @@ const DoctorCard = ({ doctor, isPage = false }) => {
   );
 };
 
-const propsAreEqual = (prevProps, nextProps) => {
-  return prevProps.doctor.id === nextProps.doctor.id;
-};
+const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.id === nextProps.doctor.id;
 export default memo(DoctorCard, propsAreEqual);

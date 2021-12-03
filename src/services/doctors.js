@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
-const lng = localStorage.getItem("i18nextLng") || "sl";
+const lng = localStorage.getItem('i18nextLng') || 'sl';
 
 const TYPE_TRANSLATE = {
   SL: 'description-sl',

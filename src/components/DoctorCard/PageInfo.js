@@ -3,16 +3,16 @@ import { t } from 'i18next';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
-import Accepts from './Accepts';
 import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
+import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = ({ doctor }) => {
+const PageInfo = function ({ doctor }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -75,7 +75,7 @@ const PageInfo = ({ doctor }) => {
                   <Stack>
                     <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
                     <Styled.Availability variant="caption">
-                      {t('headQuotient')} {doctor.load}
+                      {`${t('headQuotient')} ${doctor.load}`}
                     </Styled.Availability>
                   </Stack>
                 </Stack>

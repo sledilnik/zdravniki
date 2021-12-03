@@ -90,7 +90,7 @@ const icons = {
   Twitter,
 };
 
-export const Icon = ({ name, ...props }) => {
+export const Icon = function Icon({ name, ...props }) {
   const Component = name in icons ? icons[name] : null;
   return Component ? <Component {...props} /> : null;
 };
@@ -98,7 +98,7 @@ export const Icon = ({ name, ...props }) => {
 const ICON_KEYS = Object.keys(icons);
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(ICON_KEYS),
+  name: PropTypes.oneOf(ICON_KEYS).isRequired,
 };
 
 export default Icon;

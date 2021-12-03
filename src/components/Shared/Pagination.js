@@ -1,6 +1,6 @@
 import Pagination from '@mui/material/Pagination';
 
-export const DoctorsSmall = ({ count, page, onChange, ...others }) => {
+export const DoctorsSmall = function DoctorsSmall({ count, page, onChange, ...others }) {
   return (
     <Pagination
       sx={{ alignSelf: 'start', justifySelf: 'center' }}

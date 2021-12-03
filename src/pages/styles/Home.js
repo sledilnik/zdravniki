@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 
 import { SIZES } from 'const';
 
-export const Main = styled('main')(({ theme }) => ({
+export const Main = styled('main')(() => ({
   height: '100vh',
   overflow: 'hidden',
 }));

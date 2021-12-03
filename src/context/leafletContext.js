@@ -1,14 +1,15 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useMemo } from 'react';
 
 const LeafletContext = createContext();
 
 export const LeafletConsumer = LeafletContext.Consumer;
 
-export function LeafletProvider({ children }) {
+export const LeafletProvider = function ({ children }) {
   const [map, setMap] = useState(null);
 
-  return <LeafletContext.Provider value={{ map, setMap }}>{children}</LeafletContext.Provider>;
-}
+  const value = useMemo(() => ({ map, setMap }), [map]);
+  return <LeafletContext.Provider value={value}>{children}</LeafletContext.Provider>;
+};
 
 export function useLeafletContext() {
   const context = useContext(LeafletContext);

@@ -2,11 +2,11 @@ import L from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import { useFilter } from 'context/filterContext';
 
-const MapEvents = () => {
+const MapEvents = function () {
   const { allDoctors, setDoctors, ids, searchValue } = useFilter();
 
   const map = useMapEvents({
-    moveend(event) {
+    moveend() {
       if (ids.length > 0) {
         return;
       }
@@ -29,7 +29,7 @@ const MapEvents = () => {
         return bounds.intersects(_bounds) && isBySearchValue;
       });
 
-      allDoctors && setDoctors(mapDoctors);
+      if (allDoctors) setDoctors(mapDoctors);
     },
   });
   return null;

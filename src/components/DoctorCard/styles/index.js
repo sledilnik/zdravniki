@@ -7,15 +7,13 @@ import { SIZES } from 'const';
 
 export * as PageInfo from './PageInfo';
 
-const Card = styled(MuiCard)(({ theme }) => {
-  return {
-    marginInline: '0.5em',
-    borderRadius: '5px',
+const Card = styled(MuiCard)(() => ({
+  marginInline: '0.5em',
+  borderRadius: '5px',
 
-    letterSpacing: 0,
-    lineHeight: 1.2,
-  };
-});
+  letterSpacing: 0,
+  lineHeight: 1.2,
+}));
 
 export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
@@ -68,37 +66,35 @@ export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
   };
 });
 
-export const PageInfoBox = styled(Stack)(({ theme }) => {
-  return {
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
-    },
+export const PageInfoBox = styled(Stack)(({ theme }) => ({
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+  },
 
-    '.MuiCardContent-root:last-child': {
-      paddingBottom: 0,
-    },
+  '.MuiCardContent-root:last-child': {
+    paddingBottom: 0,
+  },
 
-    '.MuiCardContent-root': {
-      width: '100%',
-      '.MuiCardMedia-root': {
-        background: 'green',
+  '.MuiCardContent-root': {
+    width: '100%',
+    '.MuiCardMedia-root': {
+      background: 'green',
+      '.leaflet-container': {
+        height: SIZES.MAP_HEIGHT.default,
+      },
+      [theme.breakpoints.up('sm')]: {
         '.leaflet-container': {
-          height: SIZES.MAP_HEIGHT.default,
+          height: SIZES.MAP_HEIGHT.upSmall,
         },
-        [theme.breakpoints.up('sm')]: {
-          '.leaflet-container': {
-            height: SIZES.MAP_HEIGHT.upSmall,
-          },
-        },
-        [theme.breakpoints.up('md')]: {
-          '.leaflet-container': {
-            height: 'clamp(400px, 50vh, 100vh)', // ? not sure but it's working
-          },
+      },
+      [theme.breakpoints.up('md')]: {
+        '.leaflet-container': {
+          height: 'clamp(400px, 50vh, 100vh)', // ? not sure but it's working
         },
       },
     },
-  };
-});
+  },
+}));
 export const InfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
   const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
@@ -136,13 +132,11 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
   };
 });
 
-export const InfoWrapper = styled(Stack)(({ theme }) => {
-  return {
-    color: theme.customColors.doctor.availability,
-    cursor: 'help',
-    minWidth: '74.5px',
-  };
-});
+export const InfoWrapper = styled(Stack)(({ theme }) => ({
+  color: theme.customColors.doctor.availability,
+  cursor: 'help',
+  minWidth: '74.5px',
+}));
 
 export const Accepts = styled(TypographyBase)(({ theme, accepts }) => {
   const color = accepts === 'true' ? theme.customColors.brand : theme.customColors.danger;
@@ -154,22 +148,18 @@ export const Accepts = styled(TypographyBase)(({ theme, accepts }) => {
     whiteSpace: 'nowrap',
   };
 });
-export const Availability = styled(TypographyBase)(({ theme }) => {
-  return {
-    fontWeight: 700,
-    letterSpacing: 0,
-    color: 'inherit',
-    whiteSpace: 'nowrap',
-    opacity: theme.customOpacity.half,
-    ':last-of-type': { opacity: 0.3 },
-  };
-});
+export const Availability = styled(TypographyBase)(({ theme }) => ({
+  fontWeight: 700,
+  letterSpacing: 0,
+  color: 'inherit',
+  whiteSpace: 'nowrap',
+  opacity: theme.customOpacity.half,
+  ':last-of-type': { opacity: 0.3 },
+}));
 
-export const Link = styled(MuiLink)(({ theme }) => {
-  return {
-    fontSize: 'inherit',
-    fontWeight: 700,
-    color: theme.customColors.doctor.colors.link,
-    cursor: 'pointer',
-  };
-});
+export const Link = styled(MuiLink)(({ theme }) => ({
+  fontSize: 'inherit',
+  fontWeight: 700,
+  color: theme.customColors.doctor.colors.link,
+  cursor: 'pointer',
+}));

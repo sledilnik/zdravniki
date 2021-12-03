@@ -1,7 +1,7 @@
 import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
 
-const SocialLinks = () => {
+const SocialLinks = function () {
   return (
     <div>
       <Styled.IconButton

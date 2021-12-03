@@ -8,7 +8,7 @@ const MD = {
   sl: slAbout,
 };
 
-export default function About() {
+const About = function About() {
   const [postMarkdown, setPostMarkdown] = useState('');
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
@@ -38,4 +38,6 @@ export default function About() {
       </Styled.StaticPageWrapper>
     </Styled.CustomContainer>
   );
-}
+};
+
+export default About;
