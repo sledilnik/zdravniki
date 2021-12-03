@@ -3,18 +3,16 @@ import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const Paper = styled(MuiPaper)(({ theme }) => {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: theme => `1px solid ${theme.palette.divider}`,
-    background: theme.customColors.background,
-    borderRadius: '24px',
-    flexWrap: 'wrap',
-    width: 'min-content',
-  };
-});
+const Paper = styled(MuiPaper)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: aTheme => `1px solid ${aTheme.palette.divider}`,
+  background: theme.customColors.background,
+  borderRadius: '24px',
+  flexWrap: 'wrap',
+  width: 'min-content',
+}));
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   fontSize: '0.75rem',
@@ -47,7 +45,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-export default function ToggleGroup({ children, value, setValue, ...props }) {
+const ToggleGroup = function ToggleGroup({ children, value, setValue, ...props }) {
   const handleValue = (event, newValue) => {
     if (newValue !== null) {
       setValue(newValue);
@@ -60,4 +58,6 @@ export default function ToggleGroup({ children, value, setValue, ...props }) {
       </StyledToggleButtonGroup>
     </Paper>
   );
-}
+};
+
+export default ToggleGroup;

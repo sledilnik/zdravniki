@@ -1,11 +1,11 @@
 import ToggleGroup from 'components/Shared/ToggleGroup';
-import { IconToggleButton } from './Shared';
 
 import { useFilter } from 'context/filterContext';
 import { t } from 'i18next';
+import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
-  const ToggleAccepts = props => {
+  const ToggleAccepts = function (props) {
     const { accept, setAccept } = useFilter();
 
     const injectedProps = {

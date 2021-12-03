@@ -3,26 +3,24 @@ import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 
-import * as Styled from './styles';
-import NavLinks from './NavLinks';
-import SocialLinks from './SocialLinks';
-import Languages from './Languages';
 import IconButton from '@mui/material/IconButton';
 import * as Icons from 'components/Shared/Icons';
 import Stack from '@mui/material/Stack';
 import { t } from 'i18next';
+import * as Styled from './styles';
+import NavLinks from './NavLinks';
+import SocialLinks from './SocialLinks';
+import Languages from './Languages';
 
-const Drawer = styled(MuiDrawer)(({ theme }) => {
-  return {
-    zIndex: 10_000, // ScrollTop has z-index: 9999
-    '.MuiDrawer-paper': {
-      width: 'clamp(300px, 40%,100vw)',
-      backgroundColor: theme.customColors.brand,
-    },
-  };
-});
+const Drawer = styled(MuiDrawer)(({ theme }) => ({
+  zIndex: 10_000, // ScrollTop has z-index: 9999
+  '.MuiDrawer-paper': {
+    width: 'clamp(300px, 40%,100vw)',
+    backgroundColor: theme.customColors.brand,
+  },
+}));
 
-export default function TemporaryDrawer({ open, setOpen }) {
+const TemporaryDrawer = function TemporaryDrawer({ open, setOpen }) {
   const [activeBtn, setActiveBtn] = useState();
 
   const toggleDrawer = event => {
@@ -81,4 +79,6 @@ export default function TemporaryDrawer({ open, setOpen }) {
       </Styled.StackSocialSmall>
     </Drawer>
   );
-}
+};
+
+export default TemporaryDrawer;

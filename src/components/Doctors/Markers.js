@@ -5,11 +5,11 @@ import { useTheme } from '@mui/material/styles';
 import { Markers } from 'components/Shared/Leaflet';
 import Typography from '@mui/material/Typography';
 
-import { Chip } from '../Shared';
 import Stack from '@mui/material/Stack';
 import { t } from 'i18next';
+import { Chip } from '../Shared';
 
-export const User = () => {
+export const User = function () {
   const [position, setPosition] = useState(null);
   const map = useMap();
 
@@ -20,12 +20,12 @@ export const User = () => {
     });
   }, [map]);
 
-  return position && <Markers.LeafletMarker position={position} tooltip={t("yourLocation")} />;
+  return position && <Markers.LeafletMarker position={position} tooltip={t('yourLocation')} />;
 };
 
-const PopUpData = ({ doctor }) => {
+const PopUpData = function ({ doctor }) {
   const accepts = doctor.accepts === 'y';
-  const lng = localStorage.getItem("i18nextLng") || "sl";
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (
     <div style={{ maxWidth: '180px' }}>
