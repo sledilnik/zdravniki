@@ -3721,7 +3721,7 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
-"@types/papaparse@^5.2.6":
+"@types/papaparse@^5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.1.tgz#fb5c613a64473c33b08fb9bc2a5ddbf25e54784e"
   integrity sha512-1lbngk9wty2kCyQB42LjqSa12SEop3t9wcEC7/xYr3ujTSTmv7HWKjKYXly0GkMfQ42PRb2lFPFEibDOiMXS0g==
@@ -14804,12 +14804,12 @@ react-leaflet@^3.0.0, react-leaflet@^3.2.2:
   dependencies:
     "@react-leaflet/core" "^1.1.1"
 
-react-papaparse@^3.17.2:
-  version "3.17.2"
-  resolved "https://registry.yarnpkg.com/react-papaparse/-/react-papaparse-3.17.2.tgz#9c636c7910ac910db691796c66847b8766a6adc1"
-  integrity sha512-FiQPpEpywmgSVojRuN0I5kg35IPNOBo1Ls6xqgj7GuXszT2pPPfwj8TxqwlE6M9M0BnqQCpCa6j1QZy6wZKfyA==
+react-papaparse@^3.18.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/react-papaparse/-/react-papaparse-3.18.1.tgz#169b9d3903a02913a418830b52f36bab3b9e0a7c"
+  integrity sha512-GvYRoJmlhlK+ZHqCacuKPVw3b26qkUZ6OgQo2iZOWepHpUfw7+cIGY1hxucDGXjMgBa7yly7XTVhX4az/KC2Lw==
   dependencies:
-    "@types/papaparse" "^5.2.6"
+    "@types/papaparse" "^5.3.1"
     papaparse "^5.3.1"
 
 react-refresh@^0.8.3:
