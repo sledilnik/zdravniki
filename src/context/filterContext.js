@@ -5,7 +5,7 @@ const FilterContext = createContext();
 
 export const FilterConsumer = FilterContext.Consumer;
 
-function FilterProvider({ children }) {
+const FilterProvider = function ({ children }) {
   const { doctors: _doctors } = useDoctors();
 
   const [doctorType, setDoctorType] = useState('gp');
@@ -23,10 +23,10 @@ function FilterProvider({ children }) {
       return;
     }
 
-    !searchValue && !isByIds && setDoctors(filtered);
+    if (!searchValue && !isByIds) setDoctors(filtered);
 
     if (isByIds) {
-      searchValue && setSearchValue('');
+      if (searchValue) setSearchValue('');
       const doctorsById = filtered.filter(doctor => ids.includes(doctor.id));
       setDoctors(doctorsById);
     }
@@ -34,7 +34,7 @@ function FilterProvider({ children }) {
     if (searchValue) {
       const compare = doctor =>
         doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) || 
+        doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
         doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
       const combined = filtered.filter(compare);
 
@@ -59,23 +59,26 @@ function FilterProvider({ children }) {
     setFilteredDoctors();
   }, [setFilteredDoctors]);
 
-  const value = {
-    doctors,
-    setDoctors,
-    doctorType,
-    setDoctorType,
-    accept,
-    setAccept,
-    searchValue,
-    setSearchValue,
-    ids,
-    setIds,
-    get allDoctors() {
-      return filtered;
-    },
-  };
+  const value = useMemo(
+    () => ({
+      doctors,
+      setDoctors,
+      doctorType,
+      setDoctorType,
+      accept,
+      setAccept,
+      searchValue,
+      setSearchValue,
+      ids,
+      setIds,
+      get allDoctors() {
+        return filtered;
+      },
+    }),
+    [accept, doctorType, doctors, filtered, ids, searchValue],
+  );
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
-}
+};
 
 function useFilter() {
   const context = useContext(FilterContext);
