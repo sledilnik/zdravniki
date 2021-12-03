@@ -9,8 +9,8 @@
         "support": "Support!",
         "sledilnik": "Sledilnik.org"
     },
-    "accepts": "accepts",
-    "rejects": "rejects",
+    "accepts": "accepting",
+    "rejects": "not accepting",
     "all": "all",
     "generalPractitioner": "general practitioner",
     "dentist": "dentist",

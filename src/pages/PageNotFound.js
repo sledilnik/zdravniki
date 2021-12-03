@@ -9,7 +9,7 @@ export default function PageNotFound() {
 
   return (
     <>
-      <SEO.Dynamic title="404 - Stran ne obstaja" meta={meta} />
+      <SEO.Dynamic title={t('pageNotFound.notFound')} meta={meta} />
       <Styled.CustomContainer id="main-content">
         <Styled.PageNotFound>
           <h1>{t('pageNotFound.notFound')}</h1>
