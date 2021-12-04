@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
@@ -14,6 +14,7 @@ const About = function About() {
   const { t } = useTranslation();
   const [postMarkdown, setPostMarkdown] = useState('');
   const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const aboutRef = useRef();
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
@@ -32,10 +33,21 @@ const About = function About() {
       });
   }, [lng]);
 
+  // append attribute target="blank" to all external links
+  useEffect(() => {
+    if (aboutRef.current) {
+      aboutRef.current.querySelectorAll('a').forEach(el => {
+        if (/^(https?:)?\/\//.test(el.getAttribute('href'))) {
+          el.setAttribute('target', '_blank');
+        }
+      });
+    }
+  }, [aboutRef, postMarkdown]);
+
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.about')} />
-      <Styled.CustomContainer id="main-content">
+      <Styled.CustomContainer id="main-content" ref={aboutRef}>
         <Styled.StaticPageWrapper>
           <span>
             <Styled.Markdown>{postMarkdown}</Styled.Markdown>

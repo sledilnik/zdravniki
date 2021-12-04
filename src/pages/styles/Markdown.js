@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import MarkdownBase from 'markdown-to-jsx';
 import iconExpand from 'assets/expand-dd.svg';
 import iconClose from 'assets/close-dd.svg';
-import iconCheck from 'assets/icon-check.svg';
+import iconCheck from 'assets/check.svg';
 import iconCopy from 'assets/icon-copy.svg';
 
 export const IconWrapper = styled('span')(() => ({
@@ -102,20 +102,44 @@ export const StaticPageWrapper = styled('div')(({ theme }) => ({
     },
   },
 
-  // 'tr + tr': {
-  //   marginTop: '27px',
-  // },
-  // table: {
-  //   width: '100%',
-  //   tableLayout: 'fixed',
-  //   textAlign: 'left',
-  //   marginBottom: '1rem',
-  //   td: {
-  //     padding: '15px 0',
-  //     width: '50%',
-  //     borderTop: `1px solid ${theme.MD.tableTdBorder}`,
-  //   },
-  // },
+  '@media (pointer: coarse), (hover: none)': {
+    'span[data-term]': {
+      position: 'relative',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      outline: 'none',
+    },
+    'span[data-term]:focus::after': {
+      content: 'attr(title)',
+      position: 'absolute',
+      top: '90%',
+      width: '100px',
+      backgroundColor: theme.MD.dataTermBcgColor,
+      color: 'white',
+      border: '1px solid',
+      padding: '3px 6px',
+      margin: '10px',
+      fontSize: '10px',
+      fontWeight: 200,
+      lineHeight: 1.4,
+      zIndex: 1,
+    },
+  },
+
+  'tr + tr': {
+    marginTop: '27px',
+  },
+  table: {
+    width: '100%',
+    tableLayout: 'fixed',
+    textAlign: 'left',
+    marginBottom: '1rem',
+    td: {
+      padding: '15px 0',
+      width: '50%',
+      borderTop: `1px solid ${theme.MD.tableTdBorder}`,
+    },
+  },
 
   '@keyframes show-dd': {
     from: {

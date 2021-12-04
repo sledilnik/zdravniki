@@ -11,9 +11,12 @@ import {
 import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
-export const Link = function ConditionalLink({ children, ...props }) {
+
+// todo find better solution
+export const Link = function Link({ children, self, ...props }) {
+  const target = self ? {} : { target: '_blank' };
   return (
-    <Styled.Link rel="noopener noreferrer" target="_blank" underline="none" {...props}>
+    <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
       {children}
     </Styled.Link>
   );
@@ -22,11 +25,17 @@ export const ConditionalLink = function ConditionalLink({
   children,
   to,
   component = 'div',
+  self,
   ...props
 }) {
+  const link = (
+    <Link href={to} self={self}>
+      {children}
+    </Link>
+  );
   return (
     <Typography component={component} {...props}>
-      {to ? <Link href={to}>{children}</Link> : children}
+      {to ? link : children}
     </Typography>
   );
 };
