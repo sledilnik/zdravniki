@@ -1,14 +1,14 @@
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
 import { Loader } from 'components/Shared';
-import * as Styled from './styles/Home';
 
 import { doctorsContext, leafletContext } from 'context';
 
 import { DOCTORS } from 'const';
 import { useEffect } from 'react';
+import * as Styled from './styles/Home';
 
-export default function Home() {
+const Home = function Home() {
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
@@ -39,4 +39,6 @@ export default function Home() {
       )}
     </Styled.Main>
   );
-}
+};
+
+export default Home;

@@ -4,7 +4,7 @@ import Search from './Search';
 
 import * as Styled from './styles';
 
-export default function Filters() {
+const Filters = function Filters() {
   return (
     <Styled.Grid>
       <ToggleDoctorType />
@@ -12,4 +12,6 @@ export default function Filters() {
       <Search />
     </Styled.Grid>
   );
-}
+};
+
+export default Filters;

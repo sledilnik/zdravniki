@@ -6,7 +6,7 @@ const { GEO_LOCATION } = MAP;
 function withLeaflet(Component) {
   const defaultGeoLocation = { lat: GEO_LOCATION.SL_CENTER[0], lon: GEO_LOCATION.SL_CENTER[1] };
 
-  const DoctorMap = ({ doctor, handleRoomIconClick = () => {}, ...other }) => {
+  const DoctorMap = function ({ doctor, handleRoomIconClick = () => {}, ...other }) {
     const {
       geoLocation: { lat, lon },
     } = doctor ?? { geoLocation: defaultGeoLocation };

@@ -18,7 +18,7 @@ const Fab = styled(MuiFab)(({ theme }) => ({
   },
 }));
 
-export function ScrollTop(props) {
+export const ScrollTop = function ScrollTop(props) {
   const { children } = props;
   const [node, setNode] = useState(window);
 
@@ -33,7 +33,7 @@ export function ScrollTop(props) {
     threshold: 700,
   });
 
-  const handleClick = event => {
+  const handleClick = () => {
     if (node) {
       node.scrollTo(0, 0);
     }
@@ -50,19 +50,22 @@ export function ScrollTop(props) {
       </Box>
     </Zoom>
   );
-}
+};
 
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export const ToFront = styled('div')(({ theme }) => ({
+export const ToFront = styled('div')(() => ({
   zIndex: 9999,
 }));
-export const MainScrollTop = props => (
-  <ScrollTop {...props}>
-    <Fab size="small" aria-label="scroll back to top">
-      <KeyboardArrowUpIcon />
-    </Fab>
-  </ScrollTop>
-);
+
+export const MainScrollTop = function MainScrollTop(props) {
+  return (
+    <ScrollTop {...props}>
+      <Fab size="small" aria-label="scroll back to top">
+        <KeyboardArrowUpIcon />
+      </Fab>
+    </ScrollTop>
+  );
+};

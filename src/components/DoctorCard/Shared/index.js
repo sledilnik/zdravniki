@@ -1,19 +1,19 @@
 import { t } from 'i18next';
+import * as Icons from 'components/Shared/Icons';
+
+import Typography from '@mui/material/Typography';
 import {
   TypeTranslate,
   AgeGroupTranslate,
   TypeIconTranslate,
   AgeGroupIconTranslate,
 } from '../dicts';
-import * as Icons from 'components/Shared/Icons';
-
-import Typography from '@mui/material/Typography';
 import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
 
 // todo find better solution
-export const Link = ({ children, self, ...props }) => {
+export const Link = function ({ children, self, ...props }) {
   const target = self ? {} : { target: '_blank' };
   return (
     <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
@@ -21,7 +21,7 @@ export const Link = ({ children, self, ...props }) => {
     </Styled.Link>
   );
 };
-export const ConditionalLink = ({ children, to, component = 'div', self, ...props }) => {
+export const ConditionalLink = function ({ children, to, component = 'div', self, ...props }) {
   const link = (
     <Link href={to} self={self}>
       {children}
@@ -34,7 +34,7 @@ export const ConditionalLink = ({ children, to, component = 'div', self, ...prop
   );
 };
 
-export const DoubleChip = ({ type, ageGroup }) => {
+export const DoubleChip = function ({ type, ageGroup }) {
   const drType = TypeTranslate[type];
   const drAgeGroup = AgeGroupTranslate?.[ageGroup] ?? 'adults';
   const typeIcon = TypeIconTranslate[type];

@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { THEME } from 'const';
 import Router from 'routes';
 
-function App() {
+const App = function App() {
   const theme = createTheme(THEME);
   return (
     <>
@@ -24,6 +24,6 @@ function App() {
       </doctorsContext.DoctorsProvider>
     </>
   );
-}
+};
 
 export default App;

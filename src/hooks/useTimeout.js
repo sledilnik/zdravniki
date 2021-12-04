@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 export default function useTimeout(callback, delay) {
   const callbackRef = useRef(callback);
-  const timeoutRef = useRef();
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     callbackRef.current = callback;
@@ -13,7 +13,7 @@ export default function useTimeout(callback, delay) {
   }, [delay]);
 
   const clear = useCallback(() => {
-    timeoutRef.current && clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }, []);
 
   useEffect(() => {

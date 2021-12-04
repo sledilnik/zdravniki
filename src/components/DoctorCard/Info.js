@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
 
-import Accepts from './Accepts';
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
+import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
 import { DoctorTypeTranslate } from './dicts';
 import { toPercent } from './utils';
 
-const Info = ({ doctor, handleZoom = () => {} }) => {
+const Info = function ({ doctor, handleZoom = () => {} }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
@@ -18,12 +18,14 @@ const Info = ({ doctor, handleZoom = () => {} }) => {
   const navigate = useNavigate();
   const handleDoctorCard = type => {
     const drPath = DoctorTypeTranslate?.[type];
-    if (drPath) {
-      const path = `/${lng}/${drPath}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`;
-      // todo pass filters' state as second argument
-      return navigate(path);
+    if (!drPath) {
+      console.error('No path!');
+      return undefined;
     }
-    console.error('No path!');
+
+    const path = `/${lng}/${drPath}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`;
+    // todo pass filters' state as second argument
+    return navigate(path);
   };
 
   return (

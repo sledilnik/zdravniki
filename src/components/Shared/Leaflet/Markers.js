@@ -4,7 +4,7 @@ import { MAP } from 'const';
 
 const { GEO_LOCATION } = MAP;
 
-export const LeafletMarker = ({ position = [], tooltip, ...other }) => {
+export const LeafletMarker = function LeafletMarker({ position = [], tooltip, ...other }) {
   return (
     <Marker position={position} {...other}>
       {tooltip && <Tooltip>{tooltip}</Tooltip>}
@@ -12,15 +12,17 @@ export const LeafletMarker = ({ position = [], tooltip, ...other }) => {
   );
 };
 
-export const LeafletCircleMarker = forwardRef((props, ref) => {
-  const Component = ({
-    markerProps = { center: GEO_LOCATION.SL_CENTER, radius: 12, stroke: false, fillOpacity: 0.4 },
-    popup,
-    ...other
-  }) => (
+export const LeafletCircleMarker = forwardRef(
+  (
+    {
+      markerProps = { center: GEO_LOCATION.SL_CENTER, radius: 12, stroke: false, fillOpacity: 0.4 },
+      popup,
+      ...other
+    },
+    ref,
+  ) => (
     <CircleMarker {...markerProps} {...other}>
       <Popup ref={ref}>{popup}</Popup>
     </CircleMarker>
-  );
-  return <Component {...props} />;
-});
+  ),
+);
