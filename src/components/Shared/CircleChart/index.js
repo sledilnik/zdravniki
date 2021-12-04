@@ -38,7 +38,7 @@ const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
   };
 });
 
-const CircleChart = function ({ percent = 50, stroke, size = '2rem', noText = true }) {
+const CircleChart = function CircleChart({ percent = 50, stroke, size = '2rem', noText = true }) {
   return (
     <CircleChartWrapper size={size} stroke={stroke}>
       <svg viewBox="0 0 36 36">

@@ -12,7 +12,7 @@ import MainMap from './Map';
 
 const { GEO_LOCATION } = MAP;
 
-const Doctors = function ({ itemsPerPage = 10 }) {
+const Doctors = function Doctors({ itemsPerPage = 10 }) {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
@@ -33,7 +33,6 @@ const Doctors = function ({ itemsPerPage = 10 }) {
 
   const handleFlyToDoctor = (event, { geoLocation, id }) => {
     if (!geoLocation) {
-      console.warn('No geo location!');
       return;
     }
     window.scrollTo(0, 0);

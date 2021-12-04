@@ -8,7 +8,7 @@ const DoctorsContext = createContext({});
 
 export const DoctorsConsumer = DoctorsContext.Consumer;
 
-const DoctorsProvider = function ({ children }) {
+const DoctorsProvider = function DoctorsProvider({ children }) {
   const [doctors, setDoctors] = useState(null);
   const [dicts, setDicts] = useState({ doctors: null, institutions: null, types: null });
 

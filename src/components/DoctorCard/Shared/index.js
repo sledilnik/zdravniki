@@ -11,14 +11,19 @@ import {
 import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
-export const Link = function ({ children, ...props }) {
+export const Link = function ConditionalLink({ children, ...props }) {
   return (
     <Styled.Link rel="noopener noreferrer" target="_blank" underline="none" {...props}>
       {children}
     </Styled.Link>
   );
 };
-export const ConditionalLink = function ({ children, to, component = 'div', ...props }) {
+export const ConditionalLink = function ConditionalLink({
+  children,
+  to,
+  component = 'div',
+  ...props
+}) {
   return (
     <Typography component={component} {...props}>
       {to ? <Link href={to}>{children}</Link> : children}
@@ -26,7 +31,7 @@ export const ConditionalLink = function ({ children, to, component = 'div', ...p
   );
 };
 
-export const DoubleChip = function ({ type, ageGroup }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = TypeTranslate[type];
   const drAgeGroup = AgeGroupTranslate?.[ageGroup] ?? 'adults';
   const typeIcon = TypeIconTranslate[type];

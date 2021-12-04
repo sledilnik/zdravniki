@@ -8,7 +8,7 @@ import MapEvents from './MapEvents';
 const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
-  const DoctorsMap = function ({
+  const DoctorsMap = function DoctorsMap({
     doctors,
     center = GEO_LOCATION.SL_CENTER,
     zoom = MAP.ZOOM,

@@ -1,10 +1,10 @@
 import { t } from 'i18next';
 import { Link } from 'react-router-dom';
+import * as SEO from 'components/SEO';
 import * as Styled from './styles/PageNotFound';
 import image from '../assets/caution-tape.png';
-import * as SEO from 'components/SEO';
 
-export default function PageNotFound() {
+const PageNotFound = function PageNotFound() {
   const meta = [{ name: 'robots', content: 'noindex' }];
 
   return (
@@ -24,4 +24,6 @@ export default function PageNotFound() {
       </Styled.CustomContainer>
     </>
   );
-}
+};
+
+export default PageNotFound;

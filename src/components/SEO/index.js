@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-export const Static = ({ children }) => {
+export const Static = function Static({ children }) {
   return (
     <Helmet>
       <html lang="en" />
@@ -11,6 +11,6 @@ export const Static = ({ children }) => {
   );
 };
 
-export const Dynamic = ({ title, meta = [], lang = 'sl', ...props }) => {
+export const Dynamic = function Dynamic({ title, meta = [], lang = 'sl', ...props }) {
   return <Helmet title={title} htmlAttributes={{ lang }} meta={meta} {...props} />;
 };

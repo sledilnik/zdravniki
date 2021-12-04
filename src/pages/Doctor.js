@@ -15,18 +15,14 @@ const Doctor = function Doctor() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    allDoctors?.find(aDoctor => {
-      if (aDoctor.name.toLowerCase() === priimekIme.replaceAll('-', ' ')) {
-        setDoctor(aDoctor);
-      }
-      
-      allDoctors && _doctor && setDoctor(_doctor);
+    const _doctor = allDoctors?.find(d => d.name.toLowerCase() === priimekIme.replaceAll('-', ' '));
 
-      if (allDoctors && !_doctor) {
-        navigate('/');
-      }
-      return null;
-    });
+    setDoctor(_doctor);
+
+    if (allDoctors && !_doctor) {
+      navigate('/');
+    }
+    return null;
   }, [allDoctors, priimekIme, navigate]);
 
   return (

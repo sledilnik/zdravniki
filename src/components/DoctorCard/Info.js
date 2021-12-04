@@ -10,7 +10,7 @@ import * as Shared from './Shared';
 import { DoctorTypeTranslate } from './dicts';
 import { toPercent } from './utils';
 
-const Info = function ({ doctor, handleZoom = () => {} }) {
+const Info = function Info({ doctor, handleZoom = () => {} }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
@@ -19,7 +19,6 @@ const Info = function ({ doctor, handleZoom = () => {} }) {
   const handleDoctorCard = type => {
     const drPath = DoctorTypeTranslate?.[type];
     if (!drPath) {
-      console.error('No path!');
       return undefined;
     }
 
