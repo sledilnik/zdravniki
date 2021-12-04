@@ -1,5 +1,6 @@
 import * as Styled from './styles';
-export default function Popper(props) {
+
+const Popper = function Popper(props) {
   return (
     <Styled.Popper
       modifiers={[
@@ -14,4 +15,6 @@ export default function Popper(props) {
       {...props}
     />
   );
-}
+};
+
+export default Popper;

@@ -9,7 +9,7 @@ const Faq = React.lazy(() => import('../pages/Faq'));
 const Doctor = React.lazy(() => import('../pages/Doctor'));
 const PageNotFound = React.lazy(() => import('../pages/PageNotFound'));
 
-const Router = () => {
+const Router = function () {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (

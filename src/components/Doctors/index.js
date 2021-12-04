@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import { filterContext } from 'context';
-import MainMap from './Map';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
 import Button from '@mui/material/Button';
-import * as Styled from './styles';
-import { MainScrollTop } from './../Shared/ScrollTop';
 import { t } from 'i18next';
+import * as Styled from './styles';
+import { MainScrollTop } from '../Shared/ScrollTop';
+import MainMap from './Map';
 
 const { GEO_LOCATION } = MAP;
 
-const Doctors = ({ itemsPerPage = 10 }) => {
+const Doctors = function ({ itemsPerPage = 10 }) {
   const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));

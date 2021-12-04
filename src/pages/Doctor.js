@@ -8,23 +8,25 @@ import { Loader } from 'components/Shared';
 import { useFilter } from 'context/filterContext';
 import { leafletContext } from 'context';
 
-export default function Doctor() {
+const Doctor = function Doctor() {
   const { allDoctors } = useFilter();
   const { priimekIme } = useParams();
   const [doctor, setDoctor] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const _doctor = allDoctors?.find(
-      doctor => doctor.name.toLowerCase() === priimekIme.replaceAll('-', ' '),
-    );
+    allDoctors?.find(aDoctor => {
+      if (aDoctor.name.toLowerCase() === priimekIme.replaceAll('-', ' ')) {
+        setDoctor(aDoctor);
+      }
+      
+      allDoctors && _doctor && setDoctor(_doctor);
 
-    allDoctors && _doctor && setDoctor(_doctor);
-
-    if (allDoctors && !_doctor) {
-      navigate('/');
-    }
-    return null;
+      if (allDoctors && !_doctor) {
+        navigate('/');
+      }
+      return null;
+    });
   }, [allDoctors, priimekIme, navigate]);
 
   return (
@@ -47,4 +49,6 @@ export default function Doctor() {
       )}
     </Box>
   );
-}
+};
+
+export default Doctor;

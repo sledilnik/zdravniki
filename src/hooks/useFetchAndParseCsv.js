@@ -24,11 +24,11 @@ const useFetchAndParseCsv = url => {
               setError(new Error('No data in csv file!'));
             }
 
-            data && setParsed(data);
+            if (data) setParsed(data);
           },
         });
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        setError(err);
       } finally {
         setIsFetching(false);
       }
