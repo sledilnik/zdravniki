@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import { t } from 'i18next';
 import { Chip } from '../Shared';
 
-export const User = function () {
+export const User = function User() {
   const [position, setPosition] = useState(null);
   const map = useMap();
 
@@ -23,7 +23,7 @@ export const User = function () {
   return position && <Markers.LeafletMarker position={position} tooltip={t('yourLocation')} />;
 };
 
-const PopUpData = function ({ doctor }) {
+const PopUpData = function PopUpData({ doctor }) {
   const accepts = doctor.accepts === 'y';
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 

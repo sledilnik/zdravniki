@@ -8,7 +8,7 @@ import * as Styled from './styles';
 import Info from './Info';
 import PageInfo from './PageInfo';
 
-const DoctorCard = function ({ doctor, isPage = false }) {
+const DoctorCard = function DoctorCard({ doctor, isPage = false }) {
   const accepts = doctor.accepts === 'y';
   const { map, setMap } = useLeafletContext();
 

@@ -1,7 +1,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react';
 import { t } from 'i18next';
 import Tooltip from '@mui/material/Tooltip';
-import { Icon } from 'components/Shared/Icons';
+import { Loader } from 'components/Shared';
 import * as Styled from './styles/Markdown';
 
 const Faq = function Faq() {
@@ -23,17 +23,12 @@ const Faq = function Faq() {
 
   // copy url of the definition
   const handleCopy = e => {
-    const element = e.target;
-    const dummy = document.createElement('input');
+    const element = e.currentTarget;
     let text = `${window.location.href}#${element.nextSibling.id}`;
     if (window.location.hash !== '') {
       text = `${window.location.href.split('#')[0]}#${element.nextSibling.id}`;
     }
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
+    navigator.clipboard.writeText(text);
     element.className = 'icon check';
     element.title = t('copied');
     setTimeout(() => {
@@ -67,11 +62,19 @@ const Faq = function Faq() {
           }
         }
       });
+      // append attribute target="blank" to all external links
+      if (faqRef.current) {
+        faqRef.current.querySelectorAll('a').forEach(el => {
+          if (/^(https?:)?\/\//.test(el.getAttribute('href'))) {
+            el.setAttribute('target', '_blank');
+          }
+        });
+      }
     }
   }, [faqRef, response]);
 
   if (response == null) {
-    return t('loading');
+    return <Loader.Center />;
   }
 
   return (
@@ -85,9 +88,7 @@ const Faq = function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={collapsableKey}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
+                <Styled.IconWrapper className="icon copy" alt={t('copy')} onClick={handleCopy} />
               </Tooltip>
               <Styled.Details id={faq.slug} ref={scroll}>
                 <Styled.Summary>{faq.question}</Styled.Summary>
@@ -102,9 +103,7 @@ const Faq = function Faq() {
           return (
             <Styled.Collapsable className="collapsable" key={collapsableKey}>
               <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
+                <Styled.IconWrapper className="icon copy" alt={t('copy')} onClick={handleCopy} />
               </Tooltip>
               <Styled.Details id={glossary.slug} ref={scroll}>
                 <Styled.Summary>{glossary.term}</Styled.Summary>

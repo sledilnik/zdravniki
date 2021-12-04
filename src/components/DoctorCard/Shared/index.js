@@ -11,22 +11,36 @@ import {
 import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
-export const Link = function ({ children, ...props }) {
+
+// todo find better solution
+export const Link = function Link({ children, self, ...props }) {
+  const target = self ? {} : { target: '_blank' };
   return (
-    <Styled.Link rel="noopener noreferrer" target="_blank" underline="none" {...props}>
+    <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
       {children}
     </Styled.Link>
   );
 };
-export const ConditionalLink = function ({ children, to, component = 'div', ...props }) {
+export const ConditionalLink = function ConditionalLink({
+  children,
+  to,
+  component = 'div',
+  self,
+  ...props
+}) {
+  const link = (
+    <Link href={to} self={self}>
+      {children}
+    </Link>
+  );
   return (
     <Typography component={component} {...props}>
-      {to ? <Link href={to}>{children}</Link> : children}
+      {to ? link : children}
     </Typography>
   );
 };
 
-export const DoubleChip = function ({ type, ageGroup }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = TypeTranslate[type];
   const drAgeGroup = AgeGroupTranslate?.[ageGroup] ?? 'adults';
   const typeIcon = TypeIconTranslate[type];

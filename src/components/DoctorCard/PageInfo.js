@@ -12,7 +12,7 @@ import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = function ({ doctor }) {
+const PageInfo = function PageInfo({ doctor }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -57,7 +57,7 @@ const PageInfo = function ({ doctor }) {
             <Typography component="div" variant="body1">
               <Icons.Icon name="Phone" />
             </Typography>
-            <Shared.ConditionalLink to={doctor?.phone && `tel:${doctor.phone}`} variant="body1">
+            <Shared.ConditionalLink to={doctor.phone && `tel:${doctor.phone}`} self variant="body1">
               {doctor.phone}
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>

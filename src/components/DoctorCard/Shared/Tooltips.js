@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { t } from 'i18next';
 
-export const HeadQuotient = function ({ load }) {
+export const HeadQuotient = function HeadQuotient({ load }) {
   return (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
@@ -11,7 +11,7 @@ export const HeadQuotient = function ({ load }) {
   );
 };
 
-export const Availability = function () {
+export const Availability = function Availability() {
   return (
     <Stack sx={{ textAlign: 'left' }}>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>

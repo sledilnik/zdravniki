@@ -4,7 +4,7 @@ const LeafletContext = createContext();
 
 export const LeafletConsumer = LeafletContext.Consumer;
 
-export const LeafletProvider = function ({ children }) {
+export const LeafletProvider = function LeafletProvider({ children }) {
   const [map, setMap] = useState(null);
 
   const value = useMemo(() => ({ map, setMap }), [map]);
