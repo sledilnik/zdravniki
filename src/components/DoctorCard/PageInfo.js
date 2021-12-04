@@ -12,7 +12,7 @@ import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = function ({ doctor }) {
+const PageInfo = function PageInfo({ doctor }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 

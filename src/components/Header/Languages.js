@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import i18next, { languages } from 'i18n';
 
-const Languages = function () {
+const Languages = function Languages() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const [language, setLanguage] = useState(lng);
   const navigate = useNavigate();

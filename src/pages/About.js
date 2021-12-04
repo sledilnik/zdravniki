@@ -35,7 +35,7 @@ const About = function About() {
     if (aboutRef.current) {
       aboutRef.current.querySelectorAll('a').forEach(el => {
         if (/^(https?:)?\/\//.test(el.getAttribute('href'))) {
-          el.target = '_blank';
+          el.setAttribute('target', '_blank');
         }
       });
     }

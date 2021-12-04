@@ -16,7 +16,6 @@ const useFetchAndParseCsv = url => {
           complete: results => {
             const { data, errors } = results;
             if (errors.length > 0) {
-              console.log(errors);
               setError(new Error('Somenthing went wrong during parsing csv file!'));
             }
 

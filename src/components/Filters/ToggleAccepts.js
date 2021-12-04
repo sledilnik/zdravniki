@@ -5,7 +5,7 @@ import { t } from 'i18next';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
-  const ToggleAccepts = function (props) {
+  const ToggleAccepts = function ToggleAccepts(props) {
     const { accept, setAccept } = useFilter();
 
     const injectedProps = {

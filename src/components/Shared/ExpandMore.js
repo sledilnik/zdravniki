@@ -12,7 +12,7 @@ const ExpandMoreButton = styled(({ expand, ...other }) => <IconButton {...other}
   }),
 );
 
-const ExpandMore = function ({ expand, ...other }) {
+const ExpandMore = function ExpandMore({ expand, ...other }) {
   return (
     <ExpandMoreButton expand={expand} {...other}>
       <ExpandMoreIcon />

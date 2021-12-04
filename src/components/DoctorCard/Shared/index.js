@@ -35,12 +35,12 @@ export const ConditionalLink = function ConditionalLink({
   );
   return (
     <Typography component={component} {...props}>
-      {to ? link : <>{children}</>}
+      {to ? link : children}
     </Typography>
   );
 };
 
-export const DoubleChip = function ({ type, ageGroup }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = TypeTranslate[type];
   const drAgeGroup = AgeGroupTranslate?.[ageGroup] ?? 'adults';
   const typeIcon = TypeIconTranslate[type];

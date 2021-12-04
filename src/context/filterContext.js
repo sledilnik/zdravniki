@@ -5,7 +5,7 @@ const FilterContext = createContext();
 
 export const FilterConsumer = FilterContext.Consumer;
 
-const FilterProvider = function ({ children }) {
+const FilterProvider = function FilterProvider({ children }) {
   const { doctors: _doctors } = useDoctors();
 
   const [doctorType, setDoctorType] = useState('gp');

@@ -9,7 +9,7 @@ import SocialLinks from './SocialLinks';
 import * as Styled from './styles';
 import Popper from './Popper';
 
-const Header = function () {
+const Header = function Header() {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
