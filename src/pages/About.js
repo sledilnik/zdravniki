@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
 import * as Styled from './styles/Markdown';
-import { useRef } from 'react';
 
 const MD = {
   en: enAbout,
