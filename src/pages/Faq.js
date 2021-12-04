@@ -2,7 +2,6 @@ import { useRef, useCallback, useEffect, useState } from 'react';
 import { t } from 'i18next';
 import Tooltip from '@mui/material/Tooltip';
 import { Loader } from 'components/Shared';
-import { Icon } from 'components/Shared/Icons';
 import * as Styled from './styles/Markdown';
 
 const Faq = function Faq() {

@@ -7,11 +7,11 @@ const About = React.lazy(() => import('../pages/About'));
 const Faq = React.lazy(() => import('../pages/Faq'));
 const Doctor = React.lazy(() => import('../pages/Doctor'));
 
-const Temp = function () {
+const Temp = function Temp() {
   return <div>Coming soon...</div>;
 };
 
-const Router = function () {
+const Router = function Router() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (

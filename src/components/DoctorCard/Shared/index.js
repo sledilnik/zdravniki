@@ -13,7 +13,7 @@ import * as Styled from '../styles';
 export * as Tooltip from './Tooltips';
 
 // todo find better solution
-export const Link = function ({ children, self, ...props }) {
+export const Link = function Link({ children, self, ...props }) {
   const target = self ? {} : { target: '_blank' };
   return (
     <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
@@ -21,7 +21,13 @@ export const Link = function ({ children, self, ...props }) {
     </Styled.Link>
   );
 };
-export const ConditionalLink = function ({ children, to, component = 'div', self, ...props }) {
+export const ConditionalLink = function ConditionalLink({
+  children,
+  to,
+  component = 'div',
+  self,
+  ...props
+}) {
   const link = (
     <Link href={to} self={self}>
       {children}
