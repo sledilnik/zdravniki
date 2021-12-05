@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
