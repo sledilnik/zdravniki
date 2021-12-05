@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
 import { Loader } from 'components/Shared';
+import * as SEO from 'components/SEO';
 
 import { doctorsContext, leafletContext } from 'context';
 
@@ -9,6 +12,7 @@ import { useEffect } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
+  const { t } = useTranslation();
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
@@ -24,20 +28,23 @@ const Home = function Home() {
   }
 
   return (
-    <Styled.Main id="main-content">
-      {isFetching && !hasError ? (
-        <Loader.Center />
-      ) : (
-        <>
-          <Filters />
-          <Styled.Box>
-            <leafletContext.LeafletProvider>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-            </leafletContext.LeafletProvider>
-          </Styled.Box>
-        </>
-      )}
-    </Styled.Main>
+    <>
+      <SEO.Dynamic title={t('SEO.title.home')} />
+      <Styled.Main id="main-content">
+        {isFetching && !hasError ? (
+          <Loader.Center />
+        ) : (
+          <>
+            <Filters />
+            <Styled.Box>
+              <leafletContext.LeafletProvider>
+                <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
+              </leafletContext.LeafletProvider>
+            </Styled.Box>
+          </>
+        )}
+      </Styled.Main>
+    </>
   );
 };
 

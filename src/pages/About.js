@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
+import * as SEO from 'components/SEO';
 import * as Styled from './styles/Markdown';
 
 const MD = {
@@ -9,6 +11,7 @@ const MD = {
 };
 
 const About = function About() {
+  const { t } = useTranslation();
   const [postMarkdown, setPostMarkdown] = useState('');
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
@@ -30,13 +33,16 @@ const About = function About() {
   }, [lng]);
 
   return (
-    <Styled.CustomContainer id="main-content">
-      <Styled.StaticPageWrapper>
-        <span>
-          <Styled.Markdown>{postMarkdown}</Styled.Markdown>
-        </span>
-      </Styled.StaticPageWrapper>
-    </Styled.CustomContainer>
+    <>
+      <SEO.Dynamic title={t('SEO.title.about')} />
+      <Styled.CustomContainer id="main-content">
+        <Styled.StaticPageWrapper>
+          <span>
+            <Styled.Markdown>{postMarkdown}</Styled.Markdown>
+          </span>
+        </Styled.StaticPageWrapper>
+      </Styled.CustomContainer>
+    </>
   );
 };
 

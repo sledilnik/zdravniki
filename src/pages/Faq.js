@@ -1,10 +1,12 @@
 import { useRef, useCallback, useEffect, useState } from 'react';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
 import { Icon } from 'components/Shared/Icons';
+import * as SEO from 'components/SEO';
 import * as Styled from './styles/Markdown';
 
 const Faq = function Faq() {
+  const { t } = useTranslation();
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const faqRef = useRef();
   const [response, setResponse] = useState();
@@ -75,46 +77,51 @@ const Faq = function Faq() {
   }
 
   return (
-    <Styled.CustomContainer className="custom-container">
-      <Styled.StaticPageWrapper className="static-page-wrapper" ref={faqRef}>
-        <h1>{t('faq.title')}</h1>
-        <p>{t('faq.description')}</p>
-        <br />
-        {response.faq.map((faq, index) => {
-          const collapsableKey = `collapsable-faq-${index}`;
-          return (
-            <Styled.Collapsable className="collapsable" key={collapsableKey}>
-              <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
-              </Tooltip>
-              <Styled.Details id={faq.slug} ref={scroll}>
-                <Styled.Summary>{faq.question}</Styled.Summary>
-                <Styled.Markdown key={`${faq.slug}-md`}>{faq.answer}</Styled.Markdown>
-              </Styled.Details>
-            </Styled.Collapsable>
-          );
-        })}
-        <h2>{t('faq.glossary')}</h2>
-        {response.glossary.map((glossary, index) => {
-          const collapsableKey = `collapsable-glossary-${index}`;
-          return (
-            <Styled.Collapsable className="collapsable" key={collapsableKey}>
-              <Tooltip title={<div>{t('copy')}</div>} placement="top">
-                <Styled.IconWrapper>
-                  <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
-                </Styled.IconWrapper>
-              </Tooltip>
-              <Styled.Details id={glossary.slug} ref={scroll}>
-                <Styled.Summary>{glossary.term}</Styled.Summary>
-                <Styled.Markdown key={`${glossary.slug}-md`}>{glossary.definition}</Styled.Markdown>
-              </Styled.Details>
-            </Styled.Collapsable>
-          );
-        })}
-      </Styled.StaticPageWrapper>
-    </Styled.CustomContainer>
+    <>
+      <SEO.Dynamic title={t('SEO.title.faq')} />
+      <Styled.CustomContainer className="custom-container">
+        <Styled.StaticPageWrapper className="static-page-wrapper" ref={faqRef}>
+          <h1>{t('faq.title')}</h1>
+          <p>{t('faq.description')}</p>
+          <br />
+          {response.faq.map((faq, index) => {
+            const collapsableKey = `collapsable-faq-${index}`;
+            return (
+              <Styled.Collapsable className="collapsable" key={collapsableKey}>
+                <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                  <Styled.IconWrapper>
+                    <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                  </Styled.IconWrapper>
+                </Tooltip>
+                <Styled.Details id={faq.slug} ref={scroll}>
+                  <Styled.Summary>{faq.question}</Styled.Summary>
+                  <Styled.Markdown key={`${faq.slug}-md`}>{faq.answer}</Styled.Markdown>
+                </Styled.Details>
+              </Styled.Collapsable>
+            );
+          })}
+          <h2>{t('faq.glossary')}</h2>
+          {response.glossary.map((glossary, index) => {
+            const collapsableKey = `collapsable-glossary-${index}`;
+            return (
+              <Styled.Collapsable className="collapsable" key={collapsableKey}>
+                <Tooltip title={<div>{t('copy')}</div>} placement="top">
+                  <Styled.IconWrapper>
+                    <Icon name="Copy" onClick={handleCopy} alt={t('copy')} />
+                  </Styled.IconWrapper>
+                </Tooltip>
+                <Styled.Details id={glossary.slug} ref={scroll}>
+                  <Styled.Summary>{glossary.term}</Styled.Summary>
+                  <Styled.Markdown key={`${glossary.slug}-md`}>
+                    {glossary.definition}
+                  </Styled.Markdown>
+                </Styled.Details>
+              </Styled.Collapsable>
+            );
+          })}
+        </Styled.StaticPageWrapper>
+      </Styled.CustomContainer>
+    </>
   );
 };
 
