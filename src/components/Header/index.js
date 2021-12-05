@@ -1,16 +1,15 @@
 import { useRef, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Box, TextField } from '@mui/material';
+import * as Icons from 'components/Shared/Icons';
+import i18next, { languages } from 'i18n';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
-import * as Icons from 'components/Shared/Icons';
 import * as Styled from './styles';
-import i18next, { languages } from 'i18n';
 import Popper from './Popper';
-import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = function Header() {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -97,9 +96,10 @@ const Header = () => {
             options={languages}
             disableClearable
             defaultValue={languages.find(l => l.code === lng)}
-            getOptionLabel={option =>
-              typeof option?.code === 'undefined' ? '' : option.code.toUpperCase()
-            }
+            getOptionLabel={option => {
+              const code = option?.code;
+              return typeof code === 'undefined' ? '' : code.toUpperCase();
+            }}
             onChange={handleChangeLocale}
             renderOption={(props, option) => {
               const { name } = option;

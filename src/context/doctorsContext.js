@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { CSV_URL } from 'const';
-import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
 import { createDoctors } from 'services';
 import { fromArrayWithHeader } from 'utils';
+import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
 
 const DoctorsContext = createContext({});
 
 export const DoctorsConsumer = DoctorsContext.Consumer;
 
-function DoctorsProvider({ children }) {
+const DoctorsProvider = function DoctorsProvider({ children }) {
   const [doctors, setDoctors] = useState(null);
   const [dicts, setDicts] = useState({ doctors: null, institutions: null, types: null });
 
@@ -17,7 +17,11 @@ function DoctorsProvider({ children }) {
   const _doctors = useFetchAndParseCsv(CSV_URL.DOCTORS);
 
   const isFetching = _doctors.isFetching || _institutions.isFetching || _doctorTypes.isFetching;
-  const errors = [_doctors.error, _institutions.error, _doctorTypes.error];
+  const errors = useMemo(
+    () => [_doctors.error, _institutions.error, _doctorTypes.error],
+    [_doctorTypes.error, _doctors.error, _institutions.error],
+  );
+
   const doctorsFetched =
     (!!_doctors.parsed || _doctors.error) &&
     (!!_institutions.parsed || _institutions.error) &&
@@ -34,12 +38,12 @@ function DoctorsProvider({ children }) {
     }
   }, [_doctorTypes.parsed, _doctors.parsed, _institutions.parsed, doctorsFetched]);
 
-  return (
-    <DoctorsContext.Provider value={{ isFetching, errors, doctors, dicts }}>
-      {children}
-    </DoctorsContext.Provider>
+  const value = useMemo(
+    () => ({ isFetching, errors, doctors, dicts }),
+    [dicts, doctors, errors, isFetching],
   );
-}
+  return <DoctorsContext.Provider value={value}>{children}</DoctorsContext.Provider>;
+};
 
 function useDoctors() {
   const context = useContext(DoctorsContext);

@@ -1,16 +1,17 @@
 import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 import { Loader } from 'components/Shared';
+
 const Home = React.lazy(() => import('../pages/Home'));
 const About = React.lazy(() => import('../pages/About'));
 const Faq = React.lazy(() => import('../pages/Faq'));
 const Doctor = React.lazy(() => import('../pages/Doctor'));
 
-const Temp = () => {
+const Temp = function Temp() {
   return <div>Coming soon...</div>;
 };
 
-const Router = () => {
+const Router = function Router() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   return (

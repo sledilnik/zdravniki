@@ -13,7 +13,7 @@ export default function useEventListener(
   }, [callback]);
 
   useEffect(() => {
-    if (element == null) return;
+    if (element == null) return undefined;
     const handler = e => callbackRef.current(e);
     element.addEventListener(eventType, handler, useCapture);
 

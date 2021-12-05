@@ -2,7 +2,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';
 import { Icon } from '../styles/Icon';
 
-export const Text = ({ children, show }) => {
+export const Text = function Text({ children, show }) {
   return (
     <Typography
       component="span"
@@ -16,7 +16,7 @@ export const Text = ({ children, show }) => {
     </Typography>
   );
 };
-export const TextAllways = ({ children, show }) => {
+export const TextAllways = function TextAllways({ children, show }) {
   return (
     <Typography
       component="span"
@@ -31,7 +31,13 @@ export const TextAllways = ({ children, show }) => {
   );
 };
 
-export const IconToggleButton = ({ accept, text, iconNames = [], always = false, ...props }) => {
+export const IconToggleButton = function IconToggleButton({
+  accept,
+  text,
+  iconNames = [],
+  always = false,
+  ...props
+}) {
   const show = accept === props.value;
 
   return (

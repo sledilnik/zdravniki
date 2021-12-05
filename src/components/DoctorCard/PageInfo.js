@@ -1,18 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
-import Accepts from './Accepts';
 import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
+import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = ({ doctor }) => {
+const PageInfo = function PageInfo({ doctor }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -57,31 +56,26 @@ const PageInfo = ({ doctor }) => {
             <Typography component="div" variant="body1">
               <Icons.Icon name="Phone" />
             </Typography>
-            <Shared.ConditionalLink to={doctor?.phone && `tel:${doctor.phone}`} variant="body1">
+            <Shared.ConditionalLink to={doctor.phone && `tel:${doctor.phone}`} self variant="body1">
               {doctor.phone}
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
 
         <Stack sx={{ mt: { md: 2 } }}>
-          <Tooltip title={<Shared.Tooltip.Availability />}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Styled.InfoWrapper>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
                 <Accepts accepts={accepts.toString()} />
               </Styled.InfoWrapper>
-              <Styled.InfoWrapper>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <SingleChart size="26px" percent={doctor.availability} />
-                  <Stack>
-                    <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-                    <Styled.Availability variant="caption">
-                      {t('headQuotient')} {doctor.load}
-                    </Styled.Availability>
-                  </Stack>
-                </Stack>
+            </Tooltip>
+            <Tooltip title={<Shared.Tooltip.Availability />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <SingleChart size="26px" percent={doctor.availability} />
+                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
               </Styled.InfoWrapper>
-            </Stack>
-          </Tooltip>
+            </Tooltip>
+          </Stack>
         </Stack>
       </div>
       <div>

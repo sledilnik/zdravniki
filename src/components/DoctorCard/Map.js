@@ -1,12 +1,13 @@
 import { MAP } from 'const';
 import Leaflet, { Markers } from 'components/Shared/Leaflet';
+import MapEvents from './MapEvents';
 
 const { GEO_LOCATION } = MAP;
 
 function withLeaflet(Component) {
   const defaultGeoLocation = { lat: GEO_LOCATION.SL_CENTER[0], lon: GEO_LOCATION.SL_CENTER[1] };
 
-  const DoctorMap = ({ doctor, handleRoomIconClick = () => {}, ...other }) => {
+  const DoctorMap = function DoctorMap({ doctor, handleRoomIconClick = () => {}, ...other }) {
     const {
       geoLocation: { lat, lon },
     } = doctor ?? { geoLocation: defaultGeoLocation };
@@ -20,9 +21,10 @@ function withLeaflet(Component) {
 
     const injectedProps = {
       center: position,
-      zoom: 10,
+      zoom: MAP.MAX_ZOOM,
       dragging: false,
-      zoomControl: false,
+      minZoom: MAP.MIN_ZOOM,
+      maxZoom: MAP.MAX_ZOOM,
       scrollWheelZoom: false,
       doubleClickZoom: false,
       ...other,
@@ -30,6 +32,7 @@ function withLeaflet(Component) {
     return (
       <Component {...injectedProps}>
         <Markers.LeafletMarker position={position} eventHandlers={eventHandlers} />
+        <MapEvents geoLocation={doctor?.geoLocation} />
       </Component>
     );
   };

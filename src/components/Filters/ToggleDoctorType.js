@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
-  const ToggleDoctorType = props => {
+  return function ToggleDoctorType(props) {
     const { doctorType, setDoctorType } = useFilter();
     const [drType, setDrType] = useState('gp');
     const [ageGroup, setAgeGroup] = useState('adults');
@@ -43,7 +43,7 @@ function withToggleGroup(Component) {
         setAgeGroup('adults');
       }
 
-      doctorType !== _doctorType && setDoctorType(TypeTranslate[_doctorType]);
+      if (doctorType !== _doctorType) setDoctorType(TypeTranslate[_doctorType]);
     }, [drType, ageGroup, doctorType, setDoctorType]);
 
     return (
@@ -104,8 +104,6 @@ function withToggleGroup(Component) {
       </>
     );
   };
-
-  return ToggleDoctorType;
 }
 
 export default withToggleGroup(ToggleGroup);

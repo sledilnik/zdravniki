@@ -17,7 +17,7 @@ Sodelavci projekta:
 - [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — FAQ
 - [Luka Renko](https://twitter.com/lukarenko) — podatki
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
-- [Mojca Miklavec]() — podatki
+- [Mojca Miklavec](https://github.com/mojca) — podatki
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki
 - [Veronika Vezjak]() — FAQ
