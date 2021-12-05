@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
@@ -64,24 +63,19 @@ const PageInfo = function PageInfo({ doctor }) {
         )}
 
         <Stack sx={{ mt: { md: 2 } }}>
-          <Tooltip title={<Shared.Tooltip.Availability />}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Styled.InfoWrapper>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
                 <Accepts accepts={accepts.toString()} />
               </Styled.InfoWrapper>
-              <Styled.InfoWrapper>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <SingleChart size="26px" percent={doctor.availability} />
-                  <Stack>
-                    <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-                    <Styled.Availability variant="caption">
-                      {`${t('headQuotient')} ${doctor.load}`}
-                    </Styled.Availability>
-                  </Stack>
-                </Stack>
+            </Tooltip>
+            <Tooltip title={<Shared.Tooltip.Availability />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <SingleChart size="26px" percent={doctor.availability} />
+                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
               </Styled.InfoWrapper>
-            </Stack>
-          </Tooltip>
+            </Tooltip>
+          </Stack>
         </Stack>
       </div>
       <div>
