@@ -1,5 +1,6 @@
 import { MAP } from 'const';
 import Leaflet, { Markers } from 'components/Shared/Leaflet';
+import MapEvents from './MapEvents';
 
 const { GEO_LOCATION } = MAP;
 
@@ -22,7 +23,8 @@ function withLeaflet(Component) {
       center: position,
       zoom: 10,
       dragging: false,
-      zoomControl: false,
+      minZoom: MAP.MIN_ZOOM,
+      maxZoom: MAP.MAX_ZOOM,
       scrollWheelZoom: false,
       doubleClickZoom: false,
       ...other,
@@ -30,6 +32,7 @@ function withLeaflet(Component) {
     return (
       <Component {...injectedProps}>
         <Markers.LeafletMarker position={position} eventHandlers={eventHandlers} />
+        <MapEvents geoLocation={doctor?.geoLocation} />
       </Component>
     );
   };
