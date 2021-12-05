@@ -154,7 +154,6 @@ export const Availability = styled(TypographyBase)(({ theme }) => ({
   color: 'inherit',
   whiteSpace: 'nowrap',
   opacity: theme.customOpacity.half,
-  ':last-of-type': { opacity: 0.3 },
 }));
 
 export const Link = styled(MuiLink)(({ theme }) => ({
