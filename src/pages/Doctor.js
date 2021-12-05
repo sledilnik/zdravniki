@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 import DoctorCard from 'components/DoctorCard';
@@ -11,6 +11,7 @@ import { leafletContext } from 'context';
 const Doctor = function Doctor() {
   const { allDoctors } = useFilter();
   const { priimekIme } = useParams();
+  const { pathname } = useLocation();
   const [doctor, setDoctor] = useState();
   const navigate = useNavigate();
 
@@ -20,10 +21,10 @@ const Doctor = function Doctor() {
     setDoctor(_doctor);
 
     if (allDoctors && !_doctor) {
-      navigate('/');
+      navigate('/PageNotFound', { state: { pathname } });
     }
     return null;
-  }, [allDoctors, priimekIme, navigate]);
+  }, [allDoctors, priimekIme, navigate, pathname]);
 
   return (
     <Box
