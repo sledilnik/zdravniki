@@ -1,6 +1,8 @@
 import { styled } from '@mui/material/styles';
 import { memo } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-markercluster/dist/styles.min.css';
 
 export * as Markers from './Markers';
 
