@@ -1,41 +1,48 @@
 {
-    "loading": "Nalagam…",
-    "header": {
-        "menu": "Meni",
-        "home": "Imenik",
-        "reportError": "Prijavi napako",
-        "about": "O projektu",
-        "faq": "FAQ",
-        "support": "Podpri!",
-        "sledilnik": "Sledilnik.org"
-    },
-    "accepts": "sprejema",
-    "rejects": "ne sprejema",
-    "all": "vsi",
-    "generalPractitioner": "družinski zdravnik",
-    "dentist": "zobozdravnik",
-    "gynecologist": "ginekolog",
-    "adults": "odrasli",
-    "students": "študenti",
-    "youth": "mladina",
-    "search": "Išči…",
-    "headQuotient": "Glavarinski količnik",
-    "doctorAvailability": "Zdravnik z obsegom zaposlitve manj kot 100% ne dela vse dni v tednu ali polni delovni čas (npr. zdravnik z 20% lahko dela le en dan v tednu).",
-    "yourLocation": "Tvoja lokacija",
-    "toContent": "Na vsebino",
-    "findAvailableDoctor": "Najdi prostega zdravnika",
-    "showAll": "Pokaži vse",
-    "copy": "Kopiraj",
-    "copied": "Skopirano!",
-    "faq": {
-        "title": "Pogosta vprašanja in odgovori",
-        "description": "V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno urgentno službo oz. pokličite 112.",
-        "glossary": "Slovar izrazov"
-    },
-    "pageNotFound": {
-        "notFound": "404: stran ne obstaja",
-        "somethingWentWrong": "ups… nekaj se je zalomilo :(",
-        "back": "Nazaj",
-        "imageDescription": "prometna stožca povezana z rumenim trakom"
+  "loading": "Nalagam…",
+  "header": {
+    "menu": "Meni",
+    "home": "Imenik",
+    "reportError": "Prijavi napako",
+    "about": "O projektu",
+    "faq": "FAQ",
+    "support": "Podpri!",
+    "sledilnik": "Sledilnik.org"
+  },
+  "accepts": "sprejema",
+  "rejects": "ne sprejema",
+  "all": "vsi",
+  "generalPractitioner": "družinski zdravnik",
+  "dentist": "zobozdravnik",
+  "gynecologist": "ginekolog",
+  "adults": "odrasli",
+  "students": "študenti",
+  "youth": "mladina",
+  "search": "Išči…",
+  "headQuotient": "Glavarinski količnik",
+  "doctorAvailability": "Zdravnik z obsegom zaposlitve manj kot 100% ne dela vse dni v tednu ali polni delovni čas (npr. zdravnik z 20% lahko dela le en dan v tednu).",
+  "yourLocation": "Tvoja lokacija",
+  "toContent": "Na vsebino",
+  "findAvailableDoctor": "Najdi prostega zdravnika",
+  "showAll": "Pokaži vse",
+  "copy": "Kopiraj",
+  "copied": "Skopirano!",
+  "faq": {
+    "title": "Pogosta vprašanja in odgovori",
+    "description": "V primeru, da potrebujete nujno medicinsko pomoč, se obrnite na lokalno urgentno službo oz. pokličite 112.",
+    "glossary": "Slovar izrazov"
+  },
+  "pageNotFound": {
+    "somethingWentWrong": "ups… nekaj se je zalomilo :(",
+    "back": "Nazaj",
+    "imageDescription": "prometna stožca povezana z rumenim trakom"
+  },
+  "SEO": {
+    "title": {
+      "notFound": "404: stran ne obstaja",
+      "home": "Zdravniki - Sledilnik",
+      "about": "O strani",
+      "faq": "Pogosta vprašanja"
     }
+  }
 }

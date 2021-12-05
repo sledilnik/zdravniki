@@ -11,7 +11,7 @@ const PageNotFound = function PageNotFound() {
 
   return (
     <>
-      <SEO.Dynamic title={t('pageNotFound.notFound')} meta={meta} />
+      <SEO.Dynamic title={t('SEO.title.notFound')} meta={meta} />
       <Styled.CustomContainer id="main-content">
         <Styled.PageNotFound>
           <p>{notFoundPath}</p>
