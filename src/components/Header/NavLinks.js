@@ -1,10 +1,12 @@
-import { t } from 'i18next';
-import i18next from 'i18n';
+import { useEffect } from 'react';
+import { t, changeLanguage } from 'i18next';
 import * as Styled from './styles';
 
 const NavLinks = function NavLinks() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
-  i18next.changeLanguage(lng);
+  useEffect(() => {
+    changeLanguage(lng);
+  }, [lng]);
 
   return (
     <>

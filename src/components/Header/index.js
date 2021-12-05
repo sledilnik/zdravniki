@@ -95,7 +95,7 @@ const Header = function Header() {
             }}
             options={languages}
             disableClearable
-            defaultValue={languages.find(l => l.code === lng)}
+            value={languages.find(l => l.code === lng)}
             getOptionLabel={option => {
               const code = option?.code;
               return typeof code === 'undefined' ? '' : code.toUpperCase();

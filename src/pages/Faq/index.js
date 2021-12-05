@@ -13,6 +13,9 @@ const Faq = function Faq() {
 
   useEffect(() => {
     document.body.style.overflow = 'auto';
+    return () => {
+      document.body.style = null;
+    };
   });
 
   // fetch data
