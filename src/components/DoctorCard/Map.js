@@ -21,7 +21,7 @@ function withLeaflet(Component) {
 
     const injectedProps = {
       center: position,
-      zoom: 10,
+      zoom: MAP.MAX_ZOOM,
       dragging: false,
       minZoom: MAP.MIN_ZOOM,
       maxZoom: MAP.MAX_ZOOM,
