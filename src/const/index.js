@@ -8,14 +8,16 @@ export { default as THEME } from './theme';
 const ZOOM = 8;
 const MIN_ZOOM = 8;
 const MAX_ZOOM = 16;
+
+// http://bboxfinder.com/#45.421,13.355,46.895,16.638
 const BOUNDS = {
   southWest: {
-    lat: 44.914249368747086,
-    lng: 12.991333007812502,
+    lat: 45.421,
+    lng: 13.355,
   },
   northEast: {
-    lat: 47.37603463349758,
-    lng: 16.655273437500004,
+    lat: 46.894,
+    lng: 16.637,
   },
 };
 
