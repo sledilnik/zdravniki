@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
+import slugify from 'slugify';
 
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
@@ -22,7 +23,8 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
       return undefined;
     }
 
-    const path = `/${lng}/${drPath}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`;
+    const slug = slugify(doctor?.name?.toLowerCase());
+    const path = `/${lng}/${drPath}/${slug}`;
     // todo pass filters' state as second argument
     return navigate(path);
   };
