@@ -26,7 +26,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
 
     const path = `/${lng}/${drPath}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`;
     // todo pass filters' state as second argument
-    return navigate(path, { state: { zoom: map?.getZoom() } });
+    return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
   };
 
   return (
