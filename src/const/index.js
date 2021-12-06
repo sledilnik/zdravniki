@@ -9,4 +9,16 @@ const ZOOM = 8;
 const MIN_ZOOM = 8;
 const MAX_ZOOM = 16;
 
-export const MAP = { ZOOM, MIN_ZOOM, MAX_ZOOM, GEO_LOCATION };
+// http://bboxfinder.com/#45.421,13.355,46.895,16.638
+const BOUNDS = {
+  southWest: {
+    lat: 45.421,
+    lng: 13.355,
+  },
+  northEast: {
+    lat: 46.894,
+    lng: 16.637,
+  },
+};
+
+export const MAP = { ZOOM, MIN_ZOOM, MAX_ZOOM, GEO_LOCATION, BOUNDS };

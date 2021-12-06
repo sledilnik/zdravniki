@@ -4,6 +4,7 @@ import { MAP } from 'const';
 import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 import MapEvents from './MapEvents';
+import 'react-leaflet-markercluster/dist/styles.min.css';
 
 const { GEO_LOCATION } = MAP;
 

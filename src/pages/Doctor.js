@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import slugify from 'slugify';
 import Box from '@mui/material/Box';
 
 import DoctorCard from 'components/DoctorCard';
@@ -16,7 +17,7 @@ const Doctor = function Doctor() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const _doctor = allDoctors?.find(d => d.name.toLowerCase() === priimekIme.replaceAll('-', ' '));
+    const _doctor = allDoctors?.find(d => slugify(d.name.toLowerCase()) === priimekIme);
 
     setDoctor(_doctor);
 
