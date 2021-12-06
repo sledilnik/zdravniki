@@ -24,8 +24,8 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
 
     // @TODO: These should be turned "ON" one by one
-    'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'warn',
+    'react/prop-types': 'warn',
   },
   settings: {
     'import/resolver': {
