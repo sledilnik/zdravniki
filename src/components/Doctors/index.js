@@ -47,10 +47,11 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
   };
 
   const zoom = state?.zoom ?? MAP.ZOOM;
+  const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
 
   return (
     <Styled.Wrapper>
-      <MainMap whenCreated={setMap} doctors={doctors} zoom={zoom} />
+      <MainMap whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />
       <Styled.WrapperInfinite id="scrollableDiv">
         <Styled.InfiniteScroll
           id="infiniteScroll"

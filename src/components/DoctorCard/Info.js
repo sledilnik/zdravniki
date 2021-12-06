@@ -28,7 +28,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
     const slug = slugify(doctor?.name?.toLowerCase());
     const path = `/${lng}/${drPath}/${slug}`;
     // todo pass filters' state as second argument
-    return navigate(path, { state: { zoom: map?.getZoom() } });
+    return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
   };
 
   return (

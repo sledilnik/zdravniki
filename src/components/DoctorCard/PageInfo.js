@@ -32,7 +32,13 @@ const PageInfo = function PageInfo({ doctor }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`, { state: { searchValue, zoom: state?.zoom ?? MAP.ZOOM } });
+    navigate(`/${lng}`, {
+      state: {
+        searchValue,
+        zoom: state?.zoom ?? MAP.ZOOM,
+        center: state?.center ?? MAP.GEO_LOCATION.SL_CENTER,
+      },
+    });
   };
 
   const [isEditing, setIsEditing] = useState(false);
