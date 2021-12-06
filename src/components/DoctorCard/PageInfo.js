@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
+import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
 import SingleChart from 'components/Shared/CircleChart';
@@ -85,7 +86,7 @@ const PageInfo = function PageInfo({ doctor }) {
               <Icons.Icon name="ArrowBack" />
             </IconButton>
             <Typography component="div" variant="body1">
-              nazaj na imenik
+              {t('backToHome')}
             </Typography>
           </Stack>
         </Styled.PageInfo.BackWrapper>
