@@ -26,7 +26,6 @@ module.exports = {
     // @TODO: These should be turned "ON" one by one
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
-    'no-underscore-dangle': 'off',
   },
   settings: {
     'import/resolver': {
