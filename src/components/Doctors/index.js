@@ -4,8 +4,6 @@ import { filterContext } from 'context';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
-import Button from '@mui/material/Button';
-import { t } from 'i18next';
 import L from 'leaflet';
 import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
@@ -18,7 +16,7 @@ const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10 }) {
-  const { doctors, doctorType, accept, searchValue, ids, setIds } = filterContext.useFilter();
+  const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
@@ -42,30 +40,19 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
     map?.flyTo(center, zoom);
   }, [map, doctorType, accept]);
 
-  const handleFlyToDoctor = (event, { geoLocation, id }) => {
+  const handleFlyToDoctor = (event, { geoLocation }) => {
     if (!geoLocation) {
       return;
     }
     window.scrollTo(0, 0);
-    setIds([id]);
     const { lat, lon } = geoLocation;
     map.setView([lat, lon]);
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const handleShowAll = () => {
-    map.flyTo(GEO_LOCATION.SL_CENTER, MAP.ZOOM);
-    setIds([]);
-  };
-
   return (
     <Styled.Wrapper>
       <MainMap whenCreated={setMap} doctors={doctors} minZoom={6} />
-      {ids.length === 1 && (
-        <Styled.ButtonWrapper>
-          <Button onClick={handleShowAll}>{t('showAll')}</Button>
-        </Styled.ButtonWrapper>
-      )}
       <Styled.WrapperInfinite id="scrollableDiv">
         <Styled.InfiniteScroll
           id="infiniteScroll"
