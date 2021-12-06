@@ -15,7 +15,6 @@ const MapEvents = function MapEvents() {
         filtered: allDoctors,
         searchValue,
       });
-
       setDoctors(mapDoctors);
     },
   });
