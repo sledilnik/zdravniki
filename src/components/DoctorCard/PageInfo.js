@@ -4,6 +4,7 @@ import { CardContent, Typography, Tooltip, Stack, Button, Alert } from '@mui/mat
 import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
+import { useFilter } from 'context/filterContext';
 import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
@@ -16,6 +17,7 @@ import * as Shared from './Shared';
 import { toPercent } from './utils';
 
 const PageInfo = function PageInfo({ doctor }) {
+  const { searchValue } = useFilter();
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -27,7 +29,7 @@ const PageInfo = function PageInfo({ doctor }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`);
+    navigate(`/${lng}`, { state: { searchValue } });
   };
 
   const [isEditing, setIsEditing] = useState(false);
