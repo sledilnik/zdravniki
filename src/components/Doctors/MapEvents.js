@@ -1,4 +1,3 @@
-import L from 'leaflet';
 import { useMapEvents } from 'react-leaflet';
 import { useFilter } from 'context/filterContext';
 import { filterBySearchValueInMapBounds } from '../../utils';
