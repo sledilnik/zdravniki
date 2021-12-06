@@ -30,7 +30,7 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "uuid": "^8.3.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "cross-env SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true react-scripts start",
