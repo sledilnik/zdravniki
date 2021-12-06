@@ -37,7 +37,9 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
   }, [doctorType, accept, searchValue]);
 
   useEffect(() => {
-    map?.flyTo(GEO_LOCATION.SL_CENTER, MAP.ZOOM);
+    const zoom = map?.getZoom();
+    const center = map?.getCenter();
+    map?.flyTo(center, zoom);
   }, [map, doctorType, accept]);
 
   const handleFlyToDoctor = (event, { geoLocation, id }) => {
