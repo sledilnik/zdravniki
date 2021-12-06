@@ -94,7 +94,7 @@ const PageInfo = function PageInfo({ doctor }) {
           <Stack direction="row" alignItems="center" spacing={1}>
             <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <Accepts value={accepts.toString()} />
+                <Accepts accepts={accepts} />
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip title={<Shared.Tooltip.Availability />}>
