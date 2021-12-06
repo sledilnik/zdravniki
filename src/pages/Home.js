@@ -5,7 +5,7 @@ import Doctors from 'components/Doctors';
 import { Loader } from 'components/Shared';
 import * as SEO from 'components/SEO';
 
-import { doctorsContext, leafletContext } from 'context';
+import { doctorsContext } from 'context';
 
 import { DOCTORS } from 'const';
 import { useEffect } from 'react';
@@ -38,9 +38,7 @@ const Home = function Home() {
           <>
             <Filters />
             <Styled.Box>
-              <leafletContext.LeafletProvider>
-                <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
-              </leafletContext.LeafletProvider>
+              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
             </Styled.Box>
           </>
         )}
