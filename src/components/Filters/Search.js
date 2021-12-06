@@ -1,5 +1,6 @@
 import Paper from '@mui/material/Paper';
 import Box from '@mui/system/Box';
+import { useLocation } from 'react-router-dom';
 
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
@@ -9,8 +10,11 @@ import { t } from 'i18next';
 import * as Styled from './styles';
 
 const Search = function Search() {
+  const { state } = useLocation();
   const { setSearchValue } = useFilter();
-  const [value, setValue] = useState('');
+
+  const defaultValue = state?.searchValue ?? '';
+  const [value, setValue] = useState(defaultValue);
 
   const handleSearchChange = event => {
     setValue(event.target.value);
