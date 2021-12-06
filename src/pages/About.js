@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
+import MarkdownBase from 'markdown-to-jsx';
 import * as Styled from './styles/Markdown';
 
 const MD = {
@@ -44,9 +45,7 @@ const About = function About() {
   return (
     <Styled.CustomContainer id="main-content">
       <Styled.StaticPageWrapper ref={aboutRef}>
-        <span>
-          <Styled.Markdown>{postMarkdown}</Styled.Markdown>
-        </span>
+        <MarkdownBase>{postMarkdown}</MarkdownBase>
       </Styled.StaticPageWrapper>
     </Styled.CustomContainer>
   );
