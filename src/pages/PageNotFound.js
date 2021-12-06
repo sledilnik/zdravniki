@@ -16,7 +16,7 @@ const PageNotFound = function PageNotFound() {
       <Styled.CustomContainer id="main-content">
         <Styled.PageNotFound>
           <p>{notFoundPath}</p>
-          <h1>{t('pageNotFound.notFound')}</h1>
+          <h1>{t('SEO.title.notFound')}</h1>
           <p>{t('pageNotFound.somethingWentWrong')}</p>
           <Styled.Image src={image} alt={t('pageNotFound.imageDescription')} />
           <div>

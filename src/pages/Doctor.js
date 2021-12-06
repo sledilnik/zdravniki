@@ -18,11 +18,12 @@ const Doctor = function Doctor() {
 
   useEffect(() => {
     const _doctor = allDoctors?.find(d => slugify(d.name.toLowerCase()) === priimekIme);
+    const lng = localStorage.getItem('i18nextLng') || 'sl';
 
     setDoctor(_doctor);
 
     if (allDoctors && !_doctor) {
-      navigate('/PageNotFound', { state: { pathname } });
+      navigate(`${lng}/404`);
     }
     return null;
   }, [allDoctors, priimekIme, navigate, pathname]);

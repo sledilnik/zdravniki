@@ -121,10 +121,26 @@ const Router = function Router() {
           }
         />
         <Route
-          path="*"
+          path="/en/404"
           element={
             <Suspense fallback={<Loader.Center />}>
               <PageNotFound />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/sl/404"
+          element={
+            <Suspense fallback={<Loader.Center />}>
+              <PageNotFound />
+            </Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loader.Center />}>
+              <Navigate to={`/${lng}/404`} />
             </Suspense>
           }
         />
