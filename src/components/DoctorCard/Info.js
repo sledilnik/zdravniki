@@ -43,7 +43,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
         <Stack direction="row" alignItems="center" spacing={1}>
           <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
             <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-              <Accepts accepts={accepts.toString()} />
+              <Accepts accepts={accepts} />
             </Styled.InfoWrapper>
           </Tooltip>
           <Tooltip title={<Shared.Tooltip.Availability />}>
