@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
 
+import { useLeafletContext } from 'context/leafletContext';
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
 import Accepts from './Accepts';
@@ -12,6 +13,7 @@ import { toPercent } from './utils';
 
 const Info = function Info({ doctor, handleZoom = () => {} }) {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { map } = useLeafletContext();
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
 
@@ -24,7 +26,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
 
     const path = `/${lng}/${drPath}/${doctor?.name?.toLowerCase().replaceAll(' ', '-')}`;
     // todo pass filters' state as second argument
-    return navigate(path);
+    return navigate(path, { state: { zoom: map?.getZoom() } });
   };
 
   return (

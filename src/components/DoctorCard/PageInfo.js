@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
 import { t } from 'i18next';
 
@@ -7,6 +7,7 @@ import { useFilter } from 'context/filterContext';
 import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
+import { MAP } from 'const';
 import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
@@ -15,6 +16,8 @@ import { toPercent } from './utils';
 
 const PageInfo = function PageInfo({ doctor }) {
   const { searchValue } = useFilter();
+  const { state } = useLocation();
+
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -26,7 +29,7 @@ const PageInfo = function PageInfo({ doctor }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`, { state: { searchValue } });
+    navigate(`/${lng}`, { state: { searchValue, zoom: state?.zoom ?? MAP.ZOOM } });
   };
 
   return (

@@ -6,7 +6,7 @@ export * as CSV_URL from './csvURL';
 export { default as THEME } from './theme';
 
 const ZOOM = 8;
-const MIN_ZOOM = 8;
+const MIN_ZOOM = 6;
 const MAX_ZOOM = 16;
 
 // http://bboxfinder.com/#45.421,13.355,46.895,16.638
