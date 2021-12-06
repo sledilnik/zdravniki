@@ -3,14 +3,10 @@ import { useMapEvents } from 'react-leaflet';
 import { useFilter } from 'context/filterContext';
 
 const MapEvents = function MapEvents() {
-  const { allDoctors, setDoctors, ids, searchValue } = useFilter();
+  const { allDoctors, setDoctors, searchValue } = useFilter();
 
   const map = useMapEvents({
     moveend() {
-      if (ids.length > 0) {
-        return;
-      }
-
       const bounds = map.getBounds();
       const mapDoctors = allDoctors?.filter(doctor => {
         const { lat, lon } = doctor.geoLocation;
