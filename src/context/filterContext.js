@@ -1,11 +1,14 @@
 import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
+import { filterBySearchValueInMapBounds } from '../utils';
 import { useDoctors } from './doctorsContext';
+import { useLeafletContext } from './leafletContext';
 
 const FilterContext = createContext();
 
 export const FilterConsumer = FilterContext.Consumer;
 
 const FilterProvider = function FilterProvider({ children }) {
+  const { map } = useLeafletContext();
   const { doctors: _doctors } = useDoctors();
 
   const [doctorType, setDoctorType] = useState('gp');
@@ -20,18 +23,10 @@ const FilterProvider = function FilterProvider({ children }) {
       return;
     }
 
-    if (!searchValue) setDoctors(filtered);
-
-    if (searchValue) {
-      const compare = doctor =>
-        doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
-      const combined = filtered.filter(compare);
-
-      setDoctors(combined);
-    }
-  }, [filtered, searchValue]);
+    const bounds = map.getBounds();
+    const mapDoctors = filterBySearchValueInMapBounds({ searchValue, filtered, bounds });
+    setDoctors(mapDoctors);
+  }, [filtered, searchValue, map]);
 
   const memoFiltered = useMemo(
     () => _doctors?.filter(doctorType, accept),
