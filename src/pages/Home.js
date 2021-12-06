@@ -13,6 +13,7 @@ import * as Styled from './styles/Home';
 
 const Home = function Home() {
   const { t } = useTranslation();
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
@@ -29,7 +30,7 @@ const Home = function Home() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.home')} />
+      <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
       <Styled.Main id="main-content">
         {isFetching && !hasError ? (
           <Loader.Center />

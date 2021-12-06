@@ -5,13 +5,14 @@ import * as Styled from './styles/PageNotFound';
 import image from '../assets/caution-tape.png';
 
 const PageNotFound = function PageNotFound() {
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
   const meta = [{ name: 'robots', content: 'noindex' }];
   const { state, pathname } = useLocation();
   const notFoundPath = state?.pathname ?? pathname;
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.notFound')} meta={meta} />
+      <SEO.Dynamic title={t('SEO.title.notFound')} meta={meta} lang={lng} />
       <Styled.CustomContainer id="main-content">
         <Styled.PageNotFound>
           <p>{notFoundPath}</p>

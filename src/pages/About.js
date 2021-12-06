@@ -46,7 +46,7 @@ const About = function About() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.about')} />
+      <SEO.Dynamic title={t('SEO.title.about')} lang={lng} />
       <Styled.CustomContainer id="main-content" ref={aboutRef}>
         <Styled.StaticPageWrapper>
           <span>

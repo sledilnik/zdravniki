@@ -56,7 +56,7 @@ const Faq = function Faq() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.faq')} />
+      <SEO.Dynamic title={t('SEO.title.faq')} lang={lng} />
       <Styled.CustomContainer className="custom-container">
         <Styled.StaticPageWrapper className="static-page-wrapper" ref={faqRef}>
           <h1>{t('faq.title')}</h1>
