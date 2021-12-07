@@ -2,7 +2,7 @@
 import { styled } from '@mui/material/styles';
 
 const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
-  const strokeColor = stroke ?? theme.customColors.dark;
+  const strokeColor = stroke ?? theme.customColors.brand;
 
   return {
     svg: {
@@ -11,7 +11,6 @@ const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
       width: size,
       height: size,
       stroke: strokeColor,
-      opacity: 0.56,
     },
 
     'svg path:first-of-type': {

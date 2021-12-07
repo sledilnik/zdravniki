@@ -5,11 +5,11 @@ import MuiPopper from '@mui/material/Popper';
 
 export const Autocomplete = styled(MuiAutocomplete)(({ theme }) => ({
   width: '100px',
-  paddingLeft: '24px',
   '& .MuiOutlinedInput-root': {},
 
   '.MuiAutocomplete-inputRoot': {
     fontSize: '14px',
+    padding: '2px 5px !important',
     color: theme.customColors.text,
     '&:hover': {
       color: theme.customColors.dark,

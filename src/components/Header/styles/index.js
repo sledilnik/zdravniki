@@ -32,8 +32,8 @@ export const StackSmall = styled(MuiStack)(({ theme }) => ({
 export const StackSocialLarge = styled(MuiStack)(({ theme }) => ({
   display: 'none',
   svg: {
-    height: '0.75rem',
-    width: '0.75rem',
+    height: '24px',
+    width: '24px',
     fill: aTheme => aTheme.customColors.link,
   },
   [theme.breakpoints.up('md')]: {
@@ -114,6 +114,7 @@ export const NavMenuLink = styled(NavLink)(({ theme }) => ({
 
 export const IconButton = styled(IconButtonBase)(() => ({
   opacity: 0.56,
+  padding: '5px',
   '&:focus, :hover': {
     opacity: 1,
   },
