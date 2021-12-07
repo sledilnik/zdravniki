@@ -19,11 +19,11 @@ const FilterProvider = function FilterProvider({ children }) {
   const [filtered, setFiltered] = useState(null);
 
   const setFilteredDoctors = useCallback(() => {
-    if (!filtered) {
+    const bounds = map?.getBounds();
+    if (!filtered || !bounds) {
       return;
     }
 
-    const bounds = map.getBounds();
     const mapDoctors = filterBySearchValueInMapBounds({ searchValue, filtered, bounds });
     setDoctors(mapDoctors);
   }, [filtered, searchValue, map]);
