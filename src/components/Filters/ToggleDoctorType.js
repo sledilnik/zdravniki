@@ -25,7 +25,7 @@ function withToggleGroup(Component) {
     };
 
     useEffect(() => {
-      const TypeTranslate = {
+      const typeTranslate = {
         gp_adults: 'gp',
         gp_youth: 'gp-y',
         gp_students: 'gp',
@@ -37,13 +37,13 @@ function withToggleGroup(Component) {
         gyn_youth: 'gyn',
       };
 
-      const _doctorType = `${drType}_${ageGroup}`;
+      const type = `${drType}_${ageGroup}`;
 
-      if (!TypeTranslate[_doctorType]) {
+      if (!typeTranslate[type]) {
         setAgeGroup('adults');
       }
 
-      if (doctorType !== _doctorType) setDoctorType(TypeTranslate[_doctorType]);
+      if (doctorType !== type) setDoctorType(typeTranslate[type]);
     }, [drType, ageGroup, doctorType, setDoctorType]);
 
     return (
