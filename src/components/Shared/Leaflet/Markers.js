@@ -8,7 +8,6 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 const { GEO_LOCATION } = MAP;
 
-// TODO: Why is this deleted?
 // eslint-disable-next-line no-underscore-dangle
 delete L.Icon.Default.prototype._getIconUrl;
 
