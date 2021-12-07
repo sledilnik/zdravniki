@@ -26,9 +26,9 @@ const Search = function Search() {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        borderRadius: '24px',
-        border: theme => `1px solid ${theme.palette.divider}`,
-        background: theme => theme.customColors.background,
+        borderRadius: '25px',
+        border: theme => `1px solid ${theme.customColors.borderLight}`,
+        background: '#fff',
         gridArea: 'search',
       }}
     >
@@ -41,12 +41,11 @@ const Search = function Search() {
           width: '100%',
           display: 'flex',
           alignItems: 'center',
-          marginInline: '4px',
         }}
       >
         <Styled.Search.Search>
           <Styled.Search.SearchIconWrapper>
-            <Icons.SearchIcon />
+            <Icons.Icon name="Search" />
           </Styled.Search.SearchIconWrapper>
           <Styled.Search.InputBase
             placeholder={t('search')}

@@ -68,12 +68,12 @@ const Header = function Header() {
         <Toolbar
           sx={{
             'a.logo': {
-              height: '2rem',
+              height: '40px',
             },
           }}
         >
           <NavLink to="/" className="logo" onClick={goHome}>
-            <Icons.Icon name="Logo" style={{ height: '2rem' }} />
+            <Icons.Icon name="Logo" style={{ height: '40px' }} />
           </NavLink>
           <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
             <NavLinks containerId="nav-links" />
@@ -100,7 +100,7 @@ const Header = function Header() {
             size="small"
             sx={{
               pl: 2,
-              width: 100,
+              width: 80,
               display: { xs: 'none', md: 'flex' },
             }}
             options={languages}

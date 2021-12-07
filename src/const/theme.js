@@ -1,12 +1,16 @@
 const colors = {
   accent: '#09AFDA',
-  brand: '#95C83F',
+  brand: '#26C5ED',
   danger: '#DC3435',
+  success: '#95C83F',
   dark: '#212529',
+  darkBlue: '#104856',
   lightGrey: '#CDCDCD',
-  background: '#F0F0E8',
+  background: '#E8EFF0',
+  borderLight: '#C4D4D7',
   text: 'rgba(0,0,0,.56)',
   link: 'rgba(33,37,41,0.56);',
+  links: '#09AFDA',
   nickel: '#6C7074',
   philippineSilver: '#B1B1B1',
 };
@@ -21,7 +25,7 @@ const theme = {
       colors: {
         name: colors.dark,
         provider: colors.dark,
-        link: colors.accent,
+        link: colors.links,
         address: colors.nickel,
         availability: colors.dark,
         load: colors.philippineSilver,

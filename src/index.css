@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bcg-color: #f0f0e8;
+  --bcg-color: #F4F8F8;
 }
 
 *,
@@ -22,30 +22,4 @@ body {
 
 main > .leaflet-container {
   height: 500px;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track:hover {
-  background: hsla(81.9, 55.4%, 51.6%, 0.3);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: hsla(81.9, 55.4%, 51.6%, 0.3);
-  border: solid 1px hsla(81.9, 55.4%, 51.6%, 0.75);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: hsla(81.9, 55.4%, 51.6%, 1);
 }
