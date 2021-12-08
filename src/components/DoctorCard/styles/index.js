@@ -4,7 +4,6 @@ import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
 import { SIZES } from 'const';
-import MuiStack from "@mui/material/Stack";
 
 export * as PageInfo from './PageInfo';
 
@@ -152,13 +151,12 @@ export const InfoWrapper = styled(Stack)(({ theme }) => ({
   minWidth: '74.5px',
 }));
 
-export const AcceptsStack = styled(MuiStack)(({ theme, accepts }) => {
+export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
   const color = accepts === 'true' ? theme.customColors.successDark : theme.customColors.danger;
 
   return {
     fontWeight: 700,
     fontSize: '10px',
-    letterSpacing: 0,
     background: color,
     borderRadius: '4px',
     whiteSpace: 'nowrap',
@@ -168,7 +166,7 @@ export const AcceptsStack = styled(MuiStack)(({ theme, accepts }) => {
     alignItems: 'center',
     letterSpacing: '0.3px',
 
-    'svg': {
+    svg: {
       width: '14px',
       height: '14px',
       filter: 'brightness(10)',
