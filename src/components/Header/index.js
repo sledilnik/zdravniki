@@ -1,8 +1,8 @@
-import {useRef, useState} from 'react';
-import {NavLink, useLocation, useNavigate} from 'react-router-dom';
-import {AppBar, Box, IconButton, TextField, Toolbar} from '@mui/material';
+import { useRef, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { AppBar, Box, IconButton, TextField, Toolbar } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
-import i18next, {languages} from 'i18n';
+import i18next, { languages } from 'i18n';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -53,7 +53,7 @@ const Header = function Header() {
         zIndex: 5,
         position: 'relative',
       }}
-      >
+    >
       <AppBar
         position="static"
         sx={{

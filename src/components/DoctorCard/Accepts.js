@@ -1,5 +1,3 @@
-import Stack from '@mui/material/Stack';
-
 import * as Icons from 'components/Shared/Icons';
 import { t } from 'i18next';
 import * as Styled from './styles';
