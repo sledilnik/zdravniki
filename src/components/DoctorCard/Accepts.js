@@ -10,12 +10,10 @@ const Accepts = function Accepts({ accepts }) {
   const text = accepts ? t('accepts').toUpperCase() : t('rejects').toUpperCase();
 
   return (
-    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={1}>
+    <Styled.AcceptsStack direction="row" accepts={accepts}>
       <Icons.Icon name={iconName} />
-      <Styled.Accepts variant="caption" accepts={accepts}>
-        {text}
-      </Styled.Accepts>
-    </Stack>
+      {text}
+    </Styled.AcceptsStack>
   );
 };
 

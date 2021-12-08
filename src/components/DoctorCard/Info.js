@@ -32,7 +32,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
   };
 
   return (
-    <CardContent>
+    <CardContent sx={{ padding: `0 !important` }}>
       <Typography component="h2" variant="h2">
         {doctor.name}
       </Typography>
