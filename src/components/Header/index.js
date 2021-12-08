@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
-import { useNavigate, useLocation, NavLink } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Box, TextField } from '@mui/material';
+import {useRef, useState} from 'react';
+import {NavLink, useLocation, useNavigate} from 'react-router-dom';
+import {AppBar, Box, IconButton, TextField, Toolbar} from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
-import i18next, { languages } from 'i18n';
+import i18next, {languages} from 'i18n';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -46,13 +46,20 @@ const Header = function Header() {
   };
 
   return (
-    <Box id="drawer" sx={{ flexGrow: 1 }}>
+    <Box
+      id="drawer"
+      sx={{
+        flexGrow: 1,
+        zIndex: 5,
+        position: 'relative',
+      }}
+      >
       <AppBar
         position="static"
         sx={{
           backgroundColor: theme => theme.customColors.brand,
           color: theme => theme.customColors.dark,
-          boxShadow: 'none',
+          boxShadow: '0 3px 10px 0 rgba(58,83,87,0.24)',
         }}
       >
         <Toolbar

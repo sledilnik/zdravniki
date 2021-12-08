@@ -1,5 +1,4 @@
 import Paper from '@mui/material/Paper';
-import Box from '@mui/system/Box';
 
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
@@ -18,16 +17,7 @@ const Search = function Search() {
 
   useDebounce(() => setSearchValue(value), 500, [value]);
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '25px',
-        border: theme => `1px solid ${theme.customColors.borderLight}`,
-        background: '#fff',
-        gridArea: 'search',
-      }}
-    >
+    <Styled.Search.SearchBox>
       <Paper
         elevation={0}
         sx={{
@@ -51,7 +41,7 @@ const Search = function Search() {
           />
         </Styled.Search.Search>
       </Paper>
-    </Box>
+    </Styled.Search.SearchBox>
   );
 };
 

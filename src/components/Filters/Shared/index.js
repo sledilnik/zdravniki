@@ -9,7 +9,7 @@ export const Text = function Text({ children, show }) {
       sx={{
         fontSize: 'inherit',
         fontWeight: 'inherit',
-        display: { xs: 'none', sm: show ? 'inline-flex' : 'none', md: 'inline-flex' },
+        display: { xs: show ? 'inline-flex' : 'none', lg: 'inline-flex' },
       }}
     >
       {children}
@@ -23,7 +23,7 @@ export const TextAllways = function TextAllways({ children, show }) {
       sx={{
         fontSize: 'inherit',
         fontWeight: 'inherit',
-        display: { xs: show ? 'inline-flex' : 'none', md: 'inline-flex' },
+        display: { sm: show ? 'inline-flex' : 'none', md: 'inline-flex' },
       }}
     >
       {children}

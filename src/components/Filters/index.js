@@ -7,8 +7,10 @@ import * as Styled from './styles';
 const Filters = function Filters() {
   return (
     <Styled.Grid>
-      <ToggleDoctorType />
-      <ToggleAccepts />
+      <Styled.Toggles>
+        <ToggleDoctorType />
+        <ToggleAccepts />
+      </Styled.Toggles>
       <Search />
     </Styled.Grid>
   );

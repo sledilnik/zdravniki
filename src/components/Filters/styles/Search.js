@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiTextField from '@mui/material/TextField';
+import MuiBox from '@mui/material/Box';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,7 +55,6 @@ export const TextField = styled(MuiTextField)({
     fontSize: '13px',
     fontWeight: 600,
     letterSpacing: 0,
-
     borderRadius: '24px',
     '& fieldset': { border: 'none' },
     '&:hover fieldset': {
@@ -65,3 +65,17 @@ export const TextField = styled(MuiTextField)({
     },
   },
 });
+
+export const SearchBox = styled(MuiBox)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  borderRadius: '25px',
+  border: `1px solid ${theme.customColors.borderLight}`,
+  background: '#fff',
+  gridArea: 'search',
+  width: '100%',
+
+  [theme.breakpoints.up('md')]: {
+    width: '400px',
+  },
+}));
