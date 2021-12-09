@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
 // import { t } from 'i18next';
@@ -6,13 +7,9 @@ import { IconToggleButton } from './Shared';
 function withToggleGroup(Component) {
   const ToggleMapCards = function ToggleMapCards({ useShow }) {
     const [show, setShow] = useShow();
-    const injectedProps = {
-      value: show,
-      setValue: setShow,
-    };
 
     return (
-      <Component {...injectedProps}>
+      <Component value={show} setValue={setShow}>
         <IconToggleButton
           value="map"
           aria-label="map"
@@ -29,6 +26,10 @@ function withToggleGroup(Component) {
         />
       </Component>
     );
+  };
+
+  ToggleMapCards.propTypes = {
+    useShow: PropTypes.func.isRequired,
   };
 
   return ToggleMapCards;
