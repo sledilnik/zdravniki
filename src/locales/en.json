@@ -3,7 +3,6 @@
     "header": {
         "menu": "Menu",
         "home": "Home",
-        "reportError": "Report error",
         "about": "About",
         "faq": "FAQ",
         "support": "Support!",
@@ -32,5 +31,11 @@
         "title": "Frequently Asked Questions",
         "description": "In case of medical emergency you should contact emergency services or call 112.",
         "glossary": "Glossary"
+    },
+    "reportError": {
+        "title": "Report error",
+        "cancel": "Cancel",
+        "send": "Send",
+        "reportReceived": "Thank you! We will look into it..."
     }
 }

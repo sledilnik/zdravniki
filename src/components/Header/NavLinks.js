@@ -19,7 +19,7 @@ const NavLinks = function NavLinks() {
         tabIndex={0}
         underline="none"
       >
-        {t('header.reportError')}
+        {t('reportError.title')}
       </Styled.NavMenuItemLink>
       <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}
