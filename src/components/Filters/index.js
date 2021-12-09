@@ -4,12 +4,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import ToggleAccepts from './ToggleAccepts';
 import ToggleDoctorType from './ToggleDoctorType';
+import ToggleMapCards from './ToggleMapCards';
 import Search from './Search';
 
 import * as Styled from './styles';
 
-const Filters = function Filters() {
-  const [expanded, setExpanded] = useState(true);
+const Filters = function Filters({ useShow }) {
+  const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -36,6 +37,7 @@ const Filters = function Filters() {
       {!matches && <Styled.CardActions onClick={handleExpandClick}>Filter</Styled.CardActions>}
       {!matches && <Search />}
       {/* you can create MobileSearch component  with only mobile style or tweak current Search */}
+      {!matches && <ToggleMapCards useShow={useShow} />}
     </Styled.Card>
   );
 };
