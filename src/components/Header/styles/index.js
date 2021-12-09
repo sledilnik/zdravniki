@@ -3,6 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButtonBase from '@mui/material/IconButton';
 import MuiStack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
+import AppBar from "@mui/material/AppBar/AppBar";
 
 export { Autocomplete, Popper } from './Autocomplete';
 export const StackLarge = styled(MuiStack)(({ theme }) => ({
@@ -118,4 +119,17 @@ export const IconButton = styled(IconButtonBase)(() => ({
   '&:focus, :hover': {
     opacity: 1,
   },
+}));
+
+export const AppNavBar = styled(AppBar)(({ theme }) => ({
+  flexGrow: 1,
+  zIndex: 11,
+  position: 'relative',
+  backgroundColor: theme.customColors.brand,
+  color: theme.customColors.dark,
+  boxShadow: 'none',
+
+  [theme.breakpoints.down('md')]: {
+    boxShadow: '0 3px 10px 0 rgba(58,83,87,0.24)',
+  }
 }));

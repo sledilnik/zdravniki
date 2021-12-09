@@ -46,21 +46,16 @@ const Header = function Header() {
   };
 
   return (
-    <Box
+    <Styled.AppNavBar
       id="drawer"
       sx={{
         flexGrow: 1,
-        zIndex: 5,
+        zIndex: 11,
         position: 'relative',
       }}
     >
-      <AppBar
+      <Styled.AppNavBar
         position="static"
-        sx={{
-          backgroundColor: theme => theme.customColors.brand,
-          color: theme => theme.customColors.dark,
-          boxShadow: '0 3px 10px 0 rgba(58,83,87,0.24)',
-        }}
       >
         <Toolbar
           sx={{
@@ -130,8 +125,8 @@ const Header = function Header() {
           />
         </Toolbar>
         <TemporaryDrawer open={open} setOpen={setOpen} />
-      </AppBar>
-    </Box>
+      </Styled.AppNavBar>
+    </Styled.AppNavBar>
   );
 };
 
