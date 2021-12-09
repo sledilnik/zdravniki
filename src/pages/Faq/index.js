@@ -27,19 +27,20 @@ const Faq = function Faq() {
       });
   }, [lng]);
 
-  // append attribute 'title' with glossary definition to each element with attribute 'data-term'
   useEffect(() => {
     if (faqRef.current) {
+      // append 'data-definition' attribute with glossary definition to each element with attribute 'data-term'
       faqRef.current.querySelectorAll('span[data-term]').forEach(el => {
         // eslint-disable-next-line no-restricted-syntax
         for (const term of response.glossary) {
           if (term.slug === el.getAttribute('data-term')) {
-            el.setAttribute('title', term.definition.replace(/<[^>]*>?/gm, ''));
+            // TODO: is it possible to render term.definition as Markdown text?
+            el.setAttribute('data-definition', term.definition.replace(/<[^>]*>?/gm, ''));
             el.setAttribute('tabindex', 0);
           }
         }
       });
-      // append attribute target="blank" to all external links
+      // append attribute target="_blank" to all external links
       if (faqRef.current) {
         faqRef.current.querySelectorAll('a').forEach(el => {
           if (/^(https?:)?\/\//.test(el.getAttribute('href'))) {
