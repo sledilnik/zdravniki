@@ -4,7 +4,7 @@ import ToggleGroup from 'components/Shared/ToggleGroup';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
-  const ToggleAccepts = function ToggleAccepts({ useShow }) {
+  const ToggleMapCards = function ToggleMapCards({ useShow }) {
     const [show, setShow] = useShow();
     const injectedProps = {
       value: show,
@@ -31,7 +31,7 @@ function withToggleGroup(Component) {
     );
   };
 
-  return ToggleAccepts;
+  return ToggleMapCards;
 }
 
 export default withToggleGroup(ToggleGroup);
