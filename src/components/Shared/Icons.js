@@ -50,6 +50,7 @@ export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
 export { default as CloseIcon } from '@mui/icons-material/Close';
 export { default as LinkIcon } from '@mui/icons-material/Link';
 export { default as PhoneEnabledIcon } from '@mui/icons-material/PhoneEnabled';
+export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
 
 const icons = {
   Adults,

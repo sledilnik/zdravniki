@@ -1,9 +1,17 @@
 import { styled } from '@mui/material/styles';
 import MuiBox from '@mui/material/Box';
+import MuiCard from '@mui/material/Card';
+import MuiCardActions from '@mui/material/CardActions';
+import MuiCollapse from '@mui/material/Collapse';
 
 export * as Search from './Search';
 export * as Icon from './Icon';
 
+export const Card = styled(MuiCard)(({ theme }) => ({}));
+export const CardActions = styled(MuiCardActions)(({ theme }) => ({}));
+export const Collapse = styled(MuiCollapse)(({ theme }) => ({}));
+
+// ? maybe insted of  Mui Box use Mui CardContent or even discard Grid and use only Collapse
 export const Grid = styled(MuiBox)(({ theme }) => ({
   display: 'flex',
   backgroundColor: theme.palette.common.white,
