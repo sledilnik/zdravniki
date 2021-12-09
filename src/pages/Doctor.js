@@ -15,18 +15,14 @@ const Doctor = function Doctor() {
   const { pathname } = useLocation();
   const [doctor, setDoctor] = useState();
   const navigate = useNavigate();
+  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
-    const _doctor = allDoctors?.find(d => slugify(d.name.toLowerCase()) === priimekIme);
-    const lng = localStorage.getItem('i18nextLng') || 'sl';
-
-    setDoctor(_doctor);
-
-    if (allDoctors && !_doctor) {
+    setDoctor(allDoctors?.find(d => slugify(d.name.toLowerCase()) === priimekIme));
+    if (allDoctors && !doctor) {
       navigate(`${lng}/404`);
     }
-    return null;
-  }, [allDoctors, priimekIme, navigate, pathname]);
+  }, [allDoctors, doctor, lng, priimekIme, navigate, pathname]);
 
   return (
     <Box
