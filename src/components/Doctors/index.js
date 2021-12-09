@@ -22,7 +22,7 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
-  const _doctors = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
+  const doctorsPagination = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
 
   const fetchMore = () => {
     setItems(items.concat(Array.from({ length: itemsPerPage })));
@@ -67,12 +67,12 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
       <Styled.WrapperInfinite id="scrollableDiv">
         <Styled.InfiniteScroll
           id="infiniteScroll"
-          dataLength={_doctors?.length ?? 0}
+          dataLength={doctorsPagination?.length ?? 0}
           next={fetchMore}
-          hasMore={_doctors?.length < doctors?.length}
+          hasMore={doctorsPagination?.length < doctors?.length}
           scrollableTarget="scrollableDiv"
         >
-          {_doctors?.map(doctor => (
+          {doctorsPagination?.map(doctor => (
             <DoctorCard
               key={doctor.key}
               doctor={doctor}

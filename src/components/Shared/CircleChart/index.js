@@ -2,14 +2,15 @@
 import { styled } from '@mui/material/styles';
 
 const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
-  const _stroke = stroke ?? theme.customColors.dark;
+  const strokeColor = stroke ?? theme.customColors.dark;
+
   return {
     svg: {
       display: 'block',
       margin: '10px auto',
       width: size,
       height: size,
-      stroke: _stroke,
+      stroke: strokeColor,
       opacity: 0.56,
     },
 

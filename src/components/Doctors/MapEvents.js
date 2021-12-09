@@ -15,10 +15,10 @@ const MapEvents = function MapEvents() {
       const mapDoctors = allDoctors?.filter(doctor => {
         const { lat, lon } = doctor.geoLocation;
         const corner = L.latLng(lat, lon);
-        const _bounds = L.latLngBounds(corner, corner);
+        const calculatedBounds = L.latLngBounds(corner, corner);
 
         if (!searchValue) {
-          return bounds.intersects(_bounds);
+          return bounds.intersects(calculatedBounds);
         }
 
         const isBySearchValue =
@@ -26,7 +26,7 @@ const MapEvents = function MapEvents() {
           doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
           doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
 
-        return bounds.intersects(_bounds) && isBySearchValue;
+        return bounds.intersects(calculatedBounds) && isBySearchValue;
       });
 
       if (allDoctors) setDoctors(mapDoctors);

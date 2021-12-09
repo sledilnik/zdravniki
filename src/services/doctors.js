@@ -22,25 +22,24 @@ export function createDoctor(doctor, type, institution) {
 
   const getAcceptText = (lang = lng) => ACCEPT_TRANSLATE[lang.toUpperCase()][doctor.accepts];
 
-  const _name = trimString(doctor.doctor);
+  const name = trimString(doctor.doctor);
 
-  const _munUnit = trimString(institution.unit);
-  const _provider = trimString(institution.name);
-  const _website = trimString(institution.website);
-  const _phone = trimString(institution.phone);
+  const manUnit = trimString(institution.unit);
+  const provider = trimString(institution.name);
+  const website = trimString(institution.website);
+  const phone = trimString(institution.phone);
   const { address, city, municipality, post } = institution;
   const [_code, _post] = post.split(' ');
-  const _geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
+  const geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
 
-  const _address = { street: address, postalCode: _code, city, municipality, post: _post };
+  const addressObject = { street: address, postalCode: _code, city, municipality, post: _post };
 
-  const _key = uuidv4();
-  const _availability = doctor.availability;
-  const _load = doctor.load;
+  const uuid = uuidv4();
+  const { availability, load } = doctor;
 
   return Object.freeze({
     get key() {
-      return _key;
+      return uuid;
     },
     get id() {
       return doctor.id;
@@ -49,37 +48,37 @@ export function createDoctor(doctor, type, institution) {
       return doctor.type;
     },
     get name() {
-      return _name;
+      return name;
     },
     get accepts() {
       return doctor.accepts;
     },
     get provider() {
-      return _provider;
+      return provider;
     },
     get website() {
-      return _website;
+      return website;
     },
     get phone() {
-      return _phone;
+      return phone;
     },
     get munUnit() {
-      return _munUnit;
+      return manUnit;
     },
     get fullAddress() {
-      return `${_address.street}, ${_address.city}`;
+      return `${addressObject.street}, ${addressObject.city}`;
     },
     get searchAddress() {
-      return `${_address.street}, ${_address.postalCode} ${_address.city} ${_address.municipality}`;
+      return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipality}`;
     },
     get geoLocation() {
-      return _geoLocation;
+      return geoLocation;
     },
     get availability() {
-      return _availability;
+      return availability;
     },
     get load() {
-      return _load;
+      return load;
     },
     getTypeText,
     getAcceptText,
@@ -99,10 +98,10 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
 
   const getById = id => doctors[`${id}`];
 
-  const _doctorsValues = Object.values(doctors);
+  const doctorValues = Object.values(doctors);
   const doctorsValues = Intl.Collator
-    ? _doctorsValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
-    : _doctorsValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
+    ? doctorValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+    : doctorValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
 
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 

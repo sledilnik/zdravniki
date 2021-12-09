@@ -12,31 +12,37 @@ const DoctorsProvider = function DoctorsProvider({ children }) {
   const [doctors, setDoctors] = useState(null);
   const [dicts, setDicts] = useState({ doctors: null, institutions: null, types: null });
 
-  const _institutions = useFetchAndParseCsv(CSV_URL.INSTITUTIONS);
-  const _doctorTypes = useFetchAndParseCsv(CSV_URL.DOCTOR_TYPES);
-  const _doctors = useFetchAndParseCsv(CSV_URL.DOCTORS);
+  const institutionsRequest = useFetchAndParseCsv(CSV_URL.INSTITUTIONS);
+  const doctorTypesRequest = useFetchAndParseCsv(CSV_URL.DOCTOR_TYPES);
+  const doctorsRequest = useFetchAndParseCsv(CSV_URL.DOCTORS);
 
-  const isFetching = _doctors.isFetching || _institutions.isFetching || _doctorTypes.isFetching;
+  const isFetching =
+    doctorsRequest.isFetching || institutionsRequest.isFetching || doctorTypesRequest.isFetching;
   const errors = useMemo(
-    () => [_doctors.error, _institutions.error, _doctorTypes.error],
-    [_doctorTypes.error, _doctors.error, _institutions.error],
+    () => [doctorsRequest.error, institutionsRequest.error, doctorTypesRequest.error],
+    [doctorTypesRequest.error, doctorsRequest.error, institutionsRequest.error],
   );
 
   const doctorsFetched =
-    (!!_doctors.parsed || _doctors.error) &&
-    (!!_institutions.parsed || _institutions.error) &&
-    (!!_doctorTypes.parsed || _doctorTypes.error);
+    (!!doctorsRequest.parsed || doctorsRequest.error) &&
+    (!!institutionsRequest.parsed || institutionsRequest.error) &&
+    (!!doctorTypesRequest.parsed || doctorTypesRequest.error);
 
   useEffect(() => {
     if (doctorsFetched) {
-      const doctorsDict = fromArrayWithHeader(_doctors.parsed);
-      const institutionsDict = fromArrayWithHeader(_institutions.parsed);
-      const typesDict = fromArrayWithHeader(_doctorTypes.parsed);
+      const doctorsDict = fromArrayWithHeader(doctorsRequest.parsed);
+      const institutionsDict = fromArrayWithHeader(institutionsRequest.parsed);
+      const typesDict = fromArrayWithHeader(doctorTypesRequest.parsed);
 
       setDoctors(createDoctors(doctorsDict, institutionsDict, typesDict));
       setDicts({ doctors: doctorsDict, institutions: institutionsDict, types: typesDict });
     }
-  }, [_doctorTypes.parsed, _doctors.parsed, _institutions.parsed, doctorsFetched]);
+  }, [
+    doctorTypesRequest.parsed,
+    doctorsRequest.parsed,
+    institutionsRequest.parsed,
+    doctorsFetched,
+  ]);
 
   const value = useMemo(
     () => ({ isFetching, errors, doctors, dicts }),
