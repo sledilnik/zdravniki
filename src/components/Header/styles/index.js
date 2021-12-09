@@ -11,6 +11,8 @@ export const StackLarge = styled(MuiStack)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'row',
     marginLeft: 'auto',
+    // TODO: Can we fix this? This is the error message in the console:
+    // The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".
     '& > :not(:first-child)': { marginLeft: theme.spacing(3) },
   },
 }));

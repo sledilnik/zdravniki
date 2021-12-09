@@ -205,7 +205,7 @@ export const Details = styled('details')(() => ({
     display: 'none',
     width: '90%',
   },
-  '> *:nth-child(2)': {
+  '> *:nth-of-type(1)': {
     marginTop: '2px',
     paddingTop: '12px',
   },
