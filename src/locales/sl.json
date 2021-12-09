@@ -3,7 +3,6 @@
     "header": {
         "menu": "Meni",
         "home": "Imenik",
-        "reportError": "Prijavi napako",
         "about": "O projektu",
         "faq": "FAQ",
         "support": "Podpri!",
@@ -45,5 +44,11 @@
             "about": "O strani",
             "faq": "Pogosta vprašanja"
         }
+    },
+    "reportError": {
+        "title": "Prijavi napako",
+        "cancel": "Prekliči",
+        "send": "Pošlji",
+        "reportReceived": "Hvala za poslano! Podatke bomo pregledali..."
     }
 }

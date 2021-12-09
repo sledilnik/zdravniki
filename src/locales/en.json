@@ -3,7 +3,6 @@
     "header": {
         "menu": "Menu",
         "home": "Home",
-        "reportError": "Report error",
         "about": "About",
         "faq": "FAQ",
         "support": "Support!",
@@ -45,5 +44,11 @@
             "about": "About",
             "faq": "FAQ"
         }
+    },
+    "reportError": {
+        "title": "Report error",
+        "cancel": "Cancel",
+        "send": "Send",
+        "reportReceived": "Thank you! We will look into it..."
     }
 }
