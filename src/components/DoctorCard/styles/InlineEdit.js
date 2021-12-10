@@ -9,8 +9,7 @@ export const Textarea = styled('textarea')(({ theme }) => ({
   border: '1px solid #161822',
   resize: 'none',
   overflow: 'hidden',
-  minHeight: '14px',
-  minWidth: '300px',
+  width: '100%',
   borderRadius: '3px',
   '&:hover': {
     backgroundColor: '#d3d3d3',

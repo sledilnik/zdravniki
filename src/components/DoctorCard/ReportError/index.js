@@ -92,15 +92,14 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
 
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <Typography component="h1" variant="h1">
-        {doctorFormData.name}
-      </Typography>
-      <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-      <Typography component="h2" variant="h2">
-        {doctorFormData.provider}
-      </Typography>
-
-      <form name="contact-form">
+      <div>
+        <Typography component="h1" variant="h1">
+          {doctorFormData.name}
+        </Typography>
+        <Shared.DoubleChip type={type} ageGroup={ageGroup} />
+        <Typography component="h2" variant="h2">
+          {doctorFormData.provider}
+        </Typography>
         <TextareaEdit name="inputAddress" value={inputAddress} setValue={setInputAddress} />
         <TextareaEdit name="inputWebsite" value={inputWebsite} setValue={setInputWebsite} />
         <TextareaEdit name="inputPhone" value={inputPhone} setValue={setInputPhone} />
@@ -111,15 +110,15 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             setValue={setInputAvailability}
           />
         </Stack>
-        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">
-            {t('reportError.cancel')}
-          </Button>
-          <Button variant="contained" onClick={submit} size="small">
-            {t('reportError.send')}
-          </Button>
-        </Stack>
-      </form>
+      </div>
+      <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">
+          {t('reportError.cancel')}
+        </Button>
+        <Button variant="contained" onClick={submit} size="small">
+          {t('reportError.send')}
+        </Button>
+      </Stack>
     </CardContent>
   );
 };

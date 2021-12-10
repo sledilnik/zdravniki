@@ -59,77 +59,81 @@ const PageInfo = function PageInfo({ doctor }) {
 
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <Typography component="h1" variant="h1">
-        {doctor.name}
-      </Typography>
-      <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-      <Typography component="h2" variant="h2">
-        {doctor.provider}
-      </Typography>
-      <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
-        {doctor.fullAddress}
-      </Typography>
-      {urlText && (
-        <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-          <Typography component="div" variant="body1">
-            <Icons.Icon name="Link" />
-          </Typography>
-          <Shared.ConditionalLink to={doctor.website} variant="body1">
-            {urlText}
-          </Shared.ConditionalLink>
-        </Styled.PageInfo.LinkWrapper>
-      )}
-      {doctor.phone && (
-        <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-          <Typography component="div" variant="body1">
-            <Icons.Icon name="Phone" />
-          </Typography>
-          <Shared.ConditionalLink to={doctor.phone && `tel:${doctor.phone}`} self variant="body1">
-            {doctor.phone}
-          </Shared.ConditionalLink>
-        </Styled.PageInfo.LinkWrapper>
-      )}
-      <Stack sx={{ mt: { md: 2 } }}>
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
-            <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-              <Accepts value={accepts.toString()} />
-            </Styled.InfoWrapper>
-          </Tooltip>
-          <Tooltip title={<Shared.Tooltip.Availability />}>
-            <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-              <SingleChart size="26px" percent={doctor.availability} />
-              <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-            </Styled.InfoWrapper>
-          </Tooltip>
-        </Stack>
-      </Stack>
-      {message && (
-        <Alert sx={{ marginTop: '1rem' }} severity="success">
-          {message}
-        </Alert>
-      )}
-      <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Styled.PageInfo.BackWrapper direction="row">
-          <Stack direction="row" alignItems="center" onClick={handleBackButton}>
-            <IconButton sx={{ marginLeft: '-8px' }}>
-              <Icons.Icon name="ArrowBack" />
-            </IconButton>
+      <div>
+        <Typography component="h1" variant="h1">
+          {doctor.name}
+        </Typography>
+        <Shared.DoubleChip type={type} ageGroup={ageGroup} />
+        <Typography component="h2" variant="h2">
+          {doctor.provider}
+        </Typography>
+        <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
+          {doctor.fullAddress}
+        </Typography>
+        {urlText && (
+          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
             <Typography component="div" variant="body1">
-              {t('backToHome')}
+              <Icons.Icon name="Link" />
             </Typography>
+            <Shared.ConditionalLink to={doctor.website} variant="body1">
+              {urlText}
+            </Shared.ConditionalLink>
+          </Styled.PageInfo.LinkWrapper>
+        )}
+        {doctor.phone && (
+          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+            <Typography component="div" variant="body1">
+              <Icons.Icon name="Phone" />
+            </Typography>
+            <Shared.ConditionalLink to={doctor.phone && `tel:${doctor.phone}`} self variant="body1">
+              {doctor.phone}
+            </Shared.ConditionalLink>
+          </Styled.PageInfo.LinkWrapper>
+        )}
+        <Stack sx={{ mt: { md: 2 } }}>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <Accepts value={accepts.toString()} />
+              </Styled.InfoWrapper>
+            </Tooltip>
+            <Tooltip title={<Shared.Tooltip.Availability />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <SingleChart size="26px" percent={doctor.availability} />
+                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
+              </Styled.InfoWrapper>
+            </Tooltip>
           </Stack>
-        </Styled.PageInfo.BackWrapper>
-        <Button
-          disabled={message !== ''}
-          component="span"
-          variant="outlined"
-          onClick={reportError}
-          size="small"
-        >
-          {t('reportError.title')}
-        </Button>
-      </Stack>
+        </Stack>
+        {message && (
+          <Alert sx={{ marginTop: '1rem' }} severity="success">
+            {message}
+          </Alert>
+        )}
+      </div>
+      <div>
+        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Styled.PageInfo.BackWrapper direction="row">
+            <Stack direction="row" alignItems="center" onClick={handleBackButton}>
+              <IconButton sx={{ marginLeft: '-8px' }}>
+                <Icons.Icon name="ArrowBack" />
+              </IconButton>
+              <Typography component="div" variant="body1">
+                {t('backToHome')}
+              </Typography>
+            </Stack>
+          </Styled.PageInfo.BackWrapper>
+          <Button
+            disabled={message !== ''}
+            component="span"
+            variant="outlined"
+            onClick={reportError}
+            size="small"
+          >
+            {t('reportError.title')}
+          </Button>
+        </Stack>
+      </div>
     </CardContent>
   );
 };
