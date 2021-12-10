@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { AppBar, Box, IconButton, TextField, Toolbar } from '@mui/material';
+import { IconButton, TextField, Toolbar } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
 import i18next, { languages } from 'i18n';
 import TemporaryDrawer from './Drawer';
@@ -54,9 +54,7 @@ const Header = function Header() {
         position: 'relative',
       }}
     >
-      <Styled.AppNavBar
-        position="static"
-      >
+      <Styled.AppNavBar position="static">
         <Toolbar
           sx={{
             'a.logo': {
