@@ -75,28 +75,27 @@ const PageInfo = function PageInfo({ doctor }) {
       formData.append(`entry.${item.id}`, item.value);
     });
 
-    await fetch(formUrl, {
-      method: 'POST',
-      mode: 'no-cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: formData, // body data type must match "Content-Type" header
-    })
-      .then(() => {
-        setIsEditing(false);
-        setMessage(t('reportError.reportReceived'));
-        setTimeout(() => {
-          setMessage('');
-        }, 5000);
-      })
-      .catch(err => {
-        console.error('err', err);
+    try {
+      await fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: formData, // body data type must match "Content-Type" header
       });
+    } catch (err) {
+      setMessage('Error:', err);
+    } finally {
+      setIsEditing(false);
+      setTimeout(() => {
+        setMessage('');
+      }, 5000);
+    }
   };
 
   const reportError = () => {
@@ -191,9 +190,7 @@ const PageInfo = function PageInfo({ doctor }) {
             </Tooltip>
           </Stack>
         </Stack>
-        {message === '' ? (
-          <div />
-        ) : (
+        {message && (
           <Alert sx={{ marginTop: '1rem' }} severity="success">
             {message}
           </Alert>

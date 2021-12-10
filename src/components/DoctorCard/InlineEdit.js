@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
@@ -90,4 +91,16 @@ export const SelectEdit = function SelectEdit({ name, value, setValue }) {
       ))}
     </Styled.InlineEdit.Select>
   );
+};
+
+TextareaEdit.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
+
+SelectEdit.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
 };
