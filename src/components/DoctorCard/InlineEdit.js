@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { t } from 'i18next';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
 
 export const TextareaEdit = function TextareaEdit({ name, value, setValue, placeholder }) {
@@ -48,9 +48,12 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue, place
 };
 
 export const SelectEdit = function SelectEdit({ name, value, setValue }) {
+  const { t } = useTranslation();
+
   const values = [
-    { k: 0, v: t('rejects').toUpperCase() },
-    { k: 1, v: t('accepts').toUpperCase() },
+    // csv file has values "y" and "n"
+    { k: 'n', v: t('rejects').toUpperCase() },
+    { k: 'y', v: t('accepts').toUpperCase() },
   ];
 
   const [editingValue, setEditingValue] = useState(value);
@@ -82,7 +85,7 @@ export const SelectEdit = function SelectEdit({ name, value, setValue }) {
       onKeyDown={onKeyDown}
     >
       {values.map(({ k, v }) => (
-        <option key={k} value={v}>
+        <option key={k} value={k}>
           {v}
         </option>
       ))}

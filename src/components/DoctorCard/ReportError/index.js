@@ -13,7 +13,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const [type, ageGroup] = doctorFormData.type.split('-');
 
   const [inputAddress, setInputAddress] = useState(doctorFormData.fullAddress);
-  const [inputAvailability, setInputAvailability] = useState(accepts.toString());
+  const [inputAvailability, setInputAvailability] = useState(accepts ? 'y' : 'n');
   const [inputPhone, setInputPhone] = useState(doctorFormData.phone);
   const [inputWebsite, setInputWebsite] = useState(doctorFormData.website);
 
