@@ -95,16 +95,29 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         <Typography component="h2" variant="h2">
           {doctorFormData.provider}
         </Typography>
-        <TextareaEdit name="inputAddress" value={inputAddress} setValue={setInputAddress} />
-        <TextareaEdit name="inputWebsite" value={inputWebsite} setValue={setInputWebsite} />
-        <TextareaEdit name="inputPhone" value={inputPhone} setValue={setInputPhone} />
-        <Stack sx={{ mt: { md: 2 } }}>
-          <SelectEdit
-            name="inputAvailability"
-            value={inputAvailability}
-            setValue={setInputAvailability}
-          />
-        </Stack>
+        <TextareaEdit
+          name="inputAddress"
+          value={inputAddress}
+          setValue={setInputAddress}
+          placeholder={t('reportError.placeholder.address')}
+        />
+        <TextareaEdit
+          name="inputWebsite"
+          value={inputWebsite}
+          setValue={setInputWebsite}
+          placeholder={t('reportError.placeholder.website')}
+        />
+        <TextareaEdit
+          name="inputPhone"
+          value={inputPhone}
+          setValue={setInputPhone}
+          placeholder={t('reportError.placeholder.phone')}
+        />
+        <SelectEdit
+          name="inputAvailability"
+          value={inputAvailability}
+          setValue={setInputAvailability}
+        />
       </div>
       <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
         <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">

@@ -3,7 +3,7 @@ import { t } from 'i18next';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
 
-export const TextareaEdit = function TextareaEdit({ name, value, setValue }) {
+export const TextareaEdit = function TextareaEdit({ name, value, setValue, placeholder }) {
   const [editingValue, setEditingValue] = useState(value);
 
   const onChange = event => setEditingValue(event.target.value);
@@ -42,6 +42,7 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue }) {
       onChange={onChange}
       onKeyDown={onKeyDown}
       ref={textareaRef}
+      placeholder={placeholder}
     />
   );
 };
@@ -89,10 +90,15 @@ export const SelectEdit = function SelectEdit({ name, value, setValue }) {
   );
 };
 
+TextareaEdit.defaultProps = {
+  placeholder: 'placeholder',
+};
+
 TextareaEdit.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 SelectEdit.propTypes = {
