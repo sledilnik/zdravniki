@@ -6,7 +6,6 @@ import MuiLink from '@mui/material/Link';
 import { SIZES } from 'const';
 
 export * as PageInfo from './PageInfo';
-export * as InlineEdit from './InlineEdit';
 
 const Card = styled(MuiCard)(() => ({
   marginInline: '0.5em',
