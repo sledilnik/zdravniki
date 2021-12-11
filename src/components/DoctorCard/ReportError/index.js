@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import map from 'lodash/map';
-
 import { TextareaEdit, SelectEdit } from '../InlineEdit';
 import * as Shared from '../Shared';
 
@@ -52,10 +50,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     e.preventDefault();
 
     const formData = new FormData();
-
-    map(formState, item => {
-      formData.append(`entry.${item.id}`, item.value);
-    });
+    Object.values(formState).forEach(item => formData.append(`entry.${item.id}`, item.value));
 
     try {
       await fetch(formUrl, {
