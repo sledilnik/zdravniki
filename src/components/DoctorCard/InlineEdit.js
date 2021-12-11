@@ -22,18 +22,15 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue }) {
     }
   };
 
-  const onInput = useCallback(target => {
-    if (target.scrollHeight > 33) {
-      // target.style.height = '5px';
-      // target.style.height = `${target.scrollHeight - 16}px`;
-    }
-  }, []);
-
   const textareaRef = useRef();
+  const height = textareaRef.current?.scrollHeight;
 
   useEffect(() => {
-    onInput(textareaRef.current);
-  }, [onInput, textareaRef]);
+    // this is not perfect but it will do for now; most likely design will change
+    const lineHeight = height > 25 ? 17 : 25;
+    const rows = height ? Math.floor(height / lineHeight) : 1;
+    textareaRef.current.rows = rows;
+  }, [height]);
 
   return (
     <Styled.InlineEdit.Textarea
@@ -44,7 +41,6 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue }) {
       onBlur={onBlur}
       onChange={onChange}
       onKeyDown={onKeyDown}
-      onInput={event => onInput(event.target)}
       ref={textareaRef}
     />
   );
