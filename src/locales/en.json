@@ -36,6 +36,11 @@
         "title": "Report error",
         "cancel": "Cancel",
         "send": "Send",
-        "reportReceived": "Thank you! We will look into it..."
+        "reportReceived": "Thank you! We will look into it...",
+        "placeholder": {
+            "address": "address",
+            "website": "web page",
+            "phone": "phone"
+        }
     }
 }

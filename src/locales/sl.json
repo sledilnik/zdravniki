@@ -36,6 +36,11 @@
         "title": "Prijavi napako",
         "cancel": "Prekliči",
         "send": "Pošlji",
-        "reportReceived": "Hvala za poslano! Podatke bomo pregledali..."
+        "reportReceived": "Hvala za poslano! Podatke bomo pregledali...",
+        "placeholder": {
+            "address": "naslov",
+            "website": "internet stran",
+            "phone": "telefon"
+        }
     }
 }
