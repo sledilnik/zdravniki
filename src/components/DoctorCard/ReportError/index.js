@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import { TextareaEdit, SelectEdit } from '../InlineEdit';
 import * as Shared from '../Shared';
+import { SelectEdit, TextareaEdit } from './InlineEdit';
 
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
   const { t } = useTranslation();
