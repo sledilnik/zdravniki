@@ -1,8 +1,8 @@
 import { t } from 'i18next';
-import { Link } from 'react-router-dom';
 import * as SEO from 'components/SEO';
 import * as Styled from './styles/PageNotFound';
-import image from '../assets/caution-tape.png';
+import image from '../assets/doctor-404.png';
+import image2x from '../assets/doctor-404@2x.png';
 
 const PageNotFound = function PageNotFound() {
   const lng = localStorage.getItem('i18nextLng') || 'sl';
@@ -15,12 +15,14 @@ const PageNotFound = function PageNotFound() {
         <Styled.PageNotFound>
           <h1>{t('SEO.title.notFound')}</h1>
           <p>{t('pageNotFound.somethingWentWrong')}</p>
-          <Styled.Image src={image} alt={t('pageNotFound.imageDescription')} />
-          <div>
-            <Link to="/" style={{ cursor: 'pointer' }}>
-              {t('header.home')}
-            </Link>
-          </div>
+          <Styled.Image
+            src={image}
+            srcSet={`${image2x} 2x`}
+            alt={t('pageNotFound.imageDescription')}
+          />
+          <Styled.BackToHomeBtn to="/" style={{ cursor: 'pointer' }}>
+            {t('header.home')}
+          </Styled.BackToHomeBtn>
         </Styled.PageNotFound>
       </Styled.CustomContainer>
     </>
