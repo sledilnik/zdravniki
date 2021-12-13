@@ -139,7 +139,7 @@ export const InfoWrapper = styled(Stack)(({ theme }) => ({
 }));
 
 export const Accepts = styled(TypographyBase)(({ theme, accepts }) => {
-  const color = accepts === 'true' ? theme.customColors.brand : theme.customColors.danger;
+  const color = accepts ? theme.customColors.brand : theme.customColors.danger;
 
   return {
     fontWeight: 700,
