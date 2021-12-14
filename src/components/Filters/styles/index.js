@@ -10,8 +10,19 @@ export * as Icon from './Icon';
 export const Card = styled(MuiCard)(({ theme }) => ({
   borderRadius: '24px',
 }));
-export const CardActions = styled(MuiCardActions)(({ theme }) => ({}));
-export const Collapse = styled(MuiCollapse)(({ theme }) => ({}));
+export const CardActions = styled(MuiCardActions)(({ theme }) => ({
+  height: '48px',
+}));
+export const Collapse = styled(MuiCollapse)(({ theme }) => ({
+  paddingTop: '8px',
+  '.MuiCollapse-wrapperInner': {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingInline: '8px',
+    flexWrap: 'wrap',
+  },
+}));
 
 // ? maybe insted of  Mui Box use Mui CardContent or even discard Grid and use only Collapse
 export const Grid = styled(MuiBox)(({ theme }) => ({

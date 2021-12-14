@@ -37,10 +37,8 @@ const Filters = function Filters({ useShow }) {
     <Styled.Grid>
       <Styled.Card>
         <Styled.Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Styled.Toggles>
-            <ToggleDoctorType />
-            <ToggleAccepts />
-          </Styled.Toggles>
+          <ToggleDoctorType />
+          <ToggleAccepts />
         </Styled.Collapse>
         <Styled.CardActions onClick={handleExpandClick}>Filter</Styled.CardActions>
         {/* you can create MobileSearch component  with only mobile style or tweak current Search */}
