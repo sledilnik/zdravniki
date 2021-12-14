@@ -28,10 +28,10 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
     height: `calc(100vh - ${SIZES.MAP_HEIGHT.upSmall} - 56px - 140.5px)`,
   },
   [theme.breakpoints.up('md')]: {
-    height: 'calc(100vh - 64px - 91px)',
+    height: 'calc(100vh - 64px - 107px)',
   },
   [theme.breakpoints.up('lg')]: {
-    height: 'calc(100vh - 64px - 54px)',
+    height: 'calc(100vh - 64px - 65.5px)',
   },
 }));
 export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
