@@ -7,7 +7,9 @@ import MuiCollapse from '@mui/material/Collapse';
 export * as Search from './Search';
 export * as Icon from './Icon';
 
-export const Card = styled(MuiCard)(({ theme }) => ({}));
+export const Card = styled(MuiCard)(({ theme }) => ({
+  borderRadius: '24px',
+}));
 export const CardActions = styled(MuiCardActions)(({ theme }) => ({}));
 export const Collapse = styled(MuiCollapse)(({ theme }) => ({}));
 

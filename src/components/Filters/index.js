@@ -23,23 +23,34 @@ const Filters = function Filters({ useShow }) {
     setExpanded(!expanded);
   };
 
-  return (
-    <Styled.Card>
-      <Styled.Collapse in={expanded} timeout="auto" unmountOnExit>
-        <Styled.Grid>
+  const up = (
+    <Styled.Grid>
+      <Styled.Toggles>
+        <ToggleDoctorType />
+        <ToggleAccepts />
+      </Styled.Toggles>
+      <Search />
+    </Styled.Grid>
+  );
+
+  const down = (
+    <Styled.Grid>
+      <Styled.Card>
+        <Styled.Collapse in={expanded} timeout="auto" unmountOnExit>
           <Styled.Toggles>
             <ToggleDoctorType />
             <ToggleAccepts />
           </Styled.Toggles>
-          {matches && <Search />}
-        </Styled.Grid>
-      </Styled.Collapse>
-      {!matches && <Styled.CardActions onClick={handleExpandClick}>Filter</Styled.CardActions>}
-      {!matches && <Search />}
-      {/* you can create MobileSearch component  with only mobile style or tweak current Search */}
-      {!matches && <ToggleMapCards useShow={useShow} />}
-    </Styled.Card>
+        </Styled.Collapse>
+        <Styled.CardActions onClick={handleExpandClick}>Filter</Styled.CardActions>
+        {/* you can create MobileSearch component  with only mobile style or tweak current Search */}
+      </Styled.Card>
+      <Search />
+      <ToggleMapCards useShow={useShow} />
+    </Styled.Grid>
   );
+
+  return matches ? up : down;
 };
 
 export default Filters;
