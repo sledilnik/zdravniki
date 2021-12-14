@@ -3,14 +3,13 @@
     "header": {
         "menu": "Menu",
         "home": "Home",
-        "reportError": "Report error",
         "about": "About",
         "faq": "FAQ",
         "support": "Support!",
         "sledilnik": "Sledilnik.org"
     },
-    "accepts": "accepts",
-    "rejects": "rejects",
+    "accepts": "accepting",
+    "rejects": "not accepting",
     "all": "all",
     "generalPractitioner": "general practitioner",
     "dentist": "dentist",
@@ -32,5 +31,29 @@
         "title": "Frequently Asked Questions",
         "description": "In case of medical emergency you should contact emergency services or call 112.",
         "glossary": "Glossary"
+    },
+    "pageNotFound": {
+        "somethingWentWrong": "oops… something went wrong :(",
+        "back": "Back",
+        "imageDescription": "two traffic cones connected by yellow tape"
+    },
+    "SEO": {
+        "title": {
+            "notFound": "404: page not found",
+            "home": "Doctors - Sledilnik",
+            "about": "About",
+            "faq": "FAQ"
+        }
+    },
+    "reportError": {
+        "title": "Report error",
+        "cancel": "Cancel",
+        "send": "Send",
+        "reportReceived": "Thank you! We will look into it...",
+        "placeholder": {
+            "address": "address",
+            "website": "web page",
+            "phone": "phone"
+        }
     }
 }

@@ -1,14 +1,28 @@
-import { t } from 'i18next';
-import i18next from 'i18n';
+import { useEffect } from 'react';
+import { t, changeLanguage } from 'i18next';
+import { useNavigate } from 'react-router';
+import { useFilter } from 'context/filterContext';
 import * as Styled from './styles';
 
 const NavLinks = function NavLinks() {
+  const navigate = useNavigate();
+  const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
   const lng = localStorage.getItem('i18nextLng') || 'sl';
-  i18next.changeLanguage(lng);
+  useEffect(() => {
+    changeLanguage(lng);
+  }, [lng]);
+
+  const goHome = event => {
+    event.preventDefault();
+    if (doctorType !== 'gp') setDoctorType('gp');
+    if (accept !== 'vsi') setAccept('vsi');
+    if (searchValue) setSearchValue('');
+    navigate(`/${lng}/`);
+  };
 
   return (
     <>
-      <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active">
+      <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
@@ -19,7 +33,7 @@ const NavLinks = function NavLinks() {
         tabIndex={0}
         underline="none"
       >
-        {t('header.reportError')}
+        {t('reportError.title')}
       </Styled.NavMenuItemLink>
       <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}

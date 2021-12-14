@@ -87,18 +87,39 @@ export const StaticPageWrapper = styled('div')(({ theme }) => ({
   },
 
   'span[data-term]': {
+    position: 'relative',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    outline: 'none',
     cursor: 'help',
     fontWeight: 600,
     transition: 'all 0.35s ease-in-out',
-    boxShadow: theme.MD.dataTermBoxShadow,
-    textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.8)',
 
-    '&:hover ': {
-      textDecoration: 'none',
-      color: 'rgba(0, 0, 0, 0.8)',
-      fontWeight: 600,
-      boxShadow: theme.MD.dataTermBoxShadowHover,
+    '&:before ': {
+      content: '""',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: '-2px',
+      borderBottom: `2px ${theme.customColors.brand} dotted`,
+      zIndex: 1,
+    },
+
+    '&:hover::after': {
+      content: 'attr(data-definition)',
+      position: 'absolute',
+      top: '90%',
+      width: '100px',
+      backgroundColor: theme.MD.dataTermBcgColor,
+      color: 'white',
+      border: '1px solid',
+      padding: '3px 6px',
+      margin: '10px',
+      fontSize: '10px',
+      fontWeight: 200,
+      lineHeight: 1.4,
+      zIndex: 2,
     },
   },
 
@@ -184,7 +205,7 @@ export const Details = styled('details')(() => ({
     display: 'none',
     width: '90%',
   },
-  '> *:nth-child(2)': {
+  '> *:nth-of-type(1)': {
     marginTop: '2px',
     paddingTop: '12px',
   },

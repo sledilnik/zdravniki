@@ -1,46 +1,32 @@
 import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
+import { filterBySearchValueInMapBounds } from '../utils';
 import { useDoctors } from './doctorsContext';
+import { useLeafletContext } from './leafletContext';
 
 const FilterContext = createContext();
 
 export const FilterConsumer = FilterContext.Consumer;
 
 const FilterProvider = function FilterProvider({ children }) {
+  const { map } = useLeafletContext();
   const { doctors: _doctors } = useDoctors();
 
   const [doctorType, setDoctorType] = useState('gp');
   const [accept, setAccept] = useState('vsi');
   const [searchValue, setSearchValue] = useState('');
-  const [ids, setIds] = useState([]);
 
   const [doctors, setDoctors] = useState(_doctors);
   const [filtered, setFiltered] = useState(null);
 
-  const isByIds = ids.length > 0;
-
   const setFilteredDoctors = useCallback(() => {
-    if (!filtered) {
+    const bounds = map?.getBounds();
+    if (!filtered || !bounds) {
       return;
     }
 
-    if (!searchValue && !isByIds) setDoctors(filtered);
-
-    if (isByIds) {
-      if (searchValue) setSearchValue('');
-      const doctorsById = filtered.filter(doctor => ids.includes(doctor.id));
-      setDoctors(doctorsById);
-    }
-
-    if (searchValue) {
-      const compare = doctor =>
-        doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
-        doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
-      const combined = filtered.filter(compare);
-
-      setDoctors(combined);
-    }
-  }, [filtered, searchValue, isByIds, ids]);
+    const mapDoctors = filterBySearchValueInMapBounds({ searchValue, filtered, bounds });
+    setDoctors(mapDoctors);
+  }, [filtered, searchValue, map]);
 
   const memoFiltered = useMemo(
     () => _doctors?.filter(doctorType, accept),
@@ -69,13 +55,11 @@ const FilterProvider = function FilterProvider({ children }) {
       setAccept,
       searchValue,
       setSearchValue,
-      ids,
-      setIds,
       get allDoctors() {
         return filtered;
       },
     }),
-    [accept, doctorType, doctors, filtered, ids, searchValue],
+    [accept, doctorType, doctors, filtered, searchValue],
   );
   return <FilterContext.Provider value={value}>{children}</FilterContext.Provider>;
 };

@@ -1,11 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import { CardContent, Typography, Tooltip, Stack } from '@mui/material';
+import { useState } from 'react';
+import { CardContent, Typography, Tooltip, Stack, Button, Alert } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
+import { useFilter } from 'context/filterContext';
 import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
+import { MAP } from 'const';
+
+import ReportError from './ReportError';
 import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
@@ -13,6 +18,9 @@ import * as Shared from './Shared';
 import { toPercent } from './utils';
 
 const PageInfo = function PageInfo({ doctor }) {
+  const { searchValue } = useFilter();
+  const { state } = useLocation();
+
   const lng = localStorage.getItem('i18nextLng') || 'sl';
   const accepts = doctor.accepts === 'y';
 
@@ -24,8 +32,41 @@ const PageInfo = function PageInfo({ doctor }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`);
+    navigate(`/${lng}`, {
+      state: {
+        searchValue,
+        zoom: state?.zoom ?? MAP.ZOOM,
+        center: state?.center ?? MAP.GEO_LOCATION.SL_CENTER,
+      },
+    });
   };
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const reportError = () => {
+    setIsEditing(true);
+    setMessage('');
+  };
+
+  if (isEditing) {
+    const doctorFormData = {
+      name: doctor.name,
+      provider: doctor.provider,
+      fullAddress: doctor.fullAddress,
+      website: doctor.website,
+      phone: doctor.phone,
+      accepts: doctor.accepts,
+      type: doctor.type,
+    };
+    return (
+      <ReportError
+        doctorFormData={doctorFormData}
+        setIsEditing={setIsEditing}
+        setMessage={setMessage}
+      />
+    );
+  }
 
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -40,7 +81,6 @@ const PageInfo = function PageInfo({ doctor }) {
         <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
           {doctor.fullAddress}
         </Typography>
-
         {urlText && (
           <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
             <Typography component="div" variant="body1">
@@ -51,7 +91,6 @@ const PageInfo = function PageInfo({ doctor }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
-
         {doctor.phone && (
           <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
             <Typography component="div" variant="body1">
@@ -62,12 +101,11 @@ const PageInfo = function PageInfo({ doctor }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
-
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <Accepts accepts={accepts.toString()} />
+                <Accepts accepts={accepts} />
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip title={<Shared.Tooltip.Availability />}>
@@ -78,18 +116,34 @@ const PageInfo = function PageInfo({ doctor }) {
             </Tooltip>
           </Stack>
         </Stack>
+        {message && (
+          <Alert sx={{ marginTop: '1rem' }} severity="success">
+            {message}
+          </Alert>
+        )}
       </div>
       <div>
-        <Styled.PageInfo.BackWrapper direction="row">
-          <Stack direction="row" alignItems="center" onClick={handleBackButton}>
-            <IconButton sx={{ marginLeft: '-8px' }}>
-              <Icons.Icon name="ArrowBack" />
-            </IconButton>
-            <Typography component="div" variant="body1">
-              {t('backToHome')}
-            </Typography>
-          </Stack>
-        </Styled.PageInfo.BackWrapper>
+        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Styled.PageInfo.BackWrapper direction="row">
+            <Stack direction="row" alignItems="center" onClick={handleBackButton}>
+              <IconButton sx={{ marginLeft: '-8px' }}>
+                <Icons.Icon name="ArrowBack" />
+              </IconButton>
+              <Typography component="div" variant="body1">
+                {t('backToHome')}
+              </Typography>
+            </Stack>
+          </Styled.PageInfo.BackWrapper>
+          <Button
+            disabled={message !== ''}
+            component="span"
+            variant="outlined"
+            onClick={reportError}
+            size="small"
+          >
+            {t('reportError.title')}
+          </Button>
+        </Stack>
       </div>
     </CardContent>
   );

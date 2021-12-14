@@ -41,9 +41,9 @@ export const ConditionalLink = function ConditionalLink({
 };
 
 export const DoubleChip = function DoubleChip({ type, ageGroup }) {
-  const drType = TypeTranslate[type];
-  const drAgeGroup = AgeGroupTranslate?.[ageGroup] ?? 'adults';
-  const typeIcon = TypeIconTranslate[type];
+  const drType = t(TypeTranslate[type]);
+  const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
+  const typeIcon = TypeIconTranslate[type] ?? 'Family';
   const ageGroupIcon = AgeGroupIconTranslate?.[ageGroup] ?? 'Adults';
   return (
     <Styled.PageInfo.DCWrapper direction="row">

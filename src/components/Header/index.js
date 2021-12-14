@@ -3,6 +3,7 @@ import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Box, TextField } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
 import i18next, { languages } from 'i18n';
+import { useFilter } from 'context/filterContext';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -10,6 +11,7 @@ import * as Styled from './styles';
 import Popper from './Popper';
 
 const Header = function Header() {
+  const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -45,6 +47,14 @@ const Header = function Header() {
     navigate(`/${lang}/${location.pathname.substring(4)}`);
   };
 
+  const goHome = event => {
+    event.preventDefault();
+    if (doctorType !== 'gp') setDoctorType('gp');
+    if (accept !== 'vsi') setAccept('vsi');
+    if (searchValue) setSearchValue('');
+    navigate('/');
+  };
+
   return (
     <Box id="drawer" sx={{ flexGrow: 1 }}>
       <AppBar
@@ -62,7 +72,7 @@ const Header = function Header() {
             },
           }}
         >
-          <NavLink to="/" className="logo">
+          <NavLink to="/" className="logo" onClick={goHome}>
             <Icons.Icon name="Logo" style={{ height: '2rem' }} />
           </NavLink>
           <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
@@ -95,7 +105,7 @@ const Header = function Header() {
             }}
             options={languages}
             disableClearable
-            defaultValue={languages.find(l => l.code === lng)}
+            value={languages.find(l => l.code === lng)}
             getOptionLabel={option => {
               const code = option?.code;
               return typeof code === 'undefined' ? '' : code.toUpperCase();
