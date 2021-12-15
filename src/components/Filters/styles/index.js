@@ -40,7 +40,7 @@ export const FilterInfoStack = styled(MuiStack)(() => ({
 
 export const Divider = styled(MuiDivider)(() => ({
   borderWidth: 1,
-  borderColor: 'transparent',
+  borderColor: '#21252980',
 }));
 
 export const Collapse = styled(MuiCollapse)(({ theme }) => ({
