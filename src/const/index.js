@@ -5,6 +5,7 @@ export * as SIZES from './sizes';
 export * as CSV_URL from './csvURL';
 export { default as THEME } from './theme';
 
+const ZOOM_BELOW_SMALL = 7;
 const ZOOM = 8;
 const MIN_ZOOM = 6;
 const MAX_ZOOM = 16;
@@ -21,4 +22,4 @@ const BOUNDS = {
   },
 };
 
-export const MAP = { ZOOM, MIN_ZOOM, MAX_ZOOM, GEO_LOCATION, BOUNDS };
+export const MAP = { ZOOM, ZOOM_BELOW_SMALL, MIN_ZOOM, MAX_ZOOM, GEO_LOCATION, BOUNDS };
