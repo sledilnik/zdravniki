@@ -19,15 +19,13 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
   const availabilityText = toPercent(doctor.availability, lng);
 
   const navigate = useNavigate();
-  const handleDoctorCard = type => {
-    const drPath = DoctorTypeTranslate?.[type];
-    if (!drPath) {
-      return undefined;
-    }
 
-    const slug = slugify(doctor?.name?.toLowerCase());
-    const path = `/${lng}/${drPath}/${slug}`;
-    // todo pass filters' state as second argument
+  const drPath = DoctorTypeTranslate?.[doctor?.type];
+  const slug = slugify(doctor?.name?.toLowerCase());
+  const path = drPath && `/${lng}/${drPath}/${slug}`;
+
+  const handleDoctorCard = event => {
+    event.preventDefault();
     return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
   };
 
@@ -73,9 +71,13 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
           <IconButton onClick={handleZoom}>
             <Icons.Icon name="MapMarker" />
           </IconButton>
-          <IconButton onClick={() => handleDoctorCard(doctor.type)}>
-            <Icons.Icon name="IdCard" />
-          </IconButton>
+          {path && (
+            <IconButton>
+              <Shared.LinkNoRel href={path} onClick={handleDoctorCard}>
+                <Icons.Icon name="IdCard" />
+              </Shared.LinkNoRel>
+            </IconButton>
+          )}
         </Stack>
       </Stack>
     </CardContent>
