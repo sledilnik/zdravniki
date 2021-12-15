@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
-// import { t } from 'i18next';
+import { t } from 'i18next';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
@@ -14,15 +14,15 @@ function withToggleGroup(Component) {
           value="map"
           aria-label="map"
           accept={show}
-          text="Map"
-          iconNames={['CheckWhite', 'Check']}
+          text={t('map')}
+          iconNames={['MapViewWhite', 'MapView']}
         />
         <IconToggleButton
           value="cards"
           aria-label="doctor cards"
           accept={show}
-          text="Cards"
-          iconNames={['BanWhite', 'Ban']}
+          text={t('list')}
+          iconNames={['ListViewWhite', 'ListView']}
         />
       </Component>
     );

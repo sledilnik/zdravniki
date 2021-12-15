@@ -36,6 +36,12 @@ import { ReactComponent as Link } from 'assets/icon-link.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 import { ReactComponent as Copy } from 'assets/icon-copy.svg';
+import { ReactComponent as Filter } from 'assets/icon-filter.svg';
+import { ReactComponent as FilterWhite } from 'assets/icon-filter--white.svg';
+import { ReactComponent as MapView } from 'assets/icon-map-view.svg';
+import { ReactComponent as MapViewWhite } from 'assets/icon-map-view--white.svg';
+import { ReactComponent as ListView } from 'assets/icon-list-view.svg';
+import { ReactComponent as ListViewWhite } from 'assets/icon-list-view--white.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -89,6 +95,12 @@ const icons = {
   Students,
   StudentsWhite,
   Twitter,
+  Filter,
+  FilterWhite,
+  MapView,
+  MapViewWhite,
+  ListView,
+  ListViewWhite,
 };
 
 export const Icon = function Icon({ name, ...props }) {

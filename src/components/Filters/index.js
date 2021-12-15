@@ -65,7 +65,7 @@ const Filters = function Filters({ useShow }) {
 
   const filterIcon = (
     <Styled.FilterIconStack direction="row" spacing={1}>
-      <Icons.Icon name="Search" />
+      <Icons.Icon name="Filter" />
       <span>Filter</span>
     </Styled.FilterIconStack>
   );
