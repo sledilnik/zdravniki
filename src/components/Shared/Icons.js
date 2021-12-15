@@ -36,6 +36,7 @@ import { ReactComponent as Link } from 'assets/icon-link.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 import { ReactComponent as Copy } from 'assets/icon-copy.svg';
+import { ReactComponent as ReportError } from 'assets/icon-error.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -88,6 +89,7 @@ const icons = {
   Students,
   StudentsWhite,
   Twitter,
+  ReportError,
 };
 
 export const Icon = function Icon({ name, ...props }) {

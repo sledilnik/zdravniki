@@ -84,6 +84,30 @@ const Router = function Router() {
           }
         />
         <Route
+          path="/:lng/zdravnik/:priimekIme/edit"
+          element={
+            <Suspense fallback={<Loader.Center />}>
+              <Doctor isReportError />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/:lng/zobozdravnik/:priimekIme/edit"
+          element={
+            <Suspense fallback={<Loader.Center />}>
+              <Doctor isReportError />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/:lng/ginekolog/:priimekIme/edit"
+          element={
+            <Suspense fallback={<Loader.Center />}>
+              <Doctor isReportError />
+            </Suspense>
+          }
+        />
+        <Route
           path="/:lng/404"
           element={
             <Suspense fallback={<Loader.Center />}>

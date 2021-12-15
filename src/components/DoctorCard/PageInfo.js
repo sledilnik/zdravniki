@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CardContent, Typography, Tooltip, Stack, Button, Alert } from '@mui/material';
+import { CardContent, Typography, Tooltip, Stack, Alert } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
@@ -17,7 +17,7 @@ import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = function PageInfo({ doctor }) {
+const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { searchValue } = useFilter();
   const { state } = useLocation();
 
@@ -41,7 +41,7 @@ const PageInfo = function PageInfo({ doctor }) {
     });
   };
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(isReportError);
   const [message, setMessage] = useState('');
 
   const reportError = () => {
@@ -57,7 +57,9 @@ const PageInfo = function PageInfo({ doctor }) {
       website: doctor.website,
       phone: doctor.phone,
       accepts: doctor.accepts,
+      availability: doctor.availability,
       type: doctor.type,
+      note: '',
     };
     return (
       <ReportError
@@ -134,15 +136,15 @@ const PageInfo = function PageInfo({ doctor }) {
               </Typography>
             </Stack>
           </Styled.PageInfo.BackWrapper>
-          <Button
+          <IconButton
             disabled={message !== ''}
             component="span"
             variant="outlined"
             onClick={reportError}
             size="small"
           >
-            {t('reportError.title')}
-          </Button>
+            <Icons.Icon name="ReportError" />
+          </IconButton>
         </Stack>
       </div>
     </CardContent>

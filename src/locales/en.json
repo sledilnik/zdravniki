@@ -53,7 +53,9 @@
         "placeholder": {
             "address": "address",
             "website": "web page",
-            "phone": "phone"
+            "phone": "phone",
+            "availability": "availability",
+            "note": "note"
         }
     }
 }

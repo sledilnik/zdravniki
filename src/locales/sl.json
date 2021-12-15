@@ -52,8 +52,10 @@
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali...",
         "placeholder": {
             "address": "naslov",
-            "website": "internet stran",
-            "phone": "telefon"
+            "website": "spletna stran",
+            "phone": "telefon",
+            "availability": "obseg zaposlitve",
+            "note": "opomba"
         }
     }
 }

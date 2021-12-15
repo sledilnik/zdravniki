@@ -25,16 +25,6 @@ const NavLinks = function NavLinks() {
       <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
-      <Styled.NavMenuItemLink
-        href="mailto:podpora-zdravniki@sledilnik.org"
-        target="_blank"
-        rel="noopener"
-        component="button"
-        tabIndex={0}
-        underline="none"
-      >
-        {t('reportError.title')}
-      </Styled.NavMenuItemLink>
       <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}
       </Styled.NavMenuLink>

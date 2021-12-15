@@ -9,7 +9,7 @@ import { Loader } from 'components/Shared';
 import { leafletContext } from 'context';
 import { useDoctors } from 'context/doctorsContext';
 
-const Doctor = function Doctor() {
+const Doctor = function Doctor({ isReportError = false }) {
   const { doctors } = useDoctors();
   const { lng, priimekIme } = useParams();
   const [doctor, setDoctor] = useState();
@@ -40,7 +40,11 @@ const Doctor = function Doctor() {
         }}
       >
         <leafletContext.LeafletProvider>
-          <DoctorCard doctor={doctor} isPage />
+          {isReportError ? (
+            <DoctorCard doctor={doctor} isPage isReportError />
+          ) : (
+            <DoctorCard doctor={doctor} isPage isReportError={false} />
+          )}
         </leafletContext.LeafletProvider>
       </Box>
     );
