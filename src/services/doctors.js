@@ -9,6 +9,7 @@ const TYPE_TRANSLATE = {
   EN: 'description',
 };
 
+// TODO: use i18next.t() instead
 const ACCEPT_TRANSLATE = {
   SL: { n: 'ne sprejema', y: 'sprejema' },
   EN: { n: 'rejects', y: 'accepts' },

@@ -1,17 +1,31 @@
-import React, { Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
+import i18next from 'i18next';
 
-const Home = React.lazy(() => import('../pages/Home'));
-const About = React.lazy(() => import('../pages/About'));
-const Faq = React.lazy(() => import('../pages/Faq'));
-const Doctor = React.lazy(() => import('../pages/Doctor'));
-const PageNotFound = React.lazy(() => import('../pages/PageNotFound'));
+const Home = lazy(() => import('../pages/Home'));
+const About = lazy(() => import('../pages/About'));
+const Faq = lazy(() => import('../pages/Faq'));
+const Doctor = lazy(() => import('../pages/Doctor'));
+const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const Router = function Router() {
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const lng = window.location.pathname.substring(1, 3);
 
+  useEffect(() => {
+    const supportedLanguages = i18next.languages;
+    if (lng === '' || !supportedLanguages.includes(lng)) {
+      window.location.pathname = `/${process.env.REACT_APP_DEFAULT_LANGUAGE}/`;
+      i18next.changeLanguage(process.env.REACT_APP_DEFAULT_LANGUAGE);
+      return;
+    }
+    if (i18next.language !== lng) {
+      i18next.changeLanguage(lng);
+    }
+  }, [lng]);
+
+  // TODO: unify routes names, some are in English (e.g. '/about'), others in Slovenian (/zdravnik, /zobozdravnik, /ginekolog)
   return (
     <HelmetProvider>
       <Routes>
@@ -20,7 +34,7 @@ const Router = function Router() {
         <Route exact path="/about" element={<Navigate to={`/${lng}/about`} />} />
         <Route
           exact
-          path="/en/"
+          path="/:lng"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Home />
@@ -29,16 +43,7 @@ const Router = function Router() {
         />
         <Route
           exact
-          path="/sl/"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          exact
-          path="/en/about"
+          path="/:lng/about"
           element={
             <Suspense fallback={<Loader.Center />}>
               <About />
@@ -47,16 +52,7 @@ const Router = function Router() {
         />
         <Route
           exact
-          path="/sl/about"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          exact
-          path="/sl/faq"
+          path="/:lng/faq"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Faq />
@@ -64,16 +60,7 @@ const Router = function Router() {
           }
         />
         <Route
-          exact
-          path="/en/faq"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Faq />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/sl/zdravnik/:priimekIme"
+          path="/:lng/zdravnik/:priimekIme"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor />
@@ -81,7 +68,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/en/zdravnik/:priimekIme"
+          path="/:lng/zobozdravnik/:priimekIme"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor />
@@ -89,7 +76,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/sl/zobozdravnik/:priimekIme"
+          path="/:lng/ginekolog/:priimekIme"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor />
@@ -97,39 +84,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/en/zobozdravnik/:priimekIme"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/sl/ginekolog/:priimekIme"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/en/ginekolog/:priimekIme"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/en/404"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <PageNotFound />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/sl/404"
+          path="/:lng/404"
           element={
             <Suspense fallback={<Loader.Center />}>
               <PageNotFound />

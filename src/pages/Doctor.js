@@ -11,10 +11,9 @@ import { useDoctors } from 'context/doctorsContext';
 
 const Doctor = function Doctor() {
   const { doctors } = useDoctors();
-  const { priimekIme } = useParams();
+  const { lng, priimekIme } = useParams();
   const [doctor, setDoctor] = useState();
   const [loading, setLoading] = useState(true);
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
     setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === priimekIme));

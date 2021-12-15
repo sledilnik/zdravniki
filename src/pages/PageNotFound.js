@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { t } from 'i18next';
 import * as SEO from 'components/SEO';
 import * as Styled from './styles/PageNotFound';
@@ -5,7 +6,7 @@ import image from '../assets/doctor-404.png';
 import image2x from '../assets/doctor-404@2x.png';
 
 const PageNotFound = function PageNotFound() {
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const meta = [{ name: 'robots', content: 'noindex' }];
 
   return (
@@ -20,9 +21,7 @@ const PageNotFound = function PageNotFound() {
             srcSet={`${image2x} 2x`}
             alt={t('pageNotFound.imageDescription')}
           />
-          <Styled.BackToHomeBtn to="/" style={{ cursor: 'pointer' }}>
-            {t('header.home')}
-          </Styled.BackToHomeBtn>
+          <Styled.BackToHomeBtn to="/">{t('header.home')}</Styled.BackToHomeBtn>
         </Styled.PageNotFound>
       </Styled.CustomContainer>
     </>

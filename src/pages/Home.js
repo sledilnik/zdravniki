@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
@@ -13,7 +14,7 @@ import * as Styled from './styles/Home';
 
 const Home = function Home() {
   const { t } = useTranslation();
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
@@ -25,7 +26,7 @@ const Home = function Home() {
   }, []);
 
   if (hasError) {
-    return <div>Nekaj je narobe!</div>;
+    return <div>{t('pageNotFound.somethingWentWrong')}</div>;
   }
 
   return (

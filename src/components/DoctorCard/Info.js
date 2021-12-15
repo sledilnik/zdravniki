@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
 import slugify from 'slugify';
 
@@ -13,7 +13,7 @@ import { DoctorTypeTranslate } from './dicts';
 import { toPercent } from './utils';
 
 const Info = function Info({ doctor, handleZoom = () => {} }) {
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const { map } = useLeafletContext();
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
