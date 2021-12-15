@@ -53,6 +53,7 @@ const Search = function Search() {
             value={value}
             onChange={handleSearchChange}
             aria-label="search"
+            type="search"
           />
         </Styled.Search.Search>
       </Paper>

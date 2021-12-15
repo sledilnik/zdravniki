@@ -41,15 +41,7 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
     padding: theme.spacing(0, 1, 0, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    width: '20ch',
     borderRadius: '24px',
-
-    [theme.breakpoints.up('sm')]: {
-      width: '20ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
   },
 }));
 
