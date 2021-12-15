@@ -82,6 +82,14 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
   );
 };
 
+Doctors.defaultProps = {
+  itemsPerPage: 10,
+};
+
+Doctors.propTypes = {
+  itemsPerPage: PropTypes.number,
+};
+
 export default Doctors;
 
 export function getCenter(doctors) {
