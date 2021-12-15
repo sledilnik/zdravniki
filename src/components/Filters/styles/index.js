@@ -3,24 +3,64 @@ import MuiBox from '@mui/material/Box';
 import MuiCard from '@mui/material/Card';
 import MuiCardActions from '@mui/material/CardActions';
 import MuiCollapse from '@mui/material/Collapse';
+import MuiStack from '@mui/material/Stack';
+import MuiDivider from '@mui/material/Divider';
 
 export * as Search from './Search';
 export * as Icon from './Icon';
 
-export const Card = styled(MuiCard)(({ theme }) => ({
+export const Card = styled(MuiCard)(() => ({
   borderRadius: '24px',
+  '&.MuiCard-root': { backgroundColor: '#E8EFF080' },
 }));
-export const CardActions = styled(MuiCardActions)(({ theme }) => ({
+export const CardActions = styled(MuiCardActions)(() => ({
   height: '48px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  cursor: 'pointer',
+  backgroundColor: 'transparent',
+  fontSize: '14px',
+  color: '#212529',
+  borderTop: '0px solid transparent',
 }));
+
+export const FilterIconStack = styled(MuiStack)(() => ({
+  alignItems: 'center',
+  opacity: 1,
+}));
+export const FilterInfoStack = styled(MuiStack)(() => ({
+  alignItems: 'center',
+  opacity: 0.5,
+  lineHeight: '20px',
+  '> span': {
+    marginLeft: '8px',
+  },
+}));
+
+export const Divider = styled(MuiDivider)(() => ({
+  borderWidth: 1,
+  borderColor: 'transparent',
+}));
+
 export const Collapse = styled(MuiCollapse)(({ theme }) => ({
-  paddingTop: '8px',
   '.MuiCollapse-wrapperInner': {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    paddingBlock: '8px',
     paddingInline: '8px',
-    flexWrap: 'wrap',
+    flexWrap: 'no-wrap',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.common.white,
+    '> *': {
+      marginBlock: '4px',
+    },
+  },
+
+  '&.MuiCollapse-entered': {},
+
+  '&.MuiCollapse-entered + .MuiCardActions-root': {
+    backgroundColor: theme.palette.common.white,
+    borderTop: '1px solid #E8EFF080',
   },
 }));
 
