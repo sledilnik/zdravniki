@@ -47,6 +47,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const reportError = () => {
     setIsEditing(true);
     setMessage('');
+    navigate('edit');
   };
 
   if (isEditing) {

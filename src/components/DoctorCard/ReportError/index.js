@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
+import slugify from 'slugify';
 import * as Shared from '../Shared';
 import { SelectEdit, TextareaEdit } from './InlineEdit';
 import { toPercent } from '../utils';
+import { DoctorTypeTranslate } from '../dicts';
 
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
   const { t } = useTranslation();
   const { lng } = useParams();
+  const navigate = useNavigate();
 
   const accepts = doctorFormData.accepts === 'y';
   const [type, ageGroup] = doctorFormData.type.split('-');
@@ -136,6 +139,10 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     setInputPhone(doctorFormData.phone);
     setInputWebsite(doctorFormData.website);
     setInputNote(doctorFormData.note);
+    const drPath = DoctorTypeTranslate?.[doctorFormData?.type];
+    const slug = slugify(doctorFormData?.name?.toLowerCase());
+    const path = `/${lng}/${drPath}/${slug}`;
+    navigate(path);
   };
 
   return (

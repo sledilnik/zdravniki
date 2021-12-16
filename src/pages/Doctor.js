@@ -40,11 +40,7 @@ const Doctor = function Doctor({ isReportError = false }) {
         }}
       >
         <leafletContext.LeafletProvider>
-          {isReportError ? (
-            <DoctorCard doctor={doctor} isPage isReportError />
-          ) : (
-            <DoctorCard doctor={doctor} isPage isReportError={false} />
-          )}
+          <DoctorCard doctor={doctor} isPage isReportError={isReportError} />
         </leafletContext.LeafletProvider>
       </Box>
     );
