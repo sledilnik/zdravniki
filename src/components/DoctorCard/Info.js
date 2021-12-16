@@ -19,18 +19,15 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
   const availabilityText = toPercent(doctor.availability, lng);
 
   const navigate = useNavigate();
-  const handleDoctorCard = (type, isReportError) => {
-    const drPath = DoctorTypeTranslate?.[type];
-    if (!drPath) {
-      return undefined;
-    }
 
-    const slug = slugify(doctor?.name?.toLowerCase());
-    let path = `/${lng}/${drPath}/${slug}`;
+  const drPath = DoctorTypeTranslate?.[doctor?.type];
+  const slug = slugify(doctor?.name?.toLowerCase());
+  let path = `/${lng}/${drPath}/${slug}`;
+  const handleDoctorCard = (event, isReportError) => {
+    event.preventDefault();
     if (isReportError) {
       path = `/${lng}/${drPath}/${slug}/edit`;
     }
-    // todo pass filters' state as second argument
     return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
   };
 
@@ -76,10 +73,14 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
           <IconButton onClick={handleZoom}>
             <Icons.Icon name="MapMarker" />
           </IconButton>
-          <IconButton onClick={() => handleDoctorCard(doctor.type, false)}>
-            <Icons.Icon name="IdCard" />
-          </IconButton>
-          <IconButton onClick={() => handleDoctorCard(doctor.type, true)}>
+          {path && (
+            <IconButton>
+              <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+                <Icons.Icon name="IdCard" />
+              </Shared.LinkNoRel>
+            </IconButton>
+          )}
+          <IconButton onClick={e => handleDoctorCard(e, true)}>
             <Icons.Icon name="ReportError" />
           </IconButton>
         </Stack>
