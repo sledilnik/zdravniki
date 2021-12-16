@@ -47,6 +47,7 @@
     },
     "reportError": {
         "title": "Report error",
+        "tooltip": "Report error in data",
         "cancel": "Cancel",
         "send": "Send",
         "reportReceived": "Thank you! We will look into it...",

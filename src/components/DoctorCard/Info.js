@@ -5,6 +5,7 @@ import slugify from 'slugify';
 import { useLeafletContext } from 'context/leafletContext';
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
+import { t } from 'i18next';
 import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
@@ -80,9 +81,11 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
               </Shared.LinkNoRel>
             </IconButton>
           )}
-          <IconButton onClick={e => handleDoctorCard(e, true)}>
-            <Icons.Icon name="ReportError" />
-          </IconButton>
+          <Tooltip title={t('reportError.tooltip')}>
+            <IconButton onClick={e => handleDoctorCard(e, true)}>
+              <Icons.Icon name="ReportError" />
+            </IconButton>
+          </Tooltip>
         </Stack>
       </Stack>
     </CardContent>

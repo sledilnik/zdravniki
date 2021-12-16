@@ -47,6 +47,7 @@
     },
     "reportError": {
         "title": "Prijavi napako",
+        "tooltip": "Prijavi napako v objavljenih podatkih",
         "cancel": "Prekliči",
         "send": "Pošlji",
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali...",

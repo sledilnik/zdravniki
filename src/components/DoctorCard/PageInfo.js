@@ -137,15 +137,17 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               </Typography>
             </Stack>
           </Styled.PageInfo.BackWrapper>
-          <IconButton
-            disabled={message !== ''}
-            component="span"
-            variant="outlined"
-            onClick={reportError}
-            size="small"
-          >
-            <Icons.Icon name="ReportError" />
-          </IconButton>
+          <Tooltip title={t('reportError.tooltip')}>
+            <IconButton
+              disabled={message !== ''}
+              component="span"
+              variant="outlined"
+              onClick={reportError}
+              size="small"
+            >
+              <Icons.Icon name="ReportError" />
+            </IconButton>
+          </Tooltip>
         </Stack>
       </div>
     </CardContent>
