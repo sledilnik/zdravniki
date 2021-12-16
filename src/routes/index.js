@@ -27,7 +27,6 @@ const Router = function Router() {
     }
   }, [lng]);
 
-  // TODO: change /zdravnik, /zobozdravnik, /ginekolog to types (gp, gp-y, gyn)
   return (
     <HelmetProvider>
       <Routes>
@@ -66,7 +65,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/:lng/zdravnik/:priimekIme"
+          path="/:lng/:type/:name"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor />
@@ -74,39 +73,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/:lng/zobozdravnik/:priimekIme"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/ginekolog/:priimekIme"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/zdravnik/:priimekIme/edit"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor isReportError />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/zobozdravnik/:priimekIme/edit"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor isReportError />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/ginekolog/:priimekIme/edit"
+          path="/:lng/:type/:name/edit"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor isReportError />

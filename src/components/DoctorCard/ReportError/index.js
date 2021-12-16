@@ -8,7 +8,6 @@ import slugify from 'slugify';
 import * as Shared from '../Shared';
 import { SelectEdit, TextareaEdit } from './InlineEdit';
 import { toPercent } from '../utils';
-import { DoctorTypeTranslate } from '../dicts';
 
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
   const { t } = useTranslation();
@@ -19,7 +18,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const [type, ageGroup] = doctorFormData.type.split('-');
   const availabilityText = toPercent(doctorFormData.availability, lng);
 
-  const drPath = DoctorTypeTranslate?.[doctorFormData?.type];
+  const drPath = doctorFormData.type;
   const slug = slugify(doctorFormData?.name?.toLowerCase());
   const path = `/${lng}/${drPath}/${slug}`;
 

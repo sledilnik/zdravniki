@@ -10,7 +10,6 @@ import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
-import { DoctorTypeTranslate } from './dicts';
 import { toPercent } from './utils';
 
 const Info = function Info({ doctor, handleZoom = () => {} }) {
@@ -21,7 +20,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
 
   const navigate = useNavigate();
 
-  const drPath = DoctorTypeTranslate?.[doctor?.type];
+  const drPath = doctor?.type;
   const slug = slugify(doctor?.name?.toLowerCase());
   let path = `/${lng}/${drPath}/${slug}`;
   const handleDoctorCard = (event, isReportError) => {

@@ -11,13 +11,13 @@ import { useDoctors } from 'context/doctorsContext';
 
 const Doctor = function Doctor({ isReportError = false }) {
   const { doctors } = useDoctors();
-  const { lng, priimekIme } = useParams();
+  const { lng, name } = useParams();
   const [doctor, setDoctor] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === priimekIme));
-  }, [doctors, doctor, lng, priimekIme]);
+    setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === name));
+  }, [doctors, doctor, lng, name]);
 
   useEffect(() => {
     if (loading) {

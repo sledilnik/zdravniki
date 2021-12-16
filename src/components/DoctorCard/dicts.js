@@ -1,11 +1,3 @@
-export const DoctorTypeTranslate = {
-  gp: 'zdravnik',
-  'gp-y': 'zdravnik',
-  den: 'zobozdravnik',
-  'den-s': 'zobozdravnik',
-  'den-y': 'zobozdravnik',
-  gyn: 'ginekolog',
-};
 export const TypeTranslate = {
   gp: 'generalPractitioner',
   den: 'dentist',

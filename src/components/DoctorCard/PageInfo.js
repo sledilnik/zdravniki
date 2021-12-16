@@ -32,7 +32,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`, {
+    navigate(`/${lng}/`, {
       state: {
         searchValue,
         zoom: state?.zoom ?? MAP.ZOOM,
