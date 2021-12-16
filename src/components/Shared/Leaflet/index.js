@@ -10,7 +10,7 @@ const Leaflet = function Leaflet({ children, height, ...other }) {
     <MapContainer style={{ height }} attributionControl={false} {...other}>
       <AttributionControl prefix="" />
       <TileLayer
-        attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {children}
