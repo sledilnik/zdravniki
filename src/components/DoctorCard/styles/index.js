@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
-import { SIZES } from 'const';
 
 export * as PageInfo from './PageInfo';
 
@@ -84,11 +83,11 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
     '.MuiCardMedia-root': {
       background: 'green',
       '.leaflet-container': {
-        height: SIZES.MAP_HEIGHT.default,
+        height: '250px',
       },
       [theme.breakpoints.up('sm')]: {
         '.leaflet-container': {
-          height: SIZES.MAP_HEIGHT.upSmall,
+          height: '350px',
         },
       },
       [theme.breakpoints.up('md')]: {
