@@ -44,7 +44,7 @@ const Doctor = function Doctor() {
     }
   }, [loading]);
 
-  const [doctorType, ageGroup = 'a'] = doctor?.name?.split('-') || [];
+  const [doctorType, ageGroup = 'a'] = doctor?.type?.split('-') || [];
   const jobTitle = `${t(TypeTranslate[doctorType])} - ${t(AgeGroupTranslate[ageGroup])}`;
 
   const jsonLd = {
