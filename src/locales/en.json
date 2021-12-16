@@ -47,10 +47,11 @@
     },
     "reportError": {
         "title": "Report error",
-        "tooltip": "Report error in data",
+        "tooltip": "Report error in doctor data",
+        "text": "Report error in doctor data and add the correct data or notes:",
         "cancel": "Cancel",
         "send": "Send",
-        "reportReceived": "Thank you! We will look into it...",
+        "reportReceived": "Thank you! We will look into it.",
         "placeholder": {
             "address": "address",
             "website": "web page",

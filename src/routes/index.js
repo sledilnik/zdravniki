@@ -27,7 +27,7 @@ const Router = function Router() {
     }
   }, [lng]);
 
-  // TODO: unify routes names, some are in English (e.g. '/about'), others in Slovenian (/zdravnik, /zobozdravnik, /ginekolog)
+  // TODO: change /zdravnik, /zobozdravnik, /ginekolog to types (gp, gp-y, gyn)
   return (
     <HelmetProvider>
       <Routes>

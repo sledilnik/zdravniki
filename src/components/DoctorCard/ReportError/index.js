@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { CardContent, Typography, Stack, Button } from '@mui/material';
+import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import slugify from 'slugify';
@@ -19,6 +19,10 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const [type, ageGroup] = doctorFormData.type.split('-');
   const availabilityText = toPercent(doctorFormData.availability, lng);
 
+  const drPath = DoctorTypeTranslate?.[doctorFormData?.type];
+  const slug = slugify(doctorFormData?.name?.toLowerCase());
+  const path = `/${lng}/${drPath}/${slug}`;
+
   const [inputAddress, setInputAddress] = useState(doctorFormData.fullAddress);
   const [inputAccepts, setInputAccepts] = useState(accepts ? 'y' : 'n');
   const [inputAvailability, setInputAvailability] = useState(availabilityText);
@@ -32,6 +36,10 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     inputName: {
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_NAME,
       value: doctorFormData.name,
+    },
+    inputUrl: {
+      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_URL,
+      value: process.env.REACT_APP_URL + path,
     },
     inputType: {
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_TYPE,
@@ -139,9 +147,6 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     setInputPhone(doctorFormData.phone);
     setInputWebsite(doctorFormData.website);
     setInputNote(doctorFormData.note);
-    const drPath = DoctorTypeTranslate?.[doctorFormData?.type];
-    const slug = slugify(doctorFormData?.name?.toLowerCase());
-    const path = `/${lng}/${drPath}/${slug}`;
     navigate(path);
   };
 
@@ -155,6 +160,9 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         <Typography component="h2" variant="h2">
           {doctorFormData.provider}
         </Typography>
+        <Alert severity="info" sx={{ marginY: '1rem' }}>
+          {t('reportError.text')}
+        </Alert>
         <TextareaEdit
           name="inputAddress"
           value={inputAddress}
