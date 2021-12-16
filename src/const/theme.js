@@ -11,6 +11,7 @@ const colors = {
   backgroundLight: '#F4F8F8',
   borderLight: '#C4D4D7',
   text: 'rgba(0,0,0,.56)',
+  textLight: '#777C80',
   link: 'rgba(33,37,41,0.56);',
   links: '#09AFDA',
   nickel: '#6C7074',

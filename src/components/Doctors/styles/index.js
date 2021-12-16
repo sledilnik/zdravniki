@@ -21,6 +21,7 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
   height: `${SIZES.MAP_HEIGHT.default}`,
   overflow: 'auto',
   display: 'flex',
+  flexDirection: 'column',
   zIndex: 500,
   position: 'relative',
   boxShadow: '0 0 15px 0 rgba(0,0,0,0.18)',
@@ -37,7 +38,6 @@ export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
   marginTop: '0',
   display: 'grid',
   width: '100%',
-  paddingBottom: '50px',
 
   '> *:last-child': {
     marginBottom: theme.spacing(2),

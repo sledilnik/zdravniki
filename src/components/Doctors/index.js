@@ -11,6 +11,7 @@ import L from 'leaflet';
 import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
 import MainMap from './Map';
+import FooterInfoCard from '../Shared/FooterInfo';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -87,6 +88,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
               />
             ))}
           </Styled.InfiniteScroll>
+          <FooterInfoCard />
           <MainScrollTop />
         </Styled.WrapperInfinite>
       )}
