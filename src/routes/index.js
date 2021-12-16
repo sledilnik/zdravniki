@@ -11,9 +11,10 @@ const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const Router = function Router() {
-  const lngFromPath = window.location.pathname.split('/')?.[0];
+  const [, lngFromPath] = window.location.pathname.split('/');
   const supportedLanguages = i18next.languages;
-  const isLang = supportedLanguages.includes(lngFromPath);
+  const isLangLength = lngFromPath?.length === 2;
+  const isLang = isLangLength && supportedLanguages.includes(lngFromPath);
   const [lng, setLng] = useState(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Router = function Router() {
           exact
           path="/:lng"
           element={
-            isLang ? (
+            isLang || !lngFromPath ? (
               <Suspense fallback={<Loader.Center />}>
                 <Home />
               </Suspense>
