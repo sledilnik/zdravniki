@@ -30,7 +30,7 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
   },
 
   [theme.breakpoints.up('md')]: {
-    height: SIZES.MAP_HEIGHT.upSmall,
+    height: `${SIZES.MAP_HEIGHT.upMedium}`,
   },
 }));
 export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({

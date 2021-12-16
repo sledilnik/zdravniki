@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bcg-color: #F4F8F8;
+  --bcg-color: #f4f8f8;
 }
 
 *,
@@ -18,8 +18,4 @@ body {
   background-color: var(
     --bcg-color
   ) !important; /* this is temporary until I figure out MUI theme background */
-}
-
-main > .leaflet-container {
-  height: 500px;
 }

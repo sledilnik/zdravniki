@@ -10,5 +10,6 @@ export const DEVICES = {
 
 export const MAP_HEIGHT = {
   default: 'calc(100vh - 188px)',
-  upSmall: 'calc(100vh - 137px)',
+  upSmall: 'calc(100vh - 196px)',
+  upMedium: 'calc(100vh - 138px)',
 };
