@@ -152,7 +152,7 @@ export const InfoWrapper = styled(Stack)(({ theme }) => ({
 }));
 
 export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
-  const color = accepts === 'true' ? theme.customColors.successDark : theme.customColors.danger;
+  const color = accepts ? theme.customColors.successDark : theme.customColors.danger;
 
   return {
     fontWeight: 700,
