@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
@@ -11,15 +11,17 @@ const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const Router = function Router() {
-  const lng = window.location.pathname.substring(1, 3);
+  const [, lngFromPath] = window.location.pathname.split('/');
+  const supportedLanguages = i18next.languages;
+  const isLangLength = lngFromPath?.length === 2;
+  const isLang = isLangLength && supportedLanguages.includes(lngFromPath);
+  const [lng, setLng] = useState(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
 
   useEffect(() => {
-    const supportedLanguages = i18next.languages;
-    if (lng === '' || !supportedLanguages.includes(lng)) {
-      window.location.pathname = `/${process.env.REACT_APP_DEFAULT_LANGUAGE}/`;
-      i18next.changeLanguage(process.env.REACT_APP_DEFAULT_LANGUAGE);
-      return;
-    }
+    setLng(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
+  }, [isLang, lngFromPath]);
+
+  useEffect(() => {
     if (i18next.language !== lng) {
       i18next.changeLanguage(lng);
     }
@@ -36,9 +38,13 @@ const Router = function Router() {
           exact
           path="/:lng"
           element={
-            <Suspense fallback={<Loader.Center />}>
-              <Home />
-            </Suspense>
+            isLang || !lngFromPath ? (
+              <Suspense fallback={<Loader.Center />}>
+                <Home />
+              </Suspense>
+            ) : (
+              <Navigate to={`/${lng}/404`} />
+            )
           }
         />
         <Route
