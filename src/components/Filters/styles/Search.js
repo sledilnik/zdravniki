@@ -8,9 +8,7 @@ export const Search = styled('div')(({ theme }) => ({
   borderRadius: '24px',
   backgroundColor: 'transparent',
   width: '100%',
-  '&:hover': {
-    backgroundColor: ' rgba(0, 0, 0, 0.04)',
-  },
+
   '&:focus-within': {
     color: theme.customColors.dark,
     boxShadow: '0 0 7px 0 rgba(9,175,218,0.76)',
@@ -73,9 +71,26 @@ export const SearchBox = styled(MuiBox)(({ theme }) => ({
   border: `1px solid ${theme.customColors.borderLight}`,
   background: '#fff',
   gridArea: 'search',
-  width: '100%',
+
+  '& .MuiPaper-root': {
+    width: '100%',
+  },
 
   [theme.breakpoints.up('md')]: {
     width: '400px',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    width: 'auto',
+    flexGrow: 1,
+    margin: '0 12px 0 0',
+    border: 'none',
+    background: '#fff',
+    height: '48px',
+
+    '& input': {
+      border: `1px solid ${theme.customColors.borderLight}`,
+      maxWidth: '100%',
+    },
   },
 }));

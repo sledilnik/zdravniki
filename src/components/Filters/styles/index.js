@@ -9,10 +9,20 @@ import MuiDivider from '@mui/material/Divider';
 export * as Search from './Search';
 export * as Icon from './Icon';
 
-export const Card = styled(MuiCard)(() => ({
+export const Card = styled(MuiCard)(({ theme }) => ({
   borderRadius: '24px',
-  '&.MuiCard-root': { backgroundColor: '#E8EFF080' },
+  margin: '0 0 12px 0',
+  boxShadow: 'none',
+  '&.MuiCard-root': {
+    backgroundColor: theme.customColors.background,
+    width: '100%',
+
+    '.MuiToggleButtonGroup-root': {
+      backgroundColor: '#DAE5E7',
+    },
+  },
 }));
+
 export const CardActions = styled(MuiCardActions)(() => ({
   height: '48px',
   display: 'flex',
@@ -29,6 +39,7 @@ export const FilterIconStack = styled(MuiStack)(() => ({
   alignItems: 'center',
   opacity: 1,
 }));
+
 export const FilterInfoStack = styled(MuiStack)(() => ({
   alignItems: 'center',
   opacity: 0.5,
@@ -40,28 +51,28 @@ export const FilterInfoStack = styled(MuiStack)(() => ({
 
 export const Divider = styled(MuiDivider)(() => ({
   borderWidth: 1,
-  borderColor: '#21252980',
+  borderColor: '#C1D4D7',
 }));
 
-export const Collapse = styled(MuiCollapse)(({ theme }) => ({
+export const Collapse = styled(MuiCollapse)(() => ({
+  padding: '0',
   '.MuiCollapse-wrapperInner': {
     display: 'flex',
-    paddingBlock: '8px',
-    paddingInline: '8px',
-    flexWrap: 'no-wrap',
     flexDirection: 'column',
-    backgroundColor: theme.palette.common.white,
+    padding: '12px 12px 0 12px',
+    borderBottom: '1px solid #DAE5E7',
+
     '> *': {
-      marginBlock: '4px',
+      margin: '0 12px 12px 0',
     },
   },
 
   '&.MuiCollapse-entered': {},
 
-  '&.MuiCollapse-entered + .MuiCardActions-root': {
-    backgroundColor: theme.palette.common.white,
-    borderTop: '1px solid #E8EFF080',
+  '+ .MuiCardActions-root': {
+    padding: '0 16px',
   },
+  '&.MuiCollapse-entered + .MuiCardActions-root': {},
 }));
 
 // ? maybe insted of  Mui Box use Mui CardContent or even discard Grid and use only Collapse
@@ -78,8 +89,15 @@ export const Grid = styled(MuiBox)(({ theme }) => ({
     left: 0,
     bottom: 0,
     right: 0,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'space-between',
     padding: '12px',
+    background: '#fff',
+    boxShadow: '0 0 10px 0 rgba(58,83,87,0.24)',
+    '& .MuiToggleButtonGroup-root svg': {
+      margin: 0,
+    },
   },
 }));
 
@@ -91,7 +109,6 @@ export const Toggles = styled(MuiBox)(({ theme }) => ({
   '> *': {
     margin: '0 12px 0 0',
   },
-
   [theme.breakpoints.down('md')]: {
     flexWrap: 'wrap',
     '> *': {

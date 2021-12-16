@@ -14,14 +14,14 @@ function withToggleGroup(Component) {
           value="map"
           aria-label="map"
           accept={show}
-          text={t('map')}
+          title={t('map')}
           iconNames={['MapViewWhite', 'MapView']}
         />
         <IconToggleButton
           value="cards"
           aria-label="doctor cards"
           accept={show}
-          text={t('list')}
+          title={t('list')}
           iconNames={['ListViewWhite', 'ListView']}
         />
       </Component>

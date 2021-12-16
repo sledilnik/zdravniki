@@ -22,7 +22,7 @@ export const Box = styled(MuiBox)(({ theme }) => ({
   },
   [theme.breakpoints.up('md')]: {
     '& .leaflet-container': {
-      height: '100%',
+      height: SIZES.MAP_HEIGHT.upSmall,
     },
   },
 }));

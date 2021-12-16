@@ -28,7 +28,6 @@ const Search = function Search() {
           color: theme => theme.customColors.dark,
           background: 'transparent',
           borderRadius: '24px',
-          width: '100%',
           display: 'flex',
           alignItems: 'center',
         }}
