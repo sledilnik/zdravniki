@@ -34,7 +34,7 @@ const PopUpData = function PopUpData({ doctor }) {
       <Typography variant="caption">{doctor.provider}</Typography>
       <Stack sx={{ alignItems: 'start', marginTop: '0.5em' }} spacing={1}>
         <Chip.Info text={doctor.getTypeText(lng)} />
-        <Chip.Accepts text={doctor.getAcceptText(lng)} accept={accepts} />
+        <Chip.Accepts text={doctor.getAcceptText()} accept={accepts} />
       </Stack>
     </div>
   );
