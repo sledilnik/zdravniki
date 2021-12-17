@@ -35,18 +35,16 @@ const Home = function Home() {
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
-      <Styled.Main id="main-content">
-        {isFetching && !hasError ? (
-          <Loader.Center />
-        ) : (
-          <>
-            <Filters useShow={useShow} />
-            <Styled.Box>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />
-            </Styled.Box>
-          </>
-        )}
-      </Styled.Main>
+      {isFetching && !hasError ? (
+        <Loader.Center component="main" />
+      ) : (
+        <Styled.Main id="main-content" component="main">
+          <Filters useShow={useShow} />
+          <Styled.Box>
+            <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />
+          </Styled.Box>
+        </Styled.Main>
+      )}
     </>
   );
 };
