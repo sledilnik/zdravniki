@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import * as Icons from 'components/Shared/Icons';
 import Stack from '@mui/material/Stack';
 import { t } from 'i18next';
+import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -80,6 +81,11 @@ const TemporaryDrawer = function TemporaryDrawer({ open, setOpen }) {
       </Styled.StackSocialSmall>
     </Drawer>
   );
+};
+
+TemporaryDrawer.propTypes = {
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default TemporaryDrawer;
