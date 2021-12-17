@@ -13,6 +13,7 @@ export const FooterInfo = styled('div')(({ theme }) => ({
     borderTop: '1px dashed #CDCDCD',
     marginTop: '24px',
     paddingTop: '16px',
+    paddingBottom: '0',
     width: '100%',
   },
 
