@@ -9,12 +9,13 @@ import * as SEO from 'components/SEO';
 import { doctorsContext } from 'context';
 
 import { DOCTORS } from 'const';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
   const { t } = useTranslation();
   const { lng } = useParams();
+  const [show, setShow] = useState('map');
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
@@ -29,6 +30,8 @@ const Home = function Home() {
     return <div>{t('pageNotFound.somethingWentWrong')}</div>;
   }
 
+  const useShow = () => [show, setShow];
+
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
@@ -37,9 +40,9 @@ const Home = function Home() {
           <Loader.Center />
         ) : (
           <>
-            <Filters />
+            <Filters useShow={useShow} />
             <Styled.Box>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} />
+              <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />
             </Styled.Box>
           </>
         )}

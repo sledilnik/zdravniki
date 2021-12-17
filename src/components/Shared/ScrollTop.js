@@ -44,7 +44,12 @@ export const ScrollTop = function ScrollTop(props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 9999 }}
+        sx={{
+          position: 'fixed',
+          bottom: { xs: 152, md: 16 },
+          right: { xs: 24, md: 16 },
+          zIndex: 9999,
+        }}
       >
         {children}
       </Box>

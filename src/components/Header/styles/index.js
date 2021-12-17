@@ -3,6 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButtonBase from '@mui/material/IconButton';
 import MuiStack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar/AppBar';
 
 export { Autocomplete, Popper } from './Autocomplete';
 export const StackLarge = styled(MuiStack)(({ theme }) => ({
@@ -34,8 +35,8 @@ export const StackSmall = styled(MuiStack)(({ theme }) => ({
 export const StackSocialLarge = styled(MuiStack)(({ theme }) => ({
   display: 'none',
   svg: {
-    height: '0.75rem',
-    width: '0.75rem',
+    height: '24px',
+    width: '24px',
     fill: aTheme => aTheme.customColors.link,
   },
   [theme.breakpoints.up('md')]: {
@@ -116,7 +117,21 @@ export const NavMenuLink = styled(NavLink)(({ theme }) => ({
 
 export const IconButton = styled(IconButtonBase)(() => ({
   opacity: 0.56,
+  padding: '5px',
   '&:focus, :hover': {
     opacity: 1,
+  },
+}));
+
+export const AppNavBar = styled(AppBar)(({ theme }) => ({
+  flexGrow: 1,
+  zIndex: 11,
+  position: 'relative',
+  backgroundColor: theme.customColors.brand,
+  color: theme.customColors.dark,
+  boxShadow: 'none',
+
+  [theme.breakpoints.down('md')]: {
+    boxShadow: '0 3px 10px 0 rgba(58,83,87,0.24)',
   },
 }));

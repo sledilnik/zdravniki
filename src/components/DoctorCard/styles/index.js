@@ -3,13 +3,13 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
-import { SIZES } from 'const';
 
 export * as PageInfo from './PageInfo';
 
 const Card = styled(MuiCard)(() => ({
   marginInline: '0.5em',
-  borderRadius: '5px',
+  borderRadius: '0',
+  boxShadow: 'none',
 
   letterSpacing: 0,
   lineHeight: 1.2,
@@ -17,10 +17,13 @@ const Card = styled(MuiCard)(() => ({
 
 export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
-  const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
+  const acceptsColor = accepts === 'true' ? customColors.success : customColors.danger;
   return {
     width: '100%',
+    borderRadius: '5px',
     marginTop: '1em',
+    background: '#fff',
+    boxShadow: '1px 1px 4px 0 rgba(0,0,0,0.08)',
     borderTop: `solid 4px ${acceptsColor}`,
     '.MuiTypography-h1': {
       fontSize: '1.8rem',
@@ -80,11 +83,11 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
     '.MuiCardMedia-root': {
       background: 'green',
       '.leaflet-container': {
-        height: SIZES.MAP_HEIGHT.default,
+        height: '250px',
       },
       [theme.breakpoints.up('sm')]: {
         '.leaflet-container': {
-          height: SIZES.MAP_HEIGHT.upSmall,
+          height: '350px',
         },
       },
       [theme.breakpoints.up('md')]: {
@@ -97,12 +100,30 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
 }));
 export const InfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
-  const acceptsColor = accepts === 'true' ? customColors.brand : customColors.danger;
+  const acceptsColor = accepts === 'true' ? customColors.success : customColors.danger;
 
   return {
     justifySelf: 'center',
-    width: '98%',
-    borderLeft: `solid 4px ${acceptsColor}`,
+    width: '100%',
+    padding: '20px 24px 10px',
+    background: '#F4F8F8',
+    borderBottom: `1px solid #DCE8E9`,
+    position: 'relative',
+    '&:before': {
+      content: `''`,
+      position: 'absolute',
+      transition: '0.1s all',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 0,
+      background: acceptsColor,
+    },
+    '&:hover': {
+      '&:before': {
+        width: '4px',
+      },
+    },
     '.MuiTypography-h2': {
       fontSize: '1.25rem',
       fontWeight: 700,
@@ -120,15 +141,6 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       lineHeight: '0.75rem',
       fontStyle: 'normal',
     },
-    '.MuiCardContent-root:last-child': {
-      paddingBottom: theme.spacing(1),
-    },
-    [theme.breakpoints.up('sm')]: {
-      width: '95%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '90%',
-    },
   };
 });
 
@@ -137,6 +149,31 @@ export const InfoWrapper = styled(Stack)(({ theme }) => ({
   cursor: 'help',
   minWidth: '74.5px',
 }));
+
+export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
+  const color = accepts ? theme.customColors.successDark : theme.customColors.danger;
+
+  return {
+    fontWeight: 700,
+    fontSize: '10px',
+    background: color,
+    borderRadius: '4px',
+    whiteSpace: 'nowrap',
+    padding: '5px 7px 5px 5px',
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+    letterSpacing: '0.3px',
+
+    svg: {
+      width: '14px',
+      height: '14px',
+      filter: 'brightness(10)',
+      opacity: '0.7',
+      margin: '0 5px 0 0',
+    },
+  };
+});
 
 export const Accepts = styled(TypographyBase)(({ theme, accepts }) => {
   const color = accepts ? theme.customColors.brand : theme.customColors.danger;
@@ -148,6 +185,7 @@ export const Accepts = styled(TypographyBase)(({ theme, accepts }) => {
     whiteSpace: 'nowrap',
   };
 });
+
 export const Availability = styled(TypographyBase)(({ theme }) => ({
   fontWeight: 700,
   letterSpacing: 0,

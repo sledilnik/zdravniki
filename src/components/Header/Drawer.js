@@ -48,7 +48,7 @@ const TemporaryDrawer = function TemporaryDrawer({ open, setOpen }) {
       anchor="right"
       open={open}
       onClose={toggleDrawer}
-      transitionDuration={{ enter: 1500, exit: 1250 }}
+      transitionDuration={{ enter: 300, exit: 250 }}
       sx={{ display: { md: 'none' } }}
     >
       <Styled.StackSmall id="nav-links-drawer" onClick={eventHandler}>

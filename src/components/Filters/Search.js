@@ -1,5 +1,4 @@
 import Paper from '@mui/material/Paper';
-import Box from '@mui/system/Box';
 import { useLocation } from 'react-router-dom';
 
 import * as Icons from 'components/Shared/Icons';
@@ -22,31 +21,20 @@ const Search = function Search() {
 
   useDebounce(() => setSearchValue(value), 500, [value]);
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: '24px',
-        border: theme => `1px solid ${theme.palette.divider}`,
-        background: theme => theme.customColors.background,
-        gridArea: 'search',
-      }}
-    >
+    <Styled.Search.SearchBox>
       <Paper
         elevation={0}
         sx={{
           color: theme => theme.customColors.dark,
           background: 'transparent',
           borderRadius: '24px',
-          width: '100%',
           display: 'flex',
           alignItems: 'center',
-          marginInline: '4px',
         }}
       >
         <Styled.Search.Search>
           <Styled.Search.SearchIconWrapper>
-            <Icons.SearchIcon />
+            <Icons.Icon name="Search" />
           </Styled.Search.SearchIconWrapper>
           <Styled.Search.InputBase
             placeholder={t('search')}
@@ -57,7 +45,7 @@ const Search = function Search() {
           />
         </Styled.Search.Search>
       </Paper>
-    </Box>
+    </Styled.Search.SearchBox>
   );
 };
 

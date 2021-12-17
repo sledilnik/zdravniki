@@ -18,6 +18,9 @@
     "students": "students",
     "youth": "youth",
     "search": "Search…",
+    "filter": "Filter",
+    "map": "Map",
+    "list": "List",
     "headQuotient": "Weighted person quotient",
     "doctorAvailability": "Doctor with availability below 100% does not work all days in the week or does not work full-time (e.g. dostor with 20% availability might work only one day in week).",
     "yourLocation": "Your location",
@@ -59,5 +62,9 @@
             "availability": "availability",
             "note": "note"
         }
+    },
+    "footer": {
+        "dataSource": "Data source",
+        "lastChange": "Last data update on {{ date, %A, %B %e, %Y }}"
     }
 }
