@@ -234,7 +234,7 @@ export const Summary = styled('summary')(({ theme }) => ({
   '@media only screen and (min-width: 768px)': {
     paddingRight: '10%',
   },
-  '::marker': {
+  '::marker, ::-webkit-details-marker': {
     display: 'none',
     content: '""',
   },
