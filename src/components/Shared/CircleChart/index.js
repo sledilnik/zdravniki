@@ -1,5 +1,6 @@
 // credits: https://medium.com/@pppped/how-to-code-a-responsive-circular-percentage-chart-with-svg-and-css-3632f8cd7705
 import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
 const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
   const strokeColor = stroke ?? theme.customColors.brand;
@@ -61,6 +62,20 @@ const CircleChart = function CircleChart({ percent = 50, stroke, size = '2rem', 
       </svg>
     </CircleChartWrapper>
   );
+};
+
+CircleChart.propTypes = {
+  percent: PropTypes.number,
+  stroke: PropTypes.bool,
+  size: PropTypes.string,
+  noText: PropTypes.bool,
+};
+
+CircleChart.defaultProps = {
+  percent: 50,
+  stroke: false,
+  size: '2rem',
+  noText: true,
 };
 
 export default CircleChart;
