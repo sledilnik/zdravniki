@@ -30,6 +30,9 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
     width: '100%',
   },
 
+  [theme.breakpoints.up('sm')]: {
+    height: `${SIZES.MAP_HEIGHT.upSmall}`,
+  },
   [theme.breakpoints.up('md')]: {
     height: `${SIZES.MAP_HEIGHT.upMedium}`,
   },
