@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { CSV_URL, DOCTORS } from 'const';
 import { createDoctors } from 'services';
 import { fromArrayWithHeader } from 'utils';
+import PropTypes from 'prop-types';
 import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
 
 const DoctorsContext = createContext({});
@@ -57,5 +58,9 @@ function useDoctors() {
   }
   return context;
 }
+
+DoctorsProvider.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
 
 export { DoctorsProvider, useDoctors };
