@@ -46,4 +46,12 @@ const Doctor = function Doctor({ isReportError = false }) {
   return <Navigate to={`/${lng}/404`} />;
 };
 
+Doctor.defaultProps = {
+  isReportError: false,
+};
+
+Doctor.propTypes = {
+  isReportError: PropTypes.bool,
+};
+
 export default Doctor;
