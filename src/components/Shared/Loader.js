@@ -46,6 +46,6 @@ Center.defaultProps = {
 };
 
 Center.propTypes = {
-  component: PropTypes.oneOf('div', 'main'),
+  component: PropTypes.oneOf(['div', 'main']),
 };
 export default Base;
