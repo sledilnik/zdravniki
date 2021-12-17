@@ -8,7 +8,7 @@ export const Dynamic = function Dynamic({ title, meta, lang }) {
 Dynamic.defaultProps = {
   title: 'Zdravniki - Sledilnik',
   meta: [],
-  lang: 'sl',
+  lang: process.env.REACT_APP_DEFAULT_LANGUAGE,
 };
 
 Dynamic.propTypes = {

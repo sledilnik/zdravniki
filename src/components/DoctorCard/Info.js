@@ -1,31 +1,33 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
 import slugify from 'slugify';
 
 import { useLeafletContext } from 'context/leafletContext';
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
+import { t } from 'i18next';
 import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
-import { DoctorTypeTranslate } from './dicts';
 import { toPercent } from './utils';
 
 const Info = function Info({ doctor, handleZoom = () => {} }) {
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const { map } = useLeafletContext();
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
 
   const navigate = useNavigate();
 
-  const drPath = DoctorTypeTranslate?.[doctor?.type];
+  const drPath = doctor?.type;
   const slug = slugify(doctor?.name?.toLowerCase());
-  const path = drPath && `/${lng}/${drPath}/${slug}`;
-
-  const handleDoctorCard = event => {
+  let path = `/${lng}/${drPath}/${slug}`;
+  const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
+    if (isReportError) {
+      path = `/${lng}/${drPath}/${slug}/edit`;
+    }
     return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
   };
 
@@ -72,12 +74,17 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
             <Icons.Icon name="MapMarker" />
           </IconButton>
           {path && (
-            <Shared.LinkNoRel href={path} onClick={handleDoctorCard}>
+            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
               <IconButton>
                 <Icons.Icon name="IdCard" />
               </IconButton>
             </Shared.LinkNoRel>
           )}
+          <Tooltip title={t('reportError.tooltip')}>
+            <IconButton onClick={e => handleDoctorCard(e, true)}>
+              <Icons.Icon name="ReportError" />
+            </IconButton>
+          </Tooltip>
         </Stack>
       </Stack>
     </CardContent>

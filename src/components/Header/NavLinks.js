@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { t, changeLanguage } from 'i18next';
-import { useNavigate } from 'react-router';
+import i18next, { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
 import * as Styled from './styles';
 
 const NavLinks = function NavLinks() {
   const navigate = useNavigate();
   const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const lng = i18next.language;
   useEffect(() => {
-    changeLanguage(lng);
+    i18next.changeLanguage(lng);
   }, [lng]);
 
   const goHome = event => {
@@ -25,16 +25,6 @@ const NavLinks = function NavLinks() {
       <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
-      <Styled.NavMenuItemLink
-        href="mailto:podpora-zdravniki@sledilnik.org"
-        target="_blank"
-        rel="noopener"
-        component="button"
-        tabIndex={0}
-        underline="none"
-      >
-        {t('reportError.title')}
-      </Styled.NavMenuItemLink>
       <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
         {t('header.about')}
       </Styled.NavMenuLink>

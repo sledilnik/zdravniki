@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { v4 as uuidv4 } from 'uuid';
 
 const trimString = str => str.replace(/\s+/g, ' ').trim();
@@ -9,18 +10,13 @@ const TYPE_TRANSLATE = {
   EN: 'description',
 };
 
-const ACCEPT_TRANSLATE = {
-  SL: { n: 'ne sprejema', y: 'sprejema' },
-  EN: { n: 'rejects', y: 'accepts' },
-};
-
 export function createDoctor(doctor, type, institution) {
   const getTypeText = (lang = lng) => {
     const field = TYPE_TRANSLATE[lang.toUpperCase()];
     return type[field];
   };
 
-  const getAcceptText = (lang = lng) => ACCEPT_TRANSLATE[lang.toUpperCase()][doctor.accepts];
+  const getAcceptText = () => (doctor.accepts === 'y' ? t('accepts') : t('rejects'));
 
   const name = trimString(doctor.doctor);
 

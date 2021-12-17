@@ -10,16 +10,15 @@ import { leafletContext } from 'context';
 import { useDoctors } from 'context/doctorsContext';
 import FooterInfoCard from '../components/Shared/FooterInfo';
 
-const Doctor = function Doctor() {
+const Doctor = function Doctor({ isReportError = false }) {
   const { doctors } = useDoctors();
-  const { priimekIme } = useParams();
+  const { lng, name } = useParams();
   const [doctor, setDoctor] = useState();
   const [loading, setLoading] = useState(true);
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
 
   useEffect(() => {
-    setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === priimekIme));
-  }, [doctors, doctor, lng, priimekIme]);
+    setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === name));
+  }, [doctors, doctor, lng, name]);
 
   useEffect(() => {
     if (loading) {
@@ -44,7 +43,7 @@ const Doctor = function Doctor() {
         }}
       >
         <leafletContext.LeafletProvider>
-          <DoctorCard doctor={doctor} isPage />
+          <DoctorCard doctor={doctor} isPage isReportError={isReportError} />
           <FooterInfoCard isDrPage />
         </leafletContext.LeafletProvider>
       </Box>

@@ -36,6 +36,7 @@ import { ReactComponent as Link } from 'assets/icon-link.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 import { ReactComponent as Copy } from 'assets/icon-copy.svg';
+import { ReactComponent as ReportError } from 'assets/icon-error.svg';
 import { ReactComponent as Filter } from 'assets/icon-filter.svg';
 import { ReactComponent as FilterWhite } from 'assets/icon-filter--white.svg';
 import { ReactComponent as MapView } from 'assets/icon-map-view.svg';
@@ -95,6 +96,7 @@ const icons = {
   Students,
   StudentsWhite,
   Twitter,
+  ReportError,
   Filter,
   FilterWhite,
   MapView,

@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import LanguageDetector from "i18next-browser-languagedetector";
+import LanguageDetector from 'i18next-browser-languagedetector';
 // import Backend from 'i18next-http-backend';
 import en from './locales/en.json';
 import sl from './locales/sl.json';
@@ -12,7 +12,7 @@ export const languages = [
 
 i18next
   // .use(Backend) // load translations using http (default public/assets/locals/en/translations)
-  // .use(LanguageDetector)
+  .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     // the translations
@@ -22,8 +22,8 @@ i18next
       sl: { translation: sl },
       en: { translation: en },
     },
-    lng: 'sl', // if you're using a language detector, do not define the lng option
-    fallbackLng: 'sl',
+    lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option
+    fallbackLng: languages.map(value => value.code),
     detection: {
       order: ['path', 'cookie', 'navigator', 'localStorage', 'subdomain', 'queryString', 'htmlTag'],
       lookupLocalStorage: 'i18nextLng',

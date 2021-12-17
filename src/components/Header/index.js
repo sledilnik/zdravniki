@@ -32,18 +32,13 @@ const Header = function Header() {
 
   const handleHamburger = () => setOpen(true);
 
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
-  // eslint-disable-next-line
-  const [language, setLanguage] = useState(lng);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleChangeLocale = (e, newValue) => {
     e.preventDefault();
     const lang = newValue?.code;
-    setLanguage(lang);
     i18next.changeLanguage(lang);
-    localStorage.setItem('i18nextLng', lang);
     navigate(`/${lang}/${location.pathname.substring(4)}`);
   };
 
@@ -105,7 +100,7 @@ const Header = function Header() {
             }}
             options={languages}
             disableClearable
-            value={languages.find(l => l.code === lng)}
+            value={languages.find(l => l.code === i18next.language)}
             getOptionLabel={option => {
               const code = option?.code;
               return typeof code === 'undefined' ? '' : code.toUpperCase();

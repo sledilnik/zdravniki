@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as SEO from 'components/SEO';
 import { Loader } from 'components/Shared';
@@ -7,7 +8,7 @@ import Section from './Section';
 
 const Faq = function Faq() {
   const { t } = useTranslation();
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const faqRef = useRef();
   const [response, setResponse] = useState();
 
@@ -20,7 +21,7 @@ const Faq = function Faq() {
 
   // fetch data
   useEffect(() => {
-    fetch(`https://backend.sledilnik.org/api/v1/faq/3/?lang=${lng}`)
+    fetch(`${process.env.REACT_APP_CONTENT_ENDPOINT_BASE}/faq/3/?lang=${lng}`)
       .then(r => r.json())
       .then(json => {
         setResponse(json);

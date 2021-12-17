@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { CardContent, Typography, Tooltip, Stack, Button, Alert } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { CardContent, Typography, Tooltip, Stack, Alert } from '@mui/material';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
@@ -17,11 +17,11 @@ import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const PageInfo = function PageInfo({ doctor }) {
+const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { searchValue } = useFilter();
   const { state } = useLocation();
 
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
   const accepts = doctor.accepts === 'y';
 
   const [type, ageGroup] = doctor.type.split('-');
@@ -32,7 +32,7 @@ const PageInfo = function PageInfo({ doctor }) {
   const navigate = useNavigate();
   // todo pass filters' state as second argument
   const handleBackButton = () => {
-    navigate(`/${lng}`, {
+    navigate(`/${lng}/`, {
       state: {
         searchValue,
         zoom: state?.zoom ?? MAP.ZOOM,
@@ -41,12 +41,13 @@ const PageInfo = function PageInfo({ doctor }) {
     });
   };
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(isReportError);
   const [message, setMessage] = useState('');
 
   const reportError = () => {
     setIsEditing(true);
     setMessage('');
+    navigate('edit');
   };
 
   if (isEditing) {
@@ -57,7 +58,9 @@ const PageInfo = function PageInfo({ doctor }) {
       website: doctor.website,
       phone: doctor.phone,
       accepts: doctor.accepts,
+      availability: doctor.availability,
       type: doctor.type,
+      note: '',
     };
     return (
       <ReportError
@@ -134,15 +137,17 @@ const PageInfo = function PageInfo({ doctor }) {
               </Typography>
             </Stack>
           </Styled.PageInfo.BackWrapper>
-          <Button
-            disabled={message !== ''}
-            component="span"
-            variant="outlined"
-            onClick={reportError}
-            size="small"
-          >
-            {t('reportError.title')}
-          </Button>
+          <Tooltip title={t('reportError.tooltip')}>
+            <IconButton
+              disabled={message !== ''}
+              component="span"
+              variant="outlined"
+              onClick={reportError}
+              size="small"
+            >
+              <Icons.Icon name="ReportError" />
+            </IconButton>
+          </Tooltip>
         </Stack>
       </div>
     </CardContent>

@@ -1,4 +1,5 @@
 import { useEffect, useState, createRef, memo } from 'react';
+import { useParams } from 'react-router-dom';
 import { useMap } from 'react-leaflet';
 import { useTheme } from '@mui/material/styles';
 
@@ -25,7 +26,7 @@ export const User = function User() {
 
 const PopUpData = function PopUpData({ doctor }) {
   const accepts = doctor.accepts === 'y';
-  const lng = localStorage.getItem('i18nextLng') || 'sl';
+  const { lng } = useParams();
 
   return (
     <div style={{ maxWidth: '180px' }}>
@@ -33,7 +34,7 @@ const PopUpData = function PopUpData({ doctor }) {
       <Typography variant="caption">{doctor.provider}</Typography>
       <Stack sx={{ alignItems: 'start', marginTop: '0.5em' }} spacing={1}>
         <Chip.Info text={doctor.getTypeText(lng)} />
-        <Chip.Accepts text={doctor.getAcceptText(lng)} accept={accepts} />
+        <Chip.Accepts text={doctor.getAcceptText()} accept={accepts} />
       </Stack>
     </div>
   );

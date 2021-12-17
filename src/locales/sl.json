@@ -50,13 +50,17 @@
     },
     "reportError": {
         "title": "Prijavi napako",
+        "tooltip": "Prijavi napako v objavljenih podatkih",
+        "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
         "cancel": "Prekliči",
         "send": "Pošlji",
-        "reportReceived": "Hvala za poslano! Podatke bomo pregledali...",
+        "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
         "placeholder": {
             "address": "naslov",
-            "website": "internet stran",
-            "phone": "telefon"
+            "website": "spletna stran",
+            "phone": "telefon",
+            "availability": "obseg zaposlitve",
+            "note": "opomba"
         }
     },
     "footer": {
