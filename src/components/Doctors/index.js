@@ -68,6 +68,8 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const zoom = state?.zoom ?? MAP.ZOOM;
   const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
 
+  const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
+
   return (
     <Styled.Wrapper>
       {showMap && <MainMap whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />}
@@ -88,7 +90,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
               />
             ))}
           </Styled.InfiniteScroll>
-          <FooterInfoCard />
+          {areDoctors && <FooterInfoCard />}
           <MainScrollTop />
         </Styled.WrapperInfinite>
       )}
