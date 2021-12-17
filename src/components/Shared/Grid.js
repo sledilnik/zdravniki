@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 
 const BaseGrid = styled('div')(() => ({
   display: 'grid',
-  gap: '1rem',
+  gap: '0',
 }));
 
 export const Cards = styled(BaseGrid)(() => ({
@@ -17,6 +17,6 @@ export const Filter = styled(Cards)(() => ({
 export const Doctors = styled(BaseGrid)(({ theme }) => ({
   gridTemplateColumns: '1fr',
   [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 450px',
   },
 }));

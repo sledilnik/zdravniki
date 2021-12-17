@@ -9,38 +9,47 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   justifyContent: 'center',
   border: aTheme => `1px solid ${aTheme.palette.divider}`,
   background: theme.customColors.background,
-  borderRadius: '24px',
+  borderRadius: '25px',
   flexWrap: 'wrap',
   width: 'min-content',
 }));
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   fontSize: '0.75rem',
-  borderRadius: '24px',
+  borderRadius: '25px',
   width: 'max-content',
+  rippleVisible: {
+    opacity: 0,
+    animation: `$enter 550ms ${theme.transitions.easing.easeInOut}`,
+  },
   '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
     border: 0,
+    textTransform: 'none',
+    padding: '11px 16px 11px 13px',
+    transition: '0.3s all',
+    transitionTimingFunction: 'ease-in',
     '&.MuiToggleButton-root': {
       opacity: 0.56,
       color: theme.customColors.dark,
       letterSpacing: 0,
       fontWeight: 600,
-      borderRadius: '24px',
+      borderRadius: '25px',
     },
     '&.Mui-disabled': {
       border: 0,
     },
-    '&:not(:first-of-type)': {
-      borderRadius: '24px',
-    },
-    '&:first-of-type': {
-      borderRadius: '24px',
+    '&:hover': {
+      opacity: 1,
+      background: '#fff',
     },
     '&.Mui-selected': {
       color: theme.palette.common.white,
-      background: theme.customColors.accent,
+      background: theme.customColors.darkBlue,
       opacity: 1,
+      '&:hover': {
+        background: theme.customColors.dark,
+      },
     },
   },
 }));

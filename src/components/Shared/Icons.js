@@ -20,9 +20,9 @@ import { ReactComponent as MapMarker } from 'assets/icon-map-marker.svg';
 import { ReactComponent as SearchWhite } from 'assets/icon-search--white.svg';
 import { ReactComponent as Search } from 'assets/icon-search.svg';
 import { ReactComponent as Logo } from 'assets/zdravniki-sledilnik-logo.svg';
-import { ReactComponent as Facebook } from 'assets/icon-facebook-f.svg';
+import { ReactComponent as Facebook } from 'assets/icon-fb.svg';
 import { ReactComponent as Share } from 'assets/icon-share.svg';
-import { ReactComponent as Twitter } from 'assets/icon-twitter.svg';
+import { ReactComponent as Twitter } from 'assets/icon-tw.svg';
 import { ReactComponent as IconCircle } from 'assets/icon-circle.svg';
 import { ReactComponent as AdultsWhite } from 'assets/icon-adults--white.svg';
 import { ReactComponent as Adults } from 'assets/icon-adults.svg';
@@ -36,6 +36,12 @@ import { ReactComponent as Link } from 'assets/icon-link.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 import { ReactComponent as Copy } from 'assets/icon-copy.svg';
+import { ReactComponent as Filter } from 'assets/icon-filter.svg';
+import { ReactComponent as FilterWhite } from 'assets/icon-filter--white.svg';
+import { ReactComponent as MapView } from 'assets/icon-map-view.svg';
+import { ReactComponent as MapViewWhite } from 'assets/icon-map-view--white.svg';
+import { ReactComponent as ListView } from 'assets/icon-list-view.svg';
+import { ReactComponent as ListViewWhite } from 'assets/icon-list-view--white.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -50,6 +56,7 @@ export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
 export { default as CloseIcon } from '@mui/icons-material/Close';
 export { default as LinkIcon } from '@mui/icons-material/Link';
 export { default as PhoneEnabledIcon } from '@mui/icons-material/PhoneEnabled';
+export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
 
 const icons = {
   Adults,
@@ -88,6 +95,12 @@ const icons = {
   Students,
   StudentsWhite,
   Twitter,
+  Filter,
+  FilterWhite,
+  MapView,
+  MapViewWhite,
+  ListView,
+  ListViewWhite,
 };
 
 export const Icon = function Icon({ name, ...props }) {

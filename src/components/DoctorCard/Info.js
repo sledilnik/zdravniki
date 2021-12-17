@@ -30,7 +30,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
   };
 
   return (
-    <CardContent>
+    <CardContent sx={{ padding: `0 !important` }}>
       <Typography component="h2" variant="h2">
         {doctor.name}
       </Typography>
@@ -61,22 +61,22 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
         <Stack direction="row" alignItems="center" spacing={1}>
           {doctor.phone && (
             <Tooltip title={doctor.phone}>
-              <IconButton>
-                <Shared.Link href={`tel:${doctor.phone}`} self>
+              <Shared.Link href={`tel:${doctor.phone}`} self>
+                <IconButton>
                   <Icons.Icon name="Phone" />
-                </Shared.Link>
-              </IconButton>
+                </IconButton>
+              </Shared.Link>
             </Tooltip>
           )}
           <IconButton onClick={handleZoom}>
             <Icons.Icon name="MapMarker" />
           </IconButton>
           {path && (
-            <IconButton>
-              <Shared.LinkNoRel href={path} onClick={handleDoctorCard}>
+            <Shared.LinkNoRel href={path} onClick={handleDoctorCard}>
+              <IconButton>
                 <Icons.Icon name="IdCard" />
-              </Shared.LinkNoRel>
-            </IconButton>
+              </IconButton>
+            </Shared.LinkNoRel>
           )}
         </Stack>
       </Stack>

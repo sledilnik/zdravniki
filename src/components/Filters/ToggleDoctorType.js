@@ -50,7 +50,6 @@ function withToggleGroup(Component) {
       <>
         <Component {...injectedPropsDrType}>
           <IconToggleButton
-            always
             value="gp"
             aria-label="general practitioner"
             accept={drType}
@@ -58,7 +57,6 @@ function withToggleGroup(Component) {
             iconNames={['FamilyDrWhite', 'Family']}
           />
           <IconToggleButton
-            always
             value="den"
             aria-label="dentist"
             accept={drType}
@@ -66,7 +64,6 @@ function withToggleGroup(Component) {
             iconNames={['DentistWhite', 'Dentist']}
           />
           <IconToggleButton
-            always
             value="gyn"
             aria-label="gynecologist"
             accept={drType}

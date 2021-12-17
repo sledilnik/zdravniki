@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { filterContext } from 'context';
 import DoctorCard from 'components/DoctorCard';
@@ -9,6 +11,7 @@ import L from 'leaflet';
 import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
 import MainMap from './Map';
+import FooterInfoCard from '../Shared/FooterInfo';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -16,9 +19,14 @@ const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
 const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
-const Doctors = function Doctors({ itemsPerPage = 10 }) {
+const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const { state } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
+  const [show, setShow] = useShow();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const [showMap, setShowMap] = useState(matches ? true : show === 'map');
+  const [showCards, setShowCards] = useState(matches ? true : show === 'cards');
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
@@ -27,6 +35,17 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
   const fetchMore = () => {
     setItems(items.concat(Array.from({ length: itemsPerPage })));
   };
+
+  useEffect(() => {
+    if (matches) {
+      setShowMap(true);
+      setShowCards(true);
+    }
+    if (!matches) {
+      setShowMap(show === 'map');
+      setShowCards(show === 'cards');
+    }
+  }, [matches, show, setShow]);
 
   useEffect(() => {
     map?.setMaxBounds(bounds);
@@ -51,25 +70,28 @@ const Doctors = function Doctors({ itemsPerPage = 10 }) {
 
   return (
     <Styled.Wrapper>
-      <MainMap whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />
-      <Styled.WrapperInfinite id="scrollableDiv">
-        <Styled.InfiniteScroll
-          id="infiniteScroll"
-          dataLength={doctorsPagination?.length ?? 0}
-          next={fetchMore}
-          hasMore={doctorsPagination?.length < doctors?.length}
-          scrollableTarget="scrollableDiv"
-        >
-          {doctorsPagination?.map(doctor => (
-            <DoctorCard
-              key={doctor.key}
-              doctor={doctor}
-              handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
-            />
-          ))}
-        </Styled.InfiniteScroll>
-        <MainScrollTop />
-      </Styled.WrapperInfinite>
+      {showMap && <MainMap whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />}
+      {showCards && (
+        <Styled.WrapperInfinite id="scrollableDiv">
+          <Styled.InfiniteScroll
+            id="infiniteScroll"
+            dataLength={doctorsPagination?.length ?? 0}
+            next={fetchMore}
+            hasMore={doctorsPagination?.length < doctors?.length}
+            scrollableTarget="scrollableDiv"
+          >
+            {doctorsPagination?.map(doctor => (
+              <DoctorCard
+                key={doctor.key}
+                doctor={doctor}
+                handleRoomIconClick={event => handleFlyToDoctor(event, doctor)}
+              />
+            ))}
+          </Styled.InfiniteScroll>
+          <FooterInfoCard />
+          <MainScrollTop />
+        </Styled.WrapperInfinite>
+      )}
     </Styled.Wrapper>
   );
 };

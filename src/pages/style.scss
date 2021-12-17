@@ -1,6 +1,6 @@
 $element-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
 $text-c: rgba(0, 0, 0, 0.7);
-$green: #95C83F;
+$green: #09AFDA;
 
 .custom-container {
   margin: 24px auto 0 auto;
@@ -144,7 +144,7 @@ $green: #95C83F;
       @media only screen and (min-width: 768px) {
         padding-right: 10%;
       }
-      
+
       &:after {
         content: url('../assets/expand-dd.svg');
         display: block;
@@ -271,7 +271,7 @@ $green: #95C83F;
     height:180px;
     max-width:100%;
   }
-  
+
   iframe.observable {
     width:660px;
     height:67vw;

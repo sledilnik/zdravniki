@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { useNavigate, useLocation, NavLink } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Box, TextField } from '@mui/material';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { IconButton, TextField, Toolbar } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
 import i18next, { languages } from 'i18n';
 import { useFilter } from 'context/filterContext';
@@ -56,24 +56,24 @@ const Header = function Header() {
   };
 
   return (
-    <Box id="drawer" sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{
-          backgroundColor: theme => theme.customColors.brand,
-          color: theme => theme.customColors.dark,
-          boxShadow: 'none',
-        }}
-      >
+    <Styled.AppNavBar
+      id="drawer"
+      sx={{
+        flexGrow: 1,
+        zIndex: 11,
+        position: 'relative',
+      }}
+    >
+      <Styled.AppNavBar position="static">
         <Toolbar
           sx={{
             'a.logo': {
-              height: '2rem',
+              height: '40px',
             },
           }}
         >
           <NavLink to="/" className="logo" onClick={goHome}>
-            <Icons.Icon name="Logo" style={{ height: '2rem' }} />
+            <Icons.Icon name="Logo" style={{ height: '40px' }} />
           </NavLink>
           <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
             <NavLinks containerId="nav-links" />
@@ -100,7 +100,7 @@ const Header = function Header() {
             size="small"
             sx={{
               pl: 2,
-              width: 100,
+              width: 80,
               display: { xs: 'none', md: 'flex' },
             }}
             options={languages}
@@ -133,8 +133,8 @@ const Header = function Header() {
           />
         </Toolbar>
         <TemporaryDrawer open={open} setOpen={setOpen} />
-      </AppBar>
-    </Box>
+      </Styled.AppNavBar>
+    </Styled.AppNavBar>
   );
 };
 

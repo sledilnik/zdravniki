@@ -8,6 +8,7 @@ import { Loader } from 'components/Shared';
 
 import { leafletContext } from 'context';
 import { useDoctors } from 'context/doctorsContext';
+import FooterInfoCard from '../components/Shared/FooterInfo';
 
 const Doctor = function Doctor() {
   const { doctors } = useDoctors();
@@ -35,13 +36,16 @@ const Doctor = function Doctor() {
         component="main"
         sx={{
           display: 'flex',
-          justifyContent: 'center',
+          flexDirection: 'column',
           alignItems: 'center',
+          width: 'calc(100% - 48px)',
+          margin: '24px',
           height: { md: 'calc(100vh - 64px)' },
         }}
       >
         <leafletContext.LeafletProvider>
           <DoctorCard doctor={doctor} isPage />
+          <FooterInfoCard isDrPage />
         </leafletContext.LeafletProvider>
       </Box>
     );
