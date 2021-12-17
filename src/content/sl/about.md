@@ -15,8 +15,9 @@ Sodelavci projekta:
 - [Joh Dokler](https://github.com/joahim) — spletna stran
 - [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — FAQ
 - [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — FAQ
-- [Luka Renko](https://twitter.com/lukarenko) — podatki
+- [Luka Renko](https://twitter.com/lukarenko) — podatki, koordinacija
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
+- [Miha Eržen](https://github.com/mihaerzen) — spletna stran
 - [Mojca Miklavec](https://github.com/mojca) — podatki
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki
