@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { filterBySearchValueInMapBounds } from '../utils';
 import { useDoctors } from './doctorsContext';
 import { useLeafletContext } from './leafletContext';
@@ -72,5 +73,9 @@ function useFilter() {
   }
   return context;
 }
+
+FilterProvider.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
 
 export { FilterProvider, useFilter };
