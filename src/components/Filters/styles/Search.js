@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiTextField from '@mui/material/TextField';
 import MuiBox from '@mui/material/Box';
+import MuiPaper from '@mui/material/Paper';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -37,7 +38,9 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     width: '100%',
-    borderRadius: '24px',
+    borderRadius: '25px',
+    border: `1px solid ${theme.customColors.borderLight}`,
+    maxWidth: '100%',
   },
 }));
 
@@ -47,7 +50,7 @@ export const TextField = styled(MuiTextField)({
     fontSize: '13px',
     fontWeight: 600,
     letterSpacing: 0,
-    borderRadius: '24px',
+    borderRadius: '25px',
     '& fieldset': { border: 'none' },
     '&:hover fieldset': {
       backgroundColor: 'rgba(0, 0, 0, 0.04)',
@@ -61,30 +64,33 @@ export const TextField = styled(MuiTextField)({
 export const SearchBox = styled(MuiBox)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  borderRadius: '25px',
-  border: `1px solid ${theme.customColors.borderLight}`,
-  background: '#fff',
+  flexGrow: 1,
+
   gridArea: 'search',
 
-  '& .MuiPaper-root': {
-    width: '100%',
+  width: '150px',
+  height: '48px',
+
+  margin: '0 12px 0 0',
+  border: 'none',
+  borderRadius: '25px',
+  background: '#fff',
+
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
   },
 
   [theme.breakpoints.up('md')]: {
+    margin: 0,
     width: '400px',
   },
+}));
 
-  [theme.breakpoints.down('md')]: {
-    width: 'auto',
-    flexGrow: 1,
-    margin: '0 12px 0 0',
-    border: 'none',
-    background: '#fff',
-    height: '48px',
-
-    '& input': {
-      border: `1px solid ${theme.customColors.borderLight}`,
-      maxWidth: '100%',
-    },
-  },
+export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
+  color: theme.customColors.dark,
+  background: 'transparent',
+  borderRadius: '25px',
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%',
 }));
