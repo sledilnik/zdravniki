@@ -5,6 +5,7 @@ import L from 'leaflet';
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import PropTypes from 'prop-types';
 
 const { GEO_LOCATION } = MAP;
 
@@ -25,6 +26,16 @@ export const LeafletMarker = function LeafletMarker({ position = [], tooltip, ..
   );
 };
 
+LeafletMarker.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number),
+  tooltip: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+};
+
+LeafletMarker.defaultProps = {
+  position: [],
+  tooltip: undefined,
+};
+
 export const LeafletCircleMarker = forwardRef(
   (
     {
@@ -39,3 +50,18 @@ export const LeafletCircleMarker = forwardRef(
     </CircleMarker>
   ),
 );
+
+LeafletCircleMarker.propTypes = {
+  markerProps: PropTypes.shape({
+    center: PropTypes.arrayOf(PropTypes.number),
+    radius: PropTypes.number,
+    stroke: PropTypes.bool,
+    fillOpacity: PropTypes.number,
+  }),
+  popup: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+};
+
+LeafletCircleMarker.defaultProps = {
+  markerProps: { center: GEO_LOCATION.SL_CENTER, radius: 12, stroke: false, fillOpacity: 0.4 },
+  popup: undefined,
+};
