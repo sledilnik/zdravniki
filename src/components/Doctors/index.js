@@ -88,7 +88,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
               />
             ))}
           </Styled.InfiniteScroll>
-          <FooterInfoCard />
+          {items.length === 0 && <FooterInfoCard />}
           <MainScrollTop />
         </Styled.WrapperInfinite>
       )}
