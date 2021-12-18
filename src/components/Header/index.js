@@ -51,84 +51,75 @@ const Header = function Header() {
   };
 
   return (
-    <Styled.AppNavBar
-      id="drawer"
-      sx={{
-        flexGrow: 1,
-        zIndex: 11,
-        position: 'relative',
-      }}
-    >
-      <Styled.AppNavBar position="static">
-        <Toolbar
+    <Styled.AppNavBar>
+      <Toolbar
+        sx={{
+          'a.logo': {
+            height: '40px',
+          },
+        }}
+      >
+        <NavLink to="/" className="logo" onClick={goHome}>
+          <Icons.Icon name="Logo" style={{ height: '40px' }} />
+        </NavLink>
+        <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
+          <NavLinks containerId="nav-links" />
+        </Styled.StackLarge>
+        <Styled.StackSocialLarge>
+          <SocialLinks />
+        </Styled.StackSocialLarge>
+        <IconButton
+          size="medium"
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
           sx={{
-            'a.logo': {
-              height: '40px',
-            },
+            mr: 2,
+            marginInline: 'auto 0',
+            display: { xs: 'inline-flex', md: 'none' },
           }}
+          onClick={handleHamburger}
         >
-          <NavLink to="/" className="logo" onClick={goHome}>
-            <Icons.Icon name="Logo" style={{ height: '40px' }} />
-          </NavLink>
-          <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
-            <NavLinks containerId="nav-links" />
-          </Styled.StackLarge>
-          <Styled.StackSocialLarge>
-            <SocialLinks />
-          </Styled.StackSocialLarge>
-          <IconButton
-            size="medium"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{
-              mr: 2,
-              marginInline: 'auto 0',
-              display: { xs: 'inline-flex', md: 'none' },
-            }}
-            onClick={handleHamburger}
-          >
-            <Icons.MenuIcon />
-          </IconButton>
-          <Styled.Autocomplete
-            id="language-switcher"
-            size="small"
-            sx={{
-              pl: 2,
-              width: 80,
-              display: { xs: 'none', md: 'flex' },
-            }}
-            options={languages}
-            disableClearable
-            value={languages.find(l => l.code === i18next.language)}
-            getOptionLabel={option => {
-              const code = option?.code;
-              return typeof code === 'undefined' ? '' : code.toUpperCase();
-            }}
-            onChange={handleChangeLocale}
-            renderOption={(props, option) => {
-              const { name } = option;
-              return (
-                <span style={{ display: 'flex', justifyContent: 'end' }} {...props}>
-                  {name}
-                </span>
-              );
-            }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                inputProps={{
-                  ...params.inputProps,
-                  autoComplete: 'new-password', // disable autocomplete and autofill
-                }}
-              />
-            )}
-            disablePortal // not sure if needed
-            PopperComponent={Popper}
-          />
-        </Toolbar>
-        <TemporaryDrawer open={open} setOpen={setOpen} />
-      </Styled.AppNavBar>
+          <Icons.MenuIcon />
+        </IconButton>
+        <Styled.Autocomplete
+          id="language-switcher"
+          size="small"
+          sx={{
+            pl: 2,
+            width: 80,
+            display: { xs: 'none', md: 'flex' },
+          }}
+          options={languages}
+          disableClearable
+          value={languages.find(l => l.code === i18next.language)}
+          getOptionLabel={option => {
+            const code = option?.code;
+            return typeof code === 'undefined' ? '' : code.toUpperCase();
+          }}
+          onChange={handleChangeLocale}
+          renderOption={(props, option) => {
+            const { name } = option;
+            return (
+              <span style={{ display: 'flex', justifyContent: 'end' }} {...props}>
+                {name}
+              </span>
+            );
+          }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              inputProps={{
+                ...params.inputProps,
+                autoComplete: 'new-password', // disable autocomplete and autofill
+              }}
+            />
+          )}
+          disablePortal // not sure if needed
+          PopperComponent={Popper}
+        />
+      </Toolbar>
+      <TemporaryDrawer open={open} setOpen={setOpen} />
     </Styled.AppNavBar>
   );
 };

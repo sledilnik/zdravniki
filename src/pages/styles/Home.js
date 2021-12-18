@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 
 import { SIZES } from 'const';
 
-export const Main = styled('main')(() => ({
+export const Main = styled(MuiBox)(() => ({
   height: '100vh',
   overflow: 'hidden',
 }));

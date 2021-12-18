@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { CardContent, Typography, Tooltip, IconButton, Stack } from '@mui/material';
+import { CardContent, Typography, Tooltip, IconButton, Stack, Box } from '@mui/material';
 import slugify from 'slugify';
 
 import { useLeafletContext } from 'context/leafletContext';
@@ -63,11 +63,14 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
         <Stack direction="row" alignItems="center" spacing={1}>
           {doctor.phone && (
             <Tooltip title={doctor.phone}>
-              <Shared.Link href={`tel:${doctor.phone}`} self>
-                <IconButton>
-                  <Icons.Icon name="Phone" />
-                </IconButton>
-              </Shared.Link>
+              {/* Shared.Link must be wrapped in Mui component or see:  https://mui.com/guides/composition/#caveat-with-refs */}
+              <Box>
+                <Shared.Link href={`tel:${doctor.phone}`} self>
+                  <IconButton>
+                    <Icons.Icon name="Phone" />
+                  </IconButton>
+                </Shared.Link>
+              </Box>
             </Tooltip>
           )}
           <IconButton onClick={handleZoom}>
