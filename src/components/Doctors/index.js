@@ -7,17 +7,17 @@ import { filterContext } from 'context';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
-import L from 'leaflet';
+// import L from 'leaflet';
 import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
 import MainMap from './Map';
 import FooterInfoCard from '../Shared/FooterInfo';
 
-const { GEO_LOCATION, BOUNDS } = MAP;
+const { GEO_LOCATION } = MAP;
 
-const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
-const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
-const bounds = L.latLngBounds(corner1, corner2);
+// const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
+// const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
+// const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const { state } = useLocation();
@@ -47,9 +47,10 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     }
   }, [matches, show, setShow]);
 
-  useEffect(() => {
-    map?.setMaxBounds(bounds);
-  }, [map]);
+  // !temporary disabling max bounds to see if this causes ipad safari issue #111
+  // useEffect(() => {
+  //   map?.setMaxBounds(bounds);
+  // }, [map]);
 
   useEffect(() => {
     setItems(Array.from({ length: 20 }));
