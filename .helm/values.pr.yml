@@ -1,0 +1,8 @@
+---
+ingressroute:
+  enabled: true
+  tls:
+    certResolver: letsencrypt
+    main: zdravniki.sledilnik.org
+    sans:
+      - "*.zdravniki.sledilnik.org"
