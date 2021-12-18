@@ -6,9 +6,10 @@ import MuiPaper from '@mui/material/Paper';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
-  borderRadius: '24px',
+  borderRadius: '25px',
   backgroundColor: 'transparent',
   width: '100%',
+  height: '48px',
 
   '&:focus-within': {
     color: theme.customColors.dark,
@@ -26,23 +27,47 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-export const InputBase = styled(MuiInputBase)(({ theme }) => ({
-  color: 'inherit',
-  width: '100%',
-  '& .MuiInputBase-input': {
-    fontWeight: 600,
-    letterSpacing: 0,
-    fontSize: '14px',
-    height: '48px',
-    padding: theme.spacing(0, 1, 0, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    width: '100%',
-    borderRadius: '25px',
-    border: `1px solid ${theme.customColors.borderLight}`,
-    maxWidth: '100%',
-  },
-}));
+export const InputBase = styled(MuiInputBase)(({ theme }) => {
+  // ios 16/14 = 1.14285714286, 14/16 = 0.875
+  const scaleUpRatio = 1.14285714286;
+  const scaleDownRatio = 0.875;
+
+  const height = `${48 * scaleUpRatio}px`;
+  const paddingBlock = 0;
+  const paddingRight = `${8 * scaleUpRatio}px`;
+  const paddingLeft = `${(16 + 32) * scaleUpRatio}px`; // before `calc(1em + ${theme.spacing(4)})`,
+  const borderRadius = `${25 * scaleUpRatio}px`;
+  const border = `${scaleUpRatio}px solid ${theme.customColors.borderLight}`;
+  const width = `${100 * scaleUpRatio}%`;
+
+  const transform = `scale(${scaleDownRatio})`;
+
+  return {
+    color: 'inherit',
+    width,
+    '& .MuiInputBase-input': {
+      fontWeight: 600,
+      letterSpacing: 0,
+      fontSize: '16px',
+      height,
+      paddingBlock,
+      paddingRight,
+      // vertical padding + font size from searchIcon
+      paddingLeft,
+      width,
+      borderRadius,
+      border,
+
+      /* scale down by 14/16 = 87,5% */
+      transform,
+      transformOrigin: 'left top',
+
+      input: {
+        '&::placeholder': { fontSize: '14px' },
+      },
+    },
+  };
+});
 
 export const TextField = styled(MuiTextField)({
   '& .MuiOutlinedInput-root': {
