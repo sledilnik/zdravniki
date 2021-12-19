@@ -12,13 +12,13 @@ import FooterInfoCard from '../components/Shared/FooterInfo';
 
 const Doctor = function Doctor({ isReportError = false }) {
   const { doctors } = useDoctors();
-  const { lng, name } = useParams();
+  const { lng, type, name } = useParams();
   const [doctor, setDoctor] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.all.find(d => slugify(d.name.toLowerCase()) === name));
-  }, [doctors, doctor, lng, name]);
+    setDoctor(doctors?.all.find(d => d.type === type && slugify(d.name.toLowerCase()) === name));
+  }, [doctors, doctor, lng, type, name]);
 
   useEffect(() => {
     if (loading) {
