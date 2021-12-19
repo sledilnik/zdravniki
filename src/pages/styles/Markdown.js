@@ -205,10 +205,7 @@ export const Details = styled('details')(() => ({
     display: 'none',
     width: '90%',
   },
-  '> *:nth-of-type(1)': {
-    marginTop: '2px',
-    paddingTop: '12px',
-  },
+
   '&[open]': {
     '> *:not(summary)': {
       display: 'block',
@@ -231,10 +228,14 @@ export const Summary = styled('summary')(({ theme }) => ({
   color: theme.MD.summaryColor,
   position: 'relative',
   paddingRight: '18%',
+  '+ *:nth-of-type(1)': {
+    marginTop: '2px',
+    paddingTop: '12px',
+  },
   '@media only screen and (min-width: 768px)': {
     paddingRight: '10%',
   },
-  '::marker': {
+  '::marker, ::-webkit-details-marker': {
     display: 'none',
     content: '""',
   },

@@ -9,7 +9,7 @@ import * as SEO from 'components/SEO';
 import { doctorsContext } from 'context';
 
 import { DOCTORS } from 'const';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
@@ -19,12 +19,12 @@ const Home = function Home() {
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style = null;
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.overflow = 'hidden';
+  //   return () => {
+  //     document.body.style = null;
+  //   };
+  // }, []);
 
   if (hasError) {
     return <div>{t('pageNotFound.somethingWentWrong')}</div>;
@@ -35,18 +35,16 @@ const Home = function Home() {
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
-      <Styled.Main id="main-content">
-        {isFetching && !hasError ? (
-          <Loader.Center />
-        ) : (
-          <>
-            <Filters useShow={useShow} />
-            <Styled.Box>
-              <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />
-            </Styled.Box>
-          </>
-        )}
-      </Styled.Main>
+      {isFetching && !hasError ? (
+        <Loader.Center component="main" />
+      ) : (
+        <Styled.Main id="main-content" component="main">
+          <Filters useShow={useShow} />
+          <Styled.Box>
+            <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />
+          </Styled.Box>
+        </Styled.Main>
+      )}
     </>
   );
 };

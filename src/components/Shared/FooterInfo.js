@@ -7,13 +7,14 @@ export const FooterInfo = styled('div')(({ theme }) => ({
   fontSize: '12px',
   padding: '0 0 50px',
   margin: '0 24px',
-  width: '100%',
   color: theme.customColors.textLight,
 
   '&.is-dr-page': {
     borderTop: '1px dashed #CDCDCD',
     marginTop: '24px',
     paddingTop: '16px',
+    paddingBottom: '0',
+    width: '100%',
   },
 
   strong: {
