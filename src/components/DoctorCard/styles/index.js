@@ -129,6 +129,12 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       fontWeight: 700,
       color: theme.customColors.doctor.colors.name,
       marginBottom: theme.spacing(0),
+      'a': {
+        color: theme.customColors.dark,
+        '&:hover': {
+          color: theme.customColors.links,
+        },
+      },
     },
     '.MuiTypography-h3': {
       fontSize: '0.75rem',

@@ -34,7 +34,9 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
   return (
     <CardContent sx={{ padding: `0 !important` }}>
       <Typography component="h2" variant="h2">
-        {doctor.name}
+        <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+          {doctor.name}
+        </Shared.LinkNoRel>
       </Typography>
       <Shared.ConditionalLink to={doctor.website} component="h3" variant="h3">
         {doctor.provider}
