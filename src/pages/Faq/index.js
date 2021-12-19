@@ -12,12 +12,12 @@ const Faq = function Faq() {
   const faqRef = useRef();
   const [response, setResponse] = useState();
 
-  useEffect(() => {
-    document.body.style.overflow = 'auto';
-    return () => {
-      document.body.style = null;
-    };
-  });
+  // useEffect(() => {
+  //   document.body.style.overflow = 'auto';
+  //   return () => {
+  //     document.body.style = null;
+  //   };
+  // });
 
   // fetch data
   useEffect(() => {

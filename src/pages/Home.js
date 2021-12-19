@@ -9,7 +9,7 @@ import * as SEO from 'components/SEO';
 import { doctorsContext } from 'context';
 
 import { DOCTORS } from 'const';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
@@ -19,12 +19,12 @@ const Home = function Home() {
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style = null;
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.overflow = 'hidden';
+  //   return () => {
+  //     document.body.style = null;
+  //   };
+  // }, []);
 
   if (hasError) {
     return <div>{t('pageNotFound.somethingWentWrong')}</div>;
