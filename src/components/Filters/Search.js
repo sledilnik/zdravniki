@@ -20,22 +20,22 @@ const Search = function Search() {
 
   useDebounce(() => setSearchValue(value), 500, [value]);
   return (
-    <Styled.Search.SearchBox>
-      <Styled.Search.SearchPaper elevation={0}>
-        <Styled.Search.Search>
-          <Styled.Search.SearchIconWrapper>
-            <Icons.Icon name="Search" />
-          </Styled.Search.SearchIconWrapper>
-          <Styled.Search.InputBase
-            placeholder={t('search')}
-            value={value}
-            onChange={handleSearchChange}
-            aria-label="search"
-            type="search"
-          />
-        </Styled.Search.Search>
-      </Styled.Search.SearchPaper>
-    </Styled.Search.SearchBox>
+    // <Styled.Search.SearchBox>
+    <Styled.Search.SearchPaper elevation={0}>
+      <Styled.Search.Search>
+        <Styled.Search.SearchIconWrapper>
+          <Icons.Icon name="Search" />
+        </Styled.Search.SearchIconWrapper>
+        <Styled.Search.InputBase
+          placeholder={t('search')}
+          value={value}
+          onChange={handleSearchChange}
+          aria-label="search"
+          type="search"
+        />
+      </Styled.Search.Search>
+    </Styled.Search.SearchPaper>
+    // </Styled.Search.SearchBox>
   );
 };
 

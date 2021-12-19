@@ -7,8 +7,7 @@ import MuiPaper from '@mui/material/Paper';
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: '25px',
-  backgroundColor: 'transparent',
-  width: '100%',
+  border: `1px solid ${theme.customColors.borderLight}`,
   height: '48px',
 
   '&:focus-within': {
@@ -27,7 +26,7 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-export const InputBase = styled(MuiInputBase)(({ theme }) => {
+export const InputBase = styled(MuiInputBase)(() => {
   // ios 16/14 = 1.14285714286, 14/16 = 0.875
   const scaleUpRatio = 1.14285714286;
   const scaleDownRatio = 0.875;
@@ -36,16 +35,20 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => {
   const paddingBlock = 0;
   const paddingRight = `${8 * scaleUpRatio}px`;
   const paddingLeft = `${(16 + 32) * scaleUpRatio}px`; // before `calc(1em + ${theme.spacing(4)})`,
-  const borderRadius = `${25 * scaleUpRatio}px`;
-  const border = `${scaleUpRatio}px solid ${theme.customColors.borderLight}`;
+  // const borderRadius = `${25 * scaleUpRatio}px`;
+  // const border = `${scaleUpRatio}px solid ${theme.customColors.borderLight}`;
   const width = `${100 * scaleUpRatio}%`;
+  // const width = '100%';
 
   const transform = `scale(${scaleDownRatio})`;
 
   return {
     color: 'inherit',
     width,
+    /* scale down by 14/16 = 87,5% */
+
     '& .MuiInputBase-input': {
+      // width,
       fontWeight: 600,
       letterSpacing: 0,
       fontSize: '16px',
@@ -54,17 +57,13 @@ export const InputBase = styled(MuiInputBase)(({ theme }) => {
       paddingRight,
       // vertical padding + font size from searchIcon
       paddingLeft,
-      width,
-      borderRadius,
-      border,
+      // borderRadius,
+      // border,
 
-      /* scale down by 14/16 = 87,5% */
       transform,
       transformOrigin: 'left top',
 
-      input: {
-        '&::placeholder': { fontSize: '14px' },
-      },
+      '::placeholder': { fontSize: '16px' },
     },
   };
 });
@@ -90,7 +89,6 @@ export const SearchBox = styled(MuiBox)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   flexGrow: 1,
-
   gridArea: 'search',
 
   width: '150px',
@@ -117,5 +115,20 @@ export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
   borderRadius: '25px',
   display: 'flex',
   alignItems: 'center',
-  width: '100%',
+  flexGrow: 1,
+
+  margin: '0 12px 0 0',
+  width: '150px',
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto',
+    // marginRight: 'auto',
+    // maxWidth: '400px',
+  },
+
+  [theme.breakpoints.up('md')]: {
+    margin: 0,
+    marginRight: '12px',
+    width: 'auto',
+    justifyContent: 'end',
+  },
 }));
