@@ -7,7 +7,7 @@ import MuiLink from '@mui/material/Link';
 export * as PageInfo from './PageInfo';
 
 const Card = styled(MuiCard)(() => ({
-  marginInline: '0.5em',
+  // marginInline: '0.5em',
   borderRadius: '0',
   boxShadow: 'none',
 
