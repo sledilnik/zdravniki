@@ -61,36 +61,41 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
             </Styled.InfoWrapper>
           </Tooltip>
         </Stack>
+      </Stack>
 
-        <Stack direction="row" alignItems="center" spacing={1}>
+      <Stack direction="row" alignItems="center" className={'card-toolbar'} spacing={1}>
+        <Stack direction="row" className={'card-toolbar__left'}>
           {doctor.phone && (
-            <Tooltip title={doctor.phone}>
-              {/* Shared.Link must be wrapped in Mui component or see:  https://mui.com/guides/composition/#caveat-with-refs */}
-              <Box>
-                <Shared.Link href={`tel:${doctor.phone}`} self>
-                  <IconButton>
-                    <Icons.Icon name="Phone" />
-                  </IconButton>
-                </Shared.Link>
-              </Box>
-            </Tooltip>
+              <Tooltip title={doctor.phone}>
+                <IconButton href={`tel:${doctor.phone}`} self>
+                  <Icons.Icon name="PhoneBig" />
+                </IconButton>
+              </Tooltip>
           )}
-          <IconButton onClick={handleZoom}>
-            <Icons.Icon name="MapMarker" />
-          </IconButton>
-          {path && (
-            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-              <IconButton>
-                <Icons.Icon name="IdCard" />
-              </IconButton>
-            </Shared.LinkNoRel>
+          {!doctor.phone && (
+              <Tooltip title={t('doctorCard.noPhone')}>
+                <IconButton className={'icon--disabled'}>
+                  <Icons.Icon name="NoPhoneBig" />
+                </IconButton>
+              </Tooltip>
           )}
+          <Tooltip title={t('doctorCard.showOnMap')}>
+            <IconButton onClick={handleZoom}>
+              <Icons.Icon name="MapMarker" />
+            </IconButton>
+          </Tooltip>
           <Tooltip title={t('reportError.tooltip')}>
             <IconButton onClick={e => handleDoctorCard(e, true)}>
               <Icons.Icon name="ReportError" />
             </IconButton>
           </Tooltip>
         </Stack>
+        {path && (
+            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+              {t('doctorCard.more')}
+              <Icons.Icon name="More" />
+            </Shared.LinkNoRel>
+        )}
       </Stack>
     </CardContent>
   );

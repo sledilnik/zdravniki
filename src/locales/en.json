@@ -17,6 +17,11 @@
     "adults": "adults",
     "students": "students",
     "youth": "youth",
+    "doctorCard": {
+        "more": "More",
+        "showOnMap": "Show on map",
+        "noPhone": "Phone number not available"
+    },
     "search": "Search…",
     "filter": "Filter",
     "map": "Map",

@@ -147,6 +147,46 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       lineHeight: '0.75rem',
       fontStyle: 'normal',
     },
+    '.card-toolbar': {
+      width: '100%',
+      '.card-toolbar__left': {
+        flexGrow: 1,
+        marginLeft: '-10px',
+        '.icon--disabled': {
+          svg: {
+            opacity: 0.3,
+          },
+        },
+        '> *': {
+          margin: '0 5px',
+          position: 'relative',
+          borderRadius: '5px',
+          width: '40px',
+          '&:after': {
+            content: '""',
+            position: 'absolute',
+            right: '-5px',
+            top: '5px',
+            bottom: '5px',
+            borderRight: `1px solid ${theme.customColors.borderLight}`,
+          },
+          '&:last-child': {
+            '&:after': {
+              display: 'none',
+            },
+          },
+        },
+      },
+      'a:last-of-type': {
+        color: theme.customColors.dark,
+        fontWeight: 'normal',
+        display: 'flex',
+        alignItems: 'center',
+        svg: {
+          marginLeft: '5px',
+        },
+      },
+    },
   };
 });
 
