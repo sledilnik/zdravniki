@@ -18,7 +18,7 @@ function withLeaflet(Component) {
     userLocation = false,
     ...other
   }) {
-    const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.id} doctor={doctor} />);
+    const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.key} doctor={doctor} />);
     const injectedProps = {
       center,
       zoom,

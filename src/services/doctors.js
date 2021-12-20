@@ -44,9 +44,6 @@ export function createDoctor(doctor, type, institution) {
     get key() {
       return uuid;
     },
-    get id() {
-      return doctor.id;
-    },
     get type() {
       return doctor.type;
     },
@@ -99,8 +96,6 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
     return acc;
   }, {});
 
-  const getById = id => doctors[`${id}`];
-
   const doctorValues = Object.values(doctors);
   const doctorsValues = Intl.Collator
     ? doctorValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
@@ -125,7 +120,6 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
 
   return Object.freeze({
     all: doctorsValues,
-    getById,
     types,
     filterByType,
     typesDict,
