@@ -20,7 +20,6 @@ const Search = function Search() {
 
   useDebounce(() => setSearchValue(value), 500, [value]);
   return (
-    // <Styled.Search.SearchBox>
     <Styled.Search.SearchPaper elevation={0}>
       <Styled.Search.Search>
         <Styled.Search.SearchIconWrapper>
@@ -35,7 +34,6 @@ const Search = function Search() {
         />
       </Styled.Search.Search>
     </Styled.Search.SearchPaper>
-    // </Styled.Search.SearchBox>
   );
 };
 

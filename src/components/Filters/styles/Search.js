@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiTextField from '@mui/material/TextField';
-import MuiBox from '@mui/material/Box';
 import MuiPaper from '@mui/material/Paper';
 
 export const Search = styled('div')(({ theme }) => ({
@@ -34,21 +33,16 @@ export const InputBase = styled(MuiInputBase)(() => {
   const height = `${48 * scaleUpRatio}px`;
   const paddingBlock = 0;
   const paddingRight = `${8 * scaleUpRatio}px`;
-  const paddingLeft = `${(16 + 32) * scaleUpRatio}px`; // before `calc(1em + ${theme.spacing(4)})`,
-  // const borderRadius = `${25 * scaleUpRatio}px`;
-  // const border = `${scaleUpRatio}px solid ${theme.customColors.borderLight}`;
+  const paddingLeft = `${(16 + 32) * scaleUpRatio}px`;
   const width = `${100 * scaleUpRatio}%`;
-  // const width = '100%';
 
   const transform = `scale(${scaleDownRatio})`;
 
   return {
     color: 'inherit',
     width,
-    /* scale down by 14/16 = 87,5% */
 
     '& .MuiInputBase-input': {
-      // width,
       fontWeight: 600,
       letterSpacing: 0,
       fontSize: '16px',
@@ -57,9 +51,8 @@ export const InputBase = styled(MuiInputBase)(() => {
       paddingRight,
       // vertical padding + font size from searchIcon
       paddingLeft,
-      // borderRadius,
-      // border,
 
+      /* scale down by 14/16 = 87,5% */
       transform,
       transformOrigin: 'left top',
 
@@ -85,30 +78,6 @@ export const TextField = styled(MuiTextField)({
   },
 });
 
-export const SearchBox = styled(MuiBox)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  flexGrow: 1,
-  gridArea: 'search',
-
-  width: '150px',
-  height: '48px',
-
-  margin: '0 12px 0 0',
-  border: 'none',
-  borderRadius: '25px',
-  background: '#fff',
-
-  [theme.breakpoints.up('sm')]: {
-    width: 'auto',
-  },
-
-  [theme.breakpoints.up('md')]: {
-    margin: 0,
-    width: '400px',
-  },
-}));
-
 export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
   color: theme.customColors.dark,
   background: 'transparent',
@@ -121,8 +90,6 @@ export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
   width: '150px',
   [theme.breakpoints.up('sm')]: {
     width: 'auto',
-    // marginRight: 'auto',
-    // maxWidth: '400px',
   },
 
   [theme.breakpoints.up('md')]: {
