@@ -12,11 +12,12 @@ import * as Shared from './Shared';
 
 import { toPercent } from './utils';
 
-const Info = function Info({ doctor, handleZoom = () => {} }) {
+const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
   const { lng } = useParams();
   const { map } = useLeafletContext();
   const accepts = doctor.accepts === 'y';
   const availabilityText = toPercent(doctor.availability, lng);
+  const [type, ageGroup] = doctor.type.split('-');
 
   const navigate = useNavigate();
 
@@ -36,6 +37,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
       <Typography component="h2" variant="h2">
         {doctor.name}
       </Typography>
+      {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
       <Shared.ConditionalLink to={doctor.website} component="h3" variant="h3">
         {doctor.provider}
       </Shared.ConditionalLink>
@@ -43,7 +45,7 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
         {doctor.fullAddress}
       </Typography>
 
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
         <Stack direction="row" alignItems="center" spacing={1}>
           <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
             <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
@@ -73,9 +75,11 @@ const Info = function Info({ doctor, handleZoom = () => {} }) {
               </Box>
             </Tooltip>
           )}
-          <IconButton onClick={handleZoom}>
-            <Icons.Icon name="MapMarker" />
-          </IconButton>
+          {!isMarker && (
+            <IconButton onClick={handleZoom}>
+              <Icons.Icon name="MapMarker" />
+            </IconButton>
+          )}
           {path && (
             <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
               <IconButton>
