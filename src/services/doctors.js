@@ -24,11 +24,18 @@ export function createDoctor(doctor, type, institution) {
   const provider = trimString(institution.name);
   const website = trimString(institution.website);
   const phone = trimString(institution.phone);
-  const { address, city, municipality, post } = institution;
+  const { address, city, municipalityPart, municipality, post } = institution;
   const [_code, _post] = post.split(' ');
   const geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
 
-  const addressObject = { street: address, postalCode: _code, city, municipality, post: _post };
+  const addressObject = {
+    street: address,
+    postalCode: _code,
+    city,
+    municipalityPart,
+    municipality,
+    post: _post,
+  };
 
   const uuid = uuidv4();
   const { availability, load } = doctor;
@@ -65,7 +72,7 @@ export function createDoctor(doctor, type, institution) {
       return `${addressObject.street}, ${addressObject.city}`;
     },
     get searchAddress() {
-      return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipality}`;
+      return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipalityPart} ${addressObject.municipality}`;
     },
     get geoLocation() {
       return geoLocation;
