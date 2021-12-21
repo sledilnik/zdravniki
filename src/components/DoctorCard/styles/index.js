@@ -84,6 +84,7 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
       background: 'green',
       '.leaflet-container': {
         height: '250px',
+        zIndex: 1,
       },
       [theme.breakpoints.up('sm')]: {
         '.leaflet-container': {
