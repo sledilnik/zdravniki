@@ -59,6 +59,7 @@ export const ButtonWrapper = styled('div')(() => ({
   textAlign: 'center',
 }));
 
+// some css values in WrapperInfinite are overiden with class "cards" in Wrapper
 export const WrapperInfinite = styled('div')(({ theme }) => ({
   width: '100%',
   height: `${SIZES.MAP_HEIGHT.default}`,

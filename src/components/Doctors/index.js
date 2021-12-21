@@ -20,7 +20,7 @@ const bounds = L.latLngBounds(corner1, corner2);
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const { state } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
-  const [show] = useShow();
+  const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
 
@@ -42,6 +42,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     if (!geoLocation) {
       return;
     }
+    setShow('map');
     window.scrollTo(0, 0);
     const { lat, lon } = geoLocation;
     map.setView([lat, lon]);
