@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
+import Menu from '@mui/material/Menu';
 
 export * as PageInfo from './PageInfo';
 
@@ -104,11 +105,19 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
 
   return {
     justifySelf: 'center',
+    alignItems: 'start',
     width: '100%',
-    padding: '20px 24px 10px',
+    padding: '0',
     background: '#F4F8F8',
     borderBottom: `1px solid #DCE8E9`,
     position: 'relative',
+    display: 'flex',
+    '.MuiCardContent-root': {
+      padding: '20px 24px 10px',
+    },
+    '.MuiCardActions-root': {
+      padding: '20px 10px 0',
+    },
     '&:before': {
       content: `''`,
       position: 'absolute',
@@ -129,7 +138,7 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       fontWeight: 700,
       color: theme.customColors.doctor.colors.name,
       marginBottom: theme.spacing(0),
-      'a': {
+      a: {
         color: theme.customColors.dark,
         '&:hover': {
           color: theme.customColors.links,
@@ -147,48 +156,20 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       lineHeight: '0.75rem',
       fontStyle: 'normal',
     },
-    '.card-toolbar': {
-      width: '100%',
-      '.card-toolbar__left': {
-        flexGrow: 1,
-        marginLeft: '-10px',
-        '.icon--disabled': {
-          svg: {
-            opacity: 0.3,
-          },
-        },
-        '> *': {
-          margin: '0 5px',
-          position: 'relative',
-          borderRadius: '5px',
-          width: '40px',
-          '&:after': {
-            content: '""',
-            position: 'absolute',
-            right: '-5px',
-            top: '5px',
-            bottom: '5px',
-            borderRight: `1px solid ${theme.customColors.borderLight}`,
-          },
-          '&:last-child': {
-            '&:after': {
-              display: 'none',
-            },
-          },
-        },
-      },
-      'a:last-of-type': {
-        color: theme.customColors.dark,
-        fontWeight: 'normal',
-        display: 'flex',
-        alignItems: 'center',
-        svg: {
-          marginLeft: '5px',
-        },
-      },
-    },
   };
 });
+
+export const MoreMenu = styled(Menu)(() => ({
+  li: {
+    fontSize: '13px',
+    '.MuiListItemIcon-root': {
+      minWidth: '30px',
+      svg: {
+        width: '16px',
+      },
+    },
+  },
+}));
 
 export const InfoWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.availability,
