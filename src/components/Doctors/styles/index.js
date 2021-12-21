@@ -49,6 +49,7 @@ export const Wrapper = styled('div')(({ theme, show }) => {
 
       '.map, .cards': { position: 'relative', opacity: 1, zIndex: 1 },
       '.map': { transform: 'scale(1)' },
+      '.cards': { transform: 'translateX(0)' },
     },
   };
 });
