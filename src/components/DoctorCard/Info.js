@@ -93,7 +93,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
       <CardActions>
         <div>
           <IconButton
-            aria-label="more"
+            aria-label={t('doctorCard.more')}
             aria-controls={`dr-menu--${drPath}-${slug}`}
             aria-expanded={moreMenuOpen ? 'true' : undefined}
             aria-haspopup="true"
@@ -128,18 +128,19 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
                 {t('doctorCard.noPhone')}
               </MenuItem>
             )}
-            <MenuItem
-              onClick={() => {
-                handleZoom();
-                moreMenuHandleClose();
-              }}
-            >
-              <ListItemIcon>
-                <Icons.Icon name="MapMarker" />
-              </ListItemIcon>
-              {t('doctorCard.showOnMap')}
-            </MenuItem>
-
+            {!isMarker && (
+              <MenuItem
+                onClick={() => {
+                  handleZoom();
+                  moreMenuHandleClose();
+                }}
+              >
+                <ListItemIcon>
+                  <Icons.Icon name="MapMarker" />
+                </ListItemIcon>
+                {t('doctorCard.showOnMap')}
+              </MenuItem>
+            )}
             <MenuItem
               onClick={e => {
                 moreMenuHandleClose();

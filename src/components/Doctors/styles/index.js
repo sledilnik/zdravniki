@@ -96,7 +96,7 @@ export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
 export const InfoCard = styled(Card)(({ theme }) => ({
   justifySelf: 'center',
   width: '100%',
-  padding: '10px 20px',
+  padding: '0',
   background: 'transparent',
   boxShadow: 'none',
   position: 'relative',
@@ -121,5 +121,13 @@ export const InfoCard = styled(Card)(({ theme }) => ({
     fontSize: '0.75rem',
     lineHeight: '0.75rem',
     fontStyle: 'normal',
+  },
+  '.MuiCardContent-root': {
+    padding: '15px 15px 5px 15px',
+  },
+  '.MuiCardActions-root': {
+    position: 'absolute',
+    right: '0',
+    bottom: '0',
   },
 }));
