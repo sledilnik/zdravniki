@@ -1,5 +1,4 @@
 import { t } from 'i18next';
-import { v4 as uuidv4 } from 'uuid';
 
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
@@ -37,15 +36,11 @@ export function createDoctor(doctor, type, institution) {
     post: _post,
   };
 
-  const uuid = uuidv4();
   const { availability, load } = doctor;
 
   return Object.freeze({
     get key() {
-      return uuid;
-    },
-    get id() {
-      return doctor.id;
+      return doctor.key;
     },
     get type() {
       return doctor.type;
@@ -88,18 +83,23 @@ export function createDoctor(doctor, type, institution) {
   });
 }
 
-export default function createDoctors(doctorsDict, institutionsDict, typesDict) {
+export default function createDoctors({
+  doctorsDict,
+  institutionsDict,
+  typesDict,
+  keys = { instKey: 'id_inst', typesKey: 'type' },
+}) {
+  const { instKey, typeKey } = keys;
+
   const doctors = Object.entries(doctorsDict).reduce((acc, [doctorId, doctorData]) => {
     const doctor = createDoctor(
       doctorData,
-      typesDict[doctorData.type],
-      institutionsDict[doctorData.id_inst],
+      typesDict[doctorData[typeKey]],
+      institutionsDict[doctorData[instKey]],
     );
     acc[doctorId] = doctor;
     return acc;
   }, {});
-
-  const getById = id => doctors[`${id}`];
 
   const doctorValues = Object.values(doctors);
   const doctorsValues = Intl.Collator
@@ -125,7 +125,6 @@ export default function createDoctors(doctorsDict, institutionsDict, typesDict) 
 
   return Object.freeze({
     all: doctorsValues,
-    getById,
     types,
     filterByType,
     typesDict,

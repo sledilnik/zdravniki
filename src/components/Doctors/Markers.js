@@ -40,7 +40,7 @@ const PopUpData = function PopUpData({ doctor }) {
   );
 };
 
-const areEqual = (prevProps, nextProps) => prevProps.doctor.id === nextProps.doctor.id;
+const areEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;
 export const Doctor = memo(({ doctor }) => {
   const ref = createRef(null);
   const theme = useTheme();

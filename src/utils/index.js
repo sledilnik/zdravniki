@@ -1,7 +1,14 @@
 import L from 'leaflet';
+import { v4 as uuidv4 } from 'uuid';
 
-export function fromArrayWithHeader(arr = []) {
+export function fromArrayWithHeader(arr = [], uniqueFieldName = '') {
   const header = arr[0];
+
+  // it's dirty but quick fix while doctor's id might to be available in the future.
+  const idIndex = header.findIndex(item => item === uniqueFieldName);
+  if (uniqueFieldName && idIndex === -1)
+    throw new Error(`Field "${uniqueFieldName}" does not exist!`);
+
   const data = arr.slice(1, -1);
   return data.reduce((acc1, dataItem) => {
     const type = dataItem.reduce(
@@ -11,9 +18,15 @@ export function fromArrayWithHeader(arr = []) {
       }),
       {},
     );
+
+    const key = idIndex !== -1 ? dataItem[idIndex] : uuidv4();
+
+    if (idIndex === -1) {
+      type.key = key;
+    }
     return {
       ...acc1,
-      [dataItem[0]]: type,
+      [key]: type,
     };
   }, {});
 }
