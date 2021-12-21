@@ -14,6 +14,8 @@ export const Wrapper = styled('div')(({ theme, show }) => {
     scrollBehavior: 'smooth',
     backgroundColor: theme.customColors.backgroundLight,
     zIndex: 1,
+    height: SIZES.MAP_HEIGHT.default,
+    overflowX: 'hidden',
 
     '.map, .cards': {
       position: 'absolute',
@@ -35,10 +37,15 @@ export const Wrapper = styled('div')(({ theme, show }) => {
       transform: isCards ? 'translateX(0)' : 'translateX(100%)',
     },
 
+    [theme.breakpoints.up('sm')]: {
+      height: SIZES.MAP_HEIGHT.upSmall,
+    },
+
     [theme.breakpoints.up('md')]: {
       display: 'grid',
       gap: '0',
       gridTemplateColumns: '1fr 450px',
+      height: SIZES.MAP_HEIGHT.upMedium,
 
       '.map, .cards': { position: 'relative', opacity: 1, zIndex: 1 },
       '.map': { transform: 'scale(1)' },
