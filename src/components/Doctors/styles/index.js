@@ -32,6 +32,7 @@ export const Wrapper = styled('div')(({ theme, show }) => {
     '.cards': {
       opacity: isCards ? 1 : 0,
       zIndex: isCards ? 2 : 1,
+      transform: isCards ? 'translateX(0)' : 'translateX(100%)',
     },
 
     [theme.breakpoints.up('md')]: {
