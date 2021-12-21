@@ -31,10 +31,17 @@ const DoctorsProvider = function DoctorsProvider({ children }) {
   useEffect(() => {
     if (doctorsFetched) {
       const doctorsDict = fromArrayWithHeader(doctorsRequest.parsed);
-      const institutionsDict = fromArrayWithHeader(institutionsRequest.parsed);
-      const typesDict = fromArrayWithHeader(doctorTypesRequest.parsed);
+      const institutionsDict = fromArrayWithHeader(institutionsRequest.parsed, 'id_inst');
+      const typesDict = fromArrayWithHeader(doctorTypesRequest.parsed, 'id');
 
-      setDoctors(createDoctors(doctorsDict, institutionsDict, typesDict));
+      setDoctors(
+        createDoctors({
+          doctorsDict,
+          institutionsDict,
+          typesDict,
+          keys: { instKey: 'id_inst', typeKey: 'type' },
+        }),
+      );
       setDicts({ doctors: doctorsDict, institutions: institutionsDict, types: typesDict });
     }
   }, [

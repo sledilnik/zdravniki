@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import slugify from 'slugify';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
@@ -22,9 +23,11 @@ const DoctorCard = function DoctorCard({
     map.flyTo([lat, lon], 13);
   };
 
+  const id = `${doctor.type}-${slugify(doctor.name).toLowerCase()}`;
+
   if (isPage) {
     return (
-      <Styled.PageInfoCard id={doctor.id} accepts={accepts.toString()}>
+      <Styled.PageInfoCard id={id} accepts={accepts.toString()}>
         <Styled.PageInfoBox id="doctor-box">
           <PageInfo doctor={doctor} handleZoom={handleZoom} isReportError={isReportError} />
           <CardContent>
@@ -38,11 +41,11 @@ const DoctorCard = function DoctorCard({
   }
 
   return (
-    <Styled.InfoCard id={doctor.id} accepts={accepts.toString()}>
+    <Styled.InfoCard id={id} accepts={accepts.toString()}>
       <Info doctor={doctor} handleZoom={handleRoomIconClick} />
     </Styled.InfoCard>
   );
 };
 
-const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.id === nextProps.doctor.id;
+const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;
 export default memo(DoctorCard, propsAreEqual);
