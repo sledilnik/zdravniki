@@ -8,7 +8,12 @@ import * as Styled from './styles';
 import Info from './Info';
 import PageInfo from './PageInfo';
 
-const DoctorCard = function DoctorCard({ doctor, isPage = false, isReportError }) {
+const DoctorCard = function DoctorCard({
+  doctor,
+  isPage = false,
+  handleRoomIconClick,
+  isReportError,
+}) {
   const accepts = doctor.accepts === 'y';
   const { map, setMap } = useLeafletContext();
 
@@ -34,7 +39,7 @@ const DoctorCard = function DoctorCard({ doctor, isPage = false, isReportError }
 
   return (
     <Styled.InfoCard id={doctor.id} accepts={accepts.toString()}>
-      <Info doctor={doctor} handleZoom={handleZoom} />
+      <Info doctor={doctor} handleZoom={handleRoomIconClick} />
     </Styled.InfoCard>
   );
 };
