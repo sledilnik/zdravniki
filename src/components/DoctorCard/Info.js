@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
-  CardActionArea,
   CardActions,
   CardContent,
   Divider,
@@ -57,40 +56,38 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
 
   return (
     <>
-      <CardActionArea href={path} onClick={e => handleDoctorCard(e, false)}>
-        <CardContent>
-          <Typography component="h2" variant="h2">
-            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-              {doctor.name}
-            </Shared.LinkNoRel>
-          </Typography>
-          {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
-          <Typography component="h3" variant="h3">
-            {doctor.provider}
-          </Typography>
-          <Typography component="address" variant="body2">
-            {doctor.fullAddress}
-          </Typography>
+      <CardContent>
+        <Typography component="h2" variant="h2">
+          <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+            {doctor.name}
+          </Shared.LinkNoRel>
+        </Typography>
+        {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
+        <Typography component="h3" variant="h3">
+          {doctor.provider}
+        </Typography>
+        <Typography component="address" variant="body2">
+          {doctor.fullAddress}
+        </Typography>
 
-          <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
-                <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                  <Accepts accepts={accepts} />
-                </Styled.InfoWrapper>
-              </Tooltip>
-              <Tooltip title={<Shared.Tooltip.Availability />}>
-                <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                  <SingleChart size="26px" percent={doctor.availability} />
-                  <Stack>
-                    <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-                  </Stack>
-                </Styled.InfoWrapper>
-              </Tooltip>
-            </Stack>
+        <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <Accepts accepts={accepts} />
+              </Styled.InfoWrapper>
+            </Tooltip>
+            <Tooltip title={<Shared.Tooltip.Availability />}>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <SingleChart size="26px" percent={doctor.availability} />
+                <Stack>
+                  <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
+                </Stack>
+              </Styled.InfoWrapper>
+            </Tooltip>
           </Stack>
-        </CardContent>
-      </CardActionArea>
+        </Stack>
+      </CardContent>
       <CardActions>
         <div>
           <IconButton
