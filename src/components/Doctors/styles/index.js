@@ -130,4 +130,9 @@ export const InfoCard = styled(Card)(({ theme }) => ({
     right: '0',
     bottom: '0',
   },
+  '.icon--disabled': {
+    svg: {
+      opacity: 0.3,
+    },
+  },
 }));
