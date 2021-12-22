@@ -134,23 +134,23 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             </MenuItem>
 
             {path && (
-              <>
-                <Divider />
-                <MenuItem
-                  href={path}
-                  onClick={e => {
-                    moreMenuHandleClose();
-                    handleDoctorCard(e, false);
-                  }}
-                >
-                  <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-                    <ListItemIcon>
-                      <Icons.Icon name="IdCard" />
-                    </ListItemIcon>
-                    {t('doctorCard.more')}
-                  </Shared.LinkNoRel>
-                </MenuItem>
-              </>
+              <Divider />
+            )}
+            {path && (
+              <MenuItem
+                href={path}
+                onClick={e => {
+                  moreMenuHandleClose();
+                  handleDoctorCard(e, false);
+                }}
+              >
+                <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+                  <ListItemIcon>
+                    <Icons.Icon name="IdCard" />
+                  </ListItemIcon>
+                  {t('doctorCard.more')}
+                </Shared.LinkNoRel>
+              </MenuItem>
             )}
           </Styled.MoreMenu>
           {doctor.phone && (
