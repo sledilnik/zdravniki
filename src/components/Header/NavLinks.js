@@ -25,11 +25,11 @@ const NavLinks = function NavLinks() {
       <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
-      <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
-        {t('header.about')}
-      </Styled.NavMenuLink>
       <Styled.NavMenuLink to={`/${lng}/faq`} activeclassname="active">
         {t('header.faq')}
+      </Styled.NavMenuLink>
+      <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
+        {t('header.about')}
       </Styled.NavMenuLink>
       <Styled.NavMenuItemLink
         href={`https://covid-19.sledilnik.org/${lng}/donate`}
