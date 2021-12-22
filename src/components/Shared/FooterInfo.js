@@ -44,6 +44,14 @@ const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
       <a href="https://www.zzzs.si" target="_blank" rel="noreferrer">
         ZZZS
       </a>
+      ,{' '}
+      <a
+        href="https://www.gov.si/drzavni-organi/organi-v-sestavi/geodetska-uprava/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GURS
+      </a>
       {/*
       <br />
       {t('footer.lastChange')}: <strong>{lastChange()}</strong>

@@ -1,5 +1,6 @@
 export const TypeTranslate = {
   gp: 'generalPractitioner',
+  ped: 'pediatrician',
   den: 'dentist',
   gyn: 'gynecologist',
 };
@@ -11,6 +12,7 @@ export const AgeGroupTranslate = {
 
 export const TypeIconTranslate = {
   gp: 'Family',
+  ped: 'Kids',
   den: 'Dentist',
   gyn: 'Gyno',
 };
