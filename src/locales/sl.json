@@ -13,6 +13,7 @@
     "all": "vsi",
     "generalPractitioner": "družinski zdravnik",
     "dentist": "zobozdravnik",
+    "pediatrician": "pediater",
     "gynecologist": "ginekolog",
     "adults": "odrasli",
     "students": "študenti",
