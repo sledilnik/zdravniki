@@ -65,18 +65,32 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';
   const ageGroupIcon = AgeGroupIconTranslate?.[ageGroup] ?? 'Adults';
+
+  const isDentist = type === 'den';
+
+  const first = isDentist ? (
+    <Styled.PageInfo.First direction="row" component="span" spacing={1}>
+      <Icons.Icon name={typeIcon} className="icon" />
+      <span className="text">{t(`${drType}`)}</span>
+    </Styled.PageInfo.First>
+  ) : (
+    <Styled.PageInfo.First single direction="row" component="span" spacing={1}>
+      <Icons.Icon name={typeIcon} className="icon" />
+      <span className="text">{t(`${drType}`)}</span>
+    </Styled.PageInfo.First>
+  );
+
+  const second = isDentist && (
+    <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
+      <span className="text">{t(`${drAgeGroup}`)}</span>
+      <Icons.Icon name={ageGroupIcon} className="icon" />
+    </Styled.PageInfo.Second>
+  );
+
   return (
     <Styled.PageInfo.DCWrapper direction="row">
-      <Styled.PageInfo.First direction="row" component="span" spacing={1}>
-        <Icons.Icon name={typeIcon} className="icon" />
-        <span className="text">{t(`${drType}`)}</span>
-      </Styled.PageInfo.First>
-      {type === 'den' && (
-        <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
-          <span className="text">{t(`${drAgeGroup}`)}</span>
-          <Icons.Icon name={ageGroupIcon} className="icon" />
-        </Styled.PageInfo.Second>
-      )}
+      {first}
+      {second}
     </Styled.PageInfo.DCWrapper>
   );
 };

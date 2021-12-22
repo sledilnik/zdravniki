@@ -17,10 +17,10 @@ export const DCWrapper = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export const First = styled(Stack)(({ theme }) => ({
+export const First = styled(Stack)(({ theme, single }) => ({
   backgroundColor: theme.customColors.doctor.colors.chipBcg1,
   padding: '6px 8px',
-  borderRadius: '5px 0 0 5px',
+  borderRadius: single ? '5px' : '5px 0 0 5px',
 }));
 export const Second = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.customColors.doctor.colors.chipBcg2,
