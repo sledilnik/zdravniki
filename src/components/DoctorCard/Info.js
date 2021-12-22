@@ -65,9 +65,9 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             </Shared.LinkNoRel>
           </Typography>
           {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
-          <Shared.ConditionalLink to={doctor.website} component="h3" variant="h3">
+          <Typography component="h3" variant="h3">
             {doctor.provider}
-          </Shared.ConditionalLink>
+          </Typography>
           <Typography component="address" variant="body2">
             {doctor.fullAddress}
           </Typography>
