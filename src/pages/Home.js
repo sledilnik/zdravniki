@@ -19,13 +19,6 @@ const Home = function Home() {
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
 
-  // useEffect(() => {
-  //   document.body.style.overflow = 'hidden';
-  //   return () => {
-  //     document.body.style = null;
-  //   };
-  // }, []);
-
   if (hasError) {
     return <div>{t('pageNotFound.somethingWentWrong')}</div>;
   }

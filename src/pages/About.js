@@ -17,13 +17,6 @@ const About = function About() {
   const { lng } = useParams();
   const aboutRef = useRef();
 
-  // useEffect(() => {
-  //   document.body.style.overflow = 'auto';
-  //   return () => {
-  //     document.body.style = null;
-  //   };
-  // }, []);
-
   useEffect(() => {
     const theTextFile = MD?.[lng] ?? slAbout;
 

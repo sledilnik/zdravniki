@@ -3,14 +3,9 @@ import { styled } from '@mui/material/styles';
 
 import { SIZES } from 'const';
 
-export const Main = styled(MuiBox)(() => ({
-  // height: '100vh',
-  // overflow: 'hidden',
-  // maxWidth: '100vh',
-}));
+export const Main = styled(MuiBox)(() => ({}));
 
 export const Box = styled(MuiBox)(({ theme }) => ({
-  // overflow: 'hidden',
   position: 'relative',
   zIndex: 1,
   '& .leaflet-container': {

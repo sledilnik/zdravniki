@@ -12,13 +12,6 @@ const Faq = function Faq() {
   const faqRef = useRef();
   const [response, setResponse] = useState();
 
-  // useEffect(() => {
-  //   document.body.style.overflow = 'auto';
-  //   return () => {
-  //     document.body.style = null;
-  //   };
-  // });
-
   // fetch data
   useEffect(() => {
     fetch(`${process.env.REACT_APP_CONTENT_ENDPOINT_BASE}/faq/3/?lang=${lng}`)
