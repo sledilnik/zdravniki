@@ -3,13 +3,18 @@ import ToggleGroup from 'components/Shared/ToggleGroup';
 import { useFilter } from 'context/filterContext';
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   return function ToggleDoctorType(props) {
+    const { state } = useLocation();
+
+    const { type: stateType, ageGroup: stateAgeGroup } = state;
+
     const { doctorType, setDoctorType } = useFilter();
-    const [drType, setDrType] = useState('gp');
-    const [ageGroup, setAgeGroup] = useState('adults');
+    const [drType, setDrType] = useState(stateType ?? 'gp');
+    const [ageGroup, setAgeGroup] = useState(stateAgeGroup ?? 'adults');
 
     const injectedPropsDrType = {
       ...props,
