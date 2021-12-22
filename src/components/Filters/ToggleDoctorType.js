@@ -10,7 +10,10 @@ function withToggleGroup(Component) {
   return function ToggleDoctorType(props) {
     const { state } = useLocation();
 
-    const { type: stateType, ageGroup: stateAgeGroup } = state;
+    const { type: stateType, ageGroup: stateAgeGroup } = state ?? {
+      type: 'gp',
+      ageGroup: 'adults',
+    };
 
     const { doctorType, setDoctorType } = useFilter();
     const [drType, setDrType] = useState(stateType ?? 'gp');
