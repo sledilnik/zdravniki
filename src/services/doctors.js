@@ -1,4 +1,5 @@
 import { t } from 'i18next';
+import slugify from 'slugify';
 
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
@@ -18,6 +19,7 @@ export function createDoctor(doctor, type, institution) {
   const getAcceptText = () => (doctor.accepts === 'y' ? t('accepts') : t('rejects'));
 
   const name = trimString(doctor.doctor);
+  const nameSlug = slugify(name.toLowerCase());
 
   const manUnit = trimString(institution.unit);
   const provider = trimString(institution.name);
@@ -47,6 +49,9 @@ export function createDoctor(doctor, type, institution) {
     },
     get name() {
       return name;
+    },
+    get nameSlug() {
+      return nameSlug;
     },
     get accepts() {
       return doctor.accepts;

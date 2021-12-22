@@ -13,7 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import slugify from 'slugify';
 
 import { useLeafletContext } from 'context/leafletContext';
 import * as Icons from 'components/Shared/Icons';
@@ -35,7 +34,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const navigate = useNavigate();
 
   const drPath = doctor?.type;
-  const slug = slugify(doctor?.name?.toLowerCase());
+  const slug = doctor?.nameSlug;
   let path = `/${lng}/${drPath}/${slug}`;
 
   const handleDoctorCard = (event, isReportError) => {

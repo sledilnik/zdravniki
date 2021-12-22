@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import slugify from 'slugify';
 
 import DoctorCard from 'components/DoctorCard';
 import { Loader } from 'components/Shared';
@@ -19,7 +18,7 @@ const Doctor = function Doctor({ isReportError = false }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.all.find(d => d.type === type && slugify(d.name.toLowerCase()) === name));
+    setDoctor(doctors?.all.find(d => d.type === type && d.nameSlug === name));
   }, [doctors, doctor, lng, type, name]);
 
   useEffect(() => {

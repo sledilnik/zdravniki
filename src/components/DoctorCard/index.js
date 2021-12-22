@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import slugify from 'slugify';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
@@ -23,7 +22,7 @@ const DoctorCard = function DoctorCard({
     map.flyTo([lat, lon], 13);
   };
 
-  const id = `${doctor.type}-${slugify(doctor.name).toLowerCase()}`;
+  const id = `${doctor.type}#${doctor.nameSlug}`;
 
   if (isPage) {
     return (
