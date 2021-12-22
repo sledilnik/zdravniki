@@ -18,6 +18,11 @@
     "adults": "odrasli",
     "students": "študenti",
     "youth": "mladina",
+    "doctorCard": {
+        "more": "Več",
+        "showOnMap": "Pokaži na zemljevidu",
+        "noPhone": "Ni telefonske številke"
+    },
     "search": "Išči…",
     "filter": "Filter",
     "map": "Zemljevid",
