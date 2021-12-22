@@ -73,7 +73,7 @@ const Filters = function Filters({ useShow }) {
   );
 
   const typeIcon = type && DoctorTypeIcons[type];
-  const ageGroupIcon = ageGroup && AgeGroupIcons[ageGroup];
+  const ageGroupIcon = type === 'den' && ageGroup && AgeGroupIcons[ageGroup];
   const acceptsIcon = accept && AcceptsIcons[accept];
 
   const doctorTypeText = t(`${DoctorTypeText[type]}`);
@@ -82,7 +82,9 @@ const Filters = function Filters({ useShow }) {
     <Styled.FilterInfoStack direction="row">
       {typeIcon}
       <span>{doctorTypeText}</span>
-      <Styled.Divider orientation="vertical" flexItem sx={{ marginInline: 1 }} />
+      {type === 'den' && (
+        <Styled.Divider orientation="vertical" flexItem sx={{ marginInline: 1 }} />
+      )}
       {ageGroupIcon}
       <Styled.Divider orientation="vertical" flexItem sx={{ marginInline: 1 }} />
       {acceptsIcon}
