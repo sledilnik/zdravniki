@@ -37,6 +37,7 @@ const Router = function Router() {
           exact
           path="/:lng"
           element={
+            // TODO: fix navigation out of 404 page
             isLang || !lngFromPath ? (
               <Suspense fallback={<Loader.Center />}>
                 <Home />

@@ -1,14 +1,11 @@
 import { useEffect, useState, createRef, memo } from 'react';
-import { useParams } from 'react-router-dom';
 import { useMap } from 'react-leaflet';
 import { useTheme } from '@mui/material/styles';
 
 import { Markers } from 'components/Shared/Leaflet';
-import Typography from '@mui/material/Typography';
-
-import Stack from '@mui/material/Stack';
 import { t } from 'i18next';
-import { Chip } from '../Shared';
+import * as Styled from './styles';
+import Info from '../DoctorCard/Info';
 
 export const User = function User() {
   const [position, setPosition] = useState(null);
@@ -25,18 +22,10 @@ export const User = function User() {
 };
 
 const PopUpData = function PopUpData({ doctor }) {
-  const accepts = doctor.accepts === 'y';
-  const { lng } = useParams();
-
   return (
-    <div style={{ maxWidth: '180px' }}>
-      <Typography variant="subtitle2">{doctor.name}</Typography>
-      <Typography variant="caption">{doctor.provider}</Typography>
-      <Stack sx={{ alignItems: 'start', marginTop: '0.5em' }} spacing={1}>
-        <Chip.Info text={doctor.getTypeText(lng)} />
-        <Chip.Accepts text={doctor.getAcceptText()} accept={accepts} />
-      </Stack>
-    </div>
+    <Styled.InfoCard>
+      <Info doctor={doctor} isMarker />
+    </Styled.InfoCard>
   );
 };
 

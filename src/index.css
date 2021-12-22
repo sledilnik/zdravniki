@@ -19,3 +19,15 @@ body {
     --bcg-color
   ) !important; /* this is temporary until I figure out MUI theme background */
 }
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  width: unset !important;
+  height: unset !important;
+  top: 6px !important;
+  right: 6px !important;
+  padding: 8px !important;
+}

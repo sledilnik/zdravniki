@@ -4,6 +4,7 @@ import BaseInfiniteScroll from 'react-infinite-scroll-component';
 import { Grid } from 'components/Shared';
 
 import { SIZES } from 'const';
+import { Card } from '@mui/material';
 
 export const Wrapper = styled(Grid.Doctors)(({ theme }) => ({
   scrollBehavior: 'smooth',
@@ -44,5 +45,36 @@ export const InfiniteScroll = styled(BaseInfiniteScroll)(({ theme }) => ({
 
   '> *:last-child': {
     marginBottom: theme.spacing(2),
+  },
+}));
+
+export const InfoCard = styled(Card)(({ theme }) => ({
+  justifySelf: 'center',
+  width: '100%',
+  padding: '10px 20px',
+  background: 'transparent',
+  boxShadow: 'none',
+  position: 'relative',
+  '&:hover': {
+    '&:before': {
+      width: '4px',
+    },
+  },
+  '.MuiTypography-h2': {
+    fontSize: '1.25rem',
+    fontWeight: 700,
+    color: theme.customColors.doctor.colors.name,
+    marginBottom: theme.spacing(0),
+  },
+  '.MuiTypography-h3': {
+    fontSize: '0.75rem',
+    fontWeight: 700,
+    color: theme.customColors.doctor.colors.provider,
+  },
+  'address.MuiTypography-body2': {
+    color: theme.customColors.doctor.colors.address,
+    fontSize: '0.75rem',
+    lineHeight: '0.75rem',
+    fontStyle: 'normal',
   },
 }));
