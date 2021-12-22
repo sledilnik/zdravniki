@@ -106,12 +106,20 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         )}
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Tooltip title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}>
+            <Tooltip
+              title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}
+              leaveTouchDelay={3000}
+              enterTouchDelay={50}
+            >
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
                 <Accepts accepts={accepts} />
               </Styled.InfoWrapper>
             </Tooltip>
-            <Tooltip title={<Shared.Tooltip.Availability />}>
+            <Tooltip
+              title={<Shared.Tooltip.Availability />}
+              leaveTouchDelay={3000}
+              enterTouchDelay={50}
+            >
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
                 <SingleChart size="26px" percent={doctor.availability} />
                 <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
