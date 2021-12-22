@@ -71,10 +71,12 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
         <Icons.Icon name={typeIcon} className="icon" />
         <span className="text">{t(`${drType}`)}</span>
       </Styled.PageInfo.First>
-      <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
-        <span className="text">{t(`${drAgeGroup}`)}</span>
-        <Icons.Icon name={ageGroupIcon} className="icon" />
-      </Styled.PageInfo.Second>
+      {type === 'den' && (
+        <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
+          <span className="text">{t(`${drAgeGroup}`)}</span>
+          <Icons.Icon name={ageGroupIcon} className="icon" />
+        </Styled.PageInfo.Second>
+      )}
     </Styled.PageInfo.DCWrapper>
   );
 };

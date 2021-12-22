@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-
+import * as SEO from 'components/SEO';
 import slugify from 'slugify';
 import * as Shared from '../Shared';
 import { SelectEdit, TextareaEdit } from './InlineEdit';
@@ -13,6 +13,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const { t } = useTranslation();
   const { lng } = useParams();
   const navigate = useNavigate();
+  const meta = [{ name: 'robots', content: 'noindex' }];
 
   const accepts = doctorFormData.accepts === 'y';
   const [type, ageGroup] = doctorFormData.type.split('-');
@@ -150,59 +151,64 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   };
 
   return (
-    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <Typography component="h1" variant="h1">
-          {doctorFormData.name}
-        </Typography>
-        <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-        <Typography component="h2" variant="h2">
-          {doctorFormData.provider}
-        </Typography>
-        <Alert severity="info" sx={{ marginY: '1rem' }}>
-          {t('reportError.text')}
-        </Alert>
-        <TextareaEdit
-          name="inputAddress"
-          value={inputAddress}
-          setValue={setInputAddress}
-          placeholder={t('reportError.placeholder.address')}
-        />
-        <TextareaEdit
-          name="inputWebsite"
-          value={inputWebsite}
-          setValue={setInputWebsite}
-          placeholder={t('reportError.placeholder.website')}
-        />
-        <TextareaEdit
-          name="inputPhone"
-          value={inputPhone}
-          setValue={setInputPhone}
-          placeholder={t('reportError.placeholder.phone')}
-        />
-        <SelectEdit name="inputAccepts" value={inputAccepts} setValue={setInputAccepts} />
-        <TextareaEdit
-          name="inputAvailabilty"
-          value={inputAvailability}
-          setValue={setInputAvailability}
-          placeholder={t('reportError.placeholder.availability')}
-        />
-        <TextareaEdit
-          name="inputNote"
-          value={inputNote}
-          setValue={setInputNote}
-          placeholder={t('reportError.placeholder.note')}
-        />
-      </div>
-      <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">
-          {t('reportError.cancel')}
-        </Button>
-        <Button variant="contained" onClick={submit} size="small">
-          {t('reportError.send')}
-        </Button>
-      </Stack>
-    </CardContent>
+    <>
+      <SEO.Dynamic title={t('SEO.title.home')} meta={meta} lang={lng} />
+      <CardContent
+        sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+      >
+        <div>
+          <Typography component="h1" variant="h1">
+            {doctorFormData.name}
+          </Typography>
+          <Shared.DoubleChip type={type} ageGroup={ageGroup} />
+          <Typography component="h2" variant="h2">
+            {doctorFormData.provider}
+          </Typography>
+          <Alert severity="info" sx={{ marginY: '1rem' }}>
+            {t('reportError.text')}
+          </Alert>
+          <TextareaEdit
+            name="inputAddress"
+            value={inputAddress}
+            setValue={setInputAddress}
+            placeholder={t('reportError.placeholder.address')}
+          />
+          <TextareaEdit
+            name="inputWebsite"
+            value={inputWebsite}
+            setValue={setInputWebsite}
+            placeholder={t('reportError.placeholder.website')}
+          />
+          <TextareaEdit
+            name="inputPhone"
+            value={inputPhone}
+            setValue={setInputPhone}
+            placeholder={t('reportError.placeholder.phone')}
+          />
+          <SelectEdit name="inputAccepts" value={inputAccepts} setValue={setInputAccepts} />
+          <TextareaEdit
+            name="inputAvailabilty"
+            value={inputAvailability}
+            setValue={setInputAvailability}
+            placeholder={t('reportError.placeholder.availability')}
+          />
+          <TextareaEdit
+            name="inputNote"
+            value={inputNote}
+            setValue={setInputNote}
+            placeholder={t('reportError.placeholder.note')}
+          />
+        </div>
+        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">
+            {t('reportError.cancel')}
+          </Button>
+          <Button variant="contained" onClick={submit} size="small">
+            {t('reportError.send')}
+          </Button>
+        </Stack>
+      </CardContent>
+    </>
   );
 };
 

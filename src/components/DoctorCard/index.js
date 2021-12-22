@@ -41,7 +41,7 @@ const DoctorCard = function DoctorCard({
   }
 
   return (
-    <Styled.InfoCard id={doctor.id} accepts={accepts.toString()}>
+    <Styled.InfoCard id={id} accepts={accepts.toString()}>
       <Info doctor={doctor} handleZoom={handleRoomIconClick} />
     </Styled.InfoCard>
   );
