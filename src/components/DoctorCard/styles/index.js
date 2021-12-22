@@ -105,7 +105,6 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
 
   return {
     justifySelf: 'center',
-    alignItems: 'start',
     width: '100%',
     padding: '0',
     background: '#F4F8F8',
@@ -116,7 +115,21 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       padding: '20px 24px 10px',
     },
     '.MuiCardActions-root': {
-      padding: '20px 10px 0',
+      padding: '15px 10px',
+      display: 'flex',
+      flexGrow: 1,
+      '> div': {
+        display: 'flex',
+        height: '100%',
+        flexGrow: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      },
+      '.icon--disabled': {
+        svg: {
+          opacity: 0.3,
+        },
+      },
     },
     '&:before': {
       content: `''`,
@@ -159,7 +172,7 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
   };
 });
 
-export const MoreMenu = styled(Menu)(() => ({
+export const MoreMenu = styled(Menu)(({ theme }) => ({
   li: {
     fontSize: '13px',
     '.MuiListItemIcon-root': {
@@ -168,6 +181,13 @@ export const MoreMenu = styled(Menu)(() => ({
         width: '16px',
       },
     },
+  },
+  a: {
+    color: theme.customColors.dark,
+    fontWeight: 'normal',
+    display: 'flex',
+    flexGrow: 1,
+    alignItems: 'center',
   },
 }));
 

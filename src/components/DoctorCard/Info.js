@@ -54,14 +54,15 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const moreMenuHandleClose = () => {
     setMoreMenuAnchorEl(null);
   };
-  const callPhoneNo = phoneNumber => window.open(`tel:${phoneNumber}`, '_self');
 
   return (
     <>
       <CardActionArea href={path} onClick={e => handleDoctorCard(e, false)}>
         <CardContent>
           <Typography component="h2" variant="h2">
-            {doctor.name}
+            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+              {doctor.name}
+            </Shared.LinkNoRel>
           </Typography>
           {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
           <Shared.ConditionalLink to={doctor.website} component="h3" variant="h3">
@@ -107,27 +108,6 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             onClose={moreMenuHandleClose}
             open={moreMenuOpen}
           >
-            {doctor.phone && (
-              <MenuItem
-                onClick={() => {
-                  moreMenuHandleClose();
-                  callPhoneNo(doctor.phone);
-                }}
-              >
-                <ListItemIcon>
-                  <Icons.Icon name="PhoneBig" />
-                </ListItemIcon>
-                {doctor.phone}
-              </MenuItem>
-            )}
-            {!doctor.phone && (
-              <MenuItem onClick={moreMenuHandleClose} disabled>
-                <ListItemIcon>
-                  <Icons.Icon name="NoPhoneBig" />
-                </ListItemIcon>
-                {t('doctorCard.noPhone')}
-              </MenuItem>
-            )}
             {!isMarker && (
               <MenuItem
                 onClick={() => {
@@ -163,14 +143,30 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
                     handleDoctorCard(e, false);
                   }}
                 >
-                  <ListItemIcon>
-                    <Icons.Icon name="IdCard" />
-                  </ListItemIcon>
-                  {t('doctorCard.more')}
+                  <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+                    <ListItemIcon>
+                      <Icons.Icon name="IdCard" />
+                    </ListItemIcon>
+                    {t('doctorCard.more')}
+                  </Shared.LinkNoRel>
                 </MenuItem>
               </>
             )}
           </Styled.MoreMenu>
+          {doctor.phone && (
+            <Tooltip title={doctor.phone}>
+              <IconButton href={`tel:${doctor.phone}`} self>
+                <Icons.Icon name="PhoneBig" />
+              </IconButton>
+            </Tooltip>
+          )}
+          {!doctor.phone && (
+            <Tooltip title={t('doctorCard.noPhone')}>
+              <IconButton className="icon--disabled">
+                <Icons.Icon name="NoPhoneBig" />
+              </IconButton>
+            </Tooltip>
+          )}
         </div>
       </CardActions>
     </>
