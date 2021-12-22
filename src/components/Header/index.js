@@ -47,7 +47,7 @@ const Header = function Header() {
     if (doctorType !== 'gp') setDoctorType('gp');
     if (accept !== 'vsi') setAccept('vsi');
     if (searchValue) setSearchValue('');
-    navigate('/');
+    navigate(`/${i18next.language}/`);
   };
 
   return (
@@ -59,7 +59,7 @@ const Header = function Header() {
           },
         }}
       >
-        <NavLink to="/" className="logo" onClick={goHome}>
+        <NavLink to={`/${i18next.language}/`} className="logo" onClick={goHome}>
           <Icons.Icon name="Logo" style={{ height: '40px' }} />
         </NavLink>
         <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>

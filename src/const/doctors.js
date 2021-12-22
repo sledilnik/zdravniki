@@ -24,6 +24,7 @@ export const Provider = {
 
 export const DoctorTypes = {
   doctors: 'Splošni',
+  ped: 'Pediatri',
   gyno: 'Ginekologi',
   dentists: 'Zobozdravniki',
 };

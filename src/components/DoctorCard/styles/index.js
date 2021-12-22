@@ -3,10 +3,13 @@ import { styled } from '@mui/material/styles';
 import TypographyBase from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiLink from '@mui/material/Link';
+import Menu from '@mui/material/Menu';
 
 export * as PageInfo from './PageInfo';
 
 const Card = styled(MuiCard)(() => ({
+  marginInline: '0.5em',
+
   borderRadius: '0',
   boxShadow: 'none',
 
@@ -83,6 +86,7 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
       background: 'green',
       '.leaflet-container': {
         height: '250px',
+        zIndex: 1,
       },
       [theme.breakpoints.up('sm')]: {
         '.leaflet-container': {
@@ -104,10 +108,31 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
   return {
     justifySelf: 'center',
     width: '100%',
-    padding: '20px 24px 10px',
+    padding: '0',
     background: '#F4F8F8',
     borderBottom: `1px solid #DCE8E9`,
     position: 'relative',
+    display: 'flex',
+    '.MuiCardContent-root': {
+      padding: '20px 24px 10px',
+    },
+    '.MuiCardActions-root': {
+      padding: '15px 10px',
+      display: 'flex',
+      flexGrow: 1,
+      '> div': {
+        display: 'flex',
+        height: '100%',
+        flexGrow: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      },
+      '.icon--disabled': {
+        svg: {
+          opacity: 0.3,
+        },
+      },
+    },
     '&:before': {
       content: `''`,
       position: 'absolute',
@@ -128,6 +153,12 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       fontWeight: 700,
       color: theme.customColors.doctor.colors.name,
       marginBottom: theme.spacing(0),
+      a: {
+        color: theme.customColors.dark,
+        '&:hover': {
+          color: theme.customColors.links,
+        },
+      },
     },
     '.MuiTypography-h3': {
       fontSize: '0.75rem',
@@ -142,6 +173,25 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
     },
   };
 });
+
+export const MoreMenu = styled(Menu)(({ theme }) => ({
+  li: {
+    fontSize: '13px',
+    '.MuiListItemIcon-root': {
+      minWidth: '30px',
+      svg: {
+        width: '16px',
+      },
+    },
+  },
+  a: {
+    color: theme.customColors.dark,
+    fontWeight: 'normal',
+    display: 'flex',
+    flexGrow: 1,
+    alignItems: 'center',
+  },
+}));
 
 export const InfoWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.availability,

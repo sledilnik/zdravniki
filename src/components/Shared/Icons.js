@@ -34,15 +34,17 @@ import { ReactComponent as ArrowBack } from 'assets/icon-back.svg';
 import { ReactComponent as Close } from 'assets/icon-close.svg';
 import { ReactComponent as Link } from 'assets/icon-link.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
+import { ReactComponent as NoPhoneBig } from 'assets/icon-phone-none--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
 import { ReactComponent as Copy } from 'assets/icon-copy.svg';
-import { ReactComponent as ReportError } from 'assets/icon-error.svg';
+import { ReactComponent as ReportError } from 'assets/icon-alert.svg';
 import { ReactComponent as Filter } from 'assets/icon-filter.svg';
 import { ReactComponent as FilterWhite } from 'assets/icon-filter--white.svg';
 import { ReactComponent as MapView } from 'assets/icon-map-view.svg';
 import { ReactComponent as MapViewWhite } from 'assets/icon-map-view--white.svg';
 import { ReactComponent as ListView } from 'assets/icon-list-view.svg';
 import { ReactComponent as ListViewWhite } from 'assets/icon-list-view--white.svg';
+import { ReactComponent as More } from 'assets/icon-more.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -90,6 +92,7 @@ const icons = {
   MapMarker,
   Phone,
   PhoneBig,
+  NoPhoneBig,
   Search,
   SearchWhite,
   Share,
@@ -103,6 +106,7 @@ const icons = {
   MapViewWhite,
   ListView,
   ListViewWhite,
+  More,
 };
 
 export const Icon = function Icon({ name, ...props }) {

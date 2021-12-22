@@ -57,7 +57,7 @@ vizualizacija v obliki imenika osebnih zdravnikov;
 vizualizacija v obliki zemljevida osebnih zdravnikov;
 možnost iskanja po osebnih zdravnikih.
 
-Osebni podatki se hranijo, dokler so veljavni. Izbris neveljavnih podatkov bo izveden v roku enega leta po zaključku koledarskega leta, v katerem bodo podatki postali neveljavni.
+Osebni podatki se hranijo, dokler so veljavni.
 
 Za varnost podatkov (32. člen GDPR) je poskrbljeno z dvofaktorsko avtentikacijo, ki je potrebna za shranjevanje, spreminjanje in brisanje podatkov na github odložišču. Spletna stran zgolj vizualizira te podatke oziroma omogoča iskanje po njih.
 
