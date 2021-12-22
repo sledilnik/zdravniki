@@ -133,9 +133,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               {t('reportError.tooltip')}
             </MenuItem>
 
-            {path && (
-              <Divider />
-            )}
+            {path && <Divider />}
             {path && (
               <MenuItem
                 href={path}
