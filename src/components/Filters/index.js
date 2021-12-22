@@ -16,6 +16,7 @@ import * as Styled from './styles';
 
 const DoctorTypeIcons = {
   gp: <Icons.Icon name="Family" />,
+  ped: <Icons.Icon name="Kids" />,
   den: <Icons.Icon name="Dentist" />,
   gyn: <Icons.Icon name="Gyno" />,
 };
@@ -32,6 +33,7 @@ const AcceptsIcons = {
 
 const DoctorTypeText = {
   gp: 'generalPractitioner',
+  ped: 'pediatrician',
   den: 'dentist',
   gyn: 'gynecologist',
 };

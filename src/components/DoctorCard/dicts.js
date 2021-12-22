@@ -1,5 +1,6 @@
 export const TypeTranslate = {
   gp: 'generalPractitioner',
+  ped: 'pediatrician',
   den: 'dentist',
   gyn: 'gynecologist',
 };

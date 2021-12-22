@@ -27,8 +27,11 @@ function withToggleGroup(Component) {
     useEffect(() => {
       const typeTranslate = {
         gp_adults: 'gp',
-        gp_youth: 'gp-y',
+        gp_youth: 'gp',
         gp_students: 'gp',
+        ped_adults: 'gp-y',
+        ped_students: 'gp-y',
+        ped_youth: 'gp-y',
         den_adults: 'den',
         den_students: 'den-s',
         den_youth: 'den-y',
@@ -57,11 +60,11 @@ function withToggleGroup(Component) {
             iconNames={['FamilyDrWhite', 'Family']}
           />
           <IconToggleButton
-            value="den"
-            aria-label="dentist"
+            value="ped"
+            aria-label="pediatrician"
             accept={drType}
-            text={t('dentist')}
-            iconNames={['DentistWhite', 'Dentist']}
+            text={t('pediatrician')}
+            iconNames={['PediatritianWhite', 'Kids']}
           />
           <IconToggleButton
             value="gyn"
@@ -70,8 +73,15 @@ function withToggleGroup(Component) {
             text={t('gynecologist')}
             iconNames={['GynoWhite', 'Gyno']}
           />
+          <IconToggleButton
+            value="den"
+            aria-label="dentist"
+            accept={drType}
+            text={t('dentist')}
+            iconNames={['DentistWhite', 'Dentist']}
+          />
         </Component>
-        {drType !== 'gyn' && (
+        {drType === 'den' && (
           <Component {...injectedPropsAgeGroup}>
             <IconToggleButton
               value="adults"
@@ -87,15 +97,13 @@ function withToggleGroup(Component) {
               text={t('youth')}
               iconNames={['KidsWhite', 'Kids']}
             />
-            {drType === 'den' && (
-              <IconToggleButton
-                value="students"
-                aria-label="students"
-                accept={ageGroup}
-                text={t('students')}
-                iconNames={['StudentsWhite', 'Students']}
-              />
-            )}
+            <IconToggleButton
+              value="students"
+              aria-label="students"
+              accept={ageGroup}
+              text={t('students')}
+              iconNames={['StudentsWhite', 'Students']}
+            />
           </Component>
         )}
       </>
