@@ -1,15 +1,59 @@
 import { styled } from '@mui/material/styles';
 import BaseInfiniteScroll from 'react-infinite-scroll-component';
 
-import { Grid } from 'components/Shared';
-
 import { SIZES } from 'const';
 import { Card } from '@mui/material';
 
-export const Wrapper = styled(Grid.Doctors)(({ theme }) => ({
-  scrollBehavior: 'smooth',
-  backgroundColor: theme.customColors.backgroundLight,
-}));
+export const Wrapper = styled('div')(({ theme, show }) => {
+  const isMap = show === 'map';
+  const isCards = show === 'cards';
+
+  // ? zIndex must change on show change otherwise map events are not working (zoom, drag)
+
+  return {
+    position: 'relative',
+    scrollBehavior: 'smooth',
+    backgroundColor: theme.customColors.backgroundLight,
+    zIndex: 1,
+    height: SIZES.MAP_HEIGHT.default,
+    overflowX: 'hidden',
+
+    '.map, .cards': {
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      width: '100%',
+      transition: '0.2s all ease-in',
+    },
+
+    '.map': {
+      opacity: isMap ? 1 : 0,
+      transform: isMap ? 'scale(1)' : 'scale(0.9)',
+      zIndex: isMap ? 2 : 1,
+    },
+
+    '.cards': {
+      opacity: isCards ? 1 : 0,
+      zIndex: isCards ? 2 : 1,
+      transform: isCards ? 'translateX(0)' : 'translateX(100%)',
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      height: SIZES.MAP_HEIGHT.upSmall,
+    },
+
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+      gap: '0',
+      gridTemplateColumns: '1fr 450px',
+      height: SIZES.MAP_HEIGHT.upMedium,
+
+      '.map, .cards': { position: 'relative', opacity: 1, zIndex: 1 },
+      '.map': { transform: 'scale(1)' },
+      '.cards': { transform: 'translateX(0)' },
+    },
+  };
+});
 
 export const ButtonWrapper = styled('div')(() => ({
   marginTop: '1rem',
@@ -17,6 +61,7 @@ export const ButtonWrapper = styled('div')(() => ({
   textAlign: 'center',
 }));
 
+// some css values in WrapperInfinite are overiden with class "cards" in Wrapper
 export const WrapperInfinite = styled('div')(({ theme }) => ({
   width: '100%',
   height: `${SIZES.MAP_HEIGHT.default}`,
