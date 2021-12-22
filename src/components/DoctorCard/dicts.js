@@ -12,6 +12,7 @@ export const AgeGroupTranslate = {
 
 export const TypeIconTranslate = {
   gp: 'Family',
+  ped: 'Kids',
   den: 'Dentist',
   gyn: 'Gyno',
 };
