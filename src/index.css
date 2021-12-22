@@ -20,14 +20,18 @@ body {
   ) !important; /* this is temporary until I figure out MUI theme background */
 }
 
-.leaflet-popup-content {
-  margin: 0 !important;
+.leaflet-popup {
+  min-width: 300px;
 }
 
-.leaflet-container a.leaflet-popup-close-button {
-  width: unset !important;
-  height: unset !important;
-  top: 6px !important;
-  right: 6px !important;
-  padding: 8px !important;
+.leaflet-popup .leaflet-popup-content {
+  margin: 0;
+}
+
+.leaflet-container .leaflet-popup a.leaflet-popup-close-button {
+  width: unset;
+  height: unset;
+  top: 6px;
+  right: 6px;
+  padding: 8px;
 }
