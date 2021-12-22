@@ -115,11 +115,12 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
     display: 'flex',
     '.MuiCardContent-root': {
       padding: '20px 24px 10px',
+      flexGrow: 1,
     },
     '.MuiCardActions-root': {
       padding: '15px 10px',
       display: 'flex',
-      flexGrow: 1,
+
       '> div': {
         display: 'flex',
         height: '100%',
