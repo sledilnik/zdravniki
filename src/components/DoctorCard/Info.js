@@ -42,7 +42,14 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
     if (isReportError) {
       path = `/${lng}/${drPath}/${slug}/edit`;
     }
-    return navigate(path, { state: { zoom: map?.getZoom(), center: map?.getCenter() } });
+    return navigate(path, {
+      state: {
+        zoom: map?.getZoom(),
+        center: map?.getCenter(),
+        type,
+        ageGroup: ageGroup ?? 'adults',
+      },
+    });
   };
 
   const [moreMenuAnchorEl, setMoreMenuAnchorEl] = React.useState(null);

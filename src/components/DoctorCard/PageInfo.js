@@ -16,6 +16,7 @@ import * as Styled from './styles';
 import * as Shared from './Shared';
 
 import { toPercent } from './utils';
+import { AgeGroupTranslate } from './dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { searchValue } = useFilter();
@@ -37,6 +38,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         searchValue,
         zoom: state?.zoom ?? MAP.ZOOM,
         center: state?.center ?? MAP.GEO_LOCATION.SL_CENTER,
+        type,
+        ageGroup: AgeGroupTranslate[ageGroup] ?? 'adults',
       },
     });
   };
