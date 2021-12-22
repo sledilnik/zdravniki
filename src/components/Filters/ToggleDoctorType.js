@@ -64,7 +64,7 @@ function withToggleGroup(Component) {
             aria-label="pediatrician"
             accept={drType}
             text={t('pediatrician')}
-            iconNames={['PediatritianWhite', 'Kids']}
+            iconNames={['KidsWhite', 'Kids']}
           />
           <IconToggleButton
             value="gyn"
