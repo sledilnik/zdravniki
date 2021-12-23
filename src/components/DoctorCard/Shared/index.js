@@ -1,8 +1,6 @@
 import { t } from 'i18next';
 import * as Icons from 'components/Shared/Icons';
-import PropTypes from 'prop-types';
 
-import Typography from '@mui/material/Typography';
 import {
   TypeTranslate,
   AgeGroupTranslate,
@@ -13,53 +11,10 @@ import * as Styled from '../styles';
 
 export * as Tooltip from './Tooltips';
 
-// todo find better solution
-export const Link = function Link({ children, self, ...props }) {
-  const target = self ? {} : { target: '_blank' };
-  return (
-    <Styled.Link rel="noopener noreferrer" {...target} underline="none" {...props}>
-      {children}
-    </Styled.Link>
-  );
-};
+// it would be better to import just like Tooltip but don't want to make to many changes all over the code
+export { Link, LinkNoRel, ConditionalLink } from './Links';
 
-// ? uh, needs refactoring; somehow it feels I can join Link and LinkNoRel
-export const LinkNoRel = function LinkRegular({ href, onClick, children }) {
-  return (
-    <Styled.Link underline="none" href={href} onClick={onClick}>
-      {children}
-    </Styled.Link>
-  );
-};
-
-LinkNoRel.defaultProps = {
-  onClick: () => {},
-};
-
-LinkNoRel.propTypes = {
-  href: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([PropTypes.any]).isRequired,
-  onClick: PropTypes.func,
-};
-export const ConditionalLink = function ConditionalLink({
-  children,
-  to,
-  component = 'div',
-  self,
-  ...props
-}) {
-  const link = (
-    <Link href={to} self={self}>
-      {children}
-    </Link>
-  );
-  return (
-    <Typography component={component} {...props}>
-      {to ? link : children}
-    </Typography>
-  );
-};
-
+export { default as PageInfoPhones } from './PageInfoPhones';
 export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
