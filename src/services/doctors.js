@@ -1,21 +1,11 @@
 import { t } from 'i18next';
 import slugify from 'slugify';
 
+import { DOCTORS } from 'const';
+
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
-const lng = localStorage.getItem('i18nextLng') || 'sl';
-
-const TYPE_TRANSLATE = {
-  SL: 'description-sl',
-  EN: 'description',
-};
-
-export function createDoctor(doctor, type, institution) {
-  const getTypeText = (lang = lng) => {
-    const field = TYPE_TRANSLATE[lang.toUpperCase()];
-    return type[field];
-  };
-
+export function createDoctor(doctor, institution) {
   const getAcceptText = () => (doctor.accepts === 'y' ? t('accepts') : t('rejects'));
 
   const name = trimString(doctor.doctor);
@@ -83,25 +73,15 @@ export function createDoctor(doctor, type, institution) {
     get load() {
       return load;
     },
-    getTypeText,
     getAcceptText,
   });
 }
 
-export default function createDoctors({
-  doctorsDict,
-  institutionsDict,
-  typesDict,
-  keys = { instKey: 'id_inst', typesKey: 'type' },
-}) {
-  const { instKey, typeKey } = keys;
+export default function createDoctors({ doctorsDict, institutionsDict }) {
+  const instKey = DOCTORS.INSTITUTION_KEY;
 
   const doctors = Object.entries(doctorsDict).reduce((acc, [doctorId, doctorData]) => {
-    const doctor = createDoctor(
-      doctorData,
-      typesDict[doctorData[typeKey]],
-      institutionsDict[doctorData[instKey]],
-    );
+    const doctor = createDoctor(doctorData, institutionsDict[doctorData[instKey]]);
     acc[doctorId] = doctor;
     return acc;
   }, {});
@@ -113,14 +93,12 @@ export default function createDoctors({
 
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 
-  const types = Object.keys(typesDict);
-
-  const byType = types.reduce((acc, type) => {
+  const byType = DOCTORS.TYPES.reduce((acc, type) => {
     acc[type] = filterByType(type);
     return acc;
   }, {});
 
-  const filter = (type, accepts) => {
+  const filterByTypeAndAccepts = (type, accepts) => {
     if (accepts !== 'y' && accepts !== 'n') {
       return byType[type];
     }
@@ -128,11 +106,12 @@ export default function createDoctors({
     return byType[type].filter(doctor => doctor.accepts === accepts);
   };
 
+  const findByTypeAndNameSlug = (type, nameSlug) =>
+    byType[type].find(doctor => doctor.nameSlug === nameSlug);
+
   return Object.freeze({
     all: doctorsValues,
-    types,
-    filterByType,
-    typesDict,
-    filter,
+    filterByTypeAndAccepts,
+    findByTypeAndNameSlug,
   });
 }

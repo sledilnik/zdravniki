@@ -29,7 +29,7 @@ const FilterProvider = function FilterProvider({ children }) {
   }, [filtered, searchValue, map]);
 
   const memoFiltered = useMemo(
-    () => _doctors?.filter(doctorType, accept),
+    () => _doctors?.filterByTypeAndAccepts(doctorType, accept),
     [accept, doctorType, _doctors],
   );
 
