@@ -28,7 +28,7 @@
     "map": "Map",
     "list": "List",
     "headQuotient": "Weighted person quotient",
-    "doctorAvailability": "Doctor with availability below 100% does not work all days in the week or does not work full-time (e.g. doctor with 20% availability might work only one day in week). Availability can also be lower for doctors that work part time on preventive programs or in other units.",
+    "doctorAvailability": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
     "yourLocation": "Your location",
     "toContent": "To content",
     "findAvailableDoctor": "Find available doctor",
