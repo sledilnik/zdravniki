@@ -221,6 +221,7 @@ ReportError.propTypes = {
     phone: PropTypes.string,
     accepts: PropTypes.string,
     availability: PropTypes.string,
+    availabilityText: PropTypes.string,
     type: PropTypes.string,
     note: PropTypes.string,
   }).isRequired,

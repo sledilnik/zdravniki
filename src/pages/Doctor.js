@@ -18,7 +18,7 @@ const Doctor = function Doctor({ isReportError = false }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.all.find(d => d.type === type && d.nameSlug === name));
+    setDoctor(doctors?.findByTypeAndNameSlug(type, name));
   }, [doctors, doctor, lng, type, name]);
 
   useEffect(() => {
