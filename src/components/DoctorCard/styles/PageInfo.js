@@ -41,7 +41,7 @@ export const LinkWrapper = styled(Stack)(({ theme }) => ({
   },
 
   [theme.breakpoints.up('md')]: {
-    marginBlock: '2px',
+    marginBlock: '14px',
   },
 }));
 
