@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   CardActions,
@@ -50,7 +50,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
     });
   };
 
-  const [moreMenuAnchorEl, setMoreMenuAnchorEl] = React.useState(null);
+  const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
   const moreMenuHandleClick = event => {
     setMoreMenuAnchorEl(event.currentTarget);
