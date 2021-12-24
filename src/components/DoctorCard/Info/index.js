@@ -84,10 +84,11 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
         </Stack>
       </CardContent>
       <DoctorActions
+        menuId={`dr-menu--${drPath}-${slug}`}
         isMarker={isMarker}
         handlers={{ handleZoom, handleDoctorCard }}
         phoneNum={phoneNum}
-        pathProps={{ path, slug, drPath }}
+        path={path}
       />
     </>
   );
