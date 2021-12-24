@@ -73,18 +73,16 @@ const DoctorActions = function DoctorActions({ handlers, path, isMarker, phoneNu
             {t('reportError.tooltip')}
           </MenuItem>
 
+          {path && <Divider />}
           {path && (
-            <>
-              <Divider />
-              <MenuItem onClick={goToDoctorPage}>
-                <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-                  <ListItemIcon>
-                    <Icons.Icon name="IdCard" />
-                  </ListItemIcon>
-                  {t('doctorCard.more')}
-                </Shared.LinkNoRel>
-              </MenuItem>
-            </>
+            <MenuItem onClick={goToDoctorPage}>
+              <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+                <ListItemIcon>
+                  <Icons.Icon name="IdCard" />
+                </ListItemIcon>
+                {t('doctorCard.more')}
+              </Shared.LinkNoRel>
+            </MenuItem>
           )}
         </Styled.MoreMenu>
         <Shared.PhoneButton phone={phoneNum} />
