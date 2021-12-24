@@ -8,8 +8,6 @@ import Menu from '@mui/material/Menu';
 export * as PageInfo from './PageInfo';
 
 const Card = styled(MuiCard)(() => ({
-  marginInline: '0.5em',
-
   borderRadius: '0',
   boxShadow: 'none',
 
