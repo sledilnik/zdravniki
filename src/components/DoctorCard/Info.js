@@ -164,20 +164,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               </MenuItem>
             )}
           </Styled.MoreMenu>
-          {phoneNum && (
-            <Tooltip title={phoneNum}>
-              <IconButton href={`tel:${phoneNum}`} self>
-                <Icons.Icon name="PhoneBig" />
-              </IconButton>
-            </Tooltip>
-          )}
-          {!doctor.phone && (
-            <Tooltip title={t('doctorCard.noPhone')}>
-              <IconButton className="icon--disabled">
-                <Icons.Icon name="NoPhoneBig" />
-              </IconButton>
-            </Tooltip>
-          )}
+          <Shared.PhoneButton phone={phoneNum} />
         </div>
       </CardActions>
     </>

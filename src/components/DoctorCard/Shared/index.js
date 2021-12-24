@@ -15,6 +15,8 @@ export * as Tooltip from './Tooltips';
 export { Link, LinkNoRel, ConditionalLink } from './Links';
 
 export { default as PageInfoPhones } from './PageInfoPhones';
+export { default as PhoneButton } from './PhoneButton';
+
 export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
