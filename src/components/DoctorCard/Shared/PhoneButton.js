@@ -7,14 +7,16 @@ import * as Icons from 'components/Shared/Icons';
 const PhoneButton = function PhoneButton({ phone }) {
   const { t } = useTranslation();
   const title = phone || t('doctorCard.noPhone');
-  const classes = phone ? '' : 'icon--disabled';
   const iconName = phone ? 'PhoneBig' : 'NoPhoneBig';
 
+  // Tooltip needs to listen to the child element's events to display the title. Add a simple wrapper element, such as a `span`.
   return (
     <Tooltip title={title}>
-      <IconButton href={phone ? `tel:${phone}` : undefined} className={classes}>
-        <Icons.Icon name={iconName} />
-      </IconButton>
+      <span>
+        <IconButton href={phone ? `tel:${phone}` : undefined} disabled={phone ? undefined : true}>
+          <Icons.Icon name={iconName} />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

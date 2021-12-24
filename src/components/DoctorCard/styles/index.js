@@ -128,11 +128,6 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
         flexDirection: 'column',
         justifyContent: 'space-between',
       },
-      '.icon--disabled': {
-        svg: {
-          opacity: 0.3,
-        },
-      },
     },
     '&:before': {
       content: `''`,
@@ -171,6 +166,11 @@ export const InfoCard = styled(Card)(({ theme, accepts }) => {
       fontSize: '0.75rem',
       lineHeight: '0.75rem',
       fontStyle: 'normal',
+    },
+    '.MuiIconButton-root': {
+      '&.Mui-disabled': {
+        opacity: 0.3,
+      },
     },
   };
 });
