@@ -28,7 +28,8 @@ export const Second = styled(Stack)(({ theme }) => ({
   borderRadius: '0 5px 5px 0',
 }));
 
-export const LinkWrapper = styled(Stack)(() => ({
+export const LinkWrapper = styled(Stack)(({ theme }) => ({
+  marginBlock: '8px',
   '.MuiTypography-body1': {
     fontSize: '0.875rem',
     fontWeight: 700,
@@ -37,6 +38,10 @@ export const LinkWrapper = styled(Stack)(() => ({
 
   '.MuiTypography-body1:first-of-type': {
     opacity: 0.25,
+  },
+
+  [theme.breakpoints.up('md')]: {
+    marginBlock: '2px',
   },
 }));
 
