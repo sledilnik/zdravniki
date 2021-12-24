@@ -16,6 +16,7 @@ export { Link, LinkNoRel, ConditionalLink } from './Links';
 
 export { default as PageInfoPhones } from './PageInfoPhones';
 export { default as PhoneButton } from './PhoneButton';
+export { default as Accepts } from './Accepts';
 
 export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   const drType = t(TypeTranslate[type]);

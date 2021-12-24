@@ -11,7 +11,6 @@ import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
 
 import ReportError from './ReportError';
-import Accepts from './Accepts';
 import * as Styled from './styles';
 import * as Shared from './Shared';
 
@@ -108,7 +107,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               enterTouchDelay={50}
             >
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <Accepts accepts={accepts} />
+                <Shared.Accepts accepts={accepts} />
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip

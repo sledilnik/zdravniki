@@ -1,7 +1,7 @@
 import * as Icons from 'components/Shared/Icons';
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
-import * as Styled from './styles';
+import * as Styled from '../styles';
 
 const Accepts = function Accepts({ accepts }) {
   const iconName = accepts ? 'CheckGreen' : 'BanRed';
