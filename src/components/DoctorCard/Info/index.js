@@ -17,10 +17,10 @@ import { useLeafletContext } from 'context/leafletContext';
 import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
 import { t } from 'i18next';
-import * as Styled from './styles';
-import * as Shared from './Shared';
+import * as Styled from '../styles';
+import * as Shared from '../Shared';
 
-import { toPercent } from './utils';
+import { toPercent } from '../utils';
 
 const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
   const { lng } = useParams();

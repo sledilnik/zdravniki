@@ -30,7 +30,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const urlText = doctor.website && new URL(doctor.website).host;
 
   const navigate = useNavigate();
-  // todo pass filters' state as second argument
   const handleBackButton = () => {
     navigate(`/${lng}/`, {
       state: {
