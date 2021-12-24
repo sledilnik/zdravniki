@@ -10,12 +10,12 @@ import SingleChart from 'components/Shared/CircleChart';
 import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
 
-import ReportError from './ReportError';
-import * as Styled from './styles';
-import * as Shared from './Shared';
+import ReportError from '../ReportError';
+import * as Styled from '../styles';
+import * as Shared from '../Shared';
 
-import { toPercent } from './utils';
-import { AgeGroupTranslate } from './dicts';
+import { toPercent } from '../utils';
+import { AgeGroupTranslate } from '../dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { searchValue } = useFilter();
