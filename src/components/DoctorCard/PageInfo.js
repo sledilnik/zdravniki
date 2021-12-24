@@ -74,6 +74,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
     );
   }
 
+  const phones = doctor.phone?.split(',');
+
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
@@ -97,16 +99,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
-        {doctor.phone && (
-          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-            <Typography component="div" variant="body1">
-              <Icons.Icon name="Phone" />
-            </Typography>
-            <Shared.ConditionalLink to={doctor.phone && `tel:${doctor.phone}`} self variant="body1">
-              {doctor.phone}
-            </Shared.ConditionalLink>
-          </Styled.PageInfo.LinkWrapper>
-        )}
+        {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Tooltip

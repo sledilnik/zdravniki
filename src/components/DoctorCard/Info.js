@@ -60,6 +60,8 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
     setMoreMenuAnchorEl(null);
   };
 
+  const phoneNum = doctor.phone?.split(',')?.[0];
+
   return (
     <>
       <CardContent>
@@ -162,20 +164,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               </MenuItem>
             )}
           </Styled.MoreMenu>
-          {doctor.phone && (
-            <Tooltip title={doctor.phone}>
-              <IconButton href={`tel:${doctor.phone}`} self>
-                <Icons.Icon name="PhoneBig" />
-              </IconButton>
-            </Tooltip>
-          )}
-          {!doctor.phone && (
-            <Tooltip title={t('doctorCard.noPhone')}>
-              <IconButton className="icon--disabled">
-                <Icons.Icon name="NoPhoneBig" />
-              </IconButton>
-            </Tooltip>
-          )}
+          <Shared.PhoneButton phone={phoneNum} />
         </div>
       </CardActions>
     </>

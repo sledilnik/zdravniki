@@ -72,10 +72,6 @@ export const WrapperInfinite = styled('div')(({ theme }) => ({
   position: 'relative',
   boxShadow: '0 0 15px 0 rgba(0,0,0,0.18)',
 
-  '> .infinite-scroll-component__outerdiv': {
-    width: '100%',
-  },
-
   [theme.breakpoints.up('sm')]: {
     height: `${SIZES.MAP_HEIGHT.upSmall}`,
   },
