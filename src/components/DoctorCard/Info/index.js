@@ -1,22 +1,11 @@
-import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  CardActions,
-  CardContent,
-  Divider,
-  IconButton,
-  ListItemIcon,
-  MenuItem,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { CardContent, Stack, Tooltip, Typography } from '@mui/material';
 
 import { useLeafletContext } from 'context/leafletContext';
-import * as Icons from 'components/Shared/Icons';
 import SingleChart from 'components/Shared/CircleChart';
-import { t } from 'i18next';
+
+import DoctorActions from './DoctorActions';
+
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
@@ -48,15 +37,6 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
         ageGroup: ageGroup ?? 'adults',
       },
     });
-  };
-
-  const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
-  const moreMenuOpen = Boolean(moreMenuAnchorEl);
-  const moreMenuHandleClick = event => {
-    setMoreMenuAnchorEl(event.currentTarget);
-  };
-  const moreMenuHandleClose = () => {
-    setMoreMenuAnchorEl(null);
   };
 
   const phoneNum = doctor.phone?.split(',')?.[0];
@@ -103,69 +83,12 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
           </Stack>
         </Stack>
       </CardContent>
-      <CardActions>
-        <div>
-          <IconButton
-            aria-label={t('doctorCard.more')}
-            aria-controls={`dr-menu--${drPath}-${slug}`}
-            aria-expanded={moreMenuOpen ? 'true' : undefined}
-            aria-haspopup="true"
-            onClick={moreMenuHandleClick}
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Styled.MoreMenu
-            id={`dr-menu--${drPath}-${slug}`}
-            anchorEl={moreMenuAnchorEl}
-            onClose={moreMenuHandleClose}
-            open={moreMenuOpen}
-          >
-            {!isMarker && (
-              <MenuItem
-                onClick={() => {
-                  handleZoom();
-                  moreMenuHandleClose();
-                }}
-              >
-                <ListItemIcon>
-                  <Icons.Icon name="MapMarker" />
-                </ListItemIcon>
-                {t('doctorCard.showOnMap')}
-              </MenuItem>
-            )}
-            <MenuItem
-              onClick={e => {
-                moreMenuHandleClose();
-                handleDoctorCard(e, true);
-              }}
-            >
-              <ListItemIcon>
-                <Icons.Icon name="ReportError" />
-              </ListItemIcon>
-              {t('reportError.tooltip')}
-            </MenuItem>
-
-            {path && <Divider />}
-            {path && (
-              <MenuItem
-                href={path}
-                onClick={e => {
-                  moreMenuHandleClose();
-                  handleDoctorCard(e, false);
-                }}
-              >
-                <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-                  <ListItemIcon>
-                    <Icons.Icon name="IdCard" />
-                  </ListItemIcon>
-                  {t('doctorCard.more')}
-                </Shared.LinkNoRel>
-              </MenuItem>
-            )}
-          </Styled.MoreMenu>
-          <Shared.PhoneButton phone={phoneNum} />
-        </div>
-      </CardActions>
+      <DoctorActions
+        isMarker={isMarker}
+        handlers={{ handleZoom, handleDoctorCard }}
+        phoneNum={phoneNum}
+        pathProps={{ path, slug, drPath }}
+      />
     </>
   );
 };
