@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CardContent, Typography, Tooltip, Stack, Alert } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
 import { useFilter } from 'context/filterContext';
@@ -18,6 +18,8 @@ import { toPercent } from '../utils';
 import { AgeGroupTranslate } from '../dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
+  const { t } = useTranslation();
+  console.log(doctor);
   const { searchValue } = useFilter();
   const { state } = useLocation();
 
@@ -27,7 +29,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const [type, ageGroup] = doctor.type.split('-');
 
   const availabilityText = toPercent(doctor.availability, lng);
-  const urlText = doctor.website && new URL(doctor.website).host;
+  const websiteText = doctor.website && new URL(doctor.website).host;
+  const orderformText = doctor.orderform && t('orderform');
 
   const navigate = useNavigate();
   const handleBackButton = () => {
@@ -74,6 +77,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
 
   const phones = doctor.phone?.split(',');
 
+  // todo create component for urls -> website, orderform
+
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
@@ -87,21 +92,46 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
           {doctor.fullAddress}
         </Typography>
-        {urlText && (
+        {websiteText && (
           <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
             <Typography component="div" variant="body1">
               <Icons.Icon name="Link" />
             </Typography>
             <Shared.ConditionalLink to={doctor.website} variant="body1">
-              {urlText}
+              {websiteText}
+            </Shared.ConditionalLink>
+          </Styled.PageInfo.LinkWrapper>
+        )}
+        {orderformText && (
+          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+            <Typography component="div" variant="body1">
+              <Icons.Icon name="Link" />
+            </Typography>
+            <Shared.ConditionalLink to={doctor.orderform} variant="body1">
+              {orderformText}
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
         {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
+        {doctor.email && <a href={`mailto:${doctor.email}`}>{doctor.email}</a>}
+        {doctor.updatedAt && (
+          <p>
+            {t('changedOn')}
+            {doctor.formatUpdatedAt(lng)}
+          </p>
+        )}
+        {doctor.note && <p>{doctor.note}</p>}
+
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Tooltip
-              title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}
+              title={
+                <Shared.Tooltip.HeadQuotient
+                  load={doctor.load}
+                  note={doctor.note && <p>{doctor.note}</p>}
+                  date={doctor.note && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
@@ -110,7 +140,11 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip
-              title={<Shared.Tooltip.Availability />}
+              title={
+                <Shared.Tooltip.Availability
+                  date={doctor.availabilityOverride && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >

@@ -27,6 +27,7 @@
     "filter": "Filter",
     "map": "Map",
     "list": "List",
+    "changedOn": "Changed on: ",
     "headQuotient": "Weighted person quotient",
     "doctorAvailability": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
     "yourLocation": "Your location",
@@ -72,5 +73,6 @@
     "footer": {
         "dataSource": "Data source",
         "lastChange": "Last data update on {{ date, %A, %B %e, %Y }}"
-    }
+    },
+    "orderform": "get appointment"
 }
