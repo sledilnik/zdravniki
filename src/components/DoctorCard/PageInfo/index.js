@@ -19,7 +19,6 @@ import { AgeGroupTranslate } from '../dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { t } = useTranslation();
-  console.log(doctor);
   const { searchValue } = useFilter();
   const { state } = useLocation();
 
@@ -30,6 +29,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
 
   const availabilityText = toPercent(doctor.availability, lng);
   const websiteText = doctor.website && new URL(doctor.website).host;
+  const emailText = doctor.email;
   const orderformText = doctor.orderform && t('orderform');
 
   const navigate = useNavigate();
@@ -102,6 +102,17 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
+        {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
+        {emailText && (
+          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+            <Typography component="div" variant="body1">
+              <Icons.Icon name="Link" />
+            </Typography>
+            <Shared.ConditionalLink to={`mailto:${emailText}`} variant="body1">
+              {emailText}
+            </Shared.ConditionalLink>
+          </Styled.PageInfo.LinkWrapper>
+        )}
         {orderformText && (
           <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
             <Typography component="div" variant="body1">
@@ -112,8 +123,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
-        {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
-        {doctor.email && <a href={`mailto:${doctor.email}`}>{doctor.email}</a>}
         {doctor.updatedAt && (
           <p>
             {t('changedOn')}
