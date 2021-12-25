@@ -10,13 +10,12 @@ import SingleChart from 'components/Shared/CircleChart';
 import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
 
-import ReportError from './ReportError';
-import Accepts from './Accepts';
-import * as Styled from './styles';
-import * as Shared from './Shared';
+import ReportError from '../ReportError';
+import * as Styled from '../styles';
+import * as Shared from '../Shared';
 
-import { toPercent } from './utils';
-import { AgeGroupTranslate } from './dicts';
+import { toPercent } from '../utils';
+import { AgeGroupTranslate } from '../dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { searchValue } = useFilter();
@@ -31,7 +30,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const urlText = doctor.website && new URL(doctor.website).host;
 
   const navigate = useNavigate();
-  // todo pass filters' state as second argument
   const handleBackButton = () => {
     navigate(`/${lng}/`, {
       state: {
@@ -108,7 +106,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               enterTouchDelay={50}
             >
               <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <Accepts accepts={accepts} />
+                <Shared.Accepts accepts={accepts} />
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip
