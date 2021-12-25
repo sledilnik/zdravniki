@@ -65,6 +65,9 @@ export function createDoctor(doctor, institution) {
     get availability() {
       return availabilityOverride || availabilityZZZS;
     },
+    get availabilityOverride() {
+      return availabilityOverride;
+    },
     get email() {
       return email;
     },
