@@ -5,37 +5,74 @@ import { DOCTORS } from 'const';
 
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
-export function createDoctor(doctor, institution) {
-  const getAcceptText = () => (doctor.accepts === 'y' ? t('accepts') : t('rejects'));
+const getAddressObject = (doctor, institution) => {
+  const post = doctor.post || institution.post;
+  const [postalCode, ...postalName] = post.split(' ');
+  return {
+    street: doctor.address || institution.address,
+    city: doctor.city || institution.city,
+    municipalityPart: doctor.municipalityPart || institution.municipalityPart,
+    municipality: doctor.municipality || institution.municipality,
+    postalCode,
+    post: postalName.join(' '),
+  };
+};
 
+export function createDoctor(doctor, institution) {
   const name = trimString(doctor.doctor);
   const nameSlug = slugify(name.toLowerCase());
 
-  const manUnit = trimString(institution.unit);
+  const munUnit = trimString(institution.unit);
   const provider = trimString(institution.name);
-  const website = trimString(institution.website);
-  const phone = trimString(institution.phone);
-  const { address, city, municipalityPart, municipality, post } = institution;
-  const [_code, _post] = post.split(' ');
-  const geoLocation = { lat: parseFloat(institution.lat), lon: parseFloat(institution.lon) };
+  const website = trimString(doctor.website || institution.website);
+  const phone = trimString(doctor.phone || institution.phone);
 
-  const addressObject = {
-    street: address,
-    postalCode: _code,
-    city,
-    municipalityPart,
-    municipality,
-    post: _post,
+  const geoLocation = {
+    lat: parseFloat(doctor.lat || institution.lat),
+    lon: parseFloat(doctor.lon || institution.lon),
   };
 
-  const { availability, load } = doctor;
+  const addressObject = getAddressObject(doctor, institution);
+
+  const {
+    accepts: acceptsZZZS,
+    accepts_override: acceptsOverride,
+    availability: availabilityZZZS,
+    availability_override: availabilityOverride,
+    date_override: dateOverride,
+    email,
+    load,
+    note_override: noteOverride,
+    orderform,
+  } = doctor;
+
+  const accepts = acceptsOverride || acceptsZZZS;
+  const getAcceptText = () => (accepts === 'y' ? t('accepts') : t('rejects'));
 
   return Object.freeze({
+    get accepts() {
+      return accepts;
+    },
+    get availability() {
+      return availabilityOverride || availabilityZZZS;
+    },
+    get email() {
+      return email;
+    },
+    get fullAddress() {
+      return `${addressObject.street}, ${addressObject.city}`;
+    },
+    get geoLocation() {
+      return geoLocation;
+    },
     get key() {
       return doctor.key;
     },
-    get type() {
-      return doctor.type;
+    get load() {
+      return load;
+    },
+    get munUnit() {
+      return munUnit;
     },
     get name() {
       return name;
@@ -43,35 +80,29 @@ export function createDoctor(doctor, institution) {
     get nameSlug() {
       return nameSlug;
     },
-    get accepts() {
-      return doctor.accepts;
+    get note() {
+      return noteOverride;
     },
-    get provider() {
-      return provider;
-    },
-    get website() {
-      return website;
+    get orderform() {
+      return orderform;
     },
     get phone() {
       return phone;
     },
-    get munUnit() {
-      return manUnit;
-    },
-    get fullAddress() {
-      return `${addressObject.street}, ${addressObject.city}`;
+    get provider() {
+      return provider;
     },
     get searchAddress() {
       return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipalityPart} ${addressObject.municipality}`;
     },
-    get geoLocation() {
-      return geoLocation;
+    get type() {
+      return doctor.type;
     },
-    get availability() {
-      return availability;
+    get updatedAt() {
+      return dateOverride;
     },
-    get load() {
-      return load;
+    get website() {
+      return website;
     },
     getAcceptText,
   });
