@@ -13,7 +13,7 @@ const DoctorsProvider = function DoctorsProvider({ children }) {
   const [dicts, setDicts] = useState({ doctors: null, institutions: null });
 
   const institutionsRequest = useFetchAndParseCsv(CSV_URL.INSTITUTIONS);
-  const doctorsRequest = useFetchAndParseCsv(CSV_URL.DOCTORS_OVERRIDES);
+  const doctorsRequest = useFetchAndParseCsv(CSV_URL.DOCTORS);
 
   const isFetching = doctorsRequest.isFetching || institutionsRequest.isFetching;
   const errors = useMemo(
