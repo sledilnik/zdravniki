@@ -120,7 +120,13 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Tooltip
-              title={<Shared.Tooltip.HeadQuotient load={doctor.load} />}
+              title={
+                <Shared.Tooltip.HeadQuotient
+                  load={doctor.load}
+                  note={doctor.note && <p>{doctor.note}</p>}
+                  date={doctor.note && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
@@ -129,7 +135,11 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               </Styled.InfoWrapper>
             </Tooltip>
             <Tooltip
-              title={<Shared.Tooltip.Availability />}
+              title={
+                <Shared.Tooltip.Availability
+                  date={doctor.availabilityOverride && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >

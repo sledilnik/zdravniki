@@ -27,6 +27,7 @@
     "filter": "Filter",
     "map": "Zemljevid",
     "list": "Seznam",
+    "changedOn": "Popravek od: ",
     "headQuotient": "Glavarinski količnik",
     "doctorAvailability": "Obseg zaposlitve: delež je lahko nižji od 100 %, ker zdravnik določen del časa dela na preventivnih programih ali na drugih dejavnostih (recimo zobozdravnik za odrasle in mladino).",
     "yourLocation": "Tvoja lokacija",
