@@ -114,7 +114,12 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         )}
         {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
         {doctor.email && <a href={`mailto:${doctor.email}`}>{doctor.email}</a>}
-        {doctor.updatedAt && <p>{doctor.formatUpdatedAt(lng)}</p>}
+        {doctor.updatedAt && (
+          <p>
+            {t('changedOn')}
+            {doctor.formatUpdatedAt(lng)}
+          </p>
+        )}
         {doctor.note && <p>{doctor.note}</p>}
 
         <Stack sx={{ mt: { md: 2 } }}>
