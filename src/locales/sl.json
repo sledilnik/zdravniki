@@ -72,5 +72,6 @@
     "footer": {
         "dataSource": "Vir podatkov",
         "lastChange": "Zadnja sprememba podatkov"
-    }
+    },
+    "orderform": "naročanje"
 }

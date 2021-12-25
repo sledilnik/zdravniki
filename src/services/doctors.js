@@ -49,6 +49,15 @@ export function createDoctor(doctor, institution) {
   const accepts = acceptsOverride || acceptsZZZS;
   const getAcceptText = () => (accepts === 'y' ? t('accepts') : t('rejects'));
 
+  const formatUpdatedAt = (lng = 'sl') => {
+    const lngTranslate = {
+      sl: 'sl-SL',
+      en: 'en-GB',
+    };
+
+    return new Intl.DateTimeFormat(lngTranslate[lng]).format(new Date(dateOverride));
+  };
+
   return Object.freeze({
     get accepts() {
       return accepts;
@@ -105,6 +114,7 @@ export function createDoctor(doctor, institution) {
       return website;
     },
     getAcceptText,
+    formatUpdatedAt,
   });
 }
 
