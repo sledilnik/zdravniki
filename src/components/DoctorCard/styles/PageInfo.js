@@ -52,3 +52,11 @@ export const BackWrapper = styled(Stack)(() => ({
     fontWeight: 600,
   },
 }));
+
+export const Changed = styled(Stack)(() => ({
+  fontSize: '0.875rem',
+  fontWeight: 700,
+  letterSpacing: 0,
+  color: 'inherit',
+  whiteSpace: 'nowrap',
+}));

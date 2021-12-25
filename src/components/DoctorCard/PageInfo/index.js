@@ -123,13 +123,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             </Shared.ConditionalLink>
           </Styled.PageInfo.LinkWrapper>
         )}
-        {doctor.updatedAt && (
-          <p>
-            {t('changedOn')}
-            {doctor.formatUpdatedAt(lng)}
-          </p>
-        )}
-        {doctor.note && <p>{doctor.note}</p>}
 
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
@@ -164,6 +157,12 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             </Tooltip>
           </Stack>
         </Stack>
+
+        <Styled.PageInfo.Changed>
+          {doctor.updatedAt && `${t('changedOn')}${doctor.formatUpdatedAt(lng)}`}
+          {doctor.note && <p>{doctor.note}</p>}
+        </Styled.PageInfo.Changed>
+
         {message && (
           <Alert sx={{ marginTop: '1rem' }} severity="success">
             {message}
