@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { t } from 'i18next';
 import { styled } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
 
 export const HeadQuotient = function HeadQuotient({ load, note, date }) {
   const hasOverride = note;
@@ -44,14 +45,25 @@ export const Availability = function Availability({ date }) {
   );
 };
 
-export const Updated = function Updated({ date, note }) {
+export const Updated = function Updated({ doctor }) {
+  const { lng } = useParams();
+
   return (
     <Stack sx={{ textAlign: 'left' }}>
       <Typography variant="caption">
         {t('changedOn')}
-        {date}
+        {doctor.formatUpdatedAt(lng)}
       </Typography>
-      <Typography variant="body3">{note && <p>{note}</p>}</Typography>
+      <TooltipDivider />
+      <Typography variant="body3">
+        {doctor.note && <p>{doctor.note}</p>}
+        {doctor.availabilityOverride && (
+          <p>
+            {t('doctorAvailabilityLabel')}: {doctor.availabilityZZZS * 100}% →{' '}
+            <strong>{doctor.availabilityOverride * 100}%</strong>
+          </p>
+        )}
+      </Typography>
     </Stack>
   );
 };

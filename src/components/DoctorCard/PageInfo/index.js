@@ -193,9 +193,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           {doctor.updatedAt && (
             <Styled.PageInfo.Changed
               className="updated-label"
-              title={
-                <Shared.Tooltip.Updated note={doctor.note} date={doctor.formatUpdatedAt(lng)} />
-              }
+              title={<Shared.Tooltip.Updated doctor={doctor} />}
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >

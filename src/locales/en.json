@@ -29,6 +29,7 @@
     "list": "List",
     "changedOn": "Changed on: ",
     "headQuotient": "Weighted person quotient",
+    "doctorAvailabilityLabel": "Availability",
     "doctorAvailability": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
     "yourLocation": "Your location",
     "toContent": "To content",
