@@ -33,6 +33,7 @@ import { ReactComponent as Students } from 'assets/icon-students.svg';
 import { ReactComponent as ArrowBack } from 'assets/icon-back.svg';
 import { ReactComponent as Close } from 'assets/icon-close.svg';
 import { ReactComponent as Link } from 'assets/icon-link.svg';
+import { ReactComponent as LinkBig } from 'assets/icon-link--big.svg';
 import { ReactComponent as PhoneBig } from 'assets/icon-phone--big.svg';
 import { ReactComponent as NoPhoneBig } from 'assets/icon-phone-none--big.svg';
 import { ReactComponent as Phone } from 'assets/icon-phone.svg';
@@ -45,6 +46,9 @@ import { ReactComponent as MapViewWhite } from 'assets/icon-map-view--white.svg'
 import { ReactComponent as ListView } from 'assets/icon-list-view.svg';
 import { ReactComponent as ListViewWhite } from 'assets/icon-list-view--white.svg';
 import { ReactComponent as More } from 'assets/icon-more.svg';
+import { ReactComponent as Booking } from 'assets/icon-booking.svg';
+import { ReactComponent as Edit } from 'assets/icon-edit.svg';
+import { ReactComponent as Email } from 'assets/icon-email.svg';
 
 export { default as MenuIcon } from '@mui/icons-material/Menu';
 export { default as RoomIcon } from '@mui/icons-material/Room';
@@ -88,6 +92,7 @@ const icons = {
   Kids,
   KidsWhite,
   Link,
+  LinkBig,
   Logo,
   MapMarker,
   Phone,
@@ -107,6 +112,9 @@ const icons = {
   ListView,
   ListViewWhite,
   More,
+  Booking,
+  Edit,
+  Email,
 };
 
 export const Icon = function Icon({ name, ...props }) {
