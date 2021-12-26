@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
 import { filterContext } from 'context';
 import DoctorCard from 'components/DoctorCard';
@@ -49,14 +52,26 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const zoom = state?.zoom ?? MAP.ZOOM;
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const breakpointDefaultZoom = matches ? MAP.ZOOM : MAP.ZOOM_BELOW_SMALL;
+
+  const zoom = state?.zoom ?? breakpointDefaultZoom;
   const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
 
   return (
     <Styled.Wrapper show={show}>
-      <MainMap className="map" whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />
+      <MainMap
+        className="map"
+        key={matches}
+        whenCreated={setMap}
+        doctors={doctors}
+        center={center}
+        zoom={zoom}
+      />
       <Styled.WrapperInfinite id="scrollableDiv" className="cards">
         <Styled.InfiniteScroll
           id="infiniteScroll"
