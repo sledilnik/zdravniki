@@ -12,6 +12,7 @@ import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
 import MainMap from './Map';
 import FooterInfoCard from '../Shared/FooterInfo';
+import { CardsList } from '../Shared/Loader';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -55,7 +56,8 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
-  const noResults = !areDoctors && searchValue;
+  const dataLoading = !Array.isArray(doctors);
+  const noResults = !areDoctors && !dataLoading;
 
   return (
     <Styled.Wrapper show={show}>
@@ -66,6 +68,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
             {t('noResults')}
           </Alert>
         )}
+        {dataLoading && <CardsList />}
         <Styled.InfiniteScroll
           id="infiniteScroll"
           dataLength={doctorsPagination?.length ?? 0}
@@ -81,7 +84,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
             />
           ))}
         </Styled.InfiniteScroll>
-        <FooterInfoCard />
+        {!dataLoading && <FooterInfoCard />}
         <MainScrollTop />
       </Styled.WrapperInfinite>
     </Styled.Wrapper>
