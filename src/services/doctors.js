@@ -21,6 +21,7 @@ const getAddressObject = (doctor, institution) => {
 export function createDoctor(doctor, institution) {
   const name = trimString(doctor.doctor);
   const nameSlug = slugify(name.toLowerCase());
+  const instId = trimString(doctor.id_inst);
 
   const munUnit = trimString(institution.unit);
   const provider = trimString(institution.name);
@@ -76,6 +77,9 @@ export function createDoctor(doctor, institution) {
     },
     get geoLocation() {
       return geoLocation;
+    },
+    get instId() {
+      return instId;
     },
     get key() {
       return doctor.key;
@@ -150,8 +154,8 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
     return byType[type].filter(doctor => doctor.accepts === accepts);
   };
 
-  const findByTypeAndNameSlug = (type, nameSlug) =>
-    byType[type].find(doctor => doctor.nameSlug === nameSlug);
+  const findByTypeAndNameSlug = (type, nameSlug, instId) =>
+    byType[type].find(doctor => doctor.nameSlug === nameSlug && doctor.instId === instId);
 
   return Object.freeze({
     all: doctorsValues,

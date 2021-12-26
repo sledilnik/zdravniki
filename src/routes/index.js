@@ -66,7 +66,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/:lng/:type/:name"
+          path="/:lng/:type/:name/:instId"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor />
@@ -74,7 +74,7 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/:lng/:type/:name/edit"
+          path="/:lng/:type/:name/:instId/edit"
           element={
             <Suspense fallback={<Loader.Center />}>
               <Doctor isReportError />
