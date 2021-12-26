@@ -57,6 +57,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   if (isEditing) {
     const doctorFormData = {
       name: doctor.name,
+      instId: doctor.instId,
       provider: doctor.provider,
       fullAddress: doctor.fullAddress,
       website: doctor.website,
