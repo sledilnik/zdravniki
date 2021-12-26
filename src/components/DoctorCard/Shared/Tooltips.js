@@ -35,3 +35,15 @@ export const Availability = function Availability({ date }) {
     </Stack>
   );
 };
+
+export const Updated = function Updated({ date, note }) {
+  return (
+    <Stack sx={{ textAlign: 'center' }}>
+      <Typography variant="caption">
+        {t('changedOn')}
+        {date}
+      </Typography>
+      <Typography variant="body3">{note && <p>{note}</p>}</Typography>
+    </Stack>
+  );
+};

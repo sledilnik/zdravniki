@@ -21,7 +21,6 @@ export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
   return {
     width: '100%',
     borderRadius: '5px',
-    marginTop: '1em',
     background: '#fff',
     boxShadow: '1px 1px 4px 0 rgba(0,0,0,0.08)',
     borderTop: `solid 4px ${acceptsColor}`,
@@ -80,20 +79,22 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
 
   '.MuiCardContent-root': {
     width: '100%',
+    display: 'flex',
     '.MuiCardMedia-root': {
-      background: 'green',
+      display: 'flex',
+      width: '100%',
+      height: '100%',
+
       '.leaflet-container': {
-        height: '250px',
         zIndex: 1,
+        width: '100%',
+        height: '100%',
+        borderRadius: '0 0 5px 0',
       },
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.down('sm')]: {
         '.leaflet-container': {
           height: '350px',
-        },
-      },
-      [theme.breakpoints.up('md')]: {
-        '.leaflet-container': {
-          height: 'clamp(400px, 50vh, 100vh)', // ? not sure but it's working
+          borderRadius: '0 0 5px 5px',
         },
       },
     },

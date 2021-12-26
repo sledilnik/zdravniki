@@ -27,7 +27,7 @@ const PageInfoPhones = function PhoneInfoPhone({ phones }) {
   return (
     <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
       <Typography component="div" variant="body1">
-        <Icons.Icon name="Phone" />
+        <Icons.Icon name="PhoneBig" />
       </Typography>
       {phoneLinks}
     </Styled.PageInfo.LinkWrapper>
