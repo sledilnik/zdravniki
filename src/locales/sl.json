@@ -66,6 +66,8 @@
             "address": "naslov",
             "website": "spletna stran",
             "phone": "telefon",
+            "email": "e-pošta",
+            "orderform": "povezava za naročanje",
             "availability": "obseg zaposlitve",
             "note": "opomba"
         }

@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
+import { Tooltip } from '@mui/material';
 
 export const DCWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.colors.chip,
@@ -22,6 +23,7 @@ export const First = styled(Stack)(({ theme, single }) => ({
   padding: '6px 8px',
   borderRadius: single ? '5px' : '5px 0 0 5px',
 }));
+
 export const Second = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.customColors.doctor.colors.chipBcg2,
   padding: '6px 8px',
@@ -35,28 +37,75 @@ export const LinkWrapper = styled(Stack)(({ theme }) => ({
     fontWeight: 700,
     lineHeight: 1.2,
   },
-
-  '.MuiTypography-body1:first-of-type': {
-    opacity: 0.25,
-  },
-
   [theme.breakpoints.up('md')]: {
-    marginBlock: '14px',
+    marginBlock: '10px',
   },
 }));
 
-export const BackWrapper = styled(Stack)(() => ({
+export const ToolbarWrapper = styled(Stack)(({ theme }) => ({
+  margin: '60px 0 2px 0',
+
+  [theme.breakpoints.down('md')]: {
+    marginTop: '4px',
+  },
+}));
+
+export const LinksMenuWrapper = styled(Stack)(({ theme }) => ({
+  borderTop: `1px solid ${theme.customColors.background}`,
+  borderBottom: `1px solid ${theme.customColors.background}`,
+  margin: '14px 0',
+  padding: '10px 0',
+  fontSize: '15px',
+  color: theme.customColors.dark,
+  textTransform: 'lowercase',
+  svg: {
+    width: '24px',
+    height: 'auto',
+    verticalAlign: 'middle',
+  },
+  button: {
+    color: theme.customColors.dark,
+    fontSize: '15px',
+    border: 'none',
+    background: 'transparent',
+    cursor: 'pointer',
+    '&:hover': {
+      color: theme.customColors.links,
+    },
+  },
+  a: {
+    color: theme.customColors.dark,
+    fontWeight: 'normal',
+    fontSize: '15px',
+    '&:hover': {
+      color: theme.customColors.links,
+    },
+  },
+}));
+
+export const BackWrapper = styled(Stack)(({ theme }) => ({
   cursor: 'pointer',
+  '.MuiButtonBase-root': {
+    padding: '5px 8px',
+  },
   '.MuiTypography-body1': {
     fontSize: '0.875rem',
     fontWeight: 600,
   },
+  '&:hover': {
+    color: theme.customColors.links,
+  },
 }));
 
-export const Changed = styled(Stack)(() => ({
-  fontSize: '0.875rem',
-  fontWeight: 700,
-  letterSpacing: 0,
-  color: 'inherit',
+export const Changed = styled(Tooltip)(({ theme }) => ({
+  fontSize: '12px',
+  color: theme.customColors.textLight,
   whiteSpace: 'nowrap',
+  border: `1px solid ${theme.customColors.borderLight}`,
+  borderRadius: '5px',
+  padding: '5px 8px',
+  svg: {
+    margin: '0 5px 0 0',
+    opacity: '0.25',
+  },
 }));

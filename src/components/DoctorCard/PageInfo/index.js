@@ -62,6 +62,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
       fullAddress: doctor.fullAddress,
       website: doctor.website,
       phone: doctor.phone,
+      email: doctor.email,
+      orderform: doctor.orderform,
       accepts: doctor.accepts,
       availability: doctor.availability,
       type: doctor.type,
@@ -93,37 +95,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
         <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
           {doctor.fullAddress}
         </Typography>
-        {websiteText && (
-          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-            <Typography component="div" variant="body1">
-              <Icons.Icon name="Link" />
-            </Typography>
-            <Shared.ConditionalLink to={doctor.website} variant="body1">
-              {websiteText}
-            </Shared.ConditionalLink>
-          </Styled.PageInfo.LinkWrapper>
-        )}
-        {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
-        {emailText && (
-          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-            <Typography component="div" variant="body1">
-              <Icons.Icon name="Link" />
-            </Typography>
-            <Shared.ConditionalLink to={`mailto:${emailText}`} variant="body1">
-              {emailText}
-            </Shared.ConditionalLink>
-          </Styled.PageInfo.LinkWrapper>
-        )}
-        {orderformText && (
-          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-            <Typography component="div" variant="body1">
-              <Icons.Icon name="Link" />
-            </Typography>
-            <Shared.ConditionalLink to={doctor.orderform} variant="body1">
-              {orderformText}
-            </Shared.ConditionalLink>
-          </Styled.PageInfo.LinkWrapper>
-        )}
 
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
@@ -159,18 +130,54 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           </Stack>
         </Stack>
 
-        <Styled.PageInfo.Changed>
-          {doctor.updatedAt && `${t('changedOn')}${doctor.formatUpdatedAt(lng)}`}
-          {doctor.note && <p>{doctor.note}</p>}
-        </Styled.PageInfo.Changed>
-
         {message && (
           <Alert sx={{ marginTop: '1rem' }} severity="success">
             {message}
           </Alert>
         )}
+        <Styled.PageInfo.LinksMenuWrapper>
+          {websiteText && (
+            <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+              <Typography component="div" variant="body1">
+                <Icons.Icon name="LinkBig" />
+              </Typography>
+              <Shared.ConditionalLink to={doctor.website} variant="body1">
+                {websiteText}
+              </Shared.ConditionalLink>
+            </Styled.PageInfo.LinkWrapper>
+          )}
+          {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
+          {emailText && (
+            <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+              <Typography component="div" variant="body1">
+                <Icons.Icon name="Email" />
+              </Typography>
+              <Shared.ConditionalLink to={`mailto:${emailText}`} variant="body1">
+                {emailText}
+              </Shared.ConditionalLink>
+            </Styled.PageInfo.LinkWrapper>
+          )}
+          {orderformText && (
+            <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+              <Typography component="div" variant="body1">
+                <Icons.Icon name="Booking" />
+              </Typography>
+              <Shared.ConditionalLink to={doctor.orderform} variant="body1">
+                {orderformText}
+              </Shared.ConditionalLink>
+            </Styled.PageInfo.LinkWrapper>
+          )}
+          <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
+            <Typography component="div" variant="body1">
+              <Icons.Icon name="ReportError" />
+            </Typography>
+            <button type="button" onClick={reportError}>
+              {t('reportError.tooltip')}
+            </button>
+          </Styled.PageInfo.LinkWrapper>
+        </Styled.PageInfo.LinksMenuWrapper>
       </div>
-      <div>
+      <Styled.PageInfo.ToolbarWrapper>
         <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Styled.PageInfo.BackWrapper direction="row">
             <Stack direction="row" alignItems="center" onClick={handleBackButton}>
@@ -182,19 +189,23 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               </Typography>
             </Stack>
           </Styled.PageInfo.BackWrapper>
-          <Tooltip title={t('reportError.tooltip')}>
-            <IconButton
-              disabled={message !== ''}
-              component="span"
-              variant="outlined"
-              onClick={reportError}
-              size="small"
+
+          {doctor.updatedAt && (
+            <Styled.PageInfo.Changed
+              className="updated-label"
+              title={
+                <Shared.Tooltip.Updated note={doctor.note} date={doctor.formatUpdatedAt(lng)} />
+              }
+              leaveTouchDelay={3000}
+              enterTouchDelay={50}
             >
-              <Icons.Icon name="ReportError" />
-            </IconButton>
-          </Tooltip>
+              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+                <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(lng)}
+              </Styled.InfoWrapper>
+            </Styled.PageInfo.Changed>
+          )}
         </Stack>
-      </div>
+      </Styled.PageInfo.ToolbarWrapper>
     </CardContent>
   );
 };

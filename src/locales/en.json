@@ -66,6 +66,8 @@
             "address": "address",
             "website": "web page",
             "phone": "phone",
+            "email": "email",
+            "orderform": "link to order page",
             "availability": "availability",
             "note": "note"
         }
