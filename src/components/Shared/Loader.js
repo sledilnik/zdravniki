@@ -24,6 +24,10 @@ export const WrapperCenter = styled(Wrapper)(({ theme }) => ({
   },
 }));
 
+export const WrapperCardsList = styled(WrapperCenter)(() => ({
+  width: '100%',
+}));
+
 export const Base = function Base() {
   return (
     <Wrapper>
@@ -31,6 +35,7 @@ export const Base = function Base() {
     </Wrapper>
   );
 };
+
 export const Center = function Center({ component = 'div' }) {
   return (
     <WrapperCenter component={component}>
@@ -38,6 +43,14 @@ export const Center = function Center({ component = 'div' }) {
         <CircularProgress />
       </Wrapper>
     </WrapperCenter>
+  );
+};
+
+export const CardsList = function CardsList({ component = 'div' }) {
+  return (
+    <WrapperCardsList component={component}>
+      <CircularProgress disableShrink />
+    </WrapperCardsList>
   );
 };
 

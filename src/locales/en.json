@@ -27,6 +27,7 @@
     "filter": "Filter",
     "map": "Map",
     "list": "List",
+    "noResults": "No doctors found based on your search criteria. Check if you have the right doctor type selected.",
     "changedOn": "Changed on: ",
     "headQuotient": "Weighted person quotient",
     "doctorAvailability": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
