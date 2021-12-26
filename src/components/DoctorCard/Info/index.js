@@ -65,8 +65,8 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               title={
                 <Shared.Tooltip.HeadQuotient
                   load={doctor.load}
-                  note={doctor.note && <p>{doctor.note}</p>}
-                  date={doctor.note && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                  note={doctor.note}
+                  date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}
@@ -79,7 +79,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             <Tooltip
               title={
                 <Shared.Tooltip.Availability
-                  date={doctor.availabilityOverride && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                  date={doctor.availabilityOverride && doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}

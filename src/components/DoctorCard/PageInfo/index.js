@@ -131,8 +131,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               title={
                 <Shared.Tooltip.HeadQuotient
                   load={doctor.load}
-                  note={doctor.note && <p>{doctor.note}</p>}
-                  date={doctor.note && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                  note={doctor.note}
+                  date={doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}
