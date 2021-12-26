@@ -47,6 +47,7 @@ export const Availability = function Availability({ date }) {
 
 export const Updated = function Updated({ doctor }) {
   const { lng } = useParams();
+  const hasOverride = doctor.availabilityOverride || doctor.note;
 
   return (
     <Stack sx={{ textAlign: 'left' }}>
@@ -54,16 +55,20 @@ export const Updated = function Updated({ doctor }) {
         {t('changedOn')}
         {doctor.formatUpdatedAt(lng)}
       </Typography>
-      <TooltipDivider />
-      <Typography variant="body3">
-        {doctor.note && <p>{doctor.note}</p>}
-        {doctor.availabilityOverride && (
-          <p>
-            {t('doctorAvailabilityLabel')}: {doctor.availabilityZZZS * 100}% →{' '}
-            <strong>{doctor.availabilityOverride * 100}%</strong>
-          </p>
-        )}
-      </Typography>
+      {hasOverride && (
+        <>
+          <TooltipDivider />
+          <Typography variant="body3">
+            {doctor.note && <p>{doctor.note}</p>}
+            {doctor.availabilityOverride && (
+              <p>
+                {t('doctorAvailabilityLabel')}: {doctor.availabilityZZZS * 100}% →{' '}
+                <strong>{doctor.availabilityOverride * 100}%</strong>
+              </p>
+            )}
+          </Typography>
+        </>
+      )}
     </Stack>
   );
 };
