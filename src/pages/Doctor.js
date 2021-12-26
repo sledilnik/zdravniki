@@ -13,13 +13,13 @@ import * as Styled from './styles/Doctor';
 
 const Doctor = function Doctor({ isReportError = false }) {
   const { doctors } = useDoctors();
-  const { lng, type, name } = useParams();
+  const { lng, type, name, instId } = useParams();
   const [doctor, setDoctor] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.findByTypeAndNameSlug(type, name));
-  }, [doctors, doctor, lng, type, name]);
+    setDoctor(doctors?.findByTypeAndNameSlug(type, name, instId));
+  }, [doctors, doctor, lng, type, name, instId]);
 
   useEffect(() => {
     if (loading) {

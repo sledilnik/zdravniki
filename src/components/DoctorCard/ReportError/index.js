@@ -21,7 +21,8 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
 
   const drPath = doctorFormData.type;
   const slug = slugify(doctorFormData?.name?.toLowerCase());
-  const path = `/${lng}/${drPath}/${slug}`;
+  const { instId } = doctorFormData;
+  const path = `/${lng}/${drPath}/${slug}/${instId}`;
 
   const [inputAddress, setInputAddress] = useState(doctorFormData.fullAddress);
   const [inputAccepts, setInputAccepts] = useState(accepts ? 'y' : 'n');

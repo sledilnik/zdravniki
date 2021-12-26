@@ -22,12 +22,14 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
 
   const drPath = doctor?.type;
   const slug = doctor?.nameSlug;
-  let path = `/${lng}/${drPath}/${slug}`;
+  const instId = doctor?.instId;
+
+  let path = `/${lng}/${drPath}/${slug}/${instId}`;
 
   const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
     if (isReportError) {
-      path = `/${lng}/${drPath}/${slug}/edit`;
+      path = `/${lng}/${drPath}/${slug}/${instId}/edit`;
     }
     return navigate(path, {
       state: {
