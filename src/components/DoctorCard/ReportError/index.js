@@ -29,6 +29,8 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const [inputAvailability, setInputAvailability] = useState(availabilityText);
   const [inputPhone, setInputPhone] = useState(doctorFormData.phone);
   const [inputWebsite, setInputWebsite] = useState(doctorFormData.website);
+  const [inputEmail, setInputEmail] = useState(doctorFormData.email);
+  const [inputOrderform, setInputOrderform] = useState(doctorFormData.orderform);
   const [inputNote, setInputNote] = useState(doctorFormData.note);
 
   const formUrl = `https://docs.google.com/forms/d/${process.env.REACT_APP_GOOGLE_FORM_ID}/formResponse`;
@@ -45,6 +47,10 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     inputType: {
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_TYPE,
       value: doctorFormData.type,
+    },
+    inputInstId: {
+      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_INSTID,
+      value: doctorFormData.instId,
     },
     inputProvider: {
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_PROVIDER,
@@ -70,6 +76,14 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_PHONE,
       value: inputPhone,
     },
+    inputEmail: {
+      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_EMAIL,
+      value: inputEmail,
+    },
+    inputOrderform: {
+      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM,
+      value: inputOrderform,
+    },
     inputNote: {
       id: process.env.REACT_APP_GOOGLE_FORM_INPUT_NOTE,
       value: inputNote,
@@ -86,6 +100,8 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       inputAvailability === availabilityText &&
       inputWebsite === doctorFormData.website &&
       inputPhone === doctorFormData.phone &&
+      inputEmail === doctorFormData.email &&
+      inputOrderform === doctorFormData.orderform &&
       inputNote === doctorFormData.note
     ) {
       console.log('not sending anything');
@@ -107,6 +123,12 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     }
     if (inputPhone === doctorFormData.phone) {
       formState.inputPhone.value = '';
+    }
+    if (inputEmail === doctorFormData.email) {
+      formState.inputEmail.value = '';
+    }
+    if (inputOrderform === doctorFormData.orderform) {
+      formState.inputOrderform.value = '';
     }
     if (inputNote === doctorFormData.note) {
       formState.inputNote.value = '';
@@ -147,6 +169,8 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     setInputAvailability(doctorFormData.availabilityText);
     setInputPhone(doctorFormData.phone);
     setInputWebsite(doctorFormData.website);
+    setInputEmail(doctorFormData.email);
+    setInputOrderform(doctorFormData.orderform);
     setInputNote(doctorFormData.note);
     navigate(path);
   };
@@ -186,6 +210,18 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             setValue={setInputPhone}
             placeholder={t('reportError.placeholder.phone')}
           />
+          <TextareaEdit
+            name="inputEmail"
+            value={inputEmail}
+            setValue={setInputEmail}
+            placeholder={t('reportError.placeholder.email')}
+          />
+          <TextareaEdit
+            name="inputOrderform"
+            value={inputOrderform}
+            setValue={setInputOrderform}
+            placeholder={t('reportError.placeholder.orderform')}
+          />
           <SelectEdit name="inputAccepts" value={inputAccepts} setValue={setInputAccepts} />
           <TextareaEdit
             name="inputAvailabilty"
@@ -216,14 +252,17 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
 ReportError.propTypes = {
   doctorFormData: PropTypes.shape({
     name: PropTypes.string,
+    type: PropTypes.string,
+    instId: PropTypes.string,
     provider: PropTypes.string,
     fullAddress: PropTypes.string,
     website: PropTypes.string,
     phone: PropTypes.string,
+    email: PropTypes.string,
+    orderform: PropTypes.string,
     accepts: PropTypes.string,
     availability: PropTypes.string,
     availabilityText: PropTypes.string,
-    type: PropTypes.string,
     note: PropTypes.string,
   }).isRequired,
   setIsEditing: PropTypes.func.isRequired,
