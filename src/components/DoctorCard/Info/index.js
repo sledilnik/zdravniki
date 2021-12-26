@@ -79,7 +79,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             <Tooltip
               title={
                 <Shared.Tooltip.Availability
-                  date={doctor.availabilityOverride && doctor.formatUpdatedAt(lng)}
+                  date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}

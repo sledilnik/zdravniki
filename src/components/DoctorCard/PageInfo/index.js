@@ -103,7 +103,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
                 <Shared.Tooltip.HeadQuotient
                   load={doctor.load}
                   note={doctor.note}
-                  date={doctor.formatUpdatedAt(lng)}
+                  date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}
@@ -116,7 +116,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             <Tooltip
               title={
                 <Shared.Tooltip.Availability
-                  date={doctor.availabilityOverride && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                  date={doctor.updatedAt && <p>{doctor.formatUpdatedAt(lng)}</p>}
                 />
               }
               leaveTouchDelay={3000}
