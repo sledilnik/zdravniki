@@ -62,6 +62,8 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
       fullAddress: doctor.fullAddress,
       website: doctor.website,
       phone: doctor.phone,
+      email: doctor.email,
+      orderform: doctor.orderform,
       accepts: doctor.accepts,
       availability: doctor.availability,
       type: doctor.type,
