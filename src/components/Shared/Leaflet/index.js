@@ -22,7 +22,11 @@ const Leaflet = function Leaflet({ children, height, ...other }) {
 
 Leaflet.propTypes = {
   children: ChildrenPropType.isRequired,
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+Leaflet.defaultProps = {
+  height: undefined,
 };
 
 const StyledLeaflet = styled(Leaflet)(() => ({
