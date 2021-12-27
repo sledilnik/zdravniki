@@ -116,7 +116,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             <Tooltip
               title={
                 <Shared.Tooltip.Availability
-                  date={doctor.updatedAt && <p>{doctor.formatUpdatedAt(lng)}</p>}
+                  date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
                 />
               }
               leaveTouchDelay={3000}
