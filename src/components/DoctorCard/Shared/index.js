@@ -39,13 +39,8 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
 
   const isDentist = type === 'den';
 
-  const first = isDentist ? (
-    <Styled.PageInfo.First direction="row" component="span" spacing={1}>
-      <Icons.Icon name={typeIcon} className="icon" />
-      <span className="text">{t(`${drType}`)}</span>
-    </Styled.PageInfo.First>
-  ) : (
-    <Styled.PageInfo.First single direction="row" component="span" spacing={1}>
+  const first = (
+    <Styled.PageInfo.First single={!isDentist ? 1 : 0} direction="row" component="span" spacing={1}>
       <Icons.Icon name={typeIcon} className="icon" />
       <span className="text">{t(`${drType}`)}</span>
     </Styled.PageInfo.First>
