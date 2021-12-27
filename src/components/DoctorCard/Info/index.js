@@ -61,10 +61,12 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
               accepts={accepts}
+              hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
         </Stack>

@@ -6,14 +6,17 @@ import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
-export const HeadQuotient = function HeadQuotient({ load, note, date }) {
+const getAcceptText = (accepts, translationFunc) =>
+  accepts === 'y' ? translationFunc('accepts') : translationFunc('rejects');
+
+export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
   const { t } = useTranslation();
 
   return (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
       <Typography variant="body2">{parseFloat(load)}</Typography>
-      {date && (
+      {hasOverride && (
         <>
           <TooltipDivider />
           <Stack sx={{ textAlign: 'start' }}>
@@ -30,13 +33,13 @@ export const HeadQuotient = function HeadQuotient({ load, note, date }) {
   );
 };
 
-export const Availability = function Availability({ date }) {
+export const Availability = function Availability({ date, hasOverride }) {
   const { t } = useTranslation();
 
   return (
     <Stack>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
-      {date && (
+      {hasOverride && (
         <>
           <TooltipDivider />
           <Typography variant="caption">
@@ -48,34 +51,41 @@ export const Availability = function Availability({ date }) {
   );
 };
 
-export const Updated = function Updated({ doctor }) {
+export const Updated = function Updated({
+  date,
+  acceptsOverride,
+  availabilityOverride,
+  acceptsZZZS,
+  availabilityZZZS,
+  note,
+}) {
   const { t } = useTranslation();
 
   const { lng } = useParams();
-  const hasOverride = doctor.availabilityOverride || doctor.note;
 
-  const availabilityZZZS = toPercent(doctor.availabilityZZZS, lng);
-  const availabilityOverride = toPercent(doctor.availabilityOverride, lng);
+  const acceptsOverrideText = getAcceptText(acceptsOverride, t);
+  const acceptsZZZSText = getAcceptText(acceptsZZZS, t);
+
+  const availabilityZZZSText = toPercent(availabilityZZZS, lng);
+  const availabilityOverrideText = toPercent(availabilityOverride, lng);
 
   return (
     <Stack sx={{ textAlign: 'left' }}>
       <Typography variant="caption">
         {t('changedOn')}
-        {doctor.formatUpdatedAt(lng)}
+        {date}
       </Typography>
-      {hasOverride && (
-        <>
-          <TooltipDivider />
-          <Typography variant="caption">
-            {doctor.note && <p>{doctor.note}</p>}
-            {doctor.availabilityOverride && (
-              <p>
-                {t('doctorAvailabilityLabel')}: {availabilityZZZS} →{' '}
-                <strong>{availabilityOverride}</strong>
-              </p>
-            )}
-          </Typography>
-        </>
+      <TooltipDivider />
+      {note && <Typography variant="caption">{note}</Typography>}
+      {availabilityOverride && (
+        <Typography variant="caption">
+          {t('doctorAvailabilityLabel')}: {availabilityZZZSText} → {availabilityOverrideText}
+        </Typography>
+      )}
+      {acceptsOverride && (
+        <Typography variant="caption">
+          {acceptsZZZSText} → {acceptsOverrideText}
+        </Typography>
       )}
     </Stack>
   );

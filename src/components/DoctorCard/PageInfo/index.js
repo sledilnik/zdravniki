@@ -100,10 +100,12 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
               accepts={accepts}
+              hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
         </Stack>
@@ -171,7 +173,16 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           {doctor.updatedAt && (
             <Styled.PageInfo.Changed
               className="updated-label"
-              title={<Shared.Tooltip.Updated doctor={doctor} />}
+              title={
+                <Shared.Tooltip.Updated
+                  date={doctor.formatUpdatedAt(lng)}
+                  note={doctor.note}
+                  acceptsOverride={doctor.acceptsOverride}
+                  acceptsZZZS={doctor.acceptsZZZS}
+                  availabilityOverride={doctor.availabilityOverride}
+                  availabilityZZZS={doctor.availabilityZZZS}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >

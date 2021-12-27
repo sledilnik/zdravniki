@@ -63,14 +63,20 @@ export function createDoctor(doctor, institution) {
     get accepts() {
       return accepts;
     },
-    get availabilityZZZS() {
-      return availabilityZZZS;
+    get acceptsOverride() {
+      return acceptsOverride;
+    },
+    get acceptsZZZS() {
+      return acceptsZZZS;
     },
     get availability() {
       return availabilityOverride || availabilityZZZS;
     },
     get availabilityOverride() {
       return availabilityOverride;
+    },
+    get availabilityZZZS() {
+      return availabilityZZZS;
     },
     get email() {
       return email;

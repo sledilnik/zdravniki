@@ -63,10 +63,12 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   );
 };
 
-export const HeadQuotient = function HeadQuotient({ load, note, date, accepts }) {
+export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
   return (
     <Tooltip
-      title={<Tooltips.HeadQuotient load={load} note={note} date={date} />}
+      title={
+        <Tooltips.HeadQuotient load={load} note={note} date={date} hasOverride={hasOverride} />
+      }
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
@@ -77,13 +79,13 @@ export const HeadQuotient = function HeadQuotient({ load, note, date, accepts })
   );
 };
 
-export const Availability = function Availability({ date, availability }) {
+export const Availability = function Availability({ date, availability, hasOverride }) {
   const { lng } = useParams();
   const availabilityText = toPercent(availability, lng);
 
   return (
     <Tooltip
-      title={<Tooltips.Availability date={date} />}
+      title={<Tooltips.Availability date={date} hasOverride={hasOverride} />}
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
