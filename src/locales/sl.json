@@ -27,6 +27,7 @@
     "filter": "Filter",
     "map": "Zemljevid",
     "list": "Seznam",
+    "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu.",
     "changedOn": "Popravek od: ",
     "headQuotient": "Glavarinski količnik",
     "doctorAvailabilityLabel": "Obseg zaposlitve",

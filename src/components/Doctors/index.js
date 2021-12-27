@@ -5,11 +5,14 @@ import { filterContext } from 'context';
 import DoctorCard from 'components/DoctorCard';
 import { useLeafletContext } from 'context/leafletContext';
 import { MAP } from 'const';
+import { t } from 'i18next';
 import L from 'leaflet';
+import { Alert } from '@mui/material';
 import * as Styled from './styles';
 import { MainScrollTop } from '../Shared/ScrollTop';
 import MainMap from './Map';
 import FooterInfoCard from '../Shared/FooterInfo';
+import { CardsList } from '../Shared/Loader';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -53,11 +56,19 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
+  const dataLoading = !Array.isArray(doctors);
+  const noResults = !areDoctors && !dataLoading;
 
   return (
     <Styled.Wrapper show={show}>
       <MainMap className="map" whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />
       <Styled.WrapperInfinite id="scrollableDiv" className="cards">
+        {noResults && (
+          <Alert sx={{ margin: '24px', borderRadius: '5px' }} severity="info">
+            {t('noResults')}
+          </Alert>
+        )}
+        {dataLoading && <CardsList />}
         <Styled.InfiniteScroll
           id="infiniteScroll"
           dataLength={doctorsPagination?.length ?? 0}
@@ -73,7 +84,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
             />
           ))}
         </Styled.InfiniteScroll>
-        {areDoctors && <FooterInfoCard />}
+        {!dataLoading && <FooterInfoCard />}
         <MainScrollTop />
       </Styled.WrapperInfinite>
     </Styled.Wrapper>

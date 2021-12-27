@@ -45,6 +45,7 @@ HeadQuotient.propTypes = {
 
 export const Availability = function Availability({ date, hasOverride }) {
   const { t } = useTranslation();
+  const hasOverride = override;
 
   return (
     <Stack>
