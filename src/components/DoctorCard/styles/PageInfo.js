@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
-import { Tooltip } from '@mui/material';
 
 export const DCWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.colors.chip,
@@ -97,7 +96,9 @@ export const BackWrapper = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export const Changed = styled(Tooltip)(({ theme }) => ({
+export const Override = styled(Stack)(({ theme }) => ({
+  cursor: 'help',
+  minWidth: '74.5px',
   fontSize: '12px',
   color: theme.customColors.textLight,
   whiteSpace: 'nowrap',

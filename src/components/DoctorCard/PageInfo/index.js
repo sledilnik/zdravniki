@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CardContent, Typography, Stack, Alert } from '@mui/material';
+import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -170,8 +170,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           </Styled.PageInfo.BackWrapper>
 
           {doctor.updatedAt && (
-            <Styled.PageInfo.Changed
-              className="updated-label"
+            <Tooltip
               title={
                 <Shared.Tooltip.Updated
                   date={doctor.formatUpdatedAt(lng)}
@@ -185,10 +184,10 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
-              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+              <Styled.PageInfo.Override direction="row" alignItems="center" spacing={1}>
                 <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(lng)}
-              </Styled.InfoWrapper>
-            </Styled.PageInfo.Changed>
+              </Styled.PageInfo.Override>
+            </Tooltip>
           )}
         </Stack>
       </Styled.PageInfo.ToolbarWrapper>
