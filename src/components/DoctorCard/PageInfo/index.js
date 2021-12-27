@@ -21,7 +21,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { state } = useLocation();
 
   const { lng } = useParams();
-  const accepts = doctor.accepts === 'y';
 
   const [type, ageGroup] = doctor.type.split('-');
 
@@ -99,7 +98,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               load={doctor.load}
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
-              accepts={accepts}
+              accepts={doctor.accepts}
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability

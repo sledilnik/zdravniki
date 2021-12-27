@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import * as Styled from '../styles';
 
 const Accepts = function Accepts({ accepts }) {
-  const iconName = accepts ? 'CheckGreen' : 'BanRed';
-  const text = accepts ? t('accepts').toUpperCase() : t('rejects').toUpperCase();
+  const iconName = accepts === 'y' ? 'CheckGreen' : 'BanRed';
+  const text = accepts === 'y' ? t('accepts').toUpperCase() : t('rejects').toUpperCase();
 
   return (
     <Styled.AcceptsStack direction="row" accepts={accepts}>
@@ -16,7 +16,7 @@ const Accepts = function Accepts({ accepts }) {
 };
 
 Accepts.propTypes = {
-  accepts: PropTypes.bool.isRequired,
+  accepts: PropTypes.oneOf(['y', 'n']).isRequired,
 };
 
 export default Accepts;

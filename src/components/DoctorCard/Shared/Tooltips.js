@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -5,9 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
-
-const getAcceptText = (accepts, translationFunc) =>
-  accepts === 'y' ? translationFunc('accepts') : translationFunc('rejects');
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
   const { t } = useTranslation();
@@ -31,6 +30,17 @@ export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverrid
       )}
     </Stack>
   );
+};
+
+HeadQuotient.defaultProps = {
+  hasOverride: undefined,
+};
+
+HeadQuotient.propTypes = {
+  load: PropTypes.string.isRequired,
+  note: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  hasOverride: PropTypes.bool,
 };
 
 export const Availability = function Availability({ date, hasOverride }) {
@@ -63,8 +73,8 @@ export const Updated = function Updated({
 
   const { lng } = useParams();
 
-  const acceptsOverrideText = getAcceptText(acceptsOverride, t);
-  const acceptsZZZSText = getAcceptText(acceptsZZZS, t);
+  const acceptsOverrideText = acceptsOverride === 'y' ? t('accepts') : t('rejects');
+  const acceptsZZZSText = acceptsZZZS === 'y' ? t('accepts') : t('rejects');
 
   const availabilityZZZSText = toPercent(availabilityZZZS, lng);
   const availabilityOverrideText = toPercent(availabilityOverride, lng);
@@ -95,3 +105,13 @@ export const TooltipDivider = styled(Divider)(() => ({
   borderColor: 'rgba(255,255,255,0.5)',
   margin: '5px 0',
 }));
+
+Updated.propTypes = {
+  note: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  acceptsZZZS: PropTypes.oneOf(['y', 'n']).isRequired,
+  availabilityZZZS: PropTypes.string.isRequired,
+  acceptsOverride: PropTypes.oneOf(['y', 'n', undefined]).isRequired,
+  availabilityOverride: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)])
+    .isRequired,
+};

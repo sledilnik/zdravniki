@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
 
+import PropTypes from 'prop-types';
+
 import SingleChart from 'components/Shared/CircleChart';
 import * as Icons from 'components/Shared/Icons';
 
 import Accepts from './Accepts';
-import * as Tooltips from './Tooltips';
 
 import {
   TypeTranslate,
@@ -17,6 +18,8 @@ import {
 import * as Styled from '../styles';
 
 import { toPercent } from '../utils';
+
+import * as Tooltips from './Tooltips';
 
 export * as Tooltip from './Tooltips';
 
@@ -63,6 +66,15 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   );
 };
 
+DoubleChip.defaultProps = {
+  ageGroup: undefined,
+};
+
+DoubleChip.propTypes = {
+  type: PropTypes.string.isRequired,
+  ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+};
+
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
   return (
     <Tooltip
@@ -77,6 +89,18 @@ export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, h
       </Styled.InfoWrapper>
     </Tooltip>
   );
+};
+
+HeadQuotient.defaultProps = {
+  hasOverride: false,
+};
+
+HeadQuotient.propTypes = {
+  date: PropTypes.string.isRequired,
+  note: PropTypes.string.isRequired,
+  load: PropTypes.string.isRequired,
+  accepts: PropTypes.oneOf(['y', 'n']).isRequired,
+  hasOverride: PropTypes.bool,
 };
 
 export const Availability = function Availability({ date, availability, hasOverride }) {
@@ -95,4 +119,14 @@ export const Availability = function Availability({ date, availability, hasOverr
       </Styled.InfoWrapper>
     </Tooltip>
   );
+};
+
+Availability.defaultProps = {
+  hasOverride: false,
+};
+
+Availability.propTypes = {
+  date: PropTypes.string.isRequired,
+  availability: PropTypes.string.isRequired,
+  hasOverride: PropTypes.bool,
 };
