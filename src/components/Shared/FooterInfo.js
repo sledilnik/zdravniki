@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-// import i18next, { t } from 'i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { useTimestamps } from 'context/timestampsContext';
 
 export const FooterInfo = styled('div')(({ theme }) => ({
   fontSize: '12px',
@@ -29,14 +29,21 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  /*
-  const lastChange = () =>
-    Intl.DateTimeFormat(i18next.language, {
+  const { t, i18n } = useTranslation();
+
+  const { drTs } = useTimestamps();
+
+  const lngTranslate = {
+    sl: 'sl-SL',
+    en: 'en-GB',
+  };
+
+  const lastChange = ts =>
+    Intl.DateTimeFormat(lngTranslate[i18n.language], {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    }).format(new Date('2021-05-13'));
-   */
+    }).format(new Date(ts));
 
   return (
     <FooterInfo className={(isDrPage && 'is-dr-page') || ''}>
@@ -52,10 +59,8 @@ const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
       >
         GURS
       </a>
-      {/*
       <br />
-      {t('footer.lastChange')}: <strong>{lastChange()}</strong>
-      */}
+      {t('footer.lastChange')}: <strong>{lastChange(drTs)}</strong>
       <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
     </FooterInfo>
   );
