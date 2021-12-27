@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import { ChildrenPropType } from '../types';
 
 const LeafletContext = createContext();
 
@@ -13,7 +13,7 @@ export const LeafletProvider = function LeafletProvider({ children }) {
 };
 
 LeafletProvider.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: ChildrenPropType.isRequired,
 };
 
 export function useLeafletContext() {

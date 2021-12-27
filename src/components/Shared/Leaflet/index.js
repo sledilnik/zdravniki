@@ -3,6 +3,7 @@ import { memo } from 'react';
 import { MapContainer, AttributionControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import PropTypes from 'prop-types';
+import { ChildrenPropType } from '../../../types';
 
 export * as Markers from './Markers';
 
@@ -20,7 +21,7 @@ const Leaflet = function Leaflet({ children, height, ...other }) {
 };
 
 Leaflet.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: ChildrenPropType.isRequired,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 

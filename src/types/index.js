@@ -28,3 +28,8 @@ export const DoctorPropType = PropTypes.shape({
   getAcceptText: PropTypes.func,
   formatUpdatedAt: PropTypes.func,
 });
+
+export const ChildrenPropType = PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.node),
+  PropTypes.node,
+]);

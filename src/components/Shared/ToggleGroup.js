@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import MuiPaper from '@mui/material/Paper';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import PropTypes from 'prop-types';
+import { ChildrenPropType } from '../../types';
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
   display: 'flex',
@@ -71,7 +72,7 @@ const ToggleGroup = function ToggleGroup({ children, value, setValue, ...props }
 };
 
 ToggleGroup.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  children: ChildrenPropType.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
 };
