@@ -1,18 +1,19 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
+import { toPercent } from '../utils';
 
 export const HeadQuotient = function HeadQuotient({ load, note, date }) {
-  const hasOverride = note;
+  const { t } = useTranslation();
 
   return (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
       <Typography variant="body2">{parseFloat(load)}</Typography>
-      {hasOverride && (
+      {date && (
         <>
           <TooltipDivider />
           <Stack sx={{ textAlign: 'start' }}>
@@ -30,6 +31,8 @@ export const HeadQuotient = function HeadQuotient({ load, note, date }) {
 };
 
 export const Availability = function Availability({ date }) {
+  const { t } = useTranslation();
+
   return (
     <Stack>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
@@ -46,8 +49,13 @@ export const Availability = function Availability({ date }) {
 };
 
 export const Updated = function Updated({ doctor }) {
+  const { t } = useTranslation();
+
   const { lng } = useParams();
   const hasOverride = doctor.availabilityOverride || doctor.note;
+
+  const availabilityZZZS = toPercent(doctor.availabilityZZZS, lng);
+  const availabilityOverride = toPercent(doctor.availabilityOverride, lng);
 
   return (
     <Stack sx={{ textAlign: 'left' }}>
@@ -58,12 +66,12 @@ export const Updated = function Updated({ doctor }) {
       {hasOverride && (
         <>
           <TooltipDivider />
-          <Typography variant="body3">
+          <Typography variant="caption">
             {doctor.note && <p>{doctor.note}</p>}
             {doctor.availabilityOverride && (
               <p>
-                {t('doctorAvailabilityLabel')}: {doctor.availabilityZZZS * 100}% →{' '}
-                <strong>{doctor.availabilityOverride * 100}%</strong>
+                {t('doctorAvailabilityLabel')}: {availabilityZZZS} →{' '}
+                <strong>{availabilityOverride}</strong>
               </p>
             )}
           </Typography>
