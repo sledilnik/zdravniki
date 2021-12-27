@@ -45,7 +45,6 @@ HeadQuotient.propTypes = {
 
 export const Availability = function Availability({ date, hasOverride }) {
   const { t } = useTranslation();
-
   return (
     <Stack>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
@@ -107,11 +106,11 @@ export const TooltipDivider = styled(Divider)(() => ({
 }));
 
 Updated.propTypes = {
-  note: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
-  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  note: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   acceptsZZZS: PropTypes.oneOf(['y', 'n']).isRequired,
   availabilityZZZS: PropTypes.string.isRequired,
-  acceptsOverride: PropTypes.oneOf(['y', 'n', undefined]).isRequired,
+  acceptsOverride: PropTypes.oneOf(['y', 'n', '']).isRequired,
   availabilityOverride: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)])
     .isRequired,
 };
