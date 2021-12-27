@@ -63,6 +63,9 @@ export function createDoctor(doctor, institution) {
     get accepts() {
       return accepts;
     },
+    get availabilityZZZS() {
+      return availabilityZZZS;
+    },
     get availability() {
       return availabilityOverride || availabilityZZZS;
     },

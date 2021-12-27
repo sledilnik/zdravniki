@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { CardContent, Typography, Tooltip, Stack, Alert } from '@mui/material';
+import { CardContent, Typography, Stack, Alert } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
 import { useFilter } from 'context/filterContext';
-import SingleChart from 'components/Shared/CircleChart';
 
 import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
@@ -14,7 +13,6 @@ import ReportError from '../ReportError';
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
-import { toPercent } from '../utils';
 import { AgeGroupTranslate } from '../dicts';
 
 const PageInfo = function PageInfo({ doctor, isReportError }) {
@@ -27,7 +25,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
 
   const [type, ageGroup] = doctor.type.split('-');
 
-  const availabilityText = toPercent(doctor.availability, lng);
   const websiteText = doctor.website && new URL(doctor.website).host;
   const emailText = doctor.email;
   const orderformText = doctor.orderform && t('orderform');
@@ -98,35 +95,17 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
 
         <Stack sx={{ mt: { md: 2 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Tooltip
-              title={
-                <Shared.Tooltip.HeadQuotient
-                  load={doctor.load}
-                  note={doctor.note && <p>{doctor.note}</p>}
-                  date={doctor.note && <p>{doctor.formatUpdatedAt(lng)}</p>}
-                />
-              }
-              leaveTouchDelay={3000}
-              enterTouchDelay={50}
-            >
-              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <Shared.Accepts accepts={accepts} />
-              </Styled.InfoWrapper>
-            </Tooltip>
-            <Tooltip
-              title={
-                <Shared.Tooltip.Availability
-                  date={doctor.availabilityOverride && <p>{doctor.formatUpdatedAt(lng)}</p>}
-                />
-              }
-              leaveTouchDelay={3000}
-              enterTouchDelay={50}
-            >
-              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
-                <SingleChart size="26px" percent={doctor.availability} />
-                <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
-              </Styled.InfoWrapper>
-            </Tooltip>
+            <Shared.HeadQuotient
+              load={doctor.load}
+              note={doctor.note}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              accepts={accepts}
+            />
+            <Shared.Availability
+              availability={doctor.availability}
+              override={doctor.availabilityOverride}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+            />
           </Stack>
         </Stack>
 
@@ -193,9 +172,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           {doctor.updatedAt && (
             <Styled.PageInfo.Changed
               className="updated-label"
-              title={
-                <Shared.Tooltip.Updated note={doctor.note} date={doctor.formatUpdatedAt(lng)} />
-              }
+              title={<Shared.Tooltip.Updated doctor={doctor} />}
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
