@@ -8,12 +8,13 @@ import { toPercent } from '../utils';
 
 export const HeadQuotient = function HeadQuotient({ load, note, date }) {
   const { t } = useTranslation();
+  const hasOverride = note;
 
   return (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
       <Typography variant="body2">{parseFloat(load)}</Typography>
-      {date && (
+      {hasOverride && (
         <>
           <TooltipDivider />
           <Stack sx={{ textAlign: 'start' }}>
@@ -30,13 +31,14 @@ export const HeadQuotient = function HeadQuotient({ load, note, date }) {
   );
 };
 
-export const Availability = function Availability({ date }) {
+export const Availability = function Availability({ override, date }) {
   const { t } = useTranslation();
+  const hasOverride = override;
 
   return (
     <Stack>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
-      {date && (
+      {hasOverride && (
         <>
           <TooltipDivider />
           <Typography variant="caption">
@@ -70,8 +72,7 @@ export const Updated = function Updated({ doctor }) {
             {doctor.note && <p>{doctor.note}</p>}
             {doctor.availabilityOverride && (
               <p>
-                {t('doctorAvailabilityLabel')}: {availabilityZZZS} →{' '}
-                <strong>{availabilityOverride}</strong>
+                {t('doctorAvailabilityLabel')}: {availabilityZZZS} → {availabilityOverride}
               </p>
             )}
           </Typography>

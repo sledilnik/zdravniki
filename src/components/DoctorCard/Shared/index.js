@@ -77,13 +77,13 @@ export const HeadQuotient = function HeadQuotient({ load, note, date, accepts })
   );
 };
 
-export const Availability = function Availability({ date, availability }) {
+export const Availability = function Availability({ availability, override, date }) {
   const { lng } = useParams();
   const availabilityText = toPercent(availability, lng);
 
   return (
     <Tooltip
-      title={<Tooltips.Availability date={date} />}
+      title={<Tooltips.Availability override={override} date={date} />}
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >

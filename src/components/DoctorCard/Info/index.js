@@ -64,6 +64,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             />
             <Shared.Availability
               availability={doctor.availability}
+              override={doctor.availabilityOverride}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
             />
           </Stack>

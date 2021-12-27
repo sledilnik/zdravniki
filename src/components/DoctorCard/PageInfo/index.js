@@ -103,6 +103,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
             />
             <Shared.Availability
               availability={doctor.availability}
+              override={doctor.availabilityOverride}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
             />
           </Stack>
