@@ -10,7 +10,6 @@ import * as Shared from '../Shared';
 const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
   const { lng } = useParams();
   const { map } = useLeafletContext();
-  const accepts = doctor.accepts === 'y';
   const [type, ageGroup] = doctor.type.split('-');
 
   const navigate = useNavigate();
@@ -60,12 +59,13 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               load={doctor.load}
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
-              accepts={accepts}
+              accepts={doctor.accepts}
+              hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
-              override={doctor.availabilityOverride}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
         </Stack>

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -6,9 +8,8 @@ import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
-export const HeadQuotient = function HeadQuotient({ load, note, date }) {
+export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
   const { t } = useTranslation();
-  const hasOverride = note;
 
   return (
     <Stack sx={{ textAlign: 'center' }}>
@@ -31,10 +32,19 @@ export const HeadQuotient = function HeadQuotient({ load, note, date }) {
   );
 };
 
-export const Availability = function Availability({ override, date }) {
-  const { t } = useTranslation();
-  const hasOverride = override;
+HeadQuotient.defaultProps = {
+  hasOverride: undefined,
+};
 
+HeadQuotient.propTypes = {
+  load: PropTypes.string.isRequired,
+  note: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
+  hasOverride: PropTypes.bool,
+};
+
+export const Availability = function Availability({ date, hasOverride }) {
+  const { t } = useTranslation();
   return (
     <Stack>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
@@ -50,33 +60,41 @@ export const Availability = function Availability({ override, date }) {
   );
 };
 
-export const Updated = function Updated({ doctor }) {
+export const Updated = function Updated({
+  date,
+  acceptsOverride,
+  availabilityOverride,
+  acceptsZZZS,
+  availabilityZZZS,
+  note,
+}) {
   const { t } = useTranslation();
 
   const { lng } = useParams();
-  const hasOverride = doctor.availabilityOverride || doctor.note;
 
-  const availabilityZZZS = toPercent(doctor.availabilityZZZS, lng);
-  const availabilityOverride = toPercent(doctor.availabilityOverride, lng);
+  const acceptsOverrideText = acceptsOverride === 'y' ? t('accepts') : t('rejects');
+  const acceptsZZZSText = acceptsZZZS === 'y' ? t('accepts') : t('rejects');
+
+  const availabilityZZZSText = toPercent(availabilityZZZS, lng);
+  const availabilityOverrideText = toPercent(availabilityOverride, lng);
 
   return (
     <Stack sx={{ textAlign: 'left' }}>
       <Typography variant="caption">
         {t('changedOn')}
-        {doctor.formatUpdatedAt(lng)}
+        {date}
       </Typography>
-      {hasOverride && (
-        <>
-          <TooltipDivider />
-          <Typography variant="caption">
-            {doctor.note && <p>{doctor.note}</p>}
-            {doctor.availabilityOverride && (
-              <p>
-                {t('doctorAvailabilityLabel')}: {availabilityZZZS} → {availabilityOverride}
-              </p>
-            )}
-          </Typography>
-        </>
+      <TooltipDivider />
+      {note && <Typography variant="caption">{note}</Typography>}
+      {availabilityOverride && (
+        <Typography variant="caption">
+          {t('doctorAvailabilityLabel')}: {availabilityZZZSText} → {availabilityOverrideText}
+        </Typography>
+      )}
+      {acceptsOverride && (
+        <Typography variant="caption">
+          {acceptsZZZSText} → {acceptsOverrideText}
+        </Typography>
       )}
     </Stack>
   );
@@ -86,3 +104,13 @@ export const TooltipDivider = styled(Divider)(() => ({
   borderColor: 'rgba(255,255,255,0.5)',
   margin: '5px 0',
 }));
+
+Updated.propTypes = {
+  note: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  acceptsZZZS: PropTypes.oneOf(['y', 'n']).isRequired,
+  availabilityZZZS: PropTypes.string.isRequired,
+  acceptsOverride: PropTypes.oneOf(['y', 'n', '']).isRequired,
+  availabilityOverride: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)])
+    .isRequired,
+};

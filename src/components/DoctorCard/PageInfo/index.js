@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CardContent, Typography, Stack, Alert } from '@mui/material';
+import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -21,7 +21,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const { state } = useLocation();
 
   const { lng } = useParams();
-  const accepts = doctor.accepts === 'y';
 
   const [type, ageGroup] = doctor.type.split('-');
 
@@ -99,12 +98,13 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
               load={doctor.load}
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
-              accepts={accepts}
+              accepts={doctor.accepts}
+              hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
-              override={doctor.availabilityOverride}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
         </Stack>
@@ -170,16 +170,24 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
           </Styled.PageInfo.BackWrapper>
 
           {doctor.updatedAt && (
-            <Styled.PageInfo.Changed
-              className="updated-label"
-              title={<Shared.Tooltip.Updated doctor={doctor} />}
+            <Tooltip
+              title={
+                <Shared.Tooltip.Updated
+                  date={doctor.formatUpdatedAt(lng)}
+                  note={doctor.note}
+                  acceptsOverride={doctor.acceptsOverride}
+                  acceptsZZZS={doctor.acceptsZZZS}
+                  availabilityOverride={doctor.availabilityOverride}
+                  availabilityZZZS={doctor.availabilityZZZS}
+                />
+              }
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
-              <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
+              <Styled.PageInfo.Override direction="row" alignItems="center" spacing={1}>
                 <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(lng)}
-              </Styled.InfoWrapper>
-            </Styled.PageInfo.Changed>
+              </Styled.PageInfo.Override>
+            </Tooltip>
           )}
         </Stack>
       </Styled.PageInfo.ToolbarWrapper>

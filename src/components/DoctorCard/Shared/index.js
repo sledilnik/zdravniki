@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
 
+import PropTypes from 'prop-types';
+
 import SingleChart from 'components/Shared/CircleChart';
 import * as Icons from 'components/Shared/Icons';
 
 import Accepts from './Accepts';
-import * as Tooltips from './Tooltips';
 
 import {
   TypeTranslate,
@@ -17,6 +18,8 @@ import {
 import * as Styled from '../styles';
 
 import { toPercent } from '../utils';
+
+import * as Tooltips from './Tooltips';
 
 export * as Tooltip from './Tooltips';
 
@@ -36,13 +39,8 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
 
   const isDentist = type === 'den';
 
-  const first = isDentist ? (
-    <Styled.PageInfo.First direction="row" component="span" spacing={1}>
-      <Icons.Icon name={typeIcon} className="icon" />
-      <span className="text">{t(`${drType}`)}</span>
-    </Styled.PageInfo.First>
-  ) : (
-    <Styled.PageInfo.First single direction="row" component="span" spacing={1}>
+  const first = (
+    <Styled.PageInfo.First single={!isDentist ? 1 : 0} direction="row" component="span" spacing={1}>
       <Icons.Icon name={typeIcon} className="icon" />
       <span className="text">{t(`${drType}`)}</span>
     </Styled.PageInfo.First>
@@ -63,10 +61,21 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
   );
 };
 
-export const HeadQuotient = function HeadQuotient({ load, note, date, accepts }) {
+DoubleChip.defaultProps = {
+  ageGroup: undefined,
+};
+
+DoubleChip.propTypes = {
+  type: PropTypes.string.isRequired,
+  ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+};
+
+export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
   return (
     <Tooltip
-      title={<Tooltips.HeadQuotient load={load} note={note} date={date} />}
+      title={
+        <Tooltips.HeadQuotient load={load} note={note} date={date} hasOverride={hasOverride} />
+      }
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
@@ -77,13 +86,25 @@ export const HeadQuotient = function HeadQuotient({ load, note, date, accepts })
   );
 };
 
-export const Availability = function Availability({ availability, override, date }) {
+HeadQuotient.defaultProps = {
+  hasOverride: false,
+};
+
+HeadQuotient.propTypes = {
+  date: PropTypes.string.isRequired,
+  note: PropTypes.string.isRequired,
+  load: PropTypes.string.isRequired,
+  accepts: PropTypes.oneOf(['y', 'n']).isRequired,
+  hasOverride: PropTypes.bool,
+};
+
+export const Availability = function Availability({ date, availability, hasOverride }) {
   const { lng } = useParams();
   const availabilityText = toPercent(availability, lng);
 
   return (
     <Tooltip
-      title={<Tooltips.Availability override={override} date={date} />}
+      title={<Tooltips.Availability date={date} hasOverride={hasOverride} />}
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
@@ -93,4 +114,14 @@ export const Availability = function Availability({ availability, override, date
       </Styled.InfoWrapper>
     </Tooltip>
   );
+};
+
+Availability.defaultProps = {
+  hasOverride: false,
+};
+
+Availability.propTypes = {
+  date: PropTypes.string.isRequired,
+  availability: PropTypes.string.isRequired,
+  hasOverride: PropTypes.bool,
 };
