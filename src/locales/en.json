@@ -76,7 +76,11 @@
     },
     "footer": {
         "dataSource": "Data source",
-        "lastChange": "Last data update on {{ date, %A, %B %e, %Y }}"
+        "lastChange": "Last data update on"
     },
-    "orderform": "get appointment"
+    "orderform": "get appointment",
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "at"
+    }
 }

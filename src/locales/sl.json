@@ -76,7 +76,11 @@
     },
     "footer": {
         "dataSource": "Vir podatkov",
-        "lastChange": "Zadnja sprememba podatkov"
+        "lastChange": "Zadnja sprememba"
     },
-    "orderform": "naročanje"
+    "orderform": "naročanje",
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "ob"
+    }
 }
