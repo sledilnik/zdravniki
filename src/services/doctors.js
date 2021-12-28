@@ -82,7 +82,7 @@ export function createDoctor(doctor, institution) {
       return email;
     },
     get fullAddress() {
-      return `${addressObject.street}, ${addressObject.city}`;
+      return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.post}`;
     },
     get geoLocation() {
       return geoLocation;
