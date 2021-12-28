@@ -9,33 +9,20 @@ export const TimestampsConsumer = TimestampsContext.Consumer;
 
 const TimestampsProvider = function TimestampsProvider({ children }) {
   const [drTs, setDrTs] = useState(null);
-  const [instTs, setInstTs] = useState(null);
 
   const drTsRequest = useFetchTs(CSV_URL.DOCTORS_TS);
-  const instTsRequest = useFetchTs(CSV_URL.INSTITUTIONS_TS);
 
   useEffect(() => {
     if (!drTsRequest.isFetching && !drTsRequest.error) {
       setDrTs(drTsRequest.ts * 1000);
     }
-    if (!instTsRequest.isFetching && !instTsRequest.error) {
-      setInstTs(instTsRequest.ts * 1000);
-    }
-  }, [
-    drTsRequest.error,
-    drTsRequest.isFetching,
-    drTsRequest.ts,
-    instTsRequest.error,
-    instTsRequest.isFetching,
-    instTsRequest.ts,
-  ]);
+  }, [drTsRequest.error, drTsRequest.isFetching, drTsRequest.ts]);
 
   const timestamps = useMemo(
     () => ({
       drTs,
-      instTs,
     }),
-    [drTs, instTs],
+    [drTs],
   );
 
   return <TimestampsContext.Provider value={timestamps}>{children}</TimestampsContext.Provider>;
