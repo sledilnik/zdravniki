@@ -78,5 +78,6 @@
         "dataSource": "Data source",
         "lastChange": "Last data update on {{ date, %A, %B %e, %Y }}"
     },
-    "orderform": "get appointment"
+    "orderform": "get appointment",
+    "intlDatetime": "{{date: datetime}}"
 }

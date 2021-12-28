@@ -1,6 +1,8 @@
-import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+
+import { styled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
+
 import { useTimestamps } from 'context/timestampsContext';
 
 export const FooterInfo = styled('div')(({ theme }) => ({
@@ -29,21 +31,17 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  const { t, i18n } = useTranslation();
-
+  const { t } = useTranslation();
   const { drTs } = useTimestamps();
 
-  const lngTranslate = {
-    sl: 'sl-SL',
-    en: 'en-GB',
-  };
-
-  const lastChange = ts =>
-    Intl.DateTimeFormat(lngTranslate[i18n.language], {
+  const date = t('intlDatetime', {
+    date: drTs,
+    formatParams: {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    }).format(new Date(ts));
+    },
+  });
 
   return (
     <FooterInfo className={(isDrPage && 'is-dr-page') || ''}>
@@ -60,7 +58,7 @@ const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
         GURS
       </a>
       <br />
-      {t('footer.lastChange')}: <strong>{lastChange(drTs)}</strong>
+      {t('footer.lastChange')}: <strong>{date}</strong>
       <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
     </FooterInfo>
   );
