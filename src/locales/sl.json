@@ -78,5 +78,9 @@
         "dataSource": "Vir podatkov",
         "lastChange": "Zadnja sprememba podatkov"
     },
-    "orderform": "naročanje"
+    "orderform": "naročanje",
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": "ob"
+    }
 }

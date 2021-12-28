@@ -31,19 +31,29 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { drTs } = useTimestamps();
-  const lngTranslate = {
-    sl: 'sl-SL',
-    en: 'en-GB',
-  };
 
-  const lastChange = ts =>
-    Intl.DateTimeFormat(lngTranslate[i18n.language], {
-      year: 'numeric',
-      month: 'long',
-      day: '2-digit',
-    }).format(new Date(ts));
+  const date = t('timestamps.datetime', {
+    val: new Date(drTs),
+    formatParams: {
+      val: {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      },
+    },
+  });
+
+  const time = t('timestamps.datetime', {
+    val: new Date(drTs),
+    formatParams: {
+      val: { hour: 'numeric', minute: 'numeric', hour12: false },
+    },
+  });
+
+  const updatedAt = `${date} ${t('timestamps.at')} ${time}`;
 
   return (
     <FooterInfo className={(isDrPage && 'is-dr-page') || ''}>
@@ -60,7 +70,7 @@ const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
         GURS
       </a>
       <br />
-      {t('footer.lastChange')}: <strong>{lastChange(drTs)}</strong>
+      {t('footer.lastChange')}: <strong>{updatedAt}</strong>.
       <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
     </FooterInfo>
   );
