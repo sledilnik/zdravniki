@@ -76,8 +76,7 @@
     },
     "footer": {
         "dataSource": "Data source",
-        "lastChange": "Last data update on {{ date, %A, %B %e, %Y }}"
+        "lastChange": "Last data update on"
     },
-    "orderform": "get appointment",
-    "intlDatetime": "{{date: datetime}}"
+    "orderform": "get appointment"
 }

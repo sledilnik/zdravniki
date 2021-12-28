@@ -31,17 +31,19 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { drTs } = useTimestamps();
+  const lngTranslate = {
+    sl: 'sl-SL',
+    en: 'en-GB',
+  };
 
-  const date = t('intlDatetime', {
-    date: drTs,
-    formatParams: {
+  const lastChange = ts =>
+    Intl.DateTimeFormat(lngTranslate[i18n.language], {
       year: 'numeric',
       month: 'long',
       day: '2-digit',
-    },
-  });
+    }).format(new Date(ts));
 
   return (
     <FooterInfo className={(isDrPage && 'is-dr-page') || ''}>
@@ -58,7 +60,7 @@ const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
         GURS
       </a>
       <br />
-      {t('footer.lastChange')}: <strong>{date}</strong>
+      {t('footer.lastChange')}: <strong>{lastChange(drTs)}</strong>
       <br />© 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
     </FooterInfo>
   );

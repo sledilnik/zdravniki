@@ -78,6 +78,5 @@
         "dataSource": "Vir podatkov",
         "lastChange": "Zadnja sprememba podatkov"
     },
-    "orderform": "naročanje",
-    "intlDatetime": "{{date: datetime}}"
+    "orderform": "naročanje"
 }
