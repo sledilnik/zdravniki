@@ -1,18 +1,24 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { filterContext } from 'context';
-import DoctorCard from 'components/DoctorCard';
-import { useLeafletContext } from 'context/leafletContext';
-import { MAP } from 'const';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
+
 import { Alert } from '@mui/material';
-import * as Styled from './styles';
-import { MainScrollTop } from '../Shared/ScrollTop';
+
+import { MAP } from 'const';
+
+import { filterContext } from 'context';
+import { useLeafletContext } from 'context/leafletContext';
+
+import DoctorCard from 'components/DoctorCard';
 import MainMap from './Map';
+import { MainScrollTop } from '../Shared/ScrollTop';
 import FooterInfoCard from '../Shared/FooterInfo';
 import { CardsList } from '../Shared/Loader';
+import MapOnlySnackbar from './MapOnlySnackbar';
+
+import * as Styled from './styles';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -21,6 +27,7 @@ const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
+  const { t } = useTranslation();
   const { state } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
@@ -61,13 +68,10 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
 
   return (
     <Styled.Wrapper show={show}>
+      <MapOnlySnackbar noResults={show === 'map' && noResults} />
       <MainMap className="map" whenCreated={setMap} doctors={doctors} center={center} zoom={zoom} />
       <Styled.WrapperInfinite id="scrollableDiv" className="cards">
-        {noResults && (
-          <Alert sx={{ margin: '24px', borderRadius: '5px' }} severity="info">
-            {t('noResults')}
-          </Alert>
-        )}
+        {noResults && <Alert severity="info">{t('noResults')}</Alert>}
         {dataLoading && <CardsList />}
         <Styled.InfiniteScroll
           id="infiniteScroll"
