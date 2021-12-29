@@ -7,9 +7,13 @@ import { styled } from '@mui/material/styles';
 import MuiSnackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-const Snackbar = styled(MuiSnackbar)(() => ({
+const Snackbar = styled(MuiSnackbar)(({ theme }) => ({
   '&.MuiSnackbar-anchorOriginTopCenter': {
     top: '96px',
+  },
+
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
   },
 }));
 
