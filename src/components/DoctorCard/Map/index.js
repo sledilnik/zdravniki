@@ -1,6 +1,8 @@
 import { MAP } from 'const';
 import Leaflet, { Markers } from 'components/Shared/Leaflet';
+import PropTypes from 'prop-types';
 import MapEvents from './MapEvents';
+import { DoctorPropType } from '../../../types';
 
 const { GEO_LOCATION } = MAP;
 
@@ -35,6 +37,16 @@ function withLeaflet(Component) {
         <MapEvents geoLocation={doctor?.geoLocation} />
       </Component>
     );
+  };
+
+  DoctorMap.propTypes = {
+    doctor: DoctorPropType,
+    handleRoomIconClick: PropTypes.func,
+  };
+
+  DoctorMap.defaultProps = {
+    doctor: undefined,
+    handleRoomIconClick: undefined,
   };
 
   return DoctorMap;
