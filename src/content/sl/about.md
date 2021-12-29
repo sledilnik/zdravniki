@@ -13,16 +13,17 @@ Sodelavci projekta:
 - [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
-- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — FAQ
-- [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — FAQ
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — vsebine
+- [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — vsebine
 - [Luka Renko](https://twitter.com/lukarenko) — koordinacija, podatki, spletna stran
+- [Marko Brumen](https://twitter.com/multikultivator) - družabna omrežja, vsebine
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Miha Eržen](https://github.com/mihaerzen) — spletna stran
 - [Mojca Miklavec](https://github.com/mojca) — podatki
-- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — FAQ, tekstopisje
+- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — vsebine, tekstopisje
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
-- [Veronika Vezjak]() — FAQ
+- [Veronika Vezjak]() — vsebine
 
 
 ## Pogoji uporabe
