@@ -1,6 +1,6 @@
 # Iskalnik po osebnih zdravnikih
 
-Dostop do zdravstva se začne [z izbiro osebnega zdravnika](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), pa naj gre za zdravnika/-ico družinske medicine, pediatra/-injo-, ginekologa/-injo ali zobozdravnika/-ico. Ker je dostopnost zdravnikov in zdravnic družinske medicine v nekaterih delih države pomanjkljiva, mnogi nimajo osebnega zdravnika. Za vse te osebe je dostop do zdravstvenih storitev zelo otežen.
+Dostop do zdravstva se začne [z izbiro osebnega zdravnika](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), pa naj gre za zdravnika/-ico družinske medicine, pediatra/-injo, ginekologa/-injo ali zobozdravnika/-ico. Ker je dostopnost zdravnikov in zdravnic družinske medicine v nekaterih delih države pomanjkljiva, mnogi nimajo osebnega zdravnika. Za vse te osebe je dostop do zdravstvenih storitev zelo otežen.
 
 Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravnikov in zdravnic, ki jih lahko izberemo za osebne zdravnike](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci). Pred leti je [Sebastian Pleško](https://plesko.si/) te podatke že objavil v uporabnejši obliki in dobil pozitiven odziv, žal pa zaradi pogostih sprememb podatkov ZZZS strani ni bilo mogoče redno vzdrževati.
 
