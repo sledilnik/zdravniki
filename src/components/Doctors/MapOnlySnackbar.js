@@ -15,7 +15,7 @@ const Snackbar = styled(MuiSnackbar)(() => ({
 
 const Alert = forwardRef((props, ref) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+  <MuiAlert elevation={6} ref={ref} {...props} />
 ));
 
 const MapOnlySnackbar = function MapOnlySnackbar({ noResults }) {
@@ -47,7 +47,7 @@ const MapOnlySnackbar = function MapOnlySnackbar({ noResults }) {
       onClose={handleClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
-      <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+      <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
         {t('noResults')}
       </Alert>
     </Snackbar>
