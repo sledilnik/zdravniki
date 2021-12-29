@@ -26,7 +26,6 @@ module.exports = {
 
     // @TODO: These should be turned "ON" one by one
     'react/jsx-props-no-spreading': 'warn',
-    'react/prop-types': 'warn',
   },
   settings: {
     'import/resolver': {
