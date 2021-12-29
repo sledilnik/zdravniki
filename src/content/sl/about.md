@@ -16,7 +16,7 @@ Sodelavci projekta:
 - [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — vsebine
 - [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — vsebine
 - [Luka Renko](https://twitter.com/lukarenko) — koordinacija, podatki, spletna stran
-- [Marko Brumen](https://twitter.com/multikultivator) - družabna omrežja, vsebine
+- [Marko Brumen](https://twitter.com/multikultivator) — družabna omrežja, vsebine
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Miha Eržen](https://github.com/mihaerzen) — spletna stran
 - [Mojca Miklavec](https://github.com/mojca) — podatki
