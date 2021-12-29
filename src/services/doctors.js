@@ -1,7 +1,8 @@
-import { t } from 'i18next';
 import slugify from 'slugify';
 
-import { DOCTORS } from 'const';
+import { DOCTORS, MAP } from 'const';
+
+const { GEO_LOCATION } = MAP;
 
 const trimString = str => str.replace(/\s+/g, ' ').trim();
 
@@ -18,7 +19,23 @@ const getAddressObject = (doctor, institution) => {
   };
 };
 
-export function createDoctor(doctor, institution) {
+const DUMMY_INST = {
+  unit: '',
+  name: '',
+  website: '',
+  phone: '',
+  lat: GEO_LOCATION.SL_CENTER[0],
+  lon: GEO_LOCATION.SL_CENTER[1],
+  address: '',
+  city: '',
+  post: '0000 Neznan',
+  municipalityPart: '',
+  municipality: '',
+};
+
+export function createDoctor(doctor, inst) {
+  const institution = inst ?? DUMMY_INST;
+
   const name = trimString(doctor.doctor);
   const nameSlug = slugify(name.toLowerCase());
   const instId = trimString(doctor.id_inst);
@@ -48,7 +65,6 @@ export function createDoctor(doctor, institution) {
   } = doctor;
 
   const accepts = acceptsOverride || acceptsZZZS;
-  const getAcceptText = () => (accepts === 'y' ? t('accepts') : t('rejects'));
 
   const formatUpdatedAt = (lng = 'sl') => {
     const lngTranslate = {
@@ -86,6 +102,9 @@ export function createDoctor(doctor, institution) {
     },
     get geoLocation() {
       return geoLocation;
+    },
+    get hasInstitution() {
+      return !!inst;
     },
     get instId() {
       return instId;
@@ -129,7 +148,6 @@ export function createDoctor(doctor, institution) {
     get website() {
       return website;
     },
-    getAcceptText,
     formatUpdatedAt,
   });
 }
@@ -138,7 +156,9 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   const instKey = DOCTORS.INSTITUTION_KEY;
 
   const doctors = Object.entries(doctorsDict).reduce((acc, [doctorId, doctorData]) => {
-    const doctor = createDoctor(doctorData, institutionsDict[doctorData[instKey]]);
+    const institution = institutionsDict[doctorData[instKey]];
+
+    const doctor = createDoctor(doctorData, institution);
     acc[doctorId] = doctor;
     return acc;
   }, {});
