@@ -65,15 +65,15 @@ const CircleChart = function CircleChart({ percent = 50, stroke, size = '2rem', 
 };
 
 CircleChart.propTypes = {
-  percent: PropTypes.number,
-  stroke: PropTypes.bool,
+  percent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  stroke: PropTypes.string,
   size: PropTypes.string,
   noText: PropTypes.bool,
 };
 
 CircleChart.defaultProps = {
   percent: 50,
-  stroke: false,
+  stroke: undefined,
   size: '2rem',
   noText: true,
 };

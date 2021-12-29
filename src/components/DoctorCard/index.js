@@ -51,13 +51,14 @@ const DoctorCard = function DoctorCard({
 DoctorCard.propTypes = {
   doctor: DoctorPropType.isRequired,
   isPage: PropTypes.bool,
-  handleRoomIconClick: PropTypes.func.isRequired,
+  handleRoomIconClick: PropTypes.func,
   isReportError: PropTypes.bool,
 };
 
 DoctorCard.defaultProps = {
   isPage: false,
   isReportError: false,
+  handleRoomIconClick: undefined,
 };
 
 const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;
