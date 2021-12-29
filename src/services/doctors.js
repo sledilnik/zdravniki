@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import slugify from 'slugify';
 
 import { DOCTORS, MAP } from 'const';
@@ -66,7 +65,6 @@ export function createDoctor(doctor, inst) {
   } = doctor;
 
   const accepts = acceptsOverride || acceptsZZZS;
-  const getAcceptText = () => (accepts === 'y' ? t('accepts') : t('rejects'));
 
   const formatUpdatedAt = (lng = 'sl') => {
     const lngTranslate = {
@@ -150,7 +148,6 @@ export function createDoctor(doctor, inst) {
     get website() {
       return website;
     },
-    getAcceptText,
     formatUpdatedAt,
   });
 }
