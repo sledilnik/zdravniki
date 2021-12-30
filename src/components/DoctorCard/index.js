@@ -7,6 +7,7 @@ import DoctorMap from './Map';
 import * as Styled from './styles';
 import Info from './Info';
 import PageInfo from './PageInfo';
+import { withErrorBoundary } from '../Shared/ErrorBoundary';
 
 const DoctorCard = function DoctorCard({
   doctor,
@@ -47,4 +48,4 @@ const DoctorCard = function DoctorCard({
 };
 
 const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;
-export default memo(DoctorCard, propsAreEqual);
+export default memo(withErrorBoundary(DoctorCard), propsAreEqual);
