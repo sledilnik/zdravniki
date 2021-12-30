@@ -74,6 +74,9 @@
             "note": "opomba"
         }
     },
+    "error": {
+        "title": "Nekaj je šlo narobe"
+    },
     "footer": {
         "dataSource": "Vir podatkov",
         "lastChange": "Zadnja sprememba"
