@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import DoctorCard from 'components/DoctorCard';
 import { Loader } from 'components/Shared';
@@ -11,7 +10,7 @@ import FooterInfoCard from '../components/Shared/FooterInfo';
 
 import * as Styled from './styles/Doctor';
 
-const Doctor = function Doctor({ isReportError = false }) {
+const Doctor = function Doctor() {
   const { doctors } = useDoctors();
   const { lng, type, name, instId } = useParams();
   const [doctor, setDoctor] = useState();
@@ -33,7 +32,7 @@ const Doctor = function Doctor({ isReportError = false }) {
     return (
       <Styled.Main id="main-content" component="main">
         <leafletContext.LeafletProvider>
-          <DoctorCard doctor={doctor} isPage isReportError={isReportError} />
+          <DoctorCard doctor={doctor} isPage />
           <FooterInfoCard isDrPage />
         </leafletContext.LeafletProvider>
       </Styled.Main>
@@ -43,14 +42,6 @@ const Doctor = function Doctor({ isReportError = false }) {
     return <Loader.Center component="main" />;
   }
   return <Navigate to={`/${lng}/404`} />;
-};
-
-Doctor.defaultProps = {
-  isReportError: false,
-};
-
-Doctor.propTypes = {
-  isReportError: PropTypes.bool,
 };
 
 export default Doctor;
