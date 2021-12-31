@@ -30,6 +30,7 @@
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.4",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"
@@ -51,7 +52,7 @@
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
     "eslint": "^8.5.0",
-    "eslint-config-airbnb": "19.0.2",
+    "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
