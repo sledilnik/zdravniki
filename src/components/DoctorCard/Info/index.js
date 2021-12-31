@@ -3,9 +3,11 @@ import { CardContent, Stack, Typography } from '@mui/material';
 
 import { useLeafletContext } from 'context/leafletContext';
 
+import PropTypes from 'prop-types';
 import DoctorActions from './DoctorActions';
 
 import * as Shared from '../Shared';
+import { DoctorPropType } from '../../../types';
 
 const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
   const { lng } = useParams();
@@ -78,6 +80,18 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
       />
     </>
   );
+};
+
+Info.propTypes = {
+  doctor: DoctorPropType,
+  handleZoom: PropTypes.func,
+  isMarker: PropTypes.bool,
+};
+
+Info.defaultProps = {
+  doctor: undefined,
+  handleZoom: undefined,
+  isMarker: false,
 };
 
 // todo try React.memo; don't forget about locales

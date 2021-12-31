@@ -6,6 +6,7 @@ import { Markers } from 'components/Shared/Leaflet';
 import { t } from 'i18next';
 import * as Styled from './styles';
 import Info from '../DoctorCard/Info';
+import { DoctorPropType } from '../../types';
 
 export const User = function User() {
   const [position, setPosition] = useState(null);
@@ -29,6 +30,10 @@ const PopUpData = function PopUpData({ doctor }) {
   );
 };
 
+PopUpData.propTypes = {
+  doctor: DoctorPropType.isRequired,
+};
+
 const areEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;
 export const Doctor = memo(({ doctor }) => {
   const ref = createRef(null);
@@ -47,3 +52,7 @@ export const Doctor = memo(({ doctor }) => {
     />
   );
 }, areEqual);
+
+Doctor.propTypes = {
+  doctor: DoctorPropType.isRequired,
+};

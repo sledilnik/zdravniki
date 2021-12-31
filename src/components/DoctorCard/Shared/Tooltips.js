@@ -60,6 +60,16 @@ export const Availability = function Availability({ date, hasOverride }) {
   );
 };
 
+Availability.propTypes = {
+  date: PropTypes.string,
+  hasOverride: PropTypes.bool,
+};
+
+Availability.defaultProps = {
+  date: undefined,
+  hasOverride: undefined,
+};
+
 export const Updated = function Updated({
   date,
   acceptsOverride,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 
 import * as Styled from '../styles';
+import { ChildrenPropType } from '../../../types';
 // todo find better solution
 export const Link = function Link({ children, self, ...props }) {
   const target = self ? {} : { target: '_blank' };
@@ -11,6 +12,16 @@ export const Link = function Link({ children, self, ...props }) {
       {children}
     </Styled.Link>
   );
+};
+
+Link.propTypes = {
+  children: ChildrenPropType,
+  self: PropTypes.string,
+};
+
+Link.defaultProps = {
+  children: undefined,
+  self: undefined,
 };
 
 // ? uh, needs refactoring; somehow it feels I can join Link and LinkNoRel
@@ -48,4 +59,18 @@ export const ConditionalLink = function ConditionalLink({
       {to ? link : children}
     </Typography>
   );
+};
+
+ConditionalLink.propTypes = {
+  children: ChildrenPropType,
+  to: PropTypes.string,
+  component: PropTypes.string,
+  self: PropTypes.string,
+};
+
+ConditionalLink.defaultProps = {
+  children: undefined,
+  to: undefined,
+  component: undefined,
+  self: undefined,
 };

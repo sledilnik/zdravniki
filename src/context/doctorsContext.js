@@ -3,6 +3,7 @@ import { CSV_URL, DOCTORS } from 'const';
 import { createDoctors } from 'services';
 import { fromArrayWithHeader } from 'utils';
 import useFetchAndParseCsv from '../hooks/useFetchAndParseCsv';
+import { ChildrenPropType } from '../types';
 
 const DoctorsContext = createContext({});
 
@@ -57,5 +58,9 @@ function useDoctors() {
   }
   return context;
 }
+
+DoctorsProvider.propTypes = {
+  children: ChildrenPropType.isRequired,
+};
 
 export { DoctorsProvider, useDoctors };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +15,7 @@ import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
 import { AgeGroupTranslate } from '../dicts';
+import { DoctorPropType } from '../../../types';
 
 const PageInfo = function PageInfo({ doctor }) {
   const { t } = useTranslation();
@@ -193,6 +195,16 @@ const PageInfo = function PageInfo({ doctor }) {
       </Styled.PageInfo.ToolbarWrapper>
     </CardContent>
   );
+};
+
+PageInfo.propTypes = {
+  doctor: DoctorPropType,
+  isReportError: PropTypes.func,
+};
+
+PageInfo.defaultProps = {
+  doctor: undefined,
+  isReportError: undefined,
 };
 
 export default PageInfo;
