@@ -8,6 +8,7 @@ export const Search = styled('div')(({ theme }) => ({
   borderRadius: '25px',
   border: `1px solid ${theme.customColors.borderLight}`,
   height: '48px',
+  overflow: 'hidden',
 
   '&:focus-within': {
     color: theme.customColors.dark,

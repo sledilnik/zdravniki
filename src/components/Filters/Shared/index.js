@@ -16,7 +16,7 @@ export const Text = function Text({ children, show }) {
     </Typography>
   );
 };
-export const TextAllways = function TextAllways({ children, show }) {
+export const TextAlways = function TextAlways({ children, show }) {
   return (
     <Typography
       component="span"
@@ -41,9 +41,9 @@ export const IconToggleButton = function IconToggleButton({
   const show = accept === props.value;
 
   return (
-    <ToggleButton {...props}>
+    <ToggleButton {...props} sx={{ ...props?.sx, gap: text && '5px' }}>
       {show ? <Icon name={iconNames[0]} /> : <Icon name={iconNames[1]} />}
-      {always ? <TextAllways show={show}>{text}</TextAllways> : <Text show={show}>{text}</Text>}
+      {always ? <TextAlways show={show}>{text}</TextAlways> : <Text show={show}>{text}</Text>}
     </ToggleButton>
   );
 };
