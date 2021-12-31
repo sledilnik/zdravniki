@@ -46,6 +46,14 @@ export const Center = function Center({ component = 'div' }) {
   );
 };
 
+Center.defaultProps = {
+  component: 'div',
+};
+
+Center.propTypes = {
+  component: PropTypes.oneOf(['div', 'main']),
+};
+
 export const CardsList = function CardsList({ component = 'div' }) {
   return (
     <WrapperCardsList component={component}>
@@ -54,11 +62,11 @@ export const CardsList = function CardsList({ component = 'div' }) {
   );
 };
 
-Center.defaultProps = {
-  component: 'div',
+CardsList.propTypes = {
+  component: PropTypes.oneOf(['div', 'main']),
 };
 
-Center.propTypes = {
-  component: PropTypes.oneOf(['div', 'main']),
+CardsList.defaultProps = {
+  component: 'div',
 };
 export default Base;
