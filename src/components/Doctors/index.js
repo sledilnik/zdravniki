@@ -6,6 +6,7 @@ import L from 'leaflet';
 
 import { Alert } from '@mui/material';
 
+import PropTypes from 'prop-types';
 import { MAP } from 'const';
 
 import { filterContext } from 'context';
@@ -94,6 +95,15 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
       </Styled.WrapperInfinite>
     </Styled.Wrapper>
   );
+};
+
+Doctors.propTypes = {
+  itemsPerPage: PropTypes.number,
+  useShow: PropTypes.func.isRequired,
+};
+
+Doctors.defaultProps = {
+  itemsPerPage: 10,
 };
 
 export default withErrorBoundary(Doctors);

@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import PropTypes from 'prop-types';
 
 const ExpandMoreButton = styled(({ expand, ...other }) => <IconButton {...other} />)(
   ({ theme, expand }) => ({
@@ -18,6 +19,10 @@ const ExpandMore = function ExpandMore({ expand, ...other }) {
       <ExpandMoreIcon />
     </ExpandMoreButton>
   );
+};
+
+ExpandMore.propTypes = {
+  expand: PropTypes.bool.isRequired,
 };
 
 export default ExpandMore;

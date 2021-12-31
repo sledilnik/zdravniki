@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useState, useEffect, useMemo } 
 import { filterBySearchValueInMapBounds } from '../utils';
 import { useDoctors } from './doctorsContext';
 import { useLeafletContext } from './leafletContext';
+import { ChildrenPropType } from '../types';
 
 const FilterContext = createContext();
 
@@ -72,5 +73,9 @@ function useFilter() {
   }
   return context;
 }
+
+FilterProvider.propTypes = {
+  children: ChildrenPropType.isRequired,
+};
 
 export { FilterProvider, useFilter };

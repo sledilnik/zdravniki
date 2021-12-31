@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
@@ -8,6 +9,7 @@ import * as Styled from './styles';
 import Info from './Info';
 import PageInfo from './PageInfo';
 import { withErrorBoundary } from '../Shared/ErrorBoundary';
+import { DoctorPropType } from '../../types';
 
 const DoctorCard = function DoctorCard({
   doctor,
@@ -45,6 +47,19 @@ const DoctorCard = function DoctorCard({
       <Info doctor={doctor} handleZoom={handleRoomIconClick} />
     </Styled.InfoCard>
   );
+};
+
+DoctorCard.propTypes = {
+  doctor: DoctorPropType.isRequired,
+  isPage: PropTypes.bool,
+  handleRoomIconClick: PropTypes.func,
+  isReportError: PropTypes.bool,
+};
+
+DoctorCard.defaultProps = {
+  isPage: false,
+  isReportError: false,
+  handleRoomIconClick: undefined,
 };
 
 const propsAreEqual = (prevProps, nextProps) => prevProps.doctor.key === nextProps.doctor.key;

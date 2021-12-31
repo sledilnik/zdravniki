@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles';
 import { memo } from 'react';
 import { MapContainer, AttributionControl, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import PropTypes from 'prop-types';
+import { ChildrenPropType } from '../../../types';
 
 export * as Markers from './Markers';
 
@@ -16,6 +18,15 @@ const Leaflet = function Leaflet({ children, height, ...other }) {
       {children}
     </MapContainer>
   );
+};
+
+Leaflet.propTypes = {
+  children: ChildrenPropType.isRequired,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+Leaflet.defaultProps = {
+  height: undefined,
 };
 
 const StyledLeaflet = styled(Leaflet)(() => ({
