@@ -1,6 +1,14 @@
 import L from 'leaflet';
 import { v4 as uuidv4 } from 'uuid';
 
+function normalize(value) {
+  // Replace all non ASCII chars and replace them with closest equivalent (č => c)
+  return value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036F]/g, '');
+}
+
 export function fromArrayWithHeader(arr = [], uniqueFieldName = '') {
   const header = arr[0];
 
@@ -42,10 +50,10 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     }
 
     const isBySearchValue =
-      searchValue.split(' ').every(v => doctor.name.toLowerCase().includes(v.toLowerCase())) ||
-      doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
-      doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
+      searchValue.split(' ').every(v => normalize(doctor.name).includes(normalize(v))) ||
+      [normalize(doctor.searchAddress), normalize(doctor.provider)].some(v =>
+        v.includes(normalize(searchValue)),
+      );
 
     return bounds.intersects(calculatedBounds) && isBySearchValue;
   });
