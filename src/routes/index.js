@@ -74,14 +74,6 @@ const Router = function Router() {
           }
         />
         <Route
-          path="/:lng/:type/:name/:instId/edit"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor isReportError />
-            </Suspense>
-          }
-        />
-        <Route
           path="/:lng/404"
           element={
             <Suspense fallback={<Loader.Center />}>

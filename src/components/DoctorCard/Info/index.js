@@ -20,17 +20,16 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const slug = doctor?.nameSlug;
   const instId = doctor?.instId;
 
-  let path = `/${lng}/${drPath}/${slug}/${instId}`;
+  const path = `/${lng}/${drPath}/${slug}/${instId}`;
 
   const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
-    if (isReportError) {
-      path = `/${lng}/${drPath}/${slug}/${instId}/edit`;
-    }
-    return navigate(path, {
+
+    navigate(path, {
       state: {
         zoom: map?.getZoom(),
         center: map?.getCenter(),
+        isReportError,
         type,
         ageGroup: ageGroup ?? 'adults',
       },

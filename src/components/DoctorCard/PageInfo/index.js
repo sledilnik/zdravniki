@@ -17,7 +17,7 @@ import * as Shared from '../Shared';
 import { AgeGroupTranslate } from '../dicts';
 import { DoctorPropType } from '../../../types';
 
-const PageInfo = function PageInfo({ doctor, isReportError }) {
+const PageInfo = function PageInfo({ doctor }) {
   const { t } = useTranslation();
   const { searchValue } = useFilter();
   const { state } = useLocation();
@@ -29,6 +29,7 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const websiteText = doctor.website && new URL(doctor.website).host;
   const emailText = doctor.email;
   const orderformText = doctor.orderform && t('orderform');
+  const isReportError = state?.isReportError ?? false;
 
   const navigate = useNavigate();
   const handleBackButton = () => {
@@ -49,7 +50,6 @@ const PageInfo = function PageInfo({ doctor, isReportError }) {
   const reportError = () => {
     setIsEditing(true);
     setMessage('');
-    navigate('edit');
   };
 
   if (isEditing) {

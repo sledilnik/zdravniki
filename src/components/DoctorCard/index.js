@@ -10,12 +10,7 @@ import Info from './Info';
 import PageInfo from './PageInfo';
 import { DoctorPropType } from '../../types';
 
-const DoctorCard = function DoctorCard({
-  doctor,
-  isPage = false,
-  handleRoomIconClick,
-  isReportError,
-}) {
+const DoctorCard = function DoctorCard({ doctor, isPage = false, handleRoomIconClick }) {
   const accepts = doctor.accepts === 'y';
   const { map, setMap } = useLeafletContext();
 
@@ -30,7 +25,7 @@ const DoctorCard = function DoctorCard({
     return (
       <Styled.PageInfoCard id={id} accepts={accepts.toString()}>
         <Styled.PageInfoBox id="doctor-box">
-          <PageInfo doctor={doctor} handleZoom={handleZoom} isReportError={isReportError} />
+          <PageInfo doctor={doctor} handleZoom={handleZoom} />
           <CardContent>
             <CardMedia component="div">
               <DoctorMap doctor={doctor} whenCreated={setMap} handleRoomIconClick={handleZoom} />
