@@ -22,7 +22,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet-async": "^1.2.2",
-    "react-i18next": "^11.15.1",
+    "react-i18next": "^11.15.2",
     "react-infinite-scroll-component": "^6.1.0",
     "react-leaflet": "^3.2.2",
     "react-leaflet-markercluster": "^3.0.0-rc1",
@@ -30,6 +30,7 @@
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.4",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"

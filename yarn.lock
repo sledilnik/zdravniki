@@ -9496,7 +9496,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.0:
+prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.0:
   version "15.8.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.0.tgz#d237e624c45a9846e469f5f31117f970017ff588"
   integrity sha512-fDGekdaHh65eI3lMi5OnErU6a8Ighg2KjcjQxO7m8VHyWjcPyj5kiOgV1LQDOOOgVy3+5FgjXvdSSX7B8/5/4g==
@@ -9727,10 +9727,10 @@ react-helmet-async@^1.2.2:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-i18next@^11.15.1:
-  version "11.15.1"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.15.1.tgz#1dec5f2bf2cf7bc5043e9fcb391c9d6e24bb9bfe"
-  integrity sha512-lnje1uKu5XeM5MLvfbt1oygF+nEIZnpOM4Iu8bkx5ECD4XRYgi3SJDmolrp0EDxDHeK2GgFb+vEEK0hsZ9sjeA==
+react-i18next@^11.15.2:
+  version "11.15.2"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.15.2.tgz#5bbbf1ab208d7fb77d93aa8161e06b7d55fb35ff"
+  integrity sha512-28WlZ6tr57RQoIM1x4/gTzvzh3Vvr+YeZwJHTOqV/sLXMFbR+xzjgSMdLnOCDxmlQ0irGN2uM+HT+mYK+3bg6g==
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-escaper "^2.0.2"
@@ -9863,6 +9863,13 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-style-proptype@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.2.2.tgz#d8e998e62ce79ec35b087252b90f19f1c33968a0"
+  integrity sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==
+  dependencies:
+    prop-types "^15.5.4"
 
 react-transition-group@^4.4.2:
   version "4.4.2"
