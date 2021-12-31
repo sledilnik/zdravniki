@@ -18,6 +18,7 @@ function withToggleGroup(Component) {
     return (
       <Component {...injectedProps}>
         <IconToggleButton
+          isMainToggle
           value="y"
           aria-label="accepts"
           accept={accept}
@@ -25,6 +26,7 @@ function withToggleGroup(Component) {
           iconNames={['CheckWhite', 'Check']}
         />
         <IconToggleButton
+          isMainToggle
           value="n"
           aria-label="rejects"
           accept={accept}
@@ -32,6 +34,7 @@ function withToggleGroup(Component) {
           iconNames={['BanWhite', 'Ban']}
         />
         <IconToggleButton
+          isMainToggle
           value="vsi"
           aria-label="all"
           accept={accept}
