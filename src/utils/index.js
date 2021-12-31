@@ -42,6 +42,7 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     }
 
     const isBySearchValue =
+      searchValue.split(' ').every(v => doctor.name.toLowerCase().includes(v.toLowerCase())) ||
       doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
       doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
       doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
