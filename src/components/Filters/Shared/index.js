@@ -2,7 +2,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { Icon } from '../styles/Icon';
-import { ChildrenPropType } from '../../../types';
+import { ChildrenPropType, StylePropType } from '../../../types';
 
 export const Text = function Text({ children, show }) {
   return (
@@ -42,12 +42,12 @@ export const TextAlways = function TextAlways({ children, show }) {
   );
 };
 
-TextAllways.propTypes = {
+TextAlways.propTypes = {
   show: PropTypes.bool.isRequired,
   children: ChildrenPropType,
 };
 
-TextAllways.defaultProps = {
+TextAlways.defaultProps = {
   children: undefined,
 };
 
@@ -73,6 +73,7 @@ IconToggleButton.propTypes = {
   value: PropTypes.string,
   always: PropTypes.bool,
   text: PropTypes.string,
+  sx: StylePropType,
   iconNames: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -81,5 +82,6 @@ IconToggleButton.defaultProps = {
   value: undefined,
   always: false,
   text: undefined,
+  sx: undefined,
   iconNames: [],
 };

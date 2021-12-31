@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import StyleProp from 'react-style-proptype';
+
+export const StylePropType = StyleProp;
 
 export const DoctorPropType = PropTypes.shape({
   accepts: PropTypes.string,
