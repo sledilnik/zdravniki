@@ -4,10 +4,12 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 // import Backend from 'i18next-http-backend';
 import en from './locales/en.json';
 import sl from './locales/sl.json';
+import it from './locales/it.json';
 
 export const languages = [
   { name: 'English', code: 'en' },
   { name: 'Slovenščina', code: 'sl' },
+  { name: 'Italiano', code: 'it' },
 ];
 
 i18next
@@ -21,6 +23,7 @@ i18next
     resources: {
       sl: { translation: sl },
       en: { translation: en },
+      it: { translation: it },
     },
     lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option
     fallbackLng: languages.map(value => value.code),
