@@ -1,6 +1,15 @@
 import L from 'leaflet';
 import { v4 as uuidv4 } from 'uuid';
 
+function normalize(value) {
+  // Replace all non ASCII chars and replace them with closest equivalent (č => c)
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036F]/g, '');
+}
+
 export function fromArrayWithHeader(arr = [], uniqueFieldName = '') {
   const header = arr[0];
 
@@ -32,6 +41,10 @@ export function fromArrayWithHeader(arr = [], uniqueFieldName = '') {
 }
 
 export function filterBySearchValueInMapBounds({ searchValue = '', filtered = [], bounds }) {
+  const sortedQuery = normalize(searchValue)
+    .split(' ')
+    .sort((a, b) => b.length - a.length);
+
   return filtered?.filter(doctor => {
     const { lat, lon } = doctor.geoLocation;
     const corner = L.latLng(lat, lon);
@@ -41,11 +54,23 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
       return bounds.intersects(calculatedBounds);
     }
 
-    const isBySearchValue =
-      doctor.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      doctor.searchAddress.toLowerCase().includes(searchValue.toLowerCase()) ||
-      doctor.provider.toLowerCase().includes(searchValue.toLowerCase());
+    let normalizedName = normalize(doctor.name);
 
-    return bounds.intersects(calculatedBounds) && isBySearchValue;
+    const isNameSearchValue = sortedQuery.every(q => {
+      const includesQuery = normalizedName.includes(q);
+      if (includesQuery) {
+        normalizedName = normalizedName.replace(q, '');
+      }
+      return includesQuery;
+    });
+
+    const isAddressOrProviderSearchValue = [
+      normalize(doctor.searchAddress),
+      normalize(doctor.provider),
+    ].some(v => v.includes(normalize(searchValue)));
+
+    return (
+      bounds.intersects(calculatedBounds) && (isNameSearchValue || isAddressOrProviderSearchValue)
+    );
   });
 }
