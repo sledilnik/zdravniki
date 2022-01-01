@@ -49,8 +49,21 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
       return bounds.intersects(calculatedBounds);
     }
 
+    const sortedQuery = normalize(searchValue)
+      .split(' ')
+      .sort((a, b) => b.length - a.length);
+    let normalizedName = normalize(doctor.name);
+
+    const isNameSearchValue = sortedQuery.every(q => {
+      const includesQuery = normalizedName.includes(q);
+      if (includesQuery) {
+        normalizedName = normalizedName.replace(q, '');
+      }
+      return includesQuery;
+    });
+
     const isBySearchValue =
-      searchValue.split(' ').every(v => normalize(doctor.name).includes(normalize(v))) ||
+      isNameSearchValue ||
       [normalize(doctor.searchAddress), normalize(doctor.provider)].some(v =>
         v.includes(normalize(searchValue)),
       );
