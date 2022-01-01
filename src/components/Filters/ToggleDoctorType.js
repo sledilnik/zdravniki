@@ -61,6 +61,7 @@ function withToggleGroup(Component) {
       <>
         <Component {...injectedPropsDrType}>
           <IconToggleButton
+            isMainToggle
             value="gp"
             aria-label="general practitioner"
             accept={drType}
@@ -68,6 +69,7 @@ function withToggleGroup(Component) {
             iconNames={['FamilyDrWhite', 'Family']}
           />
           <IconToggleButton
+            isMainToggle
             value="ped"
             aria-label="pediatrician"
             accept={drType}
@@ -75,6 +77,7 @@ function withToggleGroup(Component) {
             iconNames={['KidsWhite', 'Kids']}
           />
           <IconToggleButton
+            isMainToggle
             value="gyn"
             aria-label="gynecologist"
             accept={drType}
@@ -82,6 +85,7 @@ function withToggleGroup(Component) {
             iconNames={['GynoWhite', 'Gyno']}
           />
           <IconToggleButton
+            isMainToggle
             value="den"
             aria-label="dentist"
             accept={drType}
