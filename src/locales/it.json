@@ -2,7 +2,8 @@
     "header": {
         "about": "Il progetto",
         "faq": "FAQ",
-        "sledilnik": "Sledilnik.org"
+        "sledilnik": "Sledilnik.org",
+        "menu": "Menu"
     },
     "all": "tutti",
     "dentist": "dentista",
@@ -11,5 +12,21 @@
     "copy": "Copia",
     "copied": "Copiato!",
     "loading": "Caricamento…",
-    "adults": "adulti"
+    "adults": "adulti",
+    "accepts": "accettare",
+    "rejects": "non accettare",
+    "timestamps": {
+        "at": "alle"
+    },
+    "pediatrician": "pediatra",
+    "youth": "gioventù",
+    "search": "Cerca…",
+    "generalPractitioner": "medico generico",
+    "filter": "Filtro",
+    "showAll": "Mostra tutto",
+    "faq": {
+        "title": "Domande frequenti",
+        "description": "In caso di emergenza medica è necessario contattare i servizi di emergenza o chiamare il 112.",
+        "glossary": "Glossario"
+    }
 }
