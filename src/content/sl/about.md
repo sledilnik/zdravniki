@@ -19,10 +19,12 @@ Sodelavci in sodelavke projekta:
 - [Marko Brumen](https://twitter.com/multikultivator) — družabna omrežja, vsebine
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Miha Eržen](https://github.com/mihaerzen) — spletna stran
+- [Mitja Potočin](https://github.com/mitjapotocin) - spletna stran
 - [Mojca Miklavec](https://github.com/mojca) — podatki
 - [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — vsebine, tekstopisje
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
+- [Tadej Polajnar](https://github.com/TadejPolajnar) - spletna stran
 - [Veronika Vezjak]() — vsebine
 
 
