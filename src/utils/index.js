@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 function normalize(value) {
   // Replace all non ASCII chars and replace them with closest equivalent (č => c)
   return value
+    .trim()
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[\u0300-\u036F]/g, '');
@@ -40,6 +41,10 @@ export function fromArrayWithHeader(arr = [], uniqueFieldName = '') {
 }
 
 export function filterBySearchValueInMapBounds({ searchValue = '', filtered = [], bounds }) {
+  const sortedQuery = normalize(searchValue)
+    .split(' ')
+    .sort((a, b) => b.length - a.length);
+
   return filtered?.filter(doctor => {
     const { lat, lon } = doctor.geoLocation;
     const corner = L.latLng(lat, lon);
@@ -49,9 +54,6 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
       return bounds.intersects(calculatedBounds);
     }
 
-    const sortedQuery = normalize(searchValue)
-      .split(' ')
-      .sort((a, b) => b.length - a.length);
     let normalizedName = normalize(doctor.name);
 
     const isNameSearchValue = sortedQuery.every(q => {
@@ -62,12 +64,13 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
       return includesQuery;
     });
 
-    const isBySearchValue =
-      isNameSearchValue ||
-      [normalize(doctor.searchAddress), normalize(doctor.provider)].some(v =>
-        v.includes(normalize(searchValue)),
-      );
+    const isAddressOrProviderSearchValue = [
+      normalize(doctor.searchAddress),
+      normalize(doctor.provider),
+    ].some(v => v.includes(normalize(searchValue)));
 
-    return bounds.intersects(calculatedBounds) && isBySearchValue;
+    return (
+      bounds.intersects(calculatedBounds) && (isNameSearchValue || isAddressOrProviderSearchValue)
+    );
   });
 }
