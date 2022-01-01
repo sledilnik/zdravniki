@@ -47,12 +47,10 @@ DoctorCard.propTypes = {
   doctor: DoctorPropType.isRequired,
   isPage: PropTypes.bool,
   handleRoomIconClick: PropTypes.func,
-  isReportError: PropTypes.bool,
 };
 
 DoctorCard.defaultProps = {
   isPage: false,
-  isReportError: false,
   handleRoomIconClick: undefined,
 };
 

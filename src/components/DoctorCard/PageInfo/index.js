@@ -199,12 +199,10 @@ const PageInfo = function PageInfo({ doctor }) {
 
 PageInfo.propTypes = {
   doctor: DoctorPropType,
-  isReportError: PropTypes.func,
 };
 
 PageInfo.defaultProps = {
   doctor: undefined,
-  isReportError: undefined,
 };
 
 export default PageInfo;
