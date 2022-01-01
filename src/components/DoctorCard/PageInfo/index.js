@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -199,12 +198,10 @@ const PageInfo = function PageInfo({ doctor }) {
 
 PageInfo.propTypes = {
   doctor: DoctorPropType,
-  isReportError: PropTypes.func,
 };
 
 PageInfo.defaultProps = {
   doctor: undefined,
-  isReportError: undefined,
 };
 
 export default PageInfo;
