@@ -28,5 +28,9 @@
         "title": "Domande frequenti",
         "description": "In caso di emergenza medica è necessario contattare i servizi di emergenza o chiamare il 112.",
         "glossary": "Glossario"
+    },
+    "footer": {
+        "dataSource": "Origine dei dati",
+        "lastChange": "Ultimo aggiornamento dei dati su"
     }
 }
