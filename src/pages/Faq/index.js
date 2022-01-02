@@ -5,6 +5,7 @@ import * as SEO from 'components/SEO';
 import { Loader } from 'components/Shared';
 import * as Styled from '../styles/Markdown';
 import Section from './Section';
+import FooterInfoCard from '../../components/Shared/FooterInfo';
 
 const Faq = function Faq() {
   const { t } = useTranslation();
@@ -62,6 +63,7 @@ const Faq = function Faq() {
           <Section data={response?.glossary ?? []} />
         </Styled.StaticPageWrapper>
       </Styled.CustomContainer>
+      <FooterInfoCard isDrPage />
     </>
   );
 };
