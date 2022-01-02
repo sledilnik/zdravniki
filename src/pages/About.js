@@ -5,6 +5,7 @@ import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
 import * as SEO from 'components/SEO';
 import * as Styled from './styles/Markdown';
+import FooterInfoCard from '../components/Shared/FooterInfo';
 
 const MD = {
   en: enAbout,
@@ -48,6 +49,7 @@ const About = function About() {
           </span>
         </Styled.StaticPageWrapper>
       </Styled.CustomContainer>
+      <FooterInfoCard isDrPage />
     </>
   );
 };
