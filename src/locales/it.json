@@ -32,5 +32,10 @@
     "footer": {
         "dataSource": "Origine dei dati",
         "lastChange": "Ultimo aggiornamento dei dati su"
+    },
+    "pageNotFound": {
+        "imageDescription": "due coni stradali collegati da nastro giallo",
+        "somethingWentWrong": "Oops... qualcosa è andato storto :(",
+        "back": "Indietro"
     }
 }
