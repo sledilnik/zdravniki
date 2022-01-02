@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiTextField from '@mui/material/TextField';
 import MuiPaper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
 
 export const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -26,16 +27,25 @@ export const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
+export const ClearInput = styled(IconButton)(() => ({
+  position: 'absolute',
+  right: '10px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+}));
+
 export const InputBase = styled(MuiInputBase)(() => {
-  // ios 16/14 = 1.14285714286, 14/16 = 0.875
-  const scaleUpRatio = 1.14285714286;
-  const scaleDownRatio = 0.875;
+  // We want to have 14px font size, so we need to trick iOS
+  // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
+  const scaleUpRatio = 16 / 14;
+  const scaleDownRatio = 14 / 16;
 
   const height = `${48 * scaleUpRatio}px`;
   const paddingBlock = 0;
-  const paddingRight = `${8 * scaleUpRatio}px`;
+  const paddingRight = `${48 * scaleUpRatio}px`;
   const paddingLeft = `${(16 + 32) * scaleUpRatio}px`;
   const width = `${100 * scaleUpRatio}%`;
+  const searchDecorator = { '-webkit-appearance': 'none' };
 
   const transform = `scale(${scaleDownRatio})`;
 
@@ -58,6 +68,10 @@ export const InputBase = styled(MuiInputBase)(() => {
       transformOrigin: 'left top',
 
       '::placeholder': { fontSize: '16px' },
+      '::-webkit-search-decoration': searchDecorator,
+      '::-webkit-search-results-decoration': searchDecorator,
+      '::-webkit-search-results-button': searchDecorator,
+      '::-webkit-search-cancel-button': searchDecorator,
     },
   };
 });
@@ -87,15 +101,13 @@ export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
   alignItems: 'center',
   flexGrow: 1,
 
-  margin: '0 12px 0 0',
+  margin: 0,
   width: '150px',
   [theme.breakpoints.up('sm')]: {
     width: 'auto',
   },
 
   [theme.breakpoints.up('md')]: {
-    margin: 0,
-    marginRight: '12px',
     width: 'auto',
     justifyContent: 'end',
   },
