@@ -5,6 +5,7 @@ import Leaflet from 'components/Shared/Leaflet';
 import * as Markers from './Markers';
 import MapEvents from './MapEvents';
 import 'react-leaflet-markercluster/dist/styles.min.css';
+import { withErrorBoundary } from '../Shared/ErrorBoundary';
 import { DoctorPropType } from '../../types';
 
 const { GEO_LOCATION } = MAP;
@@ -58,4 +59,4 @@ function withLeaflet(Component) {
   return DoctorsMap;
 }
 
-export default withLeaflet(Leaflet);
+export default withErrorBoundary(withLeaflet(Leaflet));

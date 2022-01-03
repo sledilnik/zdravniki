@@ -20,6 +20,7 @@ import { CardsList } from '../Shared/Loader';
 import MapOnlySnackbar from './MapOnlySnackbar';
 
 import * as Styled from './styles';
+import { withErrorBoundary } from '../Shared/ErrorBoundary';
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -105,7 +106,7 @@ Doctors.defaultProps = {
   itemsPerPage: 10,
 };
 
-export default Doctors;
+export default withErrorBoundary(Doctors);
 
 export function getCenter(doctors) {
   const isArray = Array.isArray(doctors);
