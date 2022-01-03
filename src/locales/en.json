@@ -74,6 +74,9 @@
             "note": "note"
         }
     },
+    "error": {
+        "title": "Something went wrong"
+    },
     "footer": {
         "dataSource": "Data source",
         "lastChange": "Last data update on"

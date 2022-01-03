@@ -13,6 +13,7 @@ import ToggleMapCards from './ToggleMapCards';
 import Search from './Search';
 
 import * as Styled from './styles';
+import { withErrorBoundary } from '../Shared/ErrorBoundary';
 
 const DoctorTypeIcons = {
   gp: <Icons.Icon name="Family" />,
@@ -112,4 +113,4 @@ const Filters = function Filters({ useShow }) {
   return matches ? up : down;
 };
 
-export default Filters;
+export default withErrorBoundary(Filters);
