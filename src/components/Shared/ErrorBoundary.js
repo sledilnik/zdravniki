@@ -32,7 +32,7 @@ const ErrorBoundaryWrapper = function ErrorBoundaryWrapper({ children }) {
 };
 
 ErrorBoundaryWrapper.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 export default ErrorBoundaryWrapper;
