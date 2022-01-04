@@ -15,6 +15,10 @@ export const Search = styled('div')(({ theme }) => ({
     color: theme.customColors.dark,
     boxShadow: '0 0 7px 0 rgba(9,175,218,0.76)',
   },
+
+  [theme.breakpoints.down('md')]: {
+    flexGrow: 1,
+  },
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
