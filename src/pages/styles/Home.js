@@ -17,21 +17,20 @@ export const Box = styled(MuiBox)(({ theme }) => ({
       backgroundColor: 'inherit',
       display: 'block',
       borderRadius: 100,
+      textShadow: '0 0 3px #ffffff90',
     },
   },
 
   '.marker-cluster-accepts-0': {
     backgroundColor: '#CC0C1E45',
     span: {
-      color: lighten('#CC0C1E', 0.9),
-      textShadow: '0 0 3px #00000080',
+      color: darken('#CC0C1E', 0.6),
     },
   },
   '.marker-cluster-accepts-25': {
     backgroundColor: '#FF440045',
     span: {
-      color: lighten('#FF4400', 0.9),
-      textShadow: '0 0 3px #00000080',
+      color: darken('#FF4400', 0.6),
     },
   },
   '.marker-cluster-accepts-50': {
