@@ -1,5 +1,5 @@
 import MuiBox from '@mui/material/Box';
-import { darken, lighten, styled } from '@mui/material/styles';
+import { darken, styled } from '@mui/material/styles';
 
 import { SIZES } from 'const';
 
