@@ -45,6 +45,7 @@ export const Doctor = memo(({ doctor }) => {
       ref={ref}
       center={doctor.geoLocation}
       radius={12}
+      accepts={doctor.accepts}
       stroke={false}
       fillOpacity={0.7}
       fillColor={fillColor}
