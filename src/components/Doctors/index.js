@@ -82,6 +82,11 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
           hasMore={doctorsPagination?.length < doctors?.length}
           scrollableTarget="scrollableDiv"
         >
+          {!noResults && !dataLoading && (
+            <Styled.TotalResults>
+              {t('totalResults', { totalResults: doctors?.length ?? 0 })}
+            </Styled.TotalResults>
+          )}
           {doctorsPagination?.map(doctor => (
             <DoctorCard
               key={doctor.key}
