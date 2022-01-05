@@ -22,33 +22,33 @@ export const Box = styled(MuiBox)(({ theme }) => ({
   },
 
   '.marker-cluster-accepts-0': {
-    backgroundColor: '#CC0C1E45',
+    backgroundColor: '#d32f2f45',
     span: {
-      color: darken('#CC0C1E', 0.6),
+      color: darken('#d32f2f', 0.6),
     },
   },
   '.marker-cluster-accepts-25': {
-    backgroundColor: '#FF440045',
+    backgroundColor: '#EF741F45',
     span: {
-      color: darken('#FF4400', 0.6),
+      color: darken('#EF741F', 0.6),
     },
   },
   '.marker-cluster-accepts-50': {
-    backgroundColor: '#FF6C0045',
+    backgroundColor: '#FFA80045',
     span: {
-      color: darken('#FF6C00', 0.6),
+      color: darken('#FFA800', 0.6),
     },
   },
   '.marker-cluster-accepts-75': {
-    backgroundColor: '#F7AD1F45',
+    backgroundColor: '#AEB11845',
     span: {
-      color: darken('#F7AD1F', 0.6),
+      color: darken('#AEB118', 0.6),
     },
   },
   '.marker-cluster-accepts-100': {
-    backgroundColor: '#78B90B45',
+    backgroundColor: '#2e7d3245',
     span: {
-      color: darken('#78B90B', 0.6),
+      color: darken('#2e7d32', 0.6),
     },
   },
 
