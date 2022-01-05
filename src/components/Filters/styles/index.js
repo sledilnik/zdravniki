@@ -86,6 +86,7 @@ export const Grid = styled(MuiBox)(({ theme }) => ({
   zIndex: 10,
   [theme.breakpoints.down('md')]: {
     position: 'fixed',
+    columnGap: '12px',
     left: 0,
     bottom: 0,
     right: 0,

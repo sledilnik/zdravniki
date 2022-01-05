@@ -35,7 +35,11 @@ export const ScrollTop = function ScrollTop(props) {
 
   const handleClick = () => {
     if (node) {
-      node.scrollTo(0, 0);
+      node.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
     }
   };
 
