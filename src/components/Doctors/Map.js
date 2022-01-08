@@ -40,7 +40,7 @@ function withLeaflet(Component) {
         {userLocation && <Markers.User />}
         {doctors?.length > 0 && (
           <Styled.MapTotalResults>
-            {t('totalResults', { totalResults: doctors?.length })}
+            {t('totalResults', { count: doctors?.length })}
           </Styled.MapTotalResults>
         )}
         <MapEvents />

@@ -84,7 +84,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
         >
           {!noResults && !dataLoading && (
             <Styled.TotalResults>
-              {t('totalResults', { totalResults: doctors?.length ?? 0 })}
+              {t('totalResults', { count: doctors?.length ?? 0 })}
             </Styled.TotalResults>
           )}
           {doctorsPagination?.map(doctor => (
