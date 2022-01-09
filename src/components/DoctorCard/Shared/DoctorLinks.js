@@ -8,7 +8,7 @@ import * as Links from './Links';
 
 const DoctorLinks = function DoctorLinks({ links, iconName }) {
   const phoneLinks = links.map((link, index, arr) => {
-    const text = link.host || link.pathname;
+    const text = link.host?.replace('www.', '') || link.pathname;
     const isWebsite = link.protocol.startsWith('http');
     const key = isWebsite ? `website-${link.href}` : `tel-${link.href}`;
     const isLastLink = index === arr.length - 1;
