@@ -50,7 +50,7 @@ export const ConditionalLink = function ConditionalLink({
   ...props
 }) {
   const link = (
-    <Link href={to} self={self ? true : undefined}>
+    <Link href={to} self={self}>
       {children}
     </Link>
   );
