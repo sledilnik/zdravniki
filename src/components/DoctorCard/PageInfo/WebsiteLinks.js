@@ -7,6 +7,9 @@ function withDoctorLinks(Component) {
       ?.split(',')
       .map(w => {
         const url = w?.trim();
+        if (!url) {
+          return null;
+        }
         if (url.startsWith('http')) {
           return new URL(url);
         }
