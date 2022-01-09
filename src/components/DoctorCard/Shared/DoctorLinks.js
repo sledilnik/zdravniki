@@ -6,27 +6,24 @@ import * as Icons from 'components/Shared/Icons';
 import * as Styled from '../styles';
 import * as Links from './Links';
 
-const DoctorLinks = function DoctorLinks({ links, isWebsite }) {
-  const phoneLinks = links.map((phone, index, arr) => {
-    const href = isWebsite ? phone.href : `tel:${phone?.trim()}`;
-    const text = isWebsite ? phone.host : phone;
-    const key = isWebsite ? `website-${phone.href}` : phone;
+const DoctorLinks = function DoctorLinks({ links, iconName }) {
+  const phoneLinks = links.map((link, index, arr) => {
+    const text = link.host || link.pathname;
+    const isWebsite = link.protocol.startsWith('http');
+    const key = isWebsite ? `website-${link.href}` : `tel-${link.href}`;
+    const isLastLink = index === arr.length - 1;
+
     return (
-      <Links.ConditionalLink
-        key={key}
-        to={phone && href}
-        self={isWebsite ? undefined : true}
-        variant="body1"
-      >
+      <Links.ConditionalLink key={key} to={link.href} self={!isWebsite} variant="body1">
         {text}
-        <Typography component="span" variant="body1">
-          {index !== arr.length - 1 && ', '}
-        </Typography>
+        {!isLastLink && (
+          <Typography component="span" variant="body1">
+            ,{' '}
+          </Typography>
+        )}
       </Links.ConditionalLink>
     );
   });
-
-  const iconName = isWebsite ? 'LinkBig' : 'PhoneBig';
 
   return (
     <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
@@ -40,12 +37,11 @@ const DoctorLinks = function DoctorLinks({ links, isWebsite }) {
 
 DoctorLinks.defaultProps = {
   links: [],
-  isWebsite: undefined,
 };
 
 DoctorLinks.propTypes = {
   links: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(URL)])),
-  isWebsite: PropTypes.bool,
+  iconName: PropTypes.oneOf(Object.values(Icons.ICON_KEYS)).isRequired,
 };
 
 export default DoctorLinks;

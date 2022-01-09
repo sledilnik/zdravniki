@@ -78,16 +78,16 @@ const PageInfo = function PageInfo({ doctor }) {
     ?.split(',')
     .map(w => {
       const url = w?.trim();
-      if (url.startsWith('www')) {
-        return new URL(`http://${url}`);
-      }
       if (url.startsWith('http')) {
         return new URL(url);
       }
-      return null;
+      return new URL(`http://${url}`);
     })
     .filter(w => Boolean(w));
-  const phones = doctor.phone?.split(',');
+  const phones = doctor.phone
+    ?.split(',')
+    .map(p => p.trim() && new URL(`tel:${p.trim()}`))
+    .filter(p => Boolean(p));
 
   // todo create component for urls -> website, orderform
 
@@ -128,8 +128,8 @@ const PageInfo = function PageInfo({ doctor }) {
           </Alert>
         )}
         <Styled.PageInfo.LinksMenuWrapper>
-          {doctor.website && <Shared.DoctorLinks links={websites} isWebsite />}
-          {doctor.phone && <Shared.DoctorLinks links={phones} />}
+          {doctor.website && <Shared.DoctorLinks links={websites} iconName="LinkBig" />}
+          {doctor.phone && <Shared.DoctorLinks links={phones} iconName="PhoneBig" />}
           {emailText && (
             <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
               <Typography component="div" variant="body1">
