@@ -25,7 +25,6 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const [type, ageGroup] = doctor.type.split('-');
 
-  const websiteText = doctor.website && new URL(doctor.website).host;
   const emailText = doctor.email;
   const orderformText = doctor.orderform && t('orderform');
   const isReportError = state?.isReportError ?? false;
@@ -75,6 +74,19 @@ const PageInfo = function PageInfo({ doctor }) {
     );
   }
 
+  const websites = doctor.website
+    ?.split(',')
+    .map(w => {
+      const url = w?.trim();
+      if (url.startsWith('www')) {
+        return new URL(`http://${url}`);
+      }
+      if (url.startsWith('http')) {
+        return new URL(url);
+      }
+      return null;
+    })
+    .filter(w => Boolean(w));
   const phones = doctor.phone?.split(',');
 
   // todo create component for urls -> website, orderform
@@ -116,16 +128,7 @@ const PageInfo = function PageInfo({ doctor }) {
           </Alert>
         )}
         <Styled.PageInfo.LinksMenuWrapper>
-          {websiteText && (
-            <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-              <Typography component="div" variant="body1">
-                <Icons.Icon name="LinkBig" />
-              </Typography>
-              <Shared.ConditionalLink to={doctor.website} variant="body1">
-                {websiteText}
-              </Shared.ConditionalLink>
-            </Styled.PageInfo.LinkWrapper>
-          )}
+          {doctor.website && <Shared.PageInfoPhones phones={websites} isWebsite />}
           {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
           {emailText && (
             <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
