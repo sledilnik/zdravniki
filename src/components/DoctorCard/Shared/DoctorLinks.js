@@ -6,13 +6,14 @@ import * as Icons from 'components/Shared/Icons';
 import * as Styled from '../styles';
 import * as Links from './Links';
 
-const PageInfoPhones = function PhoneInfoPhone({ phones, isWebsite }) {
-  const phoneLinks = phones.map((phone, index, arr) => {
+const DoctorLinks = function DoctorLinks({ links, isWebsite }) {
+  const phoneLinks = links.map((phone, index, arr) => {
     const href = isWebsite ? phone.href : `tel:${phone?.trim()}`;
     const text = isWebsite ? phone.host : phone;
+    const key = isWebsite ? `website-${phone.href}` : phone;
     return (
       <Links.ConditionalLink
-        key={`phone-num${href}`}
+        key={key}
         to={phone && href}
         self={isWebsite ? undefined : true}
         variant="body1"
@@ -37,14 +38,14 @@ const PageInfoPhones = function PhoneInfoPhone({ phones, isWebsite }) {
   );
 };
 
-PageInfoPhones.defaultProps = {
-  phones: [],
+DoctorLinks.defaultProps = {
+  links: [],
   isWebsite: undefined,
 };
 
-PageInfoPhones.propTypes = {
-  phones: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(URL)])),
+DoctorLinks.propTypes = {
+  links: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(URL)])),
   isWebsite: PropTypes.bool,
 };
 
-export default PageInfoPhones;
+export default DoctorLinks;

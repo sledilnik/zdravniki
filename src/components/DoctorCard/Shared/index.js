@@ -26,7 +26,7 @@ export * as Tooltip from './Tooltips';
 // it would be better to import just like Tooltip but don't want to make to many changes all over the code
 export { Link, LinkNoRel, ConditionalLink } from './Links';
 
-export { default as PageInfoPhones } from './PageInfoPhones';
+export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 

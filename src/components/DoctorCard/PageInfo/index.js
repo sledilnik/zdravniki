@@ -128,8 +128,8 @@ const PageInfo = function PageInfo({ doctor }) {
           </Alert>
         )}
         <Styled.PageInfo.LinksMenuWrapper>
-          {doctor.website && <Shared.PageInfoPhones phones={websites} isWebsite />}
-          {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
+          {doctor.website && <Shared.DoctorLinks links={websites} isWebsite />}
+          {doctor.phone && <Shared.DoctorLinks links={phones} />}
           {emailText && (
             <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
               <Typography component="div" variant="body1">
