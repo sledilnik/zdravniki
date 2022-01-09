@@ -16,7 +16,7 @@ export const Link = function Link({ children, self, ...props }) {
 
 Link.propTypes = {
   children: ChildrenPropType,
-  self: PropTypes.string,
+  self: PropTypes.bool,
 };
 
 Link.defaultProps = {
@@ -50,7 +50,7 @@ export const ConditionalLink = function ConditionalLink({
   ...props
 }) {
   const link = (
-    <Link href={to} self={self}>
+    <Link href={to} self={self ? true : undefined}>
       {children}
     </Link>
   );
@@ -65,7 +65,7 @@ ConditionalLink.propTypes = {
   children: ChildrenPropType,
   to: PropTypes.string,
   component: PropTypes.string,
-  self: PropTypes.string,
+  self: PropTypes.bool,
 };
 
 ConditionalLink.defaultProps = {
