@@ -10,6 +10,8 @@ import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
 
 import ReportError from '../ReportError';
+import WebsiteLinks from './WebsiteLinks';
+import PhoneLinks from './PhoneLinks';
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
@@ -74,21 +76,6 @@ const PageInfo = function PageInfo({ doctor }) {
     );
   }
 
-  const websites = doctor.website
-    ?.split(',')
-    .map(w => {
-      const url = w?.trim();
-      if (url.startsWith('http')) {
-        return new URL(url);
-      }
-      return new URL(`http://${url}`);
-    })
-    .filter(w => Boolean(w));
-  const phones = doctor.phone
-    ?.split(',')
-    .map(p => p.trim() && new URL(`tel:${p.trim()}`))
-    .filter(p => Boolean(p));
-
   // todo create component for urls -> website, orderform
 
   return (
@@ -128,8 +115,8 @@ const PageInfo = function PageInfo({ doctor }) {
           </Alert>
         )}
         <Styled.PageInfo.LinksMenuWrapper>
-          {doctor.website && <Shared.DoctorLinks links={websites} iconName="LinkBig" />}
-          {doctor.phone && <Shared.DoctorLinks links={phones} iconName="PhoneBig" />}
+          {doctor.website && <WebsiteLinks website={doctor.website} />}
+          {doctor.phone && <PhoneLinks phone={doctor.phone} />}
           {emailText && (
             <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
               <Typography component="div" variant="body1">
