@@ -10,6 +10,8 @@ import * as Icons from 'components/Shared/Icons';
 import { MAP } from 'const';
 
 import ReportError from '../ReportError';
+import WebsiteLinks from './WebsiteLinks';
+import PhoneLinks from './PhoneLinks';
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
@@ -25,7 +27,6 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const [type, ageGroup] = doctor.type.split('-');
 
-  const websiteText = doctor.website && new URL(doctor.website).host;
   const emailText = doctor.email;
   const orderformText = doctor.orderform && t('orderform');
   const isReportError = state?.isReportError ?? false;
@@ -75,8 +76,6 @@ const PageInfo = function PageInfo({ doctor }) {
     );
   }
 
-  const phones = doctor.phone?.split(',');
-
   // todo create component for urls -> website, orderform
 
   return (
@@ -116,17 +115,8 @@ const PageInfo = function PageInfo({ doctor }) {
           </Alert>
         )}
         <Styled.PageInfo.LinksMenuWrapper>
-          {websiteText && (
-            <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
-              <Typography component="div" variant="body1">
-                <Icons.Icon name="LinkBig" />
-              </Typography>
-              <Shared.ConditionalLink to={doctor.website} variant="body1">
-                {websiteText}
-              </Shared.ConditionalLink>
-            </Styled.PageInfo.LinkWrapper>
-          )}
-          {doctor.phone && <Shared.PageInfoPhones phones={phones} />}
+          {doctor.website && <WebsiteLinks website={doctor.website} />}
+          {doctor.phone && <PhoneLinks phone={doctor.phone} />}
           {emailText && (
             <Styled.PageInfo.LinkWrapper direction="row" alignItems="center" spacing={1}>
               <Typography component="div" variant="body1">

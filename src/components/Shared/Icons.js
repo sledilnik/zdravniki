@@ -122,7 +122,7 @@ export const Icon = function Icon({ name, ...props }) {
   return Component ? <Component {...props} /> : null;
 };
 
-const ICON_KEYS = Object.keys(icons);
+export const ICON_KEYS = Object.keys(icons);
 
 Icon.propTypes = {
   name: PropTypes.oneOf(ICON_KEYS).isRequired,

@@ -24,11 +24,12 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
 
   const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
+    const center = map?.getCenter();
 
     navigate(path, {
       state: {
         zoom: map?.getZoom(),
-        center: map?.getCenter(),
+        center: center ? [center.lat, center.lng] : undefined,
         isReportError,
         type,
         ageGroup: ageGroup ?? 'adults',

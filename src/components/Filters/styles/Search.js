@@ -49,7 +49,7 @@ export const InputBase = styled(MuiInputBase)(() => {
   const paddingRight = `${48 * scaleUpRatio}px`;
   const paddingLeft = `${(16 + 32) * scaleUpRatio}px`;
   const width = `${100 * scaleUpRatio}%`;
-  const searchDecorator = { '-webkit-appearance': 'none' };
+  const searchDecorator = { WebkitAppearance: 'none' };
 
   const transform = `scale(${scaleDownRatio})`;
 
