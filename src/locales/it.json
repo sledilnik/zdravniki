@@ -3,25 +3,28 @@
         "about": "Il progetto",
         "faq": "FAQ",
         "sledilnik": "Sledilnik.org",
-        "menu": "Menu"
+        "menu": "Menu",
+        "home": "Elenco",
+        "support": "Aiutaci!"
     },
     "all": "tutti",
-    "dentist": "dentista",
+    "dentist": "odontoiatra",
     "gynecologist": "ginecologo",
     "students": "studenti",
     "copy": "Copia",
     "copied": "Copiato!",
     "loading": "Caricamento…",
     "adults": "adulti",
-    "accepts": "accettare",
-    "rejects": "non accettare",
+    "accepts": "accetta",
+    "rejects": "non accetta",
     "timestamps": {
-        "at": "alle"
+        "at": "alle",
+        "datetime": "{{val, datetime}}"
     },
     "pediatrician": "pediatra",
-    "youth": "gioventù",
+    "youth": "giovani",
     "search": "Cerca…",
-    "generalPractitioner": "medico generico",
+    "generalPractitioner": "medico di medicina generale",
     "filter": "Filtro",
     "showAll": "Mostra tutto",
     "faq": {
@@ -37,5 +40,52 @@
         "imageDescription": "due coni stradali collegati da nastro giallo",
         "somethingWentWrong": "Oops... qualcosa è andato storto :(",
         "back": "Indietro"
+    },
+    "orderform": "prenota un appuntamento",
+    "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa.",
+    "changedOn": "Modificato il: ",
+    "SEO": {
+        "title": {
+            "notFound": "404: pagina non trovata",
+            "about": "Informazioni",
+            "faq": "Domande frequenti",
+            "home": "Medici - Sledilnik"
+        }
+    },
+    "totalResults_one": "{{count}} risultato",
+    "totalResults_other": "{{count}} risultati",
+    "doctorAvailabilityLabel": "Disponibilità",
+    "reportError": {
+        "tooltip": "Segnala un errore nei dati pubblicati",
+        "text": "Segnala un errore nei dati del medico e aggiungi i dati corretti o delle note:",
+        "reportReceived": "Grazie! Esamineremo i dati.",
+        "placeholder": {
+            "availability": "disponibilità",
+            "note": "nota",
+            "email": "e-mail",
+            "orderform": "link alla pagina di prenotazione",
+            "address": "indirizzo",
+            "website": "pagina web",
+            "phone": "telefono"
+        },
+        "title": "Segnala un errore",
+        "cancel": "Annulla",
+        "send": "Invia"
+    },
+    "doctorCard": {
+        "showOnMap": "Visualizza sulla mappa",
+        "noPhone": "Numero telefonico non disponibile",
+        "more": "Altro"
+    },
+    "map": "Mappa",
+    "list": "Elenco",
+    "headQuotient": "Quota capitaria ponderata",
+    "yourLocation": "La tua posizione",
+    "toContent": "Al contenuto",
+    "findAvailableDoctor": "Trova un medico disponibile",
+    "backToHome": "Torna all'elenco",
+    "doctorAvailability": "La disponibilità può essere inferiore al 100% per i medici che lavorano a tempo parziale su programmi di prevenzione o in altre attività (ad esempio, dentista che lavora con adulti e giovani).",
+    "error": {
+        "title": "Qualcosa è andato storto"
     }
 }
