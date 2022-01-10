@@ -27,6 +27,8 @@
     "filter": "Filter",
     "map": "Map",
     "list": "List",
+    "totalResults_one": "{{count}} hit",
+    "totalResults_other": "{{count}} hits",
     "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map.",
     "changedOn": "Changed on: ",
     "headQuotient": "Weighted person quotient",

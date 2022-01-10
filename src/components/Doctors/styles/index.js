@@ -132,3 +132,29 @@ export const InfoCard = styled(Card)(({ theme }) => ({
     },
   },
 }));
+
+export const TotalResults = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '10px 24px 7px',
+  borderBottom: `1px solid ${theme.customColors.borderLight}`,
+  color: theme.customColors.nickel,
+  fontSize: '0.75rem',
+  lineHeight: '0.75rem',
+}));
+
+export const MapTotalResults = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  zIndex: '800',
+  top: '10px',
+  right: '10px',
+  padding: '5px',
+  backgroundColor: 'white',
+  borderRadius: '2px',
+  border: '2px solid rgba(black,0.2)',
+  backgroundClip: 'padding-box',
+
+  [theme.breakpoints.up('md')]: {
+    display: 'none',
+  },
+}));
