@@ -42,7 +42,7 @@ const NavLinks = function NavLinks() {
         {t('header.support')}
       </Styled.NavMenuItemLink>
       <Styled.NavMenuItemLink
-        href="https://sledilnik.org/"
+        href={`https://sledilnik.org/${lng}`}
         target="_blank"
         rel="noopener"
         component="button"
