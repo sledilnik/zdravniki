@@ -25,6 +25,7 @@ Sodelavci in sodelavke projekta:
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
+- [Vanja Cvelbar](https://github.com/b100w11) — prevodi
 - [Veronika Vezjak]() — vsebine
 
 
