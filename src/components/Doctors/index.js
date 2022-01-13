@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
@@ -21,6 +21,23 @@ import MapOnlySnackbar from './MapOnlySnackbar';
 
 import * as Styled from './styles';
 import { withErrorBoundary } from '../Shared/ErrorBoundary';
+
+const getCenterFromSearchParams = params => {
+  if (!params) {
+    return undefined;
+  }
+
+  const center = params
+    .replace(/[A-Za-z()]/g, '')
+    .split(', ')
+    .map(n => parseFloat(n, 10));
+
+  if (center.length === 2 && center.every(n => typeof n === 'number')) {
+    return center;
+  }
+
+  return undefined;
+};
 
 const { GEO_LOCATION, BOUNDS } = MAP;
 
@@ -61,8 +78,12 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const zoom = state?.zoom ?? MAP.ZOOM;
-  const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
+  const [searchParams] = useSearchParams();
+
+  const searchParamsZoom = !!searchParams.get('zoom') && parseInt(searchParams.get('zoom'), 10);
+  const searchParamsCenter = getCenterFromSearchParams(searchParams.get('center'));
+  const zoom = searchParamsZoom || state?.zoom || MAP.ZOOM;
+  const center = searchParamsCenter || state?.center || MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
   const dataLoading = !Array.isArray(doctors);

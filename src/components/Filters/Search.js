@@ -1,20 +1,28 @@
-import { useLocation } from 'react-router-dom';
-
+import { useSearchParams, useLocation } from 'react-router-dom';
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDebounce } from 'hooks';
 import { t } from 'i18next';
 import * as Styled from './styles';
 
 const Search = function Search() {
   const { state } = useLocation();
-  const { setSearchValue } = useFilter();
 
+  const { setSearchValue } = useFilter();
+  const [searchParams, setSearchParams] = useSearchParams();
   const defaultValue = state?.searchValue ?? '';
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(searchParams.get('query') || defaultValue);
 
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    setSearchParams({
+      query: value || '',
+      zoom: searchParams.get('zoom') || '',
+      center: searchParams.get('center') || '',
+    });
+  }, [setSearchParams, value, searchParams]);
 
   const clearValue = () => {
     setValue('');

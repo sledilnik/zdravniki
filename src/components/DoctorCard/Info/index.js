@@ -1,5 +1,6 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CardContent, Stack, Typography } from '@mui/material';
+import { useEffect } from 'react';
 
 import { useLeafletContext } from 'context/leafletContext';
 
@@ -13,6 +14,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const { lng } = useParams();
   const { map } = useLeafletContext();
   const [type, ageGroup] = doctor.type.split('-');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
 
@@ -21,6 +23,14 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const instId = doctor?.instId;
 
   const path = `/${lng}/${drPath}/${slug}/${instId}`;
+
+  useEffect(() => {
+    setSearchParams({
+      query: searchParams.get('query') || '',
+      zoom: map?.getZoom() || '',
+      center: map?.getCenter() || '',
+    });
+  }, [setSearchParams, map, searchParams]);
 
   const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
