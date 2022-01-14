@@ -1,6 +1,6 @@
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import PropTypes from 'prop-types';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { MAP } from 'const';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
@@ -15,11 +15,10 @@ import * as Styled from './styles';
 
 const { GEO_LOCATION } = MAP;
 
-const createClusterCustomIcon = function (cluster) {
-  let n;
+const createClusterCustomIcon = function createClusterCustomIcon(cluster) {
   let acceptsCnt = 0;
   // eslint-disable-next-line no-restricted-syntax
-  for (n in cluster.getAllChildMarkers()) {
+  for (const n in cluster.getAllChildMarkers()) {
     if (Object.prototype.hasOwnProperty.call(cluster.getAllChildMarkers(), n)) {
       acceptsCnt += cluster.getAllChildMarkers()[n].options.accepts === 'y' ? 1 : 0;
     }
@@ -50,6 +49,8 @@ function withLeaflet(Component) {
     userLocation = false,
     ...other
   }) {
+    const { t } = useTranslation();
+
     const markers = doctors?.map(doctor => <Markers.Doctor key={doctor.key} doctor={doctor} />);
     const injectedProps = {
       center,

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   const ToggleMapCards = function ToggleMapCards({ useShow }) {
     const [show, setShow] = useShow();
+    const { t } = useTranslation();
 
     return (
       <Component value={show} setValue={setShow}>

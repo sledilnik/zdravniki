@@ -3,12 +3,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { doctorsContext, filterContext, leafletContext, timestampsContext } from 'context';
 import { Accessibility } from 'components/Shared';
 import Header from 'components/Header';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { THEME } from 'const';
 import Router from 'routes';
 
 const App = function App() {
   const theme = createTheme(THEME);
+  const { t } = useTranslation();
   return (
     <>
       <CssBaseline />

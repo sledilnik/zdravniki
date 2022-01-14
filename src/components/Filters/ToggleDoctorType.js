@@ -1,7 +1,7 @@
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
 import { useFilter } from 'context/filterContext';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { IconToggleButton } from './Shared';
@@ -9,6 +9,7 @@ import { IconToggleButton } from './Shared';
 function withToggleGroup(Component) {
   return function ToggleDoctorType(props) {
     const { state } = useLocation();
+    const { t } = useTranslation();
 
     const { type: stateType, ageGroup: stateAgeGroup } = state ?? {
       type: 'gp',

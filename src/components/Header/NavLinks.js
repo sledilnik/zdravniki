@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import i18next, { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
 import * as Styled from './styles';
@@ -7,10 +7,11 @@ import * as Styled from './styles';
 const NavLinks = function NavLinks() {
   const navigate = useNavigate();
   const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
-  const lng = i18next.language;
+  const { t, i18n } = useTranslation();
+  const lng = i18n.language;
   useEffect(() => {
-    i18next.changeLanguage(lng);
-  }, [lng]);
+    i18n.changeLanguage(lng);
+  }, [lng, i18n]);
 
   const goHome = event => {
     event.preventDefault();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { ErrorBoundary } from 'react-error-boundary';
 import PropTypes from 'prop-types';
 
@@ -19,6 +19,7 @@ export const withErrorBoundary = WrappedComponent =>
   };
 
 const FallbackComponent = function FallbackComponent() {
+  const { t } = useTranslation();
   return <div>{t('error.title')}</div>;
 };
 

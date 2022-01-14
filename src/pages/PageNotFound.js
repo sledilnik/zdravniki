@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import * as SEO from 'components/SEO';
 import * as Styled from './styles/PageNotFound';
 import image from '../assets/doctor-404.png';
 import image2x from '../assets/doctor-404@2x.png';
 
 const PageNotFound = function PageNotFound() {
+  const { t } = useTranslation();
   const { lng } = useParams();
   const meta = [{ name: 'robots', content: 'noindex' }];
 
