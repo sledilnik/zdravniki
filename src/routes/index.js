@@ -1,8 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
-import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -11,60 +11,72 @@ const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const Router = function Router() {
-  const [, lngFromPath] = window.location.pathname.split('/');
-  const supportedLanguages = i18next.languages;
-  const isLangLength = lngFromPath?.length === 2;
-  const isLang = isLangLength && supportedLanguages.includes(lngFromPath);
-  const [lng, setLng] = useState(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
+  const {
+    i18n: { languages, language },
+  } = useTranslation();
 
-  useEffect(() => {
-    setLng(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
-  }, [isLang, lngFromPath]);
+  const homeRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-home-route`}
+      exact
+      path={`/${lang}`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <Home />
+        </Suspense>
+      }
+    />
+  ));
 
-  useEffect(() => {
-    if (i18next.language !== lng) {
-      i18next.changeLanguage(lng);
-    }
-  }, [lng]);
+  const faqRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/faq`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <Faq />
+        </Suspense>
+      }
+    />
+  ));
+
+  const aboutRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/about`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <About />
+        </Suspense>
+      }
+    />
+  ));
+
+  const notFoundRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/404`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <PageNotFound />
+        </Suspense>
+      }
+    />
+  ));
 
   return (
     <HelmetProvider>
       <Routes>
-        <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
-        <Route exact path="/faq" element={<Navigate to={`/${lng}/faq`} />} />
-        <Route exact path="/about" element={<Navigate to={`/${lng}/about`} />} />
-        <Route
-          exact
-          path="/:lng"
-          element={
-            // TODO: fix navigation out of 404 page
-            isLang || !lngFromPath ? (
-              <Suspense fallback={<Loader.Center />}>
-                <Home />
-              </Suspense>
-            ) : (
-              <Navigate to={`/${lng}/404`} />
-            )
-          }
-        />
-        <Route
-          exact
-          path="/:lng/about"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          exact
-          path="/:lng/faq"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Faq />
-            </Suspense>
-          }
-        />
+        <Route exact path="/" element={<Navigate to={`/${language}/`} />} />
+        <Route exact path="/faq" element={<Navigate to={`/${language}/faq`} />} />
+        <Route exact path="/about" element={<Navigate to={`/${language}/about`} />} />
+        {homeRoutes}
+        {faqRoutes}
+        {aboutRoutes}
+
         <Route
           path="/:lng/:type/:name/:instId"
           element={
@@ -73,19 +85,14 @@ const Router = function Router() {
             </Suspense>
           }
         />
-        <Route
-          path="/:lng/404"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <PageNotFound />
-            </Suspense>
-          }
-        />
+
+        {notFoundRoutes}
+
         <Route
           path="*"
           element={
             <Suspense fallback={<Loader.Center />}>
-              <Navigate to={`/${lng}/404`} />
+              <Navigate to={`/${language}/404`} />
             </Suspense>
           }
         />

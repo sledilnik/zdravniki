@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -99,8 +98,10 @@ HeadQuotient.propTypes = {
 };
 
 export const Availability = function Availability({ date, availability, hasOverride }) {
-  const { lng } = useParams();
-  const availabilityText = toPercent(availability, lng);
+  const {
+    i18n: { language },
+  } = useTranslation();
+  const availabilityText = toPercent(availability, language);
 
   return (
     <Tooltip
