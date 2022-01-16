@@ -67,6 +67,18 @@ const Router = function Router() {
     />
   ));
 
+  const doctorPageRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-dr-page`}
+      path={`/${lang}/:type/:name/:instId`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <Doctor />
+        </Suspense>
+      }
+    />
+  ));
+
   return (
     <HelmetProvider>
       <Routes>
@@ -76,16 +88,7 @@ const Router = function Router() {
         {homeRoutes}
         {faqRoutes}
         {aboutRoutes}
-
-        <Route
-          path="/:lng/:type/:name/:instId"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-
+        {doctorPageRoutes}
         {notFoundRoutes}
 
         <Route

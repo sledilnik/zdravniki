@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import DoctorCard from 'components/DoctorCard';
 import { Loader } from 'components/Shared';
@@ -12,21 +13,21 @@ import * as Styled from './styles/Doctor';
 
 const Doctor = function Doctor() {
   const { doctors } = useDoctors();
-  const { lng, type, name, instId } = useParams();
+  const { type, name, instId } = useParams();
+  const {
+    i18n: { language },
+  } = useTranslation();
   const [doctor, setDoctor] = useState();
-  const [loading, setLoading] = useState(true);
+  const [doctorFound, setDoctorFound] = useState(true);
 
   useEffect(() => {
-    setDoctor(doctors?.findByTypeAndNameSlug(type, name, instId));
-  }, [doctors, doctor, lng, type, name, instId]);
-
-  useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+    const dr = doctors?.findByTypeAndNameSlug(type, name, instId);
+    if (dr) {
+      setDoctor(dr);
+    } else {
+      setDoctorFound(false);
     }
-  }, [loading]);
+  }, [doctors, doctor, type, name, instId]);
 
   if (doctor) {
     return (
@@ -38,10 +39,12 @@ const Doctor = function Doctor() {
       </Styled.Main>
     );
   }
-  if (loading) {
-    return <Loader.Center component="main" />;
+
+  if (!doctorFound) {
+    return <Navigate to={`/${language}/404`} />;
   }
-  return <Navigate to={`/${lng}/404`} />;
+
+  return <Loader.Center component="main" />;
 };
 
 export default Doctor;
