@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@mui/material/styles';
-import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
@@ -78,15 +77,16 @@ export const Updated = function Updated({
   availabilityZZZS,
   note,
 }) {
-  const { t } = useTranslation();
-
-  const { lng } = useParams();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
 
   const acceptsOverrideText = acceptsOverride === 'y' ? t('accepts') : t('rejects');
   const acceptsZZZSText = acceptsZZZS === 'y' ? t('accepts') : t('rejects');
 
-  const availabilityZZZSText = toPercent(availabilityZZZS, lng);
-  const availabilityOverrideText = toPercent(availabilityOverride, lng);
+  const availabilityZZZSText = toPercent(availabilityZZZS, language);
+  const availabilityOverrideText = toPercent(availabilityOverride, language);
 
   return (
     <Stack sx={{ textAlign: 'left' }}>
