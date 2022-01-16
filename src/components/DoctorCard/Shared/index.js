@@ -66,7 +66,7 @@ DoubleChip.defaultProps = {
 
 DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
-  ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+  ageGroup: PropTypes.oneOf([undefined, 's', 'y']),
 };
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
