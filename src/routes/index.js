@@ -17,19 +17,6 @@ const Router = function Router() {
     i18n: { languages, language },
   } = useTranslation();
 
-  const homeRoutes = languages.map(lang => (
-    <Route
-      key={`${lang}-home-route`}
-      exact
-      path={`/${lang}`}
-      element={
-        <Suspense fallback={<Loader.Center />}>
-          <Home />
-        </Suspense>
-      }
-    />
-  ));
-
   const faqRoutes = languages.map(lang => (
     <Route
       key={`${lang}-faq-route`}
@@ -99,11 +86,10 @@ const Router = function Router() {
   return (
     <HelmetProvider>
       <Routes>
-        <Route exact path="/" element={<Navigate to={`/${language}/`} />} />
+        <Route exact path="/" element={<Navigate to={`/${language}/gp`} />} />
         <Route exact path="/faq" element={<Navigate to={`/${language}/faq`} />} />
         <Route exact path="/about" element={<Navigate to={`/${language}/about`} />} />
 
-        {homeRoutes}
         {faqRoutes}
         {aboutRoutes}
         {doctorTypeRoutes}

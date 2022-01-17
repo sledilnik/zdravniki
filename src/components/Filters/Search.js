@@ -1,16 +1,18 @@
+import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
-import { useState, useRef } from 'react';
-import { useDebounce } from 'hooks';
-import { useTranslation } from 'react-i18next';
+import { useDebounce, useDoctorTypeExactPath } from 'hooks';
 import * as Styled from './styles';
 
 const Search = function Search() {
   const { state } = useLocation();
   const { setSearchValue } = useFilter();
   const { t } = useTranslation();
+
+  const { search } = useDoctorTypeExactPath();
 
   const defaultValue = state?.searchValue ?? '';
   const [value, setValue] = useState(defaultValue);
@@ -27,6 +29,12 @@ const Search = function Search() {
   };
 
   useDebounce(() => setSearchValue(value), 500, [value]);
+
+  useEffect(() => {
+    if (search) {
+      setValue(search);
+    }
+  }, [search, setSearchValue]);
 
   return (
     <Styled.Search.SearchPaper elevation={0}>

@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { useDoctorTypeExactPath } from 'hooks';
+import { useFilter } from 'context/filterContext';
+
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
-import { useFilter } from 'context/filterContext';
-import { useTranslation } from 'react-i18next';
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
@@ -9,12 +13,20 @@ function withToggleGroup(Component) {
     const { accept, setAccept } = useFilter();
     const { t } = useTranslation();
 
+    const { accepts } = useDoctorTypeExactPath();
+
     const injectedProps = {
       ...props,
       value: accept,
       setValue: setAccept,
       sx: { gridArea: 'accepts' },
     };
+
+    useEffect(() => {
+      if (accepts) {
+        setAccept(accepts);
+      }
+    }, [accepts, setAccept]);
 
     return (
       <Component {...injectedProps}>

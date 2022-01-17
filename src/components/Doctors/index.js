@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
@@ -9,6 +9,7 @@ import { Alert } from '@mui/material';
 import PropTypes from 'prop-types';
 import { MAP } from 'const';
 
+import { useDoctorTypeExactPath } from 'hooks';
 import { filterContext } from 'context';
 import { useLeafletContext } from 'context/leafletContext';
 
@@ -35,6 +36,8 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
+  const { zoom: zoomFromPath, loc: locFromPath } = useDoctorTypeExactPath();
+  const navigate = useNavigate();
 
   const doctorsPagination = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
 
@@ -61,12 +64,21 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const zoom = state?.zoom ?? MAP.ZOOM;
-  const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
+  const zoom = state?.zoom ?? zoomFromPath ?? MAP.ZOOM;
+  const center = state?.center ?? locFromPath ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
   const dataLoading = !Array.isArray(doctors);
   const noResults = !areDoctors && !dataLoading;
+
+  useEffect(() => {
+    const z = map?.getZoom() ?? zoom;
+    const c = map?.getCenter() ?? { lat: center[0], lng: center[1] };
+
+    const loc = [z, c.lat, c.lng].join('/');
+
+    navigate(`./#a-${accept}|l-${loc}|s-${searchValue}`);
+  }, [searchValue, accept, navigate, map, zoom, center]);
 
   return (
     <Styled.Wrapper show={show}>
