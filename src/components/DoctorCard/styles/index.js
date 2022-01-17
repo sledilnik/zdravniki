@@ -17,7 +17,7 @@ const Card = styled(MuiCard)(() => ({
 
 export const PageInfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
-  const acceptsColor = accepts === 'true' ? customColors.success : customColors.danger;
+  const acceptsColor = accepts ? customColors.success : customColors.danger;
   return {
     width: '100%',
     borderRadius: '5px',
@@ -102,7 +102,7 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
 }));
 export const InfoCard = styled(Card)(({ theme, accepts }) => {
   const { customColors } = theme;
-  const acceptsColor = accepts === 'true' ? customColors.success : customColors.danger;
+  const acceptsColor = accepts ? customColors.success : customColors.danger;
 
   return {
     justifySelf: 'center',
