@@ -4,6 +4,8 @@ import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+import { DOCTORS } from 'const';
+
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
 const Faq = lazy(() => import('../pages/Faq'));
@@ -79,18 +81,20 @@ const Router = function Router() {
     />
   ));
 
-  const doctorTypeRoutes = languages.map(lang => (
-    <Route
-      key={`${lang}-dr-type-page`}
-      exact
-      path={`/${lang}/:type`}
-      element={
-        <Suspense fallback={<Loader.Center />}>
-          <Home />
-        </Suspense>
-      }
-    />
-  ));
+  const doctorTypeRoutes = languages.map(lang =>
+    DOCTORS.TYPES.map(type => (
+      <Route
+        key={`${lang}-${type}-page`}
+        exact
+        path={`/${lang}/${type}`}
+        element={
+          <Suspense fallback={<Loader.Center />}>
+            <Home />
+          </Suspense>
+        }
+      />
+    )).flat(),
+  );
 
   return (
     <HelmetProvider>
