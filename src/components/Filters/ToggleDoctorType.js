@@ -4,6 +4,9 @@ import { useFilter } from 'context/filterContext';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+
+import { useDoctorTypeExactPath } from 'hooks';
+
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
@@ -11,9 +14,11 @@ function withToggleGroup(Component) {
     const { state } = useLocation();
     const { t } = useTranslation();
 
+    const { drType: drTypeFromPath, ageGroup: ageGroupFromPath } = useDoctorTypeExactPath();
+
     const { type: stateType, ageGroup: stateAgeGroup } = state ?? {
-      type: 'gp',
-      ageGroup: 'adults',
+      type: drTypeFromPath ?? 'gp',
+      ageGroup: ageGroupFromPath ?? 'adults',
     };
 
     const { doctorType, setDoctorType } = useFilter();
@@ -34,6 +39,7 @@ function withToggleGroup(Component) {
     };
 
     useEffect(() => {
+      // TODO refactor; maybe is not needed at all; we have age groups only for dentists
       const typeTranslate = {
         gp_adults: 'gp',
         gp_youth: 'gp',

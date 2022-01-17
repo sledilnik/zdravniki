@@ -79,15 +79,30 @@ const Router = function Router() {
     />
   ));
 
+  const doctorTypeRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-dr-type-page`}
+      exact
+      path={`/${lang}/:type`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <Home />
+        </Suspense>
+      }
+    />
+  ));
+
   return (
     <HelmetProvider>
       <Routes>
         <Route exact path="/" element={<Navigate to={`/${language}/`} />} />
         <Route exact path="/faq" element={<Navigate to={`/${language}/faq`} />} />
         <Route exact path="/about" element={<Navigate to={`/${language}/about`} />} />
+
         {homeRoutes}
         {faqRoutes}
         {aboutRoutes}
+        {doctorTypeRoutes}
         {doctorPageRoutes}
         {notFoundRoutes}
 
