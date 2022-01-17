@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -17,17 +16,8 @@ const Doctor = function Doctor() {
   const {
     i18n: { language },
   } = useTranslation();
-  const [doctor, setDoctor] = useState();
-  const [doctorFound, setDoctorFound] = useState(true);
 
-  useEffect(() => {
-    const dr = doctors?.findByTypeAndNameSlug(type, name, instId);
-    if (dr) {
-      setDoctor(dr);
-    } else {
-      setDoctorFound(false);
-    }
-  }, [doctors, doctor, type, name, instId]);
+  const doctor = doctors?.findByTypeAndNameSlug(type, name, instId);
 
   if (doctor) {
     return (
@@ -40,7 +30,7 @@ const Doctor = function Doctor() {
     );
   }
 
-  if (!doctorFound) {
+  if (!doctor && doctors) {
     return <Navigate to={`/${language}/404`} />;
   }
 
