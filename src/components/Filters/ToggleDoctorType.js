@@ -16,12 +16,13 @@ function withToggleGroup(Component) {
 
     const { drType: drTypeFromPath, ageGroup: ageGroupFromPath } = useDoctorTypeExactPath();
 
-    const { type: stateType, ageGroup: stateAgeGroup } = state ?? {
+    const defaultState = {
       type: drTypeFromPath ?? 'gp',
       ageGroup: ageGroupFromPath ?? 'adults',
     };
+    const { type: stateType, ageGroup: stateAgeGroup } = state ?? defaultState;
 
-    const { doctorType, setDoctorType } = useFilter();
+    const { setDoctorType } = useFilter();
     const [drType, setDrType] = useState(stateType ?? 'gp');
     const [ageGroup, setAgeGroup] = useState(stateAgeGroup ?? 'adults');
 
@@ -29,40 +30,28 @@ function withToggleGroup(Component) {
       ...props,
       value: drType,
       setValue: setDrType,
-      sx: { gridArea: 'doctor-type' },
     };
     const injectedPropsAgeGroup = {
       ...props,
       value: ageGroup,
       setValue: setAgeGroup,
-      sx: { gridArea: 'age-group' },
     };
 
     useEffect(() => {
-      // TODO refactor; maybe is not needed at all; we have age groups only for dentists
-      const typeTranslate = {
-        gp_adults: 'gp',
-        gp_youth: 'gp',
-        gp_students: 'gp',
-        ped_adults: 'ped',
-        ped_students: 'ped',
-        ped_youth: 'ped',
-        den_adults: 'den',
-        den_students: 'den-s',
-        den_youth: 'den-y',
-        gyn_adults: 'gyn',
-        gyn_students: 'gyn',
-        gyn_youth: 'gyn',
-      };
-
-      const type = `${drType}_${ageGroup}`;
-
-      if (!typeTranslate[type]) {
-        setAgeGroup('adults');
+      if (['gp', 'ped', 'gyn'].includes(drType)) {
+        setDoctorType(drType);
       }
 
-      if (doctorType !== type) setDoctorType(typeTranslate[type]);
-    }, [drType, ageGroup, doctorType, setDoctorType]);
+      if (drType === 'den') {
+        const AGE_GROUPS_TRANSLATE = {
+          adults: 'den',
+          youth: 'den-y',
+          students: 'den-s',
+        };
+
+        setDoctorType(AGE_GROUPS_TRANSLATE[ageGroup]);
+      }
+    }, [drType, ageGroup, setDoctorType]);
 
     return (
       <>

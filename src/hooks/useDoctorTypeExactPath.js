@@ -4,15 +4,6 @@ import { useLocation, matchPath } from 'react-router-dom';
 import { DOCTORS } from 'const';
 import { useState } from 'react';
 
-const AGE_GROUP_TRANLATE = {
-  gp: 'adults',
-  ped: 'youth',
-  gyn: 'adults',
-  den: 'adults',
-  'den-y': 'youth',
-  'den-s': 'students',
-};
-
 export default function useDoctorExactPath() {
   const {
     i18n: { languages },
@@ -28,7 +19,7 @@ export default function useDoctorExactPath() {
   const isValidPath = DOCTORS.TYPES.includes(type);
   const [path] = useState(isValidPath ? type : null);
   const [drType] = useState(isValidPath ? type.split('-')[0] : null);
-  const [ageGroup] = useState(isValidPath ? AGE_GROUP_TRANLATE[path] : null);
+  const [ageGroup] = useState(isValidPath ? DOCTORS.TYPE_AGE_GROUPS[path] : 'adults');
 
   return { pathObj: typePathObj, type: path, drType, ageGroup, isValidPath };
 }
