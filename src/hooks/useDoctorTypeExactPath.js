@@ -3,16 +3,7 @@ import { useLocation, matchPath } from 'react-router-dom';
 
 import { DOCTORS } from 'const';
 import { useState } from 'react';
-
-const VSI = ['vsi', 'all'];
-const Y = ['y', 'yes', 'd', 'da', 1];
-const N = ['n', 'no', 'ne', 0];
-
-const ACCEPTS = {
-  vsi: VSI,
-  y: Y,
-  n: N,
-};
+import { reduceHash } from 'utils';
 
 export default function useDoctorTypeExactPath() {
   const {
@@ -33,37 +24,12 @@ export default function useDoctorTypeExactPath() {
 
   const rawHashValues = isValidPath ? location?.hash.replace('#', '').split('|') : null;
 
-  const hashValues = rawHashValues?.reduce(
-    (acc, val) => {
-      if (val?.startsWith('a-') && Object.values(ACCEPTS).flat().includes(val.replace('a-', ''))) {
-        acc.accepts = val.replace('a-', '');
-        return acc;
-      }
-
-      if (val?.startsWith('l-')) {
-        const leaflet = val?.replace('l-', '').split('/');
-        if (leaflet.length === 3) {
-          const [zoom, lat, lng] = leaflet;
-          acc.zoom = +zoom;
-          acc.loc = [+lat, +lng];
-          return acc;
-        }
-      }
-
-      if (val?.startsWith('s-')) {
-        acc.search = decodeURI(val.replace('s-', ''));
-        return acc;
-      }
-
-      return acc;
-    },
-    {
-      search: null,
-      loc: null,
-      zoom: null,
-      accepts: null,
-    },
-  );
+  const hashValues = rawHashValues?.reduce(reduceHash, {
+    search: null,
+    loc: null,
+    zoom: null,
+    accepts: null,
+  });
 
   const [accepts] = useState(hashValues?.accepts);
   const [loc] = useState(hashValues?.loc);
