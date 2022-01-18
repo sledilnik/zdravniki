@@ -35,7 +35,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     t,
     i18n: { language },
   } = useTranslation();
-  const { state, hash: currentHash } = useLocation();
+  const { hash: currentHash } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
@@ -68,8 +68,8 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const zoom = state?.zoom ?? zoomFromPath ?? MAP.ZOOM;
-  const center = state?.center ?? locFromPath ?? MAP.GEO_LOCATION.SL_CENTER;
+  const zoom = zoomFromPath ?? MAP.ZOOM;
+  const center = locFromPath ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
   const dataLoading = !Array.isArray(doctors);
@@ -87,7 +87,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
       map.setZoom(newHash.zoom);
       map.setView(newHash.loc);
 
-      const hash = `a-vsi|l-${newHash.zoom}/${newHash.loc.join('/')}|s-`;
+      const hash = `a-${newHash.accepts}|l-${newHash.zoom}/${newHash.loc.join('/')}|s-`;
 
       navigate(`../${language}/${doctorType}/#${hash}`);
     }

@@ -34,8 +34,6 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
         zoom: map?.getZoom(),
         center: center ? [center.lat, center.lng] : undefined,
         isReportError,
-        type,
-        ageGroup: ageGroup ?? 'adults',
       },
     });
   };

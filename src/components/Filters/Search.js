@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import * as Icons from 'components/Shared/Icons';
@@ -8,14 +7,12 @@ import { useDebounce, useDoctorTypeExactPath } from 'hooks';
 import * as Styled from './styles';
 
 const Search = function Search() {
-  const { state } = useLocation();
   const { setSearchValue } = useFilter();
   const { t } = useTranslation();
 
   const { search } = useDoctorTypeExactPath();
 
-  const defaultValue = state?.searchValue ?? '';
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState('');
 
   const inputRef = useRef(null);
 

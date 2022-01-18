@@ -15,7 +15,6 @@ import PhoneLinks from './PhoneLinks';
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
-import { AgeGroupTranslate } from '../dicts';
 import { DoctorPropType } from '../../../types';
 
 const PageInfo = function PageInfo({ doctor }) {
@@ -23,7 +22,7 @@ const PageInfo = function PageInfo({ doctor }) {
     t,
     i18n: { language },
   } = useTranslation();
-  const { searchValue } = useFilter();
+  const { searchValue, accept } = useFilter();
   const { state } = useLocation();
 
   const [type, ageGroup] = doctor.type.split('-');
@@ -34,15 +33,11 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const navigate = useNavigate();
   const handleBackButton = () => {
-    navigate(`/${language}/${doctor.type}`, {
-      state: {
-        searchValue,
-        zoom: state?.zoom ?? MAP.ZOOM,
-        center: state?.center ?? MAP.GEO_LOCATION.SL_CENTER,
-        type,
-        ageGroup: AgeGroupTranslate[ageGroup] ?? 'adults',
-      },
-    });
+    const zoom = state?.zoom ?? MAP.ZOOM;
+    const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
+    navigate(
+      `/${language}/${doctor.type}/#a-${accept}|l-${zoom}/${center.join('/')}|s-${searchValue}`,
+    );
   };
 
   const [isEditing, setIsEditing] = useState(isReportError);

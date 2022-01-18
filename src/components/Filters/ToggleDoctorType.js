@@ -3,7 +3,6 @@ import ToggleGroup from 'components/Shared/ToggleGroup';
 import { useFilter } from 'context/filterContext';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
 
 import { useDoctorTypeExactPath } from 'hooks';
 
@@ -11,7 +10,6 @@ import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   return function ToggleDoctorType(props) {
-    const { state } = useLocation();
     const { t } = useTranslation();
 
     const { drType: drTypeFromPath, ageGroup: ageGroupFromPath } = useDoctorTypeExactPath();
@@ -20,7 +18,7 @@ function withToggleGroup(Component) {
       type: drTypeFromPath ?? 'gp',
       ageGroup: ageGroupFromPath ?? 'adults',
     };
-    const { type: stateType, ageGroup: stateAgeGroup } = state ?? defaultState;
+    const { type: stateType, ageGroup: stateAgeGroup } = defaultState;
 
     const { doctorType, setDoctorType } = useFilter();
     const [drType, setDrType] = useState(stateType ?? 'gp');
