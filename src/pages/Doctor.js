@@ -6,13 +6,16 @@ import { Loader } from 'components/Shared';
 
 import { leafletContext } from 'context';
 import { useDoctors } from 'context/doctorsContext';
+import { useFilter } from 'context/filterContext';
+
 import FooterInfoCard from '../components/Shared/FooterInfo';
 
 import * as Styled from './styles/Doctor';
 
 const Doctor = function Doctor() {
   const { doctors } = useDoctors();
-  const { type, name, instId } = useParams();
+  const { doctorType: type } = useFilter();
+  const { name, instId } = useParams();
   const {
     i18n: { language },
   } = useTranslation();

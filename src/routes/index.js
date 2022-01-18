@@ -56,17 +56,19 @@ const Router = function Router() {
     />
   ));
 
-  const doctorPageRoutes = languages.map(lang => (
-    <Route
-      key={`${lang}-dr-page`}
-      path={`/${lang}/:type/:name/:instId`}
-      element={
-        <Suspense fallback={<Loader.Center />}>
-          <Doctor />
-        </Suspense>
-      }
-    />
-  ));
+  const doctorPageRoutes = languages.map(lang =>
+    DOCTORS.TYPES.map(type => (
+      <Route
+        key={`${lang}-dr-page`}
+        path={`/${lang}/${type}/:name/:instId`}
+        element={
+          <Suspense fallback={<Loader.Center />}>
+            <Doctor />
+          </Suspense>
+        }
+      />
+    )),
+  );
 
   const doctorTypeRoutes = languages.map(lang =>
     DOCTORS.TYPES.map(type => (
