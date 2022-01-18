@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
+import { MAP } from 'const';
 import * as Styled from './styles';
 
 const NavLinks = function NavLinks() {
@@ -18,12 +19,12 @@ const NavLinks = function NavLinks() {
     if (doctorType !== 'gp') setDoctorType('gp');
     if (accept !== 'vsi') setAccept('vsi');
     if (searchValue) setSearchValue('');
-    navigate(`/${lng}/`);
+    navigate(`/${lng}/gp/#a-vsi|l-${MAP.ZOOM}/${MAP.GEO_LOCATION.SL_CENTER.join('/')}|s-`);
   };
 
   return (
     <>
-      <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
+      <Styled.NavMenuLink to={`/${lng}/gp`} activeclassname="active" onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
       <Styled.NavMenuLink to={`/${lng}/faq`} activeclassname="active">

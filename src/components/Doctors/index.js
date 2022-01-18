@@ -13,6 +13,7 @@ import { useDoctorTypeExactPath } from 'hooks';
 import { filterContext } from 'context';
 import { useLeafletContext } from 'context/leafletContext';
 
+import { reduceHash } from 'utils';
 import DoctorCard from 'components/DoctorCard';
 import MainMap from './Map';
 import { MainScrollTop } from '../Shared/ScrollTop';
@@ -23,7 +24,7 @@ import MapOnlySnackbar from './MapOnlySnackbar';
 import * as Styled from './styles';
 import { withErrorBoundary } from '../Shared/ErrorBoundary';
 
-const { GEO_LOCATION, BOUNDS } = MAP;
+const { BOUNDS } = MAP;
 
 const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
 const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
@@ -34,7 +35,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     t,
     i18n: { language },
   } = useTranslation();
-  const { state, hash: currentHash, pathname: currentPathname } = useLocation();
+  const { state, hash: currentHash } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
@@ -75,19 +76,33 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
   const noResults = !areDoctors && !dataLoading;
 
   useEffect(() => {
-    const z = map?.getZoom() ?? zoom;
-    const c = map?.getCenter() ?? { lat: center[0], lng: center[1] };
+    if (map) {
+      const newHash = currentHash.replace('#', '').split('|').reduce(reduceHash, {
+        search: '',
+        loc: MAP.GEO_LOCATION.SL_CENTER,
+        zoom: MAP.ZOOM,
+        accepts: 'vsi',
+      });
 
-    const loc = [z, c.lat, c.lng].join('/');
+      map.setZoom(newHash.zoom);
+      map.setView(newHash.loc);
 
-    navigate(`./#a-${accept}|l-${loc}|s-${searchValue}`);
-  }, [searchValue, accept, navigate, map, zoom, center]);
+      const hash = `a-vsi|l-${newHash.zoom}/${newHash.loc.join('/')}|s-`;
+
+      navigate(`../${language}/${doctorType}/#${hash}`);
+    }
+  }, [doctorType, navigate, map, currentHash, language]);
 
   useEffect(() => {
-    if (!currentPathname.includes(doctorType)) {
-      navigate(`../${language}/${doctorType}/${currentHash}`);
+    if (map) {
+      const z = map?.getZoom();
+      const c = map?.getCenter();
+
+      const loc = [z, c.lat, c.lng].join('/');
+
+      navigate(`./#a-${accept}|l-${loc}|s-${searchValue}`);
     }
-  }, [doctorType, currentHash, currentPathname, language, navigate]);
+  }, [searchValue, accept, navigate, map]);
 
   return (
     <Styled.Wrapper show={show}>
@@ -133,13 +148,3 @@ Doctors.defaultProps = {
 };
 
 export default withErrorBoundary(Doctors);
-
-export function getCenter(doctors) {
-  const isArray = Array.isArray(doctors);
-  if (!isArray) return [GEO_LOCATION.SL_CENTER];
-
-  const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
-  const avgLatitude = average(doctors.map(doctor => doctor.geoLocation.lat));
-  const avgLongitude = average(doctors.map(doctor => doctor.geoLocation.lon));
-  return [avgLatitude, avgLongitude];
-}

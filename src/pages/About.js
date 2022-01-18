@@ -42,7 +42,7 @@ const About = function About() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.about')} lang={lng} />
+      <SEO.Dynamic title={t('SEO.title.about')} lang={language} />
       <Styled.CustomContainer id="main-content" ref={aboutRef}>
         <Styled.StaticPageWrapper>
           <span>

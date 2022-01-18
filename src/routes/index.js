@@ -83,12 +83,22 @@ const Router = function Router() {
     )).flat(),
   );
 
+  const languageRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-page`}
+      exact
+      path={`/${lang}`}
+      element={<Navigate to={`/${language}/gp`} />}
+    />
+  ));
+
   return (
     <HelmetProvider>
       <Routes>
         <Route exact path="/" element={<Navigate to={`/${language}/gp`} />} />
         <Route exact path="/faq" element={<Navigate to={`/${language}/faq`} />} />
         <Route exact path="/about" element={<Navigate to={`/${language}/about`} />} />
+        {languageRoutes}
 
         {faqRoutes}
         {aboutRoutes}

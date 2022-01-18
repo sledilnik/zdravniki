@@ -22,7 +22,7 @@ function withToggleGroup(Component) {
     };
     const { type: stateType, ageGroup: stateAgeGroup } = state ?? defaultState;
 
-    const { setDoctorType } = useFilter();
+    const { doctorType, setDoctorType } = useFilter();
     const [drType, setDrType] = useState(stateType ?? 'gp');
     const [ageGroup, setAgeGroup] = useState(stateAgeGroup ?? 'adults');
 
@@ -52,6 +52,25 @@ function withToggleGroup(Component) {
         setDoctorType(AGE_GROUPS_TRANSLATE[ageGroup]);
       }
     }, [drType, ageGroup, setDoctorType]);
+
+    useEffect(() => {
+      if (['gp', 'ped', 'gyn'].includes(doctorType)) {
+        setDrType(doctorType);
+        setAgeGroup('adults');
+      }
+
+      if (doctorType.includes('ped')) {
+        const [drT, ag] = doctorType.split('-');
+        setDrType(drT);
+
+        const AGE_GROUPS_TRANSLATE = {
+          y: 'youth',
+          s: 'students',
+        };
+
+        setAgeGroup(AGE_GROUPS_TRANSLATE[ag] ?? 'adults');
+      }
+    }, [doctorType, setDrType, setAgeGroup]);
 
     return (
       <>

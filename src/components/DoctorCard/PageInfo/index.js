@@ -34,7 +34,7 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const navigate = useNavigate();
   const handleBackButton = () => {
-    navigate(`/${language}/`, {
+    navigate(`/${language}/${doctor.type}`, {
       state: {
         searchValue,
         zoom: state?.zoom ?? MAP.ZOOM,
