@@ -30,8 +30,11 @@ const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
-  const { t } = useTranslation();
-  const { state } = useLocation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { state, hash: currentHash, pathname: currentPathname } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
@@ -79,6 +82,12 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
 
     navigate(`./#a-${accept}|l-${loc}|s-${searchValue}`);
   }, [searchValue, accept, navigate, map, zoom, center]);
+
+  useEffect(() => {
+    if (!currentPathname.includes(doctorType)) {
+      navigate(`../${language}/${doctorType}/${currentHash}`);
+    }
+  }, [doctorType, currentHash, currentPathname, language, navigate]);
 
   return (
     <Styled.Wrapper show={show}>

@@ -15,11 +15,15 @@ const FilterProvider = function FilterProvider({ children }) {
   const { map } = useLeafletContext();
   const { doctors: _doctors } = useDoctors();
 
-  const { type } = useDoctorTypeExactPath();
+  const {
+    type: typeFromPath,
+    accepts: acceptFromPath,
+    search: searchFromPath,
+  } = useDoctorTypeExactPath();
 
-  const [doctorType, setDoctorType] = useState(type ?? 'gp');
-  const [accept, setAccept] = useState('vsi');
-  const [searchValue, setSearchValue] = useState('');
+  const [doctorType, setDoctorType] = useState(typeFromPath ?? 'gp');
+  const [accept, setAccept] = useState(acceptFromPath ?? 'vsi');
+  const [searchValue, setSearchValue] = useState(searchFromPath ?? '');
 
   const [doctors, setDoctors] = useState(_doctors);
   const [filtered, setFiltered] = useState(null);
