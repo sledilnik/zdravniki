@@ -102,8 +102,8 @@ const Router = function Router() {
   const isHome = matchPath(location.pathname, '/');
 
   if (isHome) {
-    map.setZoom(MAP.ZOOM);
-    map.setView(MAP.GEO_LOCATION.SL_CENTER);
+    map?.setZoom(MAP.ZOOM);
+    map?.setView(MAP.GEO_LOCATION.SL_CENTER);
   }
 
   return (
