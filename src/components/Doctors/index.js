@@ -86,23 +86,21 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
 
       map.setZoom(newHash.zoom);
       map.setView(newHash.loc);
-
       const hash = `a-${newHash.accepts}|l-${newHash.zoom}/${newHash.loc.join('/')}|s-`;
-
       navigate(`../${language}/${doctorType}/#${hash}`);
     }
-  }, [doctorType, navigate, map, currentHash, language]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (map) {
       const z = map?.getZoom();
       const c = map?.getCenter();
-
       const loc = [z, c.lat, c.lng].join('/');
-
-      navigate(`./#a-${accept}|l-${loc}|s-${searchValue}`);
+      const hash = `a-${accept}|l-${loc}|s-${searchValue}`;
+      navigate(`../${language}/${doctorType}/#${hash}`);
     }
-  }, [searchValue, accept, navigate, map]);
+  }, [doctorType, accept, searchValue, language, navigate, map]);
 
   return (
     <Styled.Wrapper show={show}>

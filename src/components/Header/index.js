@@ -6,7 +6,6 @@ import { IconButton, TextField, Toolbar } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
 import { languages } from 'i18n';
-import { MAP } from 'const';
 
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
@@ -54,7 +53,7 @@ const Header = function Header() {
     if (doctorType !== 'gp') setDoctorType('gp');
     if (accept !== 'vsi') setAccept('vsi');
     if (searchValue) setSearchValue('');
-    navigate(`/${language}/gp/#a-vsi|l-${MAP.ZOOM}/${MAP.GEO_LOCATION.SL_CENTER.join('/')}|s-`);
+    navigate(`/`);
   };
 
   return (

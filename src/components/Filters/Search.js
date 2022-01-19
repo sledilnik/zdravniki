@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import * as Icons from 'components/Shared/Icons';
@@ -12,7 +12,7 @@ const Search = function Search() {
 
   const { search } = useDoctorTypeExactPath();
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(search ?? '');
 
   const inputRef = useRef(null);
 
@@ -26,12 +26,6 @@ const Search = function Search() {
   };
 
   useDebounce(() => setSearchValue(value), 500, [value]);
-
-  useEffect(() => {
-    if (search) {
-      setValue(search);
-    }
-  }, [search, setSearchValue]);
 
   return (
     <Styled.Search.SearchPaper elevation={0}>

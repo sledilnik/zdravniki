@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
-import { MAP } from 'const';
 import * as Styled from './styles';
 
 const NavLinks = function NavLinks() {
@@ -10,6 +9,7 @@ const NavLinks = function NavLinks() {
   const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
   const { t, i18n } = useTranslation();
   const lng = i18n.language;
+
   useEffect(() => {
     i18n.changeLanguage(lng);
   }, [lng, i18n]);
@@ -19,7 +19,7 @@ const NavLinks = function NavLinks() {
     if (doctorType !== 'gp') setDoctorType('gp');
     if (accept !== 'vsi') setAccept('vsi');
     if (searchValue) setSearchValue('');
-    navigate(`/${lng}/gp/#a-vsi|l-${MAP.ZOOM}/${MAP.GEO_LOCATION.SL_CENTER.join('/')}|s-`);
+    navigate(`/`);
   };
 
   return (

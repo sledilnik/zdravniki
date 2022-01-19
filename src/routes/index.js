@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, matchPath } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import { DOCTORS } from 'const';
+import { DOCTORS, MAP } from 'const';
+import { useLeafletContext } from 'context/leafletContext';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -16,6 +17,10 @@ const Router = function Router() {
   const {
     i18n: { languages, language },
   } = useTranslation();
+
+  const location = useLocation();
+
+  const { map } = useLeafletContext();
 
   const faqRoutes = languages.map(lang => (
     <Route
@@ -93,6 +98,13 @@ const Router = function Router() {
       element={<Navigate to={`/${language}/gp`} />}
     />
   ));
+
+  const isHome = matchPath(location.pathname, '/');
+
+  if (isHome) {
+    map.setZoom(MAP.ZOOM);
+    map.setView(MAP.GEO_LOCATION.SL_CENTER);
+  }
 
   return (
     <HelmetProvider>

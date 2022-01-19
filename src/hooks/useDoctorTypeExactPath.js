@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, matchPath } from 'react-router-dom';
 
 import { DOCTORS } from 'const';
-import { useState } from 'react';
 import { reduceHash } from 'utils';
 
 export default function useDoctorTypeExactPath() {
