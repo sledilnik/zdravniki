@@ -36,7 +36,7 @@ const MapEvents = function MapEvents() {
         newCenter.lng.toFixed(5),
       ].join('/')}|s-${oldHashValues.search}`;
 
-      navigate(`./#${hash}`);
+      navigate(`./#${hash}`, { replace: true });
     },
   });
   return null;
