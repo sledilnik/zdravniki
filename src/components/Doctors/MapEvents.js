@@ -31,9 +31,10 @@ const MapEvents = function MapEvents() {
         accepts: null,
       });
 
-      const hash = `a-${oldHashValues.accepts}|l-${newZoom}/${[newCenter.lat, newCenter.lng].join(
-        '/',
-      )}|s-${oldHashValues.search}`;
+      const hash = `a-${oldHashValues.accepts}|l-${newZoom}/${[
+        newCenter.lat.toFixed(5),
+        newCenter.lng.toFixed(5),
+      ].join('/')}|s-${oldHashValues.search}`;
 
       navigate(`./#${hash}`);
     },

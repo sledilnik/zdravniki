@@ -32,7 +32,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
     navigate(path, {
       state: {
         zoom: map?.getZoom(),
-        center: center ? [center.lat, center.lng] : undefined,
+        center: center ? [center.lat.toFixed(5), center.lng.toFixed(5)] : undefined,
         isReportError,
       },
     });

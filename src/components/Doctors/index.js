@@ -96,7 +96,7 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     if (map) {
       const z = map?.getZoom();
       const c = map?.getCenter();
-      const loc = [z, c.lat, c.lng].join('/');
+      const loc = [z, c.lat.toFixed(5), c.lng.toFixed(5)].join('/');
       const hash = `a-${accept}|l-${loc}|s-${searchValue}`;
       navigate(`../${language}/${doctorType}/#${hash}`);
     }
