@@ -34,7 +34,7 @@
     "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.4",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "cross-env SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true react-scripts start",
