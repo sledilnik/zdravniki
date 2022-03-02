@@ -5,6 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import * as Styled from '../styles/Markdown';
 
 const Section = ({ data = [] }) => {
+  console.log({ data });
   const { t } = useTranslation();
   const [copyTooltip, setCopyTooltip] = useState(t('copy'));
 
@@ -56,7 +57,9 @@ const Section = ({ data = [] }) => {
 };
 
 Section.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ answer: PropTypes.string, definition: PropTypes.string }),
+  ),
 };
 
 export default Section;
