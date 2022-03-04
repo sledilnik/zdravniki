@@ -7545,7 +7545,14 @@ react-leaflet-markercluster@^3.0.0-rc1:
     leaflet.markercluster "^1.4.1"
     react-leaflet "^3.0.0"
 
-react-leaflet@^3.0.0, react-leaflet@^3.2.4:
+react-leaflet@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-3.2.3.tgz#ab63dc079f0de1b994ba21dfe878c4c3a6727a66"
+  integrity sha512-EbOCqf+bq7hap98wpjZQ4UHt/qVDT63EtL5TUFX8Gu8C89OaPV8YfqEM+BPOQQQIAfLVweZc9hG/yYYV8OSK+w==
+  dependencies:
+    "@react-leaflet/core" "^1.1.1"
+
+react-leaflet@^3.0.0:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-3.2.5.tgz#bec0bfab9dd8c2b030ea630f7a0687a60322ca7d"
   integrity sha512-Z3KZ+4SijsRbbrt2I1a3ZDY6+V6Pm91eYTdxTN18G6IOkFRsJo1BuSPLFnyFrlF3WDjQFPEcTPkEgD1VEeAoBg==
