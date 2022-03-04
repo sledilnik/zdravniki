@@ -43,7 +43,7 @@
     "lint": "eslint .",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyze": "webpack-bundle-analyzer ./build/bundle-stats.json"
+    "analyze": "react-scripts build --stats && webpack-bundle-analyzer ./build/bundle-stats.json"
   },
   "browserslist": [
     ">0.2%",
