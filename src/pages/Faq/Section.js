@@ -5,7 +5,6 @@ import Tooltip from '@mui/material/Tooltip';
 import * as Styled from '../styles/Markdown';
 
 const Section = ({ data = [] }) => {
-  console.log({ data });
   const { t } = useTranslation();
   const [copyTooltip, setCopyTooltip] = useState(t('copy'));
 
