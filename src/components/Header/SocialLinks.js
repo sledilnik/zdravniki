@@ -5,7 +5,7 @@ const SocialLinks = function SocialLinks() {
   return (
     <div>
       <Styled.IconButton
-        href="https://www.facebook.com/COVID19Sledilnik"
+        href="https://www.facebook.com/SledilnikOrg"
         target="_blank"
         rel="noopener"
       >
