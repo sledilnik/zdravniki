@@ -7,8 +7,7 @@ import { useTimestamps } from 'context/timestampsContext';
 
 export const FooterInfo = styled('div')(({ theme }) => ({
   fontSize: '12px',
-  padding: '0 0 50px',
-  margin: '0 24px',
+  padding: '0 24px 50px',
   color: theme.customColors.textLight,
 
   '&.is-dr-page': {
