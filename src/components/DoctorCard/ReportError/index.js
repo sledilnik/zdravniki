@@ -104,7 +104,6 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       inputOrderform === doctorFormData.orderform &&
       inputNote === doctorFormData.note
     ) {
-      console.log('not sending anything');
       return;
     }
 

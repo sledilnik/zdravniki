@@ -2,6 +2,5 @@ build/
 node_modules/
 .nvmrc
 .editorconfig
-.prettierrc.json
 netfly.toml
 README.md

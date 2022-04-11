@@ -15,7 +15,7 @@ import * as Styled from './styles';
 
 const { GEO_LOCATION } = MAP;
 
-const createClusterCustomIcon = function (cluster) {
+const createClusterCustomIcon = function createClusterCustomIcon(cluster) {
   let n;
   let acceptsCnt = 0;
   // eslint-disable-next-line no-restricted-syntax
