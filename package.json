@@ -30,7 +30,7 @@
     "react-papaparse": "^3.17.2",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.5",
     "uuid": "^8.3.2",
