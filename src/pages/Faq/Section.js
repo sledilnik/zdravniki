@@ -56,7 +56,9 @@ const Section = ({ data = [] }) => {
 };
 
 Section.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ answer: PropTypes.string, definition: PropTypes.string }),
+  ),
 };
 
 export default Section;
