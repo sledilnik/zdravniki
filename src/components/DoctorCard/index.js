@@ -24,7 +24,7 @@ const DoctorCard = function DoctorCard({ doctor, isPage = false, handleRoomIconC
 
   if (isPage) {
     return (
-      <Styled.PageInfoCard id={id} accepts={accepts.toString()}>
+      <Styled.PageInfoCard id={id} accepts={accepts ? 1 : 0}>
         <Styled.PageInfoBox id="doctor-box">
           <PageInfo doctor={doctor} handleZoom={handleZoom} />
           <CardContent>
@@ -38,7 +38,7 @@ const DoctorCard = function DoctorCard({ doctor, isPage = false, handleRoomIconC
   }
 
   return (
-    <Styled.InfoCard id={id} accepts={accepts.toString()}>
+    <Styled.InfoCard id={id} accepts={accepts ? 1 : 0}>
       <Info doctor={doctor} handleZoom={handleRoomIconClick} />
     </Styled.InfoCard>
   );

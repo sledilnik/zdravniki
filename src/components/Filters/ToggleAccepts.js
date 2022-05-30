@@ -1,12 +1,15 @@
-import ToggleGroup from 'components/Shared/ToggleGroup';
+import { useTranslation } from 'react-i18next';
 
 import { useFilter } from 'context/filterContext';
-import { t } from 'i18next';
+
+import ToggleGroup from 'components/Shared/ToggleGroup';
+
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   const ToggleAccepts = function ToggleAccepts(props) {
     const { accept, setAccept } = useFilter();
+    const { t } = useTranslation();
 
     const injectedProps = {
       ...props,

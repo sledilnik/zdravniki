@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
@@ -13,20 +12,22 @@ const MD = {
 };
 
 const About = function About() {
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const [postMarkdown, setPostMarkdown] = useState('');
-  const { lng } = useParams();
   const aboutRef = useRef();
 
   useEffect(() => {
-    const theTextFile = MD?.[lng] ?? slAbout;
+    const theTextFile = MD?.[language] ?? slAbout;
 
     fetch(theTextFile)
       .then(response => response.text())
       .then(text => {
         setPostMarkdown(text);
       });
-  }, [lng]);
+  }, [language]);
 
   // append attribute target="blank" to all external links
   useEffect(() => {
@@ -41,7 +42,7 @@ const About = function About() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.about')} lang={lng} />
+      <SEO.Dynamic title={t('SEO.title.about')} lang={language} />
       <Styled.CustomContainer id="main-content" ref={aboutRef}>
         <Styled.StaticPageWrapper>
           <span>

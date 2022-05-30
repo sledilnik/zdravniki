@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -10,19 +10,21 @@ import { SelectEdit, TextareaEdit } from './InlineEdit';
 import { toPercent } from '../utils';
 
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
-  const { t } = useTranslation();
-  const { lng } = useParams();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const navigate = useNavigate();
   const meta = [{ name: 'robots', content: 'noindex' }];
 
   const accepts = doctorFormData.accepts === 'y';
   const [type, ageGroup] = doctorFormData.type.split('-');
-  const availabilityText = toPercent(doctorFormData.availability, lng);
+  const availabilityText = toPercent(doctorFormData.availability, language);
 
   const drPath = doctorFormData.type;
   const slug = slugify(doctorFormData?.name?.toLowerCase());
   const { instId } = doctorFormData;
-  const path = `/${lng}/${drPath}/${slug}/${instId}`;
+  const path = `/${language}/${drPath}/${slug}/${instId}`;
 
   const [inputAddress, setInputAddress] = useState(doctorFormData.fullAddress);
   const [inputAccepts, setInputAccepts] = useState(accepts ? 'y' : 'n');
@@ -177,7 +179,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.home')} meta={meta} lang={lng} />
+      <SEO.Dynamic title={t('SEO.title.home')} meta={meta} lang={language} />
       <CardContent
         sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
       >

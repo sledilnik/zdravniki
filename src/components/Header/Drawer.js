@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import * as Icons from 'components/Shared/Icons';
 import Stack from '@mui/material/Stack';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import * as Styled from './styles';
 import NavLinks from './NavLinks';
@@ -23,6 +23,7 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
 
 const TemporaryDrawer = function TemporaryDrawer({ open, setOpen }) {
   const [activeBtn, setActiveBtn] = useState();
+  const { t } = useTranslation();
 
   const toggleDrawer = event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {

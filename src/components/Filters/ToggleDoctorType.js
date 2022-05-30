@@ -1,19 +1,24 @@
 import ToggleGroup from 'components/Shared/ToggleGroup';
 
 import { useFilter } from 'context/filterContext';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+
+import { useDoctorTypeExactPath } from 'hooks';
+
 import { IconToggleButton } from './Shared';
 
 function withToggleGroup(Component) {
   return function ToggleDoctorType(props) {
-    const { state } = useLocation();
+    const { t } = useTranslation();
 
-    const { type: stateType, ageGroup: stateAgeGroup } = state ?? {
-      type: 'gp',
-      ageGroup: 'adults',
+    const { drType: drTypeFromPath, ageGroup: ageGroupFromPath } = useDoctorTypeExactPath();
+
+    const defaultState = {
+      type: drTypeFromPath ?? 'gp',
+      ageGroup: ageGroupFromPath ?? 'adults',
     };
+    const { type: stateType, ageGroup: stateAgeGroup } = defaultState;
 
     const { doctorType, setDoctorType } = useFilter();
     const [drType, setDrType] = useState(stateType ?? 'gp');
@@ -23,39 +28,47 @@ function withToggleGroup(Component) {
       ...props,
       value: drType,
       setValue: setDrType,
-      sx: { gridArea: 'doctor-type' },
     };
     const injectedPropsAgeGroup = {
       ...props,
       value: ageGroup,
       setValue: setAgeGroup,
-      sx: { gridArea: 'age-group' },
     };
 
     useEffect(() => {
-      const typeTranslate = {
-        gp_adults: 'gp',
-        gp_youth: 'gp',
-        gp_students: 'gp',
-        ped_adults: 'ped',
-        ped_students: 'ped',
-        ped_youth: 'ped',
-        den_adults: 'den',
-        den_students: 'den-s',
-        den_youth: 'den-y',
-        gyn_adults: 'gyn',
-        gyn_students: 'gyn',
-        gyn_youth: 'gyn',
-      };
+      if (['gp', 'ped', 'gyn'].includes(drType)) {
+        setDoctorType(drType);
+      }
 
-      const type = `${drType}_${ageGroup}`;
+      if (drType === 'den') {
+        const AGE_GROUPS_TRANSLATE = {
+          adults: 'den',
+          youth: 'den-y',
+          students: 'den-s',
+        };
 
-      if (!typeTranslate[type]) {
+        setDoctorType(AGE_GROUPS_TRANSLATE[ageGroup]);
+      }
+    }, [drType, ageGroup, setDoctorType]);
+
+    useEffect(() => {
+      if (['gp', 'ped', 'gyn'].includes(doctorType)) {
+        setDrType(doctorType);
         setAgeGroup('adults');
       }
 
-      if (doctorType !== type) setDoctorType(typeTranslate[type]);
-    }, [drType, ageGroup, doctorType, setDoctorType]);
+      if (doctorType.includes('ped')) {
+        const [drT, ag] = doctorType.split('-');
+        setDrType(drT);
+
+        const AGE_GROUPS_TRANSLATE = {
+          y: 'youth',
+          s: 'students',
+        };
+
+        setAgeGroup(AGE_GROUPS_TRANSLATE[ag] ?? 'adults');
+      }
+    }, [doctorType, setDrType, setAgeGroup]);
 
     return (
       <>

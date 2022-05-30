@@ -3,7 +3,7 @@ import { useMap } from 'react-leaflet';
 import { useTheme } from '@mui/material/styles';
 
 import { Markers } from 'components/Shared/Leaflet';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import * as Styled from './styles';
 import Info from '../DoctorCard/Info';
 import { DoctorPropType } from '../../types';
@@ -11,6 +11,7 @@ import { DoctorPropType } from '../../types';
 export const User = function User() {
   const [position, setPosition] = useState(null);
   const map = useMap();
+  const { t } = useTranslation();
 
   useEffect(() => {
     map.locate().on('locationfound', e => {

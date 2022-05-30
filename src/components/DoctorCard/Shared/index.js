@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -67,7 +66,7 @@ DoubleChip.defaultProps = {
 
 DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
-  ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+  ageGroup: PropTypes.oneOf([undefined, 's', 'y']),
 };
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
@@ -99,8 +98,10 @@ HeadQuotient.propTypes = {
 };
 
 export const Availability = function Availability({ date, availability, hasOverride }) {
-  const { lng } = useParams();
-  const availabilityText = toPercent(availability, lng);
+  const {
+    i18n: { language },
+  } = useTranslation();
+  const availabilityText = toPercent(availability, language);
 
   return (
     <Tooltip

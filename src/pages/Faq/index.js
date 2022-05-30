@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as SEO from 'components/SEO';
 import { Loader } from 'components/Shared';
@@ -8,19 +7,21 @@ import Section from './Section';
 import FooterInfoCard from '../../components/Shared/FooterInfo';
 
 const Faq = function Faq() {
-  const { t } = useTranslation();
-  const { lng } = useParams();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const faqRef = useRef();
   const [response, setResponse] = useState();
 
   // fetch data
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_CONTENT_ENDPOINT_BASE}/faq/3/?lang=${lng}`)
+    fetch(`${process.env.REACT_APP_CONTENT_ENDPOINT_BASE}/faq/3/?lang=${language}`)
       .then(r => r.json())
       .then(json => {
         setResponse(json);
       });
-  }, [lng]);
+  }, [language]);
 
   useEffect(() => {
     if (faqRef.current) {
@@ -52,7 +53,7 @@ const Faq = function Faq() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.faq')} lang={lng} />
+      <SEO.Dynamic title={t('SEO.title.faq')} lang={language} />
       <Styled.CustomContainer className="custom-container">
         <Styled.StaticPageWrapper className="static-page-wrapper" ref={faqRef}>
           <h1>{t('faq.title')}</h1>

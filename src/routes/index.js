@@ -1,8 +1,11 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes, useLocation, matchPath } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
-import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
+
+import { DOCTORS, MAP } from 'const';
+import { useLeafletContext } from 'context/leafletContext';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -11,81 +14,117 @@ const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const Router = function Router() {
-  const [, lngFromPath] = window.location.pathname.split('/');
-  const supportedLanguages = i18next.languages;
-  const isLangLength = lngFromPath?.length === 2;
-  const isLang = isLangLength && supportedLanguages.includes(lngFromPath);
-  const [lng, setLng] = useState(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
+  const {
+    i18n: { languages, language },
+  } = useTranslation();
 
-  useEffect(() => {
-    setLng(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
-  }, [isLang, lngFromPath]);
+  const location = useLocation();
 
-  useEffect(() => {
-    if (i18next.language !== lng) {
-      i18next.changeLanguage(lng);
-    }
-  }, [lng]);
+  const { map } = useLeafletContext();
+
+  const faqRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/faq`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <Faq />
+        </Suspense>
+      }
+    />
+  ));
+
+  const aboutRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/about`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <About />
+        </Suspense>
+      }
+    />
+  ));
+
+  const notFoundRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-faq-route`}
+      exact
+      path={`/${lang}/404`}
+      element={
+        <Suspense fallback={<Loader.Center />}>
+          <PageNotFound />
+        </Suspense>
+      }
+    />
+  ));
+
+  const doctorPageRoutes = languages.map(lang =>
+    DOCTORS.TYPES.map(type => (
+      <Route
+        key={`${lang}-dr-page`}
+        path={`/${lang}/${type}/:name/:instId`}
+        element={
+          <Suspense fallback={<Loader.Center />}>
+            <Doctor />
+          </Suspense>
+        }
+      />
+    )),
+  );
+
+  const doctorTypeRoutes = languages.map(lang =>
+    DOCTORS.TYPES.map(type => (
+      <Route
+        key={`${lang}-${type}-page`}
+        exact
+        path={`/${lang}/${type}`}
+        element={
+          <Suspense fallback={<Loader.Center />}>
+            <Home />
+          </Suspense>
+        }
+      />
+    )).flat(),
+  );
+
+  const languageRoutes = languages.map(lang => (
+    <Route
+      key={`${lang}-page`}
+      exact
+      path={`/${lang}`}
+      element={<Navigate to={`/${language}/gp`} />}
+    />
+  ));
+
+  const isHome = matchPath(location.pathname, '/');
+
+  if (isHome) {
+    map?.setZoom(MAP.ZOOM);
+    map?.setView(MAP.GEO_LOCATION.SL_CENTER);
+  }
 
   return (
     <HelmetProvider>
       <Routes>
-        <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
-        <Route exact path="/faq" element={<Navigate to={`/${lng}/faq`} />} />
-        <Route exact path="/about" element={<Navigate to={`/${lng}/about`} />} />
-        <Route
-          exact
-          path="/:lng"
-          element={
-            // TODO: fix navigation out of 404 page
-            isLang || !lngFromPath ? (
-              <Suspense fallback={<Loader.Center />}>
-                <Home />
-              </Suspense>
-            ) : (
-              <Navigate to={`/${lng}/404`} />
-            )
-          }
-        />
-        <Route
-          exact
-          path="/:lng/about"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          exact
-          path="/:lng/faq"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Faq />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/:type/:name/:instId"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <Doctor />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/:lng/404"
-          element={
-            <Suspense fallback={<Loader.Center />}>
-              <PageNotFound />
-            </Suspense>
-          }
-        />
+        <Route exact path="/" element={<Navigate to={`/${language}/gp`} />} />
+        <Route exact path="/faq" element={<Navigate to={`/${language}/faq`} />} />
+        <Route exact path="/about" element={<Navigate to={`/${language}/about`} />} />
+        {languageRoutes}
+
+        {faqRoutes}
+        {aboutRoutes}
+        {doctorTypeRoutes}
+        {doctorPageRoutes}
+        {notFoundRoutes}
+
         <Route
           path="*"
           element={
             <Suspense fallback={<Loader.Center />}>
-              <Navigate to={`/${lng}/404`} />
+              <Navigate to={`/${language}/404`} />
             </Suspense>
           }
         />

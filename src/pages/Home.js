@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
@@ -13,8 +12,10 @@ import { useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
-  const { t } = useTranslation();
-  const { lng } = useParams();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const [show, setShow] = useState('map');
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
@@ -27,7 +28,7 @@ const Home = function Home() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
+      <SEO.Dynamic title={t('SEO.title.home')} lang={language} />
       {isFetching && !hasError ? (
         <Loader.Center component="main" />
       ) : (

@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { IconButton, TextField, Toolbar } from '@mui/material';
+
 import * as Icons from 'components/Shared/Icons';
-import i18next, { languages } from 'i18n';
 import { useFilter } from 'context/filterContext';
+import { languages } from 'i18n';
+
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -14,6 +17,9 @@ const Header = function Header() {
   const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
   const [open, setOpen] = useState(false);
   const ref = useRef();
+  const {
+    i18n: { language, changeLanguage },
+  } = useTranslation();
 
   const eventHandler = event => {
     const { target } = event;
@@ -38,7 +44,7 @@ const Header = function Header() {
   const handleChangeLocale = (e, newValue) => {
     e.preventDefault();
     const lang = newValue?.code;
-    i18next.changeLanguage(lang);
+    changeLanguage(lang);
     navigate(`/${lang}/${location.pathname.substring(4)}`);
   };
 
@@ -47,7 +53,7 @@ const Header = function Header() {
     if (doctorType !== 'gp') setDoctorType('gp');
     if (accept !== 'vsi') setAccept('vsi');
     if (searchValue) setSearchValue('');
-    navigate(`/${i18next.language}/`);
+    navigate(`/`);
   };
 
   return (
@@ -59,7 +65,7 @@ const Header = function Header() {
           },
         }}
       >
-        <NavLink to={`/${i18next.language}/`} className="logo" onClick={goHome}>
+        <NavLink to={`/${language}/gp`} className="logo" onClick={goHome}>
           <Icons.Icon name="Logo" style={{ height: '40px' }} />
         </NavLink>
         <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
@@ -92,7 +98,7 @@ const Header = function Header() {
           }}
           options={languages}
           disableClearable
-          value={languages.find(l => l.code === i18next.language)}
+          value={languages.find(l => l.code === language)}
           getOptionLabel={option => {
             const code = option?.code;
             return typeof code === 'undefined' ? '' : code.toUpperCase();

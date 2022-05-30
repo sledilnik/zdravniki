@@ -1,9 +1,11 @@
 import * as Icons from 'components/Shared/Icons';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import * as Styled from '../styles';
 
 const Accepts = function Accepts({ accepts }) {
+  const { t } = useTranslation();
+
   const iconName = accepts === 'y' ? 'CheckGreen' : 'BanRed';
   const text = accepts === 'y' ? t('accepts').toUpperCase() : t('rejects').toUpperCase();
 

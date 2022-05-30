@@ -17,6 +17,8 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
+    // https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    cleanCode: true, // main language will be lowercased; e.g. EN  ⇒ en, while leaving full locales like en-US
     // the translations
     // (tip move them in a JSON file and import them,
     // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
@@ -25,7 +27,7 @@ i18next
       en: { translation: en },
       it: { translation: it },
     },
-    lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option
+    supportedLngs: languages.map(value => value.code),
     fallbackLng: languages.map(value => value.code),
     detection: {
       order: ['path', 'cookie', 'navigator', 'localStorage', 'subdomain', 'queryString', 'htmlTag'],

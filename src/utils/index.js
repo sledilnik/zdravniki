@@ -74,3 +74,27 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     );
   });
 }
+
+export function reduceHash(acc, val) {
+  if (val?.startsWith('a-')) {
+    acc.accepts = val.replace('a-', '');
+    return acc;
+  }
+
+  if (val?.startsWith('l-')) {
+    const leaflet = val?.replace('l-', '').split('/');
+    if (leaflet.length === 3) {
+      const [zoom, lat, lng] = leaflet;
+      acc.zoom = +zoom;
+      acc.loc = [+lat, +lng];
+      return acc;
+    }
+  }
+
+  if (val?.startsWith('s-')) {
+    acc.search = decodeURI(val.replace('s-', ''));
+    return acc;
+  }
+
+  return acc;
+}

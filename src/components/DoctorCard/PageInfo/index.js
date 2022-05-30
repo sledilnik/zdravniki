@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
@@ -15,15 +15,15 @@ import PhoneLinks from './PhoneLinks';
 import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
-import { AgeGroupTranslate } from '../dicts';
 import { DoctorPropType } from '../../../types';
 
 const PageInfo = function PageInfo({ doctor }) {
-  const { t } = useTranslation();
-  const { searchValue } = useFilter();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { searchValue, accept } = useFilter();
   const { state } = useLocation();
-
-  const { lng } = useParams();
 
   const [type, ageGroup] = doctor.type.split('-');
 
@@ -33,15 +33,11 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const navigate = useNavigate();
   const handleBackButton = () => {
-    navigate(`/${lng}/`, {
-      state: {
-        searchValue,
-        zoom: state?.zoom ?? MAP.ZOOM,
-        center: state?.center ?? MAP.GEO_LOCATION.SL_CENTER,
-        type,
-        ageGroup: AgeGroupTranslate[ageGroup] ?? 'adults',
-      },
-    });
+    const zoom = state?.zoom ?? MAP.ZOOM;
+    const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
+    navigate(
+      `/${language}/${doctor.type}/#a-${accept}|l-${zoom}/${center.join('/')}|s-${searchValue}`,
+    );
   };
 
   const [isEditing, setIsEditing] = useState(isReportError);
@@ -97,13 +93,13 @@ const PageInfo = function PageInfo({ doctor }) {
             <Shared.HeadQuotient
               load={doctor.load}
               note={doctor.note}
-              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(language)}
               accepts={doctor.accepts}
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
-              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(language)}
               hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
@@ -164,7 +160,7 @@ const PageInfo = function PageInfo({ doctor }) {
             <Tooltip
               title={
                 <Shared.Tooltip.Updated
-                  date={doctor.formatUpdatedAt(lng)}
+                  date={doctor.formatUpdatedAt(language)}
                   note={doctor.note}
                   acceptsOverride={doctor.acceptsOverride}
                   acceptsZZZS={doctor.acceptsZZZS}
@@ -176,7 +172,7 @@ const PageInfo = function PageInfo({ doctor }) {
               enterTouchDelay={50}
             >
               <Styled.PageInfo.Override direction="row" alignItems="center" spacing={1}>
-                <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(lng)}
+                <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(language)}
               </Styled.PageInfo.Override>
             </Tooltip>
           )}

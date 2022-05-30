@@ -1,18 +1,18 @@
-import { useLocation } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import * as Icons from 'components/Shared/Icons';
 import { useFilter } from 'context/filterContext';
-import { useState, useRef } from 'react';
-import { useDebounce } from 'hooks';
-import { t } from 'i18next';
+import { useDebounce, useDoctorTypeExactPath } from 'hooks';
 import * as Styled from './styles';
 
 const Search = function Search() {
-  const { state } = useLocation();
   const { setSearchValue } = useFilter();
+  const { t } = useTranslation();
 
-  const defaultValue = state?.searchValue ?? '';
-  const [value, setValue] = useState(defaultValue);
+  const { search } = useDoctorTypeExactPath();
+
+  const [value, setValue] = useState(search ?? '');
 
   const inputRef = useRef(null);
 

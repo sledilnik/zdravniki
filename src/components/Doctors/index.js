@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
@@ -9,9 +9,11 @@ import { Alert } from '@mui/material';
 import PropTypes from 'prop-types';
 import { MAP } from 'const';
 
+import { useDoctorTypeExactPath } from 'hooks';
 import { filterContext } from 'context';
 import { useLeafletContext } from 'context/leafletContext';
 
+import { reduceHash } from 'utils';
 import DoctorCard from 'components/DoctorCard';
 import MainMap from './Map';
 import { MainScrollTop } from '../Shared/ScrollTop';
@@ -22,19 +24,24 @@ import MapOnlySnackbar from './MapOnlySnackbar';
 import * as Styled from './styles';
 import { withErrorBoundary } from '../Shared/ErrorBoundary';
 
-const { GEO_LOCATION, BOUNDS } = MAP;
+const { BOUNDS } = MAP;
 
 const corner1 = L.latLng(...Object.values(BOUNDS.southWest));
 const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
-  const { t } = useTranslation();
-  const { state } = useLocation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const { hash: currentHash } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
   const { map, setMap } = useLeafletContext();
   const [items, setItems] = useState(Array.from({ length: itemsPerPage }));
+  const { zoom: zoomFromPath, loc: locFromPath } = useDoctorTypeExactPath();
+  const navigate = useNavigate();
 
   const doctorsPagination = useMemo(() => doctors?.slice(0, items.length), [doctors, items.length]);
 
@@ -61,12 +68,39 @@ const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
     map.flyTo([lat, lon], MAP.MAX_ZOOM);
   };
 
-  const zoom = state?.zoom ?? MAP.ZOOM;
-  const center = state?.center ?? MAP.GEO_LOCATION.SL_CENTER;
+  const zoom = zoomFromPath ?? MAP.ZOOM;
+  const center = locFromPath ?? MAP.GEO_LOCATION.SL_CENTER;
 
   const areDoctors = Array.isArray(doctors) && doctors.length !== 0;
   const dataLoading = !Array.isArray(doctors);
   const noResults = !areDoctors && !dataLoading;
+
+  useEffect(() => {
+    if (map) {
+      const newHash = currentHash.replace('#', '').split('|').reduce(reduceHash, {
+        search: '',
+        loc: MAP.GEO_LOCATION.SL_CENTER,
+        zoom: MAP.ZOOM,
+        accepts: 'vsi',
+      });
+
+      map.setZoom(newHash.zoom);
+      map.setView(newHash.loc);
+      const hash = `a-${newHash.accepts}|l-${newHash.zoom}/${newHash.loc.join('/')}|s-`;
+      navigate(`../${language}/${doctorType}/#${hash}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (map) {
+      const z = map?.getZoom();
+      const c = map?.getCenter();
+      const loc = [z, c.lat.toFixed(5), c.lng.toFixed(5)].join('/');
+      const hash = `a-${accept}|l-${loc}|s-${searchValue}`;
+      navigate(`../${language}/${doctorType}/#${hash}`);
+    }
+  }, [doctorType, accept, searchValue, language, navigate, map]);
 
   return (
     <Styled.Wrapper show={show}>
@@ -112,13 +146,3 @@ Doctors.defaultProps = {
 };
 
 export default withErrorBoundary(Doctors);
-
-export function getCenter(doctors) {
-  const isArray = Array.isArray(doctors);
-  if (!isArray) return [GEO_LOCATION.SL_CENTER];
-
-  const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
-  const avgLatitude = average(doctors.map(doctor => doctor.geoLocation.lat));
-  const avgLongitude = average(doctors.map(doctor => doctor.geoLocation.lon));
-  return [avgLatitude, avgLongitude];
-}

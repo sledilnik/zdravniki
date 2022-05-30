@@ -1,4 +1,7 @@
 import { createContext, useCallback, useContext, useState, useEffect, useMemo } from 'react';
+
+import { useDoctorTypeExactPath } from 'hooks';
+
 import { filterBySearchValueInMapBounds } from '../utils';
 import { useDoctors } from './doctorsContext';
 import { useLeafletContext } from './leafletContext';
@@ -12,9 +15,15 @@ const FilterProvider = function FilterProvider({ children }) {
   const { map } = useLeafletContext();
   const { doctors: _doctors } = useDoctors();
 
-  const [doctorType, setDoctorType] = useState('gp');
-  const [accept, setAccept] = useState('vsi');
-  const [searchValue, setSearchValue] = useState('');
+  const {
+    type: typeFromPath,
+    accepts: acceptFromPath,
+    search: searchFromPath,
+  } = useDoctorTypeExactPath();
+
+  const [doctorType, setDoctorType] = useState(typeFromPath ?? 'gp');
+  const [accept, setAccept] = useState(acceptFromPath ?? 'vsi');
+  const [searchValue, setSearchValue] = useState(searchFromPath ?? '');
 
   const [doctors, setDoctors] = useState(_doctors);
   const [filtered, setFiltered] = useState(null);

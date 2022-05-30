@@ -1,4 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CardContent, Stack, Typography } from '@mui/material';
 
 import { useLeafletContext } from 'context/leafletContext';
@@ -10,8 +11,10 @@ import * as Shared from '../Shared';
 import { DoctorPropType } from '../../../types';
 
 const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
-  const { lng } = useParams();
   const { map } = useLeafletContext();
+  const {
+    i18n: { language },
+  } = useTranslation();
   const [type, ageGroup] = doctor.type.split('-');
 
   const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const slug = doctor?.nameSlug;
   const instId = doctor?.instId;
 
-  const path = `/${lng}/${drPath}/${slug}/${instId}`;
+  const path = `/${language}/${drPath}/${slug}/${instId}`;
 
   const handleDoctorCard = (event, isReportError) => {
     event.preventDefault();
@@ -29,10 +32,8 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
     navigate(path, {
       state: {
         zoom: map?.getZoom(),
-        center: center ? [center.lat, center.lng] : undefined,
+        center: center ? [center.lat.toFixed(5), center.lng.toFixed(5)] : undefined,
         isReportError,
-        type,
-        ageGroup: ageGroup ?? 'adults',
       },
     });
   };
@@ -60,13 +61,13 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             <Shared.HeadQuotient
               load={doctor.load}
               note={doctor.note}
-              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(language)}
               accepts={doctor.accepts}
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
               availability={doctor.availability}
-              date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              date={doctor.updatedAt && doctor.formatUpdatedAt(language)}
               hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>
