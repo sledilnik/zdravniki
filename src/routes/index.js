@@ -1,5 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
@@ -10,45 +10,32 @@ const Faq = lazy(() => import('../pages/Faq'));
 const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
-const Router = function Router() {
-  const [, lngFromPath] = window.location.pathname.split('/');
+const RouteRedirect = function RouteRedirect() {
+  const { lng } = useParams();
   const supportedLanguages = i18next.languages;
-  const isLangLength = lngFromPath?.length === 2;
-  const isLang = isLangLength && supportedLanguages.includes(lngFromPath);
-  const [lng, setLng] = useState(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
+  const isLang = supportedLanguages.includes(lng);
 
-  useEffect(() => {
-    setLng(isLang ? lngFromPath : process.env.REACT_APP_DEFAULT_LANGUAGE);
-  }, [isLang, lngFromPath]);
+  if (!lng || !isLang) return <Navigate to="/sl" />;
 
-  useEffect(() => {
-    if (i18next.language !== lng) {
-      i18next.changeLanguage(lng);
-    }
-  }, [lng]);
+  return (
+    <Suspense fallback={<Loader.Center />}>
+      <Home />
+    </Suspense>
+  );
+};
+
+const Router = function Router() {
+  const { lng } = useParams();
+  i18next.changeLanguage(lng ?? process.env.REACT_APP_DEFAULT_LANGUAGE);
 
   return (
     <HelmetProvider>
       <Routes>
-        <Route exact path="/" element={<Navigate to={`/${lng}/`} />} />
-        <Route exact path="/faq" element={<Navigate to={`/${lng}/faq`} />} />
-        <Route exact path="/about" element={<Navigate to={`/${lng}/about`} />} />
+        <Route path="/" element={<Navigate to={`/${lng}`} />} />
+        <Route path="/faq" element={<Navigate to={`/${lng}/faq`} />} />
+        <Route path="/about" element={<Navigate to={`/${lng}/about`} />} />
+        <Route path="/:lng/" element={<RouteRedirect />} />
         <Route
-          exact
-          path="/:lng"
-          element={
-            // TODO: fix navigation out of 404 page
-            isLang || !lngFromPath ? (
-              <Suspense fallback={<Loader.Center />}>
-                <Home />
-              </Suspense>
-            ) : (
-              <Navigate to={`/${lng}/404`} />
-            )
-          }
-        />
-        <Route
-          exact
           path="/:lng/about"
           element={
             <Suspense fallback={<Loader.Center />}>
@@ -57,7 +44,6 @@ const Router = function Router() {
           }
         />
         <Route
-          exact
           path="/:lng/faq"
           element={
             <Suspense fallback={<Loader.Center />}>

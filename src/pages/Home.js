@@ -27,7 +27,10 @@ const Home = function Home() {
 
   return (
     <>
-      <SEO.Dynamic title={t('SEO.title.home')} lang={lng} />
+      <SEO.Dynamic
+        title={t('SEO.title.home')}
+        lang={lng ?? process.env.REACT_APP_DEFAULT_LANGUAGE}
+      />
       {isFetching && !hasError ? (
         <Loader.Center component="main" />
       ) : (
