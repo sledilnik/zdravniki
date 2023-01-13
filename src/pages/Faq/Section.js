@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Tooltip from '@mui/material/Tooltip';
 import * as Styled from '../styles/Markdown';
 
-const Section = ({ data = [] }) => {
+function Section({ data = [] }) {
   const { t } = useTranslation();
   const [copyTooltip, setCopyTooltip] = useState(t('copy'));
 
@@ -53,7 +53,7 @@ const Section = ({ data = [] }) => {
       </Styled.Collapsable>
     );
   });
-};
+}
 
 Section.propTypes = {
   data: PropTypes.arrayOf(

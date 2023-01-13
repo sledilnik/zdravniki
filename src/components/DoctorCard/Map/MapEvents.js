@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */ // when upgrading eslint error appears
 import { useMapEvents } from 'react-leaflet';
 import PropTypes from 'prop-types';
 
