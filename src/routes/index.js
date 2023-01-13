@@ -17,7 +17,9 @@ const IsWrongLanguage = function IsWrongLanguage({ isValidLanguage, Component })
       <Component />
     </Suspense>
   ) : (
-    <PageNotFound />
+    <Suspense>
+      <PageNotFound />
+    </Suspense>
   );
 };
 
@@ -43,9 +45,9 @@ const Router = function Router() {
   return (
     <HelmetProvider>
       <Routes>
-        <Route path="/" element={<Navigate to={`/${langPath}`} />} />
-        <Route path="/faq" element={<Navigate to={`/${langPath}/faq`} />} />
-        <Route path="/about" element={<Navigate to={`/${langPath}/about`} />} />
+        <Route path="/" element={<Navigate replace to={`/${langPath}`} />} replace />
+        <Route path="/faq" element={<Navigate replace to={`/${langPath}/faq`} />} />
+        <Route path="/about" element={<Navigate replace to={`/${langPath}/about`} />} />
         <Route
           path="/:lng/"
           element={

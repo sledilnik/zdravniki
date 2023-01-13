@@ -59,7 +59,7 @@ const Header = function Header() {
           },
         }}
       >
-        <NavLink to={`/${i18next.language}/`} className="logo" onClick={goHome} aria-label="home">
+        <NavLink to={`/${i18next.language}`} className="logo" onClick={goHome} aria-label="home">
           <Icons.Icon name="Logo" style={{ height: '40px' }} />
         </NavLink>
         <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
