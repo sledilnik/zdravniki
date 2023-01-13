@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
 import { useFilter } from 'context/filterContext';
@@ -19,7 +19,6 @@ import { AgeGroupTranslate } from '../dicts';
 import { DoctorPropType } from '../../../types';
 
 const PageInfo = function PageInfo({ doctor }) {
-  const { t } = useTranslation();
   const { searchValue } = useFilter();
   const { state } = useLocation();
 

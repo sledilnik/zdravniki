@@ -1,13 +1,10 @@
-import { t } from 'i18next';
+import i18n, { t } from 'i18next';
 import * as SEO from 'components/SEO';
-import { useTranslation } from 'react-i18next';
 import * as Styled from './styles/PageNotFound';
 import image from '../assets/doctor-404.png';
 import image2x from '../assets/doctor-404@2x.png';
 
 const PageNotFound = function PageNotFound() {
-  const { i18n } = useTranslation();
-
   const currentLanguage = i18n.language;
 
   const meta = [{ name: 'robots', content: 'noindex' }];

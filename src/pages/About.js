@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import enAbout from 'content/en/about.md';
 import slAbout from 'content/sl/about.md';
 import * as SEO from 'components/SEO';
@@ -13,7 +14,6 @@ const MD = {
 };
 
 const About = function About() {
-  const { t } = useTranslation();
   const [postMarkdown, setPostMarkdown] = useState('');
   const { lng } = useParams();
   const aboutRef = useRef();

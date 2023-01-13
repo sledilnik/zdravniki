@@ -1,11 +1,10 @@
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Tooltip from '@mui/material/Tooltip';
+import { t } from 'i18next';
 import * as Styled from '../styles/Markdown';
 
 function Section({ data = [] }) {
-  const { t } = useTranslation();
   const [copyTooltip, setCopyTooltip] = useState(t('copy'));
 
   // scroll element to when link with hash is passed

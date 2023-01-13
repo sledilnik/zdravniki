@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import i18n, { t } from 'i18next';
 
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
@@ -12,7 +12,6 @@ import { useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
-  const { t, i18n } = useTranslation();
   const lng = i18n.language;
   const [show, setShow] = useState('map');
   const { isFetching, errors } = doctorsContext.useDoctors();

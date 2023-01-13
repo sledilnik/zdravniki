@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import { IconButton, Tooltip } from '@mui/material';
 
 import * as Icons from 'components/Shared/Icons';
 
 const PhoneButton = function PhoneButton({ phone }) {
-  const { t } = useTranslation();
   const title = phone || t('doctorCard.noPhone');
   const iconName = phone ? 'PhoneBig' : 'NoPhoneBig';
 

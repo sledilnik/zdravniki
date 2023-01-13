@@ -3,16 +3,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { doctorsContext, filterContext, leafletContext, timestampsContext } from 'context';
 import { Accessibility } from 'components/Shared';
 import Header from 'components/Header';
-import { t } from 'i18next';
+import i18n, { t } from 'i18next';
 import { THEME } from 'const';
 import Router from 'routes';
 import { useLocation } from 'react-router';
-import { useTranslation } from 'react-i18next';
 
 const App = function App() {
   const theme = createTheme(THEME);
   const { pathname } = useLocation();
-  const { i18n } = useTranslation();
 
   const defaultLanguage = process.env.REACT_APP_DEFAULT_LANGUAGE;
   const currentLanguage = i18n.language;

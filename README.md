@@ -27,9 +27,9 @@ Current translation status:
 
 Notable:
 
-* Map: [Leaflet](https://leafletjs.com/) via [React Leaflet](https://react-leaflet.js.org)
-* Internationalisation (i18n): [i18next](https://www.i18next.com/) via [react-i18next](https://react.i18next.com/)
-* ...TODO...
+- Map: [Leaflet](https://leafletjs.com/) via [React Leaflet](https://react-leaflet.js.org)
+- Internationalisation (i18n): [i18next](https://www.i18next.com/)
+- ...TODO...
 
 All used libraries can be seen on [GitHub dependancies](https://github.com/sledilnik/zdravniki/network/dependencies).
 

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import { CardActions, Divider, IconButton, ListItemIcon, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import * as Icons from 'components/Shared/Icons';
 
@@ -12,8 +11,6 @@ import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
 const DoctorActions = function DoctorActions({ handlers, path, isMarker, phoneNum, menuId }) {
-  const { t } = useTranslation();
-
   const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
   const moreMenuHandleClick = event => {
