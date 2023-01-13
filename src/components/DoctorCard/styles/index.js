@@ -1,9 +1,11 @@
-import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import TypographyBase from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import MuiLink from '@mui/material/Link';
-import Menu from '@mui/material/Menu';
+import {
+  Menu,
+  Stack,
+  Card as MuiCard,
+  Typography as TypographyBase,
+  Link as MuiLink,
+} from '@mui/material';
 
 export * as PageInfo from './PageInfo';
 

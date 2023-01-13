@@ -50,20 +50,22 @@ import { ReactComponent as Booking } from 'assets/icon-booking.svg';
 import { ReactComponent as Edit } from 'assets/icon-edit.svg';
 import { ReactComponent as Email } from 'assets/icon-email.svg';
 
-export { default as MenuIcon } from '@mui/icons-material/Menu';
-export { default as RoomIcon } from '@mui/icons-material/Room';
-export { default as SearchIcon } from '@mui/icons-material/Search';
-export { default as EmojiPeopleIcon } from '@mui/icons-material/EmojiPeople';
-export { default as BlockIcon } from '@mui/icons-material/Block';
-export { default as CheckCircleOutlineIcon } from '@mui/icons-material/CheckCircleOutline';
-export { default as GroupsIcon } from '@mui/icons-material/Groups';
-export { default as ContactPageIcon } from '@mui/icons-material/ContactPage';
-export { default as CheckIcon } from '@mui/icons-material/Check';
-export { default as FacebookIcon } from '@mui/icons-material/FacebookOutlined';
-export { default as CloseIcon } from '@mui/icons-material/Close';
-export { default as LinkIcon } from '@mui/icons-material/Link';
-export { default as PhoneEnabledIcon } from '@mui/icons-material/PhoneEnabled';
-export { default as ExpandMoreIcon } from '@mui/icons-material/ExpandMore';
+export {
+  Menu as MenuIcon,
+  Room as RoomIcon,
+  Search as SearchIcon,
+  EmojiPeople as EmojiPeopleIcon,
+  Block as BlockIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  Groups as GroupsIcon,
+  ContactPage as ContactPageIcon,
+  Check as CheckIcon,
+  FacebookOutlined as FacebookIcon,
+  Close as CloseIcon,
+  Link as LinkIcon,
+  PhoneEnabled as PhoneEnabledIcon,
+  ExpandMore as ExpandMoreIcon,
+} from '@mui/icons-material';
 
 const icons = {
   Adults,

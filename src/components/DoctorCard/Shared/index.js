@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
-import Tooltip from '@mui/material/Tooltip';
+import { Tooltip } from '@mui/material';
 
 import PropTypes from 'prop-types';
 

@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import { t } from 'i18next';
 
 import { styled } from '@mui/material/styles';
+import { Divider, Stack, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
