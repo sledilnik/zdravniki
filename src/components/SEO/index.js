@@ -14,5 +14,5 @@ Dynamic.defaultProps = {
 Dynamic.propTypes = {
   title: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, content: PropTypes.string })),
-  lang: PropTypes.oneOf(['sl', 'en']),
+  lang: PropTypes.oneOf(['sl', 'en', 'it']),
 };

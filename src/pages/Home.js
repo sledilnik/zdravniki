@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 
 import Filters from 'components/Filters';
 import Doctors from 'components/Doctors';
@@ -13,8 +12,8 @@ import { useState } from 'react';
 import * as Styled from './styles/Home';
 
 const Home = function Home() {
-  const { t } = useTranslation();
-  const { lng } = useParams();
+  const { t, i18n } = useTranslation();
+  const lng = i18n.language;
   const [show, setShow] = useState('map');
   const { isFetching, errors } = doctorsContext.useDoctors();
   const hasError = errors.some(error => error instanceof Error);
@@ -34,7 +33,7 @@ const Home = function Home() {
       {isFetching && !hasError ? (
         <Loader.Center component="main" />
       ) : (
-        <Styled.Main id="main-content" component="main">
+        <Styled.Main id="main-content" component="main" key={lng}>
           <Filters useShow={useShow} />
           <Styled.Box>
             <Doctors itemsPerPage={DOCTORS.PER_PAGE} useShow={useShow} />

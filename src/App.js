@@ -6,9 +6,29 @@ import Header from 'components/Header';
 import { t } from 'i18next';
 import { THEME } from 'const';
 import Router from 'routes';
+import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const App = function App() {
   const theme = createTheme(THEME);
+  const { pathname } = useLocation();
+  const { i18n } = useTranslation();
+
+  const defaultLanguage = process.env.REACT_APP_DEFAULT_LANGUAGE;
+  const currentLanguage = i18n.language;
+
+  const pathnameLocale = pathname.split('/')?.[1].toLocaleLowerCase() ?? defaultLanguage;
+
+  const supportedLanguages = i18n.languages;
+  const isLang = supportedLanguages.includes(pathnameLocale);
+
+  const shouldChangeLanguage =
+    isLang && currentLanguage !== pathnameLocale && pathnameLocale.length === 2;
+
+  if (shouldChangeLanguage) {
+    i18n.changeLanguage(pathnameLocale);
+  }
+
   return (
     <>
       <CssBaseline />
