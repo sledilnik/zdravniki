@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.8.5",
-    "@mui/system": "^5.8.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.4",
+    "@mui/system": "^5.11.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +17,7 @@
     "json2mq": "^0.2.0",
     "leaflet": "^1.8.0",
     "leaflet.markercluster": "^1.5.3",
-    "markdown-to-jsx": "^7.1.6",
+    "markdown-to-jsx": "^7.1.8",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -30,11 +30,11 @@
     "react-papaparse": "^3.18.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^5.0.1",
     "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.5",
-    "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "uuid": "^9.0.0",
+    "web-vitals": "^3.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,9 +60,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "install-peers": "^1.0.3",
-    "prettier": "^2.5.1",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "install-peers": "^1.0.4",
+    "prettier": "^2.8.2",
+    "webpack-bundle-analyzer": "^4.7.0"
   },
   "engines": {
     "node": ">= 17",
