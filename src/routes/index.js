@@ -12,6 +12,14 @@ const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
 
 const IsWrongLanguage = function IsWrongLanguage({ isValidLanguage, Component }) {
+  const { pathname } = useLocation();
+  const splittedPath = pathname.split('/');
+
+  // stupid hack to fix the issue with not active links if pathname doesn't end with "/"
+  if (splittedPath.length === 2) {
+    return <Navigate to={`/${i18n.language}/`} />;
+  }
+
   return isValidLanguage ? (
     <Suspense fallback={<Loader.Center />}>
       <Component />
@@ -44,11 +52,11 @@ const Router = function Router() {
   return (
     <HelmetProvider>
       <Routes>
-        <Route path="/" element={<Navigate replace to={`/${langPath}`} />} replace />
-        <Route path="/faq" element={<Navigate replace to={`/${langPath}/faq`} />} />
-        <Route path="/about" element={<Navigate replace to={`/${langPath}/about`} />} />
+        <Route path="/" element={<Navigate replace to={`/${langPath}/`} />} />
+        <Route path="/faq" element={<Navigate replace to={`/${langPath}/faq/`} />} />
+        <Route path="/about" element={<Navigate replace to={`/${langPath}/about/`} />} />
         <Route
-          path="/:lng/"
+          path="/:lng"
           element={
             <IsWrongLanguage isValidLanguage={isValidLanguage} lng={langPath} Component={Home} />
           }

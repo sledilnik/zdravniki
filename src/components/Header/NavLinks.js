@@ -23,7 +23,7 @@ const NavLinks = function NavLinks() {
 
   return (
     <>
-      <Styled.NavMenuLink ref={homeLinkRef} to={`/${lng}`} onClick={goHome}>
+      <Styled.NavMenuLink ref={homeLinkRef} to={`/${lng}/`} end onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
 

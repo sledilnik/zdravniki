@@ -21,7 +21,7 @@ const PageNotFound = function PageNotFound() {
             srcSet={`${image2x} 2x`}
             alt={t('pageNotFound.imageDescription')}
           />
-          <Styled.BackToHomeBtn to={`/${currentLanguage}/`}>
+          <Styled.BackToHomeBtn to={`/${currentLanguage}/`} end>
             {t('header.home')}
           </Styled.BackToHomeBtn>
         </Styled.PageNotFound>
