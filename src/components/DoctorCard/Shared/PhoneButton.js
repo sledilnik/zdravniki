@@ -11,9 +11,13 @@ const PhoneButton = function PhoneButton({ phone }) {
 
   // Tooltip needs to listen to the child element's events to display the title. Add a simple wrapper element, such as a `span`.
   return (
-    <Tooltip title={title}>
+    <Tooltip title={title} role="button">
       <span>
-        <IconButton href={phone ? `tel:${phone}` : undefined} disabled={phone ? undefined : true}>
+        <IconButton
+          href={phone ? `tel:${phone}` : undefined}
+          disabled={phone ? undefined : true}
+          aria-label={title}
+        >
           <Icons.Icon name={iconName} />
         </IconButton>
       </span>

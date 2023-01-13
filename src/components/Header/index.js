@@ -59,7 +59,7 @@ const Header = function Header() {
           },
         }}
       >
-        <NavLink to={`/${i18next.language}/`} className="logo" onClick={goHome}>
+        <NavLink to={`/${i18next.language}/`} className="logo" onClick={goHome} aria-label="home">
           <Icons.Icon name="Logo" style={{ height: '40px' }} />
         </NavLink>
         <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
@@ -111,12 +111,14 @@ const Header = function Header() {
               {...params}
               inputProps={{
                 ...params.inputProps,
-                autoComplete: 'new-password', // disable autocomplete and autofill
+                'aria-label': 'language switcher',
               }}
+              name="language-switcher"
             />
           )}
           disablePortal // not sure if needed
           PopperComponent={Popper}
+          blurOnSelect
         />
       </Toolbar>
       <TemporaryDrawer open={open} setOpen={setOpen} />

@@ -38,6 +38,7 @@ const NavLinks = function NavLinks() {
         component="button"
         tabIndex={0}
         underline="none"
+        role="link"
       >
         {t('header.support')}
       </Styled.NavMenuItemLink>
@@ -48,6 +49,7 @@ const NavLinks = function NavLinks() {
         component="button"
         tabIndex={0}
         underline="none"
+        role="link"
       >
         {t('header.sledilnik')}
       </Styled.NavMenuItemLink>

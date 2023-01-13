@@ -46,7 +46,7 @@ const DoctorActions = function DoctorActions({ handlers, path, isMarker, phoneNu
         <IconButton
           aria-label={t('doctorCard.more')}
           aria-controls={menuId}
-          aria-expanded={moreMenuOpen ? 'true' : undefined}
+          aria-expanded={moreMenuOpen ? 'true' : 'false'}
           aria-haspopup="true"
           onClick={moreMenuHandleClick}
         >
