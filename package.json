@@ -28,7 +28,7 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-papaparse": "^4.1.0",
     "react-router": "^6.6.2",
-    "react-router-dom": "^6.6.2",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
     "react-style-proptype": "^3.2.2",
     "slugify": "^1.6.5",
