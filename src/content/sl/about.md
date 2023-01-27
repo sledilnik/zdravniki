@@ -6,6 +6,8 @@ Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravni
 
 V Znanstvenem društvu Sledilnik smo se zato odločili, da te podatke predstavimo v uporabnikom in uporabnicam prijaznejši obliki: z imenikom in iskalnikom, ki nam omogoča hiter vpogled dostopnosti zdravnikov/-ic v naši bližini.
 
+Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante. 
+
 ## Ekipa
 
 Sodelavci in sodelavke projekta:
@@ -14,7 +16,7 @@ Sodelavci in sodelavke projekta:
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
 - [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — vsebine
-- [Luka Petravić](https://scholar.google.com/citations?user=gmundjAAAAAJ&hl=sl) — vsebine
+- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — vsebine
 - [Luka Renko](https://twitter.com/lukarenko) — koordinacija, podatki, spletna stran
 - [Marko Brumen](https://twitter.com/multikultivator) — družabna omrežja, vsebine
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
