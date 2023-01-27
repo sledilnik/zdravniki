@@ -8,10 +8,16 @@ const SocialLinks = function SocialLinks() {
         href="https://www.facebook.com/SledilnikOrg"
         target="_blank"
         rel="noopener"
+        aria-label="Facebook"
       >
         <Icons.Icon name="Facebook" />
       </Styled.IconButton>
-      <Styled.IconButton href="https://twitter.com/sledilnik" target="_blank" rel="noopener">
+      <Styled.IconButton
+        href="https://twitter.com/sledilnik"
+        target="_blank"
+        rel="noopener"
+        aria-label="Twitter"
+      >
         <Icons.Icon name="Twitter" />
       </Styled.IconButton>
     </div>

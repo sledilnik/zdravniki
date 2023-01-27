@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import i18next, { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
@@ -8,6 +8,7 @@ const NavLinks = function NavLinks() {
   const navigate = useNavigate();
   const { doctorType, setDoctorType, accept, setAccept, searchValue, setSearchValue } = useFilter();
   const lng = i18next.language;
+  const homeLinkRef = useRef();
   useEffect(() => {
     i18next.changeLanguage(lng);
   }, [lng]);
@@ -22,15 +23,12 @@ const NavLinks = function NavLinks() {
 
   return (
     <>
-      <Styled.NavMenuLink to={`/${lng}/`} activeclassname="active" onClick={goHome}>
+      <Styled.NavMenuLink ref={homeLinkRef} to={`/${lng}/`} end onClick={goHome}>
         {t('header.home')}
       </Styled.NavMenuLink>
-      <Styled.NavMenuLink to={`/${lng}/faq`} activeclassname="active">
-        {t('header.faq')}
-      </Styled.NavMenuLink>
-      <Styled.NavMenuLink to={`/${lng}/about`} activeclassname="active">
-        {t('header.about')}
-      </Styled.NavMenuLink>
+
+      <Styled.NavMenuLink to={`/${lng}/faq`}>{t('header.faq')}</Styled.NavMenuLink>
+      <Styled.NavMenuLink to={`/${lng}/about`}>{t('header.about')}</Styled.NavMenuLink>
       <Styled.NavMenuItemLink
         href={`https://covid-19.sledilnik.org/${lng}/donate`}
         target="_blank"
@@ -38,6 +36,7 @@ const NavLinks = function NavLinks() {
         component="button"
         tabIndex={0}
         underline="none"
+        role="link"
       >
         {t('header.support')}
       </Styled.NavMenuItemLink>
@@ -48,6 +47,7 @@ const NavLinks = function NavLinks() {
         component="button"
         tabIndex={0}
         underline="none"
+        role="link"
       >
         {t('header.sledilnik')}
       </Styled.NavMenuItemLink>

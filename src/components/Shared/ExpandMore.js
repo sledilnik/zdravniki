@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
 const ExpandMoreButton = styled(({ expand, ...other }) => <IconButton {...other} />)(

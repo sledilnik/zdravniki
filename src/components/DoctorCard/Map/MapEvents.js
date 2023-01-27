@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */ // when upgrading eslint error appears
 import { useMapEvents } from 'react-leaflet';
+import PropTypes from 'prop-types';
 
 const MapEvents = function MapEvents({ geoLocation }) {
   const map = useMapEvents({
@@ -7,6 +9,10 @@ const MapEvents = function MapEvents({ geoLocation }) {
     },
   });
   return null;
+};
+
+Map.propTypes = {
+  geoLocation: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default MapEvents;

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import { useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
 
@@ -48,8 +49,6 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue, place
 };
 
 export const SelectEdit = function SelectEdit({ name, value, setValue }) {
-  const { t } = useTranslation();
-
   const values = [
     // csv file has values "y" and "n"
     { k: 'n', v: t('rejects').toUpperCase() },

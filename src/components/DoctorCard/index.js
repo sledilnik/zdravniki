@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import { CardContent, CardMedia } from '@mui/material';
 
 import { useLeafletContext } from 'context/leafletContext';
 import DoctorMap from './Map';

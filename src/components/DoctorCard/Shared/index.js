@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Tooltip from '@mui/material/Tooltip';
+import { t } from 'i18next';
+
+import { Tooltip } from '@mui/material';
 
 import PropTypes from 'prop-types';
 
@@ -31,7 +32,6 @@ export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 
 export const DoubleChip = function DoubleChip({ type, ageGroup }) {
-  const { t } = useTranslation();
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';

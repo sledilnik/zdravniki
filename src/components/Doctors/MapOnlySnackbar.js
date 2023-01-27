@@ -1,7 +1,8 @@
 import { forwardRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import { styled } from '@mui/material/styles';
 
 import MuiSnackbar from '@mui/material/Snackbar';
@@ -23,7 +24,6 @@ const Alert = forwardRef((props, ref) => (
 ));
 
 const MapOnlySnackbar = function MapOnlySnackbar({ noResults }) {
-  const { t } = useTranslation();
   const [open, setOpen] = useState(noResults);
 
   const handleClose = (event, reason) => {

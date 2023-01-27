@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import { useTimestamps } from 'context/timestampsContext';
 
@@ -30,7 +30,6 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  const { t } = useTranslation();
   const { drTs } = useTimestamps();
 
   const date = t('timestamps.datetime', {

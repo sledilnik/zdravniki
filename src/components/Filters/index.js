@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+import PropTypes from 'prop-types';
 
 import { useFilter } from 'context/filterContext';
 
@@ -43,7 +44,6 @@ const Filters = function Filters({ useShow }) {
   const [expanded, setExpanded] = useState(false);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
-  const { t } = useTranslation();
   const { doctorType, accept } = useFilter();
   const [type, ageGroup = 'a'] = doctorType.split('-');
 
@@ -111,6 +111,10 @@ const Filters = function Filters({ useShow }) {
   );
 
   return matches ? up : down;
+};
+
+Filters.propTypes = {
+  useShow: PropTypes.func.isRequired,
 };
 
 export default withErrorBoundary(Filters);

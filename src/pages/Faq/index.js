@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 import * as SEO from 'components/SEO';
 import { Loader } from 'components/Shared';
 import * as Styled from '../styles/Markdown';
@@ -8,7 +8,6 @@ import Section from './Section';
 import FooterInfoCard from '../../components/Shared/FooterInfo';
 
 const Faq = function Faq() {
-  const { t } = useTranslation();
   const { lng } = useParams();
   const faqRef = useRef();
   const [response, setResponse] = useState();

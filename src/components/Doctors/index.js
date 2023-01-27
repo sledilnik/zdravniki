@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import L from 'leaflet';
 
 import { Alert } from '@mui/material';
@@ -29,7 +30,6 @@ const corner2 = L.latLng(...Object.values(BOUNDS.northEast));
 const bounds = L.latLngBounds(corner1, corner2);
 
 const Doctors = function Doctors({ itemsPerPage = 10, useShow }) {
-  const { t } = useTranslation();
   const { state } = useLocation();
   const { doctors, doctorType, accept, searchValue } = filterContext.useFilter();
   const [show, setShow] = useShow();
