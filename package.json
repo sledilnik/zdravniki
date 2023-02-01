@@ -17,7 +17,7 @@
     "json2mq": "^0.2.0",
     "leaflet": "^1.8.0",
     "leaflet.markercluster": "^1.5.3",
-    "markdown-to-jsx": "^7.1.8",
+    "markdown-to-jsx": "^7.1.9",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
