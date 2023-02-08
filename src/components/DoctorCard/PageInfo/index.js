@@ -91,7 +91,8 @@ const PageInfo = function PageInfo({ doctor }) {
           component="address"
           variant="body2"
           className="notranslate"
-          sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
+          sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}
+        >
           {doctor.fullAddress}
         </Typography>
 
