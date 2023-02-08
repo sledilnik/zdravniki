@@ -84,7 +84,10 @@ const PageInfo = function PageInfo({ doctor }) {
           {doctor.name}
         </Typography>
         <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-        <Typography component="h2" variant="h2" className="notranslate">
+        <Typography
+          component="h2"
+          variant="h2"
+          className="notranslate">
           {doctor.provider}
         </Typography>
         <Typography component="address" variant="body2" className="notranslate" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
