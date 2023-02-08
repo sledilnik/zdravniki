@@ -80,14 +80,14 @@ const PageInfo = function PageInfo({ doctor }) {
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
-        <Typography component="h1" variant="h1">
+        <Typography component="h1" variant="h1" className="notranslate">
           {doctor.name}
         </Typography>
         <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-        <Typography component="h2" variant="h2">
+        <Typography component="h2" variant="h2" className="notranslate">
           {doctor.provider}
         </Typography>
-        <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
+        <Typography component="address" variant="body2" className="notranslate" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
           {doctor.fullAddress}
         </Typography>
 
