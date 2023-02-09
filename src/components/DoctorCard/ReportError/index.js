@@ -181,11 +181,11 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
       >
         <div>
-          <Typography component="h1" variant="h1" className="notranslate">
+          <Typography component="h1" variant="h1" translate="no">
             {doctorFormData.name}
           </Typography>
           <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-          <Typography component="h2" variant="h2" className="notranslate">
+          <Typography component="h2" variant="h2" translate="no">
             {doctorFormData.provider}
           </Typography>
           <Alert severity="info" sx={{ marginY: '1rem' }}>
@@ -196,7 +196,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             value={inputAddress}
             setValue={setInputAddress}
             placeholder={t('reportError.placeholder.address')}
-            className="notranslate"
+            translate="no"
           />
           <TextareaEdit
             name="inputWebsite"
