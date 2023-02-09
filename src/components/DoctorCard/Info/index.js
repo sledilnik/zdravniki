@@ -42,16 +42,16 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   return (
     <>
       <CardContent>
-        <Typography component="h2" variant="h2" className="notranslate">
+        <Typography component="h2" variant="h2" translate="no">
           <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
             {doctor.name}
           </Shared.LinkNoRel>
         </Typography>
         {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
-        <Typography component="h3" variant="h3" className="notranslate">
+        <Typography component="h3" variant="h3" translate="no">
           {doctor.provider}
         </Typography>
-        <Typography component="address" variant="body2" className="notranslate">
+        <Typography component="address" variant="body2" translate="no">
           {doctor.fullAddress}
         </Typography>
 
