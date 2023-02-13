@@ -51,6 +51,7 @@ export function createDoctor(doctor, inst) {
   };
 
   const addressObject = getAddressObject(doctor, institution);
+  const isExtra = doctor.type.match(/-x$/);
 
   const {
     accepts: acceptsZZZS,
@@ -139,7 +140,13 @@ export function createDoctor(doctor, inst) {
     get searchAddress() {
       return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipalityPart} ${addressObject.municipality}`;
     },
+    get isExtra() {
+      return isExtra;
+    },
     get type() {
+      if (isExtra) {
+        return doctor.type.replace(/-x$/, '');
+      }
       return doctor.type;
     },
     get updatedAt() {
