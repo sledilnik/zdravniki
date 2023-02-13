@@ -144,6 +144,9 @@ export function createDoctor(doctor, inst) {
       return isExtra;
     },
     get type() {
+      return doctor.type;
+    },
+    get typeClean() {
       if (isExtra) {
         return doctor.type.replace(/-x$/, '');
       }
@@ -183,11 +186,18 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   }, {});
 
   const filterByTypeAndAccepts = (type, accepts) => {
-    if (accepts !== 'y' && accepts !== 'n') {
-      return byType[type];
+    let tmpByType = byType[type];
+    if (type === 'gp' && byType['gp-x']) {
+      tmpByType = tmpByType.concat(byType['gp-x']);
+    } else if (type === 'ped' && byType['ped-x']) {
+      tmpByType = tmpByType.concat(byType['ped-x']);
     }
 
-    return byType[type].filter(doctor => doctor.accepts === accepts);
+    if (accepts !== 'y' && accepts !== 'n') {
+      return tmpByType;
+    }
+
+    return tmpByType.filter(doctor => doctor.accepts === accepts);
   };
 
   const findByTypeAndNameSlug = (type, nameSlug, instId) =>
