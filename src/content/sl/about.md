@@ -16,8 +16,8 @@ Sodelavci in sodelavke projekta:
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
 - [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — vsebine
-- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — vsebine
-- [Luka Renko](https://twitter.com/lukarenko) — koordinacija, podatki, spletna stran
+- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — koordinacija, vsebine
+- [Luka Renko](https://twitter.com/lukarenko) — podatki, spletna stran
 - [Marko Brumen](https://twitter.com/multikultivator) — družabna omrežja, vsebine
 - [Mia Erbus](https://github.com/miaerbus) — spletna stran
 - [Miha Eržen](https://github.com/mihaerzen) — spletna stran
