@@ -47,14 +47,13 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             {doctor.name}
           </Shared.LinkNoRel>
         </Typography>
-        {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
+        {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} isExtra={doctor.isExtra} />}
         <Typography component="h3" variant="h3" translate="no">
           {doctor.provider}
         </Typography>
         <Typography component="address" variant="body2" translate="no">
           {doctor.fullAddress}
         </Typography>
-
         <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
           <Stack direction="row" alignItems="center" spacing={1}>
             <Shared.HeadQuotient

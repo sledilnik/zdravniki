@@ -251,3 +251,28 @@ export const Link = styled(MuiLink)(({ theme }) => ({
   color: theme.customColors.doctor.colors.link,
   cursor: 'pointer',
 }));
+
+export const IsExtra = styled(Stack)(({ theme, isPageView }) => {
+  const padding = isPageView ? '5px 8px 5px 8px' : '5px 2px 5px 7px';
+
+  return {
+    fontWeight: 400,
+    fontSize: '12px',
+    background: theme.customColors.doctor.colors.extraClinicBgColor,
+    color: theme.customColors.doctor.colors.extraClinicColor,
+    borderRadius: '4px',
+    whiteSpace: 'nowrap',
+    cursor: 'help',
+    padding,
+    margin: '0 0 0 10px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    letterSpacing: '0.3px',
+    svg: {
+      width: '18px',
+      height: '18px',
+      opacity: '0.7',
+      margin: '0 5px 0 0',
+    },
+  };
+});

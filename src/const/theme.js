@@ -36,6 +36,8 @@ const theme = {
         chip: colors.dark,
         chipBcg1: '#F5F5F1',
         chipBcg2: '#EAEAE3',
+        extraClinicColor: '#5C11D2',
+        extraClinicBgColor: '#E6D6FF',
       },
       opacity: {
         type: 0.56,
