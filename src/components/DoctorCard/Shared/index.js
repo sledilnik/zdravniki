@@ -31,7 +31,7 @@ export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 
-export const DoubleChip = function DoubleChip({ type, ageGroup }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageView }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';
@@ -53,21 +53,45 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
     </Styled.PageInfo.Second>
   );
 
+  let isExtraLabel = '';
+  let isExtraTooltip = t('clinicForBetterAccessibility');
+
+  if (!isPageView) {
+    /* empty */
+  } else {
+    isExtraLabel = t('clinicForBetterAccessibility');
+    isExtraTooltip = t('clinicForBetterAccessibilityDesc');
+  }
+
+  const third = isExtra && (
+    <Tooltip title={isExtraTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
+      <Styled.IsExtra direction="row" alignItems="center" spacing={1} isPageView={isPageView}>
+        <Icons.Icon name="ClinicViolet" />
+        {isExtraLabel}
+      </Styled.IsExtra>
+    </Tooltip>
+  );
+
   return (
     <Styled.PageInfo.DCWrapper direction="row">
       {first}
       {second}
+      {third}
     </Styled.PageInfo.DCWrapper>
   );
 };
 
 DoubleChip.defaultProps = {
   ageGroup: undefined,
+  isExtra: false,
+  isPageView: false,
 };
 
 DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
   ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+  isExtra: PropTypes.bool,
+  isPageView: PropTypes.bool,
 };
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
