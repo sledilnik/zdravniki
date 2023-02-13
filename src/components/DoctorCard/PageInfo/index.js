@@ -83,7 +83,12 @@ const PageInfo = function PageInfo({ doctor }) {
         <Typography component="h1" variant="h1" translate="no">
           {doctor.name}
         </Typography>
-        <Shared.DoubleChip type={type} ageGroup={ageGroup} isExtra={doctor.isExtra} isPageView />
+        <Shared.DoubleChip
+          type={type}
+          ageGroup={ageGroup}
+          isExtra={doctor.isExtra}
+          viewType="page"
+        />
         <Typography component="h2" variant="h2" translate="no">
           {doctor.provider}
         </Typography>

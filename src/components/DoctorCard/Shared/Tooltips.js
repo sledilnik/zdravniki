@@ -40,9 +40,15 @@ HeadQuotient.propTypes = {
   hasOverride: PropTypes.bool,
 };
 
-export const Availability = function Availability({ date, hasOverride }) {
+export const Availability = function Availability({ date, hasOverride, availability }) {
+  const { lng } = useParams();
+  const availabilityText = toPercent(availability, lng);
+
   return (
     <Stack>
+      <Typography variant="caption" fontWeight="700">
+        {t('doctorAvailabilityLabel')}: {availabilityText}
+      </Typography>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
       {hasOverride && (
         <>
@@ -59,11 +65,13 @@ export const Availability = function Availability({ date, hasOverride }) {
 Availability.propTypes = {
   date: PropTypes.string,
   hasOverride: PropTypes.bool,
+  availability: PropTypes.number,
 };
 
 Availability.defaultProps = {
   date: undefined,
   hasOverride: undefined,
+  availability: undefined,
 };
 
 export const Updated = function Updated({

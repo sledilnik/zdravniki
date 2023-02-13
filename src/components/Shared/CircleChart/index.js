@@ -2,10 +2,30 @@
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
-const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
+const CircleChartWrapper = styled('div')(({ theme, size, stroke, inner }) => {
   const strokeColor = stroke ?? theme.customColors.brand;
 
+  let wrapperPosition = 'relative';
+  let wrapperLeft = 'auto';
+  let wrapperTop = 'auto';
+  let margin = 0;
+  let strokeWidth = 2.8;
+  let strokeWidthGray = 3.8;
+  if (inner) {
+    wrapperPosition = 'absolute';
+    wrapperLeft = '4px';
+    wrapperTop = '4px';
+    margin = '0 !important';
+    strokeWidth = 4;
+    strokeWidthGray = 4;
+  }
+
   return {
+    position: wrapperPosition,
+    left: wrapperLeft,
+    top: wrapperTop,
+    margin,
+
     svg: {
       display: 'block',
       margin: '10px auto',
@@ -17,11 +37,11 @@ const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
     'svg path:first-of-type': {
       fill: 'none',
       stroke: '#eee',
-      strokeWidth: 3.8,
+      strokeWidth: strokeWidthGray,
     },
     'svg path:last-of-type': {
       fill: 'none',
-      strokeWidth: 2.8,
+      strokeWidth,
       strokeLinecap: 'round',
       animation: 'progress 1s ease-out forwards',
     },
@@ -39,9 +59,15 @@ const CircleChartWrapper = styled('div')(({ theme, size, stroke }) => {
   };
 });
 
-const CircleChart = function CircleChart({ percent = 50, stroke, size = '2rem', noText = true }) {
+const CircleChart = function CircleChart({
+  percent = 50,
+  stroke,
+  size = '2rem',
+  noText = true,
+  inner,
+}) {
   return (
-    <CircleChartWrapper size={size} stroke={stroke}>
+    <CircleChartWrapper size={size} stroke={stroke} inner={inner}>
       <svg viewBox="0 0 36 36">
         <path
           d="M18 2.0845
@@ -69,6 +95,7 @@ CircleChart.propTypes = {
   stroke: PropTypes.string,
   size: PropTypes.string,
   noText: PropTypes.bool,
+  inner: PropTypes.bool,
 };
 
 CircleChart.defaultProps = {
@@ -76,6 +103,7 @@ CircleChart.defaultProps = {
   stroke: undefined,
   size: '2rem',
   noText: true,
+  inner: false,
 };
 
 export default CircleChart;

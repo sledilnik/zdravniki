@@ -198,7 +198,7 @@ export const MoreMenu = styled(Menu)(({ theme }) => ({
 export const InfoWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.availability,
   cursor: 'help',
-  minWidth: '74.5px',
+  position: 'relative',
 }));
 
 export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
@@ -252,27 +252,43 @@ export const Link = styled(MuiLink)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-export const IsExtra = styled(Stack)(({ theme, isPageView }) => {
-  const padding = isPageView ? '5px 8px 5px 8px' : '5px 2px 5px 7px';
+export const IsExtra = styled(Stack)(({ theme, viewType }) => {
+  let iconSize = '18px';
+  let bgColor = theme.customColors.doctor.colors.extraClinicBgColor;
+  let padding = '5px 7px';
+  let iconMargin = '0';
+  let iconOpacity = '1';
+  let margin = '0 0 0 10px';
+
+  if (viewType === 'page') {
+    iconMargin = '0 5px 0 0';
+    padding = '5px 8px';
+    iconOpacity = '0.7';
+  } else if (viewType === 'list') {
+    iconSize = '20px';
+    padding = '2px 6px';
+    margin = 0;
+    bgColor = 'transparent';
+  }
 
   return {
     fontWeight: 400,
     fontSize: '12px',
-    background: theme.customColors.doctor.colors.extraClinicBgColor,
+    background: bgColor,
     color: theme.customColors.doctor.colors.extraClinicColor,
     borderRadius: '4px',
     whiteSpace: 'nowrap',
     cursor: 'help',
     padding,
-    margin: '0 0 0 10px',
+    margin,
     display: 'inline-flex',
     alignItems: 'center',
     letterSpacing: '0.3px',
     svg: {
-      width: '18px',
-      height: '18px',
-      opacity: '0.7',
-      margin: '0 5px 0 0',
+      width: iconSize,
+      height: iconSize,
+      opacity: iconOpacity,
+      margin: iconMargin,
     },
   };
 });

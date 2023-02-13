@@ -2,20 +2,27 @@ import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
 
-export const DCWrapper = styled(Stack)(({ theme }) => ({
-  color: theme.customColors.doctor.colors.chip,
-  fontSize: '0.8125rem',
-  fontWeight: 400,
-  letterSpacing: 0,
-  borderRadius: '5px',
-  marginBlock: `${theme.spacing(1)} ${theme.spacing(1.5)}`,
-  '.icon': {
-    opacity: 0.25,
-  },
-  '.text': {
-    opacity: 0.56,
-  },
-}));
+export const DCWrapper = styled(Stack)(({ theme, viewType }) => {
+  let marginBlock = `${theme.spacing(1)} ${theme.spacing(1.5)}`;
+  if (viewType === 'list') {
+    marginBlock = '0';
+  }
+
+  return {
+    color: theme.customColors.doctor.colors.chip,
+    fontSize: '0.8125rem',
+    fontWeight: 400,
+    letterSpacing: 0,
+    borderRadius: '5px',
+    marginBlock,
+    '.icon': {
+      opacity: 0.25,
+    },
+    '.text': {
+      opacity: 0.56,
+    },
+  };
+});
 
 export const First = styled(Stack)(({ theme, single }) => ({
   backgroundColor: theme.customColors.doctor.colors.chipBcg1,

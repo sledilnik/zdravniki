@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
 import { Tooltip } from '@mui/material';
@@ -18,8 +17,6 @@ import {
 } from '../dicts';
 import * as Styled from '../styles';
 
-import { toPercent } from '../utils';
-
 import * as Tooltips from './Tooltips';
 
 export * as Tooltip from './Tooltips';
@@ -31,7 +28,7 @@ export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 
-export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageView }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, viewType }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';
@@ -39,14 +36,14 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageV
 
   const isDentist = type === 'den';
 
-  const first = (
+  const first = viewType !== 'list' && (
     <Styled.PageInfo.First single={!isDentist ? 1 : 0} direction="row" component="span" spacing={1}>
       <Icons.Icon name={typeIcon} className="icon" />
       <span className="text">{t(`${drType}`)}</span>
     </Styled.PageInfo.First>
   );
 
-  const second = isDentist && (
+  const second = isDentist && viewType !== 'list' && (
     <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
       <span className="text">{t(`${drAgeGroup}`)}</span>
       <Icons.Icon name={ageGroupIcon} className="icon" />
@@ -56,7 +53,7 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageV
   let isExtraLabel = '';
   let isExtraTooltip = t('clinicForBetterAccessibility');
 
-  if (!isPageView) {
+  if (viewType !== 'page') {
     /* empty */
   } else {
     isExtraLabel = t('clinicForBetterAccessibility');
@@ -65,7 +62,7 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageV
 
   const third = isExtra && (
     <Tooltip title={isExtraTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
-      <Styled.IsExtra direction="row" alignItems="center" spacing={1} isPageView={isPageView}>
+      <Styled.IsExtra direction="row" alignItems="center" spacing={1} viewType={viewType}>
         <Icons.Icon name="ClinicViolet" />
         {isExtraLabel}
       </Styled.IsExtra>
@@ -73,7 +70,7 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageV
   );
 
   return (
-    <Styled.PageInfo.DCWrapper direction="row">
+    <Styled.PageInfo.DCWrapper direction="row" viewType={viewType}>
       {first}
       {second}
       {third}
@@ -84,14 +81,14 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isPageV
 DoubleChip.defaultProps = {
   ageGroup: undefined,
   isExtra: false,
-  isPageView: false,
+  viewType: 'marker',
 };
 
 DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
   ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
   isExtra: PropTypes.bool,
-  isPageView: PropTypes.bool,
+  viewType: PropTypes.oneOf(['marker', 'list', 'page']),
 };
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
@@ -123,18 +120,19 @@ HeadQuotient.propTypes = {
 };
 
 export const Availability = function Availability({ date, availability, hasOverride }) {
-  const { lng } = useParams();
-  const availabilityText = toPercent(availability, lng);
-
   return (
     <Tooltip
-      title={<Tooltips.Availability date={date} hasOverride={hasOverride} />}
+      title={
+        <Tooltips.Availability date={date} hasOverride={hasOverride} availability={availability} />
+      }
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
       <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
         <SingleChart size="26px" percent={availability} />
-        <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
+        {availability > 1 && (
+          <SingleChart size="18px" percent={availability - 1} stroke="#FF4C4C" inner />
+        )}
       </Styled.InfoWrapper>
     </Tooltip>
   );
