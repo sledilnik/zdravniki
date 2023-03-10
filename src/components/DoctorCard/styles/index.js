@@ -90,13 +90,13 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
       '.leaflet-container': {
         zIndex: 1,
         width: '100%',
-        height: '100%',
-        borderRadius: '0 0 5px 0',
+        height: '350px',
+        borderRadius: '0 0 5px 5px',
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('md')]: {
         '.leaflet-container': {
-          height: '350px',
-          borderRadius: '0 0 5px 5px',
+          borderRadius: '0 5px 5px 0',
+          height: '100%',
         },
       },
     },
