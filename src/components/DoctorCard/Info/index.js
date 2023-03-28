@@ -55,6 +55,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
             type={type}
             ageGroup={ageGroup}
             isExtra={doctor.isExtra}
+            isFloating={doctor.isFloating}
             viewType={viewType}
           />
         </Stack>
@@ -74,6 +75,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
+              isFloating={doctor.isFloating}
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
               hasOverride={doctor.availabilityOverride ? true : undefined}

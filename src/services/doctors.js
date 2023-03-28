@@ -52,6 +52,7 @@ export function createDoctor(doctor, inst) {
 
   const addressObject = getAddressObject(doctor, institution);
   const isExtra = doctor.type.match(/-x$/);
+  const isFloating = doctor.type.match(/-f$/);
 
   const {
     accepts: acceptsZZZS,
@@ -143,12 +144,15 @@ export function createDoctor(doctor, inst) {
     get isExtra() {
       return isExtra;
     },
+    get isFloating() {
+      return isFloating;
+    },
     get type() {
       return doctor.type;
     },
     get typeClean() {
-      if (isExtra) {
-        return doctor.type.replace(/-x$/, '');
+      if (isExtra || isFloating) {
+        return doctor.type.replace(/-x|f$/, '');
       }
       return doctor.type;
     },
@@ -187,8 +191,13 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
 
   const filterByTypeAndAccepts = (type, accepts) => {
     let tmpByType = byType[type];
-    if (type === 'gp' && byType['gp-x']) {
-      tmpByType = tmpByType.concat(byType['gp-x']);
+    if (type === 'gp') {
+      if (byType['gp-x']) {
+        tmpByType = tmpByType.concat(byType['gp-x']);
+      }
+      if (byType['gp-f']) {
+        tmpByType = tmpByType.concat(byType['gp-f']);
+      }
     } else if (type === 'ped' && byType['ped-x']) {
       tmpByType = tmpByType.concat(byType['ped-x']);
     }

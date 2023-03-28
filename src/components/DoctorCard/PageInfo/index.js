@@ -87,6 +87,7 @@ const PageInfo = function PageInfo({ doctor }) {
           type={type}
           ageGroup={ageGroup}
           isExtra={doctor.isExtra}
+          isFloating={doctor.isFloating}
           viewType="page"
         />
         <Typography component="h2" variant="h2" translate="no">
@@ -111,8 +112,10 @@ const PageInfo = function PageInfo({ doctor }) {
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
+              isFloating={doctor.isFloating}
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              viewType="page"
               hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>

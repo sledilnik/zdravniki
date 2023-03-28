@@ -50,6 +50,7 @@ import { ReactComponent as Booking } from 'assets/icon-booking.svg';
 import { ReactComponent as Edit } from 'assets/icon-edit.svg';
 import { ReactComponent as Email } from 'assets/icon-email.svg';
 import { ReactComponent as ClinicViolet } from 'assets/icon-clinic--violet.svg';
+import { ReactComponent as GpFloatingBlue } from 'assets/icon-gp-floating--blue.svg';
 
 export {
   Menu as MenuIcon,
@@ -119,6 +120,7 @@ const icons = {
   Edit,
   Email,
   ClinicViolet,
+  GpFloatingBlue,
 };
 
 export const Icon = function Icon({ name, ...props }) {

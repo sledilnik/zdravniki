@@ -215,6 +215,7 @@ export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
     display: 'flex',
     alignItems: 'center',
     letterSpacing: '0.3px',
+    margin: '11px 0',
 
     svg: {
       width: '14px',
@@ -252,9 +253,14 @@ export const Link = styled(MuiLink)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-export const IsExtra = styled(Stack)(({ theme, viewType }) => {
+export const IsSpecial = styled(Stack)(({ theme, type, viewType }) => {
   let iconSize = '18px';
   let bgColor = theme.customColors.doctor.colors.extraClinicBgColor;
+  let txtColor = theme.customColors.doctor.colors.extraClinicColor;
+  if (type === 'floating') {
+    bgColor = theme.customColors.lightBlue;
+    txtColor = theme.customColors.darkBlue;
+  }
   let padding = '5px 7px';
   let iconMargin = '0';
   let iconOpacity = '1';
@@ -264,9 +270,12 @@ export const IsExtra = styled(Stack)(({ theme, viewType }) => {
     iconMargin = '0 5px 0 0';
     padding = '5px 8px';
     iconOpacity = '0.7';
+    if (type === 'floating') {
+      iconOpacity = '1';
+    }
   } else if (viewType === 'list') {
-    iconSize = '20px';
-    padding = '2px 6px';
+    iconSize = '22px';
+    padding = '1px 6px';
     margin = 0;
     bgColor = 'transparent';
   }
@@ -275,7 +284,7 @@ export const IsExtra = styled(Stack)(({ theme, viewType }) => {
     fontWeight: 400,
     fontSize: '12px',
     background: bgColor,
-    color: theme.customColors.doctor.colors.extraClinicColor,
+    color: txtColor,
     borderRadius: '4px',
     whiteSpace: 'nowrap',
     cursor: 'help',
