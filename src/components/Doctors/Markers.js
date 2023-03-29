@@ -41,7 +41,7 @@ export const Doctor = memo(({ doctor }) => {
   const { palette } = theme;
   let fillColor = doctor.accepts === 'y' ? palette.success.main : palette.error.main;
   if (doctor.type === 'gp-f' && doctor.accepts === 'y') {
-    fillColor = '#3d93b9';
+    fillColor = theme.customColors.mediumBlue;
   }
   return (
     <Markers.LeafletCircleMarker
