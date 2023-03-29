@@ -181,7 +181,6 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   const doctorsValues = Intl.Collator
     ? doctorValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
     : doctorValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
-
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 
   const byType = DOCTORS.TYPES.reduce((acc, type) => {
@@ -191,15 +190,25 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
 
   const filterByTypeAndAccepts = (type, accepts) => {
     let tmpByType = byType[type];
+    let reSort = false;
     if (type === 'gp') {
       if (byType['gp-x']) {
         tmpByType = tmpByType.concat(byType['gp-x']);
+        reSort = true;
       }
       if (byType['gp-f']) {
         tmpByType = tmpByType.concat(byType['gp-f']);
+        reSort = true;
       }
     } else if (type === 'ped' && byType['ped-x']) {
       tmpByType = tmpByType.concat(byType['ped-x']);
+      reSort = true;
+    }
+
+    if (reSort) {
+      tmpByType = Intl.Collator
+        ? tmpByType.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+        : tmpByType.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
     }
 
     if (accepts !== 'y' && accepts !== 'n') {
