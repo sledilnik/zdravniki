@@ -52,6 +52,7 @@ export function createDoctor(doctor, inst) {
 
   const addressObject = getAddressObject(doctor, institution);
   const isExtra = doctor.type.match(/-x$/);
+  const isFloating = doctor.type.match(/-f$/);
 
   const {
     accepts: acceptsZZZS,
@@ -143,12 +144,15 @@ export function createDoctor(doctor, inst) {
     get isExtra() {
       return isExtra;
     },
+    get isFloating() {
+      return isFloating;
+    },
     get type() {
       return doctor.type;
     },
     get typeClean() {
-      if (isExtra) {
-        return doctor.type.replace(/-x$/, '');
+      if (isExtra || isFloating) {
+        return doctor.type.replace(/-x|f$/, '');
       }
       return doctor.type;
     },
@@ -177,7 +181,6 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   const doctorsValues = Intl.Collator
     ? doctorValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
     : doctorValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
-
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 
   const byType = DOCTORS.TYPES.reduce((acc, type) => {
@@ -187,10 +190,25 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
 
   const filterByTypeAndAccepts = (type, accepts) => {
     let tmpByType = byType[type];
-    if (type === 'gp' && byType['gp-x']) {
-      tmpByType = tmpByType.concat(byType['gp-x']);
+    let reSort = false;
+    if (type === 'gp') {
+      if (byType['gp-x']) {
+        tmpByType = tmpByType.concat(byType['gp-x']);
+        reSort = true;
+      }
+      if (byType['gp-f']) {
+        tmpByType = tmpByType.concat(byType['gp-f']);
+        reSort = true;
+      }
     } else if (type === 'ped' && byType['ped-x']) {
       tmpByType = tmpByType.concat(byType['ped-x']);
+      reSort = true;
+    }
+
+    if (reSort) {
+      tmpByType = Intl.Collator
+        ? tmpByType.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+        : tmpByType.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
     }
 
     if (accepts !== 'y' && accepts !== 'n') {

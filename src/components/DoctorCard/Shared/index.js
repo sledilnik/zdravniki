@@ -28,7 +28,7 @@ export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 
-export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, viewType }) {
+export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isFloating, viewType }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';
@@ -52,20 +52,39 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, viewTyp
 
   let isExtraLabel = '';
   let isExtraTooltip = t('clinicForBetterAccessibility');
+  let isFloatingLabel = '';
+  let isFloatingTooltip = t('floatingClinic');
 
   if (viewType !== 'page') {
     /* empty */
   } else {
     isExtraLabel = t('clinicForBetterAccessibility');
     isExtraTooltip = t('clinicForBetterAccessibilityDesc');
+    isFloatingLabel = t('floatingClinic');
+    isFloatingTooltip = t('floatingClinic');
   }
 
   const third = isExtra && (
     <Tooltip title={isExtraTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
-      <Styled.IsExtra direction="row" alignItems="center" spacing={1} viewType={viewType}>
+      <Styled.IsSpecial direction="row" alignItems="center" spacing={1} viewType={viewType}>
         <Icons.Icon name="ClinicViolet" />
         {isExtraLabel}
-      </Styled.IsExtra>
+      </Styled.IsSpecial>
+    </Tooltip>
+  );
+
+  const fourth = isFloating && (
+    <Tooltip title={isFloatingTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
+      <Styled.IsSpecial
+        direction="row"
+        alignItems="center"
+        spacing={1}
+        viewType={viewType}
+        type="floating"
+      >
+        <Icons.Icon name="GpFloatingBlue" />
+        {isFloatingLabel}
+      </Styled.IsSpecial>
     </Tooltip>
   );
 
@@ -74,6 +93,7 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, viewTyp
       {first}
       {second}
       {third}
+      {fourth}
     </Styled.PageInfo.DCWrapper>
   );
 };
@@ -81,6 +101,7 @@ export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, viewTyp
 DoubleChip.defaultProps = {
   ageGroup: undefined,
   isExtra: false,
+  isFloating: false,
   viewType: 'marker',
 };
 
@@ -88,6 +109,7 @@ DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
   ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
   isExtra: PropTypes.bool,
+  isFloating: PropTypes.bool,
   viewType: PropTypes.oneOf(['marker', 'list', 'page']),
 };
 
@@ -119,7 +141,11 @@ HeadQuotient.propTypes = {
   hasOverride: PropTypes.bool,
 };
 
-export const Availability = function Availability({ date, availability, hasOverride }) {
+export const Availability = function Availability({ date, availability, hasOverride, isFloating }) {
+  if (isFloating) {
+    return '';
+  }
+
   return (
     <Tooltip
       title={
@@ -140,10 +166,12 @@ export const Availability = function Availability({ date, availability, hasOverr
 
 Availability.defaultProps = {
   hasOverride: false,
+  isFloating: false,
 };
 
 Availability.propTypes = {
   date: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   hasOverride: PropTypes.bool,
+  isFloating: PropTypes.bool,
 };

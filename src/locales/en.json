@@ -18,6 +18,7 @@
     "adults": "adults",
     "students": "students",
     "youth": "youth",
+    "floatingClinic": "Infirmary for patients without doctors",
     "clinicForBetterAccessibility": "Clinic for better accessibility",
     "clinicForBetterAccessibilityDesc": "In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).",
     "doctorCard": {
