@@ -8,7 +8,7 @@ const oranges = 'oranges';
 
 const TestComponent = function TestComponent() {
   const [value, setValue] = useState(apples);
-  return <TextareaEdit value={value} setValue={setValue} />;
+  return <TextareaEdit value={value} setValue={setValue} name="test-name" />;
 };
 
 describe('Inline Edit component', () => {

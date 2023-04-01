@@ -1,9 +1,11 @@
-import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import TypographyBase from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import MuiLink from '@mui/material/Link';
-import Menu from '@mui/material/Menu';
+import {
+  Menu,
+  Stack,
+  Card as MuiCard,
+  Typography as TypographyBase,
+  Link as MuiLink,
+} from '@mui/material';
 
 export * as PageInfo from './PageInfo';
 
@@ -88,13 +90,13 @@ export const PageInfoBox = styled(Stack)(({ theme }) => ({
       '.leaflet-container': {
         zIndex: 1,
         width: '100%',
-        height: '100%',
-        borderRadius: '0 0 5px 0',
+        height: '350px',
+        borderRadius: '0 0 5px 5px',
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.up('md')]: {
         '.leaflet-container': {
-          height: '350px',
-          borderRadius: '0 0 5px 5px',
+          borderRadius: '0 5px 5px 0',
+          height: '100%',
         },
       },
     },
@@ -196,7 +198,7 @@ export const MoreMenu = styled(Menu)(({ theme }) => ({
 export const InfoWrapper = styled(Stack)(({ theme }) => ({
   color: theme.customColors.doctor.availability,
   cursor: 'help',
-  minWidth: '74.5px',
+  position: 'relative',
 }));
 
 export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
@@ -213,6 +215,7 @@ export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
     display: 'flex',
     alignItems: 'center',
     letterSpacing: '0.3px',
+    margin: '11px 0',
 
     svg: {
       width: '14px',
@@ -249,3 +252,52 @@ export const Link = styled(MuiLink)(({ theme }) => ({
   color: theme.customColors.doctor.colors.link,
   cursor: 'pointer',
 }));
+
+export const IsSpecial = styled(Stack)(({ theme, type, viewType }) => {
+  let iconSize = '18px';
+  let bgColor = theme.customColors.doctor.colors.extraClinicBgColor;
+  let txtColor = theme.customColors.doctor.colors.extraClinicColor;
+  if (type === 'floating') {
+    bgColor = theme.customColors.lightBlue;
+    txtColor = theme.customColors.darkBlue;
+  }
+  let padding = '5px 7px';
+  let iconMargin = '0';
+  let iconOpacity = '1';
+  let margin = '0 0 0 10px';
+
+  if (viewType === 'page') {
+    iconMargin = '0 5px 0 0';
+    padding = '5px 8px';
+    iconOpacity = '0.7';
+    if (type === 'floating') {
+      iconOpacity = '1';
+    }
+  } else if (viewType === 'list') {
+    iconSize = '22px';
+    padding = '1px 6px';
+    margin = 0;
+    bgColor = 'transparent';
+  }
+
+  return {
+    fontWeight: 400,
+    fontSize: '12px',
+    background: bgColor,
+    color: txtColor,
+    borderRadius: '4px',
+    whiteSpace: 'nowrap',
+    cursor: 'help',
+    padding,
+    margin,
+    display: 'inline-flex',
+    alignItems: 'center',
+    letterSpacing: '0.3px',
+    svg: {
+      width: iconSize,
+      height: iconSize,
+      opacity: iconOpacity,
+      margin: iconMargin,
+    },
+  };
+});

@@ -31,7 +31,7 @@ jobs:
     if: "needs.check.status_code != '404' && (github.event.action == 'closed' || !needs.check.has_label)"
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Undeploy
         uses: sledilnik/action-helm-deploy@v1.0.2

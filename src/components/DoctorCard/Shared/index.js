@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Tooltip from '@mui/material/Tooltip';
+import { t } from 'i18next';
+
+import { Tooltip } from '@mui/material';
 
 import PropTypes from 'prop-types';
 
@@ -17,8 +17,6 @@ import {
 } from '../dicts';
 import * as Styled from '../styles';
 
-import { toPercent } from '../utils';
-
 import * as Tooltips from './Tooltips';
 
 export * as Tooltip from './Tooltips';
@@ -30,8 +28,7 @@ export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
 export { default as Accepts } from './Accepts';
 
-export const DoubleChip = function DoubleChip({ type, ageGroup }) {
-  const { t } = useTranslation();
+export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isFloating, viewType }) {
   const drType = t(TypeTranslate[type]);
   const drAgeGroup = t(AgeGroupTranslate?.[ageGroup] ?? 'adults');
   const typeIcon = TypeIconTranslate[type] ?? 'Family';
@@ -39,35 +36,81 @@ export const DoubleChip = function DoubleChip({ type, ageGroup }) {
 
   const isDentist = type === 'den';
 
-  const first = (
+  const first = viewType !== 'list' && (
     <Styled.PageInfo.First single={!isDentist ? 1 : 0} direction="row" component="span" spacing={1}>
       <Icons.Icon name={typeIcon} className="icon" />
       <span className="text">{t(`${drType}`)}</span>
     </Styled.PageInfo.First>
   );
 
-  const second = isDentist && (
+  const second = isDentist && viewType !== 'list' && (
     <Styled.PageInfo.Second direction="row" component="span" spacing={1}>
       <span className="text">{t(`${drAgeGroup}`)}</span>
       <Icons.Icon name={ageGroupIcon} className="icon" />
     </Styled.PageInfo.Second>
   );
 
+  let isExtraLabel = '';
+  let isExtraTooltip = t('clinicForBetterAccessibility');
+  let isFloatingLabel = '';
+  let isFloatingTooltip = t('floatingClinic');
+
+  if (viewType !== 'page') {
+    /* empty */
+  } else {
+    isExtraLabel = t('clinicForBetterAccessibility');
+    isExtraTooltip = t('clinicForBetterAccessibilityDesc');
+    isFloatingLabel = t('floatingClinic');
+    isFloatingTooltip = t('floatingClinic');
+  }
+
+  const third = isExtra && (
+    <Tooltip title={isExtraTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
+      <Styled.IsSpecial direction="row" alignItems="center" spacing={1} viewType={viewType}>
+        <Icons.Icon name="ClinicViolet" />
+        {isExtraLabel}
+      </Styled.IsSpecial>
+    </Tooltip>
+  );
+
+  const fourth = isFloating && (
+    <Tooltip title={isFloatingTooltip} leaveTouchDelay={3000} enterTouchDelay={50}>
+      <Styled.IsSpecial
+        direction="row"
+        alignItems="center"
+        spacing={1}
+        viewType={viewType}
+        type="floating"
+      >
+        <Icons.Icon name="GpFloatingBlue" />
+        {isFloatingLabel}
+      </Styled.IsSpecial>
+    </Tooltip>
+  );
+
   return (
-    <Styled.PageInfo.DCWrapper direction="row">
+    <Styled.PageInfo.DCWrapper direction="row" viewType={viewType}>
       {first}
       {second}
+      {third}
+      {fourth}
     </Styled.PageInfo.DCWrapper>
   );
 };
 
 DoubleChip.defaultProps = {
   ageGroup: undefined,
+  isExtra: false,
+  isFloating: false,
+  viewType: 'marker',
 };
 
 DoubleChip.propTypes = {
   type: PropTypes.string.isRequired,
   ageGroup: PropTypes.oneOf([undefined, 'students', 'youth']),
+  isExtra: PropTypes.bool,
+  isFloating: PropTypes.bool,
+  viewType: PropTypes.oneOf(['marker', 'list', 'page']),
 };
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
@@ -98,19 +141,24 @@ HeadQuotient.propTypes = {
   hasOverride: PropTypes.bool,
 };
 
-export const Availability = function Availability({ date, availability, hasOverride }) {
-  const { lng } = useParams();
-  const availabilityText = toPercent(availability, lng);
+export const Availability = function Availability({ date, availability, hasOverride, isFloating }) {
+  if (isFloating) {
+    return '';
+  }
 
   return (
     <Tooltip
-      title={<Tooltips.Availability date={date} hasOverride={hasOverride} />}
+      title={
+        <Tooltips.Availability date={date} hasOverride={hasOverride} availability={availability} />
+      }
       leaveTouchDelay={3000}
       enterTouchDelay={50}
     >
       <Styled.InfoWrapper direction="row" alignItems="center" spacing={1}>
         <SingleChart size="26px" percent={availability} />
-        <Styled.Availability variant="caption">{availabilityText}</Styled.Availability>
+        {availability > 1 && (
+          <SingleChart size="18px" percent={availability - 1} stroke="#FF4C4C" inner />
+        )}
       </Styled.InfoWrapper>
     </Tooltip>
   );
@@ -118,10 +166,12 @@ export const Availability = function Availability({ date, availability, hasOverr
 
 Availability.defaultProps = {
   hasOverride: false,
+  isFloating: false,
 };
 
 Availability.propTypes = {
   date: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   hasOverride: PropTypes.bool,
+  isFloating: PropTypes.bool,
 };

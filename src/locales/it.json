@@ -23,6 +23,9 @@
     },
     "pediatrician": "pediatra",
     "youth": "giovani",
+    "floatingClinic": "Ambulatorio per pazienti senza medico di base",
+    "clinicForBetterAccessibility": "Clinica per una migliore accessibilità",
+    "clinicForBetterAccessibilityDesc": "Negli ambulatori per una migliore accessibilità, gli assicurati che non hanno un medico personale (medico di base o pediatra) possono scegliere il proprio medico personale (in caso non ci sia un medico disponibile o se il medico personale prescelto è permanentemente assente).",
     "search": "Cerca…",
     "generalPractitioner": "medico di medicina generale",
     "filter": "Filtro",
@@ -41,7 +44,7 @@
         "somethingWentWrong": "Oops... qualcosa è andato storto :(",
         "back": "Indietro"
     },
-    "orderform": "prenota un appuntamento",
+    "orderform": "prenotazione",
     "noResults": "Nessun medico trovato in base ai tuoi criteri di ricerca. Controlla di aver selezionato il tipo di medico corretto o ingrandisci la mappa.",
     "changedOn": "Modificato il: ",
     "SEO": {

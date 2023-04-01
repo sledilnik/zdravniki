@@ -15,7 +15,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const [type, ageGroup] = doctor.type.split('-');
 
   const navigate = useNavigate();
-
+  const viewType = isMarker ? 'marker' : 'list';
   const drPath = doctor?.type;
   const slug = doctor?.nameSlug;
   const instId = doctor?.instId;
@@ -42,19 +42,29 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   return (
     <>
       <CardContent>
-        <Typography component="h2" variant="h2">
-          <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
-            {doctor.name}
-          </Shared.LinkNoRel>
-        </Typography>
-        {isMarker && <Shared.DoubleChip type={type} ageGroup={ageGroup} />}
-        <Typography component="h3" variant="h3">
+        <Stack
+          direction={isMarker ? 'column' : 'row'}
+          alignItems={isMarker ? 'flex-start' : 'center'}
+        >
+          <Typography component="h2" variant="h2" translate="no">
+            <Shared.LinkNoRel href={path} onClick={e => handleDoctorCard(e, false)}>
+              {doctor.name}
+            </Shared.LinkNoRel>
+          </Typography>
+          <Shared.DoubleChip
+            type={type}
+            ageGroup={ageGroup}
+            isExtra={doctor.isExtra}
+            isFloating={doctor.isFloating}
+            viewType={viewType}
+          />
+        </Stack>
+        <Typography component="h3" variant="h3" translate="no">
           {doctor.provider}
         </Typography>
-        <Typography component="address" variant="body2">
+        <Typography component="address" variant="body2" translate="no">
           {doctor.fullAddress}
         </Typography>
-
         <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
           <Stack direction="row" alignItems="center" spacing={1}>
             <Shared.HeadQuotient
@@ -65,6 +75,7 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
+              isFloating={doctor.isFloating}
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
               hasOverride={doctor.availabilityOverride ? true : undefined}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import IconButton from '@mui/material/IconButton';
 import { useFilter } from 'context/filterContext';
@@ -19,7 +19,6 @@ import { AgeGroupTranslate } from '../dicts';
 import { DoctorPropType } from '../../../types';
 
 const PageInfo = function PageInfo({ doctor }) {
-  const { t } = useTranslation();
   const { searchValue } = useFilter();
   const { state } = useLocation();
 
@@ -81,14 +80,25 @@ const PageInfo = function PageInfo({ doctor }) {
   return (
     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
-        <Typography component="h1" variant="h1">
+        <Typography component="h1" variant="h1" translate="no">
           {doctor.name}
         </Typography>
-        <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-        <Typography component="h2" variant="h2">
+        <Shared.DoubleChip
+          type={type}
+          ageGroup={ageGroup}
+          isExtra={doctor.isExtra}
+          isFloating={doctor.isFloating}
+          viewType="page"
+        />
+        <Typography component="h2" variant="h2" translate="no">
           {doctor.provider}
         </Typography>
-        <Typography component="address" variant="body2" sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}>
+        <Typography
+          component="address"
+          variant="body2"
+          translate="no"
+          sx={{ mb: { xs: 1, sm: 1.5, md: 2 } }}
+        >
           {doctor.fullAddress}
         </Typography>
 
@@ -102,8 +112,10 @@ const PageInfo = function PageInfo({ doctor }) {
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
             />
             <Shared.Availability
+              isFloating={doctor.isFloating}
               availability={doctor.availability}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
+              viewType="page"
               hasOverride={doctor.availabilityOverride ? true : undefined}
             />
           </Stack>

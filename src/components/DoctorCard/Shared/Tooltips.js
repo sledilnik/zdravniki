@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import { styled } from '@mui/material/styles';
+import { Divider, Stack, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
 export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
-  const { t } = useTranslation();
-
   return (
     <Stack sx={{ textAlign: 'center' }}>
       <Typography variant="caption">{t('headQuotient')}</Typography>
@@ -43,10 +40,15 @@ HeadQuotient.propTypes = {
   hasOverride: PropTypes.bool,
 };
 
-export const Availability = function Availability({ date, hasOverride }) {
-  const { t } = useTranslation();
+export const Availability = function Availability({ date, hasOverride, availability }) {
+  const { lng } = useParams();
+  const availabilityText = toPercent(availability, lng);
+
   return (
     <Stack>
+      <Typography variant="caption" fontWeight="700">
+        {t('doctorAvailabilityLabel')}: {availabilityText}
+      </Typography>
       <Typography variant="caption">{t('doctorAvailability')}</Typography>
       {hasOverride && (
         <>
@@ -63,11 +65,13 @@ export const Availability = function Availability({ date, hasOverride }) {
 Availability.propTypes = {
   date: PropTypes.string,
   hasOverride: PropTypes.bool,
+  availability: PropTypes.number,
 };
 
 Availability.defaultProps = {
   date: undefined,
   hasOverride: undefined,
+  availability: undefined,
 };
 
 export const Updated = function Updated({
@@ -78,8 +82,6 @@ export const Updated = function Updated({
   availabilityZZZS,
   note,
 }) {
-  const { t } = useTranslation();
-
   const { lng } = useParams();
 
   const acceptsOverrideText = acceptsOverride === 'y' ? t('accepts') : t('rejects');

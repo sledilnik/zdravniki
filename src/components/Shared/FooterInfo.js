@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import { useTimestamps } from 'context/timestampsContext';
 
 export const FooterInfo = styled('div')(({ theme }) => ({
   fontSize: '12px',
-  padding: '0 0 50px',
-  margin: '0 24px',
+  padding: '0 24px 50px',
   color: theme.customColors.textLight,
 
   '&.is-dr-page': {
@@ -31,7 +30,6 @@ export const FooterInfo = styled('div')(({ theme }) => ({
 }));
 
 const FooterInfoCard = function FooterInfoCard({ isDrPage = false }) {
-  const { t } = useTranslation();
   const { drTs } = useTimestamps();
 
   const date = t('timestamps.datetime', {

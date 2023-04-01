@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 import * as SEO from 'components/SEO';
 import slugify from 'slugify';
 import * as Shared from '../Shared';
@@ -10,7 +11,6 @@ import { SelectEdit, TextareaEdit } from './InlineEdit';
 import { toPercent } from '../utils';
 
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
-  const { t } = useTranslation();
   const { lng } = useParams();
   const navigate = useNavigate();
   const meta = [{ name: 'robots', content: 'noindex' }];
@@ -104,7 +104,6 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       inputOrderform === doctorFormData.orderform &&
       inputNote === doctorFormData.note
     ) {
-      console.log('not sending anything');
       return;
     }
 
@@ -182,11 +181,11 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
       >
         <div>
-          <Typography component="h1" variant="h1">
+          <Typography component="h1" variant="h1" translate="no">
             {doctorFormData.name}
           </Typography>
           <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-          <Typography component="h2" variant="h2">
+          <Typography component="h2" variant="h2" translate="no">
             {doctorFormData.provider}
           </Typography>
           <Alert severity="info" sx={{ marginY: '1rem' }}>
@@ -197,6 +196,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             value={inputAddress}
             setValue={setInputAddress}
             placeholder={t('reportError.placeholder.address')}
+            translate="no"
           />
           <TextareaEdit
             name="inputWebsite"

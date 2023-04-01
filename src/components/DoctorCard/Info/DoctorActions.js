@@ -2,9 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { CardActions, Divider, IconButton, ListItemIcon, MenuItem } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-import { useTranslation } from 'react-i18next';
+import { MoreVert as MoreVertIcon } from '@mui/icons-material/';
+import { t } from 'i18next';
 
 import * as Icons from 'components/Shared/Icons';
 
@@ -12,8 +11,6 @@ import * as Styled from '../styles';
 import * as Shared from '../Shared';
 
 const DoctorActions = function DoctorActions({ handlers, path, isMarker, phoneNum, menuId }) {
-  const { t } = useTranslation();
-
   const [moreMenuAnchorEl, setMoreMenuAnchorEl] = useState(null);
   const moreMenuOpen = Boolean(moreMenuAnchorEl);
   const moreMenuHandleClick = event => {
@@ -46,7 +43,7 @@ const DoctorActions = function DoctorActions({ handlers, path, isMarker, phoneNu
         <IconButton
           aria-label={t('doctorCard.more')}
           aria-controls={menuId}
-          aria-expanded={moreMenuOpen ? 'true' : undefined}
+          aria-expanded={moreMenuOpen ? 'true' : 'false'}
           aria-haspopup="true"
           onClick={moreMenuHandleClick}
         >

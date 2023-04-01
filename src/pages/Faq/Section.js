@@ -1,11 +1,10 @@
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Tooltip from '@mui/material/Tooltip';
+import { t } from 'i18next';
 import * as Styled from '../styles/Markdown';
 
-const Section = ({ data = [] }) => {
-  const { t } = useTranslation();
+function Section({ data = [] }) {
   const [copyTooltip, setCopyTooltip] = useState(t('copy'));
 
   // scroll element to when link with hash is passed
@@ -53,10 +52,12 @@ const Section = ({ data = [] }) => {
       </Styled.Collapsable>
     );
   });
-};
+}
 
 Section.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ answer: PropTypes.string, definition: PropTypes.string }),
+  ),
 };
 
 export default Section;

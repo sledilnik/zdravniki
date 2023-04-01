@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import MuiFab from '@mui/material/Fab';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 import Zoom from '@mui/material/Zoom';
 import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';

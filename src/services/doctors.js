@@ -51,6 +51,8 @@ export function createDoctor(doctor, inst) {
   };
 
   const addressObject = getAddressObject(doctor, institution);
+  const isExtra = doctor.type.match(/-x$/);
+  const isFloating = doctor.type.match(/-f$/);
 
   const {
     accepts: acceptsZZZS,
@@ -139,7 +141,19 @@ export function createDoctor(doctor, inst) {
     get searchAddress() {
       return `${addressObject.street}, ${addressObject.postalCode} ${addressObject.city} ${addressObject.municipalityPart} ${addressObject.municipality}`;
     },
+    get isExtra() {
+      return isExtra;
+    },
+    get isFloating() {
+      return isFloating;
+    },
     get type() {
+      return doctor.type;
+    },
+    get typeClean() {
+      if (isExtra || isFloating) {
+        return doctor.type.replace(/-x|f$/, '');
+      }
       return doctor.type;
     },
     get updatedAt() {
@@ -167,7 +181,6 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   const doctorsValues = Intl.Collator
     ? doctorValues.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
     : doctorValues.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
-
   const filterByType = type => doctorsValues.filter(doctor => doctor.type === type);
 
   const byType = DOCTORS.TYPES.reduce((acc, type) => {
@@ -176,11 +189,33 @@ export default function createDoctors({ doctorsDict, institutionsDict }) {
   }, {});
 
   const filterByTypeAndAccepts = (type, accepts) => {
-    if (accepts !== 'y' && accepts !== 'n') {
-      return byType[type];
+    let tmpByType = byType[type];
+    let reSort = false;
+    if (type === 'gp') {
+      if (byType['gp-x']) {
+        tmpByType = tmpByType.concat(byType['gp-x']);
+        reSort = true;
+      }
+      if (byType['gp-f']) {
+        tmpByType = tmpByType.concat(byType['gp-f']);
+        reSort = true;
+      }
+    } else if (type === 'ped' && byType['ped-x']) {
+      tmpByType = tmpByType.concat(byType['ped-x']);
+      reSort = true;
     }
 
-    return byType[type].filter(doctor => doctor.accepts === accepts);
+    if (reSort) {
+      tmpByType = Intl.Collator
+        ? tmpByType.sort((a, b) => new Intl.Collator('sl').compare(a.name, b.name))
+        : tmpByType.sort((a, b) => a.name.localeCompare(b.name, 'sl'));
+    }
+
+    if (accepts !== 'y' && accepts !== 'n') {
+      return tmpByType;
+    }
+
+    return tmpByType.filter(doctor => doctor.accepts === accepts);
   };
 
   const findByTypeAndNameSlug = (type, nameSlug, instId) =>
