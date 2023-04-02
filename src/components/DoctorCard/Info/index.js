@@ -23,6 +23,11 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   const path = `/${lng}/${drPath}/${slug}/${instId}`;
 
   const handleDoctorCard = (event, isReportError) => {
+    // Cmd + Click should open in new tab
+    if (event.metaKey) {
+      return;
+    }
+
     event.preventDefault();
     const center = map?.getCenter();
 
