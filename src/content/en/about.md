@@ -12,6 +12,7 @@ Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne m
 
 Sodelavci in sodelavke projekta:
 
+- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — vsebine, komunikacije
 - [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
 - [Jaka Daneu](https://github.com/jalezi) — spletna stran
 - [Joh Dokler](https://github.com/joahim) — spletna stran
@@ -29,7 +30,7 @@ Sodelavci in sodelavke projekta:
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
 - [Veronika Vezjak]() — vsebine
-- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — vsebine, komunikacije
+
 
 
 ## Pogoji uporabe
