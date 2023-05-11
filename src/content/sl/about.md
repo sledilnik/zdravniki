@@ -29,6 +29,7 @@ Sodelavci in sodelavke projekta:
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
 - [Veronika Vezjak]() — vsebine
+- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) - vsebine, tekstopisje, odnosi z javnostmi
 
 
 ## Pogoji uporabe
