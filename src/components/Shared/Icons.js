@@ -22,7 +22,7 @@ import { ReactComponent as Search } from 'assets/icon-search.svg';
 import { ReactComponent as Logo } from 'assets/zdravniki-sledilnik-logo.svg';
 import { ReactComponent as Facebook } from 'assets/icon-fb.svg';
 import { ReactComponent as Share } from 'assets/icon-share.svg';
-import { ReactComponent as Twitter } from 'assets/icon-tw.svg';
+import { ReactComponent as Twitter } from 'assets/icon-tw-new-rounded.svg';
 import { ReactComponent as IconCircle } from 'assets/icon-circle.svg';
 import { ReactComponent as AdultsWhite } from 'assets/icon-adults--white.svg';
 import { ReactComponent as Adults } from 'assets/icon-adults.svg';
