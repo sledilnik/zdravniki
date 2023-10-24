@@ -28,6 +28,26 @@ const Doctor = function Doctor() {
     }
   }, [loading]);
 
+  if (!instId) {
+    return (
+      <Styled.Main id="main-content" component="main">
+        <div style={{ maxWidth: '500px', display: 'grid', placeItems: 'center' }}>
+          <h2>Napaka</h2>
+          <p>
+            Se opravičujemo. Za tega zdravnika ne poznamo njegovo institucije zato ne moremo
+            prikazati njegovih podatkov.
+          </p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ab dolore,
+            perferendis natus vero blanditiis magni, suscipit fugiat quos magnam reprehenderit
+            aspernatur labore nemo, porro totam quibusdam rem sint facilis.
+          </p>
+        </div>
+        <FooterInfoCard isDrPage />
+      </Styled.Main>
+    );
+  }
+
   if (doctor) {
     return (
       <Styled.Main id="main-content" component="main">
