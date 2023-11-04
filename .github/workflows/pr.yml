@@ -16,7 +16,7 @@ env:
 jobs:
   build:
     if: contains(github.event.pull_request.labels.*.name, 'deploy-preview')
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
             BUILD_MODE=staging
 
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'deploy-preview')
     needs: build
     steps:
