@@ -1,1 +1,14 @@
-{}
+{
+    "accepts": "prihvaća",
+    "rejects": "ne prihvaća",
+    "dentist": "zubari",
+    "search": "Traži…",
+    "timestamps": {
+        "at": "u"
+    },
+    "header": {
+        "sledilnik": "Sledilnik.org"
+    },
+    "all": "svi",
+    "map": "Karta"
+}
