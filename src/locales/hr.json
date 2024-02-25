@@ -1,14 +1,33 @@
 {
     "accepts": "prihvaća",
     "rejects": "ne prihvaća",
-    "dentist": "zubari",
+    "dentist": "zubar",
     "search": "Traži…",
     "timestamps": {
         "at": "u"
     },
     "header": {
-        "sledilnik": "Sledilnik.org"
+        "sledilnik": "Sledilnik.org",
+        "support": "Podrška!"
     },
     "all": "svi",
-    "map": "Karta"
+    "map": "Karta",
+    "pediatrician": "pedijatar",
+    "gynecologist": "ginekolog",
+    "adults": "odrasli",
+    "doctorCard": {
+        "more": "Više",
+        "showOnMap": "Prikaži na karti"
+    },
+    "list": "Popis",
+    "reportError": {
+        "placeholder": {
+            "address": "adresa"
+        },
+        "send": "Šalji"
+    },
+    "footer": {
+        "dataSource": "Izvor podataka",
+        "lastChange": "Zadnje ažuriranje podataka"
+    }
 }
