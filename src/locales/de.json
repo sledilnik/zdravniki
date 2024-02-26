@@ -1,1 +1,31 @@
-{}
+{
+    "loading": "Wird geladen…",
+    "header": {
+        "sledilnik": "Sledilnik.org",
+        "menu": "Menü"
+    },
+    "rejects": "nicht akzeptieren",
+    "accepts": "akzeptieren",
+    "all": "alle",
+    "dentist": "zahnarzt",
+    "students": "studenten",
+    "youth": "jugend",
+    "doctorCard": {
+        "more": "Mehr"
+    },
+    "footer": {
+        "dataSource": "Datenquelle"
+    },
+    "reportError": {
+        "cancel": "Abbrechen",
+        "send": "Senden"
+    },
+    "pageNotFound": {
+        "somethingWentWrong": "Etwas ist schief gelaufen :(",
+        "back": "Zurück",
+        "imageDescription": "zwei durch gelbes Band verbundene Verkehrskegel"
+    },
+    "filter": "Filter",
+    "totalResults_one": "{{count}} Treffer",
+    "totalResults_other": "{{count}} Treffer"
+}
