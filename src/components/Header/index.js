@@ -75,6 +75,7 @@ const Header = function Header() {
           <SocialLinks />
         </Styled.StackSocialLarge>
         <IconButton
+          id="hamburger"
           size="medium"
           edge="start"
           color="inherit"

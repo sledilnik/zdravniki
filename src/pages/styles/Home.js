@@ -3,7 +3,11 @@ import { darken, styled } from '@mui/material/styles';
 
 import { SIZES } from 'const';
 
-export const Main = styled(MuiBox)(() => ({}));
+export const Main = styled(MuiBox)(() => ({
+  '@media print': {
+    marginTop: '88px',
+  },
+}));
 
 export const Box = styled(MuiBox)(({ theme }) => ({
   position: 'relative',
