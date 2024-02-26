@@ -4,12 +4,14 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en.json';
 import sl from './locales/sl.json';
 import it from './locales/it.json';
+import hr from './locales/hr.json';
 import hu from './locales/hu.json';
 
 export const languages = [
   { name: 'English', code: 'en' },
   { name: 'Slovenščina', code: 'sl' },
   { name: 'Italiano', code: 'it' },
+  { name: 'Hrvatski', code: 'hr' },
   { name: 'Magyar', code: 'hu' },
 ];
 
@@ -24,6 +26,7 @@ i18next
       sl: { translation: sl },
       en: { translation: en },
       it: { translation: it },
+      hr: { translation: hr },
       hu: { translation: hu },
     },
     lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option

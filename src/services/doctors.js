@@ -45,10 +45,18 @@ export function createDoctor(doctor, inst) {
   const website = trimString(doctor.website || institution.website);
   const phone = trimString(doctor.phone || institution.phone);
 
-  const geoLocation = {
+  let geoLocation = {
     lat: parseFloat(doctor.lat || institution.lat),
     lon: parseFloat(doctor.lon || institution.lon),
   };
+
+  if (Number.isNaN(geoLocation.lat) || Number.isNaN(geoLocation.lon)) {
+    // instead if throwing an error, we'll just use the center of Slovenia
+    // eslint-disable-next-line no-console
+    console.error(`Invalid geoLocation for ${name} (${doctor.key}),`, { institution, doctor });
+    const [lat, lon] = GEO_LOCATION.SL_CENTER;
+    geoLocation = { lat, lon };
+  }
 
   const addressObject = getAddressObject(doctor, institution);
   const isExtra = doctor.type.match(/-x$/);
