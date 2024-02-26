@@ -73,12 +73,7 @@
         },
         "title": "Segnala un errore",
         "cancel": "Annulla",
-        "send": "Invia",
-        "confirmation": {
-            "title": "Confirma l'invio",
-            "warningText": "Error reporting is not intended to order a review or consultation. To order appointment, contact your chosen doctor.",
-            "text": "Are you sure you want to report an error?"
-        }
+        "send": "Invia"
     },
     "doctorCard": {
         "showOnMap": "Visualizza sulla mappa",
