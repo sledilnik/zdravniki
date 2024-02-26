@@ -80,8 +80,8 @@
         },
         "confirmation": {
             "title": "Confirm",
-            "warningText": "Error reporting is not intended to order a review or consultation. To order appointment, contact your chosen doctor.",
-            "text": "Are you sure you want to report an error?"
+            "warningText": "This form is NOT intended to request an appointment for medical examination or consultation. To make an appointment, contact your chosen doctor.",
+            "text": "Are you sure you want to suggest a data update?"
         }
     },
     "error": {
