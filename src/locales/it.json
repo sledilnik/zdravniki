@@ -76,8 +76,8 @@
         "send": "Invia",
         "confirmation": {
             "title": "Confirma l'invio",
-            "text": "Sei sicuro di voler inviare la segnalazione?",
-            "warningText": "La segnalazione degli errori non ha lo scopo di ordinare una revisione o una consultazione. Per ordinare, contattare il medico prescelto."
+            "warningText": "Error reporting is not intended to order a review or consultation. To order appointment, contact your chosen doctor.",
+            "text": "Are you sure you want to report an error?"
         }
     },
     "doctorCard": {
