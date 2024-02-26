@@ -4,11 +4,16 @@
     "dentist": "zubar",
     "search": "Traži…",
     "timestamps": {
-        "at": "u"
+        "at": "u",
+        "datetime": "{{val, datetime}}"
     },
     "header": {
         "sledilnik": "Sledilnik.org",
-        "support": "Podrška!"
+        "support": "Podrška!",
+        "menu": "Izbornik",
+        "about": "O projektu",
+        "faq": "Pojašnjenja",
+        "home": "Imenik"
     },
     "all": "svi",
     "map": "Karta",
@@ -17,17 +22,68 @@
     "adults": "odrasli",
     "doctorCard": {
         "more": "Više",
-        "showOnMap": "Prikaži na karti"
+        "showOnMap": "Prikaži na karti",
+        "noPhone": "Broj telefona nije dostupan"
     },
     "list": "Popis",
     "reportError": {
         "placeholder": {
-            "address": "adresa"
+            "address": "adresa",
+            "website": "web-stranica",
+            "phone": "telefon",
+            "email": "e-pošta",
+            "orderform": "poveznica na stranicu za naručivanje",
+            "availability": "dostupnost",
+            "note": "bilješka"
         },
-        "send": "Šalji"
+        "send": "Šalji",
+        "title": "Prijavi grešku",
+        "tooltip": "Prijavi grešku u podacima o doktoru",
+        "text": "Prijavi grešku u podacima o doktoru i dodaj pravilne podatke ili bilješke:",
+        "cancel": "Otkaži",
+        "reportReceived": "Hvala vam! Pregledat ćemo podatke."
     },
     "footer": {
         "dataSource": "Izvor podataka",
         "lastChange": "Zadnje ažuriranje podataka"
-    }
+    },
+    "loading": "Učitavam…",
+    "students": "studenti",
+    "youth": "omladina",
+    "generalPractitioner": "liječnik opće prakse",
+    "floatingClinic": "Ambulanta za pacijente bez liječnika",
+    "filter": "Filter",
+    "noResults": "Nijedan liječnik nije pronađen na temelju vaših kriterija pretraživanja. Provjerite jeste li odabrali pravu vrstu liječnika ili raširite pogled na karti.",
+    "changedOn": "Popravljeno: ",
+    "doctorAvailabilityLabel": "Dostupnost",
+    "doctorAvailability": "Dostupnost može biti niža od 100% za liječnike koji rade honorarno na preventivnim programima ili u drugim jedinicama (npr. stomatolog koji radi s odraslima i mladima).",
+    "yourLocation": "Vaša lokacija",
+    "toContent": "Na sadržaj",
+    "findAvailableDoctor": "Pronađite dostupnog liječnika",
+    "showAll": "Prikaži sve",
+    "copy": "Kopiraj",
+    "copied": "Kopirano!",
+    "backToHome": "Nazad na imenik",
+    "faq": {
+        "title": "Često postavljana pitanja i odgovori",
+        "description": "U slučaju da vam je potrebna hitna medicinska pomoć trebate kontaktirati hitnu pomoć ili nazvati 112.",
+        "glossary": "Rječnik"
+    },
+    "pageNotFound": {
+        "somethingWentWrong": "ups... nešto je pošlo po zlu :(",
+        "back": "Nazad",
+        "imageDescription": "dva prometna čunja povezana žutom trakom"
+    },
+    "SEO": {
+        "title": {
+            "home": "Doktori - Sledilnik",
+            "notFound": "404: stranica nije pronađena",
+            "about": "O projektu",
+            "faq": "Objašnjenja"
+        }
+    },
+    "error": {
+        "title": "Nešto je pošlo po zlu"
+    },
+    "orderform": "naručivanje"
 }
