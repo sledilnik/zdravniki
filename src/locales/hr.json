@@ -86,6 +86,7 @@
         "title": "Nešto je pošlo po zlu"
     },
     "orderform": "naručivanje",
-    "totalResults_one": "{{count}} rezultat",
-    "totalResults_other": "{{count}} rezultata"
+    "totalResults_one": "{{count}} pogodak",
+    "totalResults_few": "{{count}} pogotka",
+    "totalResults_other": "{{count}} pogodaka"
 }
