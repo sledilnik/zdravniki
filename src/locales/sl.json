@@ -82,8 +82,8 @@
         },
         "confirmation": {
             "title": "Potrditev",
-            "warningText": "Sporočanje napak ni namenjeno naročanju na pregled ali posvet. Za naročanje se obrnite na izbranega zdravnika.",
-            "text": "Ali ste prepričani, da želite poslati sporočilo?"
+            "warningText": "Obrazec NI namenjen naročanju na pregled ali posvet. Za naročanje se obrnite na izbranega zdravnika.",
+            "text": "Ali ste prepričani, da želite predlagati popravek podatkov?"
         }
     },
     "error": {
