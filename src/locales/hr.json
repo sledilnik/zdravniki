@@ -85,5 +85,7 @@
     "error": {
         "title": "Nešto je pošlo po zlu"
     },
-    "orderform": "naručivanje"
+    "orderform": "naručivanje",
+    "totalResults_one": "{{count}} rezultat",
+    "totalResults_other": "{{count}} rezultata"
 }
