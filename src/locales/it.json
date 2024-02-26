@@ -73,7 +73,12 @@
         },
         "title": "Segnala un errore",
         "cancel": "Annulla",
-        "send": "Invia"
+        "send": "Invia",
+        "confirmation": {
+            "title": "Confirma l'invio",
+            "text": "Sei sicuro di voler inviare la segnalazione?",
+            "warningText": "La segnalazione degli errori non ha lo scopo di ordinare una revisione o una consultazione. Per ordinare, contattare il medico prescelto."
+        }
     },
     "doctorCard": {
         "showOnMap": "Visualizza sulla mappa",

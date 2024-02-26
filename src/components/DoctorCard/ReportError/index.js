@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
+import {
+  CardContent,
+  Typography,
+  Stack,
+  Button,
+  Alert,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@mui/material';
 import { t } from 'i18next';
 
 import * as SEO from 'components/SEO';
@@ -13,6 +24,8 @@ import { toPercent } from '../utils';
 const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
   const { lng } = useParams();
   const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
+
   const meta = [{ name: 'robots', content: 'noindex' }];
 
   const accepts = doctorFormData.accepts === 'y';
@@ -90,8 +103,35 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     },
   };
 
+  const postForm = async formData => {
+    try {
+      await fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: formData, // body data type must match "Content-Type" header
+      });
+      setMessage(t('reportError.reportReceived'));
+    } catch (err) {
+      setMessage('Error:', err);
+    } finally {
+      setOpenDialog(false);
+      setIsEditing(false);
+      setTimeout(() => {
+        setMessage('');
+      }, 5000);
+    }
+  };
+
   const submit = async e => {
     e.preventDefault();
+    setOpenDialog(true);
 
     // if none of the input data is changed, do not send anything to Google Sheets
     if (
@@ -135,29 +175,6 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
 
     const formData = new FormData();
     Object.values(formState).forEach(item => formData.append(`entry.${item.id}`, item.value));
-
-    try {
-      await fetch(formUrl, {
-        method: 'POST',
-        mode: 'no-cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: formData, // body data type must match "Content-Type" header
-      });
-      setMessage(t('reportError.reportReceived'));
-    } catch (err) {
-      setMessage('Error:', err);
-    } finally {
-      setIsEditing(false);
-      setTimeout(() => {
-        setMessage('');
-      }, 5000);
-    }
   };
 
   const resetForm = () => {
@@ -172,6 +189,14 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     setInputOrderform(doctorFormData.orderform);
     setInputNote(doctorFormData.note);
     navigate(path);
+  };
+
+  const handleOK = () => {
+    postForm(formState);
+  };
+
+  const handleCancel = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -192,6 +217,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             {t('reportError.text')}
           </Alert>
           <TextareaEdit
+            id="inputAddress"
             name="inputAddress"
             value={inputAddress}
             setValue={setInputAddress}
@@ -199,37 +225,48 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             translate="no"
           />
           <TextareaEdit
+            id="inputWebsite"
             name="inputWebsite"
             value={inputWebsite}
             setValue={setInputWebsite}
             placeholder={t('reportError.placeholder.website')}
           />
           <TextareaEdit
+            id="inputPhone"
             name="inputPhone"
             value={inputPhone}
             setValue={setInputPhone}
             placeholder={t('reportError.placeholder.phone')}
           />
           <TextareaEdit
+            id="inputEmail"
             name="inputEmail"
             value={inputEmail}
             setValue={setInputEmail}
             placeholder={t('reportError.placeholder.email')}
           />
           <TextareaEdit
+            id="inputOrderform"
             name="inputOrderform"
             value={inputOrderform}
             setValue={setInputOrderform}
             placeholder={t('reportError.placeholder.orderform')}
           />
-          <SelectEdit name="inputAccepts" value={inputAccepts} setValue={setInputAccepts} />
+          <SelectEdit
+            id="inputAddress"
+            name="inputAccepts"
+            value={inputAccepts}
+            setValue={setInputAccepts}
+          />
           <TextareaEdit
-            name="inputAvailabilty"
+            id="inputAvailability"
+            name="inputAvailability"
             value={inputAvailability}
             setValue={setInputAvailability}
             placeholder={t('reportError.placeholder.availability')}
           />
           <TextareaEdit
+            id="inputNote"
             name="inputNote"
             value={inputNote}
             setValue={setInputNote}
@@ -245,6 +282,24 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
           </Button>
         </Stack>
       </CardContent>
+      <Dialog id="dialog" open={openDialog}>
+        <DialogTitle>{t('reportError.confirmation.title')}</DialogTitle>
+        <DialogContent>
+          <Alert severity="warning">{t('reportError.confirmation.warningText')}</Alert>
+          <DialogContentText sx={{ paddingBlock: '1rem' }}>
+            {t('reportError.confirmation.text')}
+          </DialogContentText>
+        </DialogContent>
+
+        <DialogActions>
+          <Button variant="text" type="button" autoFocus onClick={handleCancel}>
+            {t('reportError.cancel')}
+          </Button>
+          <Button variant="contained" type="button" onClick={handleOK} sx={{ marginLeft: 'auto' }}>
+            {t('reportError.send')}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

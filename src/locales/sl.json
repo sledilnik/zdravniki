@@ -79,6 +79,11 @@
             "orderform": "povezava za naročanje",
             "availability": "obseg zaposlitve",
             "note": "opomba"
+        },
+        "confirmation": {
+            "title": "Potrditev",
+            "warningText": "Sporočanje napak ni namenjeno naročanju na pregled ali posvet. Za naročanje se obrnite na izbranega zdravnika.",
+            "text": "Ali ste prepričani, da želite poslati sporočilo?"
         }
     },
     "error": {

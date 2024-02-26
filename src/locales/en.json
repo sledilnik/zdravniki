@@ -77,6 +77,11 @@
             "orderform": "link to order page",
             "availability": "availability",
             "note": "note"
+        },
+        "confirmation": {
+            "title": "Confirm",
+            "warningText": "Error reporting is not intended to order a review or consultation. To order appointment, contact your chosen doctor.",
+            "text": "Are you sure you want to report an error?"
         }
     },
     "error": {
