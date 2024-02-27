@@ -56,7 +56,7 @@
     },
     "footer": {
         "dataSource": "Adatforrás",
-        "lastChange": "Utolsó változtatás"
+        "lastChange": "Utolsó módosítás"
     },
     "accepts": "fogad",
     "rejects": "nem fogad",
@@ -82,7 +82,7 @@
     "orderform": "kérjen időpontot",
     "timestamps": {
         "datetime": "{{val, datetime}}",
-        "at": "időpont"
+        "at": ""
     },
     "findAvailableDoctor": "Találj szabad orvost",
     "error": {
