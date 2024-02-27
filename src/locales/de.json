@@ -14,11 +14,16 @@
         "more": "Mehr"
     },
     "footer": {
-        "dataSource": "Datenquelle"
+        "dataSource": "Datenquelle",
+        "lastChange": "Letzte Aktualisierung der Daten"
     },
     "reportError": {
         "cancel": "Abbrechen",
-        "send": "Senden"
+        "send": "Senden",
+        "placeholder": {
+            "phone": "telefonnummer",
+            "address": "adresse"
+        }
     },
     "pageNotFound": {
         "somethingWentWrong": "Etwas ist schief gelaufen :(",
@@ -27,5 +32,19 @@
     },
     "filter": "Filter",
     "totalResults_one": "{{count}} Treffer",
-    "totalResults_other": "{{count}} Treffer"
+    "totalResults_other": "{{count}} Treffer",
+    "list": "Liste",
+    "map": "Landkarte",
+    "timestamps": {
+        "at": "um",
+        "datetime": "{{val, datetime}}"
+    },
+    "SEO": {
+        "title": {
+            "notFound": "404: Seite nicht gefunden"
+        }
+    },
+    "copied": "Kopiert!",
+    "copy": "Kopieren",
+    "showAll": "Alle anzeigen"
 }
