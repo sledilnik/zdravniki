@@ -253,7 +253,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
             placeholder={t('reportError.placeholder.orderform')}
           />
           <SelectEdit
-            id="inputAddress"
+            id="inputAccepts"
             name="inputAccepts"
             value={inputAccepts}
             setValue={setInputAccepts}
