@@ -33,7 +33,7 @@ i18next
       de: { translation: de },
     },
     lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option
-    fallbackLng: languages.map(value => value.code),
+    fallbackLng: ["en", "sl"], // https://www.i18next.com/principles/fallback#fallback-to-different-languages
     detection: {
       order: ['path', 'cookie', 'navigator', 'localStorage', 'subdomain', 'queryString', 'htmlTag'],
       lookupLocalStorage: 'i18nextLng',
