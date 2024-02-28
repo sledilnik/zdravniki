@@ -2,7 +2,10 @@
     "loading": "Wird geladen…",
     "header": {
         "sledilnik": "Sledilnik.org",
-        "menu": "Menü"
+        "menu": "Menü",
+        "about": "Über",
+        "faq": "FAQ",
+        "support": "Unterstützung!"
     },
     "rejects": "nicht akzeptieren",
     "accepts": "akzeptieren",
@@ -11,7 +14,8 @@
     "students": "studenten",
     "youth": "jugend",
     "doctorCard": {
-        "more": "Mehr"
+        "more": "Mehr",
+        "noPhone": "Telefonnummer nicht verfügbar"
     },
     "footer": {
         "dataSource": "Datenquelle",
@@ -22,7 +26,12 @@
         "send": "Senden",
         "placeholder": {
             "phone": "telefonnummer",
-            "address": "adresse"
+            "address": "adresse",
+            "website": "webseite",
+            "email": "E-Mail-Adresse",
+            "orderform": "link zur bestellseite",
+            "availability": "verfügbarkeit",
+            "note": "Hinweis"
         }
     },
     "pageNotFound": {
@@ -41,10 +50,26 @@
     },
     "SEO": {
         "title": {
-            "notFound": "404: Seite nicht gefunden"
+            "notFound": "404: Seite nicht gefunden",
+            "home": "Ärzte - Sledilnik",
+            "about": "Über",
+            "faq": "FAQ"
         }
     },
     "copied": "Kopiert!",
     "copy": "Kopieren",
-    "showAll": "Alle anzeigen"
+    "showAll": "Alle anzeigen",
+    "generalPractitioner": "Allgemeinmediziner",
+    "pediatrician": "kinderarzt",
+    "gynecologist": "gynäkolog",
+    "adults": "erwachsene",
+    "clinicForBetterAccessibility": "Klinik für besser Zugänglichkeit",
+    "search": "Suchen…",
+    "toContent": "Zum Inhalt",
+    "findAvailableDoctor": "Finde verfügbaren Doktor",
+    "faq": {
+        "title": "Häufig gestellte Fragen",
+        "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an Notdienste wenden oder 112 anrufen.",
+        "glossary": "Glossar"
+    }
 }
