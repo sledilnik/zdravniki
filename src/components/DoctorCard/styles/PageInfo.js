@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 import Stack from '@mui/material/Stack';
+import { IconButton } from '@mui/material';
 
 export const DCWrapper = styled(Stack)(({ theme, viewType }) => {
   let marginBlock = `${theme.spacing(1)} ${theme.spacing(1.5)}`;
@@ -20,6 +21,11 @@ export const DCWrapper = styled(Stack)(({ theme, viewType }) => {
     },
     '.text': {
       opacity: 0.56,
+    },
+    '@media print': {
+      '.icon, .text': {
+        opacity: 1,
+      },
     },
   };
 });
@@ -101,6 +107,9 @@ export const BackWrapper = styled(Stack)(({ theme }) => ({
   '&:hover': {
     color: theme.customColors.links,
   },
+  '@media print': {
+    display: 'none',
+  },
 }));
 
 export const Override = styled(Stack)(({ theme }) => ({
@@ -115,5 +124,11 @@ export const Override = styled(Stack)(({ theme }) => ({
   svg: {
     margin: '0 5px 0 0',
     opacity: '0.25',
+  },
+}));
+
+export const PrintIconButton = styled(IconButton)(() => ({
+  '@media print': {
+    display: 'none',
   },
 }));
