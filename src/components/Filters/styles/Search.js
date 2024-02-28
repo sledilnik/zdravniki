@@ -115,4 +115,8 @@ export const SearchPaper = styled(MuiPaper)(({ theme }) => ({
     width: 'auto',
     justifyContent: 'end',
   },
+
+  '@media print': {
+    display: 'none',
+  },
 }));

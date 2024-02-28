@@ -14,6 +14,9 @@ export const StackLarge = styled(MuiStack)(({ theme }) => ({
     marginLeft: 'auto',
     '& > :not(*:first-of-type)': { marginLeft: theme.spacing(3) },
   },
+  '@media print': {
+    display: 'none',
+  },
 }));
 export const StackSmall = styled(MuiStack)(({ theme }) => ({
   display: 'flex',
@@ -42,6 +45,9 @@ export const StackSocialLarge = styled(MuiStack)(({ theme }) => ({
     flexDirection: 'row',
     marginLeft: theme.spacing(1),
     marginBlock: 0,
+  },
+  '@media print': {
+    display: 'none',
   },
 }));
 export const StackSocialSmall = styled(MuiStack)(({ theme }) => ({
@@ -131,5 +137,11 @@ export const AppNavBar = styled(AppBar)(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     boxShadow: '0 3px 10px 0 rgba(58,83,87,0.24)',
+  },
+  '@media print': {
+    boxShadow: 'none',
+    '#hamburger': {
+      display: 'none',
+    },
   },
 }));

@@ -19,6 +19,11 @@ export const Autocomplete = styled(MuiAutocomplete)(({ theme }) => ({
       borderWidth: '1px',
     },
   },
+  '@media print': {
+    '& .MuiOutlinedInput-root': {
+      display: 'none',
+    },
+  },
 }));
 
 export const Popper = styled(MuiPopper)(({ theme }) => ({
