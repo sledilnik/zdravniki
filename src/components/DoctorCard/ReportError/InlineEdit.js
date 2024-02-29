@@ -5,21 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
 
 export const TextareaEdit = function TextareaEdit({ name, value, setValue, placeholder }) {
-  const [editingValue, setEditingValue] = useState(value);
-
-  const onChange = event => setEditingValue(event.target.value);
+  const onChange = event => setValue(event.target.value);
+  const onBlur = event => setValue(event.target.value);
 
   const onKeyDown = event => {
     if (event.key === 'Enter' || event.key === 'Escape') {
       event.target.blur();
-    }
-  };
-
-  const onBlur = event => {
-    if (event.target.value.trim() === '') {
-      setEditingValue(value);
-    } else {
-      setValue(event.target.value);
     }
   };
 
@@ -38,9 +29,9 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue, place
       rows={1}
       aria-label={name}
       name={name}
-      value={editingValue}
-      onBlur={onBlur}
+      value={value}
       onChange={onChange}
+      onBlur={onBlur}
       onKeyDown={onKeyDown}
       ref={textareaRef}
       placeholder={placeholder}
