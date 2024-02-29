@@ -92,5 +92,8 @@
     "timestamps": {
         "datetime": "{{val, datetime}}",
         "at": "ob"
+    },
+    "sozialmarie": {
+        "description": "Portal Zdravniki Sledilnik je bil ustvarjen z namenom približevanja osrkbe k pacientu. V Sloveniji se soočamo s pomankanjem zdravnikov na primarnem nivoju. Veliko pacientov je zaradi tega brez osnovne pravice dostopa do opredelitve osebnega zdravnika. V Znanstvenem društvu Sledilnik smo podatke, ki so se javno objavljali na 15 dni v nepregledni razpredelnici uvozili v naš portal ter omogočali uporabnikom, da podatke posodabljajo v realnem času. Tako smo pacientom, ki so iskali oskrbo na primarnem nivoju omogočili prijazno uporabniško informacijo ter ažurne informacije."
     }
 }
