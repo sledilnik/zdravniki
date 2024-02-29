@@ -41,7 +41,8 @@
         "tooltip": "Prijavi grešku u podacima o doktoru",
         "text": "Prijavi grešku u podacima o doktoru i dodaj pravilne podatke ili bilješke:",
         "cancel": "Otkaži",
-        "reportReceived": "Hvala vam! Pregledat ćemo podatke."
+        "reportReceived": "Hvala vam! Pregledat ćemo podatke.",
+        "reset": "Poništi"
     },
     "footer": {
         "dataSource": "Izvor podataka",
