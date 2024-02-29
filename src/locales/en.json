@@ -68,6 +68,7 @@
         "text": "Report error in doctor data and add the correct data or notes:",
         "cancel": "Cancel",
         "send": "Send",
+        "reset": "Reset",
         "reportReceived": "Thank you! We will look into it.",
         "reportError": "Error reporting failed. Please try again later.",
         "reportNoChange": "No data has been changed",

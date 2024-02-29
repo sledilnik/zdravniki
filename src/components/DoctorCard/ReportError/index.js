@@ -63,8 +63,9 @@ const ReportError = function ReportError({
 
   const postForm = async formData => {
     const formUrl = getGSheetFormUrl();
+
     try {
-      const response = await fetch(formUrl, {
+      await fetch(formUrl, {
         method: 'POST',
         mode: 'no-cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -76,12 +77,7 @@ const ReportError = function ReportError({
         referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: formData, // body data type must match "Content-Type" header
       });
-
-      if (response.ok) {
-        setMessage(t('reportError.reportReceived'));
-      } else {
-        throw new Error('Error submitting form');
-      }
+      setMessage(t('reportError.reportReceived'));
     } catch (err) {
       setIsError(true);
       setMessage(t('reportError.reportError'));
@@ -113,12 +109,7 @@ const ReportError = function ReportError({
     setOpenDialog(true);
   };
 
-  const resetForm = () => {
-    setIsEditing(false);
-    setMessage('');
-    if (isError) {
-      setIsError(false);
-    }
+  const resetInputs = () => {
     inputs.address[1](initialValues.address);
     inputs.accepts[1](initialValues.accepts);
     inputs.availability[1](initialValues.availability);
@@ -127,7 +118,15 @@ const ReportError = function ReportError({
     inputs.email[1](initialValues.email);
     inputs.orderform[1](initialValues.orderform);
     inputs.note[1](initialValues.note);
+  };
 
+  const resetForm = () => {
+    setIsEditing(false);
+    setMessage('');
+    if (isError) {
+      setIsError(false);
+    }
+    resetInputs();
     navigate(path);
   };
 
@@ -189,6 +188,7 @@ const ReportError = function ReportError({
             setValue={inputs.address[1]}
             placeholder={t('reportError.placeholder.address')}
             translate="no"
+            required
           />
           <TextareaEdit
             name="website"
@@ -232,18 +232,17 @@ const ReportError = function ReportError({
               marginTop: '1em',
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-between',
+              gap: '1rem',
             }}
           >
-            <Button
-              variant="outlined"
-              onClick={resetForm}
-              sx={{ marginRight: '1rem' }}
-              size="small"
-            >
+            <Button variant="text" type="reset" size="small" onClick={resetInputs} color="inherit">
+              {t('reportError.reset')}
+            </Button>
+            <Button variant="outlined" onClick={resetForm} size="small" color="error">
               {t('reportError.cancel')}
             </Button>
-            <Button variant="contained" type="submit" size="small">
+
+            <Button variant="contained" type="submit" size="small" sx={{ marginLeft: 'auto' }}>
               {t('reportError.send')}
             </Button>
           </Stack>

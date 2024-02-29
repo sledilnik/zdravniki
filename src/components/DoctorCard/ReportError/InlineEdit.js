@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as Styled from './styles';
 
 export const TextareaEdit = function TextareaEdit({
@@ -11,6 +11,7 @@ export const TextareaEdit = function TextareaEdit({
   placeholder,
   id,
   label,
+  required = undefined,
 }) {
   const onChange = event => setValue(event.target.value);
   const onBlur = event => setValue(event.target.value);
@@ -44,33 +45,32 @@ export const TextareaEdit = function TextareaEdit({
         onKeyDown={onKeyDown}
         ref={textareaRef}
         placeholder={placeholder}
+        required={required}
       />
     </Styled.InlineEdit.Wrapper>
   );
 };
 
-export const SelectEdit = function SelectEdit({ name, value, setValue, label, id }) {
+export const SelectEdit = function SelectEdit({
+  name,
+  value,
+  setValue,
+  label,
+  id,
+  required = undefined,
+}) {
   const values = [
     // csv file has values "y" and "n"
     { k: 'n', v: t('rejects').toUpperCase() },
     { k: 'y', v: t('accepts').toUpperCase() },
   ];
 
-  const [editingValue, setEditingValue] = useState(value);
-
-  const onChange = event => setEditingValue(event.target.value);
+  const onChange = event => setValue(event.target.value);
+  const onBlur = event => setValue(event.target.value);
 
   const onKeyDown = event => {
     if (event.key === 'Enter' || event.key === 'Escape') {
       event.target.blur();
-    }
-  };
-
-  const onBlur = event => {
-    if (event.target.value.trim() === '') {
-      setEditingValue(value);
-    } else {
-      setValue(event.target.value);
     }
   };
 
@@ -81,10 +81,11 @@ export const SelectEdit = function SelectEdit({ name, value, setValue, label, id
         type="text"
         id={id}
         name={name}
-        value={editingValue}
+        value={value}
         onBlur={onBlur}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        required={required}
       >
         {values.map(({ k, v }) => (
           <option key={k} value={k}>
@@ -99,6 +100,7 @@ export const SelectEdit = function SelectEdit({ name, value, setValue, label, id
 TextareaEdit.defaultProps = {
   placeholder: 'placeholder',
   label: '',
+  required: undefined,
 };
 
 TextareaEdit.propTypes = {
@@ -108,10 +110,12 @@ TextareaEdit.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
+  required: true || undefined,
 };
 
 SelectEdit.defaultProps = {
   label: '',
+  required: undefined,
 };
 
 SelectEdit.propTypes = {
@@ -120,4 +124,5 @@ SelectEdit.propTypes = {
   setValue: PropTypes.func.isRequired,
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
+  required: true || undefined,
 };

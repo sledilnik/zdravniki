@@ -70,6 +70,7 @@
         "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
         "cancel": "Prekliči",
         "send": "Pošlji",
+        "reset": "Ponastavi",
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
         "reportError": "Prišlo je do napake pri pošiljanju podatkov. Prosim, poskusite znova.",
         "reportNoChange": "Noben podatek ni bil spremenjen.",
