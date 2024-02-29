@@ -68,7 +68,10 @@
         "text": "Report error in doctor data and add the correct data or notes:",
         "cancel": "Cancel",
         "send": "Send",
+        "reset": "Reset",
         "reportReceived": "Thank you! We will look into it.",
+        "reportError": "Error reporting failed. Please try again later.",
+        "reportNoChange": "No data has been changed",
         "placeholder": {
             "address": "address",
             "website": "web page",
@@ -77,6 +80,11 @@
             "orderform": "link to order page",
             "availability": "availability",
             "note": "note"
+        },
+        "confirmation": {
+            "title": "Confirm",
+            "warningText": "This form is NOT intended to request an appointment for medical examination or consultation. To make an appointment, contact your chosen doctor.",
+            "text": "Are you sure you want to suggest a data update?"
         }
     },
     "error": {

@@ -45,6 +45,7 @@ const PageInfo = function PageInfo({ doctor }) {
 
   const [isEditing, setIsEditing] = useState(isReportError);
   const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const reportError = () => {
     setIsEditing(true);
@@ -71,6 +72,8 @@ const PageInfo = function PageInfo({ doctor }) {
         doctorFormData={doctorFormData}
         setIsEditing={setIsEditing}
         setMessage={setMessage}
+        isError={isError}
+        setIsError={setIsError}
       />
     );
   }
@@ -125,11 +128,16 @@ const PageInfo = function PageInfo({ doctor }) {
           </Stack>
         </Stack>
 
-        {message && (
+        {!isError && message ? (
           <Alert sx={{ marginTop: '1rem' }} severity="success">
             {message}
           </Alert>
-        )}
+        ) : null}
+        {isError && message ? (
+          <Alert sx={{ marginTop: '1rem' }} severity="error">
+            {message}
+          </Alert>
+        ) : null}
         <Styled.PageInfo.LinksMenuWrapper>
           {doctor.website && <WebsiteLinks website={doctor.website} />}
           {doctor.phone && <PhoneLinks phone={doctor.phone} />}

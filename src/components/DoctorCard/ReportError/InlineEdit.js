@@ -1,25 +1,24 @@
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import * as Styled from './styles';
 
-export const TextareaEdit = function TextareaEdit({ name, value, setValue, placeholder }) {
-  const [editingValue, setEditingValue] = useState(value);
-
-  const onChange = event => setEditingValue(event.target.value);
+export const TextareaEdit = function TextareaEdit({
+  name,
+  value,
+  setValue,
+  placeholder,
+  id,
+  label,
+  required = undefined,
+}) {
+  const onChange = event => setValue(event.target.value);
+  const onBlur = event => setValue(event.target.value);
 
   const onKeyDown = event => {
     if (event.key === 'Enter' || event.key === 'Escape') {
       event.target.blur();
-    }
-  };
-
-  const onBlur = event => {
-    if (event.target.value.trim() === '') {
-      setEditingValue(value);
-    } else {
-      setValue(event.target.value);
     }
   };
 
@@ -34,30 +33,40 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue, place
   }, [height]);
 
   return (
-    <Styled.InlineEdit.Textarea
-      rows={1}
-      aria-label={name}
-      name={name}
-      value={editingValue}
-      onBlur={onBlur}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      ref={textareaRef}
-      placeholder={placeholder}
-    />
+    <Styled.InlineEdit.Wrapper>
+      <Styled.InlineEdit.LabelSrOnly htmlFor={id}>{label || name}</Styled.InlineEdit.LabelSrOnly>
+      <Styled.InlineEdit.Textarea
+        rows={1}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        ref={textareaRef}
+        placeholder={placeholder}
+        required={required}
+      />
+    </Styled.InlineEdit.Wrapper>
   );
 };
 
-export const SelectEdit = function SelectEdit({ name, value, setValue }) {
+export const SelectEdit = function SelectEdit({
+  name,
+  value,
+  setValue,
+  label,
+  id,
+  required = undefined,
+}) {
   const values = [
     // csv file has values "y" and "n"
     { k: 'n', v: t('rejects').toUpperCase() },
     { k: 'y', v: t('accepts').toUpperCase() },
   ];
 
-  const [editingValue, setEditingValue] = useState(value);
-
-  const onChange = event => setEditingValue(event.target.value);
+  const onChange = event => setValue(event.target.value);
+  const onBlur = event => setValue(event.target.value);
 
   const onKeyDown = event => {
     if (event.key === 'Enter' || event.key === 'Escape') {
@@ -65,35 +74,33 @@ export const SelectEdit = function SelectEdit({ name, value, setValue }) {
     }
   };
 
-  const onBlur = event => {
-    if (event.target.value.trim() === '') {
-      setEditingValue(value);
-    } else {
-      setValue(event.target.value);
-    }
-  };
-
   return (
-    <Styled.InlineEdit.Select
-      type="text"
-      aria-label={name}
-      name={name}
-      value={editingValue}
-      onBlur={onBlur}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-    >
-      {values.map(({ k, v }) => (
-        <option key={k} value={k}>
-          {v}
-        </option>
-      ))}
-    </Styled.InlineEdit.Select>
+    <Styled.InlineEdit.Wrapper>
+      <Styled.InlineEdit.LabelSrOnly htmlFor={id}>{label || name}</Styled.InlineEdit.LabelSrOnly>
+      <Styled.InlineEdit.Select
+        type="text"
+        id={id}
+        name={name}
+        value={value}
+        onBlur={onBlur}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        required={required}
+      >
+        {values.map(({ k, v }) => (
+          <option key={k} value={k}>
+            {v}
+          </option>
+        ))}
+      </Styled.InlineEdit.Select>
+    </Styled.InlineEdit.Wrapper>
   );
 };
 
 TextareaEdit.defaultProps = {
   placeholder: 'placeholder',
+  label: '',
+  required: undefined,
 };
 
 TextareaEdit.propTypes = {
@@ -101,10 +108,21 @@ TextareaEdit.propTypes = {
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  label: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  required: true || undefined,
+};
+
+SelectEdit.defaultProps = {
+  label: '',
+  required: undefined,
 };
 
 SelectEdit.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  required: true || undefined,
 };
