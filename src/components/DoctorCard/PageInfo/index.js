@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CardContent, Typography, Stack, Alert, Tooltip } from '@mui/material';
+import { CardContent, Typography, Stack, Alert, Tooltip, ButtonBase, Icon } from '@mui/material';
+import PrintIcon from '@mui/icons-material/Print';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
-import IconButton from '@mui/material/IconButton';
 import { useFilter } from 'context/filterContext';
 
 import * as Icons from 'components/Shared/Icons';
@@ -77,6 +77,10 @@ const PageInfo = function PageInfo({ doctor }) {
       />
     );
   }
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   // todo create component for urls -> website, orderform
 
@@ -170,15 +174,20 @@ const PageInfo = function PageInfo({ doctor }) {
       <Styled.PageInfo.ToolbarWrapper>
         <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Styled.PageInfo.BackWrapper direction="row">
-            <Stack direction="row" alignItems="center" onClick={handleBackButton}>
-              <IconButton sx={{ marginLeft: '-8px' }}>
-                <Icons.Icon name="ArrowBack" />
-              </IconButton>
-              <Typography component="div" variant="body1">
-                {t('backToHome')}
-              </Typography>
-            </Stack>
+            <ButtonBase onClick={handleBackButton}>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <Icon sx={{ marginLeft: '-8px' }}>
+                  <Icons.Icon name="ArrowBack" />
+                </Icon>
+                <Typography component="div" variant="body1">
+                  {t('backToHome')}
+                </Typography>
+              </Stack>
+            </ButtonBase>
           </Styled.PageInfo.BackWrapper>
+          <Styled.PageInfo.PrintIconButton onClick={handlePrint}>
+            <PrintIcon />
+          </Styled.PageInfo.PrintIconButton>
 
           {doctor.updatedAt && (
             <Tooltip

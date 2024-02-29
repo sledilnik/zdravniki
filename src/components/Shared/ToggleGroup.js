@@ -14,6 +14,10 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   borderRadius: '25px',
   flexWrap: 'wrap',
   width: 'min-content',
+
+  '@media print': {
+    display: 'none',
+  },
 }));
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({

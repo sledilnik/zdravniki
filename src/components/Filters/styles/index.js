@@ -73,6 +73,10 @@ export const Collapse = styled(MuiCollapse)(() => ({
     padding: '0 16px',
   },
   '&.MuiCollapse-entered + .MuiCardActions-root': {},
+
+  '@media print': {
+    display: 'none',
+  },
 }));
 
 // ? maybe insted of  Mui Box use Mui CardContent or even discard Grid and use only Collapse

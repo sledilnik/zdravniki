@@ -1,0 +1,75 @@
+{
+    "loading": "Wird geladen…",
+    "header": {
+        "sledilnik": "Sledilnik.org",
+        "menu": "Menü",
+        "about": "Über",
+        "faq": "FAQ",
+        "support": "Unterstützung!"
+    },
+    "rejects": "nicht akzeptieren",
+    "accepts": "akzeptieren",
+    "all": "alle",
+    "dentist": "zahnarzt",
+    "students": "studenten",
+    "youth": "jugend",
+    "doctorCard": {
+        "more": "Mehr",
+        "noPhone": "Telefonnummer nicht verfügbar"
+    },
+    "footer": {
+        "dataSource": "Datenquelle",
+        "lastChange": "Letzte Aktualisierung der Daten"
+    },
+    "reportError": {
+        "cancel": "Abbrechen",
+        "send": "Senden",
+        "placeholder": {
+            "phone": "telefonnummer",
+            "address": "adresse",
+            "website": "webseite",
+            "email": "E-Mail-Adresse",
+            "orderform": "link zur bestellseite",
+            "availability": "verfügbarkeit",
+            "note": "Hinweis"
+        }
+    },
+    "pageNotFound": {
+        "somethingWentWrong": "Etwas ist schief gelaufen :(",
+        "back": "Zurück",
+        "imageDescription": "zwei durch gelbes Band verbundene Verkehrskegel"
+    },
+    "filter": "Filter",
+    "totalResults_one": "{{count}} Treffer",
+    "totalResults_other": "{{count}} Treffer",
+    "list": "Liste",
+    "map": "Landkarte",
+    "timestamps": {
+        "at": "um",
+        "datetime": "{{val, datetime}}"
+    },
+    "SEO": {
+        "title": {
+            "notFound": "404: Seite nicht gefunden",
+            "home": "Ärzte - Sledilnik",
+            "about": "Über",
+            "faq": "FAQ"
+        }
+    },
+    "copied": "Kopiert!",
+    "copy": "Kopieren",
+    "showAll": "Alle anzeigen",
+    "generalPractitioner": "Allgemeinmediziner",
+    "pediatrician": "kinderarzt",
+    "gynecologist": "gynäkolog",
+    "adults": "erwachsene",
+    "clinicForBetterAccessibility": "Klinik für besser Zugänglichkeit",
+    "search": "Suchen…",
+    "toContent": "Zum Inhalt",
+    "findAvailableDoctor": "Finde verfügbaren Doktor",
+    "faq": {
+        "title": "Häufig gestellte Fragen",
+        "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an Notdienste wenden oder 112 anrufen.",
+        "glossary": "Glossar"
+    }
+}
