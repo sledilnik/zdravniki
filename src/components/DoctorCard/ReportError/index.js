@@ -163,73 +163,78 @@ const ReportError = function ReportError({
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.home')} meta={meta} lang={lng} />
-      <form id="report-error-form" ref={formRef} onSubmit={submit}>
-        <CardContent
-          sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
-        >
-          <div>
-            <Typography component="h1" variant="h1" translate="no">
-              {doctorFormData.name}
-            </Typography>
-            <Shared.DoubleChip type={type} ageGroup={ageGroup} />
-            <Typography component="h2" variant="h2" translate="no">
-              {doctorFormData.provider}
-            </Typography>
-            <Alert severity="info" sx={{ marginY: '1rem' }}>
-              {t('reportError.text')}
-            </Alert>
+      <CardContent
+        sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+      >
+        <form id="report-error-form" ref={formRef} onSubmit={submit}>
+          <Typography component="h1" variant="h1" translate="no">
+            {doctorFormData.name}
+          </Typography>
+          <Shared.DoubleChip type={type} ageGroup={ageGroup} />
+          <Typography component="h2" variant="h2" translate="no">
+            {doctorFormData.provider}
+          </Typography>
+          <Alert severity="info" sx={{ marginY: '1rem' }}>
+            {t('reportError.text')}
+          </Alert>
 
-            <input hidden name="name" defaultValue={doctorFormData.name} />
-            <input hidden name="url" defaultValue={process.env.REACT_APP_URL + path} />
-            <input hidden name="type" defaultValue={doctorFormData.type} />
-            <input hidden name="instId" defaultValue={doctorFormData.instId} />
-            <input hidden name="provider" defaultValue={doctorFormData.provider} />
-            <TextareaEdit
-              name="address"
-              value={inputs.address[0]}
-              setValue={inputs.address[1]}
-              placeholder={t('reportError.placeholder.address')}
-              translate="no"
-            />
-            <TextareaEdit
-              name="website"
-              value={inputs.website[0]}
-              setValue={inputs.website[1]}
-              placeholder={t('reportError.placeholder.website')}
-            />
-            <TextareaEdit
-              name="phone"
-              value={inputs.phone[0]}
-              setValue={inputs.phone[1]}
-              placeholder={t('reportError.placeholder.phone')}
-            />
-            <TextareaEdit
-              name="email"
-              value={inputs.email[0]}
-              setValue={inputs.email[1]}
-              placeholder={t('reportError.placeholder.email')}
-            />
-            <TextareaEdit
-              name="orderform"
-              value={inputs.orderform[0]}
-              setValue={inputs.orderform[1]}
-              placeholder={t('reportError.placeholder.orderform')}
-            />
-            <SelectEdit name="accepts" value={inputs.accepts[0]} setValue={inputs.accepts[1]} />
-            <TextareaEdit
-              name="availability"
-              value={inputs.availability[0]}
-              setValue={inputs.availability[1]}
-              placeholder={t('reportError.placeholder.availability')}
-            />
-            <TextareaEdit
-              name="note"
-              value={inputs.note[0]}
-              setValue={inputs.note[1]}
-              placeholder={t('reportError.placeholder.note')}
-            />
-          </div>
-          <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <input hidden name="name" defaultValue={doctorFormData.name} />
+          <input hidden name="url" defaultValue={process.env.REACT_APP_URL + path} />
+          <input hidden name="type" defaultValue={doctorFormData.type} />
+          <input hidden name="instId" defaultValue={doctorFormData.instId} />
+          <input hidden name="provider" defaultValue={doctorFormData.provider} />
+          <TextareaEdit
+            name="address"
+            value={inputs.address[0]}
+            setValue={inputs.address[1]}
+            placeholder={t('reportError.placeholder.address')}
+            translate="no"
+          />
+          <TextareaEdit
+            name="website"
+            value={inputs.website[0]}
+            setValue={inputs.website[1]}
+            placeholder={t('reportError.placeholder.website')}
+          />
+          <TextareaEdit
+            name="phone"
+            value={inputs.phone[0]}
+            setValue={inputs.phone[1]}
+            placeholder={t('reportError.placeholder.phone')}
+          />
+          <TextareaEdit
+            name="email"
+            value={inputs.email[0]}
+            setValue={inputs.email[1]}
+            placeholder={t('reportError.placeholder.email')}
+          />
+          <TextareaEdit
+            name="orderform"
+            value={inputs.orderform[0]}
+            setValue={inputs.orderform[1]}
+            placeholder={t('reportError.placeholder.orderform')}
+          />
+          <SelectEdit name="accepts" value={inputs.accepts[0]} setValue={inputs.accepts[1]} />
+          <TextareaEdit
+            name="availability"
+            value={inputs.availability[0]}
+            setValue={inputs.availability[1]}
+            placeholder={t('reportError.placeholder.availability')}
+          />
+          <TextareaEdit
+            name="note"
+            value={inputs.note[0]}
+            setValue={inputs.note[1]}
+            placeholder={t('reportError.placeholder.note')}
+          />
+          <Stack
+            sx={{
+              marginTop: '1em',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
             <Button
               variant="outlined"
               onClick={resetForm}
@@ -242,8 +247,8 @@ const ReportError = function ReportError({
               {t('reportError.send')}
             </Button>
           </Stack>
-        </CardContent>
-      </form>
+        </form>
+      </CardContent>
       <Dialog id="dialog" open={openDialog}>
         <DialogTitle>{t('reportError.confirmation.title')}</DialogTitle>
         <DialogContent>

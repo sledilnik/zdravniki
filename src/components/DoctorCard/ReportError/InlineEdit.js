@@ -4,7 +4,14 @@ import { t } from 'i18next';
 import { useEffect, useRef, useState } from 'react';
 import * as Styled from './styles';
 
-export const TextareaEdit = function TextareaEdit({ name, value, setValue, placeholder }) {
+export const TextareaEdit = function TextareaEdit({
+  name,
+  value,
+  setValue,
+  placeholder,
+  id,
+  label,
+}) {
   const onChange = event => setValue(event.target.value);
   const onBlur = event => setValue(event.target.value);
 
@@ -25,21 +32,24 @@ export const TextareaEdit = function TextareaEdit({ name, value, setValue, place
   }, [height]);
 
   return (
-    <Styled.InlineEdit.Textarea
-      rows={1}
-      aria-label={name}
-      name={name}
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      onKeyDown={onKeyDown}
-      ref={textareaRef}
-      placeholder={placeholder}
-    />
+    <Styled.InlineEdit.Wrapper>
+      <Styled.InlineEdit.LabelSrOnly htmlFor={id}>{label || name}</Styled.InlineEdit.LabelSrOnly>
+      <Styled.InlineEdit.Textarea
+        rows={1}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        ref={textareaRef}
+        placeholder={placeholder}
+      />
+    </Styled.InlineEdit.Wrapper>
   );
 };
 
-export const SelectEdit = function SelectEdit({ name, value, setValue }) {
+export const SelectEdit = function SelectEdit({ name, value, setValue, label, id }) {
   const values = [
     // csv file has values "y" and "n"
     { k: 'n', v: t('rejects').toUpperCase() },
@@ -65,26 +75,30 @@ export const SelectEdit = function SelectEdit({ name, value, setValue }) {
   };
 
   return (
-    <Styled.InlineEdit.Select
-      type="text"
-      aria-label={name}
-      name={name}
-      value={editingValue}
-      onBlur={onBlur}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-    >
-      {values.map(({ k, v }) => (
-        <option key={k} value={k}>
-          {v}
-        </option>
-      ))}
-    </Styled.InlineEdit.Select>
+    <Styled.InlineEdit.Wrapper>
+      <Styled.InlineEdit.LabelSrOnly htmlFor={id}>{label || name}</Styled.InlineEdit.LabelSrOnly>
+      <Styled.InlineEdit.Select
+        type="text"
+        id={id}
+        name={name}
+        value={editingValue}
+        onBlur={onBlur}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      >
+        {values.map(({ k, v }) => (
+          <option key={k} value={k}>
+            {v}
+          </option>
+        ))}
+      </Styled.InlineEdit.Select>
+    </Styled.InlineEdit.Wrapper>
   );
 };
 
 TextareaEdit.defaultProps = {
   placeholder: 'placeholder',
+  label: '',
 };
 
 TextareaEdit.propTypes = {
@@ -92,10 +106,18 @@ TextareaEdit.propTypes = {
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  label: PropTypes.string,
+  id: PropTypes.string.isRequired,
+};
+
+SelectEdit.defaultProps = {
+  label: '',
 };
 
 SelectEdit.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
