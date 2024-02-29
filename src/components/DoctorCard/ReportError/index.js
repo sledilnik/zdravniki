@@ -23,7 +23,13 @@ import { toPercent } from '../utils';
 import { HIDDEN_FIELDS, getChangedValue, getGSheetFormUrl, makeInputNames } from './utils';
 import { useInputs } from './useInputs';
 
-const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
+const ReportError = function ReportError({
+  doctorFormData,
+  setIsEditing,
+  setMessage,
+  isError,
+  setIsError,
+}) {
   const { lng } = useParams();
   const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
@@ -58,7 +64,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const postForm = async formData => {
     const formUrl = getGSheetFormUrl();
     try {
-      await fetch(formUrl, {
+      const response = await fetch(formUrl, {
         method: 'POST',
         mode: 'no-cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -70,12 +76,23 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         referrerPolicy: 'unsafe-url', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: formData, // body data type must match "Content-Type" header
       });
-      setMessage(t('reportError.reportReceived'));
+
+      if (response.ok) {
+        setMessage(t('reportError.reportReceived'));
+      } else {
+        throw new Error('Error submitting form');
+      }
     } catch (err) {
+      setIsError(true);
       setMessage(t('reportError.reportError'));
     } finally {
       setOpenDialog(false);
       setIsEditing(false);
+      if (isError) {
+        setTimeout(() => {
+          setIsError(false);
+        }, 5000);
+      }
       setTimeout(() => {
         setMessage('');
       }, 5000);
@@ -86,11 +103,11 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
     e.preventDefault();
     const isSame = getIsSame();
     if (isSame) {
-      setMessage('Nothing to submit');
+      setMessage(t('reportError.reportNoChange'));
       setIsEditing(false);
       setTimeout(() => {
         setMessage('');
-      }, 3000);
+      }, 5000);
       return;
     }
     setOpenDialog(true);
@@ -99,6 +116,9 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const resetForm = () => {
     setIsEditing(false);
     setMessage('');
+    if (isError) {
+      setIsError(false);
+    }
     inputs.address[1](initialValues.address);
     inputs.accepts[1](initialValues.accepts);
     inputs.availability[1](initialValues.availability);
@@ -132,12 +152,6 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
         formData.set(value, changedValue);
       }
     });
-
-    if (!formData) {
-      setOpenDialog(false);
-      setIsEditing(false);
-      setMessage(t('reportError.reportError'));
-    }
 
     await postForm(formData);
   };
@@ -270,5 +284,7 @@ ReportError.propTypes = {
   }).isRequired,
   setIsEditing: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
+  setIsError: PropTypes.func.isRequired,
 };
 export default ReportError;

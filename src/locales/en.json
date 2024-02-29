@@ -70,7 +70,7 @@
         "send": "Send",
         "reportReceived": "Thank you! We will look into it.",
         "reportError": "Error reporting failed. Please try again later.",
-        "reportEmpty": "No data has been changed",
+        "reportNoChange": "No data has been changed",
         "placeholder": {
             "address": "address",
             "website": "web page",
