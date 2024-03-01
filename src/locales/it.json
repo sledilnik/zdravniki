@@ -73,7 +73,10 @@
         },
         "title": "Segnala un errore",
         "cancel": "Annulla",
-        "send": "Invia"
+        "send": "Invia",
+        "confirmation": {
+            "title": "Conferma"
+        }
     },
     "doctorCard": {
         "showOnMap": "Visualizza sulla mappa",
