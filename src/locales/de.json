@@ -21,21 +21,27 @@
     },
     "footer": {
         "dataSource": "Datenquelle",
-        "lastChange": "Letzte Aktualisierung der Daten"
+        "lastChange": "Letzte Datenaktualisierung am"
     },
     "reportError": {
         "cancel": "Abbrechen",
         "send": "Senden",
         "placeholder": {
-            "phone": "telefonnummer",
-            "address": "adresse",
-            "website": "webseite",
+            "phone": "Telefonnummer",
+            "address": "Adresse",
+            "website": "Webseite",
             "email": "E-Mail-Adresse",
-            "orderform": "link zur bestellseite",
-            "availability": "verfügbarkeit",
+            "orderform": "Link zur bestellseite",
+            "availability": "Verfügbarkeit",
             "note": "Hinweis"
         },
-        "title": "Fehler melden"
+        "title": "Fehler melden",
+        "reset": "Rücksetzen",
+        "reportError": "Die Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es zu einem späteren Zeitpunkt noch einmal.",
+        "reportNoChange": "Es wurden keine Daten geändert",
+        "text": "Fehler in den Arztdaten melden und die richtigen Daten oder Notizen hinzufügen:",
+        "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
+        "tooltip": "Fehler in den Arztdaten melden"
     },
     "pageNotFound": {
         "somethingWentWrong": "Ups, da ist etwas schief gelaufen :(",
@@ -82,5 +88,6 @@
     "clinicForBetterAccessibilityDesc": "In Ambulanzen für bessere Zugänglichkeit zur hausärztlichen Versorgung, können Versicherte, die keinen Hausarzt (Hausarzt oder Kinderarzt) haben, ihren persönlichen Arzt wählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
     "doctorAvailabilityLabel": "Verfügbarkeit",
     "yourLocation": "Ihr Standort",
-    "backToHome": "Zurück zur Startseite"
+    "backToHome": "Zurück zur Startseite",
+    "orderform": "Termin vereinbaren"
 }
