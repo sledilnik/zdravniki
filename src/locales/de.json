@@ -5,7 +5,8 @@
         "menu": "Menü",
         "about": "Über",
         "faq": "FAQ",
-        "support": "Unterstützung!"
+        "support": "Unterstützung!",
+        "home": "Startseite"
     },
     "rejects": "nicht akzeptieren",
     "accepts": "akzeptieren",
@@ -15,29 +16,37 @@
     "youth": "jugend",
     "doctorCard": {
         "more": "Mehr",
-        "noPhone": "Telefonnummer nicht verfügbar"
+        "noPhone": "Telefonnummer nicht verhanden",
+        "showOnMap": "Auf der Karte anzeigen"
     },
     "footer": {
         "dataSource": "Datenquelle",
-        "lastChange": "Letzte Aktualisierung der Daten"
+        "lastChange": "Letzte Datenaktualisierung am"
     },
     "reportError": {
         "cancel": "Abbrechen",
         "send": "Senden",
         "placeholder": {
-            "phone": "telefonnummer",
-            "address": "adresse",
-            "website": "webseite",
+            "phone": "Telefonnummer",
+            "address": "Adresse",
+            "website": "Webseite",
             "email": "E-Mail-Adresse",
-            "orderform": "link zur bestellseite",
-            "availability": "verfügbarkeit",
+            "orderform": "Link zur bestellseite",
+            "availability": "Verfügbarkeit",
             "note": "Hinweis"
-        }
+        },
+        "title": "Fehler melden",
+        "reset": "Rücksetzen",
+        "reportError": "Die Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es zu einem späteren Zeitpunkt noch einmal.",
+        "reportNoChange": "Es wurden keine Daten geändert",
+        "text": "Fehler in den Arztdaten melden und die richtigen Daten oder Notizen hinzufügen:",
+        "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
+        "tooltip": "Fehler in den Arztdaten melden"
     },
     "pageNotFound": {
-        "somethingWentWrong": "Etwas ist schief gelaufen :(",
+        "somethingWentWrong": "Ups, da ist etwas schief gelaufen :(",
         "back": "Zurück",
-        "imageDescription": "zwei durch gelbes Band verbundene Verkehrskegel"
+        "imageDescription": "zwei durch gelbes Band verbundene Verkehrsleitkegel"
     },
     "filter": "Filter",
     "totalResults_one": "{{count}} Treffer",
@@ -66,10 +75,19 @@
     "clinicForBetterAccessibility": "Klinik für besser Zugänglichkeit",
     "search": "Suchen…",
     "toContent": "Zum Inhalt",
-    "findAvailableDoctor": "Finde verfügbaren Doktor",
+    "findAvailableDoctor": "Finde einen verfügbaren Arzt",
     "faq": {
         "title": "Häufig gestellte Fragen",
         "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an Notdienste wenden oder 112 anrufen.",
         "glossary": "Glossar"
-    }
+    },
+    "noResults": "Aufgrund Ihrer Suchkriterien wurde kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
+    "changedOn": "Zuletzt geändert am: ",
+    "doctorAvailability": "Für Ärzte, die Teilzeit an Präventionsprogrammen oder in anderen Abteilungen arbeiten (z. B. Zahnärzte, die mit Erwachsenen und Jugendlichen arbeiten), kann die Verfügbarkeit unter 100 % liegen.",
+    "floatingClinic": "Das Krankenhaus für Patienten ohne Hausarzt",
+    "clinicForBetterAccessibilityDesc": "In Ambulanzen für bessere Zugänglichkeit zur hausärztlichen Versorgung, können Versicherte, die keinen Hausarzt (Hausarzt oder Kinderarzt) haben, ihren persönlichen Arzt wählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
+    "doctorAvailabilityLabel": "Verfügbarkeit",
+    "yourLocation": "Ihr Standort",
+    "backToHome": "Zurück zur Startseite",
+    "orderform": "Termin vereinbaren"
 }
