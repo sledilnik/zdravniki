@@ -26,10 +26,12 @@ Sodelavci in sodelavke projekta:
 - [Mojca Miklavec](https://github.com/mojca) — podatki
 - [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — vsebine, tekstopisje
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
-- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
+- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran, prevodi
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
 - [Veronika Vezjak]() — vsebine
+- [Sándor Kovács](https://twitter.com/SndorKovcs14) - prevodi
+- [Nedžad Beus]() - prevodi
 
 
 
