@@ -31,7 +31,8 @@ Sodelavci in sodelavke projekta:
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
 - [Veronika Vezjak]() — vsebine
 - [Sándor Kovács](https://twitter.com/SndorKovcs14) - prevodi
-- [Nedžad Beus]() - prevodi
+- [Nedžad Beus](https://beus.cc) - prevodi
+- [Sara Kikec]() - prevodi
 
 
 
