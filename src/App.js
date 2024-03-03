@@ -7,6 +7,7 @@ import i18n, { t } from 'i18next';
 import { THEME } from 'const';
 import Router from 'routes';
 import { useLocation } from 'react-router';
+import { supportedLanguages } from 'i18n';
 
 const App = function App() {
   const theme = createTheme(THEME);
@@ -17,7 +18,6 @@ const App = function App() {
 
   const pathnameLocale = pathname.split('/')?.[1].toLocaleLowerCase() ?? defaultLanguage;
 
-  const supportedLanguages = i18n.languages;
   const isLang = supportedLanguages.includes(pathnameLocale);
 
   const shouldChangeLanguage =

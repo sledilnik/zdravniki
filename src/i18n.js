@@ -17,6 +17,8 @@ export const languages = [
   { name: 'Magyar', code: 'hu' },
 ];
 
+export const supportedLanguages = languages.map(value => value.code);
+
 i18next
   // .use(Backend) // load translations using http (default public/assets/locals/en/translations)
   .use(LanguageDetector)
