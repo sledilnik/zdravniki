@@ -31,6 +31,9 @@ Project collaborators:
 - [Tadej Polajnar](https://github.com/TadejPolajnar) - website
 - [Vanja Cvelbar](https://github.com/b100w11) - translations
 - [Veronika Vezjak]() - content
+- [Sándor Kovács](https://twitter.com/SndorKovcs14) - translations
+- [Nedžad Beus](https://beus.cc) - translations
+- [Sara Kikec]() - translations
 
 
 
