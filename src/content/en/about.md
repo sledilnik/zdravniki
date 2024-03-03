@@ -1,87 +1,87 @@
-# Iskalnik po osebnih zdravnikih
+# Doctors tracker
 
-Dostop do zdravstva se začne [z izbiro osebnega zdravnika](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), pa naj gre za zdravnika/-ico družinske medicine, pediatra/-injo, ginekologa/-injo ali zobozdravnika/-ico. Ker je dostopnost zdravnikov in zdravnic družinske medicine v nekaterih delih države pomanjkljiva, mnogi nimajo osebnega zdravnika. Za vse te osebe je dostop do zdravstvenih storitev zelo otežen.
-
-Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravnikov in zdravnic, ki jih lahko izberemo za osebne zdravnike](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci). Pred leti je [Sebastian Pleško](https://plesko.si/) te podatke že objavil v uporabnejši obliki in dobil pozitiven odziv, žal pa zaradi pogostih sprememb podatkov ZZZS strani ni bilo mogoče redno vzdrževati.
-
-V Znanstvenem društvu Sledilnik smo se zato odločili, da te podatke predstavimo v uporabnikom in uporabnicam prijaznejši obliki: z imenikom in iskalnikom, ki nam omogoča hiter vpogled dostopnosti zdravnikov/-ic v naši bližini.
-
-Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante. 
-
-## Ekipa
-
-Sodelavci in sodelavke projekta:
-
-- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — vsebine, komunikacije
-- [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
-- [Jaka Daneu](https://github.com/jalezi) — spletna stran
-- [Joh Dokler](https://github.com/joahim) — spletna stran
-- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — vsebine
-- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — koordinacija, vsebine
-- [Luka Renko](https://twitter.com/lukarenko) — podatki, spletna stran
-- [Marko Brumen](https://twitter.com/multikultivator) — družabna omrežja, vsebine
-- [Mia Erbus](https://github.com/miaerbus) — spletna stran
-- [Miha Eržen](https://github.com/mihaerzen) — spletna stran
-- [Mitja Potočin](https://github.com/mitjapotocin) — spletna stran
-- [Mojca Miklavec](https://github.com/mojca) — podatki
-- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — vsebine, tekstopisje
-- [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
-- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
-- [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
-- [Vanja Cvelbar](https://github.com/b100w11) — prevodi
-- [Veronika Vezjak]() — vsebine
+Access to healthcare starts [by choosing a personal doctor](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), whether it is a family doctor, paediatrician, gynaecologist or dentist. Because of the lack of access to family medicine doctors in some parts of the country, many people do not have a personal doctor. For all these people, access to health services is very difficult.
 
 
+The Health Insurance Institute of Slovenia (ZZZS) regularly publishes [a list of doctors and medical practitioners who can be selected as personal doctors](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci). A few years ago, [Sebastian Pleško](https://plesko.si/) already published this information in a more useful format and received a positive response, but unfortunately, due to the frequent changes in the data, it was not been feasible to maintain the data website on a regular basis.
 
-## Pogoji uporabe
+That's why we at the Tracker Scientific Society has decided to present this information in a more user-friendly way: with a directory and a search engine that allows us to quickly see the availability of doctors in our area.
 
-Uporaba podatkov, povratne informacije in sodelovanje so zaželjeni. [Podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
+The data are taken from official records of the ZZZS and the GURS, however we cannot guarantee their accuracy. This sometimes leads to discrepancies in the display of "Admits new patients/Does not admit new patients" or the location of the official outpatient clinics - we thank you for understanding and ask you to inform us of such discrepancies using the form provided on each surgery's card.
 
-Za druge oblike sodelovanja nas, prosimo, kontaktirajte na podpora-zdravniki@sledilnik.org.
+## Team
 
-## Varstvo osebnih podatkov
+Project collaborators:
 
-Podajamo informacije o obdelavah osebnih podatkov po 13. in 14. členu oz. 30. členu Splošne uredbe o varstvu podatkov in prostemu pretoku podatkov (GDPR) ter o rabi spletnih piškotkov po 157. členu Zakona o elektronskih komunikacijah (ZEKom-1).
+- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) - content, communications
+- [Branko Jevtić](https://www.bananica.com) - graphic design, website
+- [Jaka Daneu](https://github.com/jalezi) - website
+- [Joh Dokler](https://github.com/joahim) - website
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) - content
+- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) - coordination, content
+- [Luka Renko](https://twitter.com/lukarenko) - data, website
+- [Marko Brumen](https://twitter.com/multikultivator) - social media, content
+- [Mia Erbus](https://github.com/miaerbus) - website
+- [Miha Eržen](https://github.com/mihaerzen) - website
+- [Mitja Potočin](https://github.com/mitjapotocin) - website
+- [Mojca Miklavec](https://github.com/mojca) - data
+- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) - content, copywriting
+- [Sebastian Pleško](https://plesko.si/) - service initiative
+- [Štefan Baebler](https://twitter.com/StefanBaebler) - data, website
+- [Tadej Polajnar](https://github.com/TadejPolajnar) - website
+- [Vanja Cvelbar](https://github.com/b100w11) - translations
+- [Veronika Vezjak]() - content
 
-Projekt »Zdravniki« obdeluje osebne podatke o osebnih zdravnikih in podatke o uporabnikih spletne strani.
 
-Podlaga za obdelavo je zasledovanje legitimnih interesov upravljavca (točka (f) člena 6(1) GDPR), in sicer pomoči javnosti pri izbiri osebnega zdravnika.
 
-Upravljavec je Znanstveno društvo Sledilnik, Celovška cesta 111, 1000 Ljubljana, drustvo@sledilnik.org.
+## Terms of use
 
-## Obdelava podatkov o osebnih zdravnikih
+Data use, feedback and participation are encouraged. [Data](https://github.com/sledilnik/zdravniki-data) is collected from public domain sources and is free to use, edit, modify or include in any non-market content, provided the source is acknowledged - doctors.tracker.org. Unless otherwise stated, all content on this site is licensed under a Creative Commons license: [Attribution-Share Alike 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
 
-Namen obdelave podatkov o zdravnikih je olajšati postopek iskanja in izbire osebnega zdravnika.
+For other forms of collaboration, please contact us at zdravniki@sledilnik.org.
 
-Upravljavec v ta namen zbira in obdeluje naslednje javno dostopne podatke o zdravnikih, pridobljene s spletne strani ZZZS: ime in priimek zdravnika; zdravstveni zavod, v okviru katerega dela, skupaj s kontaktnimi podatki zavoda; podatek o tem, koliko dni na teden dela(jo) v okviru zavoda (»obseg zaposlitve«); število opredeljenih oseb (pacientov) v posameznih starostnih razredih; iz teh številk izračunan glavarinski količnik zdravnika oziroma zdravstvenega tima; podatek, ali sprejema nove paciente ali ne.
+## Personal data protection
 
-Navedene sezname dopolnjujemo s kontaktnimi podatki posameznih zdravnikov, pridobljenimi z javno dostopnih spletnih strani zdravstvenih zavodov oziroma iz drugih javno dostopnih virov: e-poštni naslov in telefonska številka.
+We provide information on the processing of personal data pursuant to Articles 13, 14 and 30 of the General Data Protection Regulation (GDPR) and on the use of web cookies pursuant to Article 157 of the Act on Electronic Communications (ZEKom-1).
 
-Načini obdelave, ki jih upravljavec izvaja s pomočjo dostopnih podatkov, vključujejo:
-zajem podatkov iz vira;
-pretvorba v strojno berljivo obliko;
-dodatne predelave zaradi lažje uporabe na spletni strani (priprava šifrantov idr.);
-odlaganje strojno berljive oblike podatkov v odložišče [GitHub](https://github.com/sledilnik/zdravniki-data);
-vizualizacija v obliki imenika osebnih zdravnikov;
-vizualizacija v obliki zemljevida osebnih zdravnikov;
-možnost iskanja po osebnih zdravnikih.
+The "Doctors" project processes personal data about personal doctors and data about website users.
 
-Osebni podatki se hranijo, dokler so veljavni.
+The basis for the processing is the pursuit of the legitimate interests of the controller (Article 6(1)(f) of the GDPR), namely helping the public to choose a personal doctor.
 
-Za varnost podatkov (32. člen GDPR) je poskrbljeno z dvofaktorsko avtentikacijo, ki je potrebna za shranjevanje, spreminjanje in brisanje podatkov v github odložišču. Spletna stran dane podatke zgolj vizualizira oziroma omogoča iskanje po njihovi bazi.
+The controller is the Scientific Association Sledilnik, Celovška cesta 111, 1000 Ljubljana, drustvo@sledilnik.org.
 
-Osebni podatki se posebej ne prenašajo uporabnikom v tretji državi, so pa po spletu dosegljivi tudi uporabnikom iz tujine – na enak način, kot to velja za same vire podatkov.
+## Processing  of doctors data
 
-## Obdelava osebnih podatkov o obiskovalcih spletne strani
+The purpose of processing data on doctors is to facilitate the process of finding and choosing a personal doctor.
 
-Namen zbiranja in obdelave podatkov o obiskovalcih je zagotavljanje nemotenega delovanja spletne strani in vodenje statističnih analiz obiska spletne strani.
+For this purpose, the operator collects and processes the following publicly available data on doctors, obtained from the website of the ZZZS: the name and surname of the doctor; the health care institution within which he/she works, together with the contact details of the institution; information on how many days per week he/she works within the institution (" scope of employment"); the number of identified persons (patients) in each age group; the head coefficient of the doctor or health care team calculated from these figures; whether or not he/she is accepting new patients.
 
-Upravljavec obdeluje naslednje podatke o obiskovalcih strani: IP naslov, čas obiska, podatki o strani, ki jo želi obiskati, ter podatki, ki jih v zaglavju vsakega zahtevka pošlje spletni brskalnik uporabnika.
+These lists are supplemented by the contact details of individual doctors, obtained from the publicly accessible websites of the healthcare institutions or from other publicly accessible sources: e-mail address and telephone number.
 
-Obdelave, ki jih upravljavec izvaja ob pomoči pogodbenih obdelovalcev, vključujejo: dostopnost spletne strani; preverjanje pristnosti uporabnika oziroma preprečevanje dostopa avtomatiziranim orodjem; preverjanje in odvračanje poskusov vdora v spletno stran (IDS/IPS) ali onemogočanja delovanja spletne strani (DOS); preverjanje in odvračanje drugih kršitev informacijske varnosti.
+The processing methods carried out by the controller using the accessible data include:
+extraction of data from the source;
+conversion into machine-readable form;
+additional processing to facilitate use on the website (preparation of code lists, etc.);
+depositing the machine-readable form of the data in a repository [GitHub](https://github.com/sledilnik/zdravniki-data);
+visualisation in the form of a directory of personal doctors;
+visualisation in the form of a map of personal doctors;
+searchable by personal doctor.
 
-Obdelave se izvajajo na strežnikih ponudnika gostovanja, dodatno so zavarovane s pomočjo omrežja za dostavo vsebin (CND) ponudnika Cloudflare. Upravljavec ima z omrežjem Cloudflare in ponudniki strežniškega prostora sklenjene ustrezne sporazume, ki vključujejo tudi podrobnejše informacije o obdelavah osebnih podatkov (28. člen GDPR).
+Personal data is kept for as long as it is valid.
 
-## Piškotki
+Data security (Article 32 of the GDPR) is ensured by two-factor authentication, which is required to store, modify and delete data in the github repository. The website simply visualises the data or allows searching the database.
 
-Uporaba Sledilnika ne bi bila mogoča brez spletnega servisa CloudFlare, po katerem pretakamo podatke in ki za svoje nemoteno delovanje na vaš računalnik vstavi en sam piškotek, ki tam ostane največ 30 dni. Več informacij o varovanju zasebnosti [najdete na spletni strani Cloudflare Cookies](https://developers.cloudflare.com/fundamentals/get-started/cloudflare-cookies).
+Personal data is not specifically transferred to users in a third country, but is accessible online to users from abroad - in the same way as the data sources themselves.
+
+## Processing of personal data about website visitors
+The purpose of collecting and processing visitor data is to ensure the smooth operation of the website and to conduct statistical analyses of website traffic.
+
+The controller processes the following data about visitors to the website: IP address, time of visit, information about the page the visitor wishes to visit and the data sent by the user's web browser in the header of each request.
+
+The processing carried out by the controller with the assistance of contractual processors includes: accessibility of the website; authentication of the user or prevention of access by automated tools; checking and deterring attempts to hack into the website (IDS/IPS) or to disable the website (DOS); checking and deterring other breaches of information security.
+
+The processing is carried out on the hosting provider's servers and is additionally secured using Cloudflare's content delivery network (CND). The Controller has entered into appropriate agreements with the Cloudflare network and the server space providers, which also include more detailed information on the processing of personal data (Article 28 of the GDPR).
+
+## Cookies
+
+Use of the Tracker would not be possible without CloudFlare, the web service through which we stream data, which places a single cookie on your computer to ensure its smooth operation and which remains there for a maximum of 30 days. For more information on privacy [please visit the Cloudflare Cookies website](https://developers.cloudflare.com/fundamentals/get-started/cloudflare-cookies).
