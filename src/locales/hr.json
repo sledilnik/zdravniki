@@ -42,7 +42,14 @@
         "text": "Prijavi grešku u podacima o doktoru i dodaj pravilne podatke ili bilješke:",
         "cancel": "Otkaži",
         "reportReceived": "Hvala vam! Pregledat ćemo podatke.",
-        "reset": "Poništi"
+        "reset": "Poništi",
+        "reportError": "Prijava pogreške nije uspjela. Molimo pokušajte ponovo kasnije.",
+        "reportNoChange": "Podaci nisu mijenjani",
+        "confirmation": {
+            "title": "Potvrdi",
+            "warningText": "Ovaj obrazac NIJE namijenjen zakazivanje termina za liječnički pregled ili konzultacije. Za zakazivanje termina se obratite svom izabranom doktoru.",
+            "text": "Jeste li sigurni da želite predložiti ažuriranje podataka?"
+        }
     },
     "footer": {
         "dataSource": "Izvor podataka",
@@ -73,7 +80,7 @@
     "pageNotFound": {
         "somethingWentWrong": "ups... nešto je pošlo po zlu :(",
         "back": "Nazad",
-        "imageDescription": "dva prometna čunja povezana žutom trakom"
+        "imageDescription": "liječnik koji sliježe ramenima"
     },
     "SEO": {
         "title": {
@@ -89,5 +96,7 @@
     "orderform": "naručivanje",
     "totalResults_one": "{{count}} pogodak",
     "totalResults_few": "{{count}} pogotka",
-    "totalResults_other": "{{count}} pogodaka"
+    "totalResults_other": "{{count}} pogodaka",
+    "clinicForBetterAccessibilityDesc": "U ambulantama za bolju dostupnost, osigurane osobe koje nemaju osobnog liječnika (liječnika opće prakse ili pedijatra) mogu izabrati svog osobnog liječnika (u slučaju da nema slobodnog liječnika ili ako je izabrani osobni liječnik trajno odsutan).",
+    "clinicForBetterAccessibility": "Ambulanta za bolju dostupnost"
 }
