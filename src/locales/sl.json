@@ -73,7 +73,7 @@
         "reset": "Ponastavi",
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
         "reportError": "Prišlo je do napake pri pošiljanju podatkov. Prosim, poskusite znova.",
-        "reportNoChange": "Noben podatek ni bil spremenjen.",
+        "reportNoChange": "Noben podatek ni bil spremenjen",
         "placeholder": {
             "address": "naslov",
             "website": "spletna stran",
