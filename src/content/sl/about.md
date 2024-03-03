@@ -40,7 +40,7 @@ Sodelavci in sodelavke projekta:
 
 Uporaba podatkov, povratne informacije in sodelovanje so zaželjeni. [Podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
 
-Za druge oblike sodelovanja nas, prosimo, kontaktirajte na podpora-zdravniki@sledilnik.org.
+Za druge oblike sodelovanja nas, prosimo, kontaktirajte na zdravniki@sledilnik.org.
 
 ## Varstvo osebnih podatkov
 
