@@ -53,7 +53,37 @@ Have a look at step 3 of [this article from DigitalOcean](https://www.digitaloce
 
 <img width="1157" alt="image" src="https://user-images.githubusercontent.com/142531/144209240-4f93daeb-f945-4e68-aca9-b9c244bc070b.png">
 
-## Genric React App instructions (to be removed or minimized)
+## Tests
+
+### Unit Tests
+
+#### `yarn test:unit`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### E2E Tests
+
+Documentation: [Playwright](https://playwright.dev/docs/intro)
+[VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
+
+#### `yarn playwright test` | `yarn test:e2e`
+
+    Runs the end-to-end tests.
+
+Other helpful cli commands:
+
+- `yarn playwright test --ui`, starts the interactive UI mode.
+
+- `yarn playwright test --project=chromium`, runs the tests only on Desktop Chrome.
+
+- `yarn playwright test example`, runs the tests in a specific file.
+
+- `yarn playwright test --debug`, runs the tests in debug mode.
+
+- `yarn playwright codegen`, auto generate tests with Codegen.
+
+## Generic React App instructions (to be removed or minimized)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -66,11 +96,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 

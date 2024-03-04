@@ -41,7 +41,8 @@
     "build:analyze": "",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "test": "react-scripts test",
+    "test:unit": "react-scripts test",
+    "test:e2e": "yarn playwright test",
     "eject": "react-scripts eject",
     "analyze": "react-scripts build --stats && webpack-bundle-analyzer ./build/bundle-stats.json"
   },
@@ -51,6 +52,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.24",
     "env-cmd": "^10.1.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "19.0.4",
@@ -67,5 +70,15 @@
   "engines": {
     "npm": "please-use-yarn",
     "yarn": ">=1.22.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/tests/unit/**/*.{js,jsx,ts,tsx}",
+      "!src/tests/e2e/**/*.{js,jsx,ts,tsx}"
+    ],
+    "testMatch": [
+      "/src/tests/unit/**/__tests__/**/*.[jt]s?(x)",
+      "/src/tests/unit/**/?(*.)+(spec|test).[jt]s?(x)"
+    ]
   }
 }
