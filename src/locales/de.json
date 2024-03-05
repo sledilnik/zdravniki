@@ -11,9 +11,9 @@
     "rejects": "nicht akzeptieren",
     "accepts": "akzeptieren",
     "all": "alle",
-    "dentist": "zahnarzt",
-    "students": "studenten",
-    "youth": "jugend",
+    "dentist": "Zahnarzt",
+    "students": "Studenten",
+    "youth": "Jugendliche",
     "doctorCard": {
         "more": "Mehr",
         "noPhone": "Telefonnummer nicht verhanden",
@@ -31,17 +31,20 @@
             "address": "Adresse",
             "website": "Webseite",
             "email": "E-Mail-Adresse",
-            "orderform": "Link zur bestellseite",
+            "orderform": "Link zur Bestellseite",
             "availability": "Verfügbarkeit",
             "note": "Hinweis"
         },
         "title": "Fehler melden",
         "reset": "Rücksetzen",
-        "reportError": "Die Anmeldung ist fehlgeschlagen. Bitte versuchen Sie es zu einem späteren Zeitpunkt noch einmal.",
+        "reportError": "Die Fehlerberichterstattung ist fehlgeschlagen. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.",
         "reportNoChange": "Es wurden keine Daten geändert",
-        "text": "Fehler in den Arztdaten melden und die richtigen Daten oder Notizen hinzufügen:",
+        "text": "Fehler in den Arztdaten melden und die richtigen Daten oder Anmerkungen hinzufügen:",
         "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
-        "tooltip": "Fehler in den Arztdaten melden"
+        "tooltip": "Fehler in den Arztdaten melden",
+        "confirmation": {
+            "title": "Bestätigen"
+        }
     },
     "pageNotFound": {
         "somethingWentWrong": "Ups, da ist etwas schief gelaufen :(",
@@ -69,10 +72,10 @@
     "copy": "Kopieren",
     "showAll": "Alle anzeigen",
     "generalPractitioner": "Allgemeinmediziner",
-    "pediatrician": "kinderarzt",
-    "gynecologist": "gynäkolog",
-    "adults": "erwachsene",
-    "clinicForBetterAccessibility": "Klinik für besser Zugänglichkeit",
+    "pediatrician": "Kinderarzt",
+    "gynecologist": "Gynäkologe",
+    "adults": "Erwachsene",
+    "clinicForBetterAccessibility": "Ambulanz für bessere Zugänglichkeit (zur hausärztlichen Versorgung)",
     "search": "Suchen…",
     "toContent": "Zum Inhalt",
     "findAvailableDoctor": "Finde einen verfügbaren Arzt",
