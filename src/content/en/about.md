@@ -2,7 +2,6 @@
 
 Access to healthcare starts [by choosing a personal doctor](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html), whether it is a family doctor, paediatrician, gynaecologist or dentist. Because of the lack of access to family medicine doctors in some parts of the country, many people do not have a personal doctor. For all these people, access to health services is very difficult.
 
-
 The Health Insurance Institute of Slovenia (ZZZS) regularly publishes [a list of doctors and medical practitioners who can be selected as personal doctors](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci). A few years ago, [Sebastian Pleško](https://plesko.si/) already published this information in a more useful format and received a positive response, but unfortunately, due to the frequent changes in the data, it was not been feasible to maintain the data website on a regular basis.
 
 That's why we at the Tracker Scientific Society has decided to present this information in a more user-friendly way: with a directory and a search engine that allows us to quickly see the availability of doctors in our area.
@@ -13,29 +12,29 @@ The data are taken from official records of the ZZZS and the GURS, however we ca
 
 Project collaborators:
 
-- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) - content, communications
-- [Branko Jevtić](https://www.bananica.com) - graphic design, website
-- [Jaka Daneu](https://github.com/jalezi) - website
-- [Joh Dokler](https://github.com/joahim) - website
-- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) - content
-- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) - coordination, content
-- [Luka Renko](https://twitter.com/lukarenko) - data, website
-- [Marko Brumen](https://twitter.com/multikultivator) - social media, content
-- [Mia Erbus](https://github.com/miaerbus) - website
-- [Miha Eržen](https://github.com/mihaerzen) - website
-- [Mitja Potočin](https://github.com/mitjapotocin) - website
-- [Mojca Miklavec](https://github.com/mojca) - data
-- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) - content, copywriting
-- [Sebastian Pleško](https://plesko.si/) - service initiative
-- [Štefan Baebler](https://twitter.com/StefanBaebler) - data, website
-- [Tadej Polajnar](https://github.com/TadejPolajnar) - website
-- [Vanja Cvelbar](https://github.com/b100w11) - translations
-- [Veronika Vezjak]() - content
-- [Sándor Kovács](https://twitter.com/SndorKovcs14) - translations
-- [Nedžad Beus](https://beus.cc) - translations
-- [Sara Kikec]() - translations
+<!-- Do not use "-" but "—" there is a slight difference, hardly to notice with naked 👁️ -->
 
-
+- [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — content, communications
+- [Branko Jevtić](https://www.bananica.com) — graphic design, website
+- [Jaka Daneu](https://github.com/jalezi) — website
+- [Joh Dokler](https://github.com/joahim) — website
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — content
+- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — coordination, content
+- [Luka Renko](https://twitter.com/lukarenko) — data, website
+- [Marko Brumen](https://twitter.com/multikultivator) — social media, content
+- [Mia Erbus](https://github.com/miaerbus) — website
+- [Miha Eržen](https://github.com/mihaerzen) — website
+- [Mitja Potočin](https://github.com/mitjapotocin) — website
+- [Mojca Miklavec](https://github.com/mojca) — data
+- [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — content, copywriting
+- [Sebastian Pleško](https://plesko.si/) — service initiative
+- [Štefan Baebler](https://twitter.com/StefanBaebler) — data, website
+- [Tadej Polajnar](https://github.com/TadejPolajnar) — website
+- [Vanja Cvelbar](https://github.com/b100w11) — translations
+- Veronika Vezjak — content
+- [Sándor Kovács](https://twitter.com/SndorKovcs14) — translations
+- [Nedžad Beus](https://beus.cc) — translations
+- Sara Kikec — translations
 
 ## Terms of use
 
@@ -53,7 +52,7 @@ The basis for the processing is the pursuit of the legitimate interests of the c
 
 The controller is the Scientific Association Sledilnik, Celovška cesta 111, 1000 Ljubljana, drustvo@sledilnik.org.
 
-## Processing  of doctors data
+## Processing of doctors data
 
 The purpose of processing data on doctors is to facilitate the process of finding and choosing a personal doctor.
 
@@ -77,6 +76,7 @@ Data security (Article 32 of the GDPR) is ensured by two-factor authentication, 
 Personal data is not specifically transferred to users in a third country, but is accessible online to users from abroad - in the same way as the data sources themselves.
 
 ## Processing of personal data about website visitors
+
 The purpose of collecting and processing visitor data is to ensure the smooth operation of the website and to conduct statistical analyses of website traffic.
 
 The controller processes the following data about visitors to the website: IP address, time of visit, information about the page the visitor wishes to visit and the data sent by the user's web browser in the header of each request.

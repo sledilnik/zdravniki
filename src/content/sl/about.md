@@ -6,11 +6,13 @@ Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravni
 
 V Znanstvenem društvu Sledilnik smo se zato odločili, da te podatke predstavimo v uporabnikom in uporabnicam prijaznejši obliki: z imenikom in iskalnikom, ki nam omogoča hiter vpogled dostopnosti zdravnikov/-ic v naši bližini.
 
-Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante. 
+Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante.
 
 ## Ekipa
 
 Sodelavci in sodelavke projekta:
+
+<!-- Do not use "-" but "—" there is a slight difference, hardly to notice with naked 👁️ -->
 
 - [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — vsebine, komunikacije
 - [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
@@ -29,12 +31,10 @@ Sodelavci in sodelavke projekta:
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran, prevodi
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
-- [Veronika Vezjak]() — vsebine
-- [Sándor Kovács](https://twitter.com/SndorKovcs14) - prevodi
-- [Nedžad Beus](https://beus.cc) - prevodi
-- [Sara Kikec]() - prevodi
-
-
+- Veronika Vezjak — vsebine
+- [Sándor Kovács](https://twitter.com/SndorKovcs14) — prevodi
+- [Nedžad Beus](https://beus.cc) — prevodi
+- Sara Kikec — prevodi
 
 ## Pogoji uporabe
 
