@@ -31,10 +31,10 @@ Project collaborators:
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — data, website
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — website
 - [Vanja Cvelbar](https://github.com/b100w11) — translations
-- [Veronika Vezjak]() — content
+- Veronika Vezjak — content
 - [Sándor Kovács](https://twitter.com/SndorKovcs14) — translations
 - [Nedžad Beus](https://beus.cc) — translations
-- [Sara Kikec]() — translations
+- Sara Kikec — translations
 
 ## Terms of use
 

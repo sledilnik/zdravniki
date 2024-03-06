@@ -31,10 +31,10 @@ Sodelavci in sodelavke projekta:
 - [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran, prevodi
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
-- [Veronika Vezjak]() — vsebine
+- Veronika Vezjak — vsebine
 - [Sándor Kovács](https://twitter.com/SndorKovcs14) — prevodi
 - [Nedžad Beus](https://beus.cc) — prevodi
-- [Sara Kikec]() — prevodi
+- Sara Kikec — prevodi
 
 ## Pogoji uporabe
 
