@@ -8,8 +8,11 @@
 
 For setting up development environment locally run:
 
-1. `yarn install`
-2. ...TODO
+1. Install depenencies
+   ```
+   yarn install
+   ```
+3. ...TODO
 
 ## Data source
 
@@ -37,11 +40,15 @@ All used libraries can be seen on [GitHub dependancies](https://github.com/sledi
 
 ### CLI Usage
 
-`yarn lint`
+```
+yarn lint
+```
 
 If you also want to automatically fix the project errors:
 
-`yarn lint --fix`
+```
+yarn lint --fix
+```
 
 ### IDE Usage
 
@@ -57,7 +64,10 @@ Have a look at step 3 of [this article from DigitalOcean](https://www.digitaloce
 
 ### Unit Tests
 
-#### `yarn test:unit`
+Runs unit tests.
+```
+yarn test:unit
+```
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -67,21 +77,44 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Documentation: [Playwright](https://playwright.dev/docs/intro)
 [VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
 
-#### `yarn playwright test` | `yarn test:e2e`
+Runs the end-to-end tests.
+```
+yarn playwright test
+```
 
-    Runs the end-to-end tests.
+or
+
+```
+yarn test:e2e
+```
+
 
 Other helpful cli commands:
 
-- `yarn playwright test --ui`, starts the interactive UI mode.
+Starts the interactive UI mode
+```
+yarn playwright test --ui
+```
 
-- `yarn playwright test --project=chromium`, runs the tests only on Desktop Chrome.
+Runs the tests only on Desktop Chrome
+```
+yarn playwright test --project=chromium
+```
 
-- `yarn playwright test example`, runs the tests in a specific file.
+Runs the tests in a specific file.
+```
+yarn playwright test example
+```
 
-- `yarn playwright test --debug`, runs the tests in debug mode.
+Runs the tests in debug mode.
+```
+yarn playwright test --debug
+```
 
-- `yarn playwright codegen`, auto generate tests with Codegen.
+Auto generate tests with Codegen.
+```
+yarn playwright codegen
+```
 
 ## Generic React App instructions (to be removed or minimized)
 
