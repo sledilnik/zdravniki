@@ -16,7 +16,7 @@
     "youth": "Jugendliche",
     "doctorCard": {
         "more": "Mehr",
-        "noPhone": "Telefonnummer nicht verhanden",
+        "noPhone": "Telefonnummer nicht vorhanden",
         "showOnMap": "Auf der Karte anzeigen"
     },
     "footer": {
@@ -43,7 +43,9 @@
         "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
         "tooltip": "Fehler in den Arztdaten melden",
         "confirmation": {
-            "title": "Bestätigen"
+            "title": "Bestätigen",
+            "text": "Sind Sie sicher, dass Sie eine Datenänderung vorschlagen möchten?",
+            "warningText": "Dieses Formular dient NICHT dazu, einen Termin für eine ärztliche Untersuchung oder Beratung anzufordern. Um einen Termin zu vereinbaren, wenden Sie sich unmittelbar an den ausgewählten Arzt."
         }
     },
     "pageNotFound": {
@@ -51,7 +53,7 @@
         "back": "Zurück",
         "imageDescription": "ein achselzuckender Arzt"
     },
-    "filter": "Filter",
+    "filter": "Filtern",
     "totalResults_one": "{{count}} Treffer",
     "totalResults_other": "{{count}} Treffer",
     "list": "Liste",
@@ -81,16 +83,20 @@
     "findAvailableDoctor": "Finde einen verfügbaren Arzt",
     "faq": {
         "title": "Häufig gestellte Fragen",
-        "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an Notdienste wenden oder 112 anrufen.",
+        "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an die Notdienste wenden oder 112 anrufen.",
         "glossary": "Glossar"
     },
-    "noResults": "Aufgrund Ihrer Suchkriterien wurde kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
+    "noResults": "Zu Ihren Suchkriterien wurde leider kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
     "changedOn": "Zuletzt geändert am: ",
     "doctorAvailability": "Für Ärzte, die Teilzeit an Präventionsprogrammen oder in anderen Abteilungen arbeiten (z. B. Zahnärzte, die mit Erwachsenen und Jugendlichen arbeiten), kann die Verfügbarkeit unter 100 % liegen.",
     "floatingClinic": "Das Krankenhaus für Patienten ohne Hausarzt",
-    "clinicForBetterAccessibilityDesc": "In Ambulanzen für bessere Zugänglichkeit zur hausärztlichen Versorgung, können Versicherte, die keinen Hausarzt (Hausarzt oder Kinderarzt) haben, ihren persönlichen Arzt wählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
+    "clinicForBetterAccessibilityDesc": "In Kliniken für bessere Zugänglichkeit zur hausärztlichen Versorgung, können Versicherte, die keinen persönlichen Arzt (Hausarzt oder Kinderarzt) haben, diesen auswählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
     "doctorAvailabilityLabel": "Verfügbarkeit",
     "yourLocation": "Ihr Standort",
     "backToHome": "Zurück zur Startseite",
-    "orderform": "Termin vereinbaren"
+    "orderform": "Termin vereinbaren",
+    "headQuotient": "Patientenquote",
+    "error": {
+        "title": "Etwas ist schief gelaufen"
+    }
 }
