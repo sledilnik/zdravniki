@@ -33,7 +33,7 @@
             "email": "E-Mail-Adresse",
             "orderform": "Link zur Bestellseite",
             "availability": "Verfügbarkeit",
-            "note": "Hinweis"
+            "note": "Anmerkung"
         },
         "title": "Fehler melden",
         "reset": "Rücksetzen",
@@ -53,7 +53,7 @@
         "back": "Zurück",
         "imageDescription": "ein achselzuckender Arzt"
     },
-    "filter": "Filtern",
+    "filter": "Filter",
     "totalResults_one": "{{count}} Treffer",
     "totalResults_other": "{{count}} Treffer",
     "list": "Liste",
@@ -77,7 +77,7 @@
     "pediatrician": "Kinderarzt",
     "gynecologist": "Gynäkologe",
     "adults": "Erwachsene",
-    "clinicForBetterAccessibility": "Ambulanz für bessere Zugänglichkeit (zur hausärztlichen Versorgung)",
+    "clinicForBetterAccessibility": "Ambulanz für bessere Zugänglichkeit zur Primärversorgung",
     "search": "Suchen…",
     "toContent": "Zum Inhalt",
     "findAvailableDoctor": "Finde einen verfügbaren Arzt",
@@ -89,8 +89,8 @@
     "noResults": "Zu Ihren Suchkriterien wurde leider kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
     "changedOn": "Zuletzt geändert am: ",
     "doctorAvailability": "Für Ärzte, die Teilzeit an Präventionsprogrammen oder in anderen Abteilungen arbeiten (z. B. Zahnärzte, die mit Erwachsenen und Jugendlichen arbeiten), kann die Verfügbarkeit unter 100 % liegen.",
-    "floatingClinic": "Das Krankenhaus für Patienten ohne Hausarzt",
-    "clinicForBetterAccessibilityDesc": "In Kliniken für bessere Zugänglichkeit zur hausärztlichen Versorgung, können Versicherte, die keinen persönlichen Arzt (Hausarzt oder Kinderarzt) haben, diesen auswählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
+    "floatingClinic": "Klinik für Patienten ohne Hausarzt",
+    "clinicForBetterAccessibilityDesc": "In Kliniken für bessere Zugänglichkeit zur Primärversorgung, können Versicherte, die keinen persönlichen Arzt (Hausarzt oder Kinderarzt) haben, diesen auswählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
     "doctorAvailabilityLabel": "Verfügbarkeit",
     "yourLocation": "Ihr Standort",
     "backToHome": "Zurück zur Startseite",
@@ -98,5 +98,8 @@
     "headQuotient": "Patientenquote",
     "error": {
         "title": "Etwas ist schief gelaufen"
+    },
+    "sozialmarie": {
+        "description": "Das Ärzte-Tracker-Portal wurde erstellt, um das Gesundheitssystem dem Patienten näherzubringen. In Slowenien besteht ein Mangel an primär behandelnden Ärzten, der dazu führt, dass viele Patienten kein Grundrecht auf Zugang zu einem Hausarzt haben. Im wissenschaftlichen Verein Sledilnik haben wir alle 15 Tage die öffentlich verfügbaren Daten in einer nicht benutzerfreundlichen Tabelle in unser Portal übernommen und den Benutzern ermöglicht, in Echtzeit Korrekturen für fehlerhafte Daten vorzuschlagen. Somit erhielten Patienten, die eine Primärversorgung suchten, benutzerfreundliche und aktuelle Informationen."
     }
 }
