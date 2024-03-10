@@ -34,7 +34,7 @@ Sodelavci in sodelavke projekta:
 - Veronika Vezjak — vsebine
 - [Sándor Kovács](https://twitter.com/SndorKovcs14) — prevodi
 - [Nedžad Beus](https://beus.cc) — prevodi
-- Sara Kikec — prevodi
+- [Sara Kikec](https://www.linkedin.com/in/sarakikec/) — prevodi
 
 ## Pogoji uporabe
 
