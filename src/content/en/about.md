@@ -34,7 +34,7 @@ Project collaborators:
 - Veronika Vezjak — content
 - [Sándor Kovács](https://twitter.com/SndorKovcs14) — translations
 - [Nedžad Beus](https://beus.cc) — translations
-- Sara Kikec — translations
+- [Sara Kikec](https://www.linkedin.com/in/sarakikec/) — translations
 
 ## Terms of use
 
