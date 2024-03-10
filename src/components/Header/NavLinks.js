@@ -3,6 +3,7 @@ import i18next, { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 import { useFilter } from 'context/filterContext';
 import * as Styled from './styles';
+import SledilnikOrgLinks from './SledilnikOrgLinks';
 
 const NavLinks = function NavLinks() {
   const navigate = useNavigate();
@@ -29,28 +30,7 @@ const NavLinks = function NavLinks() {
 
       <Styled.NavMenuLink to={`/${lng}/faq`}>{t('header.faq')}</Styled.NavMenuLink>
       <Styled.NavMenuLink to={`/${lng}/about`}>{t('header.about')}</Styled.NavMenuLink>
-      <Styled.NavMenuItemLink
-        href={`https://covid-19.sledilnik.org/${lng}/donate`}
-        target="_blank"
-        rel="noopener"
-        component="button"
-        tabIndex={0}
-        underline="none"
-        role="link"
-      >
-        {t('header.support')}
-      </Styled.NavMenuItemLink>
-      <Styled.NavMenuItemLink
-        href={`https://sledilnik.org/${lng}`}
-        target="_blank"
-        rel="noopener"
-        component="button"
-        tabIndex={0}
-        underline="none"
-        role="link"
-      >
-        {t('header.sledilnik')}
-      </Styled.NavMenuItemLink>
+      <SledilnikOrgLinks />
     </>
   );
 };

@@ -1,0 +1,105 @@
+{
+    "loading": "Wird geladen…",
+    "header": {
+        "sledilnik": "Sledilnik.org",
+        "menu": "Menü",
+        "about": "Über",
+        "faq": "FAQ",
+        "support": "Unterstützung!",
+        "home": "Startseite"
+    },
+    "rejects": "nicht akzeptieren",
+    "accepts": "akzeptieren",
+    "all": "alle",
+    "dentist": "Zahnarzt",
+    "students": "Studenten",
+    "youth": "Jugendliche",
+    "doctorCard": {
+        "more": "Mehr",
+        "noPhone": "Telefonnummer nicht vorhanden",
+        "showOnMap": "Auf der Karte anzeigen"
+    },
+    "footer": {
+        "dataSource": "Datenquelle",
+        "lastChange": "Letzte Datenaktualisierung am"
+    },
+    "reportError": {
+        "cancel": "Abbrechen",
+        "send": "Senden",
+        "placeholder": {
+            "phone": "Telefonnummer",
+            "address": "Adresse",
+            "website": "Webseite",
+            "email": "E-Mail-Adresse",
+            "orderform": "Link zur Bestellseite",
+            "availability": "Verfügbarkeit",
+            "note": "Anmerkung"
+        },
+        "title": "Fehler melden",
+        "reset": "Rücksetzen",
+        "reportError": "Die Fehlerberichterstattung ist fehlgeschlagen. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.",
+        "reportNoChange": "Es wurden keine Daten geändert",
+        "text": "Fehler in den Arztdaten melden und die richtigen Daten oder Anmerkungen hinzufügen:",
+        "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
+        "tooltip": "Fehler in den Arztdaten melden",
+        "confirmation": {
+            "title": "Bestätigen",
+            "text": "Sind Sie sicher, dass Sie eine Datenänderung vorschlagen möchten?",
+            "warningText": "Dieses Formular dient NICHT dazu, einen Termin für eine ärztliche Untersuchung oder Beratung anzufordern. Um einen Termin zu vereinbaren, wenden Sie sich unmittelbar an den ausgewählten Arzt."
+        }
+    },
+    "pageNotFound": {
+        "somethingWentWrong": "Ups, da ist etwas schief gelaufen :(",
+        "back": "Zurück",
+        "imageDescription": "ein achselzuckender Arzt"
+    },
+    "filter": "Filter",
+    "totalResults_one": "{{count}} Treffer",
+    "totalResults_other": "{{count}} Treffer",
+    "list": "Liste",
+    "map": "Landkarte",
+    "timestamps": {
+        "at": "um",
+        "datetime": "{{val, datetime}}"
+    },
+    "SEO": {
+        "title": {
+            "notFound": "404: Seite nicht gefunden",
+            "home": "Ärzte - Sledilnik",
+            "about": "Über",
+            "faq": "FAQ"
+        }
+    },
+    "copied": "Kopiert!",
+    "copy": "Kopieren",
+    "showAll": "Alle anzeigen",
+    "generalPractitioner": "Allgemeinmediziner",
+    "pediatrician": "Kinderarzt",
+    "gynecologist": "Gynäkologe",
+    "adults": "Erwachsene",
+    "clinicForBetterAccessibility": "Ambulanz für bessere Zugänglichkeit zur Primärversorgung",
+    "search": "Suchen…",
+    "toContent": "Zum Inhalt",
+    "findAvailableDoctor": "Finde einen verfügbaren Arzt",
+    "faq": {
+        "title": "Häufig gestellte Fragen",
+        "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an die Notdienste wenden oder 112 anrufen.",
+        "glossary": "Glossar"
+    },
+    "noResults": "Zu Ihren Suchkriterien wurde leider kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
+    "changedOn": "Zuletzt geändert am: ",
+    "doctorAvailability": "Für Ärzte, die Teilzeit an Präventionsprogrammen oder in anderen Abteilungen arbeiten (z. B. Zahnärzte, die mit Erwachsenen und Jugendlichen arbeiten), kann die Verfügbarkeit unter 100 % liegen.",
+    "floatingClinic": "Klinik für Patienten ohne Hausarzt",
+    "clinicForBetterAccessibilityDesc": "In Kliniken für bessere Zugänglichkeit zur Primärversorgung, können Versicherte, die keinen persönlichen Arzt (Hausarzt oder Kinderarzt) haben, diesen auswählen (falls kein Arzt verfügbar ist oder der gewählte Hausarzt dauerhaft abwesend ist).",
+    "doctorAvailabilityLabel": "Verfügbarkeit",
+    "yourLocation": "Ihr Standort",
+    "backToHome": "Zurück zur Startseite",
+    "orderform": "Termin vereinbaren",
+    "headQuotient": "Patientenquote",
+    "error": {
+        "title": "Etwas ist schief gelaufen"
+    },
+    "sozialmarie": {
+        "description": "Das Ärzte-Tracker-Portal wurde erstellt, um das Gesundheitssystem dem Patienten näherzubringen. In Slowenien besteht ein Mangel an primär behandelnden Ärzten, der dazu führt, dass viele Patienten kein Grundrecht auf Zugang zu einem Hausarzt haben. Im wissenschaftlichen Verein Sledilnik haben wir alle 15 Tage die öffentlich verfügbaren Daten in einer nicht benutzerfreundlichen Tabelle in unser Portal übernommen und den Benutzern ermöglicht, in Echtzeit Korrekturen für fehlerhafte Daten vorzuschlagen. Somit erhielten Patienten, die eine Primärversorgung suchten, benutzerfreundliche und aktuelle Informationen."
+    }
+}

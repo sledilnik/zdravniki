@@ -8,8 +8,11 @@
 
 For setting up development environment locally run:
 
-1. `yarn install`
-2. ...TODO
+1. Install depenencies
+   ```
+   yarn install
+   ```
+3. ...TODO
 
 ## Data source
 
@@ -37,11 +40,15 @@ All used libraries can be seen on [GitHub dependancies](https://github.com/sledi
 
 ### CLI Usage
 
-`yarn lint`
+```
+yarn lint
+```
 
 If you also want to automatically fix the project errors:
 
-`yarn lint --fix`
+```
+yarn lint --fix
+```
 
 ### IDE Usage
 
@@ -53,7 +60,63 @@ Have a look at step 3 of [this article from DigitalOcean](https://www.digitaloce
 
 <img width="1157" alt="image" src="https://user-images.githubusercontent.com/142531/144209240-4f93daeb-f945-4e68-aca9-b9c244bc070b.png">
 
-## Genric React App instructions (to be removed or minimized)
+## Tests
+
+### Unit Tests
+
+Runs unit tests.
+```
+yarn test:unit
+```
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### E2E Tests
+
+Documentation: [Playwright](https://playwright.dev/docs/intro)
+[VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
+
+Runs the end-to-end tests.
+```
+yarn playwright test
+```
+
+or
+
+```
+yarn test:e2e
+```
+
+
+Other helpful cli commands:
+
+Starts the interactive UI mode
+```
+yarn playwright test --ui
+```
+
+Runs the tests only on Desktop Chrome
+```
+yarn playwright test --project=chromium
+```
+
+Runs the tests in a specific file.
+```
+yarn playwright test example
+```
+
+Runs the tests in debug mode.
+```
+yarn playwright test --debug
+```
+
+Auto generate tests with Codegen.
+```
+yarn playwright codegen
+```
+
+## Generic React App instructions (to be removed or minimized)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -66,11 +129,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 

@@ -1,7 +1,18 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { CardContent, Typography, Stack, Button, Alert } from '@mui/material';
+import {
+  CardContent,
+  Typography,
+  Stack,
+  Button,
+  Alert,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@mui/material';
 import { t } from 'i18next';
 
 import * as SEO from 'components/SEO';
@@ -9,13 +20,24 @@ import slugify from 'slugify';
 import * as Shared from '../Shared';
 import { SelectEdit, TextareaEdit } from './InlineEdit';
 import { toPercent } from '../utils';
+import { HIDDEN_FIELDS, getChangedValue, getGSheetFormUrl, makeInputNames } from './utils';
+import { useInputs } from './useInputs';
 
-const ReportError = function ReportError({ doctorFormData, setIsEditing, setMessage }) {
+const ReportError = function ReportError({
+  doctorFormData,
+  setIsEditing,
+  setMessage,
+  isError,
+  setIsError,
+}) {
   const { lng } = useParams();
   const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
+  const formRef = useRef();
+
   const meta = [{ name: 'robots', content: 'noindex' }];
 
-  const accepts = doctorFormData.accepts === 'y';
+  const isAccepting = doctorFormData.accepts === 'y';
   const [type, ageGroup] = doctorFormData.type.split('-');
   const availabilityText = toPercent(doctorFormData.availability, lng);
 
@@ -24,117 +46,23 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
   const { instId } = doctorFormData;
   const path = `/${lng}/${drPath}/${slug}/${instId}`;
 
-  const [inputAddress, setInputAddress] = useState(doctorFormData.fullAddress);
-  const [inputAccepts, setInputAccepts] = useState(accepts ? 'y' : 'n');
-  const [inputAvailability, setInputAvailability] = useState(availabilityText);
-  const [inputPhone, setInputPhone] = useState(doctorFormData.phone);
-  const [inputWebsite, setInputWebsite] = useState(doctorFormData.website);
-  const [inputEmail, setInputEmail] = useState(doctorFormData.email);
-  const [inputOrderform, setInputOrderform] = useState(doctorFormData.orderform);
-  const [inputNote, setInputNote] = useState(doctorFormData.note);
-
-  const formUrl = `https://docs.google.com/forms/d/${process.env.REACT_APP_GOOGLE_FORM_ID}/formResponse`;
-
-  const formState = {
-    inputName: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_NAME,
-      value: doctorFormData.name,
-    },
-    inputUrl: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_URL,
-      value: process.env.REACT_APP_URL + path,
-    },
-    inputType: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_TYPE,
-      value: doctorFormData.type,
-    },
-    inputInstId: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_INSTID,
-      value: doctorFormData.instId,
-    },
-    inputProvider: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_PROVIDER,
-      value: doctorFormData.provider,
-    },
-    inputFullAddress: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_ADDRESS,
-      value: inputAddress,
-    },
-    inputAccepts: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_ACCEPTS,
-      value: inputAccepts,
-    },
-    inputAvailability: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_AVAILABILITY,
-      value: inputAvailability,
-    },
-    inputWebsite: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_WEBSITE,
-      value: inputWebsite,
-    },
-    inputPhone: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_PHONE,
-      value: inputPhone,
-    },
-    inputEmail: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_EMAIL,
-      value: inputEmail,
-    },
-    inputOrderform: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM,
-      value: inputOrderform,
-    },
-    inputNote: {
-      id: process.env.REACT_APP_GOOGLE_FORM_INPUT_NOTE,
-      value: inputNote,
-    },
+  /** @type {import('./useInputs.jsx').InitialValues} */
+  const initialValues = {
+    address: doctorFormData.fullAddress,
+    accepts: isAccepting ? 'y' : 'n',
+    availability: availabilityText,
+    phone: doctorFormData.phone,
+    website: doctorFormData.website,
+    email: doctorFormData.email,
+    orderform: doctorFormData.orderform,
+    note: doctorFormData.note,
   };
 
-  const submit = async e => {
-    e.preventDefault();
+  const inputs = useInputs(initialValues);
+  const getIsSame = () => Object.keys(inputs).every(key => inputs[key][0] === initialValues[key]);
 
-    // if none of the input data is changed, do not send anything to Google Sheets
-    if (
-      inputAddress === doctorFormData.fullAddress &&
-      inputAccepts === doctorFormData.accepts &&
-      inputAvailability === availabilityText &&
-      inputWebsite === doctorFormData.website &&
-      inputPhone === doctorFormData.phone &&
-      inputEmail === doctorFormData.email &&
-      inputOrderform === doctorFormData.orderform &&
-      inputNote === doctorFormData.note
-    ) {
-      return;
-    }
-
-    // if any input data is not changed, do not send it to Google Sheets
-    if (inputAddress === doctorFormData.fullAddress) {
-      formState.inputFullAddress.value = '';
-    }
-    if (inputAccepts === doctorFormData.accepts) {
-      formState.inputAccepts.value = '';
-    }
-    if (inputAvailability === availabilityText) {
-      formState.inputAvailability.value = '';
-    }
-    if (inputWebsite === doctorFormData.website) {
-      formState.inputWebsite.value = '';
-    }
-    if (inputPhone === doctorFormData.phone) {
-      formState.inputPhone.value = '';
-    }
-    if (inputEmail === doctorFormData.email) {
-      formState.inputEmail.value = '';
-    }
-    if (inputOrderform === doctorFormData.orderform) {
-      formState.inputOrderform.value = '';
-    }
-    if (inputNote === doctorFormData.note) {
-      formState.inputNote.value = '';
-    }
-
-    const formData = new FormData();
-    Object.values(formState).forEach(item => formData.append(`entry.${item.id}`, item.value));
+  const postForm = async formData => {
+    const formUrl = getGSheetFormUrl();
 
     try {
       await fetch(formUrl, {
@@ -151,27 +79,84 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       });
       setMessage(t('reportError.reportReceived'));
     } catch (err) {
-      setMessage('Error:', err);
+      setIsError(true);
+      setMessage(t('reportError.reportError'));
     } finally {
+      setOpenDialog(false);
       setIsEditing(false);
+      if (isError) {
+        setTimeout(() => {
+          setIsError(false);
+        }, 5000);
+      }
       setTimeout(() => {
         setMessage('');
       }, 5000);
     }
   };
 
+  const submit = e => {
+    e.preventDefault();
+    const isSame = getIsSame();
+    if (isSame) {
+      setMessage(t('reportError.reportNoChange'));
+      setIsEditing(false);
+      setTimeout(() => {
+        setMessage('');
+      }, 5000);
+      return;
+    }
+    setOpenDialog(true);
+  };
+
+  const resetInputs = () => {
+    inputs.address[1](initialValues.address);
+    inputs.accepts[1](initialValues.accepts);
+    inputs.availability[1](initialValues.availability);
+    inputs.phone[1](initialValues.phone);
+    inputs.website[1](initialValues.website);
+    inputs.email[1](initialValues.email);
+    inputs.orderform[1](initialValues.orderform);
+    inputs.note[1](initialValues.note);
+  };
+
   const resetForm = () => {
     setIsEditing(false);
     setMessage('');
-    setInputAddress(doctorFormData.fullAddress);
-    setInputAccepts(accepts.toString());
-    setInputAvailability(doctorFormData.availabilityText);
-    setInputPhone(doctorFormData.phone);
-    setInputWebsite(doctorFormData.website);
-    setInputEmail(doctorFormData.email);
-    setInputOrderform(doctorFormData.orderform);
-    setInputNote(doctorFormData.note);
+    if (isError) {
+      setIsError(false);
+    }
+    resetInputs();
     navigate(path);
+  };
+
+  const handleOK = async () => {
+    const currentFormData = new FormData(formRef.current);
+    const formData = new FormData();
+    const inputNames = makeInputNames();
+    const hiddenInputNames = Object.entries(inputNames).filter(([key]) =>
+      HIDDEN_FIELDS.includes(key),
+    );
+    const visibleInputNames = Object.entries(inputNames).filter(
+      ([key]) => !HIDDEN_FIELDS.includes(key),
+    );
+
+    hiddenInputNames.forEach(([key, value]) => {
+      formData.set(value, currentFormData.get(key));
+    });
+
+    visibleInputNames.forEach(([key, value]) => {
+      const changedValue = getChangedValue(inputs[key][0], initialValues[key]);
+      if (typeof changedValue === 'string') {
+        formData.set(value, changedValue);
+      }
+    });
+
+    await postForm(formData);
+  };
+
+  const handleCancel = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -180,7 +165,7 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
       <CardContent
         sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
       >
-        <div>
+        <form id="report-error-form" ref={formRef} onSubmit={submit}>
           <Typography component="h1" variant="h1" translate="no">
             {doctorFormData.name}
           </Typography>
@@ -191,60 +176,96 @@ const ReportError = function ReportError({ doctorFormData, setIsEditing, setMess
           <Alert severity="info" sx={{ marginY: '1rem' }}>
             {t('reportError.text')}
           </Alert>
+
+          <input hidden name="name" defaultValue={doctorFormData.name} />
+          <input hidden name="url" defaultValue={process.env.REACT_APP_URL + path} />
+          <input hidden name="type" defaultValue={doctorFormData.type} />
+          <input hidden name="instId" defaultValue={doctorFormData.instId} />
+          <input hidden name="provider" defaultValue={doctorFormData.provider} />
           <TextareaEdit
-            name="inputAddress"
-            value={inputAddress}
-            setValue={setInputAddress}
+            name="address"
+            value={inputs.address[0]}
+            setValue={inputs.address[1]}
             placeholder={t('reportError.placeholder.address')}
             translate="no"
+            required
           />
           <TextareaEdit
-            name="inputWebsite"
-            value={inputWebsite}
-            setValue={setInputWebsite}
+            name="website"
+            value={inputs.website[0]}
+            setValue={inputs.website[1]}
             placeholder={t('reportError.placeholder.website')}
           />
           <TextareaEdit
-            name="inputPhone"
-            value={inputPhone}
-            setValue={setInputPhone}
+            name="phone"
+            value={inputs.phone[0]}
+            setValue={inputs.phone[1]}
             placeholder={t('reportError.placeholder.phone')}
           />
           <TextareaEdit
-            name="inputEmail"
-            value={inputEmail}
-            setValue={setInputEmail}
+            name="email"
+            value={inputs.email[0]}
+            setValue={inputs.email[1]}
             placeholder={t('reportError.placeholder.email')}
           />
           <TextareaEdit
-            name="inputOrderform"
-            value={inputOrderform}
-            setValue={setInputOrderform}
+            name="orderform"
+            value={inputs.orderform[0]}
+            setValue={inputs.orderform[1]}
             placeholder={t('reportError.placeholder.orderform')}
           />
-          <SelectEdit name="inputAccepts" value={inputAccepts} setValue={setInputAccepts} />
+          <SelectEdit name="accepts" value={inputs.accepts[0]} setValue={inputs.accepts[1]} />
           <TextareaEdit
-            name="inputAvailabilty"
-            value={inputAvailability}
-            setValue={setInputAvailability}
+            name="availability"
+            value={inputs.availability[0]}
+            setValue={inputs.availability[1]}
             placeholder={t('reportError.placeholder.availability')}
           />
           <TextareaEdit
-            name="inputNote"
-            value={inputNote}
-            setValue={setInputNote}
+            name="note"
+            value={inputs.note[0]}
+            setValue={inputs.note[1]}
             placeholder={t('reportError.placeholder.note')}
           />
-        </div>
-        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button variant="outlined" onClick={resetForm} sx={{ marginRight: '1rem' }} size="small">
+          <Stack
+            sx={{
+              marginTop: '1em',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '1rem',
+            }}
+          >
+            <Button variant="text" type="reset" size="small" onClick={resetInputs} color="inherit">
+              {t('reportError.reset')}
+            </Button>
+            <Button variant="outlined" onClick={resetForm} size="small" color="error">
+              {t('reportError.cancel')}
+            </Button>
+
+            <Button variant="contained" type="submit" size="small" sx={{ marginLeft: 'auto' }}>
+              {t('reportError.send')}
+            </Button>
+          </Stack>
+        </form>
+      </CardContent>
+      <Dialog id="dialog" open={openDialog}>
+        <DialogTitle>{t('reportError.confirmation.title')}</DialogTitle>
+        <DialogContent>
+          <Alert severity="warning">{t('reportError.confirmation.warningText')}</Alert>
+          <DialogContentText sx={{ paddingBlock: '1rem' }}>
+            {t('reportError.confirmation.text')}
+          </DialogContentText>
+        </DialogContent>
+
+        <DialogActions>
+          <Button variant="text" type="button" autoFocus onClick={handleCancel}>
             {t('reportError.cancel')}
           </Button>
-          <Button variant="contained" onClick={submit} size="small">
+          <Button variant="contained" type="button" onClick={handleOK} sx={{ marginLeft: 'auto' }}>
             {t('reportError.send')}
           </Button>
-        </Stack>
-      </CardContent>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
@@ -267,5 +288,7 @@ ReportError.propTypes = {
   }).isRequired,
   setIsEditing: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
+  setIsError: PropTypes.func.isRequired,
 };
 export default ReportError;

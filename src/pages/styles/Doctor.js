@@ -6,4 +6,8 @@ export const Main = styled(MuiBox)(() => ({
   flexDirection: 'column',
   alignItems: 'center',
   margin: '24px',
+
+  '@media print': {
+    marginTop: '88px',
+  },
 }));

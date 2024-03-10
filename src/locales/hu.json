@@ -1,5 +1,105 @@
 {
     "header": {
-        "menu": "Menü"
+        "menu": "Menü",
+        "home": "Névjegyzék",
+        "about": "A projektről",
+        "faq": "Magyarázatok",
+        "sledilnik": "Sledilnik.org",
+        "support": "Támogass!"
+    },
+    "doctorCard": {
+        "more": "Több",
+        "showOnMap": "Mutasd a térképen",
+        "noPhone": "Nincs feltüntetett telefonszám"
+    },
+    "search": "Keresés…",
+    "filter": "Szűrő",
+    "map": "Térkép",
+    "list": "Jegyzék",
+    "clinicForBetterAccessibility": "Egyszerű hozzáférhetőségű rendelő",
+    "totalResults_one": "{{count}} találat",
+    "totalResults_other": "{{count}} találat",
+    "changedOn": "Javítva: ",
+    "headQuotient": "normatíva hányados",
+    "yourLocation": "Elhelyezkedésed",
+    "doctorAvailabilityLabel": "Foglaltság",
+    "backToHome": "Vissza a névjegyzékre",
+    "faq": {
+        "title": "Gyakori kérdések",
+        "glossary": "Kifejezések szótára",
+        "description": "Ha sürgős orvosi ellátásra van szűksége, forduljon a sürgősségi szolgálathoz vagy hívja a 112-t."
+    },
+    "SEO": {
+        "title": {
+            "notFound": "404: az oldal nem létezik",
+            "home": "Orvosok - Sledilnik",
+            "about": "Az oldalról",
+            "faq": "Gyakori kérdések"
+        }
+    },
+    "reportError": {
+        "reportReceived": "Köszönjük! Az adatokat ellenőrizni fogjuk.",
+        "placeholder": {
+            "address": "cím",
+            "availability": "foglaltság",
+            "orderform": "elérhetőség az időpont kéréséhez",
+            "note": "megjegyzés",
+            "website": "honlap",
+            "phone": "telefonszám",
+            "email": "E-Mail"
+        },
+        "title": "Hibajelentés",
+        "tooltip": "Jelentsd a megjelenített adatokban való hibát",
+        "cancel": "Visszavonás",
+        "text": "Jelentsd az egyes adatokban lévő hibát és vidd be a helyes adatokat vagy tegyél megjegyzést:",
+        "send": "Küldés",
+        "reset": "Visszaállítás",
+        "reportNoChange": "Nem történt adat módosítás",
+        "confirmation": {
+            "title": "Megerősítés",
+            "text": "Biztos benne, hogy javasolja az adatok módosítását?",
+            "warningText": "Vizsgálatra vagy tanácsadásra ezzel az űrlappal NEM lehet jelentkezni. Időpontért forduljon a választott háziorvosához."
+        },
+        "reportError": "Hiba történt az adatok küldésekor. Kérjük, próbálja újra."
+    },
+    "footer": {
+        "dataSource": "Adatforrás",
+        "lastChange": "Utolsó módosítás"
+    },
+    "accepts": "fogad",
+    "rejects": "nem fogad",
+    "generalPractitioner": "családorvos",
+    "dentist": "fogorvos",
+    "pediatrician": "gyermekorvos",
+    "gynecologist": "nőgyógyász",
+    "adults": "felnőttek",
+    "students": "egyetemisták",
+    "loading": "Betöltés alatt…",
+    "all": "összes",
+    "youth": "fiatalkorúak",
+    "copy": "Másolás",
+    "showAll": "Mutasd az összeset",
+    "copied": "Másolva!",
+    "pageNotFound": {
+        "back": "Vissza",
+        "somethingWentWrong": "hoppá...valami baj van :(",
+        "imageDescription": "vállat vonó orvos"
+    },
+    "floatingClinic": "Választott háziorvossal nem rendelkezők rendelője",
+    "toContent": "A tartalomra",
+    "orderform": "kérjen időpontot",
+    "timestamps": {
+        "datetime": "{{val, datetime}}",
+        "at": ""
+    },
+    "findAvailableDoctor": "Találj szabad orvost",
+    "error": {
+        "title": "Valami nem sikerült"
+    },
+    "clinicForBetterAccessibilityDesc": "Az egyszerű hozzáférhetőségű rendelőkben azok a biztosítással rendelkező személyek választhatnak háziorvost, akiknek nincs választott háziorvosuk/gyermekorvosuk (nem érvényes a választása vagy a választott háziorvos/gyermekorvos hosszú távon nem elérhető).",
+    "doctorAvailability": "A foglaltság lehet 100%-nál alacsonyabb, ha az orvos átmenetileg prevenciós programokon dolgozik vagy más tevékenységekben (például felnőttekkel és gyermekekkel foglalkozó fogorvos).",
+    "noResults": "Egy orvos sem felel meg a keresett feltételnek. Ellenőrizze, ha jól jelölte-e meg a keresett feltételt vagy szélesítse ki a térképet.",
+    "sozialmarie": {
+        "description": "Az Orvos Követő portál azzal a céllal jött létre, hogy közelebb hozza az ellátást a pácienshez. Szlovéniában orvoshiánnyal nézünk szembe az alapfokú ellátásban. Emiatt sérül a beteg alapvető joga, hogy személyi háziorvost válasszon. A Követő Tudományos Egyesületnél a nyilvánosan elérhető adatokat, amelyeket 15 naponta egy nem felhasználóbarát táblázatban jelenítették meg, áthelyeztük a portálunkra és lehetővé tettük a felhasználóknak, hogy valós időben módosítsák az adatokat. Ez felhasználóbarát és naprakész információkat biztosított az alapellátást kereső betegek számára."
     }
 }

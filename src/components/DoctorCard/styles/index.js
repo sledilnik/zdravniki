@@ -224,6 +224,13 @@ export const AcceptsStack = styled(Stack)(({ theme, accepts }) => {
       opacity: '0.7',
       margin: '0 5px 0 0',
     },
+
+    '@media print': {
+      color,
+      svg: {
+        display: 'none',
+      },
+    },
   };
 });
 

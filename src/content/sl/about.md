@@ -6,11 +6,13 @@ Zavod za zdravstveno zavarovanje Slovenije (ZZZS) redno objavlja [seznam zdravni
 
 V Znanstvenem društvu Sledilnik smo se zato odločili, da te podatke predstavimo v uporabnikom in uporabnicam prijaznejši obliki: z imenikom in iskalnikom, ki nam omogoča hiter vpogled dostopnosti zdravnikov/-ic v naši bližini.
 
-Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante. 
+Podatke črpamo iz uradnih evidenc ZZZS in GURS, vendar za njihovo točnost ne moremo odgovarjati. Zaradi tega včasih pride do odstopanj pri prikazu "Sprejema/Ne sprejema" ali lokaciji uradnih ambulant - zahvaljujemo se vam za razumevanje in vas prosimo, da nam taka odstopanja sporočite preko obrazca, ki se nahaja na vsaki kartici ambulante.
 
 ## Ekipa
 
 Sodelavci in sodelavke projekta:
+
+<!-- Do not use "-" but "—" there is a slight difference, hardly to notice with naked 👁️ -->
 
 - [Barbara Krajnc](https://www.linkedin.com/in/barbarakrajnc/) — vsebine, komunikacije
 - [Branko Jevtić](https://www.bananica.com) — grafično oblikovanje, spletna stran
@@ -26,18 +28,19 @@ Sodelavci in sodelavke projekta:
 - [Mojca Miklavec](https://github.com/mojca) — podatki
 - [Sabina Tamše Kozovinc](https://www.linkedin.com/in/sabina-tamse-copywriter/) — vsebine, tekstopisje
 - [Sebastian Pleško](https://plesko.si/) — pobuda za storitev
-- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran
+- [Štefan Baebler](https://twitter.com/StefanBaebler) — podatki, spletna stran, prevodi
 - [Tadej Polajnar](https://github.com/TadejPolajnar) — spletna stran
 - [Vanja Cvelbar](https://github.com/b100w11) — prevodi
-- [Veronika Vezjak]() — vsebine
-
-
+- Veronika Vezjak — vsebine
+- [Sándor Kovács](https://twitter.com/SndorKovcs14) — prevodi
+- [Nedžad Beus](https://beus.cc) — prevodi
+- [Sara Kikec](https://www.linkedin.com/in/sarakikec/) — prevodi
 
 ## Pogoji uporabe
 
 Uporaba podatkov, povratne informacije in sodelovanje so zaželjeni. [Podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
 
-Za druge oblike sodelovanja nas, prosimo, kontaktirajte na podpora-zdravniki@sledilnik.org.
+Za druge oblike sodelovanja nas, prosimo, kontaktirajte na zdravniki@sledilnik.org.
 
 ## Varstvo osebnih podatkov
 

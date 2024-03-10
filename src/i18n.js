@@ -4,12 +4,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en.json';
 import sl from './locales/sl.json';
 import it from './locales/it.json';
+import hr from './locales/hr.json';
+import hu from './locales/hu.json';
+import de from './locales/de.json';
 
 export const languages = [
-  { name: 'English', code: 'en' },
   { name: 'Slovenščina', code: 'sl' },
+  { name: 'Deutsch', code: 'de' },
+  { name: 'English', code: 'en' },
+  { name: 'Hrvatski', code: 'hr' },
   { name: 'Italiano', code: 'it' },
+  { name: 'Magyar', code: 'hu' },
 ];
+
+export const supportedLanguages = languages.map(value => value.code);
 
 i18next
   // .use(Backend) // load translations using http (default public/assets/locals/en/translations)
@@ -22,9 +30,12 @@ i18next
       sl: { translation: sl },
       en: { translation: en },
       it: { translation: it },
+      hr: { translation: hr },
+      hu: { translation: hu },
+      de: { translation: de },
     },
     lng: process.env.REACT_APP_DEFAULT_LANGUAGE, // if you're using a language detector, do not define the lng option
-    fallbackLng: languages.map(value => value.code),
+    fallbackLng: ['en', 'sl'], // https://www.i18next.com/principles/fallback#fallback-to-different-languages
     detection: {
       order: ['path', 'cookie', 'navigator', 'localStorage', 'subdomain', 'queryString', 'htmlTag'],
       lookupLocalStorage: 'i18nextLng',

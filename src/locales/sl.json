@@ -54,7 +54,7 @@
     "pageNotFound": {
         "somethingWentWrong": "ups… nekaj se je zalomilo :(",
         "back": "Nazaj",
-        "imageDescription": "prometna stožca povezana z rumenim trakom"
+        "imageDescription": "skomigajoči zdravnik"
     },
     "SEO": {
         "title": {
@@ -70,7 +70,10 @@
         "text": "Prijavi napako na posameznih podatkih o zdravniku in vnesi pravilne podatke ali opombo:",
         "cancel": "Prekliči",
         "send": "Pošlji",
+        "reset": "Ponastavi",
         "reportReceived": "Hvala za poslano! Podatke bomo pregledali.",
+        "reportError": "Prišlo je do napake pri pošiljanju podatkov. Prosim, poskusite znova.",
+        "reportNoChange": "Noben podatek ni bil spremenjen",
         "placeholder": {
             "address": "naslov",
             "website": "spletna stran",
@@ -79,6 +82,11 @@
             "orderform": "povezava za naročanje",
             "availability": "obseg zaposlitve",
             "note": "opomba"
+        },
+        "confirmation": {
+            "title": "Potrditev",
+            "warningText": "Obrazec NI namenjen naročanju na pregled ali posvet. Za naročanje se obrnite na izbranega zdravnika.",
+            "text": "Ali ste prepričani, da želite predlagati popravek podatkov?"
         }
     },
     "error": {
@@ -92,5 +100,8 @@
     "timestamps": {
         "datetime": "{{val, datetime}}",
         "at": "ob"
+    },
+    "sozialmarie": {
+        "description": "Portal Zdravniki Sledilnik je bil ustvarjen z namenom približevanja osrkbe k pacientu. V Sloveniji se soočamo s pomankanjem zdravnikov na primarnem nivoju. Veliko pacientov je zaradi tega brez osnovne pravice dostopa do opredelitve osebnega zdravnika. V Znanstvenem društvu Sledilnik smo podatke, ki so se javno objavljali na 15 dni v nepregledni razpredelnici uvozili v naš portal ter omogočali uporabnikom, da podatke posodabljajo v realnem času. Tako smo pacientom, ki so iskali oskrbo na primarnem nivoju omogočili prijazno uporabniško informacijo ter ažurne informacije."
     }
 }
