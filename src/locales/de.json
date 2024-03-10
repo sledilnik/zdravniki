@@ -41,7 +41,7 @@
         "reportNoChange": "Es wurden keine Daten geändert",
         "text": "Melden sie Fehler in den Arztdaten und fügen sie die richtigen Daten oder Anmerkungen hinzu:",
         "reportReceived": "Vielen dank! Wir werden uns darum kümmern.",
-        "tooltip": "Datenfehler melden",
+        "tooltip": "Fehler in den Arztdaten melden",
         "confirmation": {
             "title": "Bestätigen",
             "text": "Sind Sie sicher, dass Sie eine Datenänderung vorschlagen möchten?",
@@ -86,7 +86,7 @@
         "description": "Im Falle eines medizinischen Notfalls sollten Sie sich an die Notdienste wenden oder 112 anrufen.",
         "glossary": "Glossar"
     },
-    "noResults": "Zu Ihren Suchkriterien wurde leider kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
+    "noResults": "Zu diesen Suchkriterien wurde kein Arzt gefunden. Überprüfen Sie, ob Sie den richtigen Arzttyp ausgewählt haben, oder verkleinern Sie die Karte.",
     "changedOn": "Zuletzt geändert am: ",
     "doctorAvailability": "Für Ärzte, die teilzeitlich an Präventionsprogrammen oder in anderen Abteilungen arbeiten (z. B. Zahnärzte, die mit Erwachsenen und Jugendlichen arbeiten), kann die Verfügbarkeit unter 100 % liegen.",
     "floatingClinic": "Klinik für Patienten ohne Arzt",
