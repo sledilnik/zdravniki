@@ -38,9 +38,11 @@ const Doctor = function Doctor() {
             prikazati njegovih podatkov.
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ab dolore,
-            perferendis natus vero blanditiis magni, suscipit fugiat quos magnam reprehenderit
-            aspernatur labore nemo, porro totam quibusdam rem sint facilis.
+            Ta zdravnik se ne nahaja v našem zajemu podatku. 
+            Prosimo preverite ali se zdravnik nahaja v bazi ZZZS, saj je ta baza osnova za naš zajem podatkov. 
+            V primeru, da je tam zdravnik prisoten počakajte nekaj dni, da se spremembe prikažejo pri nas. 
+            V nasprotnem primeru prosimo kontaktirajte zdravniki@sledilnik.org. 
+            Hvala!
           </p>
         </div>
         <FooterInfoCard isDrPage />
