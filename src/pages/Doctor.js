@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 import DoctorCard from 'components/DoctorCard';
 import { Loader } from 'components/Shared';
@@ -30,23 +31,35 @@ const Doctor = function Doctor() {
 
   if (!instId) {
     return (
-      <Styled.Main id="main-content" component="main">
-        <div style={{ maxWidth: '500px', display: 'grid', placeItems: 'center' }}>
-          <h2>Napaka</h2>
-          <p>
-            Se opravičujemo. Za tega zdravnika ne poznamo njegovo institucije zato ne moremo
-            prikazati njegovih podatkov.
-          </p>
-          <p>
-            Ta zdravnik se ne nahaja v našem zajemu podatku. 
-            Prosimo preverite ali se zdravnik nahaja v bazi ZZZS, saj je ta baza osnova za naš zajem podatkov. 
-            V primeru, da je tam zdravnik prisoten počakajte nekaj dni, da se spremembe prikažejo pri nas. 
-            V nasprotnem primeru prosimo kontaktirajte zdravniki@sledilnik.org. 
-            Hvala!
-          </p>
-        </div>
-        <FooterInfoCard isDrPage />
-      </Styled.Main>
+      <>
+        <Styled.Main
+          id="main-content"
+          component="main"
+          style={{ minHeight: 'calc(100vh - 200px', fontSize: '0.875rem' }}
+        >
+          <div
+            style={{
+              maxWidth: '500px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '0.75rem',
+              flexGrow: 1,
+            }}
+          >
+            <h2>{t('drNoInstId.title')}</h2>
+            <p>{t('drNoInstId.p1')}</p>
+            <p>
+              {t('drNoInstId.p2')}{' '}
+              <a href="mailto:zdravniki@sledilnik.org">zdravniki@sledilnik.org</a>.
+            </p>
+            <p>{t('drNoInstId.thanks')}</p>
+          </div>
+        </Styled.Main>
+        <footer>
+          <FooterInfoCard isDrPage />
+        </footer>
+      </>
     );
   }
 
