@@ -74,3 +74,30 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     );
   });
 }
+
+const ONE_DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
+const ONE_HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
+const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000;
+const ONE_SECOND_MILLISECONDS = 1000;
+
+/**
+ * @typedef {Object} TimeDifference
+ * @property {number} days - The time difference in days.
+ * @property {number} hours - The time difference in hours.
+ * @property {number} minutes - The time difference in minutes.
+ * @property {number} seconds - The time difference in seconds.
+ */
+
+/**
+ * Calculates the time difference in days, hours, minutes, and seconds.
+ *
+ * @param {number} diff - The time difference in milliseconds.
+ * @returns {TimeDifference} - An object containing the time difference in days, hours, minutes, and seconds.
+ */
+export function getTimeDifference(diff) {
+  const days = Math.floor(diff / ONE_DAY_IN_MILLISECONDS);
+  const hours = Math.floor((diff % ONE_DAY_IN_MILLISECONDS) / ONE_HOUR_IN_MILLISECONDS);
+  const minutes = Math.floor((diff % ONE_HOUR_IN_MILLISECONDS) / ONE_MINUTE_IN_MILLISECONDS);
+  const seconds = Math.floor((diff % ONE_MINUTE_IN_MILLISECONDS) / ONE_SECOND_MILLISECONDS);
+  return { days, hours, minutes, seconds };
+}
