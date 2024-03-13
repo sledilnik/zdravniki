@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Custom hook for creating a timer countdown.
@@ -8,23 +8,41 @@ import { useEffect, useState } from 'react';
  * @throws {Error} - If the initial time is less than 1000.
  */
 export default function useTimer(initialTime) {
-  if (initialTime < 1000) throw new Error('Initial time must be greater than 0');
+  const initialTimeRef = useRef(initialTime);
+  const [timeLeft, setTimeLeft] = useState(initialTimeRef.current);
 
-  const [timeLeft, setTimeLeft] = useState(initialTime);
+  const floored = Math.floor(initialTime / 1000);
+
+  const intervalIdRef = useRef(null);
+  const x = floored * 1000 - initialTime;
+  const shouldNotSetInterval = timeLeft < x;
 
   useEffect(() => {
+    let intervalId = intervalIdRef.current;
     const handleTimer = () => {
       setTimeLeft(prevTimeLeft => prevTimeLeft - 1000);
     };
 
-    const intervalId = setInterval(handleTimer, 1000);
+    intervalId = shouldNotSetInterval ? null : setInterval(handleTimer, 1000);
 
-    if (timeLeft <= 0) {
-      clearInterval(intervalId);
-    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalIdRef.current = null;
+      }
+    };
+  }, [shouldNotSetInterval]);
 
-    return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  if (initialTimeRef.current !== initialTime && timeLeft < 0) {
+    initialTimeRef.current = initialTime;
+    setTimeLeft(initialTime);
+    return timeLeft;
+  }
+
+  if (initialTimeRef.current === initialTime && timeLeft < x) {
+    clearInterval(intervalIdRef.current);
+    return 0;
+  }
 
   return timeLeft;
 }

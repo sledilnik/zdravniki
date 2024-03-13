@@ -12,25 +12,43 @@ import {
   Typography,
 } from '@mui/material';
 import { useLocalStorage } from 'hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { SimpleCountDown } from 'components/Shared/CountDown';
 
-const VOTING_STARTS = new Date('2024-04-09 GMT+0200');
-const VOTING_ENDS = new Date('2024-04-16 23:59:59:999 GMT+0200');
+const isDev = process.env.NODE_ENV === 'development';
+const now = new Date();
+const addMilliseconds = (date, ms) => new Date(date.getTime() + ms);
+
+const VOTING_STARTS = isDev ? addMilliseconds(now, 5000) : new Date('2024-04-09 GMT+0200');
+const VOTING_ENDS = isDev
+  ? addMilliseconds(now, 10000)
+  : new Date('2024-04-16 23:59:59:999 GMT+0200');
+
+const date = new Date() < VOTING_STARTS ? VOTING_STARTS : VOTING_ENDS;
 
 const SozialMarie = function SozialMarie() {
-  const isVoting = new Date() >= VOTING_STARTS && new Date() <= VOTING_ENDS;
-  const isBeforeVoting = new Date() < VOTING_STARTS;
-  const isAfterVoting = new Date() > VOTING_ENDS;
+  const currentDatetime = new Date();
+  const isVoting = currentDatetime >= VOTING_STARTS && currentDatetime <= VOTING_ENDS;
+  const isBeforeVoting = currentDatetime < VOTING_STARTS;
+  const isAfterVoting = currentDatetime > VOTING_ENDS;
 
-  const date = new Date() < VOTING_STARTS ? VOTING_STARTS : VOTING_ENDS;
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
-  const isShow = show !== 'no-show';
+  const isShow = show !== 'no-show' || !isAfterVoting;
   const [open, setOpen] = useState(isShow);
   const [noShowChecked, setNoShowChecked] = useState(!isShow);
+  const [initialTimeLeft, setInitialTimeLeft] = useState(date - currentDatetime);
+  const timeLeft = useTimer(initialTimeLeft);
+
+  const { days, hours, minutes, seconds } = getTimeDifference(timeLeft);
 
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
+
+  useEffect(() => {
+    if (isVoting) {
+      setInitialTimeLeft(VOTING_ENDS - new Date());
+    }
+  }, [isVoting]);
 
   const handleClick = () => {
     setOpen(true);
@@ -48,10 +66,6 @@ const SozialMarie = function SozialMarie() {
     updateShow(e.target.checked ? 'no-show' : 'show');
     setNoShowChecked(e.target.checked);
   };
-
-  const timeLeft = useTimer(date - new Date());
-
-  const { days, hours, minutes, seconds } = getTimeDifference(timeLeft);
 
   if (isAfterVoting) {
     return null;
