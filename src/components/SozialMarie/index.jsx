@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
-import AlertCountDown from './AlertCounDown';
+import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
 import AlertFooterContent from './AlertFooterContent';
 
