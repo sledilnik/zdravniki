@@ -99,7 +99,35 @@
         "datetime": "{{val, datetime}}",
         "at": "at"
     },
-    "sozialmarie": {
-        "description": "The Doctors Tracker portal was created to bring the healthcare system closer to the patient. In Slovenia, we are facing a shortage of doctors at primary level. This leaves many patients without the basic right of access to a personal GP. In the Scientific association Tracker, we imported the data that was publicly available every 15 days in a spreadsheet that was not user friendly into our portal and allowed users to suggest corrections for faulty data in real time. This gave patients seeking primary care user-friendly and up-to-date information."
+    "sozialMarie": {
+        "title": "SozialMarie Award",
+        "description": "The Doctors Tracker portal was created to bring the healthcare system closer to the patient. In Slovenia, we are facing a shortage of doctors at primary level. This leaves many patients without the basic right of access to a personal GP. In the Scientific association Tracker, we imported the data that was publicly available every 15 days in a spreadsheet that was not user friendly into our portal and allowed users to suggest corrections for faulty data in real time. This gave patients seeking primary care user-friendly and up-to-date information.",
+        "start": "starts in",
+        "end": "ends in",
+        "votingFor": "Voting for the SozialMarie award",
+        "and": "and",
+        "noShow": "Don't show this message again",
+        "clicking": "By clicking on",
+        "thisLink": "this link",
+        "inNewTab": "you will be redirected to voting page. Page will open in a new tab.",
+        "seeAlert": "Clicking on button \"Vote!\" you can see the alert message.",
+        "vote": "Vote",
+        "untilVotingStarts": "until voting starts",
+        "untilVotingEnds": "until voting ends",
+        "aboutSozialMarie": "some info about SozialMarie"
+    },
+    "time": {
+        "day_one": "day",
+        "day_two": "days",
+        "day_other": "days",
+        "hour_one": "hour",
+        "hour_two": "hours",
+        "hour_other": "hours",
+        "minute_one": "minute",
+        "minute_two": "minutes",
+        "minute_other": "minutes",
+        "second_one": "second",
+        "second_two": "seconds",
+        "second_other": "seconds"
     }
 }

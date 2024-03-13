@@ -101,7 +101,39 @@
         "datetime": "{{val, datetime}}",
         "at": "ob"
     },
-    "sozialmarie": {
-        "description": "Portal Zdravniki Sledilnik je bil ustvarjen z namenom približevanja osrkbe k pacientu. V Sloveniji se soočamo s pomankanjem zdravnikov na primarnem nivoju. Veliko pacientov je zaradi tega brez osnovne pravice dostopa do opredelitve osebnega zdravnika. V Znanstvenem društvu Sledilnik smo podatke, ki so se javno objavljali na 15 dni v nepregledni razpredelnici uvozili v naš portal ter omogočali uporabnikom, da podatke posodabljajo v realnem času. Tako smo pacientom, ki so iskali oskrbo na primarnem nivoju omogočili prijazno uporabniško informacijo ter ažurne informacije."
+    "sozialMarie": {
+        "title": "SozialMarie nagrada",
+        "description": "Portal Zdravniki Sledilnik je bil ustvarjen z namenom približevanja oskrbe k pacientu. V Sloveniji se soočamo s pomanjkanjem zdravnikov na primarnem nivoju. Veliko pacientov je zaradi tega brez osnovne pravice dostopa do opredelitve osebnega zdravnika. V Znanstvenem društvu Sledilnik smo podatke, ki so se javno objavljali na 15 dni v nepregledni razpredelnici uvozili v naš portal ter omogočali uporabnikom, da podatke posodabljajo v realnem času. Tako smo pacientom, ki so iskali oskrbo na primarnem nivoju omogočili prijazno uporabniško informacijo ter ažurne informacije.",
+        "start": "prične čez",
+        "end": "konča čez",
+        "votingFor": "Glasovanje za SozialMarie nagrado se",
+        "and": "in",
+        "noShow": "Ne pokaži več tega obvestila",
+        "clicking": "S klikom na",
+        "thisLink": "to povezavo",
+        "inNewTab": "boste preusmerjeni na stran za glasovanje. Stran se bo odprla v novem zavihku.",
+        "seeAlert": "S klikom na na gumb \"Glasuj!\" lahko vedno vidite to obvestilo.",
+        "vote": "Glasuj",
+        "untilVotingStarts": "do začetka glasovanja",
+        "untilVotingEnds": "do konca glasovanja",
+        "aboutSozialMarie": "info o nagradi SozialMarie"
+    },
+    "time": {
+        "day_one": "dan",
+        "day_two": "dneva",
+        "day_few": "dni",
+        "day_other": "dni",
+        "hour_one": "uro",
+        "hour_two": "uri",
+        "hour_few": "ure",
+        "hour_other": "ur",
+        "minute_one": "minuta",
+        "minute_two": "minuti",
+        "minute_few": "minute",
+        "minute_other": "minut",
+        "second_one": "sekunda",
+        "second_two": "sekundi",
+        "second_few": "sekunde",
+        "second_other": "sekund"
     }
 }

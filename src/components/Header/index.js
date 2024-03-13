@@ -4,6 +4,7 @@ import { IconButton, TextField, Toolbar } from '@mui/material';
 import * as Icons from 'components/Shared/Icons';
 import i18next, { languages } from 'i18n';
 import { useFilter } from 'context/filterContext';
+import SozialMarie from 'components/SozialMarie';
 import TemporaryDrawer from './Drawer';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
@@ -68,6 +69,7 @@ const Header = function Header() {
         >
           <Icons.Icon name="Logo" style={{ height: '40px' }} />
         </NavLink>
+        <SozialMarie />
         <Styled.StackLarge ref={ref} id="nav-links" onClick={eventHandler}>
           <NavLinks containerId="nav-links" />
         </Styled.StackLarge>
