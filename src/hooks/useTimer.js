@@ -11,11 +11,8 @@ export default function useTimer(initialTime) {
   const initialTimeRef = useRef(initialTime);
   const [timeLeft, setTimeLeft] = useState(initialTimeRef.current);
 
-  const floored = Math.floor(initialTime / 1000);
-
   const intervalIdRef = useRef(null);
-  const x = floored * 1000 - initialTime;
-  const shouldNotSetInterval = timeLeft < x;
+  const isTimeLeftValid = timeLeft >= 0;
 
   useEffect(() => {
     let intervalId = intervalIdRef.current;
@@ -23,7 +20,7 @@ export default function useTimer(initialTime) {
       setTimeLeft(prevTimeLeft => prevTimeLeft - 1000);
     };
 
-    intervalId = shouldNotSetInterval ? null : setInterval(handleTimer, 1000);
+    intervalId = isTimeLeftValid ? setInterval(handleTimer, 1000) : null;
 
     return () => {
       if (intervalId) {
@@ -31,17 +28,14 @@ export default function useTimer(initialTime) {
         intervalIdRef.current = null;
       }
     };
-  }, [shouldNotSetInterval]);
+  }, [isTimeLeftValid]);
 
-  if (initialTimeRef.current !== initialTime && timeLeft < 0) {
+  const resetValue = initialTime - Math.floor(initialTime / 1000) * 1000;
+
+  if (initialTimeRef.current !== initialTime && timeLeft <= resetValue) {
     initialTimeRef.current = initialTime;
     setTimeLeft(initialTime);
     return timeLeft;
-  }
-
-  if (initialTimeRef.current === initialTime && timeLeft < x) {
-    clearInterval(intervalIdRef.current);
-    return 0;
   }
 
   return timeLeft;
