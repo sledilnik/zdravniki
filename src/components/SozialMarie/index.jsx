@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
+import AlertCountDown from './AlertCounDown';
 
 const VOTING_STARTS = '2024-04-09 GMT+0200';
 const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
@@ -66,13 +67,6 @@ const SozialMarie = function SozialMarie() {
     }, 5000);
   }
 
-  const daysText = days >= 1 ? `${days} ${t('time.day', { count: days })}, ` : '';
-  const hoursText = hours >= 1 ? `${hours} ${t('time.hour', { count: hours })}, ` : '';
-  const minutesText =
-    minutes >= 1
-      ? `${minutes} ${t('time.minute', { count: minutes })} ${sozialMarieTranslations.and} `
-      : '';
-
   return (
     <Stack style={{ marginLeft: 'auto', fontSize: '0.875rem' }}>
       <VotingButton
@@ -120,12 +114,7 @@ const SozialMarie = function SozialMarie() {
             {isAfter ? (
               `${sozialMarieTranslations.votingHasEnded}!`
             ) : (
-              <time dateTime={countDownDate}>
-                {daysText}
-                {hoursText}
-                {minutesText}
-                {seconds} {t('time.second', { count: seconds })}
-              </time>
+              <AlertCountDown date={countDownDate} time={timeLeft} />
             )}
           </Box>
           <p>
