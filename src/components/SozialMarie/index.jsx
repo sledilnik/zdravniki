@@ -1,6 +1,6 @@
 import useTimer from 'hooks/useTimer';
 import { getTimeDifference } from 'utils';
-import { Alert, Box, Checkbox, FormControlLabel, Snackbar, Stack, Typography } from '@mui/material';
+import { Alert, Box, Snackbar, Stack, Typography } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState } from 'react';
 import { t } from 'i18next';
@@ -8,6 +8,7 @@ import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
 import AlertCountDown from './AlertCounDown';
 import SozialMarieLink from './SozialMarieLink';
+import AlertFooterContent from './AlertFooterContent';
 
 const VOTING_STARTS = '2024-04-09 GMT+0200';
 const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
@@ -122,23 +123,7 @@ const SozialMarie = function SozialMarie() {
           <SozialMarieLink href={SOZIAL_MARIE_LINK} />
 
           <Box component="footer" marginTop="1rem">
-            <FormControlLabel
-              labelPlacement="start"
-              control={
-                <Checkbox
-                  name="no-show"
-                  checked={noShowChecked}
-                  onChange={handleChecked}
-                  size="small"
-                />
-              }
-              label={sozialMarieTranslations.noShow}
-              sx={{
-                marginInline: 0,
-                '& .MuiFormControlLabel-label': { fontSize: '0.875rem' },
-              }}
-            />
-            <p>{sozialMarieTranslations.seeAlert}</p>
+            <AlertFooterContent checked={noShowChecked} handleChecked={handleChecked} />
           </Box>
         </Alert>
       </Snackbar>
