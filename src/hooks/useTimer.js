@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Custom hook for creating a timer countdown.
+ * Custom hook for a timer.
  *
- * @param {number} initialTime - The initial time in milliseconds.
+ * @param {number} initialTime - The initial time for the timer in milliseconds.
  * @returns {number} - The time left in milliseconds.
- * @throws {Error} - If the initial time is less than 1000.
  */
 export default function useTimer(initialTime) {
   const initialTimeRef = useRef(initialTime);
   const [timeLeft, setTimeLeft] = useState(initialTimeRef.current);
 
   const intervalIdRef = useRef(null);
-  const isTimeLeftValid = timeLeft >= 0;
+  const resetValue = initialTime - Math.floor(initialTime / 1000) * 1000;
+  const isTimeLeftValid = timeLeft > -resetValue;
 
   useEffect(() => {
     let intervalId = intervalIdRef.current;
@@ -29,8 +29,6 @@ export default function useTimer(initialTime) {
       }
     };
   }, [isTimeLeftValid]);
-
-  const resetValue = initialTime - Math.floor(initialTime / 1000) * 1000;
 
   if (initialTimeRef.current !== initialTime && timeLeft <= resetValue) {
     initialTimeRef.current = initialTime;
