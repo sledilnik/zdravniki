@@ -7,9 +7,11 @@ import { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
 import AlertCountDown from './AlertCounDown';
+import SozialMarieLink from './SozialMarieLink';
 
 const VOTING_STARTS = '2024-04-09 GMT+0200';
 const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
+const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
 
 const now = new Date();
 const [startDate, endDate] =
@@ -93,7 +95,7 @@ const SozialMarie = function SozialMarie() {
           sx={{ backgroundColor: '#f4f8f8' }}
           component="section"
         >
-          <Box component="header" sx={{ marginBottom: '1rem' }}>
+          <Box component="header" marginBottom="1rem">
             <Typography component="h2" sx={{ textAlign: 'center', fontWeight: '600' }}>
               {sozialMarieTranslations.title}
             </Typography>
@@ -117,32 +119,27 @@ const SozialMarie = function SozialMarie() {
               <AlertCountDown date={countDownDate} time={timeLeft} />
             )}
           </Box>
-          <p>
-            {sozialMarieTranslations.clicking}{' '}
-            <a href="#some-url" target="_blank" rel="noopener noreferrer">
-              {sozialMarieTranslations.thisLink}
-            </a>{' '}
-            {sozialMarieTranslations.inNewTab}
-          </p>
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                name="no-show"
-                checked={noShowChecked}
-                onChange={handleChecked}
-                size="small"
-              />
-            }
-            label={sozialMarieTranslations.noShow}
-            sx={{
-              marginInline: 0,
-              '& .MuiFormControlLabel-label': { fontSize: '0.875rem' },
-            }}
-          />
-          <footer>
+          <SozialMarieLink href={SOZIAL_MARIE_LINK} />
+
+          <Box component="footer" marginTop="1rem">
+            <FormControlLabel
+              labelPlacement="start"
+              control={
+                <Checkbox
+                  name="no-show"
+                  checked={noShowChecked}
+                  onChange={handleChecked}
+                  size="small"
+                />
+              }
+              label={sozialMarieTranslations.noShow}
+              sx={{
+                marginInline: 0,
+                '& .MuiFormControlLabel-label': { fontSize: '0.875rem' },
+              }}
+            />
             <p>{sozialMarieTranslations.seeAlert}</p>
-          </footer>
+          </Box>
         </Alert>
       </Snackbar>
     </Stack>
