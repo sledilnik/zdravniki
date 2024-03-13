@@ -95,9 +95,15 @@ const ONE_SECOND_MILLISECONDS = 1000;
  * @returns {TimeDifference} - An object containing the time difference in days, hours, minutes, and seconds.
  */
 export function getTimeDifference(diff) {
-  const days = Math.floor(diff / ONE_DAY_IN_MILLISECONDS);
-  const hours = Math.floor((diff % ONE_DAY_IN_MILLISECONDS) / ONE_HOUR_IN_MILLISECONDS);
-  const minutes = Math.floor((diff % ONE_HOUR_IN_MILLISECONDS) / ONE_MINUTE_IN_MILLISECONDS);
-  const seconds = Math.floor((diff % ONE_MINUTE_IN_MILLISECONDS) / ONE_SECOND_MILLISECONDS);
+  const diffAbs = Math.abs(diff);
+
+  const days = Math.floor(diffAbs / ONE_DAY_IN_MILLISECONDS);
+  const hours = Math.floor((diffAbs % ONE_DAY_IN_MILLISECONDS) / ONE_HOUR_IN_MILLISECONDS);
+  const minutes = Math.floor((diffAbs % ONE_HOUR_IN_MILLISECONDS) / ONE_MINUTE_IN_MILLISECONDS);
+  const seconds = Math.floor((diffAbs % ONE_MINUTE_IN_MILLISECONDS) / ONE_SECOND_MILLISECONDS);
   return { days, hours, minutes, seconds };
+}
+
+export function addMilliseconds(date, ms) {
+  return new Date(date.getTime() + ms);
 }

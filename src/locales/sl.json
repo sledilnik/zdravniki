@@ -116,7 +116,8 @@
         "vote": "Glasuj",
         "untilVotingStarts": "do začetka glasovanja",
         "untilVotingEnds": "do konca glasovanja",
-        "aboutSozialMarie": "info o nagradi SozialMarie"
+        "aboutSozialMarie": "info o nagradi SozialMarie",
+        "votingHasEnded": "Glasovanje je končano!"
     },
     "time": {
         "day_one": "dan",

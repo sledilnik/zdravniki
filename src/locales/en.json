@@ -114,7 +114,8 @@
         "vote": "Vote",
         "untilVotingStarts": "until voting starts",
         "untilVotingEnds": "until voting ends",
-        "aboutSozialMarie": "some info about SozialMarie"
+        "aboutSozialMarie": "some info about SozialMarie",
+        "votingHasEnded": "Voting has ended"
     },
     "time": {
         "day_one": "day",

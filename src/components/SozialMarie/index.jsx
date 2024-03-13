@@ -1,52 +1,41 @@
 import useTimer from 'hooks/useTimer';
 import { getTimeDifference } from 'utils';
-import {
-  Alert,
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Snackbar,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Alert, Box, Checkbox, FormControlLabel, Snackbar, Stack, Typography } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState } from 'react';
 import { t } from 'i18next';
-import { SimpleCountDown } from 'components/Shared/CountDown';
+import VotingButton from './VotingButton';
+import { getDevVotingDateRange } from './getDevVotingDateRange';
 
-const isDev = process.env.NODE_ENV === 'development';
+const VOTING_STARTS = '2024-04-09 GMT+0200';
+const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
+
 const now = new Date();
-const addMilliseconds = (date, ms) => new Date(date.getTime() + ms);
-
-const VOTING_STARTS = isDev ? addMilliseconds(now, 5000) : new Date('2024-04-09 GMT+0200');
-const VOTING_ENDS = isDev
-  ? addMilliseconds(now, 10000)
-  : new Date('2024-04-16 23:59:59:999 GMT+0200');
-
-const date = new Date() < VOTING_STARTS ? VOTING_STARTS : VOTING_ENDS;
+const [startDate, endDate] =
+  process.env.NODE_ENV === 'development'
+    ? getDevVotingDateRange(now, 5000, 5000)
+    : [new Date(VOTING_STARTS), new Date(VOTING_ENDS)];
 
 const SozialMarie = function SozialMarie() {
-  const currentDatetime = new Date();
-  const isVoting = currentDatetime >= VOTING_STARTS && currentDatetime <= VOTING_ENDS;
-  const isBeforeVoting = currentDatetime < VOTING_STARTS;
-  const isAfterVoting = currentDatetime > VOTING_ENDS;
+  const currentDate = new Date();
+  const countDownDate = new Date() < startDate ? startDate : endDate;
+  const isVoting = currentDate >= startDate && currentDate <= endDate;
+  const isBefore = currentDate < startDate;
+  const isAfter = currentDate > endDate;
+  const [initialTimeLeft, setInitialTimeLeft] = useState(countDownDate - currentDate);
+  const timeLeft = useTimer(initialTimeLeft);
+  const { days, hours, minutes, seconds } = getTimeDifference(timeLeft);
 
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
-  const isShow = show !== 'no-show' || !isAfterVoting;
+  const isShow = show !== 'no-show' || !isAfter;
   const [open, setOpen] = useState(isShow);
   const [noShowChecked, setNoShowChecked] = useState(!isShow);
-  const [initialTimeLeft, setInitialTimeLeft] = useState(date - currentDatetime);
-  const timeLeft = useTimer(initialTimeLeft);
-
-  const { days, hours, minutes, seconds } = getTimeDifference(timeLeft);
 
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
 
   useEffect(() => {
     if (isVoting) {
-      setInitialTimeLeft(VOTING_ENDS - new Date());
+      setInitialTimeLeft(endDate - new Date());
     }
   }, [isVoting]);
 
@@ -67,34 +56,36 @@ const SozialMarie = function SozialMarie() {
     setNoShowChecked(e.target.checked);
   };
 
-  if (isAfterVoting) {
-    return null;
+  if (isAfter) {
+    setTimeout(() => {
+      const hasItem = !!localStorage.getItem('showSozialMarie');
+      if (hasItem) {
+        localStorage.removeItem('showSozialMarie');
+      }
+      setOpen(false);
+    }, 5000);
   }
+
+  const daysText = days >= 1 ? `${days} ${t('time.day', { count: days })}, ` : '';
+  const hoursText = hours >= 1 ? `${hours} ${t('time.hour', { count: hours })}, ` : '';
+  const minutesText =
+    minutes >= 1
+      ? `${minutes} ${t('time.minute', { count: minutes })} ${sozialMarieTranslations.and} `
+      : '';
 
   return (
     <Stack style={{ marginLeft: 'auto', fontSize: '0.875rem' }}>
-      <Tooltip
-        title={
-          <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <span>
-              {isBeforeVoting ? sozialMarieTranslations.untilVotingStarts : null}
-              {isVoting ? sozialMarieTranslations.untilVotingEnds : null}:
-            </span>
-
-            <SimpleCountDown
-              date={date}
-              days={days}
-              hours={hours}
-              minutes={minutes}
-              seconds={seconds}
-            />
-          </Box>
-        }
-      >
-        <Button type="button" aria-label="vote" onClick={handleClick} color="inherit">
-          {sozialMarieTranslations.vote}!
-        </Button>
-      </Tooltip>
+      <VotingButton
+        date={countDownDate}
+        handleClick={handleClick}
+        isBeforeVoting={isBefore}
+        isVoting={isVoting}
+        isAfterVoting={isAfter}
+        days={days}
+        hours={hours}
+        minutes={minutes}
+        seconds={seconds}
+      />
 
       <Snackbar
         anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
@@ -115,16 +106,27 @@ const SozialMarie = function SozialMarie() {
             <p>{sozialMarieTranslations.aboutSozialMarie}</p>
           </Box>
           <p>
-            {sozialMarieTranslations.votingFor}{' '}
-            {isBeforeVoting ? sozialMarieTranslations.start : null}
-            {isVoting ? sozialMarieTranslations.end : null}:
+            {sozialMarieTranslations.votingFor}
+            {isBefore ? ` ${sozialMarieTranslations.start}` : null}
+            {isVoting ? ` ${sozialMarieTranslations.end}` : null}:
           </p>
-          <Box display="flex" justifyContent="center" paddingBlock="0.5em" fontSize="1.5rem">
-            <time dateTime={date}>
-              {days} {t('time.day', { count: days })}, {hours} {t('time.hour', { count: hours })} ,{' '}
-              {minutes} {t('time.minute', { count: minutes })} {sozialMarieTranslations.and}{' '}
-              {seconds} {t('time.second', { count: seconds })}.
-            </time>
+          <Box
+            display="flex"
+            justifyContent="center"
+            paddingBlock="0.5em"
+            fontSize="1.5rem"
+            color={isVoting ? '#81b130' : '#dc3545'}
+          >
+            {isAfter ? (
+              `${sozialMarieTranslations.votingHasEnded}!`
+            ) : (
+              <time dateTime={countDownDate}>
+                {daysText}
+                {hoursText}
+                {minutesText}
+                {seconds} {t('time.second', { count: seconds })}
+              </time>
+            )}
           </Box>
           <p>
             {sozialMarieTranslations.clicking}{' '}
