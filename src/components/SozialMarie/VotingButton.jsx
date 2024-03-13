@@ -2,6 +2,7 @@ import { Box, Button, Tooltip } from '@mui/material';
 import { SimpleCountDown } from 'components/Shared/CountDown';
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
+import { getTimeDifference } from 'utils';
 
 const VotingButton = function VotingButton({
   date,
@@ -9,12 +10,12 @@ const VotingButton = function VotingButton({
   isBeforeVoting,
   isVoting,
   isAfterVoting,
-  days,
-  hours,
-  minutes,
-  seconds,
+  time,
 }) {
+  const { days, hours, minutes, seconds } = getTimeDifference(time);
+
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
+
   return (
     <Tooltip
       title={
@@ -50,10 +51,7 @@ VotingButton.propTypes = {
   isBeforeVoting: PropTypes.bool.isRequired,
   isVoting: PropTypes.bool.isRequired,
   isAfterVoting: PropTypes.bool.isRequired,
-  days: PropTypes.number.isRequired,
-  hours: PropTypes.number.isRequired,
-  minutes: PropTypes.number.isRequired,
-  seconds: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
 };
 
 export default VotingButton;

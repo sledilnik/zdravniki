@@ -1,5 +1,4 @@
 import useTimer from 'hooks/useTimer';
-import { getTimeDifference } from 'utils';
 import { Alert, Box, Snackbar, Stack, Typography } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState } from 'react';
@@ -28,7 +27,6 @@ const SozialMarie = function SozialMarie() {
   const isAfter = currentDate > endDate;
   const [initialTimeLeft, setInitialTimeLeft] = useState(countDownDate - currentDate);
   const timeLeft = useTimer(initialTimeLeft);
-  const { days, hours, minutes, seconds } = getTimeDifference(timeLeft);
 
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
   const isShow = show !== 'no-show' || !isAfter;
@@ -78,10 +76,7 @@ const SozialMarie = function SozialMarie() {
         isBeforeVoting={isBefore}
         isVoting={isVoting}
         isAfterVoting={isAfter}
-        days={days}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
+        time={timeLeft}
       />
 
       <Snackbar
