@@ -7,14 +7,11 @@ import { useEffect, useRef, useState } from 'react';
  * @returns {number} - The time left in milliseconds.
  */
 export default function useTimer(initialTime) {
-  const initialTimeRef = useRef(initialTime);
-  const [timeLeft, setTimeLeft] = useState(initialTimeRef.current);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
 
   const intervalIdRef = useRef(null);
-  const resetValue = initialTime.current
-    ? initialTimeRef.current - Math.floor(initialTime / 1000) * 1000
-    : 0;
-  const isTimeLeftValid = timeLeft >= -resetValue;
+
+  const isTimeLeftValid = timeLeft >= 0;
 
   useEffect(() => {
     let intervalId = intervalIdRef.current;
@@ -32,9 +29,8 @@ export default function useTimer(initialTime) {
     };
   }, [isTimeLeftValid]);
 
-  if (initialTimeRef.current !== initialTime && timeLeft <= resetValue) {
-    initialTimeRef.current = initialTime;
-    setTimeLeft(initialTimeRef.current);
+  if (timeLeft < 0) {
+    clearInterval(intervalIdRef.current);
   }
 
   return [timeLeft, setTimeLeft];
