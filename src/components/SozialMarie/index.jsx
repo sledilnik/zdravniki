@@ -4,23 +4,13 @@ import { useLocalStorage } from 'hooks';
 import { useEffect, useState, useCallback } from 'react';
 import { t } from 'i18next';
 import VotingButton from './VotingButton';
-import { getDevVotingDateRange } from './getDevVotingDateRange';
 import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
 import AlertFooterContent from './AlertFooterContent';
 import AlertContentHeader from './AlertHeaderContent';
+import { startDate, endDate } from './date-range';
 
-const ONE_DAY = 24 * 60 * 60 * 1000;
-
-const VOTING_STARTS = '2024-04-09 GMT+0200';
-const VOTING_ENDS = '2024-04-17 GMT+0200';
 const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
-
-const now = new Date(new Date().setMilliseconds(0));
-export const [startDate, endDate] =
-  process.env.NODE_ENV === 'development'
-    ? getDevVotingDateRange(now, 5000, ONE_DAY / 24 / 360)
-    : [new Date(VOTING_STARTS), new Date(VOTING_ENDS)];
 
 const SozialMarie = function SozialMarie() {
   const currentDate = new Date();
@@ -35,6 +25,8 @@ const SozialMarie = function SozialMarie() {
   const isShow = show !== 'no-show' || !isAfter;
   const [open, setOpen] = useState(isShow);
   const [noShowChecked, setNoShowChecked] = useState(!isShow);
+
+  const [votingExpired, setVotingExpired] = useState(false);
 
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
 
@@ -54,6 +46,21 @@ const SozialMarie = function SozialMarie() {
         }
         setOpen(false);
       }, 5000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isAfter]);
+
+  useEffect(() => {
+    let timeoutId;
+    if (isAfter) {
+      timeoutId = setTimeout(() => {
+        setVotingExpired(true);
+      }, 6000);
     }
 
     return () => {
@@ -83,6 +90,10 @@ const SozialMarie = function SozialMarie() {
     [updateShow],
   );
 
+  if (votingExpired) {
+    return null;
+  }
+
   return (
     <Stack fontSize="0.875rem" marginLeft="auto">
       <VotingButton
@@ -95,7 +106,7 @@ const SozialMarie = function SozialMarie() {
       />
 
       <Snackbar
-        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
         open={open}
         onClose={handleClose}
       >
@@ -128,11 +139,15 @@ const SozialMarie = function SozialMarie() {
               <AlertCountDown date={countDownDate} time={timeLeft} />
             )}
           </Box>
-          <SozialMarieLink href={SOZIAL_MARIE_LINK} />
-          <Divider />
-          <Box component="footer">
-            <AlertFooterContent checked={noShowChecked} handleChecked={handleChecked} />
-          </Box>
+          {isAfter ? null : (
+            <>
+              <SozialMarieLink href={SOZIAL_MARIE_LINK} />
+              <Divider />
+              <Box component="footer">
+                <AlertFooterContent checked={noShowChecked} handleChecked={handleChecked} />
+              </Box>
+            </>
+          )}
         </Alert>
       </Snackbar>
     </Stack>
