@@ -2,8 +2,9 @@ import { getDevVotingDateRange } from './getDevVotingDateRange';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
-const VOTING_STARTS = '2024-04-09 GMT+0200';
-const VOTING_ENDS = '2024-04-17 GMT+0200';
+// Safari and iOS don't support the date format 'YYYY-MM-DD HH:MM GMT+0200' https://www.coditty.com/code/javascript-new-date-not-working-on-ie-and-safari
+const VOTING_STARTS = 'Tue Apr 09 2024 00:00:00 GMT+0200';
+const VOTING_ENDS = 'Wed Apr 17 2024 00:00:00 GMT+0200';
 
 const now = new Date(new Date().setMilliseconds(0));
 const dateRange =
