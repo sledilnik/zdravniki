@@ -29,7 +29,7 @@ const SozialMarie = function SozialMarie() {
   const [timeLeft, setTimeLeft] = useTimer(roundedInitialTime);
 
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
-  const isShow = show !== 'no-show' || !isAfter;
+  const isShow = show !== 'no-show';
   const [open, setOpen] = useState(isShow);
   const [noShowChecked, setNoShowChecked] = useState(!isShow);
 
