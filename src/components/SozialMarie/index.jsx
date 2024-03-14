@@ -1,31 +1,62 @@
 import useTimer from 'hooks/useTimer';
-import { Alert, Box, Snackbar, Stack, Typography } from '@mui/material';
+import { Alert, Box, Divider, Snackbar, Stack, Typography } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState, useCallback } from 'react';
-import { t } from 'i18next';
+import i18n, { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
 import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
 import AlertFooterContent from './AlertFooterContent';
 
+const INTL_LANGS = {
+  en: 'en-GB',
+  de: 'de-DE',
+  sl: 'sl-SI',
+  hr: 'hr-HR',
+  it: 'it-IT',
+  hu: 'hu-HU',
+};
+
+const ONE_DAY = 24 * 60 * 60 * 1000;
+
+function getIntlFormatOptions(dateRangeInMilliseconds) {
+  if (dateRangeInMilliseconds > ONE_DAY) {
+    return {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    };
+  }
+
+  // for dev purposes
+  return {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+}
+
 const VOTING_STARTS = '2024-04-09 GMT+0200';
-const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
+const VOTING_ENDS = '2024-04-17 GMT+0200';
 const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
 
 const now = new Date(new Date().setMilliseconds(0));
 const [startDate, endDate] =
   process.env.NODE_ENV === 'development'
-    ? getDevVotingDateRange(now, 5000, 5000)
+    ? getDevVotingDateRange(now, 5000, ONE_DAY / 24 / 180)
     : [new Date(VOTING_STARTS), new Date(VOTING_ENDS)];
 
 const SozialMarie = function SozialMarie() {
   const currentDate = new Date();
-  const countDownDate = new Date() < startDate ? startDate : endDate;
-  const isVoting = currentDate >= startDate && currentDate <= endDate;
+  const countDownDate = currentDate < startDate ? startDate : endDate;
+  const isVoting = currentDate >= startDate && currentDate < endDate;
   const isBefore = currentDate < startDate;
-  const isAfter = currentDate > endDate;
-  const [timeLeft, setTimeLeft] = useTimer(countDownDate - currentDate);
+  const isAfter = currentDate >= endDate;
+  const roundedInitialTime = Math.floor((countDownDate - currentDate) / 1000) * 1000;
+  const [timeLeft, setTimeLeft] = useTimer(roundedInitialTime);
 
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
   const isShow = show !== 'no-show' || !isAfter;
@@ -36,9 +67,9 @@ const SozialMarie = function SozialMarie() {
 
   useEffect(() => {
     if (isVoting) {
-      setTimeLeft(endDate - new Date());
+      setTimeLeft(Math.floor((endDate - new Date()) / 1000) * 1000);
     }
-  }, [isVoting, setTimeLeft]);
+  }, [isVoting, timeLeft, setTimeLeft]);
 
   const handleClick = useCallback(() => {
     setOpen(true);
@@ -70,8 +101,15 @@ const SozialMarie = function SozialMarie() {
     }, 5000);
   }
 
+  const intlDate = Intl.DateTimeFormat(
+    INTL_LANGS[i18n.language],
+    getIntlFormatOptions(endDate - startDate),
+  );
+
+  const dateRange = intlDate.formatRange(startDate, endDate);
+
   return (
-    <Stack style={{ marginLeft: 'auto', fontSize: '0.875rem' }}>
+    <Stack fontSize="0.875rem" marginLeft="auto">
       <VotingButton
         date={countDownDate}
         handleClick={handleClick}
@@ -93,17 +131,29 @@ const SozialMarie = function SozialMarie() {
           sx={{ backgroundColor: '#f4f8f8' }}
           component="section"
         >
-          <Box component="header" marginBottom="1rem">
-            <Typography component="h2" sx={{ textAlign: 'center', fontWeight: '600' }}>
+          <Box component="header" textAlign="center">
+            <Typography component="h2" fontWeight={600}>
               {sozialMarieTranslations.title}
             </Typography>
-            <p>{sozialMarieTranslations.aboutSozialMarie}</p>
+
+            <Typography
+              component="time"
+              dateTime={`${intlDate.format(startDate)}-${intlDate.format(endDate)}`}
+              fontSize="0.875rem"
+            >
+              {dateRange}
+            </Typography>
           </Box>
-          <p>
+          <Divider />
+          <Box component="p" textAlign="left">
+            {sozialMarieTranslations.aboutSozialMarie}
+          </Box>
+          <Divider />
+          <Box component="p">
             {sozialMarieTranslations.votingFor}
             {isBefore ? ` ${sozialMarieTranslations.start}` : null}
             {isVoting ? ` ${sozialMarieTranslations.end}` : null}:
-          </p>
+          </Box>
           <Box
             display="flex"
             justifyContent="center"
@@ -118,8 +168,8 @@ const SozialMarie = function SozialMarie() {
             )}
           </Box>
           <SozialMarieLink href={SOZIAL_MARIE_LINK} />
-
-          <Box component="footer" marginTop="1rem">
+          <Divider />
+          <Box component="footer">
             <AlertFooterContent checked={noShowChecked} handleChecked={handleChecked} />
           </Box>
         </Alert>
