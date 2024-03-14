@@ -80,7 +80,7 @@ const SozialMarie = function SozialMarie() {
       updateShow(e.target.checked ? 'no-show' : 'show');
       setNoShowChecked(e.target.checked);
     },
-    [updateShow, setNoShowChecked],
+    [updateShow],
   );
 
   return (

@@ -1,6 +1,7 @@
 import { FormControlLabel, Checkbox } from '@mui/material';
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 const AlertFooterContent = function AlertFooter({ checked, handleChecked }) {
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
@@ -27,4 +28,6 @@ AlertFooterContent.propTypes = {
   handleChecked: PropTypes.func.isRequired,
 };
 
-export default AlertFooterContent;
+const areEqual = (prevProps, nextProps) => prevProps.checked === nextProps.checked;
+
+export default memo(AlertFooterContent, areEqual);
