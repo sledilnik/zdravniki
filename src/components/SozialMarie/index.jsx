@@ -10,6 +10,13 @@ import AlertFooterContent from './AlertFooterContent';
 import AlertContentHeader from './AlertHeaderContent';
 import { startDate, endDate } from './date-range';
 
+const DELAY_TO_HIDE_ALERT = 5000;
+const DELAY_TO_HIDE_TRIGGER = 6000;
+
+if (DELAY_TO_HIDE_ALERT > DELAY_TO_HIDE_TRIGGER) {
+  throw new Error('DELAY_TO_HIDE_ALERT should be less than DELAY_TO_HIDE_TRIGGER');
+}
+
 const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
 
 const SozialMarie = function SozialMarie() {
@@ -45,7 +52,7 @@ const SozialMarie = function SozialMarie() {
           localStorage.removeItem('showSozialMarie');
         }
         setOpen(false);
-      }, 5000);
+      }, DELAY_TO_HIDE_ALERT);
     }
 
     return () => {
@@ -60,7 +67,7 @@ const SozialMarie = function SozialMarie() {
     if (isAfter) {
       timeoutId = setTimeout(() => {
         setVotingExpired(true);
-      }, 6000);
+      }, DELAY_TO_HIDE_TRIGGER);
     }
 
     return () => {
@@ -136,7 +143,7 @@ const SozialMarie = function SozialMarie() {
             {isAfter ? (
               `${sozialMarieTranslations.votingHasEnded}!`
             ) : (
-              <AlertCountDown date={countDownDate} time={timeLeft} />
+              <AlertCountDown date={countDownDate} time={timeLeft} variant="simple" />
             )}
           </Box>
           {isAfter ? null : (
