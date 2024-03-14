@@ -2,7 +2,7 @@ import useTimer from 'hooks/useTimer';
 import { Alert, Box, Divider, Snackbar, Stack } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState, useCallback } from 'react';
-import { t } from 'i18next';
+import i18n, { t } from 'i18next';
 import VotingButton from './VotingButton';
 import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
@@ -17,7 +17,66 @@ if (DELAY_TO_HIDE_ALERT > DELAY_TO_HIDE_TRIGGER) {
   throw new Error('DELAY_TO_HIDE_ALERT should be less than DELAY_TO_HIDE_TRIGGER');
 }
 
-const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
+const SOZIAL_MARIE_LINK = `https://www.sozialmarie.org/${i18n.language === 'it' ? 'en' : i18n.language}`;
+
+const LOCAL_STORAGE_KEY = 'showSozialMarie';
+
+/**
+ * @typedef {Object} LocalStorageValues
+ * @property {"first"} first - The value for the 'first' key in local storage.
+ * @property {"show"} show - The value for the 'show' key in local storage.
+ * @property {"remind-me"} remindMe - The value for the 'remind-me' key in local storage.
+ * @property {"no-show"} noShow - The value for the 'no-show' key in local storage.
+ */
+
+/** @type {LocalStorageValues} */
+const LOCAL_STORAGE_VALUES = {
+  first: 'first',
+  show: 'show',
+  remindMe: 'remind-me',
+  noShow: 'no-show',
+};
+
+/**
+ * @typedef {LocalStorageValues[keyof LocalStorageValues]} LocalStorageValue
+ */
+
+/**
+ * Determines the initial value of the "isShow" flag based on the provided value and options.
+ *
+ * Always returns true if the value is "first" or "show".
+ *
+ * Before voting starts, returns false if the value is "remind-me" or "no-show".
+ *
+ * During voting, returns false if the value is "no-show" and true if the value is "remind-me".
+ *
+ * Othervise returns false.
+ *
+ * @param {LocalStorageValue} value - The value to check against.
+ * @param {Object} options - The options object.
+ * @param {boolean} options.isBefore - Indicates if it is before a certain event.
+ * @param {boolean} options.isVoting - Indicates if it is during a voting period.
+ * @returns {boolean} - The initial value of the "isShow" flag.
+ */
+function getInitialIsShow(value, { isBefore, isVoting }) {
+  if ([LOCAL_STORAGE_VALUES.first, LOCAL_STORAGE_VALUES.show].includes(value)) {
+    return true;
+  }
+
+  if (isBefore && [LOCAL_STORAGE_VALUES.remindMe, LOCAL_STORAGE_VALUES.noShow].includes(value)) {
+    return false;
+  }
+
+  if (isVoting && value === LOCAL_STORAGE_VALUES.noShow) {
+    return false;
+  }
+
+  if (isVoting && value === LOCAL_STORAGE_VALUES.remindMe) {
+    return true;
+  }
+
+  return false;
+}
 
 const SozialMarie = function SozialMarie() {
   const currentDate = new Date();
@@ -28,14 +87,18 @@ const SozialMarie = function SozialMarie() {
   const roundedInitialTime = Math.floor((countDownDate - currentDate) / 1000) * 1000;
   const [timeLeft, setTimeLeft] = useTimer(roundedInitialTime);
 
-  const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
-  const isShow = show !== 'no-show';
+  const [localStorageVal, updateLocalstorageVal] = useLocalStorage(LOCAL_STORAGE_KEY, 'first');
+  const isShow = getInitialIsShow(localStorageVal, { isBefore, isVoting });
   const [open, setOpen] = useState(isShow);
   const [noShowChecked, setNoShowChecked] = useState(!isShow);
 
   const [votingExpired, setVotingExpired] = useState(false);
 
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
+
+  if (isVoting && localStorageVal === LOCAL_STORAGE_VALUES.remindMe) {
+    updateLocalstorageVal(LOCAL_STORAGE_VALUES.noShow);
+  }
 
   useEffect(() => {
     if (isVoting) {
@@ -47,9 +110,9 @@ const SozialMarie = function SozialMarie() {
     let timeoutId;
     if (isAfter) {
       timeoutId = setTimeout(() => {
-        const hasItem = !!localStorage.getItem('showSozialMarie');
+        const hasItem = !!localStorage.getItem(LOCAL_STORAGE_KEY);
         if (hasItem) {
-          localStorage.removeItem('showSozialMarie');
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
         }
         setOpen(false);
       }, DELAY_TO_HIDE_ALERT);
@@ -91,10 +154,15 @@ const SozialMarie = function SozialMarie() {
 
   const handleChecked = useCallback(
     e => {
-      updateShow(e.target.checked ? 'no-show' : 'show');
+      const localstorageCheckedValue = isBefore
+        ? LOCAL_STORAGE_VALUES.remindMe
+        : LOCAL_STORAGE_VALUES.noShow;
+      updateLocalstorageVal(
+        e.target.checked ? localstorageCheckedValue : LOCAL_STORAGE_VALUES.show,
+      );
       setNoShowChecked(e.target.checked);
     },
-    [updateShow],
+    [updateLocalstorageVal, isBefore],
   );
 
   if (votingExpired) {
@@ -151,7 +219,11 @@ const SozialMarie = function SozialMarie() {
               <SozialMarieLink href={SOZIAL_MARIE_LINK} />
               <Divider />
               <Box component="footer">
-                <AlertFooterContent checked={noShowChecked} handleChecked={handleChecked} />
+                <AlertFooterContent
+                  checked={noShowChecked}
+                  handleChecked={handleChecked}
+                  isBefore={isBefore}
+                />
               </Box>
             </>
           )}
