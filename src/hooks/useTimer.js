@@ -11,8 +11,10 @@ export default function useTimer(initialTime) {
   const [timeLeft, setTimeLeft] = useState(initialTimeRef.current);
 
   const intervalIdRef = useRef(null);
-  const resetValue = initialTime - Math.floor(initialTime / 1000) * 1000;
-  const isTimeLeftValid = timeLeft > -resetValue;
+  const resetValue = initialTime.current
+    ? initialTimeRef.current - Math.floor(initialTime / 1000) * 1000
+    : 0;
+  const isTimeLeftValid = timeLeft >= -resetValue;
 
   useEffect(() => {
     let intervalId = intervalIdRef.current;
@@ -32,9 +34,8 @@ export default function useTimer(initialTime) {
 
   if (initialTimeRef.current !== initialTime && timeLeft <= resetValue) {
     initialTimeRef.current = initialTime;
-    setTimeLeft(initialTime);
-    return timeLeft;
+    setTimeLeft(initialTimeRef.current);
   }
 
-  return timeLeft;
+  return [timeLeft, setTimeLeft];
 }

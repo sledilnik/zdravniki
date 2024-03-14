@@ -1,7 +1,7 @@
 import useTimer from 'hooks/useTimer';
 import { Alert, Box, Snackbar, Stack, Typography } from '@mui/material';
 import { useLocalStorage } from 'hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
@@ -13,7 +13,7 @@ const VOTING_STARTS = '2024-04-09 GMT+0200';
 const VOTING_ENDS = '2024-04-16 23:59:59:999 GMT+0200';
 const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
 
-const now = new Date();
+const now = new Date(new Date().setMilliseconds(0));
 const [startDate, endDate] =
   process.env.NODE_ENV === 'development'
     ? getDevVotingDateRange(now, 5000, 5000)
@@ -25,8 +25,7 @@ const SozialMarie = function SozialMarie() {
   const isVoting = currentDate >= startDate && currentDate <= endDate;
   const isBefore = currentDate < startDate;
   const isAfter = currentDate > endDate;
-  const [initialTimeLeft, setInitialTimeLeft] = useState(countDownDate - currentDate);
-  const timeLeft = useTimer(initialTimeLeft);
+  const [timeLeft, setTimeLeft] = useTimer(countDownDate - currentDate);
 
   const [show, updateShow] = useLocalStorage('showSozialMarie', 'first');
   const isShow = show !== 'no-show' || !isAfter;
@@ -37,13 +36,13 @@ const SozialMarie = function SozialMarie() {
 
   useEffect(() => {
     if (isVoting) {
-      setInitialTimeLeft(endDate - new Date());
+      setTimeLeft(endDate - new Date());
     }
-  }, [isVoting]);
+  }, [isVoting, setTimeLeft]);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setOpen(true);
-  };
+  }, []);
 
   const handleClose = (_event, reason) => {
     if (reason === 'clickaway') {
@@ -53,10 +52,13 @@ const SozialMarie = function SozialMarie() {
     setOpen(false);
   };
 
-  const handleChecked = e => {
-    updateShow(e.target.checked ? 'no-show' : 'show');
-    setNoShowChecked(e.target.checked);
-  };
+  const handleChecked = useCallback(
+    e => {
+      updateShow(e.target.checked ? 'no-show' : 'show');
+      setNoShowChecked(e.target.checked);
+    },
+    [updateShow, setNoShowChecked],
+  );
 
   if (isAfter) {
     setTimeout(() => {
