@@ -1,52 +1,25 @@
 import useTimer from 'hooks/useTimer';
-import { Alert, Box, Divider, Snackbar, Stack, Typography } from '@mui/material';
+import { Alert, Box, Divider, Snackbar, Stack } from '@mui/material';
 import { useLocalStorage } from 'hooks';
 import { useEffect, useState, useCallback } from 'react';
-import i18n, { t } from 'i18next';
+import { t } from 'i18next';
 import VotingButton from './VotingButton';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
 import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
 import AlertFooterContent from './AlertFooterContent';
-
-const INTL_LANGS = {
-  en: 'en-GB',
-  de: 'de-DE',
-  sl: 'sl-SI',
-  hr: 'hr-HR',
-  it: 'it-IT',
-  hu: 'hu-HU',
-};
+import AlertContentHeader from './AlertHeaderContent';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
-
-function getIntlFormatOptions(dateRangeInMilliseconds) {
-  if (dateRangeInMilliseconds > ONE_DAY) {
-    return {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    };
-  }
-
-  // for dev purposes
-  return {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  };
-}
 
 const VOTING_STARTS = '2024-04-09 GMT+0200';
 const VOTING_ENDS = '2024-04-17 GMT+0200';
 const SOZIAL_MARIE_LINK = 'https://www.sozialmarie.org/sl';
 
 const now = new Date(new Date().setMilliseconds(0));
-const [startDate, endDate] =
+export const [startDate, endDate] =
   process.env.NODE_ENV === 'development'
-    ? getDevVotingDateRange(now, 5000, ONE_DAY / 24 / 180)
+    ? getDevVotingDateRange(now, 5000, ONE_DAY / 24 / 360)
     : [new Date(VOTING_STARTS), new Date(VOTING_ENDS)];
 
 const SozialMarie = function SozialMarie() {
@@ -71,6 +44,25 @@ const SozialMarie = function SozialMarie() {
     }
   }, [isVoting, timeLeft, setTimeLeft]);
 
+  useEffect(() => {
+    let timeoutId;
+    if (isAfter) {
+      timeoutId = setTimeout(() => {
+        const hasItem = !!localStorage.getItem('showSozialMarie');
+        if (hasItem) {
+          localStorage.removeItem('showSozialMarie');
+        }
+        setOpen(false);
+      }, 5000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isAfter]);
+
   const handleClick = useCallback(() => {
     setOpen(true);
   }, []);
@@ -90,23 +82,6 @@ const SozialMarie = function SozialMarie() {
     },
     [updateShow, setNoShowChecked],
   );
-
-  if (isAfter) {
-    setTimeout(() => {
-      const hasItem = !!localStorage.getItem('showSozialMarie');
-      if (hasItem) {
-        localStorage.removeItem('showSozialMarie');
-      }
-      setOpen(false);
-    }, 5000);
-  }
-
-  const intlDate = Intl.DateTimeFormat(
-    INTL_LANGS[i18n.language],
-    getIntlFormatOptions(endDate - startDate),
-  );
-
-  const dateRange = intlDate.formatRange(startDate, endDate);
 
   return (
     <Stack fontSize="0.875rem" marginLeft="auto">
@@ -132,21 +107,7 @@ const SozialMarie = function SozialMarie() {
           component="section"
         >
           <Box component="header" textAlign="center">
-            <Typography component="h2" fontWeight={600}>
-              {sozialMarieTranslations.title}
-            </Typography>
-
-            <Typography
-              component="time"
-              dateTime={`${intlDate.format(startDate)}-${intlDate.format(endDate)}`}
-              fontSize="0.875rem"
-            >
-              {dateRange}
-            </Typography>
-          </Box>
-          <Divider />
-          <Box component="p" textAlign="left">
-            {sozialMarieTranslations.aboutSozialMarie}
+            <AlertContentHeader endDate={endDate} startDate={startDate} />
           </Box>
           <Divider />
           <Box component="p">
