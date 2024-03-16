@@ -80,6 +80,10 @@ export function createDoctor(doctor, inst) {
     const lngTranslate = {
       sl: 'sl-SL',
       en: 'en-GB',
+      de: 'de-DE',
+      it: 'it-IT',
+      hr: 'hr-HR',
+      hu: 'hu-HU',
     };
 
     return new Intl.DateTimeFormat(lngTranslate[lng]).format(new Date(dateOverride));

@@ -204,7 +204,7 @@ const PageInfo = function PageInfo({ doctor }) {
               leaveTouchDelay={3000}
               enterTouchDelay={50}
             >
-              <Styled.PageInfo.Override direction="row" alignItems="center" spacing={1}>
+              <Styled.PageInfo.Override direction="row" alignItems="center" gap="0.25rem">
                 <Icons.Icon name="Edit" /> {doctor.formatUpdatedAt(lng)}
               </Styled.PageInfo.Override>
             </Tooltip>
