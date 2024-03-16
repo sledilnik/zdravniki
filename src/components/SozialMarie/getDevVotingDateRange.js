@@ -1,6 +1,11 @@
 import { addMilliseconds } from 'utils';
 
-export function getDevVotingDateRange(now = new Date(), startDelay = 5000, addToEndDelay = 5000) {
+export function getDevVotingDateRange(
+  now = new Date(),
+  startDelay = 5000,
+  addToEndDelay = 5000,
+  doNotShowBeforeDelay = 5000,
+) {
   if (!(now instanceof Date)) {
     throw new TypeError('The now parameter must be a Date object.');
   }
@@ -12,9 +17,9 @@ export function getDevVotingDateRange(now = new Date(), startDelay = 5000, addTo
   if (typeof addToEndDelay !== 'number' || addToEndDelay < 0) {
     throw new TypeError('The endDelay parameter must be a non-negative number.');
   }
+  const noShow = addMilliseconds(now, doNotShowBeforeDelay);
+  const starts = addMilliseconds(noShow, startDelay);
+  const ends = addMilliseconds(starts, addToEndDelay);
 
-  const starts = addMilliseconds(now, startDelay);
-  const ends = addMilliseconds(now, startDelay + addToEndDelay);
-
-  return [starts, ends];
+  return [starts, ends, noShow];
 }

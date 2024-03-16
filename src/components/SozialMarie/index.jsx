@@ -1,14 +1,14 @@
 import useTimer from 'hooks/useTimer';
 import { Alert, Box, Divider, Snackbar, Stack } from '@mui/material';
 import { useLocalStorage } from 'hooks';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import i18n, { t } from 'i18next';
 import VotingButton from './VotingButton';
 import AlertCountDown from './AlertCountDown';
 import SozialMarieLink from './SozialMarieLink';
 import AlertFooterContent from './AlertFooterContent';
 import AlertContentHeader from './AlertHeaderContent';
-import { startDate, endDate } from './date-range';
+import { startDate, endDate, doNotShowBefore } from './date-range';
 import { LOCAL_STORAGE_KEY, LOCAL_STORAGE_VALUES, getInitialIsShow } from './localStorage';
 
 const DELAY_TO_HIDE_ALERT = 5000;
@@ -20,7 +20,7 @@ if (DELAY_TO_HIDE_ALERT > DELAY_TO_HIDE_TRIGGER) {
 
 const SOZIAL_MARIE_LINK = `https://www.sozialmarie.org/${i18n.language === 'it' ? 'en' : i18n.language}`;
 
-const SozialMarie = function SozialMarie() {
+const SozialMarieBase = function SozialMarieBase() {
   const currentDate = new Date();
   const countDownDate = currentDate < startDate ? startDate : endDate;
   const isVoting = currentDate >= startDate && currentDate < endDate;
@@ -173,6 +173,35 @@ const SozialMarie = function SozialMarie() {
       </Snackbar>
     </Stack>
   );
+};
+
+const envRespectDates = process.env?.REACT_APP_SM_SHOW_TRIGGER_BUTTON_IMMEDIATELY;
+const donNotRespectDates = envRespectDates ? JSON.parse(envRespectDates) : false;
+
+const SozialMarie = function SozialMarie() {
+  const now = new Date();
+
+  const [showSozialMarie, setShowSozialMarie] = useState(
+    (doNotShowBefore < now && now < endDate) || Boolean(donNotRespectDates),
+  );
+
+  const timeoutIdRef = useRef();
+
+  useEffect(() => {
+    const timeoutId = timeoutIdRef?.current;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    if (!showSozialMarie) {
+      timeoutIdRef.current = setTimeout(() => {
+        setShowSozialMarie(true);
+      }, doNotShowBefore - new Date());
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showSozialMarie]);
+  return showSozialMarie ? <SozialMarieBase /> : null;
 };
 
 export default SozialMarie;
