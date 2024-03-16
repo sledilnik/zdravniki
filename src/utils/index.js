@@ -1,6 +1,13 @@
 import L from 'leaflet';
 import { v4 as uuidv4 } from 'uuid';
 
+import {
+  ONE_DAY_IN_MILLISECONDS,
+  ONE_HOUR_IN_MILLISECONDS,
+  ONE_MINUTE_IN_MILLISECONDS,
+  ONE_SECOND_MILLISECONDS,
+} from 'const/time';
+
 function normalize(value) {
   // Replace all non ASCII chars and replace them with closest equivalent (č => c)
   return value
@@ -74,11 +81,6 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     );
   });
 }
-
-const ONE_DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
-const ONE_HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
-const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000;
-const ONE_SECOND_MILLISECONDS = 1000;
 
 /**
  * @typedef {Object} TimeDifference

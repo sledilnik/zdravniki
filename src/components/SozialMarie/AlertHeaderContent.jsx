@@ -3,6 +3,8 @@ import i18n, { t } from 'i18next';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 
+import { ONE_DAY_IN_MILLISECONDS } from 'const/time';
+
 const INTL_LANGS = {
   en: 'en-GB',
   de: 'de-DE',
@@ -12,10 +14,8 @@ const INTL_LANGS = {
   hu: 'hu-HU',
 };
 
-const ONE_DAY = 24 * 60 * 60 * 1000;
-
 function getIntlFormatOptions(dateRangeInMilliseconds) {
-  if (dateRangeInMilliseconds > ONE_DAY) {
+  if (dateRangeInMilliseconds > ONE_DAY_IN_MILLISECONDS) {
     return {
       year: 'numeric',
       month: 'numeric',
