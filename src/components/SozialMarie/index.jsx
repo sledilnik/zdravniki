@@ -153,7 +153,7 @@ const SozialMarie = function SozialMarie() {
             {isAfter ? (
               `${sozialMarieTranslations.votingHasEnded}!`
             ) : (
-              <AlertCountDown date={countDownDate} time={timeLeft} variant="simple" />
+              <AlertCountDown time={timeLeft} variant="simple" />
             )}
           </Box>
           {isAfter ? null : (
