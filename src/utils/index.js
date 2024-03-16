@@ -104,6 +104,31 @@ export function getTimeDifference(diff) {
   return { days, hours, minutes, seconds };
 }
 
+/**
+ * Returns a string representing the time duration for datetime attr in time html tag.
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+ * @see https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-duration-string
+ *
+ * @param {Object} duration - The duration object.
+ * @param {number} duration.days - The number of days.
+ * @param {number} duration.hours - The number of hours.
+ * @param {number} duration.minutes - The number of minutes.
+ * @param {number} duration.seconds - The number of seconds.
+ * @returns {string} The time duration in ISO 8601 format.
+ */
+export function getTimeDurationAttrValue({ days, hours, minutes, seconds }) {
+  if (days > 0) {
+    return `P${days}DT${hours}H${minutes}M${seconds}S`;
+  }
+  if (hours > 0) {
+    return `PT${hours}H${minutes}M${seconds}S`;
+  }
+  if (minutes > 0) {
+    return `PT${minutes}M${seconds}S`;
+  }
+  return `PT${seconds}S`;
+}
+
 export function addMilliseconds(date, ms) {
   return new Date(date.getTime() + ms);
 }

@@ -6,9 +6,7 @@ import { getTimeDifference } from 'utils';
 const AlertCountDown = function AlertCountDown({ date, time, variant = 'simple' }) {
   const { days, hours, minutes, seconds } = getTimeDifference(time);
   if (variant === 'simple') {
-    return (
-      <SimpleCountDown date={date} days={days} hours={hours} minutes={minutes} seconds={seconds} />
-    );
+    return <SimpleCountDown days={days} hours={hours} minutes={minutes} seconds={seconds} />;
   }
 
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
