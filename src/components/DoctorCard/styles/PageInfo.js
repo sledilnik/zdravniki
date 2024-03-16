@@ -122,7 +122,6 @@ export const Override = styled(Stack)(({ theme }) => ({
   borderRadius: '5px',
   padding: '5px 8px',
   svg: {
-    margin: '0 5px 0 0',
     opacity: '0.25',
   },
 }));
