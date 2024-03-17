@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import i18n, { t } from 'i18next';
+import { t } from 'i18next';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
 
@@ -33,12 +33,9 @@ function getIntlFormatOptions(dateRangeInMilliseconds) {
   };
 }
 
-const AlertContentHeader = function AlertContentHeader({ endDate, startDate }) {
+const AlertContentHeader = function AlertContentHeader({ endDate, startDate, lang }) {
   const sozialMarieTranslations = t('sozialMarie', { returnObjects: true });
-  const intlDate = Intl.DateTimeFormat(
-    INTL_LANGS[i18n.language],
-    getIntlFormatOptions(endDate - startDate),
-  );
+  const intlDate = Intl.DateTimeFormat(INTL_LANGS[lang], getIntlFormatOptions(endDate - startDate));
 
   const dateRange = intlDate.formatRange(startDate, endDate);
 
@@ -65,7 +62,9 @@ const AlertContentHeader = function AlertContentHeader({ endDate, startDate }) {
 AlertContentHeader.propTypes = {
   endDate: PropTypes.instanceOf(Date).isRequired,
   startDate: PropTypes.instanceOf(Date).isRequired,
+  lang: PropTypes.string.isRequired,
 };
 
-const areEqual = (prev, next) => prev.endDate === next.endDate && prev.startDate === next.startDate;
+const areEqual = (prev, next) =>
+  prev.endDate === next.endDate && prev.startDate === next.startDate && prev.lang === next.lang;
 export default memo(AlertContentHeader, areEqual);

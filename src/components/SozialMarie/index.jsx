@@ -135,7 +135,7 @@ const SozialMarieBase = function SozialMarieBase() {
           component="section"
         >
           <Box component="header" textAlign="center">
-            <AlertContentHeader endDate={endDate} startDate={startDate} />
+            <AlertContentHeader endDate={endDate} startDate={startDate} lang={i18n.language} />
           </Box>
           <Divider />
           <Box component="p">
