@@ -165,6 +165,7 @@ const SozialMarieBase = function SozialMarieBase() {
                   checked={noShowChecked}
                   handleChecked={handleChecked}
                   isBefore={isBefore}
+                  lang={i18n.language}
                 />
               </Box>
             </>
