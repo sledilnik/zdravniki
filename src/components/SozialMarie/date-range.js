@@ -2,8 +2,8 @@ import { ONE_SECOND_MILLISECONDS } from '../../const/time';
 import { getDevVotingDateRange } from './getDevVotingDateRange';
 
 // Safari and iOS don't support the date format 'YYYY-MM-DD HH:MM GMT+0200' https://www.coditty.com/code/javascript-new-date-not-working-on-ie-and-safari
-const SM_VOTING_STARTS = 'Tue Apr 09 2024 00:00:00 GMT+0200';
-const SM_VOTING_ENDS = 'Wed Apr 17 2024 00:00:00 GMT+0200';
+const SM_VOTING_STARTS = 'Tue Apr 08 2024 08:00:00 GMT+0200';
+const SM_VOTING_ENDS = 'Wed Apr 15 2024 23:55:00 GMT+0200';
 const SM_DO_NOT_SHOW_BEFORE = 'Tue Apr 02 2024 00:00:00 GMT+0200';
 
 const delayToVotingStart = ONE_SECOND_MILLISECONDS * 5;
