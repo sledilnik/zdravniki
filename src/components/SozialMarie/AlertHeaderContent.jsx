@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
@@ -54,9 +54,6 @@ const AlertContentHeader = function AlertContentHeader({ endDate, startDate, lan
       >
         {dateRange}
       </Typography>
-      <Box component="p" textAlign="left">
-        {sozialMarieTranslations.aboutSozialMarie}
-      </Box>
     </>
   );
 };
