@@ -18,9 +18,8 @@ if (DELAY_TO_HIDE_ALERT > DELAY_TO_HIDE_TRIGGER) {
   throw new Error('DELAY_TO_HIDE_ALERT should be less than DELAY_TO_HIDE_TRIGGER');
 }
 
-const SOZIAL_MARIE_LINK = `https://www.sozialmarie.org/${i18n.language === 'it' ? 'en' : i18n.language}/projects/9280/`;
-
 const SozialMarieBase = function SozialMarieBase() {
+  const SOZIAL_MARIE_LINK = `https://www.sozialmarie.org/${i18n.language === 'it' ? 'en' : i18n.language}/projects/9280/`;
   const currentDate = new Date();
   const countDownDate = currentDate < startDate ? startDate : endDate;
   const isVoting = currentDate >= startDate && currentDate < endDate;
