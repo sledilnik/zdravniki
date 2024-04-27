@@ -1,4 +1,0 @@
-export const ONE_DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
-export const ONE_HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
-export const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000;
-export const ONE_SECOND_MILLISECONDS = 1000;

@@ -26,14 +26,6 @@ module.exports = {
 
     // @TODO: These should be turned "ON" one by one
     'react/jsx-props-no-spreading': 'warn',
-    'no-unused-vars': [
-      'error', // or "error"
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-        caughtErrorsIgnorePattern: '^_',
-      },
-    ],
   },
   settings: {
     'import/resolver': {
