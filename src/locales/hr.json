@@ -12,7 +12,7 @@
         "support": "Podrška!",
         "menu": "Izbornik",
         "about": "O projektu",
-        "faq": "Pojašnjenja",
+        "faq": "ČPP",
         "home": "Imenik"
     },
     "all": "svi",
@@ -31,19 +31,19 @@
             "address": "adresa",
             "website": "web-stranica",
             "phone": "telefon",
-            "email": "e-pošta",
-            "orderform": "poveznica na stranicu za naručivanje",
+            "email": "e-mail adresa",
+            "orderform": "poveznica na stranicu naruđbe",
             "availability": "dostupnost",
             "note": "bilješka"
         },
-        "send": "Šalji",
+        "send": "Pošalji",
         "title": "Prijavi grešku",
-        "tooltip": "Prijavi grešku u podacima o doktoru",
-        "text": "Prijavi grešku u podacima o doktoru i dodaj pravilne podatke ili bilješke:",
+        "tooltip": "Prijavi grešku u podacima liječnika",
+        "text": "Prijavi grešku u podacima liječnika i dodaj ispravne podatke ili bilješke:",
         "cancel": "Otkaži",
         "reportReceived": "Hvala vam! Pregledat ćemo podatke.",
         "reset": "Poništi",
-        "reportError": "Prijava pogreške nije uspjela. Molimo pokušajte ponovo kasnije.",
+        "reportError": "Prijava pogreške nije uspjela. Pokušajte ponovo kasnije.",
         "reportNoChange": "Podaci nisu mijenjani",
         "confirmation": {
             "title": "Potvrdi",
@@ -73,27 +73,27 @@
     "copied": "Kopirano!",
     "backToHome": "Nazad na imenik",
     "faq": {
-        "title": "Često postavljana pitanja i odgovori",
-        "description": "U slučaju da vam je potrebna hitna medicinska pomoć trebate kontaktirati hitnu pomoć ili nazvati 112.",
+        "title": "Često postavljena pitanja",
+        "description": "U slučaju da trebate hitnu medicinsku pomoć kontaktirajte hitnu pomoć ili nazovite 112.",
         "glossary": "Rječnik"
     },
     "pageNotFound": {
         "somethingWentWrong": "ups... nešto je pošlo po zlu :(",
-        "back": "Nazad",
+        "back": "Natrag",
         "imageDescription": "liječnik koji sliježe ramenima"
     },
     "SEO": {
         "title": {
-            "home": "Doktori - Sledilnik",
+            "home": "Liječnici – Sledilnik",
             "notFound": "404: stranica nije pronađena",
             "about": "O projektu",
-            "faq": "Objašnjenja"
+            "faq": "ČPP"
         }
     },
     "error": {
         "title": "Nešto je pošlo po zlu"
     },
-    "orderform": "naručivanje",
+    "orderform": "dogovori termin",
     "totalResults_one": "{{count}} pogodak",
     "totalResults_few": "{{count}} pogotka",
     "totalResults_other": "{{count}} pogodaka",
