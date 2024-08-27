@@ -64,7 +64,7 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "install-peers": "^1.0.4",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "webpack-bundle-analyzer": "^4.10.2"
   },
   "engines": {
