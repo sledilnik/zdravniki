@@ -7313,10 +7313,10 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
-markdown-to-jsx@^7.4.1:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.4.1.tgz#1ed6a60f8f9cd944bec39d9923fbbc8d3d60dcb9"
-  integrity sha512-GbrbkTnHp9u6+HqbPRFJbObi369AgJNXi/sGqq5HRsoZW063xR1XDCaConqq+whfEIAlzB1YPnOgsPc7B7bc/A==
+markdown-to-jsx@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.5.0.tgz#42ece0c71e842560a7d8bd9f81e7a34515c72150"
+  integrity sha512-RrBNcMHiFPcz/iqIj0n3wclzHXjwS7mzjBNWecKKVhNTIxQepIix6Il/wZCn2Cg5Y1ow2Qi84+eJrryFRWBEWw==
 
 mdn-data@2.0.14:
   version "2.0.14"
