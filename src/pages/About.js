@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { t } from 'i18next';
 
-import enAbout from 'content/en/about.md';
-import slAbout from 'content/sl/about.md';
-import * as SEO from 'components/SEO';
+import enAbout from '@/content/en/about.md';
+import slAbout from '@/content/sl/about.md';
+import * as SEO from '@/components/SEO';
 import * as Styled from './styles/Markdown';
 import FooterInfoCard from '../components/Shared/FooterInfo';
 

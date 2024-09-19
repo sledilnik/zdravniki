@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { CardContent, Stack, Typography } from '@mui/material';
 
-import { useLeafletContext } from 'context/leafletContext';
+import { useLeafletContext } from '@/context/leafletContext';
 
 import PropTypes from 'prop-types';
 import DoctorActions from './DoctorActions';
