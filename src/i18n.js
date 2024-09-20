@@ -19,7 +19,7 @@ export const languages = [
 
 export const supportedLanguages = languages.map(value => value.code);
 
-const lng = import.meta.VITE_REACT_APP_DEFAULT_LANGUAGE;
+const lng = import.meta.env.VITE_REACT_APP_DEFAULT_LANGUAGE;
 
 i18next
   // .use(Backend) // load translations using http (default public/assets/locals/en/translations)

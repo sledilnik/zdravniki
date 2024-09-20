@@ -39,7 +39,7 @@ IsWrongLanguage.propTypes = {
 const Router = function Router() {
   const { pathname } = useLocation();
 
-  const defaultLanguage = import.meta.VITE_REACT_APP_DEFAULT_LANGUAGE;
+  const defaultLanguage = import.meta.env.VITE_REACT_APP_DEFAULT_LANGUAGE;
   const currentLanguage = i18n.language ?? defaultLanguage;
 
   const pathnameLocale = pathname.split('/')?.[1].toLocaleLowerCase();

@@ -159,7 +159,7 @@ const ReportError = function ReportError({
     setOpenDialog(false);
   };
 
-  const defaultUrl = import.meta.VITE_REACT_APP_URL + path;
+  const defaultUrl = import.meta.env.VITE_REACT_APP_URL + path;
 
   return (
     <>

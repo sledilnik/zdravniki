@@ -13,7 +13,7 @@ const App = function App() {
   const theme = createTheme(THEME);
   const { pathname } = useLocation();
 
-  const defaultLanguage = import.meta.VITE_REACT_APP_DEFAULT_LANGUAGE;
+  const defaultLanguage = import.meta.env.VITE_REACT_APP_DEFAULT_LANGUAGE;
   const currentLanguage = i18n.language;
 
   const pathnameLocale = pathname.split('/')?.[1].toLocaleLowerCase() ?? defaultLanguage;

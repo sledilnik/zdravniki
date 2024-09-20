@@ -7,7 +7,9 @@ import * as Styled from '../styles/Markdown';
 import Section from './Section';
 import FooterInfoCard from '../../components/Shared/FooterInfo';
 
-const baseUrl = import.meta.VITE_REACT_APP_CONTENT_ENDPOINT_BASE;
+const baseUrl = import.meta.env.VITE_REACT_APP_CONTENT_ENDPOINT_BASE;
+
+console.log('baseUrl', baseUrl);
 
 const Faq = function Faq() {
   const { lng } = useParams();

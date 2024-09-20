@@ -11,7 +11,7 @@ import { DOCTORS } from '@/const';
 import { useState } from 'react';
 import * as Styled from './styles/Home';
 
-const defaultLang = import.meta.VITE_REACT_APP_DEFAULT_LANGUAGE;
+const defaultLang = import.meta.env.VITE_REACT_APP_DEFAULT_LANGUAGE;
 
 const Home = function Home() {
   const lng = i18n.language;
