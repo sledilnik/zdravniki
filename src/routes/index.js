@@ -4,6 +4,7 @@ import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import i18n from 'i18next';
+import Analytics from 'pages/Analytics';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
@@ -65,6 +66,16 @@ const Router = function Router() {
           path="/:lng/about"
           element={
             <IsWrongLanguage isValidLanguage={isValidLanguage} lng={langPath} Component={About} />
+          }
+        />
+        <Route
+          path="/:lng/analytics"
+          element={
+            <IsWrongLanguage
+              isValidLanguage={isValidLanguage}
+              lng={langPath}
+              Component={Analytics}
+            />
           }
         />
         <Route

@@ -4,6 +4,7 @@
         "menu": "Menu",
         "home": "Home",
         "about": "About",
+        "analytics": "Analytics",
         "faq": "FAQ",
         "support": "Support!",
         "sledilnik": "Sledilnik.org"
@@ -58,6 +59,7 @@
         "title": {
             "notFound": "404: page not found",
             "home": "Doctors - Sledilnik",
+            "analytics": "Analytics",
             "about": "About",
             "faq": "FAQ"
         }
