@@ -94,7 +94,9 @@
     },
     "footer": {
         "dataSource": "Data source",
-        "lastChange": "Last data update on"
+        "lastChange": "Last data update on",
+        "ourProjects": "Our projects",
+        "links": "Links"
     },
     "orderform": "get appointment",
     "timestamps": {

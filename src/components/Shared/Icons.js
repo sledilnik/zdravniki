@@ -51,6 +51,8 @@ import { ReactComponent as Edit } from 'assets/icon-edit.svg';
 import { ReactComponent as Email } from 'assets/icon-email.svg';
 import { ReactComponent as ClinicViolet } from 'assets/icon-clinic--violet.svg';
 import { ReactComponent as GpFloatingBlue } from 'assets/icon-gp-floating--blue.svg';
+import { ReactComponent as GitHub } from 'assets/icon-github.svg';
+import { ReactComponent as Euro } from 'assets/icon-euro.svg';
 
 export {
   Menu as MenuIcon,
@@ -121,6 +123,8 @@ const icons = {
   Email,
   ClinicViolet,
   GpFloatingBlue,
+  GitHub,
+  Euro,
 };
 
 export const Icon = function Icon({ name, ...props }) {

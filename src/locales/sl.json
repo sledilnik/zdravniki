@@ -96,7 +96,9 @@
     },
     "footer": {
         "dataSource": "Vir podatkov",
-        "lastChange": "Zadnja sprememba"
+        "lastChange": "Zadnja sprememba",
+        "ourProjects": "Naši projekti",
+        "links": "Povezave"
     },
     "orderform": "naročanje",
     "timestamps": {
