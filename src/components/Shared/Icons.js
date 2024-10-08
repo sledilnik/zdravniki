@@ -53,6 +53,7 @@ import { ReactComponent as ClinicViolet } from 'assets/icon-clinic--violet.svg';
 import { ReactComponent as GpFloatingBlue } from 'assets/icon-gp-floating--blue.svg';
 import { ReactComponent as GitHub } from 'assets/icon-github.svg';
 import { ReactComponent as Euro } from 'assets/icon-euro.svg';
+import { ReactComponent as FullScreen } from 'assets/icon-full-screen.svg';
 
 export {
   Menu as MenuIcon,
@@ -125,6 +126,7 @@ const icons = {
   GpFloatingBlue,
   GitHub,
   Euro,
+  FullScreen,
 };
 
 export const Icon = function Icon({ name, ...props }) {

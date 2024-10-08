@@ -182,3 +182,23 @@
     border-right: 1px solid #cdcdcd;
   }
 }
+
+/* CHARTS */
+
+.chart-container {
+  padding: 2em;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.chart-container:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.chart-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cdcdcd;
+  margin-bottom: 1em;
+}

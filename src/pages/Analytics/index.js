@@ -4,6 +4,7 @@ import { t } from 'i18next';
 
 import './analytics.css';
 import AnalyticsFooter from './AnalyticsFooter';
+import ExampleChart from './Charts/ExampleChart';
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
@@ -13,6 +14,8 @@ const Analytics = function Analytics() {
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
       <main id="main-content" className="analytics-layout analytics-main">
         <h1 className="content ">{t('SEO.title.analytics')}</h1>
+        <ExampleChart />
+        <ExampleChart />
       </main>
       <AnalyticsFooter lng={lng} />
     </>
