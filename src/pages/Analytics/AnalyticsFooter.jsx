@@ -8,7 +8,7 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
     <footer className="analytics-layout">
       <div className="full-content analytics-footer">
         <div className="analytics-footer-content">
-          <Icons.Icon name="Logo" className="logo" />
+          <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className="logo" />
         </div>
         <div className="analytics-footer-content">
           <h2>{t('SEO.title.home')}</h2>

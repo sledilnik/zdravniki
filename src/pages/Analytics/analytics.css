@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 .analytics-layout > *,
 .full-width > * {
   grid-column: content;
@@ -183,6 +187,14 @@
   }
 }
 
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2em;
+  font-size: 1rem;
+}
+
 /* CHARTS */
 
 .chart-container {
@@ -195,10 +207,18 @@
   margin-bottom: 2em;
 }
 
+.chart-container h2 {
+  font-weight: 600;
+}
+
+.chart-container h3 {
+  font-weight: 500;
+}
+
 .chart-header-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid #e6e6e6;
   margin-bottom: 1em;
 }

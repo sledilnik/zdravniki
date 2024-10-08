@@ -12,6 +12,11 @@ exporting(Highcharts);
 Highcharts.setOptions(baseOptions);
 
 const options = {
+  lang: {
+    accessibility: {
+      chartContainerLabel: 'Title: {title}.',
+    },
+  },
   title: {
     text: 'Title',
     style: {
@@ -70,14 +75,19 @@ const ExampleChart = function ExampleChart() {
             type="button"
             onClick={openFullScreen}
             aria-label="full screen"
-            style={{ display: 'inline flex', fontSize: '1.2rem', cursor: 'pointer' }}
+            className="icon-button"
           >
             <Icons.Icon name="FullScreen" />
           </button>
         </div>
       </div>
       <figure>
-        <HighchartsReact ref={chartRef} highcharts={Highcharts} options={options} />
+        <HighchartsReact
+          ref={chartRef}
+          highcharts={Highcharts}
+          options={options}
+          aria-label={chart.title}
+        />
         <figcaption>{options.caption.text}</figcaption>
       </figure>
     </section>
