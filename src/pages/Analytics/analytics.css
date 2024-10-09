@@ -193,32 +193,76 @@ button {
   justify-content: center;
   padding: 0.2em;
   font-size: 1rem;
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid ButtonText;
+  transform: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: #f4f8f8;
+}
+
+.icon-button:focus-visible {
+  outline: 2px solid #333;
 }
 
 /* CHARTS */
 
-.chart-container {
+.chart-card {
   padding: 2em;
   background: #ffffff;
   border-radius: 6px;
 }
 
-.chart-container:not(:last-child) {
+.chart-card:not(:last-child) {
   margin-bottom: 2em;
 }
 
-.chart-container h2 {
+.chart-card h2 {
   font-weight: 600;
 }
 
-.chart-container h3 {
+.chart-card h3 {
   font-weight: 500;
 }
 
-.chart-header-actions {
+.chart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 2em;
+}
+
+.chart-series-buttons {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
   margin-bottom: 1em;
+  padding-block: 0.2em;
+}
+
+.series-button {
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  background: #f4f8f8;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transform: all 0.3s ease;
+}
+
+.series-button[data-visible='false'] {
+  text-decoration: line-through;
+}
+
+.series-button:hover {
+  background: #f4f8f8;
+}
+
+.series-button:focus-visible {
+  outline: 2px solid #333;
 }

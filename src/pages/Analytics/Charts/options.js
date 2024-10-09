@@ -3,6 +3,9 @@ export const time = {
 };
 
 export const lang = {
+  accessibility: {
+    chartContainerLabel: 'Title: {title}.',
+  },
   downloadPDF: 'Prenesi PDF',
   downloadPNG: 'Prenesi PNG',
   downloadJPEG: 'Prenesi JPEG',
