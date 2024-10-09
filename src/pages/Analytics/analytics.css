@@ -215,6 +215,11 @@ button {
   border-radius: 6px;
 }
 
+.render-on-viewport-entry {
+  min-height: 300px;
+}
+
+.render-on-viewport-entry,
 .chart-card:not(:last-child) {
   margin-bottom: 2em;
 }
