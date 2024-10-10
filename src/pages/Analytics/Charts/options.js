@@ -61,3 +61,117 @@ export const baseOptions = {
     className: 'font-sans',
   },
 };
+
+export const srOnly = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: '0',
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  borderWidth: '0',
+};
+
+export const notSrOnly = {
+  position: 'absolute',
+  width: 'auto',
+  height: 'auto',
+  padding: '0',
+  margin: '0',
+  overflow: 'visible',
+  clip: 'auto',
+  whiteSpace: 'normal',
+};
+
+export const chartEvents = {
+  beforePrint() {
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+    });
+  },
+  afterPrint() {
+    this.update({
+      legend: {
+        enabled: false,
+      },
+      title: {
+        style: {
+          ...srOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...srOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...srOnly,
+        },
+      },
+    });
+  },
+};
+
+export const commonOptions = {
+  exporting: {
+    chartOptions: {
+      legend: { enabled: true },
+    },
+  },
+  legend: {
+    enabled: false,
+    useHTML: true,
+  },
+  chart: {
+    type: 'column',
+    events: { ...chartEvents },
+  },
+  title: {
+    text: 'Column',
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+  subtitle: {
+    text: 'Subtitle',
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+  caption: {
+    text: 'Caption',
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+};
+
+export const titleOptions = {
+  useHTML: true,
+  style: {
+    ...srOnly,
+  },
+};

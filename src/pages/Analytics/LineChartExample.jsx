@@ -1,4 +1,5 @@
 import ChartCard from './Charts/ChartCard';
+import { chartEvents, commonOptions, titleOptions } from './Charts/options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -8,23 +9,26 @@ import ChartCard from './Charts/ChartCard';
  * @constant {HighchartsOptions} lineChartOptions- Highcharts options object.
  */
 export const lineChartOptions = {
+  ...commonOptions,
   legend: {
     enabled: false,
+    useHTML: true,
   },
   chart: {
     type: 'line',
+    events: { ...chartEvents },
   },
   title: {
     text: 'Line',
-    style: {
-      display: 'none',
-    },
+    ...titleOptions,
   },
   subtitle: {
     text: 'Subtitle',
-    style: {
-      display: 'none',
-    },
+    ...titleOptions,
+  },
+  caption: {
+    text: 'Caption',
+    ...titleOptions,
   },
   series: [
     {
@@ -36,12 +40,6 @@ export const lineChartOptions = {
   yAxis: {
     title: {
       text: 'Y os',
-    },
-  },
-  caption: {
-    text: 'Caption',
-    style: {
-      display: 'none',
     },
   },
 };

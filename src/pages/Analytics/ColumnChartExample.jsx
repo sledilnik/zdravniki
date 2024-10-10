@@ -1,4 +1,5 @@
 import ChartCard from './Charts/ChartCard';
+import { chartEvents, commonOptions, titleOptions } from './Charts/options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -8,23 +9,26 @@ import ChartCard from './Charts/ChartCard';
  * @constant {HighchartsOptions} columnChartOptions- Highcharts options object.
  */
 export const columnChartOptions = {
+  ...commonOptions,
   legend: {
     enabled: false,
+    useHTML: true,
   },
   chart: {
     type: 'column',
+    events: { ...chartEvents },
   },
   title: {
     text: 'Column',
-    style: {
-      display: 'none',
-    },
+    ...titleOptions,
   },
   subtitle: {
     text: 'Subtitle',
-    style: {
-      display: 'none',
-    },
+    ...titleOptions,
+  },
+  caption: {
+    text: 'Caption',
+    ...titleOptions,
   },
   series: [
     {
@@ -40,12 +44,6 @@ export const columnChartOptions = {
   yAxis: {
     title: {
       text: 'Y os',
-    },
-  },
-  caption: {
-    text: 'Caption',
-    style: {
-      display: 'none',
     },
   },
 };

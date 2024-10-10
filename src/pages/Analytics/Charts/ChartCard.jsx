@@ -45,6 +45,10 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
     chart.fullscreen.open();
   };
 
+  const printChart = () => {
+    chart.print();
+  };
+
   return (
     <div id={id} className="chart-card">
       <header className="chart-header">
@@ -52,7 +56,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
           <h2>{options?.title?.text}</h2>
           {options?.subtitle?.text ? <h3>{options.subtitle.text}</h3> : null}
         </div>
-        <div>
+        <div style={{ display: 'flex', gap: '0.5em' }}>
           <button
             type="button"
             onClick={openFullScreen}
@@ -60,6 +64,14 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
             className="icon-button"
           >
             <Icons.Icon name="FullScreen" />
+          </button>
+          <button
+            type="button"
+            onClick={printChart}
+            aria-label="print chart"
+            className="icon-button"
+          >
+            <Icons.Icon name="Print" />
           </button>
         </div>
       </header>

@@ -54,6 +54,7 @@ import { ReactComponent as GpFloatingBlue } from 'assets/icon-gp-floating--blue.
 import { ReactComponent as GitHub } from 'assets/icon-github.svg';
 import { ReactComponent as Euro } from 'assets/icon-euro.svg';
 import { ReactComponent as FullScreen } from 'assets/icon-full-screen.svg';
+import { ReactComponent as Print } from 'assets/icon-print.svg';
 
 export {
   Menu as MenuIcon,
@@ -127,6 +128,7 @@ const icons = {
   GitHub,
   Euro,
   FullScreen,
+  Print,
 };
 
 export const Icon = function Icon({ name, ...props }) {
