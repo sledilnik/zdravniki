@@ -16,7 +16,7 @@ import accessibility from 'highcharts/modules/accessibility';
 import exporting from 'highcharts/modules/exporting';
 import * as Icons from 'components/Shared/Icons';
 import { baseOptions } from './options';
-import SeriesButton from './SeriesButton';
+import CustomSeriesButtons from './CustomSeriesButtons';
 
 accessibility(Highcharts);
 exporting(Highcharts);
@@ -45,21 +45,6 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
     chart.fullscreen.open();
   };
 
-  const customSeriesButtons = options.series.map((series, index) => (
-    <SeriesButton
-      key={series?.name}
-      onClick={() => {
-        chart.series[index].setVisible(!chart.series[index].visible);
-      }}
-      className="series-button"
-      visible={chart?.series[index]?.visible ?? true}
-      color={chart?.series[index]?.color}
-      borderColor={chart?.series[index]?.color}
-    >
-      {series.name}
-    </SeriesButton>
-  ));
-
   return (
     <div id={id} className="chart-card">
       <header className="chart-header">
@@ -85,7 +70,9 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
           options={options}
           aria-label={chart?.title}
         />
-        <div className="chart-series-buttons">{customSeriesButtons}</div>
+        <div className="chart-series-buttons">
+          <CustomSeriesButtons chart={chart} />
+        </div>
         <figcaption>{options.caption.text}</figcaption>
       </figure>
     </div>
