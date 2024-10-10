@@ -143,35 +143,24 @@ export const commonOptions = {
     useHTML: true,
   },
   chart: {
-    type: 'column',
     events: { ...chartEvents },
   },
   title: {
-    text: 'Column',
     useHTML: true,
     style: {
       ...srOnly,
     },
   },
   subtitle: {
-    text: 'Subtitle',
     useHTML: true,
     style: {
       ...srOnly,
     },
   },
   caption: {
-    text: 'Caption',
     useHTML: true,
     style: {
       ...srOnly,
     },
-  },
-};
-
-export const titleOptions = {
-  useHTML: true,
-  style: {
-    ...srOnly,
   },
 };

@@ -1,5 +1,7 @@
+import { merge as _merge } from 'lodash';
+
 import ChartCard from './Charts/ChartCard';
-import { chartEvents, commonOptions, titleOptions } from './Charts/options';
+import { commonOptions } from './Charts/options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -9,27 +11,15 @@ import { chartEvents, commonOptions, titleOptions } from './Charts/options';
  * @constant {HighchartsOptions} columnChartOptions- Highcharts options object.
  */
 export const columnChartOptions = {
-  ...commonOptions,
-  legend: {
-    enabled: false,
-    useHTML: true,
-  },
-  chart: {
-    type: 'column',
-    events: { ...chartEvents },
-  },
-  title: {
-    text: 'Column',
-    ...titleOptions,
-  },
-  subtitle: {
-    text: 'Subtitle',
-    ...titleOptions,
-  },
-  caption: {
-    text: 'Caption',
-    ...titleOptions,
-  },
+  ..._merge(
+    {
+      chart: { type: 'column' },
+      title: { text: 'Column' },
+      subtitle: { text: 'Subtitle' },
+      caption: { text: 'Caption' },
+    },
+    commonOptions,
+  ),
   series: [
     {
       data: [1, 2, 3],
@@ -49,7 +39,7 @@ export const columnChartOptions = {
 };
 
 const ColumnChartExample = function ColumnChartExample() {
-  return <ChartCard id="line-chart" options={columnChartOptions} />;
+  return <ChartCard options={columnChartOptions} />;
 };
 
 export default ColumnChartExample;
