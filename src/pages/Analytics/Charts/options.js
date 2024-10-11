@@ -130,6 +130,51 @@ export const chartEvents = {
       },
     });
   },
+  fullscreenOpen() {
+    console.log('fullscreenOpen');
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+    });
+  },
+  fullscreenClose() {
+    this.update({
+      legend: {
+        enabled: false,
+      },
+      title: {
+        style: {
+          ...srOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...srOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...srOnly,
+        },
+      },
+    });
+  },
 };
 
 export const commonOptions = {
