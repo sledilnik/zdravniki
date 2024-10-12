@@ -1,0 +1,85 @@
+.popover-container {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  z-index: 20;
+}
+
+.popover-trigger {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.popover-trigger:hover {
+  background: #f4f8f8;
+}
+
+.popover-trigger:focus-visible {
+  outline: 2px solid #333;
+}
+
+.popover-content {
+  position: absolute;
+  inset: unset;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding-block: 0.75em;
+  padding-inline: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  white-space: nowrap;
+}
+
+.popover-content[data-placement^='top'] {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.popover-content[data-placement^='bottom'] {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.popover-content[data-placement^='start'],
+.popover-content[data-placement$='start'] {
+  right: 0;
+  left: unset;
+  transform: unset;
+}
+
+.popover-content[data-placement^='end'],
+.popover-content[data-placement$='end'] {
+  left: 0;
+  right: unset;
+  transform: unset;
+}
+
+.popover-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: transparent;
+  padding-block: 0.5em;
+  padding-inline: 0.4em;
+  border: 1px solid transparent;
+}
+
+.popover-item:hover {
+  background: #f4f8f8;
+}
+
+.popover-item:focus-visible {
+  background: #f4f8f8;
+  outline: 2px solid #333;
+}
+
+.popover-content:focus-visible {
+  outline: 2px solid #333;
+}

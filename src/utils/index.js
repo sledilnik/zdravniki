@@ -74,3 +74,14 @@ export function filterBySearchValueInMapBounds({ searchValue = '', filtered = []
     );
   });
 }
+
+export function getIsRequestFullscreenSupported(element) {
+  const requestFullscreenMethods = [
+    'requestFullscreen',
+    'webkitRequestFullscreen', // Safari
+    'mozRequestFullScreen', // Firefox
+    'msRequestFullscreen', // Internet Explorer/Edge
+  ];
+
+  return requestFullscreenMethods.some(method => element[method]);
+}

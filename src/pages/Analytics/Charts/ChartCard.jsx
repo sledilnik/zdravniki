@@ -15,8 +15,10 @@ import HighchartsReact from 'highcharts-react-official';
 import accessibility from 'highcharts/modules/accessibility';
 import exporting from 'highcharts/modules/exporting';
 import * as Icons from 'components/Shared/Icons';
+import { getIsRequestFullscreenSupported } from 'utils';
 import { baseOptions } from './options';
 import CustomSeriesButtons from './CustomSeriesButtons';
+import Popover from './CustomPopover';
 
 accessibility(Highcharts);
 exporting(Highcharts);
@@ -49,6 +51,8 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
     chart.print();
   };
 
+  const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
+
   return (
     <div id={id} className="chart-card">
       <header className="chart-header">
@@ -56,24 +60,27 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
           <h2>{options?.title?.text}</h2>
           {options?.subtitle?.text ? <h3>{options.subtitle.text}</h3> : null}
         </div>
-        <div style={{ display: 'flex', gap: '0.5em' }}>
-          <button
-            type="button"
-            onClick={openFullScreen}
-            aria-label="full screen"
-            className="icon-button"
-          >
-            <Icons.Icon name="FullScreen" />
-          </button>
-          <button
-            type="button"
-            onClick={printChart}
-            aria-label="print chart"
-            className="icon-button"
-          >
-            <Icons.Icon name="Print" />
-          </button>
-        </div>
+
+        <Popover
+          placement="bottom-start"
+          triggerClassname="icon-button"
+          options={[
+            isRequestFullscreenSupported
+              ? {
+                  label: 'Full Screen',
+                  onClick: openFullScreen,
+                  Icon: Icons.Icon.bind(null, { name: 'FullScreen' }),
+                }
+              : null,
+            {
+              label: 'Print',
+              onClick: printChart,
+              Icon: Icons.Icon.bind(null, { name: 'Print' }),
+            },
+          ]}
+        >
+          <Icons.Icon name="VerticalDots" />
+        </Popover>
       </header>
       <figure>
         <HighchartsReact

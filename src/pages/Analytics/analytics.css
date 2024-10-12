@@ -194,7 +194,7 @@ button {
   padding: 0.2em;
   font-size: 1rem;
   background: transparent;
-  border-radius: 8px;
+  border-radius: 50%;
   border: 1px solid ButtonText;
   transform: all 0.3s ease;
 }
