@@ -1,0 +1,61 @@
+.CustomDialog {
+  padding-block: 1em;
+  padding-left: 1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 25ch;
+  max-height: 600px;
+}
+
+.CustomDialog[open] {
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
+
+body:has(.CustomDialog[open]) {
+  overflow: hidden;
+}
+
+.CustomDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9001;
+  width: 100%;
+}
+
+.Content {
+  width: 100%;
+}
+
+.Content > div {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.CustomDialog h2 {
+  position: sticky;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.CustomDialog a {
+  display: block;
+  padding-block: 0.5em;
+
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.CustomDialog a:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.CustomDialog a:hover {
+  background-color: #f5f5f5;
+}
+
+.CloseButton {
+  margin-top: 1em;
+}

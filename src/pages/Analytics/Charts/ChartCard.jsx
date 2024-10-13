@@ -82,7 +82,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
             },
           ]}
         >
-          <Icons.Icon name="VerticalDots" />
+          <Icons.Icon name="VerticalDots" aria-label="more actions" />
         </Popover>
       </header>
       <figure>

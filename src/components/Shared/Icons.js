@@ -56,6 +56,7 @@ import { ReactComponent as Euro } from 'assets/icon-euro.svg';
 import { ReactComponent as FullScreen } from 'assets/icon-full-screen.svg';
 import { ReactComponent as Print } from 'assets/icon-print.svg';
 import { ReactComponent as VerticalDots } from 'assets/vertical-dots.svg';
+import { ReactComponent as Chart } from 'assets/icon-chart.svg';
 
 export {
   Menu as MenuIcon,
@@ -131,6 +132,7 @@ const icons = {
   FullScreen,
   Print,
   VerticalDots,
+  Chart,
 };
 
 export const Icon = function Icon({ name, ...props }) {

@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, useState } from 'react';
 import { useParams } from 'react-router';
 
 import * as SEO from 'components/SEO';
@@ -6,43 +6,52 @@ import { t } from 'i18next';
 
 import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
+import * as Icons from 'components/Shared/Icons';
 import AnalyticsFooter from './AnalyticsFooter';
-import DrilldownChartExample from './Charts/DrilldownChartExample';
+import Modal from './CustomDialog';
 
 const LineChartExample = lazy(() => import('./LineChartExample'));
 const ColumnChartExample = lazy(() => import('./ColumnChartExample'));
+const DrilldownChartExample = lazy(() => import('./Charts/DrilldownChartExample'));
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
+
       <main id="main-content" className="analytics-layout analytics-main">
         <h1 className="content" style={{ marginTop: '1em' }}>
           {t('SEO.title.analytics')}
         </h1>
-        <aside
-          className="analytics-sidebar"
-          style={{
-            position: 'fixed',
-            bottom: '128px',
-            right: 'calc(var(--minimum-content-padding) / 2)',
-            zIndex: 6,
-            maxHeight: 'calc(100dvh - 256px)',
-            background: '#f4f8f8',
-            paddingBlock: '1em',
-            paddingInline: '1.2em',
-            border: '1px solid #ccc',
-            borderRadius: '0.5em',
-          }}
-        >
-          <h2>Pojdi na graf</h2>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <a href="#column-chart">Column</a>
-            <a href="#line-chart">Line</a>
-            <a href="#drilldown-chart">Drilldown</a>
-          </div>
+        <aside className="analytics-sidebar">
+          <button type="button" onClick={openModal} aria-label="show links to charts">
+            <Icons.Icon name="Chart" />
+          </button>
+          <Modal openModal={modalOpen} closeModal={closeModal} ariaLabelledBy="go-to-graph">
+            <h2 id="go-to-graph">Pojdi na graf</h2>
+            <div>
+              <a href="#column-chart" onClick={closeModal} className="link">
+                Column chart
+              </a>
+              <a href="#line-chart" onClick={closeModal} className="link">
+                Line chart
+              </a>
+              <a href="#drilldown-chart" onClick={closeModal} className="link">
+                Drilldown chart
+              </a>
+            </div>
+          </Modal>
         </aside>
 
         <RenderOnViewportEntry>

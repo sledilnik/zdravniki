@@ -95,8 +95,55 @@ button {
 
 /** Additional layout classes for specific sections **/
 
+.analytics-layout a {
+  color: inherit;
+  text-decoration: none;
+  display: inline flex;
+  gap: 0.5em;
+  align-items: center;
+  transition-property: color, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
+}
+
+.analytics-layout a:visited {
+  color: inherit;
+}
+
+.analytics-layout a:hover {
+  opacity: 0.5;
+}
+
 .analytics-main {
   min-height: calc(100dvh - 56px);
+}
+
+.analytics-sidebar {
+  position: fixed;
+  right: calc(var(--minimum-content-padding) / 2);
+  bottom: 16px;
+  z-index: 6;
+  width: 48px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.analytics-sidebar > button {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: none;
+  background: rgba(38, 197, 237, 0.56);
+  transition: all 0.3s ease;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+}
+.analytics-sidebar > button:hover {
+  background: rgba(38, 197, 237, 1);
+}
+.analytics-sidebar > button:focus-visible {
+  outline: 2px auto #09afda;
 }
 
 .analytics-footer {
@@ -131,26 +178,6 @@ button {
   gap: 0.1em;
 }
 
-.analytics-layout a {
-  color: inherit;
-  text-decoration: none;
-  display: inline flex;
-  gap: 0.5em;
-  align-items: center;
-  transition-property: color, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.3s;
-}
-
-.analytics-layout a:visited {
-  color: inherit;
-}
-
-.analytics-layout a:focus-within,
-.analytics-layout a:hover {
-  opacity: 0.5;
-}
-
 .sledilnik-info > .sledilnik-info-content {
   display: flex;
   flex-wrap: wrap;
@@ -158,10 +185,11 @@ button {
   align-items: center;
   column-gap: 0.5em;
   border-top: 1px dashed #cdcdcd;
+  padding-block: 0.5em;
 }
 
-.sledilnik-info > div {
-  padding-block: 0.5em;
+.sledilnik-info > .sledilnik-info-content > div > *:not(:last-child) {
+  margin-right: 0.5em;
 }
 
 @media screen and (width >= 600px) {
