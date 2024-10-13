@@ -20,6 +20,8 @@ const Popover = function Popover({
   const popoverRef = useRef(null); // Reference to the popover element
   const triggerRef = useRef(null); // Reference to the button element that triggers the popover
 
+  const validOptions = options.filter(option => option !== null);
+
   const toggleVisibility = event => {
     if (!isVisible && event.key === 'Enter') {
       triggerRef.current?.focus();
@@ -48,7 +50,7 @@ const Popover = function Popover({
 
   const handleItemClick = (_, index) => {
     closePopover();
-    options[index].onClick();
+    validOptions[index].onClick();
   };
 
   // Handle key events for the dropdown
@@ -61,21 +63,21 @@ const Popover = function Popover({
       event.preventDefault();
       setFocusedIndex(prevIndex => {
         if (prevIndex === -1) {
-          return 1 % options.length;
+          return 1 % validOptions.length;
         }
-        const nextIndex = prevIndex === options.length - 1 ? 0 : prevIndex + 1;
+        const nextIndex = prevIndex === validOptions.length - 1 ? 0 : prevIndex + 1;
         return nextIndex;
       });
     }
 
     if (key === 'ArrowDown') {
       event.preventDefault();
-      setFocusedIndex(prevIndex => (prevIndex + 1) % options.length);
+      setFocusedIndex(prevIndex => (prevIndex + 1) % validOptions.length);
     }
 
     if (key === 'ArrowUp') {
       event.preventDefault();
-      setFocusedIndex(prevIndex => (prevIndex === 0 ? options.length - 1 : prevIndex - 1));
+      setFocusedIndex(prevIndex => (prevIndex === 0 ? validOptions.length - 1 : prevIndex - 1));
     }
 
     if (key === 'Escape') {
@@ -138,9 +140,9 @@ const Popover = function Popover({
           onKeyDown={handleKeyDown}
           onMouseDown={handlePopoverContentClick}
         >
-          {options.map((option, index) => (
+          {validOptions.map((option, index) => (
             <RenderItem
-              key={`${option.label}-${index === focusedIndex}`}
+              key={`${option?.label}-${index === focusedIndex}`}
               tabIndex="0"
               {...option}
               onClick={e => handleItemClick(e, index)}
