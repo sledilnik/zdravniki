@@ -131,7 +131,6 @@ export const chartEvents = {
     });
   },
   fullscreenOpen() {
-    console.log('fullscreenOpen');
     this.update({
       legend: {
         enabled: true,

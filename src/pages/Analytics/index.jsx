@@ -7,6 +7,7 @@ import { t } from 'i18next';
 import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import AnalyticsFooter from './AnalyticsFooter';
+import DrilldownChartExample from './Charts/DrilldownChartExample';
 
 const LineChartExample = lazy(() => import('./LineChartExample'));
 const ColumnChartExample = lazy(() => import('./ColumnChartExample'));
@@ -24,6 +25,9 @@ const Analytics = function Analytics() {
         </RenderOnViewportEntry>
         <RenderOnViewportEntry intersectionObserverInit={{ threshold: 0.5, rootMargin: '0px' }}>
           <LineChartExample />
+        </RenderOnViewportEntry>
+        <RenderOnViewportEntry intersectionObserverInit={{ threshold: 0.5, rootMargin: '0px' }}>
+          <DrilldownChartExample />
         </RenderOnViewportEntry>
       </main>
       <AnalyticsFooter lng={lng} />

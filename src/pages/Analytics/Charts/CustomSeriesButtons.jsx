@@ -6,20 +6,29 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
     return null;
   }
 
-  return chart.series.map((series, index) => (
-    <SeriesButton
-      key={series?.name}
-      onClick={() => {
-        chart.series[index].setVisible(!chart.series[index].visible);
-      }}
-      className="series-button"
-      visible={chart?.series[index]?.visible ?? true}
-      color={chart?.series[index]?.color}
-      borderColor={chart?.series[index]?.color}
-    >
-      {series.name}
-    </SeriesButton>
-  ));
+  const seriesLabelsToShow = chart.series.filter(series => series.options.showInLegend !== false);
+
+  if (seriesLabelsToShow.length === 0) {
+    return null;
+  }
+
+  // eslint-disable-next-line arrow-body-style
+  return seriesLabelsToShow.map((series, index) => {
+    return (
+      <SeriesButton
+        key={series?.name}
+        onClick={() => {
+          chart.series[index].setVisible(!chart.series[index].visible);
+        }}
+        className="series-button"
+        visible={chart?.series[index]?.visible ?? true}
+        color={chart?.series[index]?.color}
+        borderColor={chart?.series[index]?.color}
+      >
+        {series.name}
+      </SeriesButton>
+    );
+  });
 };
 
 CustomSeriesButtons.propTypes = {

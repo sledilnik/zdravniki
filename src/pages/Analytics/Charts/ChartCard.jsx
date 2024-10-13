@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import accessibility from 'highcharts/modules/accessibility';
+import drilldown from 'highcharts/modules/drilldown';
 import exporting from 'highcharts/modules/exporting';
+import accessibility from 'highcharts/modules/accessibility';
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 import { baseOptions } from './options';
@@ -22,6 +23,7 @@ import Popover from './CustomPopover';
 
 accessibility(Highcharts);
 exporting(Highcharts);
+drilldown(Highcharts);
 
 Highcharts.setOptions(baseOptions);
 
