@@ -8,7 +8,7 @@ import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import * as Icons from 'components/Shared/Icons';
 import AnalyticsFooter from './AnalyticsFooter';
-import Modal from './CustomDialog';
+import Modal from './Modal';
 
 const LineChartExample = lazy(() => import('./LineChartExample'));
 const ColumnChartExample = lazy(() => import('./ColumnChartExample'));

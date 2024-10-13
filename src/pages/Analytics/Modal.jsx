@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Modal as a separate component
 import { useEffect, useRef } from 'react';
 
-import styles from './CustomDialog.module.css';
+import styles from './Modal.module.css';
 
 function Modal({ openModal, closeModal, children, ariaLabelledBy }) {
   const ref = useRef();
