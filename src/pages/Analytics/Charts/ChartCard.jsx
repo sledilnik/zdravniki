@@ -14,14 +14,14 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import drilldown from 'highcharts/modules/drilldown';
 import exporting from 'highcharts/modules/exporting';
-import accessibility from 'highcharts/modules/accessibility';
+// import accessibility from 'highcharts/modules/accessibility';
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 import { baseOptions } from './options';
 import CustomSeriesButtons from './CustomSeriesButtons';
 import Popover from './CustomPopover';
 
-accessibility(Highcharts);
+// accessibility(Highcharts);
 exporting(Highcharts);
 drilldown(Highcharts);
 
@@ -54,6 +54,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
   };
 
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
+  console.log(id);
 
   return (
     <div id={id} className="chart-card">

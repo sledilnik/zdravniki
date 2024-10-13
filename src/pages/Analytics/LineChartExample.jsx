@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { merge as _merge } from 'lodash';
 
 import ChartCard from './Charts/ChartCard';
@@ -34,8 +35,12 @@ export const lineChartOptions = {
   },
 };
 
-const LineChartExample = function LineChartExample() {
-  return <ChartCard options={lineChartOptions} />;
+const LineChartExample = function LineChartExample({ id }) {
+  return <ChartCard id={id} options={lineChartOptions} />;
+};
+
+LineChartExample.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default LineChartExample;

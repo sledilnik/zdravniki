@@ -1,4 +1,5 @@
 import { merge as _merge } from 'lodash';
+import PropTypes from 'prop-types';
 
 import ChartCard from './Charts/ChartCard';
 import { commonOptions } from './Charts/options';
@@ -38,8 +39,11 @@ export const columnChartOptions = {
   },
 };
 
-const ColumnChartExample = function ColumnChartExample() {
-  return <ChartCard options={columnChartOptions} />;
+const ColumnChartExample = function ColumnChartExample({ id }) {
+  return <ChartCard id={id} options={columnChartOptions} />;
+};
+ColumnChartExample.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default ColumnChartExample;

@@ -18,6 +18,7 @@ import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
 const RenderOnViewportEntry = function RenderOnViewportEntry({
   children,
   intersectionObserverInit = { threshold: 0, root: null, rootMargin: '0px' },
+  srOnlyComponentsBeforeEntered,
   ...divProps
 }) {
   const { threshold = 0, root = null, rootMargin = '0px' } = intersectionObserverInit;
@@ -26,6 +27,7 @@ const RenderOnViewportEntry = function RenderOnViewportEntry({
 
   return (
     <div ref={ref} className="render-on-viewport-entry" {...divProps}>
+      {!hasEntered ? srOnlyComponentsBeforeEntered : null}
       {hasEntered ? <Suspense fallback={<div>Loading....</div>}>{children}</Suspense> : null}
     </div>
   );
@@ -38,6 +40,7 @@ RenderOnViewportEntry.propTypes = {
     root: PropTypes.instanceOf(Element),
     rootMargin: PropTypes.string,
   }),
+  srOnlyComponentsBeforeEntered: PropTypes.node,
 };
 
 export default RenderOnViewportEntry;

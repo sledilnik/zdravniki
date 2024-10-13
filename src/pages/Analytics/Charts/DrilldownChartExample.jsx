@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ChartCard from './ChartCard';
 
 const { merge } = require('lodash');
@@ -188,8 +189,12 @@ const drilldownChartOptions = {
   },
 };
 
-const DrilldownChartExample = function DrilldownChartExample() {
-  return <ChartCard options={drilldownChartOptions} />;
+const DrilldownChartExample = function DrilldownChartExample({ id }) {
+  return <ChartCard id={id} options={drilldownChartOptions} />;
+};
+
+DrilldownChartExample.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default DrilldownChartExample;
