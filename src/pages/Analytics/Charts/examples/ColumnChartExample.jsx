@@ -1,8 +1,8 @@
 import { merge as _merge } from 'lodash';
 import PropTypes from 'prop-types';
 
-import ChartCard from './Charts/ChartCard';
-import { commonOptions } from './Charts/options';
+import ChartCard from '../ChartCard';
+import { commonOptions } from '../options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions

@@ -10,9 +10,9 @@ import * as Icons from 'components/Shared/Icons';
 import AnalyticsFooter from './AnalyticsFooter';
 import Modal from './Modal';
 
-const LineChartExample = lazy(() => import('./LineChartExample'));
-const ColumnChartExample = lazy(() => import('./ColumnChartExample'));
-const DrilldownChartExample = lazy(() => import('./Charts/DrilldownChartExample'));
+const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
+const ColumnChartExample = lazy(() => import('./Charts/examples/ColumnChartExample'));
+const DrilldownChartExample = lazy(() => import('./Charts/examples/DrilldownChartExample'));
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
