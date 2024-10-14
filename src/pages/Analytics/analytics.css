@@ -118,34 +118,6 @@ button {
   min-height: calc(100dvh - 56px);
 }
 
-.analytics-sidebar {
-  position: fixed;
-  right: calc(var(--minimum-content-padding) / 2);
-  bottom: 16px;
-  z-index: 6;
-  width: 48px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-
-.analytics-sidebar > button {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: none;
-  background: rgba(38, 197, 237, 0.56);
-  transition: all 0.3s ease;
-  display: grid;
-  place-items: center;
-  font-size: 2rem;
-}
-.analytics-sidebar > button:hover {
-  background: rgba(38, 197, 237, 1);
-}
-.analytics-sidebar > button:focus-visible {
-  outline: 2px auto #09afda;
-}
-
 @media screen and (width >= 600px) {
   .analytics-main {
     min-height: calc(100dvh - 64px);

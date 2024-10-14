@@ -1,4 +1,4 @@
-import { lazy, useState } from 'react';
+import { lazy } from 'react';
 import { useParams } from 'react-router';
 
 import * as SEO from 'components/SEO';
@@ -6,9 +6,8 @@ import { t } from 'i18next';
 
 import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
-import * as Icons from 'components/Shared/Icons';
 import AnalyticsFooter from './Footer';
-import Modal from './Modal';
+import Sidebar from './Sidebar';
 
 const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
 const ColumnChartExample = lazy(() => import('./Charts/examples/ColumnChartExample'));
@@ -16,15 +15,6 @@ const DrilldownChartExample = lazy(() => import('./Charts/examples/DrilldownChar
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <>
@@ -34,25 +24,7 @@ const Analytics = function Analytics() {
         <h1 className="content" style={{ marginTop: '1em' }}>
           {t('SEO.title.analytics')}
         </h1>
-        <aside className="analytics-sidebar">
-          <button type="button" onClick={openModal} aria-label="show links to charts">
-            <Icons.Icon name="Chart" />
-          </button>
-          <Modal openModal={modalOpen} closeModal={closeModal} ariaLabelledBy="go-to-graph">
-            <h2 id="go-to-graph">Pojdi na graf</h2>
-            <div>
-              <a href="#column-chart" onClick={closeModal} className="link">
-                Column chart
-              </a>
-              <a href="#line-chart" onClick={closeModal} className="link">
-                Line chart
-              </a>
-              <a href="#drilldown-chart" onClick={closeModal} className="link">
-                Drilldown chart
-              </a>
-            </div>
-          </Modal>
-        </aside>
+        <Sidebar />
 
         <RenderOnViewportEntry>
           <ColumnChartExample id="column-chart" />
