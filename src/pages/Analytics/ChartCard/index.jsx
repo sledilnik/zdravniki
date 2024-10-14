@@ -22,6 +22,7 @@ import CustomSeriesButtons from '../CustomSeriesButtons';
 import Popover from '../CustomPopover';
 
 import styles from './ChartCard.module.css';
+import stylesIconButton from '../IconButton.module.css';
 
 // accessibility(Highcharts);
 exporting(Highcharts);
@@ -67,7 +68,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
 
         <Popover
           placement="bottom-start"
-          triggerClassname="icon-button"
+          triggerClassname={stylesIconButton.IconButton}
           options={[
             isRequestFullscreenSupported
               ? {

@@ -4,11 +4,12 @@ import { t } from 'i18next';
 import * as Icons from 'components/Shared/Icons';
 
 import styles from './Footer.module.css';
+import stylesLayout from '../Layout.module.css';
 
 const Footer = function Footer({ lng }) {
   return (
-    <footer className={`analytics-layout ${styles.Footer}`}>
-      <div className={`full-content ${styles.FooterTopContainer}`}>
+    <footer className={`${stylesLayout.AnalyticsLayout} ${styles.Footer}`}>
+      <div className={`${stylesLayout.FullContent} ${styles.FooterTopContainer}`}>
         <div className={styles.FooterContent}>
           <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className={styles.Logo} />
         </div>
@@ -73,7 +74,7 @@ const Footer = function Footer({ lng }) {
           </nav>
         </div>
       </div>
-      <div className={`full-content  ${styles.SledilnikInfo}`}>
+      <div className={`${stylesLayout.FullContent} ${styles.SledilnikInfo}`}>
         <div className={styles.SledilnikContent}>
           <div>
             © 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>

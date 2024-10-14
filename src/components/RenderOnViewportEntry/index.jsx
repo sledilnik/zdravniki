@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { Suspense, useRef } from 'react';
 import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
 
+import styles from './RenderOnViewportEntry.module.css';
+
 /**
  * Component that renders its children only when it enters the viewport.
  *
@@ -26,7 +28,7 @@ const RenderOnViewportEntry = function RenderOnViewportEntry({
   const hasEntered = useFirstViewportEntry(ref, { threshold, root, rootMargin });
 
   return (
-    <div ref={ref} className="render-on-viewport-entry" {...divProps}>
+    <div ref={ref} className={styles.RenderOnViewportEntry} {...divProps}>
       {!hasEntered ? srOnlyComponentsBeforeEntered : null}
       {hasEntered ? <Suspense fallback={<div>Loading....</div>}>{children}</Suspense> : null}
     </div>

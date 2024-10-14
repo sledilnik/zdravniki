@@ -1,13 +1,9 @@
-button {
-  cursor: pointer;
-}
-
-.analytics-layout > *,
-.full-width > * {
+.AnalyticsLayout > *,
+.FullWidth > * {
   grid-column: content;
 }
-.analytics-layout,
-.full-width {
+.AnalyticsLayout,
+.FullWidth {
   --minimum-content-padding: 2rem;
 
   /** TRACK WIDTHS **/
@@ -42,93 +38,65 @@ button {
 }
 
 /** CLASSES **/
-.full {
+.Full {
   grid-column: full;
 }
-.full-start {
+.FullStart {
   grid-column-start: full-start;
 }
-.full-end {
+.FullEnd {
   grid-column-end: full-end;
 }
 
-.popout {
+.Popout {
   grid-column: popout;
 }
-.popout-start {
+.PopoutStart {
   grid-column-start: popout-start;
 }
-.popout-end {
+.PopoutEnd {
   grid-column-end: popout-end;
 }
 
-.content {
+.Content {
   grid-column: content;
 }
-.content-start {
+.ContentStart {
   grid-column-start: content-start;
 }
-.content-end {
+.ContentEnd {
   grid-column-end: content-end;
 }
 
-.narrow {
+.Narrow {
   grid-column: narrow;
 }
-.narrow-start {
+.NarrowStart {
   grid-column-start: narrow-start;
 }
-.narrow-end {
+.NarrowEnd {
   grid-column-end: narrow-end;
 }
 
-.full-width {
+.FullWidth {
   grid-column: full;
 }
-.full-content,
-.full-content-nopad {
+.FullContent,
+.FullContentNopad {
   grid-column: full;
 }
-.full-content {
+.FullContent {
   padding-inline: var(--minimum-content-padding);
 }
 
-/** Additional layout classes for specific sections **/
+/* utility classes */
 
-.analytics-main {
+.MinHeightNoHeader {
   min-height: calc(100dvh - 56px);
 }
 
 @media screen and (width >= 600px) {
-  .analytics-main {
+  .MinHeightNoHeader {
     min-height: calc(100dvh - 64px);
   }
-}
-
-.icon-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.2em;
-  font-size: 1rem;
-  background: transparent;
-  border-radius: 50%;
-  border: 1px solid ButtonText;
-  transform: all 0.3s ease;
-}
-
-.icon-button:hover {
-  background: #f4f8f8;
-}
-
-.icon-button:focus-visible {
-  outline: 2px solid #333;
-}
-
-.render-on-viewport-entry {
-  min-height: 300px;
-}
-
-.render-on-viewport-entry {
-  margin-bottom: 2em;
 }

@@ -4,10 +4,11 @@ import { useParams } from 'react-router';
 import * as SEO from 'components/SEO';
 import { t } from 'i18next';
 
-import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './Footer';
 import Sidebar from './Sidebar';
+
+import styles from './Layout.module.css';
 
 const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
 const ColumnChartExample = lazy(() => import('./Charts/examples/ColumnChartExample'));
@@ -20,7 +21,7 @@ const Analytics = function Analytics() {
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
 
-      <main id="main-content" className="analytics-layout analytics-main">
+      <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
         <h1 className="content" style={{ marginTop: '1em' }}>
           {t('SEO.title.analytics')}
         </h1>
