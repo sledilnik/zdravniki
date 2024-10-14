@@ -23,9 +23,9 @@ function Modal({ openModal, closeModal, children, ariaLabelledBy }) {
       aria-labelledby={ariaLabelledBy}
       className={styles.CustomDialog}
     >
-      <div className={styles.Content}>{children}</div>
+      {children}
       <button type="button" onClick={closeModal} className={styles.CloseButton}>
-        Close
+        Close (<kbd>Esc</kbd>)
       </button>
     </dialog>
   );

@@ -1,15 +1,13 @@
 .CustomDialog {
+  right: 1em;
   padding-block: 1em;
   padding-left: 1em;
   border-radius: 8px;
   border: 1px solid #ccc;
-  min-width: 25ch;
-  max-height: 600px;
+  min-width: 30ch;
 }
 
 .CustomDialog[open] {
-  display: grid;
-  place-items: center;
   margin: auto;
 }
 
@@ -27,7 +25,7 @@ body:has(.CustomDialog[open]) {
   width: 100%;
 }
 
-.Content > div {
+.CustomDialog > div {
   max-height: 300px;
   overflow: auto;
 }
@@ -57,5 +55,26 @@ body:has(.CustomDialog[open]) {
 }
 
 .CloseButton {
+  display: block;
   margin-top: 1em;
+  margin-inline: auto;
+  color: inherit;
+  border-radius: 8px;
+  border: none;
+  padding-inline: 1em;
+  padding-block: 0.25em;
+  background: rgba(38, 197, 237, 0.56);
+  transition: all 0.3s ease;
+}
+
+.CloseButton:hover {
+  background: rgba(38, 197, 237, 1);
+}
+
+.CloseButton:focus-visible {
+  outline: 2px auto #09afda;
+}
+
+.CloseButton kbd {
+  font-size: 1rem;
 }
