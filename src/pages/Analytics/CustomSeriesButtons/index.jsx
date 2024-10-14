@@ -20,7 +20,6 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
         onClick={() => {
           chart.series[index].setVisible(!chart.series[index].visible);
         }}
-        className="series-button"
         visible={chart?.series[index]?.visible ?? true}
         color={chart?.series[index]?.color}
         borderColor={chart?.series[index]?.color}

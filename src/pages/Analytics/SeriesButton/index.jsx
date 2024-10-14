@@ -2,6 +2,8 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 
+import styles from './SeriesButton.module.css';
+
 /**
  * SeriesButton component renders a button that toggles its visibility state and triggers an onClick event.
  *
@@ -35,7 +37,7 @@ const SeriesButton = function SeriesButton({
       ref={ref}
       type="button"
       onClick={onNeki}
-      className={className}
+      className={`${styles.SeriesButton} ${className}`}
       data-visible={isVisible}
       style={{
         color: isVisible ? color : '#666666',

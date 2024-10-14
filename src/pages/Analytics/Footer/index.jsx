@@ -3,14 +3,16 @@ import { t } from 'i18next';
 
 import * as Icons from 'components/Shared/Icons';
 
+import styles from './Footer.module.css';
+
 const AnalyticsFooter = function AnalyticsFooter({ lng }) {
   return (
     <footer className="analytics-layout">
-      <div className="full-content analytics-footer">
-        <div className="analytics-footer-content">
-          <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className="logo" />
+      <div className={`full-content ${styles.Footer}`}>
+        <div className={styles.FooterContent}>
+          <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className={styles.Logo} />
         </div>
-        <div className="analytics-footer-content">
+        <div className={styles.FooterContent}>
           <h2>{t('SEO.title.home')}</h2>
           <nav aria-label="zdravniki">
             <a href={`/${lng}/`}>{t('header.home')}</a>
@@ -19,7 +21,7 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
             <a href={`/${lng}/analytics`}>{t('header.analytics')}</a>
           </nav>
         </div>
-        <div className="analytics-footer-content">
+        <div className={styles.FooterContent}>
           <h2>{t('footer.ourProjects')}</h2>
           <nav aria-label="our projects">
             <a href={`https://covid-19.sledilnik.org/${lng}/`} target="_blank" rel="noreferrer">
@@ -33,7 +35,7 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
             </a>
           </nav>
         </div>
-        <div className="analytics-footer-content">
+        <div className={styles.FooterContent}>
           <h2>{t('footer.links')}</h2>
           <nav aria-label="social links">
             <a href="https://www.facebook.com/Sledilnik" target="_blank" rel="noreferrer">
@@ -71,8 +73,8 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
           </nav>
         </div>
       </div>
-      <div className="full-content sledilnik-info">
-        <div className="sledilnik-info-content">
+      <div className={`full-content ${styles.SledilnikInfo}`}>
+        <div className={styles.SledilnikContent}>
           <div>
             © 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
           </div>

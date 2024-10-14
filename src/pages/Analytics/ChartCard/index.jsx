@@ -21,6 +21,8 @@ import { baseOptions } from '../Charts/options';
 import CustomSeriesButtons from '../CustomSeriesButtons';
 import Popover from '../CustomPopover';
 
+import styles from './ChartCard.module.css';
+
 // accessibility(Highcharts);
 exporting(Highcharts);
 drilldown(Highcharts);
@@ -56,8 +58,8 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   return (
-    <div id={id} className="chart-card">
-      <header className="chart-header">
+    <div id={id} className={styles.ChartCard}>
+      <header className={styles.ChartHeader}>
         <div>
           <h2>{options?.title?.text}</h2>
           {options?.subtitle?.text ? <h3>{options.subtitle.text}</h3> : null}
@@ -91,7 +93,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
           options={options}
           aria-label={chart?.title}
         />
-        <div className="chart-series-buttons">
+        <div className={styles.ChartSeriesButtons}>
           <CustomSeriesButtons chart={chart} />
         </div>
         <figcaption>{options.caption.text}</figcaption>
