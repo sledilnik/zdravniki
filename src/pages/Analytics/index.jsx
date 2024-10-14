@@ -6,7 +6,7 @@ import { t } from 'i18next';
 
 import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
-import AnalyticsFooter from './Footer';
+import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
@@ -58,7 +58,7 @@ const Analytics = function Analytics() {
           <DrilldownChartExample id="drilldown-chart" />
         </RenderOnViewportEntry>
       </main>
-      <AnalyticsFooter lng={lng} />
+      <Footer lng={lng} />
     </>
   );
 };

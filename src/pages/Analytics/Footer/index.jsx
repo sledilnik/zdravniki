@@ -5,10 +5,10 @@ import * as Icons from 'components/Shared/Icons';
 
 import styles from './Footer.module.css';
 
-const AnalyticsFooter = function AnalyticsFooter({ lng }) {
+const Footer = function Footer({ lng }) {
   return (
-    <footer className="analytics-layout">
-      <div className={`full-content ${styles.Footer}`}>
+    <footer className={`analytics-layout ${styles.Footer}`}>
+      <div className={`full-content ${styles.FooterTopContainer}`}>
         <div className={styles.FooterContent}>
           <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className={styles.Logo} />
         </div>
@@ -73,7 +73,7 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
           </nav>
         </div>
       </div>
-      <div className={`full-content ${styles.SledilnikInfo}`}>
+      <div className={`full-content  ${styles.SledilnikInfo}`}>
         <div className={styles.SledilnikContent}>
           <div>
             © 2021-{new Date().getFullYear()} <strong>Sledilnik.org</strong>
@@ -89,8 +89,8 @@ const AnalyticsFooter = function AnalyticsFooter({ lng }) {
     </footer>
   );
 };
-AnalyticsFooter.propTypes = {
+Footer.propTypes = {
   lng: PropTypes.string.isRequired,
 };
 
-export default AnalyticsFooter;
+export default Footer;

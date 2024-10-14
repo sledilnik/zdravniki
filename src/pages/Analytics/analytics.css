@@ -95,25 +95,6 @@ button {
 
 /** Additional layout classes for specific sections **/
 
-.analytics-layout a {
-  color: inherit;
-  text-decoration: none;
-  display: inline flex;
-  gap: 0.5em;
-  align-items: center;
-  transition-property: color, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.3s;
-}
-
-.analytics-layout a:visited {
-  color: inherit;
-}
-
-.analytics-layout a:hover {
-  opacity: 0.5;
-}
-
 .analytics-main {
   min-height: calc(100dvh - 56px);
 }
