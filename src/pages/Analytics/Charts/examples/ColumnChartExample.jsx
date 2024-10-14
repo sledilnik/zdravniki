@@ -1,7 +1,7 @@
 import { merge as _merge } from 'lodash';
 import PropTypes from 'prop-types';
 
-import ChartCard from '../ChartCard';
+import ChartCard from '../../ChartCard';
 import { commonOptions } from '../options';
 
 /**

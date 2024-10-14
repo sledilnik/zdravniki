@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import './analytics.css';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import * as Icons from 'components/Shared/Icons';
-import AnalyticsFooter from './AnalyticsFooter';
+import AnalyticsFooter from './Footer';
 import Modal from './Modal';
 
 const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import SeriesButton from './SeriesButton';
+import SeriesButton from '../SeriesButton';
 
 const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
   if (!chart) {
