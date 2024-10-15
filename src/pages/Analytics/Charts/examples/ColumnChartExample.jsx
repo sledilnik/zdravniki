@@ -1,4 +1,4 @@
-import { merge as _merge } from 'lodash';
+import loMerge from 'lodash/merge';
 import PropTypes from 'prop-types';
 
 import ChartCard from '../../ChartCard';
@@ -12,7 +12,7 @@ import { commonOptions } from '../options';
  * @constant {HighchartsOptions} columnChartOptions- Highcharts options object.
  */
 export const columnChartOptions = {
-  ..._merge(
+  ...loMerge(
     {
       chart: { type: 'column' },
       title: { text: 'Column' },

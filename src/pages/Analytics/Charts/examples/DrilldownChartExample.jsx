@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { merge } from 'lodash';
+import loMerge from 'lodash/merge';
 
 import ChartCard from '../../ChartCard';
 import { commonOptions } from '../options';
@@ -12,7 +12,7 @@ import { commonOptions } from '../options';
  * @constant {HighchartsOptions} drilldownChartOptions- Highcharts options object.
  */
 const drilldownChartOptions = {
-  ...merge(
+  ...loMerge(
     {
       chart: { type: 'column' },
       title: {

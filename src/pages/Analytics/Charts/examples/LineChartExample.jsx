@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { merge as _merge } from 'lodash';
+import loMerge from 'lodash/merge';
 
 import ChartCard from '../../ChartCard';
 import { commonOptions } from '../options';
@@ -12,7 +12,7 @@ import { commonOptions } from '../options';
  * @constant {HighchartsOptions} lineChartOptions- Highcharts options object.
  */
 export const lineChartOptions = {
-  ..._merge(
+  ...loMerge(
     {
       chart: { type: 'line' },
       title: { text: 'Line' },
