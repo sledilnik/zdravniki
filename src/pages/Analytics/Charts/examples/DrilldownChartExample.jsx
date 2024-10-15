@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import loMerge from 'lodash/merge';
 
 import ChartCard from '../../ChartCard';
-import { commonOptions } from '../options';
+import { commonOptions } from '../../HighchartsOptions/options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -23,6 +23,9 @@ const drilldownChartOptions = {
         text: 'Click the slices to view versions. ',
       },
       caption: { text: 'Caption' },
+      legend: {
+        enabled: false,
+      },
       accessibility: {
         announceNewData: {
           enabled: true,

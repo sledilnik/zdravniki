@@ -8,23 +8,14 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import drilldown from 'highcharts/modules/drilldown';
-import exporting from 'highcharts/modules/exporting';
-// import accessibility from 'highcharts/modules/accessibility';
+
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
-import { baseOptions } from '../Charts/options';
 import CustomSeriesButtons from '../CustomSeriesButtons';
 import Popover from '../CustomPopover';
 
 import styles from './ChartCard.module.css';
 import stylesIconButton from '../IconButton.module.css';
-
-// accessibility(Highcharts);
-exporting(Highcharts);
-drilldown(Highcharts);
-
-Highcharts.setOptions(baseOptions);
 
 /**
  * ChartCard component renders a card with a chart header and children content.
@@ -35,6 +26,7 @@ Highcharts.setOptions(baseOptions);
  * @returns {JSX.Element} The rendered ChartCard component.
  */
 const ChartCard = function ChartCard({ id = undefined, options }) {
+  const [chartOptions] = useState(options);
   const chartRef = useRef(null);
   const chart = chartRef.current?.chart;
   const [, setInit] = useState(false);
@@ -83,11 +75,11 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
           <Icons.Icon name="VerticalDots" aria-label="more actions" />
         </Popover>
       </header>
-      <figure>
+      <figure className={styles.ChartFigure}>
         <HighchartsReact
           ref={chartRef}
           highcharts={Highcharts}
-          options={options}
+          options={chartOptions}
           aria-label={chart?.title}
         />
         <div className={styles.ChartSeriesButtons}>

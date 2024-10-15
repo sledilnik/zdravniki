@@ -8,25 +8,14 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
-// import loMerge from 'lodash/merge';
-import drilldown from 'highcharts/modules/drilldown';
-import exporting from 'highcharts/modules/exporting';
-// import accessibility from 'highcharts/modules/accessibility';
 
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
-import { baseOptions } from '../Charts/options';
 import CustomSeriesButtons from '../CustomSeriesButtons';
 import Popover from '../CustomPopover';
 
 import styles from '../ChartCard/ChartCard.module.css';
 import stylesIconButton from '../IconButton.module.css';
-
-// accessibility(Highcharts);
-exporting(HighMaps);
-drilldown(HighMaps);
-
-HighMaps.setOptions(baseOptions);
 
 /**
  * MapCard component renders a HighMaps chart with optional series buttons and fullscreen/print functionality.
@@ -39,6 +28,7 @@ HighMaps.setOptions(baseOptions);
  * @returns {JSX.Element} The rendered MapCard component.
  */
 const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = false }) {
+  const [chartOptions] = useState(options);
   const chartRef = useRef(null);
   const chart = chartRef.current?.chart;
   const [, setInit] = useState(false);
@@ -87,12 +77,12 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
           <Icons.Icon name="VerticalDots" aria-label="more actions" />
         </Popover>
       </header>
-      <figure>
+      <figure className={styles.ChartFigure}>
         <HighchartsReact
           ref={chartRef}
           highcharts={HighMaps}
           constructorType="mapChart"
-          options={options}
+          options={chartOptions}
           aria-label={chart?.title}
         />
         {showSeriesButtons ? (

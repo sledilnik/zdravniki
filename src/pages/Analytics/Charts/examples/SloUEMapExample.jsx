@@ -5,7 +5,7 @@ import sloUEMap from 'assets/maps/UE.geo.json';
 
 // import theme from 'const/theme';
 import MapCard from '../../MapCard';
-import { commonOptions } from '../options';
+import { commonOptions } from '../../HighchartsOptions/options';
 
 /**
  * @typedef {import('highcharts/highmaps').Options} HighMapsOptions
@@ -20,13 +20,13 @@ export const SloUEMapOptions = {
     {
       chart: { map: sloUEMap },
       title: { text: 'Slo UE Map' },
-      subtitle: { text: 'Subtitle' },
-      caption: { text: 'Caption' },
+      subtitle: { text: 'Slo UE Subtitle' },
+      caption: { text: 'Slo UE Caption' },
       legend: {
         enabled: true,
         align: 'right',
         verticalAlign: 'bottom',
-        layout: 'horizontal',
+        layout: 'vertical',
         floating: true,
         useHTML: true,
       },
@@ -49,8 +49,15 @@ export const SloUEMapOptions = {
               chart: {
                 height: `${(9 / 16) * 100}%`, // 16:9 ratio,
               },
-              legend: {
-                layout: 'vertical',
+            },
+          },
+          {
+            condition: {
+              maxWidth: 670,
+            },
+            chartOptions: {
+              chart: {
+                height: 400, // 16:9 ratio,
               },
             },
           },

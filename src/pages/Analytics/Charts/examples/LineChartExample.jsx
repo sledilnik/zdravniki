@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import loMerge from 'lodash/merge';
 
 import ChartCard from '../../ChartCard';
-import { commonOptions } from '../options';
+import { commonOptions } from '../../HighchartsOptions/options';
 
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -17,8 +17,11 @@ export const lineChartOptions = {
     {
       chart: { type: 'line' },
       title: { text: 'Line' },
-      subtitle: { text: 'Subtitle' },
-      caption: { text: 'Caption' },
+      subtitle: { text: 'Line Subtitle' },
+      caption: { text: 'Line Caption' },
+      legend: {
+        enabled: false,
+      },
     },
   ),
   series: [

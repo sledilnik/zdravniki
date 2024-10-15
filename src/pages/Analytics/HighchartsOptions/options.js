@@ -60,6 +60,7 @@ export const baseOptions = {
   chart: {
     className: 'font-sans',
   },
+  legend: { enabled: false },
 };
 
 export const srOnly = {

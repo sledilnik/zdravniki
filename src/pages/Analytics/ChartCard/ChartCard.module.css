@@ -1,5 +1,7 @@
 .ChartCard {
-  padding: 2em;
+  --inline-padding: 1.25em;
+
+  padding-block: 1em;
   background: #ffffff;
   border-radius: 6px;
 }
@@ -22,6 +24,7 @@
   align-items: center;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 2em;
+  padding-inline: var(--inline-padding);
 }
 
 .ChartSeriesButtons {
@@ -30,4 +33,9 @@
   flex-wrap: wrap;
   margin-bottom: 1em;
   padding-block: 0.2em;
+  padding-inline: var(--inline-padding);
+}
+
+.ChartFigure > figcaption {
+  padding-inline: var(--inline-padding);
 }

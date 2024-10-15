@@ -32,6 +32,9 @@ const Sidebar = function Sidebar() {
           <a href="#drilldown-chart" onClick={closeModal} className="link">
             Drilldown chart
           </a>
+          <a href="#slo-ue-map" onClick={closeModal} className="link">
+            Slo UE map
+          </a>
         </div>
       </Modal>
     </aside>

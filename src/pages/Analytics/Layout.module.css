@@ -4,7 +4,7 @@
 }
 .AnalyticsLayout,
 .FullWidth {
-  --minimum-content-padding: 2rem;
+  --minimum-content-padding: 0.8rem;
 
   /** TRACK WIDTHS **/
   --full-max-width: 1fr;
@@ -35,6 +35,10 @@
     [popout-end]
     var(--full)
     [full-end];
+
+  @media screen and (width > 599px) {
+    --minimum-content-padding: 1.5rem;
+  }
 }
 
 /** CLASSES **/
