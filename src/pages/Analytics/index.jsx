@@ -9,6 +9,7 @@ import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 import styles from './Layout.module.css';
+import SloUEMapExample from './Charts/examples/SloUEMapExample';
 
 const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
 const ColumnChartExample = lazy(() => import('./Charts/examples/ColumnChartExample'));
@@ -26,6 +27,9 @@ const Analytics = function Analytics() {
           {t('SEO.title.analytics')}
         </h1>
         <Sidebar />
+        <RenderOnViewportEntry>
+          <SloUEMapExample id="slo-ue-map" />
+        </RenderOnViewportEntry>
 
         <RenderOnViewportEntry>
           <ColumnChartExample id="column-chart" />

@@ -13,13 +13,13 @@ import { commonOptions } from '../options';
  */
 export const columnChartOptions = {
   ...loMerge(
+    { ...commonOptions },
     {
       chart: { type: 'column' },
       title: { text: 'Column' },
       subtitle: { text: 'Subtitle' },
       caption: { text: 'Caption' },
     },
-    commonOptions,
   ),
   series: [
     {

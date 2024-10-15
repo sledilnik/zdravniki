@@ -13,6 +13,7 @@ import { commonOptions } from '../options';
  */
 const drilldownChartOptions = {
   ...loMerge(
+    { ...commonOptions },
     {
       chart: { type: 'column' },
       title: {
@@ -51,7 +52,6 @@ const drilldownChartOptions = {
           '<b>{point.y:.2f}%</b> of total<br/>',
       },
     },
-    commonOptions,
   ),
   series: [
     {

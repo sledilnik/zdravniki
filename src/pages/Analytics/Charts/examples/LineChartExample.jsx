@@ -13,13 +13,13 @@ import { commonOptions } from '../options';
  */
 export const lineChartOptions = {
   ...loMerge(
+    { ...commonOptions },
     {
       chart: { type: 'line' },
       title: { text: 'Line' },
       subtitle: { text: 'Subtitle' },
       caption: { text: 'Caption' },
     },
-    commonOptions,
   ),
   series: [
     {

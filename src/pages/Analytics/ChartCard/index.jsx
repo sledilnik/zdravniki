@@ -4,10 +4,6 @@
  * @typedef {import('highcharts').Options} HighchartsOptions
  */
 
-/**
- * @typedef {import('highcharts').Chart} HighchartsChart
- */
-
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
