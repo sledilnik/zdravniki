@@ -13,33 +13,31 @@ import { commonOptions } from '../../HighchartsOptions/options';
  */
 export const columnChartOptions = {
   ...loMerge(
-    { ...commonOptions },
     {
       chart: { type: 'column' },
       title: { text: 'Column' },
       subtitle: { text: 'Column Subtitle' },
       caption: { text: 'Column Caption' },
-      legend: {
-        enabled: false,
+      legend: { enabled: false },
+      series: [
+        {
+          data: [1, 2, 3],
+          name: 'Series 1',
+        },
+        { data: [3, 2, 1], name: 'Series 2' },
+        { data: [3, 2, 1], name: 'Series 3' },
+        { data: [3, 2, 1], name: 'Series 4' },
+        { data: [3, 2, 1], name: 'Series 5' },
+        { data: [3, 2, 1], name: 'Series 6' },
+      ],
+      yAxis: {
+        title: {
+          text: 'Y os',
+        },
       },
     },
+    { ...commonOptions },
   ),
-  series: [
-    {
-      data: [1, 2, 3],
-      name: 'Series 1',
-    },
-    { data: [3, 2, 1], name: 'Series 2' },
-    { data: [3, 2, 1], name: 'Series 3' },
-    { data: [3, 2, 1], name: 'Series 4' },
-    { data: [3, 2, 1], name: 'Series 5' },
-    { data: [3, 2, 1], name: 'Series 6' },
-  ],
-  yAxis: {
-    title: {
-      text: 'Y os',
-    },
-  },
 };
 
 const ColumnChartExample = function ColumnChartExample({ id }) {

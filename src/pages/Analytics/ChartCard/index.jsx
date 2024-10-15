@@ -31,6 +31,8 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
   const chart = chartRef.current?.chart;
   const [, setInit] = useState(false);
 
+  console.log({ [options.title.text]: chart });
+
   useEffect(() => {
     // hack to force re-render to get the chart instance
     setInit(true);

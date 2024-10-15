@@ -13,29 +13,27 @@ import { commonOptions } from '../../HighchartsOptions/options';
  */
 export const lineChartOptions = {
   ...loMerge(
-    { ...commonOptions },
     {
       chart: { type: 'line' },
       title: { text: 'Line' },
       subtitle: { text: 'Line Subtitle' },
       caption: { text: 'Line Caption' },
-      legend: {
-        enabled: false,
+      legend: { enabled: false },
+      series: [
+        {
+          data: [1, 2, 3],
+          name: 'Prvi',
+        },
+        { data: [3, 2, 1], name: 'Drugi' },
+      ],
+      yAxis: {
+        title: {
+          text: 'Y os',
+        },
       },
     },
+    { ...commonOptions },
   ),
-  series: [
-    {
-      data: [1, 2, 3],
-      name: 'Prvi',
-    },
-    { data: [3, 2, 1], name: 'Drugi' },
-  ],
-  yAxis: {
-    title: {
-      text: 'Y os',
-    },
-  },
 };
 
 const LineChartExample = function LineChartExample({ id }) {

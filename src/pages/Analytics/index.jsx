@@ -49,7 +49,7 @@ const Analytics = function Analytics() {
             rootMargin: '0px',
           }}
           srOnlyComponentsBeforeEntered={
-            <div id="drilldown-chart">
+            <div id="slo-ue-map">
               <h2>Slo UE Map</h2>
               <h3>Map subtitle</h3>
             </div>

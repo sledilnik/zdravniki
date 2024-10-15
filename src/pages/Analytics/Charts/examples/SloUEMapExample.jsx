@@ -16,7 +16,6 @@ import { commonOptions } from '../../HighchartsOptions/options';
  */
 export const SloUEMapOptions = {
   ...loMerge(
-    { ...commonOptions },
     {
       chart: { map: sloUEMap },
       title: { text: 'Slo UE Map' },
@@ -63,28 +62,29 @@ export const SloUEMapOptions = {
           },
         ],
       },
-    },
-  ),
-  series: [
-    {
-      type: 'map',
-      name: 'Slo UE Data',
-      mapData: sloUEMap,
-      keys: ['UE_MID', 'value'],
-      joinBy: 'UE_MID',
-      data: [
-        [10051851, 10],
-        [10051860, 20],
-        [10051878, 30],
-        [10051886, 35],
-        [10051894, 25],
+      series: [
+        {
+          type: 'map',
+          name: 'Slo UE Data',
+          mapData: sloUEMap,
+          keys: ['UE_MID', 'value'],
+          joinBy: 'UE_MID',
+          data: [
+            [10051851, 10],
+            [10051860, 20],
+            [10051878, 30],
+            [10051886, 35],
+            [10051894, 25],
+          ],
+          dataLabels: {
+            enabled: true,
+            format: '{point.properties.UE_UIME}',
+          },
+        },
       ],
-      dataLabels: {
-        enabled: true,
-        format: '{point.properties.UE_UIME}',
-      },
     },
-  ],
+    { ...commonOptions },
+  ),
 };
 
 const SloUEMapExample = function SloUEMapExample({ id }) {
