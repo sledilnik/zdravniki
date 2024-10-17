@@ -3,8 +3,9 @@ import HighMaps from 'highcharts/highmaps';
 
 import drilldown from 'highcharts/modules/drilldown';
 import exporting from 'highcharts/modules/exporting';
-import { baseOptions } from './options';
 // import accessibility from 'highcharts/modules/accessibility';
+
+import { baseOptions } from './options';
 
 // accessibility(Highcharts);
 exporting(Highcharts);

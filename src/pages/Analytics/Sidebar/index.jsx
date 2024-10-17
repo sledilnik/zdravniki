@@ -4,6 +4,8 @@ import * as Icons from 'components/Shared/Icons';
 import Modal from '../Modal';
 
 import styles from './Sidebar.module.css';
+import { SECTIONS } from '../Data/sections';
+import { createChartDataProxy } from '../Data/examples';
 
 const Sidebar = function Sidebar() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,18 +25,35 @@ const Sidebar = function Sidebar() {
       <Modal openModal={modalOpen} closeModal={closeModal} ariaLabelledBy="go-to-graph">
         <h2 id="go-to-graph">Pojdi na graf</h2>
         <div>
-          <a href="#column-chart" onClick={closeModal} className="link">
-            Column chart
-          </a>
-          <a href="#line-chart" onClick={closeModal} className="link">
-            Line chart
-          </a>
-          <a href="#drilldown-chart" onClick={closeModal} className="link">
-            Drilldown chart
-          </a>
-          <a href="#slo-ue-map" onClick={closeModal} className="link">
-            Slo UE map
-          </a>
+          {SECTIONS.map(section => (
+            <div key={section.sectionTitle} style={{ marginBottom: '0.5em' }}>
+              <h3
+                style={{
+                  fontSize: '0.75',
+                  lineHeight: '1rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1',
+                  opacity: '0.65',
+                  marginBottom: '0.5em',
+                }}
+              >
+                {section.sectionTitle}
+              </h3>
+              {section.charts.map(chart => {
+                const chartProxy = createChartDataProxy(chart);
+                return (
+                  <a
+                    key={chartProxy.id}
+                    href={`#${chartProxy.id}`}
+                    onClick={closeModal}
+                    className="link"
+                  >
+                    {chartProxy.options.title.text}
+                  </a>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </Modal>
     </aside>

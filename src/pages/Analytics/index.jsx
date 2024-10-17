@@ -10,11 +10,16 @@ import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 import styles from './Layout.module.css';
+import { SECTIONS } from './Data/sections';
+import { createChartDataProxy } from './Data/examples';
 
-const LineChartExample = lazy(() => import('./Charts/examples/LineChartExample'));
-const ColumnChartExample = lazy(() => import('./Charts/examples/ColumnChartExample'));
-const DrilldownChartExample = lazy(() => import('./Charts/examples/DrilldownChartExample'));
-const SloUEMapExample = lazy(() => import('./Charts/examples/SloUEMapExample'));
+const ChartCard = lazy(() => import('./ChartCard'));
+const MapCard = lazy(() => import('./MapCard'));
+
+const CARDS = {
+  ChartCard,
+  MapCard,
+};
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
@@ -29,62 +34,25 @@ const Analytics = function Analytics() {
         </h1>
         <Sidebar />
 
-        <RenderOnViewportEntry
-          intersectionObserverInit={{
-            threshold: 0,
-            rootMargin: '0px',
-          }}
-          srOnlyComponentsBeforeEntered={
-            <div id="column-chart">
-              <h2>Column chart</h2>
-              <h3>Column subtitle</h3>
-            </div>
-          }
-        >
-          <ColumnChartExample id="column-chart" />
-        </RenderOnViewportEntry>
-        <RenderOnViewportEntry
-          intersectionObserverInit={{
-            threshold: 0.5,
-            rootMargin: '0px',
-          }}
-          srOnlyComponentsBeforeEntered={
-            <div id="slo-ue-map">
-              <h2>Slo UE Map</h2>
-              <h3>Map subtitle</h3>
-            </div>
-          }
-        >
-          <SloUEMapExample id="slo-ue-map" />
-        </RenderOnViewportEntry>
-        <RenderOnViewportEntry
-          intersectionObserverInit={{
-            threshold: 0.5,
-            rootMargin: '0px',
-          }}
-          srOnlyComponentsBeforeEntered={
-            <div id="line-chart">
-              <h2>Line</h2>
-              <h3>Line subtitle</h3>
-            </div>
-          }
-        >
-          <LineChartExample id="line-chart" />
-        </RenderOnViewportEntry>
-        <RenderOnViewportEntry
-          intersectionObserverInit={{
-            threshold: 1,
-            rootMargin: '0px',
-          }}
-          srOnlyComponentsBeforeEntered={
-            <div id="drilldown-chart">
-              <h2>Drilldown</h2>
-              <h3>Click the slices to view versions.</h3>
-            </div>
-          }
-        >
-          <DrilldownChartExample id="drilldown-chart" />
-        </RenderOnViewportEntry>
+        {SECTIONS.map(section => (
+          <section key={section.sectionTitle}>
+            <h2>{section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}</h2>
+            {section.charts.map(chart => {
+              const CardComponent = CARDS[chart.componentName];
+              const chartProxy = createChartDataProxy(chart);
+              return (
+                <RenderOnViewportEntry
+                  key={chartProxy.id}
+                  srOnlyComponentsBeforeEntered={
+                    <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
+                  }
+                >
+                  <CardComponent id={chartProxy.id} options={chartProxy.mergedOptions} />
+                </RenderOnViewportEntry>
+              );
+            })}
+          </section>
+        ))}
       </main>
       <Footer lng={lng} />
     </>

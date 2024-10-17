@@ -33,8 +33,6 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
   const chart = chartRef.current?.chart;
   const [, setInit] = useState(false);
 
-  console.log({ [options.title.text]: chart });
-
   useEffect(() => {
     // hack to force re-render to get the chart instance
     setInit(true);
@@ -54,8 +52,8 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
     <div id={id} className={styles.ChartCard}>
       <header className={styles.ChartHeader}>
         <div>
-          <h2>{options?.title?.text}</h2>
-          {options?.subtitle?.text ? <h3>{options.subtitle.text}</h3> : null}
+          <h3>{options?.title?.text}</h3>
+          {options?.subtitle?.text ? <h4>{options.subtitle.text}</h4> : null}
         </div>
 
         <Popover
