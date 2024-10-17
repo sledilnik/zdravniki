@@ -1,0 +1,23 @@
+.SeriesButton {
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  background: #f4f8f8;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transform: all 0.3s ease;
+}
+
+.SeriesButton[data-visible='false'] {
+  text-decoration: line-through;
+}
+
+.SeriesButton:hover {
+  background: #f4f8f8;
+}
+
+.SeriesButton:focus-visible {
+  outline: 2px solid #333;
+}
