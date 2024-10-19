@@ -25,10 +25,10 @@ body {
 }
 
 [id] {
-  scroll-margin-top: 56px;
+  scroll-margin-top: 64px;
 
   @media (min-width: 600px) {
-    scroll-margin-top: 64px;
+    scroll-margin-top: 72px;
   }
 }
 

@@ -23,6 +23,6 @@
  * @property {HighMapsOptions} options
  */
 
-/** @typedef {("examples" | "section")[]} SectionNames */
+/** @typedef {("examples 1" | "examples 2")[]} SectionNames */
 
 export default {};

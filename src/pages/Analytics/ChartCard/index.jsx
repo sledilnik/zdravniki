@@ -51,7 +51,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
       <header className={styles.ChartHeader}>
         <div>
           <h3>{options?.title?.text}</h3>
-          {options?.subtitle?.text ? <h4>{options.subtitle.text}</h4> : null}
+          {options?.subtitle?.text ? <p>{options.subtitle.text}</p> : null}
         </div>
 
         <Popover

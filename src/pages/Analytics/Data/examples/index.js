@@ -35,7 +35,7 @@ export function createChartDataProxy(obj) {
  * @type {Types.ChartData} - Column chart data.
  */
 export const COLUMN = {
-  section: 'section',
+  section: 'examples 1',
   order: 1,
   componentName: 'ChartCard',
   options: {
@@ -71,7 +71,7 @@ export const COLUMN = {
  * @type {Types.ChartData} - Line chart data.
  */
 export const Line = {
-  section: 'examples',
+  section: 'examples 2',
   order: 2,
   componentName: 'ChartCard',
   options: {
@@ -99,7 +99,7 @@ export const Line = {
  * @type {Types.ChartData} - Drilldown chart data.
  */
 export const DRILLDOWN = {
-  section: 'examples',
+  section: 'examples 2',
   order: 3,
   componentName: 'ChartCard',
   options: {
@@ -278,7 +278,7 @@ export const DRILLDOWN = {
  */
 export const SLO_UE_MAP = {
   order: 4,
-  section: 'examples',
+  section: 'examples 1',
   componentName: 'MapCard',
   options: {
     chart: { map: sloUEMap },

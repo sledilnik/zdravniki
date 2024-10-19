@@ -97,10 +97,43 @@
 
 .MinHeightNoHeader {
   min-height: calc(100dvh - 56px);
+  margin-top: 1rem;
 }
 
 @media screen and (width >= 600px) {
   .MinHeightNoHeader {
     min-height: calc(100dvh - 64px);
   }
+}
+
+/* Miscellaneous */
+
+.MainTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  margin-bottom: 2rem;
+}
+
+.SectionTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.ChartsSection:first-of-type {
+  min-height: 670px; /* 670px is the height of the chart and section title */
+}
+
+.ChartsSection:not(:first-of-type) {
+  margin-top: 2rem;
+}
+
+.CardWrapper:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.FakeChartTitlesWrapper {
+  background: #ffffff;
+  border-radius: 6px;
 }

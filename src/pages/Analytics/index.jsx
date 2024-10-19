@@ -29,14 +29,14 @@ const Analytics = function Analytics() {
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
 
       <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
-        <h1 className="content" style={{ marginTop: '1em' }}>
-          {t('SEO.title.analytics')}
-        </h1>
         <Sidebar />
+        <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
 
         {SECTIONS.map(section => (
-          <section key={section.sectionTitle}>
-            <h2>{section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}</h2>
+          <section key={section.sectionTitle} className={styles.ChartsSection}>
+            <h2 className={styles.SectionTitle}>
+              {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
+            </h2>
             {section.charts.map(chart => {
               const CardComponent = CARDS[chart.componentName];
               const chartProxy = createChartDataProxy(chart);
@@ -44,8 +44,12 @@ const Analytics = function Analytics() {
                 <RenderOnViewportEntry
                   key={chartProxy.id}
                   srOnlyComponentsBeforeEntered={
-                    <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
+                    <div className={styles.FakeChartTitlesWrapper}>
+                      <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
+                      <p>{chartProxy.options.subtitle.text}</p>
+                    </div>
                   }
+                  className={styles.CardWrapper}
                 >
                   <CardComponent id={chartProxy.id} options={chartProxy.mergedOptions} />
                 </RenderOnViewportEntry>
