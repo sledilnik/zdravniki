@@ -1,4 +1,8 @@
 /**
+ * @typedef {import('highcharts-react-official').HighchartsReactRefObject["chart"]} ChartRefProperty
+ */
+
+/**
  * @typedef {import('highcharts').Options} HighchartsOptions
  */
 
