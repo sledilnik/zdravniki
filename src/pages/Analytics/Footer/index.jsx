@@ -46,7 +46,7 @@ const Footer = function Footer({ lng }) {
               />{' '}
               Facebook
             </a>
-            <a href="https://twitter.com/sledilnik" target="_blank" rel="noreferrer">
+            <a href="https://x.com/sledilnik" target="_blank" rel="noreferrer">
               <Icons.Icon
                 name="Twitter"
                 style={{ height: '1.2em', width: '1.2em', display: 'inline block' }}

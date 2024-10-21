@@ -50,8 +50,10 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
     <article id={id} className={styles.ChartCard}>
       <header className={styles.ChartHeader}>
         <div>
-          <h3>{options?.title?.text}</h3>
-          {options?.subtitle?.text ? <p>{options.subtitle.text}</p> : null}
+          <span className={styles.Title}>{options?.title?.text}</span>
+          {options?.subtitle?.text ? (
+            <span className={styles.Subtitle}>{options.subtitle.text}</span>
+          ) : null}
         </div>
 
         <Popover
@@ -85,7 +87,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
         <div className={styles.ChartSeriesButtons}>
           <CustomSeriesButtons chart={chart} />
         </div>
-        <figcaption>{options.caption.text}</figcaption>
+        <figcaption className="highcharts-description">{options.caption.text}</figcaption>
       </figure>
     </article>
   );

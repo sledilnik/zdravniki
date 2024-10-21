@@ -3,15 +3,15 @@ import HighMaps from 'highcharts/highmaps';
 
 import drilldown from 'highcharts/modules/drilldown';
 import exporting from 'highcharts/modules/exporting';
-// import accessibility from 'highcharts/modules/accessibility';
+import accessibility from 'highcharts/modules/accessibility';
 
 import { baseOptions } from './options';
 
-// accessibility(Highcharts);
+accessibility(Highcharts);
 exporting(Highcharts);
 drilldown(Highcharts);
 
-// accessibility(Highcharts);
+accessibility(HighMaps);
 exporting(HighMaps);
 drilldown(HighMaps);
 

@@ -52,8 +52,10 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
     <div id={id} className={styles.ChartCard}>
       <header className={styles.ChartHeader}>
         <div>
-          <h3>{options?.title?.text}</h3>
-          {options?.subtitle?.text ? <h4>{options.subtitle.text}</h4> : null}
+          <span className={styles.Title}>{options?.title?.text}</span>
+          {options?.subtitle?.text ? (
+            <span className={styles.Subtitle}>{options.subtitle.text}</span>
+          ) : null}
         </div>
 
         <Popover
@@ -90,7 +92,7 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
             <CustomSeriesButtons chart={chart} />
           </div>
         ) : null}
-        <figcaption>{options.caption.text}</figcaption>
+        <figcaption className="highcharts-description">{options.caption.text}</figcaption>
       </figure>
     </div>
   );

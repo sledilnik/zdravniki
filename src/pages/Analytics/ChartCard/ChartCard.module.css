@@ -1,7 +1,6 @@
 .ChartCard {
   --inline-padding: 1.25em;
 
-  padding-block: 1em;
   background: #ffffff;
   border-radius: 6px;
 }
@@ -10,12 +9,18 @@
   margin-bottom: 2em;
 }
 
-.ChartCard h2 {
+.ChartCard .Title {
+  font-size: 1.25rem;
+  line-height: 1.5;
   font-weight: 600;
+  display: block;
 }
 
-.ChartCard h3 {
+.ChartCard .Subtitle {
+  font-size: 1.125rem;
+  line-height: 1.25;
   font-weight: 500;
+  display: block;
 }
 
 .ChartHeader {
@@ -23,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 2em;
+  padding-block: 0.5em;
   padding-inline: var(--inline-padding);
 }
 
@@ -38,4 +43,5 @@
 
 .ChartFigure > figcaption {
   padding-inline: var(--inline-padding);
+  padding-block: 0.5em;
 }
