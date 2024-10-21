@@ -1,24 +1,24 @@
-.popover-container {
+.PopoverContainer {
   position: relative;
   display: inline-block;
   z-index: 5;
 }
 
-.popover-trigger {
+.PopoverTrigger {
   cursor: pointer;
   background: transparent;
   border: 1px solid transparent;
 }
 
-.popover-trigger:hover {
+.PopoverTrigger:hover {
   background: #f4f8f8;
 }
 
-.popover-trigger:focus-visible {
+.PopoverTrigger:focus-visible {
   outline: 2px solid #333;
 }
 
-.popover-content {
+.PopoverContent {
   position: absolute;
   inset: unset;
   background-color: #fff;
@@ -34,33 +34,34 @@
   white-space: nowrap;
 }
 
-.popover-content[data-placement^='top'] {
+.PopoverContent[data-placement^='top'] {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.popover-content[data-placement^='bottom'] {
+.PopoverContent[data-placement^='bottom'] {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.popover-content[data-placement^='start'],
-.popover-content[data-placement$='start'] {
+.PopoverContent[data-placement^='start'],
+.PopoverContent[data-placement$='start'] {
   right: 0;
   left: unset;
   transform: unset;
 }
 
-.popover-content[data-placement^='end'],
-.popover-content[data-placement$='end'] {
+.PopoverContent[data-placement^='end'],
+.PopoverContent[data-placement$='end'] {
   left: 0;
   right: unset;
   transform: unset;
 }
 
-.popover-item {
+.PopoverItem {
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -70,15 +71,15 @@
   border: 1px solid transparent;
 }
 
-.popover-item:hover {
+.PopoverItem:hover {
   background: #f4f8f8;
 }
 
-.popover-item:focus-visible {
+.PopoverItem:focus-visible {
   background: #f4f8f8;
   outline: 2px solid #333;
 }
 
-.popover-content:focus-visible {
+.PopoverContent:focus-visible {
   outline: 2px solid #333;
 }

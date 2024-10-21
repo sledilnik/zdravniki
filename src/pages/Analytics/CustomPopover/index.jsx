@@ -1,15 +1,15 @@
 /* eslint-disable react/require-default-props */
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './custom-popover.css';
+import styles from './CustomPopover.module.css';
 
 const Popover = function Popover({
   children,
-  triggerClassname = 'popover-trigger',
+  triggerClassname = styles.PopoverTrigger,
   placement = 'bottom-center',
   options = [{ label: 'Edit', onClick: () => {}, Icon: undefined }],
   RenderItem = ({ label, onClick, Icon, ...props }) => (
-    <button type="button" onClick={onClick} className="popover-item" {...props}>
+    <button type="button" onClick={onClick} className={styles.PopoverItem} {...props}>
       {Icon ? <Icon /> : null}
       {label}
     </button>
@@ -116,7 +116,7 @@ const Popover = function Popover({
   }, [isVisible, focusedIndex]);
 
   return (
-    <div className="popover-container">
+    <div className={styles.PopoverContainer}>
       <button
         ref={triggerRef}
         type="button"
@@ -133,7 +133,7 @@ const Popover = function Popover({
         <div
           id="popover-content"
           ref={popoverRef}
-          className="popover-content"
+          className={styles.PopoverContent}
           role="dialog"
           aria-modal="true"
           data-placement={placement ?? 'bottom-center'}
