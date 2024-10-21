@@ -4,13 +4,13 @@ import { Loader } from 'components/Shared';
 import { HelmetProvider } from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import i18n from 'i18next';
-import Analytics from 'pages/Analytics';
 
 const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/About'));
 const Faq = lazy(() => import('../pages/Faq'));
 const Doctor = lazy(() => import('../pages/Doctor'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound'));
+const Analytics = lazy(() => import('../pages/Analytics'));
 
 const IsWrongLanguage = function IsWrongLanguage({ isValidLanguage, Component }) {
   const { pathname } = useLocation();
