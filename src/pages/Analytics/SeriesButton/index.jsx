@@ -16,6 +16,7 @@ import styles from './SeriesButton.module.css';
  * @param {string} [props.className=''] - Additional CSS class names to apply to the button.
  * @param {string} [props.color='inherit'] - The color of the button text.
  * @param {string} [props.toggleState] - The button will not toggle state on click; It will keep the visibility state as value of visible prop.
+ * @param {("default" | "dynamic")} [props.variant='default'] - The button variant.
  *
  * @returns {JSX.Element} The rendered button component.
  */
@@ -29,6 +30,7 @@ const SeriesButton = function SeriesButton({
   color = 'inherit',
   borderColor = 'inherit',
   toggleState = true,
+  variant = 'default',
 }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(visible);
@@ -38,6 +40,16 @@ const SeriesButton = function SeriesButton({
     onClick();
   };
 
+  const styleAttr =
+    variant === 'dynamic'
+      ? { '--bg': color, borderColor: color }
+      : {
+          color: isVisible ? color : '#666666',
+          borderColor: isVisible ? borderColor : '#666666',
+        };
+
+  const classNamesDynamic = `${styles.DynamicColor} ${isVisible ? styles.IsVisible : ''}`;
+
   return (
     <button
       ref={ref}
@@ -45,12 +57,11 @@ const SeriesButton = function SeriesButton({
       onClick={toggleVisibility}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`${styles.SeriesButton} ${className}`}
+      onFocus={onMouseEnter}
+      onBlur={onMouseLeave}
+      className={`${styles.SeriesButton} ${variant === 'dynamic' ? classNamesDynamic : ''} ${className}`}
       data-visible={toggleState ? isVisible : undefined}
-      style={{
-        color: isVisible ? color : '#666666',
-        borderColor: isVisible ? borderColor : '#666666',
-      }}
+      style={styleAttr}
     >
       {children}
     </button>
@@ -67,6 +78,7 @@ SeriesButton.propTypes = {
   borderColor: PropTypes.string,
   className: PropTypes.string,
   toggleState: PropTypes.bool,
+  variant: PropTypes.oneOf(['default', 'dynamic']),
 };
 
 export default SeriesButton;

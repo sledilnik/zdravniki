@@ -64,6 +64,7 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
           visible={buttonsVisibility}
           color={chart?.series[index]?.color}
           borderColor={chart?.series[index]?.color}
+          variant="dynamic"
         >
           {series.name}
         </SeriesButton>
