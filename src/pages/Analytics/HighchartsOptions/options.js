@@ -1,7 +1,11 @@
+/** @import * as Types from "../types" */
+
+/** @type {Types.HighchartsOptions["time"]} */
 export const time = {
   timezone: 'Europe/Ljubljana',
 };
 
+/** @type {Types.HighchartsOptions["lang"]} */
 export const lang = {
   accessibility: {
     chartContainerLabel: 'Title: {title}.',
@@ -35,6 +39,7 @@ export const lang = {
   shortWeekdays: ['Ned', 'Pon', 'Tor', 'Sre', 'Čet', 'Pet', 'Sob'],
 };
 
+/** @type {Types.HighchartsOptions} */
 export const baseOptions = {
   lang,
   time,
@@ -63,6 +68,7 @@ export const baseOptions = {
   legend: { enabled: false },
 };
 
+/** @type {React.CSSProperties}  */
 export const srOnly = {
   position: 'absolute',
   width: '1px',
@@ -75,6 +81,7 @@ export const srOnly = {
   borderWidth: '0',
 };
 
+/** @type {React.CSSProperties}  */
 export const notSrOnly = {
   position: 'absolute',
   width: 'auto',
@@ -86,6 +93,7 @@ export const notSrOnly = {
   whiteSpace: 'normal',
 };
 
+/** @type {Types.HighchartsOptions["chart"]["events"]} */
 export const chartEvents = {
   beforePrint() {
     this.update({
@@ -177,6 +185,7 @@ export const chartEvents = {
   },
 };
 
+/** @type {Types.HighchartsOptions} */
 export const commonOptions = {
   exporting: {
     chartOptions: {
