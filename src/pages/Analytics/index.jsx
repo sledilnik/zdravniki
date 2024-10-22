@@ -51,7 +51,7 @@ const Analytics = function Analytics() {
                   }
                   className={styles.CardWrapper}
                 >
-                  <CardComponent id={chartProxy.id} options={chartProxy.mergedOptions} />
+                  <CardComponent id={chartProxy.id} options={chartProxy.options} />
                 </RenderOnViewportEntry>
               );
             })}

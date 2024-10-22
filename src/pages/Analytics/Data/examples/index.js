@@ -1,9 +1,8 @@
 /** @import * as Types from "../../types" */
 
-import loMerge from 'lodash/merge';
-
 import sloUEMap from 'assets/maps/UE.geo.json';
-import { commonOptions } from 'pages/Analytics/HighchartsOptions/options';
+import sloOBMap from 'assets/maps/OB.geo.json';
+import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 
 /**
  * Creates a proxy object for handling chart data operations.
@@ -21,9 +20,7 @@ export function createChartDataProxy(obj) {
           target.options.title.text.trim().toLowerCase().replace(/\s/g, '-'),
         );
       }
-      if (prop === 'mergedOptions') {
-        return loMerge(target.options, commonOptions);
-      }
+
       // eslint-disable-next-line prefer-rest-params
       return Reflect.get(...arguments);
     },
@@ -36,7 +33,7 @@ export function createChartDataProxy(obj) {
  */
 export const COLUMN = {
   section: 'examples 1',
-  order: 1,
+  order: 2,
   componentName: 'ChartCard',
   options: {
     accessibility: {
@@ -306,21 +303,29 @@ export const SLO_UE_MAP = {
       rules: [
         {
           condition: {
-            minWidth: 670,
+            minWidth: dimensions.breakpoints.sm,
           },
           chartOptions: {
             chart: {
-              height: `${(9 / 16) * 100}%`, // 16:9 ratio,
+              height: dimensions.height.md,
             },
           },
         },
         {
           condition: {
-            maxWidth: 670,
+            maxWidth: dimensions.breakpoints.sm,
           },
           chartOptions: {
             chart: {
-              height: 400, // 16:9 ratio,
+              height: dimensions.height.sm,
+            },
+            legend: {
+              enabled: true,
+              align: 'center',
+              verticalAlign: 'bottom',
+              layout: 'horizontal',
+              floating: false,
+              useHTML: true,
             },
           },
         },
@@ -349,9 +354,120 @@ export const SLO_UE_MAP = {
   },
 };
 
+/**
+ * @type {Types.MapData} - Slo UE map data.
+ */
+const SLO_OB_MAP = {
+  order: 1,
+  section: 'examples 1',
+  componentName: 'MapCard',
+  options: {
+    chart: { map: sloOBMap },
+    title: { text: 'Slo OB Map' },
+    subtitle: { text: 'Slo OB Subtitle' },
+    caption: { text: 'Slo OB Caption' },
+    legend: {
+      enabled: true,
+      align: 'right',
+      verticalAlign: 'bottom',
+      layout: 'vertical',
+      floating: true,
+      useHTML: true,
+    },
+    colorAxis: {
+      startOnTick: false,
+      endOnTick: false,
+      type: 'linear',
+    },
+    tooltip: {
+      useHtml: true,
+      pointFormat: '{point.properties.OB_UIME}: <b>{point.value}</b>',
+    },
+    responsive: {
+      rules: [
+        {
+          condition: {
+            minWidth: dimensions.breakpoints.sm,
+          },
+          chartOptions: {
+            chart: {
+              height: dimensions.height.md,
+            },
+          },
+        },
+        {
+          condition: {
+            maxWidth: dimensions.breakpoints.sm,
+          },
+          chartOptions: {
+            chart: {
+              height: dimensions.height.sm,
+            },
+            legend: {
+              enabled: false,
+              align: 'right',
+              verticalAlign: 'middle',
+              layout: 'vertical',
+              floating: true,
+              useHTML: true,
+              y: 100,
+            },
+          },
+        },
+      ],
+    },
+    series: [
+      {
+        type: 'map',
+        name: 'Slo OB Data',
+        mapData: sloOBMap,
+        keys: ['OB_UIME', 'value'],
+        joinBy: 'OB_UIME',
+        data: [
+          ['Ajdovščina', 10],
+          ['Ljubljana', 20],
+          ['Celje', 30],
+          ['Maribor', 35],
+          ['Kranj', 25],
+          ['Koper', 25],
+          ['Nova Gorica', 25],
+          ['Murska Sobota', 25],
+          ['Novo Mesto', 25],
+          ['Ptuj', 25],
+          ['Slovenj Gradec', 25],
+          ['Trbovlje', 25],
+          ['Velenje', 25],
+          ['Domžale', 25],
+          ['Kamnik', 25],
+          ['Izola', 25],
+          ['Sežana', 25],
+          ['Postojna', 25],
+          ['Brežice', 25],
+          ['Krško', 25],
+          ['Rogaška Slatina', 25],
+          ['Slovenske Konjice', 25],
+          ['Šentjur', 25],
+          ['Šmarje pri Jelšah', 25],
+          ['Šentjur', 25],
+          ['Šmarje pri Jelšah', 25],
+          ['Škofja Loka', 25],
+          ['Šenčur', 25],
+          ['Škofljica', 25],
+          ['Šmartno pri Litiji', 25],
+        ],
+        dataLabels: {
+          enabled: true,
+          format: '{point.properties.OB_UIME}',
+        },
+      },
+    ],
+  },
+};
+
 export default {
   COLUMN,
   Line,
   DRILLDOWN,
   SLO_UE_MAP,
+  SLO_OB_MAP,
 };

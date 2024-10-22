@@ -193,7 +193,7 @@ export const commonOptions = {
     },
   },
   legend: {
-    enabled: false,
+    enabled: true,
     useHTML: true,
   },
   chart: {
@@ -216,5 +216,26 @@ export const commonOptions = {
     style: {
       ...srOnly,
     },
+  },
+};
+
+/**
+ * @constant
+ * @typedef {Object} Dimensions - Dimensions for responsive design.
+ * @property {Object} breakpoints - Breakpoints for responsive design.
+ * @property {670} breakpoints.sm - Breakpoint for small devices.
+ * @property {Object} height - Height for different devices.
+ * @property {600} height.sm - Height for small devices.
+ * @property {"56.25%"} height.md - Height for medium devices.
+ */
+
+/** @type {Dimensions} */
+export const dimensions = {
+  breakpoints: {
+    sm: 670,
+  },
+  height: {
+    sm: 600,
+    md: `${(9 / 16) * 100}%`,
   },
 };
