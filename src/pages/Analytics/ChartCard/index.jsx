@@ -1,4 +1,6 @@
 /* eslint-disable react/require-default-props */
+/** @import * as Types from "../types" */
+
 // Import TypeScript types from the highcharts module
 /**
  * @typedef {import('highcharts').Options} HighchartsOptions
@@ -11,6 +13,7 @@ import HighchartsReact from 'highcharts-react-official';
 
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
+
 import CustomSeriesButtons from '../CustomSeriesButtons';
 import Popover from '../CustomPopover';
 
@@ -27,6 +30,7 @@ import stylesIconButton from '../IconButton.module.css';
  */
 const ChartCard = function ChartCard({ id = undefined, options }) {
   const [chartOptions] = useState(options);
+  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const chartRef = useRef(null);
   const chart = chartRef.current?.chart;
   const [, setInit] = useState(false);
