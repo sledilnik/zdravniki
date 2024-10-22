@@ -6,7 +6,24 @@ import * as Icons from 'components/Shared/Icons';
 import styles from './Footer.module.css';
 import stylesLayout from '../Layout.module.css';
 
+/**
+ * Footer component for the Analytics page.
+ *
+ * This component renders the footer section which includes:
+ * - The Sledilnik logo.
+ * - Navigation links to different sections of the site.
+ * - Links to other projects.
+ * - Social media links.
+ * - Contact information and copyright notice.
+ *
+ * @component
+ * @param {Object} props - Component properties.
+ * @param {string} props.lng - The language code for the links.
+ *
+ * @returns {JSX.Element} The rendered footer component.
+ */
 const Footer = function Footer({ lng }) {
+  const tHeader = t('header', { returnObjects: true });
   return (
     <footer className={`${stylesLayout.AnalyticsLayout} ${styles.Footer}`}>
       <div className={`${stylesLayout.FullContent} ${styles.FooterTopContainer}`}>
@@ -16,10 +33,10 @@ const Footer = function Footer({ lng }) {
         <div className={styles.FooterContent}>
           <h2>{t('SEO.title.home')}</h2>
           <nav aria-label="zdravniki">
-            <a href={`/${lng}/`}>{t('header.home')}</a>
-            <a href={`/${lng}/faq/`}>{t('header.faq')}</a>
-            <a href={`/${lng}/about/`}>{t('header.about')}</a>
-            <a href={`/${lng}/analytics`}>{t('header.analytics')}</a>
+            <a href={`/${lng}/`}>{tHeader.home}</a>
+            <a href={`/${lng}/faq/`}>{tHeader.faq}</a>
+            <a href={`/${lng}/about/`}>{tHeader.about}</a>
+            <a href={`/${lng}/analytics`}>{tHeader.analytics}</a>
           </nav>
         </div>
         <div className={styles.FooterContent}>
@@ -40,24 +57,14 @@ const Footer = function Footer({ lng }) {
           <h2>{t('footer.links')}</h2>
           <nav aria-label="social links">
             <a href="https://www.facebook.com/Sledilnik" target="_blank" rel="noreferrer">
-              <Icons.Icon
-                name="Facebook"
-                style={{ height: '1.2em', width: '1.2em', display: 'inline block' }}
-              />{' '}
+              <Icons.Icon name="Facebook" className={styles.Icon} />
               Facebook
             </a>
             <a href="https://x.com/sledilnik" target="_blank" rel="noreferrer">
-              <Icons.Icon
-                name="Twitter"
-                style={{ height: '1.2em', width: '1.2em', display: 'inline block' }}
-              />{' '}
-              X
+              <Icons.Icon name="Twitter" className={styles.Icon} />X
             </a>
             <a href="https://github.com/sledilnik" target="_blank" rel="noreferrer">
-              <Icons.Icon
-                name="GitHub"
-                style={{ height: '1.2em', width: '1.2em', display: 'inline block' }}
-              />{' '}
+              <Icons.Icon name="GitHub" className={styles.Icon} />
               GitHub
             </a>
             <a
@@ -65,11 +72,7 @@ const Footer = function Footer({ lng }) {
               target="_blank"
               rel="noreferrer"
             >
-              <Icons.Icon
-                name="Euro"
-                style={{ height: '1.2em', width: '1.2em', display: 'inline block' }}
-              />{' '}
-              Podpri!
+              <Icons.Icon name="Euro" className={styles.Icon} /> {tHeader.support}
             </a>
           </nav>
         </div>
