@@ -1,18 +1,9 @@
 /* eslint-disable react/require-default-props */
+/** @import * as Types from '../types' */
+
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CustomPopover.module.css';
-
-/**
- * @typedef {('top' | 'top-start' | 'start | 'end' | 'bottom' | 'bottom-start' | 'bottom-end' )} Placement
- */
-
-/**
- * @typedef {Object} PopoverCustomOption
- * @property {string} label - The label of the option.
- * @property {React.MouseEventHandler<HTMLButtonElement>} onClick - The function to call when the option is clicked.
- * @property {React.JSX.Element} Icon - The icon to display next to the option.
- */
 
 /**
  * Customizable popover component that manages visibility and interaction with popover items.
@@ -20,8 +11,8 @@ import styles from './CustomPopover.module.css';
  * @param {Object} props - The properties of the Popover component.
  * @param {React.ReactNode} props.children - The content that triggers the popover.
  * @param {string} [props.triggerClassname=styles.PopoverTrigger] - The CSS class for the trigger button.
- * @param {Placement} [props.placement='bottom-center'] - The default placement of the popover.
- * @param {PopoverCustomOption[]} [props.options=[{ label: 'Edit', onClick: () => {}, Icon: undefined }]] - The array of options to display in the popover.
+ * @param {Types.Placement} [props.placement='bottom-center'] - The default placement of the popover.
+ * @param {Types.PopoverCustomOption[]} [props.options=[{ label: 'Edit', onClick: () => {}, Icon: undefined }]] - The array of options to display in the popover.
  * @param {React.JSXElementConstructor<(React.HTMLAttributes<HTMLButtonElement> & PopoverCustomOption)> } [props.renderItem] - The custom item renderer function for each option.
  * @returns {React.JSX.Element} A popover component with customizable options and behavior.
  */

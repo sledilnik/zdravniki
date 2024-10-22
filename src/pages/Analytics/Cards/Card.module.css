@@ -1,29 +1,29 @@
-.ChartCard {
+.Card {
   --inline-padding: 1.25em;
 
   background: #ffffff;
   border-radius: 6px;
 }
 
-.ChartCard:not(:last-child) {
+.Card:not(:last-child) {
   margin-bottom: 2em;
 }
 
-.ChartCard .Title {
+.CardTitle {
   font-size: 1.25rem;
   line-height: 1.5;
   font-weight: 600;
   display: block;
 }
 
-.ChartCard .Subtitle {
+.CardSubtitle {
   font-size: 1.125rem;
   line-height: 1.25;
   font-weight: 500;
   display: block;
 }
 
-.ChartHeader {
+.CardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,7 +32,7 @@
   padding-inline: var(--inline-padding);
 }
 
-.ChartSeriesButtons {
+.SeriesButtons {
   display: flex;
   gap: 0.5em;
   flex-wrap: wrap;
@@ -41,7 +41,7 @@
   padding-inline: var(--inline-padding);
 }
 
-.ChartFigure > figcaption {
+.Figure > figcaption {
   padding-inline: var(--inline-padding);
   padding-block: 0.5em;
 }

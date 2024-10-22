@@ -15,10 +15,9 @@ import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
 import CustomSeriesButtons from '../../CustomSeriesButtons';
-import Popover from '../../CustomPopover';
 
-import styles from '../ChartCard.module.css';
-import stylesIconButton from '../../IconButton.module.css';
+import styles from '../Card.module.css';
+import ChartHeader from '../ChartHeader';
 
 /**
  * ChartCard component renders a card with a chart header and children content.
@@ -51,44 +50,33 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   return (
-    <article id={id} className={styles.ChartCard}>
-      <header className={styles.ChartHeader}>
-        <div>
-          <span className={styles.Title}>{options?.title?.text}</span>
-          {options?.subtitle?.text ? (
-            <span className={styles.Subtitle}>{options.subtitle.text}</span>
-          ) : null}
-        </div>
-
-        <Popover
-          placement="bottom-start"
-          triggerClassname={stylesIconButton.IconButton}
-          options={[
-            isRequestFullscreenSupported
-              ? {
-                  label: 'Full Screen',
-                  onClick: openFullScreen,
-                  Icon: Icons.Icon.bind(null, { name: 'FullScreen' }),
-                }
-              : null,
-            {
-              label: 'Print',
-              onClick: printChart,
-              Icon: Icons.Icon.bind(null, { name: 'Print' }),
-            },
-          ]}
-        >
-          <Icons.Icon name="VerticalDots" aria-label="more actions" />
-        </Popover>
-      </header>
-      <figure className={styles.ChartFigure}>
+    <article id={id} className={styles.Card}>
+      <ChartHeader
+        title={options?.title?.text}
+        subtitle={options?.subtitle?.text}
+        popoverOptions={[
+          isRequestFullscreenSupported
+            ? {
+                label: 'Full Screen',
+                onClick: openFullScreen,
+                Icon: Icons.Icon.bind(null, { name: 'FullScreen' }),
+              }
+            : null,
+          {
+            label: 'Print',
+            onClick: printChart,
+            Icon: Icons.Icon.bind(null, { name: 'Print' }),
+          },
+        ]}
+      />
+      <figure className={styles.Figure}>
         <HighchartsReact
           ref={chartRef}
           highcharts={Highcharts}
           options={chartOptions}
           aria-label={chart?.title}
         />
-        <div className={styles.ChartSeriesButtons}>
+        <div className={styles.SeriesButtons}>
           <CustomSeriesButtons chart={chart} />
         </div>
         <figcaption className="highcharts-description">{options.caption.text}</figcaption>
