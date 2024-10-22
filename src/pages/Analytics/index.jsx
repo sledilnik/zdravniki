@@ -13,8 +13,8 @@ import styles from './Layout.module.css';
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/examples';
 
-const ChartCard = lazy(() => import('./ChartCard'));
-const MapCard = lazy(() => import('./MapCard'));
+const ChartCard = lazy(() => import('./Cards/ChartCard'));
+const MapCard = lazy(() => import('./Cards/MapCard'));
 
 const CARDS = {
   ChartCard,

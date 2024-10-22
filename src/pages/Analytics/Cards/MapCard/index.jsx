@@ -13,11 +13,11 @@ import HighchartsReact from 'highcharts-react-official';
 
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
-import CustomSeriesButtons from '../CustomSeriesButtons';
-import Popover from '../CustomPopover';
+import CustomSeriesButtons from '../../CustomSeriesButtons';
+import Popover from '../../CustomPopover';
 
-import styles from '../ChartCard/ChartCard.module.css';
-import stylesIconButton from '../IconButton.module.css';
+import styles from '../ChartCard.module.css';
+import stylesIconButton from '../../IconButton.module.css';
 
 /**
  * MapCard component renders a HighMaps chart with optional series buttons and fullscreen/print functionality.

@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-/** @import * as Types from "../types" */
+/** @import * as Types from "../../types" */
 
 // Import TypeScript types from the highcharts module
 /**
@@ -14,11 +14,11 @@ import HighchartsReact from 'highcharts-react-official';
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
-import CustomSeriesButtons from '../CustomSeriesButtons';
-import Popover from '../CustomPopover';
+import CustomSeriesButtons from '../../CustomSeriesButtons';
+import Popover from '../../CustomPopover';
 
-import styles from './ChartCard.module.css';
-import stylesIconButton from '../IconButton.module.css';
+import styles from '../ChartCard.module.css';
+import stylesIconButton from '../../IconButton.module.css';
 
 /**
  * ChartCard component renders a card with a chart header and children content.
