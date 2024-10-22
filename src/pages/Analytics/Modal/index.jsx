@@ -1,41 +1,48 @@
-import PropTypes from 'prop-types';
-
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
 // Modal as a separate component
 import { useEffect, useRef } from 'react';
 
 import styles from './Modal.module.css';
 
-function Modal({ openModal, closeModal, children, ariaLabelledBy }) {
+/**
+ * @typedef {Object} ModalCustomProps - The custom properties of the Modal component.
+ * @property {boolean} modalOpen - The visibility state of the modal.
+ */
+
+/**
+ * @typedef {(React.ComponentPropsWithoutRef<"dialog">  & React.AriaAttributes)} DialogProps
+ */
+
+/**
+ * Modal component that manages visibility and interaction with modal content.
+ * @param {(DialogProps & ModalCustomProps)} props - The properties of the Modal component.
+ * @returns {React.JSX.Element} A modal component with customizable content and behavior.
+ */
+const Modal = function Modal({ modalOpen, className, children, ...props }) {
+  /** @type {React.RefObject<HTMLDialogElement | undefined>} */
   const ref = useRef();
 
   useEffect(() => {
-    if (openModal) {
+    if (modalOpen) {
       ref.current?.showModal();
     } else {
       ref.current?.close();
     }
-  }, [openModal]);
+  }, [modalOpen]);
+
+  const handleOnCancel = () => {
+    props?.onCancel();
+  };
 
   return (
-    <dialog
-      ref={ref}
-      onCancel={closeModal}
-      aria-labelledby={ariaLabelledBy}
-      className={styles.CustomDialog}
-    >
+    <dialog ref={ref} {...props} className={`${styles.CustomDialog} ${className || ''}`}>
       {children}
-      <button type="button" onClick={closeModal} className={styles.CloseButton}>
+      <button type="button" onClick={handleOnCancel} className={styles.CloseButton}>
         Close (<kbd>Esc</kbd>)
       </button>
     </dialog>
   );
-}
-
-Modal.propTypes = {
-  openModal: PropTypes.bool.isRequired,
-  closeModal: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-  ariaLabelledBy: PropTypes.string.isRequired,
 };
 
 export default Modal;

@@ -22,7 +22,7 @@ const Sidebar = function Sidebar() {
       <button type="button" onClick={openModal} aria-label="show links to charts">
         <Icons.Icon name="Chart" />
       </button>
-      <Modal openModal={modalOpen} closeModal={closeModal} ariaLabelledBy="go-to-graph">
+      <Modal modalOpen={modalOpen} onCancel={closeModal} aria-labelledby="go-to-graph">
         <h2 id="go-to-graph">Pojdi na graf</h2>
         <div>
           {SECTIONS.map(section => (
