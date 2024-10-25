@@ -25,6 +25,12 @@ const Sidebar = function Sidebar() {
       <Modal modalOpen={modalOpen} onCancel={closeModal} aria-labelledby="go-to-graph">
         <h2 id="go-to-graph">Pojdi na graf</h2>
         <div>
+          <div style={{ marginBottom: '0.5em' }}>
+            <h3>Some section title</h3>
+            <a href="#rich-info-click" onClick={closeModal} className="link">
+              Neki po občinah
+            </a>
+          </div>
           {SECTIONS.map(section => (
             <div key={section.sectionTitle} style={{ marginBottom: '0.5em' }}>
               <h3>{section.sectionTitle}</h3>

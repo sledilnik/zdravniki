@@ -7,8 +7,7 @@ import HighchartsReact from 'highcharts-react-official';
 
 import sloOBMap from 'assets/maps/OB.geo.json';
 
-import styles from '../Layout.module.css';
-import cardStyles from '../Cards/Card.module.css';
+import styles from '../Cards/Card.module.css';
 import { dimensions } from '../HighchartsOptions/options';
 import ChartHeader from '../Cards/ChartHeader';
 import CustomSeriesButtons from '../CustomSeriesButtons';
@@ -96,10 +95,10 @@ const mapOptions = {
     useHTML: true,
   },
   title: {
-    text: 'Rich Information on Click',
+    text: 'Neki po občinah',
   },
   subtitle: {
-    text: 'Click on a country for rich information',
+    text: 'Klikni na občino za dodatne informacije',
   },
   tooltip: {
     footerFormat: '<span style="font-size: 10px">(Click for details)</span>',
@@ -271,42 +270,39 @@ const RichInfoClick = function RichInfoClick() {
   }, [secondChart, selectedPointsLength, series]);
 
   return (
-    <section className={styles.ChartsSection}>
-      <h2 className={styles.SectionTitle}>Section title</h2>
-      <article className={cardStyles.Card}>
-        <ChartHeader showPopover={false} title="Neki po občinah" />
-        <figure className={cardStyles.Figure}>
-          <HighchartsReact
-            ref={mapChartRef}
-            highcharts={HighMaps}
-            constructorType="mapChart"
-            options={mapChartOptions}
-          />
-          <figcaption className="highcharts-description">Caption map</figcaption>
-        </figure>
-        <figure className={cardStyles.Figure}>
-          <div>
-            <h3>
-              {selectedPointsLength > 1
-                ? 'Primerjaj po občinah'
-                : (selectedPoints[0]?.name ?? 'Klikni na občino za prikaz podatkov')}
-            </h3>
-            <p>
-              <kbd>Shift</kbd> + <kbd>klik</kbd> za več občin
-            </p>
-          </div>
-          <HighchartsReact
-            ref={secondChartRef}
-            highcharts={Highcharts}
-            options={secondChartOptions}
-          />
-          <div className={cardStyles.SeriesButtons}>
-            <CustomSeriesButtons key={neki} chart={secondChart} />
-          </div>
-          <figcaption className="highcharts-description">Caption second chart</figcaption>
-        </figure>
-      </article>
-    </section>
+    <article id="rich-info-click" className={styles.Card}>
+      <ChartHeader showPopover={false} title="Neki po občinah" />
+      <figure className={styles.Figure}>
+        <HighchartsReact
+          ref={mapChartRef}
+          highcharts={HighMaps}
+          constructorType="mapChart"
+          options={mapChartOptions}
+        />
+        <figcaption className="highcharts-description">Caption map</figcaption>
+      </figure>
+      <figure className={styles.Figure}>
+        <div>
+          <h3>
+            {selectedPointsLength > 1
+              ? 'Primerjaj po občinah'
+              : (selectedPoints[0]?.name ?? 'Klikni na občino za prikaz podatkov')}
+          </h3>
+          <p>
+            <kbd>Shift</kbd> + <kbd>klik</kbd> za več občin
+          </p>
+        </div>
+        <HighchartsReact
+          ref={secondChartRef}
+          highcharts={Highcharts}
+          options={secondChartOptions}
+        />
+        <div className={styles.SeriesButtons}>
+          <CustomSeriesButtons key={neki} chart={secondChart} />
+        </div>
+        <figcaption className="highcharts-description">Caption second chart</figcaption>
+      </figure>
+    </article>
   );
 };
 

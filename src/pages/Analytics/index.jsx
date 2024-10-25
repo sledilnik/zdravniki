@@ -33,7 +33,10 @@ const Analytics = function Analytics() {
       <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
-        <RichInfoClick />
+        <section className={styles.ChartSection}>
+          <h2 className={styles.SectionTitle}>Some section title</h2>
+          <RichInfoClick />
+        </section>
 
         {SECTIONS.map(section => (
           <section key={section.sectionTitle} className={styles.ChartsSection}>
