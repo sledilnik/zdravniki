@@ -26,3 +26,12 @@
 .Sidebar > button:focus-visible {
   outline: 2px auto #09afda;
 }
+
+.Sidebar h3 {
+  font-size: 0.75rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.65;
+  margin-bottom: 0.5rem;
+}

@@ -27,18 +27,7 @@ const Sidebar = function Sidebar() {
         <div>
           {SECTIONS.map(section => (
             <div key={section.sectionTitle} style={{ marginBottom: '0.5em' }}>
-              <h3
-                style={{
-                  fontSize: '0.75',
-                  lineHeight: '1rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1',
-                  opacity: '0.65',
-                  marginBottom: '0.5em',
-                }}
-              >
-                {section.sectionTitle}
-              </h3>
+              <h3>{section.sectionTitle}</h3>
               {section.charts.map(chart => {
                 const chartProxy = createChartDataProxy(chart);
                 return (
