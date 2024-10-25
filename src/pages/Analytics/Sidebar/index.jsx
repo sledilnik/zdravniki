@@ -23,17 +23,19 @@ const Sidebar = function Sidebar() {
         <Icons.Icon name="Chart" />
       </button>
       <Modal modalOpen={modalOpen} onCancel={closeModal} aria-labelledby="go-to-graph">
-        <h2 id="go-to-graph">Pojdi na graf</h2>
-        <div>
-          <div style={{ marginBottom: '0.5em' }}>
-            <h3>Some section title</h3>
-            <a href="#rich-info-click" onClick={closeModal} className="link">
+        <h2 id="go-to-graph" className={styles.SidebarTitle}>
+          Pojdi na graf
+        </h2>
+        <div className={styles.SidebarGroupsWrapper}>
+          <div className={styles.SidebarGroup}>
+            <h3 className={styles.SidebarGroupTitle}>Some section title</h3>
+            <a href="#rich-info-click" onClick={closeModal} className={styles.SidebarLink}>
               Neki po občinah
             </a>
           </div>
           {SECTIONS.map(section => (
-            <div key={section.sectionTitle} style={{ marginBottom: '0.5em' }}>
-              <h3>{section.sectionTitle}</h3>
+            <div key={section.sectionTitle} className={styles.SidebarGroup}>
+              <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
               {section.charts.map(chart => {
                 const chartProxy = createChartDataProxy(chart);
                 return (
@@ -41,7 +43,7 @@ const Sidebar = function Sidebar() {
                     key={chartProxy.id}
                     href={`#${chartProxy.id}`}
                     onClick={closeModal}
-                    className="link"
+                    className={styles.SidebarLink}
                   >
                     {chartProxy.options.title.text}
                   </a>
