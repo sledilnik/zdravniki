@@ -1,10 +1,5 @@
 /* eslint-disable react/require-default-props */
-/** @import * as Types from "../types" */
-
-// Import TypeScript types from the highcharts module
-/**
- * @typedef {import('highcharts/highmaps').Options} HighMapsOptions
- */
+/** @import * as Types from "../../types" */
 
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
@@ -24,7 +19,7 @@ import ChartHeader from '../ChartHeader';
  * @component
  * @param {Object} props - The properties object.
  * @param {string} [props.id] - The id for the MapCard container.
- * @param {HighMapsOptions} props.options - The HighMaps options object.
+ * @param {Types.HighMapsOptions} props.options - The HighMaps options object.
  * @param {boolean} [props.showSeriesButtons=false] - Flag to show or hide series buttons.
  * @returns {JSX.Element} The rendered MapCard component.
  */

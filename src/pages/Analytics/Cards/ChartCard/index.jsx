@@ -1,11 +1,6 @@
 /* eslint-disable react/require-default-props */
 /** @import * as Types from "../../types" */
 
-// Import TypeScript types from the highcharts module
-/**
- * @typedef {import('highcharts').Options} HighchartsOptions
- */
-
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
@@ -24,7 +19,7 @@ import ChartHeader from '../ChartHeader';
  *
  * @param {Object} props - The properties object.
  * @param {string} props.id - The unique identifier for the chart.
- * @param {HighchartsOptions} props.options - Highcharts options object.he Highcharts chart instance.
+ * @param {Types.HighchartsOptions} props.options - Highcharts options object.he Highcharts chart instance.
  * @returns {JSX.Element} The rendered ChartCard component.
  */
 const ChartCard = function ChartCard({ id = undefined, options }) {
