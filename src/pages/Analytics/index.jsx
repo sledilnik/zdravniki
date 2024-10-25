@@ -12,7 +12,7 @@ import Sidebar from './Sidebar';
 
 import styles from './Layout.module.css';
 import { SECTIONS } from './Data/sections';
-import { createChartDataProxy } from './Data/examples';
+import { createChartDataProxy } from './Data/create-chart-data-proxy';
 import RichInfoClick from './RichInfoClick';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));

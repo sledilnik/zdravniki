@@ -5,7 +5,7 @@ import Modal from '../Modal';
 
 import styles from './Sidebar.module.css';
 import { SECTIONS } from '../Data/sections';
-import { createChartDataProxy } from '../Data/examples';
+import { createChartDataProxy } from '../Data/create-chart-data-proxy';
 
 const Sidebar = function Sidebar() {
   const [modalOpen, setModalOpen] = useState(false);
