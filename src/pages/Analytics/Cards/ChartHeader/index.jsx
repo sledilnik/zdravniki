@@ -15,7 +15,7 @@ import { CardHeader, CardSubtitle, CardTitle } from '../CardHeader';
  * @param {CustomPopoverTypes.PopoverCustomOption[]} props.popoverOptions
  * @returns
  */
-const ChartHeader = function ChartHeader({ title, subtitle, popoverOptions = [] }) {
+const ChartHeader = function ChartHeader({ title, subtitle, popoverOptions }) {
   const showPopover = popoverOptions?.length && popoverOptions.length > 0;
   return (
     <CardHeader>

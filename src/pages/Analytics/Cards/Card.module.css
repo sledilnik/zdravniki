@@ -1,5 +1,5 @@
 .Card {
-  --inline-padding: 1.25em;
+  --inline-padding: 1.25rem;
 
   background: #ffffff;
   border-radius: 6px;
@@ -28,20 +28,24 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e6e6e6;
-  padding-block: 0.5em;
+  padding-block: 0.5rem;
   padding-inline: var(--inline-padding);
 }
 
 .SeriesButtons {
   display: flex;
-  gap: 0.5em;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1em;
-  padding-block: 0.2em;
+  margin-bottom: 1rem;
+  padding-block: 0.2rem;
   padding-inline: var(--inline-padding);
 }
 
-.Figure > figcaption {
+.Figure:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.Figure > *:not([data-highcharts-chart]) {
   padding-inline: var(--inline-padding);
-  padding-block: 0.5em;
+  padding-block: 0.5rem;
 }

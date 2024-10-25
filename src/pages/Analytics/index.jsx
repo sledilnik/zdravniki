@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { lazy } from 'react';
 import { useParams } from 'react-router';
 
@@ -12,6 +13,7 @@ import Sidebar from './Sidebar';
 import styles from './Layout.module.css';
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/examples';
+import RichInfoClick from './RichInfoClick';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
@@ -31,6 +33,7 @@ const Analytics = function Analytics() {
       <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
+        <RichInfoClick />
 
         {SECTIONS.map(section => (
           <section key={section.sectionTitle} className={styles.ChartsSection}>
