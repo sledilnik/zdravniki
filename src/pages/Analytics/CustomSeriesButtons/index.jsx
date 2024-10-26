@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 /** @import * as Types from "../types" */
 
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import SeriesButton from '../SeriesButton';
@@ -12,8 +12,6 @@ import SeriesButton from '../SeriesButton';
  * @param {Object} props - The properties object.
  * @param {Types.ChartRefProperty} props.chart - The Highcharts chart instance.
  * @returns {JSX.Element} The rendered CustomSeriesButtons component.
- * @example
- * return <CustomSeriesButtons chart={chart} />;
  */
 const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
   const [buttonsVisibility, setButtonsVisibility] = useState(true);
@@ -69,21 +67,6 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
       </SeriesButton>
     </>
   );
-};
-
-CustomSeriesButtons.propTypes = {
-  chart: PropTypes.shape({
-    series: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        visible: PropTypes.bool,
-        color: PropTypes.string,
-        setVisible: PropTypes.func,
-        // eslint-disable-next-line react/forbid-prop-types
-        group: PropTypes.object,
-      }),
-    ),
-  }).isRequired,
 };
 
 export default CustomSeriesButtons;
