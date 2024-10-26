@@ -1,7 +1,7 @@
 /** @import * as Types from "../types" */
 
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import SeriesButton from '../SeriesButton';
 
@@ -13,33 +13,27 @@ import SeriesButton from '../SeriesButton';
  * @param {Types.ChartRefProperty} props.chart - The Highcharts chart instance.
  * @returns {JSX.Element} The rendered CustomSeriesButtons component.
  * @example
- * return <CustomSeriesButtons chart={chartRef} />;
+ * return <CustomSeriesButtons chart={chart} />;
  */
 const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
   const [buttonsVisibility, setButtonsVisibility] = useState(true);
-
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    chart?.series.forEach(series => {
-      series.setVisible(buttonsVisibility);
-    });
-  }, [buttonsVisibility, chart]);
+  const seriesLabelsToShow = chart?.series?.filter(series => series.options.showInLegend !== false);
 
   if (!chart) {
     return null;
   }
-
-  const seriesLabelsToShow = chart.series.filter(series => series.options.showInLegend !== false);
 
   if (seriesLabelsToShow.length === 0) {
     return null;
   }
 
   const toggleSeriesVisibility = () => {
+    chart?.series.forEach(series => {
+      series.setVisible(!buttonsVisibility);
+    });
     setButtonsVisibility(prev => !prev);
   };
 
-  // // eslint-disable-next-line arrow-body-style
   return (
     <>
       {seriesLabelsToShow.map((series, index, arr) => (
@@ -47,6 +41,7 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
           key={`${series?.name}${buttonsVisibility}`}
           onClick={() => {
             chart.series[index].setVisible(!chart.series[index].visible);
+            setButtonsVisibility(() => chart.series.some(serie => serie.visible));
           }}
           onMouseEnter={() => {
             series.setState('hover');
