@@ -54,7 +54,7 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
               s.setState('normal');
             });
           }}
-          visible={buttonsVisibility}
+          visible={chart?.series[index]?.visible}
           color={chart?.series[index]?.color}
           borderColor={chart?.series[index]?.color}
           variant="dynamic"
