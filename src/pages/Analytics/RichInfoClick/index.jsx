@@ -169,7 +169,7 @@ const mapOptions = {
 };
 
 const secondChartSeries = transformData(data);
-const secondSeriesDataMap = new Map(secondChartSeries.map(item => [item.name, item]));
+const secondChartSeriesDataMap = new Map(secondChartSeries.map(item => [item.name, item]));
 
 /** @type {Types.HighchartsOptions} */
 const baseSecondChartOptions = {
@@ -254,7 +254,7 @@ const RichInfoClick = function RichInfoClick() {
   }, [isInit, mapChart]);
 
   const series = useMemo(
-    () => selectedPoints.map(point => secondSeriesDataMap.get(point.name)),
+    () => selectedPoints.map(point => secondChartSeriesDataMap.get(point.name)),
     [selectedPoints],
   );
 
