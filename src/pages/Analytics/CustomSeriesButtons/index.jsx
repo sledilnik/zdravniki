@@ -25,6 +25,8 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
     return null;
   }
 
+  const hasMoreThanOneSeries = seriesLabelsToShow.length > 1;
+
   const toggleSeriesVisibility = () => {
     chart?.series.forEach(series => {
       series.setVisible(!buttonsVisibility);
@@ -62,9 +64,11 @@ const CustomSeriesButtons = function CustomSeriesButtons({ chart }) {
           {series.name}
         </SeriesButton>
       ))}
-      <SeriesButton type="button" onClick={toggleSeriesVisibility} toggleState={false}>
-        {buttonsVisibility ? 'Skrij vse' : 'Pokaži vse'}
-      </SeriesButton>
+      {hasMoreThanOneSeries ? (
+        <SeriesButton type="button" onClick={toggleSeriesVisibility} toggleState={false}>
+          {buttonsVisibility ? 'Skrij vse' : 'Pokaži vse'}
+        </SeriesButton>
+      ) : null}
     </>
   );
 };
