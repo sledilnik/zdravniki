@@ -7,10 +7,30 @@ import HighchartsReact from 'highcharts-react-official';
 
 import sloOBMap from 'assets/maps/OB.geo.json';
 
+import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
+
 import styles from '../Cards/Card.module.css';
 import { dimensions } from '../HighchartsOptions/options';
 import ChartHeader from '../Cards/ChartHeader';
 import CustomSeriesButtons from '../CustomSeriesButtons';
+
+/** @type {string[]} */
+const sloMunicipalities = sloMunicipalitiesJSON;
+
+/** @type {DataItem[]} */
+const fakeData = [];
+// eslint-disable-next-line no-plusplus
+for (let i = 2013; i <= 2023; i++) {
+  // eslint-disable-next-line no-restricted-syntax
+  sloMunicipalities.forEach(municipality => {
+    fakeData.push({
+      name: municipality,
+      value: Math.floor(Math.random() * 1000) / 100,
+      OB_UIME: municipality,
+      year: i,
+    });
+  });
+}
 
 /**
  * @typedef {Object} DataItem
@@ -62,23 +82,7 @@ const transformData = data => {
 /**
  * @type {DataItem[]}
  */
-const data = [
-  { name: 'Ajdovščina', value: 12, OB_UIME: 'Ajdovščina', year: 2018 },
-  { name: 'Ljubljana', value: 50, OB_UIME: 'Ljubljana', year: 2018 },
-  { name: 'Celje', value: 25, OB_UIME: 'Celje', year: 2018 },
-  { name: 'Koper', value: 11, OB_UIME: 'Koper', year: 2018 },
-  { name: 'Kranj', value: 12, OB_UIME: 'Kranj', year: 2018 },
-  { name: 'Ajdovščina', value: 10, OB_UIME: 'Ajdovščina', year: 2019 },
-  { name: 'Ljubljana', value: 2, OB_UIME: 'Ljubljana', year: 2019 },
-  { name: 'Celje', value: 3, OB_UIME: 'Celje', year: 2019 },
-  { name: 'Koper', value: 4, OB_UIME: 'Koper', year: 2019 },
-  { name: 'Kranj', value: 50, OB_UIME: 'Kranj', year: 2019 },
-  { name: 'Ajdovščina', value: 60, OB_UIME: 'Ajdovščina', year: 2020 },
-  { name: 'Ljubljana', value: 70, OB_UIME: 'Ljubljana', year: 2020 },
-  { name: 'Celje', value: 8, OB_UIME: 'Celje', year: 2020 },
-  { name: 'Koper', value: 9, OB_UIME: 'Koper', year: 2020 },
-  { name: 'Kranj', value: 10, OB_UIME: 'Kranj', year: 2020 },
-];
+const data = fakeData;
 
 /** @type {Types.HighMapsOptions} */
 const mapOptions = {
