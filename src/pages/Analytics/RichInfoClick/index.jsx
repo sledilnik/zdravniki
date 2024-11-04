@@ -222,7 +222,7 @@ const RichInfoClick = function RichInfoClick() {
   const secondChartRef = useRef(null);
   const secondChart = secondChartRef.current?.chart;
   const [isInit, setInit] = useState(false);
-  const [neki, setNeki] = useState('');
+  const [customSeriesButtonsKey, setCustomSeriesButtonKey] = useState('');
 
   const selectedPointsLength = selectedPoints.length;
 
@@ -256,7 +256,7 @@ const RichInfoClick = function RichInfoClick() {
       chart: {
         events: {
           redraw(e) {
-            setNeki(e.target.series?.map(s => s.name).join(', ') ?? ''); // this is the line that was added
+            setCustomSeriesButtonKey(e.target.series?.map(s => s.name).join(', ') ?? ''); // hack to force re-render CustomSeriesButtons component
           },
         },
       },
@@ -330,7 +330,7 @@ const RichInfoClick = function RichInfoClick() {
           options={secondChartOptions}
         />
         <div className={styles.SeriesButtons}>
-          <CustomSeriesButtons key={neki} chart={secondChart} />
+          <CustomSeriesButtons key={customSeriesButtonsKey} chart={secondChart} />
         </div>
         <figcaption className="highcharts-description">Caption second chart</figcaption>
       </figure>
