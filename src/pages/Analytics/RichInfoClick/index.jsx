@@ -107,6 +107,7 @@ const mapOptions = {
     layout: 'vertical',
     floating: true,
     useHTML: true,
+    padding: 12,
   },
   title: {
     text: 'Neki po občinah',
@@ -120,10 +121,9 @@ const mapOptions = {
   colorAxis: {
     minColor: '#AAE8F8',
     maxColor: '#095568',
-
-    startOnTick: false,
-    endOnTick: false,
-    type: 'logarithmic',
+    startOnTick: true,
+    endOnTick: true,
+    // type: 'logarithmic', can not use logarithmic scale with negative values and 0; use linear scale instead
   },
   responsive: {
     rules: [
@@ -211,20 +211,27 @@ const baseSecondChartOptions = {
 };
 
 const RichInfoClick = function RichInfoClick() {
-  /** @type {[Highcharts.Point[], React.Dispatch<React.SetStateAction<Highcharts.Point[]>>]} */
+  /** @type {[string, React.Dispatch<React.SetStateAction<Highcharts.Point[]>>]} */
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [mapChartOptions, setMapChartOptions] = useState(mapOptions);
   const [secondChartOptions, setSecondChartOptions] = useState(baseSecondChartOptions);
-  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
-  const mapChartRef = useRef(null);
-  const mapChart = mapChartRef.current?.chart;
-  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
-  const secondChartRef = useRef(null);
-  const secondChart = secondChartRef.current?.chart;
   const [isInit, setInit] = useState(false);
   const [customSeriesButtonsKey, setCustomSeriesButtonKey] = useState('');
 
+  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
+  const mapChartRef = useRef(null);
+  const mapChart = mapChartRef.current?.chart;
+
+  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
+  const secondChartRef = useRef(null);
+  const secondChart = secondChartRef.current?.chart;
+
   const selectedPointsLength = selectedPoints.length;
+
+  const series = useMemo(
+    () => selectedPoints.map(name => secondChartSeriesDataMap.get(name)),
+    [selectedPoints],
+  );
 
   useEffect(() => {
     // console.log('useEffect 1');
@@ -241,10 +248,10 @@ const RichInfoClick = function RichInfoClick() {
             point: {
               events: {
                 select() {
-                  setSelectedPoints(mapChart.getSelectedPoints());
+                  setSelectedPoints(mapChart.getSelectedPoints().map(p => p.name));
                 },
                 unselect() {
-                  setSelectedPoints(mapChart.getSelectedPoints());
+                  setSelectedPoints(mapChart.getSelectedPoints().map(p => p.name));
                 },
               },
             },
@@ -263,11 +270,6 @@ const RichInfoClick = function RichInfoClick() {
     });
   }, [isInit, mapChart]);
 
-  const series = useMemo(
-    () => selectedPoints.map(point => secondChartSeriesDataMap.get(point.name)),
-    [selectedPoints],
-  );
-
   useEffect(() => {
     // console.log('useEffect 3');
     if (!secondChart) {
@@ -283,26 +285,37 @@ const RichInfoClick = function RichInfoClick() {
     });
   }, [secondChart, selectedPointsLength, series]);
 
+  const onYearChange = e => {
+    const newYear = Number(e.target.value);
+    const newSeries = firstChartSeriesMap.get(newYear).map(item => ({
+      ...item,
+      selected: selectedPoints.includes(item.name),
+    }));
+
+    setMapChartOptions({
+      series: [{ data: newSeries }],
+    });
+  };
+
   return (
     <article id="rich-info-click" className={styles.Card}>
       <ChartHeader showPopover={false} title="Neki po občinah" />
       <div style={{ paddingInline: 'var(--inline-padding)', paddingBlock: '0.5em' }}>
-        <select
-          onChange={e => {
-            const newYear = Number(e.target.value);
-            const newSeries = firstChartSeriesMap.get(newYear);
-            setMapChartOptions({
-              series: [{ data: newSeries }],
-            });
-            setSelectedPoints([]);
-          }}
-        >
-          {yearsSortedDesc.map(year => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+        <label htmlFor="year-select">
+          Leto:{' '}
+          <select
+            id="year-select"
+            name="year-select"
+            onChange={onYearChange}
+            style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
+          >
+            {yearsSortedDesc.map(year => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
       <figure className={styles.Figure}>
         <HighchartsReact
