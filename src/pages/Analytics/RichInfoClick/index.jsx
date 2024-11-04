@@ -100,6 +100,13 @@ const mapOptions = {
     map: sloOBMap,
     spacing: 1,
   },
+  mapNavigation: {
+    enabled: true,
+    buttonOptions: {
+      verticalAlign: 'bottom',
+      x: 10,
+    },
+  },
   legend: {
     enabled: true,
     align: 'right',
