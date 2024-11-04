@@ -181,6 +181,13 @@ const mapOptions = {
         },
       },
       borderWidth: 0.5,
+      dataLabels: {
+        enabled: true,
+        format: '{point.properties.OB_UIME}',
+        style: {
+          textOutline: 'none',
+        },
+      },
     },
   ],
 };
