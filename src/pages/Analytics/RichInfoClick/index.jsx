@@ -14,24 +14,6 @@ import { dimensions } from '../HighchartsOptions/options';
 import ChartHeader from '../Cards/ChartHeader';
 import CustomSeriesButtons from '../CustomSeriesButtons';
 
-/** @type {string[]} */
-const sloMunicipalities = sloMunicipalitiesJSON;
-
-/** @type {DataItem[]} */
-const fakeData = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 2013; i <= 2023; i++) {
-  // eslint-disable-next-line no-restricted-syntax
-  sloMunicipalities.forEach(municipality => {
-    fakeData.push({
-      name: municipality,
-      value: Math.floor(Math.random() * 1000) / 100,
-      OB_UIME: municipality,
-      year: i,
-    });
-  });
-}
-
 /**
  * @typedef {Object} DataItem
  * @property {string} name
@@ -79,10 +61,38 @@ const transformData = data => {
   }));
 };
 
+/** @type {string[]} */
+const sloMunicipalities = sloMunicipalitiesJSON;
+
+/** @type {DataItem[]} */
+const fakeData = [];
+// eslint-disable-next-line no-plusplus
+for (let i = 2013; i <= 2023; i++) {
+  // eslint-disable-next-line no-restricted-syntax
+  sloMunicipalities.forEach(municipality => {
+    fakeData.push({
+      name: municipality,
+      value: Math.floor(Math.random() * 1000) / 100,
+      OB_UIME: municipality,
+      year: i,
+    });
+  });
+}
+
 /**
  * @type {DataItem[]}
  */
-const data = fakeData;
+const firstChartSeriesMap = fakeData.reduce((acc, item) => {
+  if (!acc.has(item.year)) {
+    acc.set(item.year, []);
+  }
+  acc.get(item.year).push(item);
+  return acc;
+}, new Map());
+
+const yearsSortedDesc = Array.from(firstChartSeriesMap.keys())
+  .filter(v => !Number.isNaN(v))
+  .sort((a, b) => b - a);
 
 /** @type {Types.HighMapsOptions} */
 const mapOptions = {
@@ -153,7 +163,7 @@ const mapOptions = {
       name: 'Slo OB Data',
       mapData: sloOBMap,
       joinBy: 'OB_UIME',
-      data: data.filter(d => d.year === 2020),
+      data: firstChartSeriesMap.get(yearsSortedDesc[0]),
       allowPointSelect: true,
       cursor: 'pointer',
       states: {
@@ -168,7 +178,7 @@ const mapOptions = {
   ],
 };
 
-const secondChartSeries = transformData(data);
+const secondChartSeries = transformData(fakeData);
 const secondChartSeriesDataMap = new Map(secondChartSeries.map(item => [item.name, item]));
 
 /** @type {Types.HighchartsOptions} */
@@ -276,6 +286,24 @@ const RichInfoClick = function RichInfoClick() {
   return (
     <article id="rich-info-click" className={styles.Card}>
       <ChartHeader showPopover={false} title="Neki po občinah" />
+      <div style={{ paddingInline: 'var(--inline-padding)', paddingBlock: '0.5em' }}>
+        <select
+          onChange={e => {
+            const newYear = Number(e.target.value);
+            const newSeries = firstChartSeriesMap.get(newYear);
+            setMapChartOptions({
+              series: [{ data: newSeries }],
+            });
+            setSelectedPoints([]);
+          }}
+        >
+          {yearsSortedDesc.map(year => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+      </div>
       <figure className={styles.Figure}>
         <HighchartsReact
           ref={mapChartRef}
