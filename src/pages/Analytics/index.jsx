@@ -14,6 +14,7 @@ import styles from './Layout.module.css';
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
 import RichInfoClick from './RichInfoClick';
+import TouchdeviceNotification from './TouchDeviceNotification';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
@@ -29,7 +30,7 @@ const Analytics = function Analytics() {
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
-
+      <TouchdeviceNotification />
       <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
