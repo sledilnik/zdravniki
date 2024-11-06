@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /** @import * as Types from '../types' */
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -64,20 +65,27 @@ const transformData = data => {
 /** @type {string[]} */
 const sloMunicipalities = sloMunicipalitiesJSON;
 
-/** @type {DataItem[]} */
-const fakeData = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 2013; i <= 2023; i++) {
-  // eslint-disable-next-line no-restricted-syntax
-  sloMunicipalities.forEach(municipality => {
-    fakeData.push({
-      name: municipality,
-      value: Math.floor(Math.random() * 1000) / 100,
-      OB_UIME: municipality,
-      year: i,
+/**
+ * Generates fake data for Slovenian municipalities from 2013 to 2023.
+ *
+ * @returns {DataItem[]} An array of objects, each representing data for a municipality in a specific year.
+ */
+const generateFakeData = () => {
+  const fakeData = [];
+  for (let i = 2013; i <= 2023; i++) {
+    sloMunicipalities.forEach(municipality => {
+      fakeData.push({
+        name: municipality,
+        value: Math.floor(Math.random() * 1000) / 100,
+        OB_UIME: municipality,
+        year: i,
+      });
     });
-  });
-}
+  }
+  return fakeData;
+};
+
+const fakeData = generateFakeData();
 
 /**
  * @type {DataItem[]}
