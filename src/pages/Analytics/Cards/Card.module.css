@@ -1,8 +1,9 @@
 .Card {
   --inline-padding: 1.25em;
+  --wrapper-border-radius: 6px;
 
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: var(--wrapper-border-radius);
 }
 
 .Card:not(:last-child) {
@@ -39,6 +40,10 @@
   margin-bottom: 1em;
   padding-block: 0.2em;
   padding-inline: var(--inline-padding);
+}
+
+.Figure {
+  border-radius: var(--wrapper-border-radius);
 }
 
 .Figure:not(:last-of-type) {

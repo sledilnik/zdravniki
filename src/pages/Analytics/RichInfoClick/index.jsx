@@ -11,6 +11,7 @@ import sloOBMap from 'assets/maps/OB.geo.json';
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
 
 import styles from '../Cards/Card.module.css';
+import stylesRichInfoClick from './RichInfoClick.module.css';
 import { dimensions } from '../HighchartsOptions/options';
 import ChartHeader from '../Cards/ChartHeader';
 import CustomSeriesButtons from '../CustomSeriesButtons';
@@ -320,7 +321,7 @@ const RichInfoClick = function RichInfoClick() {
   };
 
   return (
-    <article id="rich-info-click" className={styles.Card}>
+    <article id="rich-info-click" className={`${styles.Card} ${stylesRichInfoClick.RichInfoClick}`}>
       <ChartHeader showPopover={false} title="Neki po občinah" />
       <div style={{ paddingInline: 'var(--inline-padding)', paddingBlock: '0.5em' }}>
         <label htmlFor="year-select">
@@ -348,7 +349,9 @@ const RichInfoClick = function RichInfoClick() {
         />
         <figcaption className="highcharts-description">Caption map</figcaption>
       </figure>
-      <figure className={styles.Figure}>
+      <figure
+        className={`${styles.Figure} ${stylesRichInfoClick.SecondFigure} ${selectedPointsLength === 0 ? '' : stylesRichInfoClick.Expanded}`}
+      >
         <div>
           <h3>
             {selectedPointsLength > 1
