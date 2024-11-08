@@ -63,18 +63,15 @@ const transformData = data => {
   }));
 };
 
-/** @type {string[]} */
-const sloMunicipalities = sloMunicipalitiesJSON;
-
 /**
  * Generates fake data for Slovenian municipalities from 2013 to 2023.
- *
+ * @param {string[]} municipalities - An array of Slovenian municipalities.
  * @returns {DataItem[]} An array of objects, each representing data for a municipality in a specific year.
  */
-const generateFakeData = () => {
+const generateFakeData = municipalities => {
   const fakeData = [];
   for (let i = 2013; i <= 2023; i++) {
-    sloMunicipalities.forEach(municipality => {
+    municipalities.forEach(municipality => {
       fakeData.push({
         name: municipality,
         value: Math.floor(Math.random() * 1000) / 100,
@@ -86,7 +83,7 @@ const generateFakeData = () => {
   return fakeData;
 };
 
-const fakeData = generateFakeData();
+const fakeData = generateFakeData(sloMunicipalitiesJSON);
 
 /**
  * @type {DataItem[]}
