@@ -136,4 +136,5 @@
 .FakeChartTitlesWrapper {
   background: #ffffff;
   border-radius: 6px;
+  min-height: 600px;
 }
