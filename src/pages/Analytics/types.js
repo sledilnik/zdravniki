@@ -21,6 +21,7 @@
  * @property {string} id
  * @property {"ChartCard" } componentName
  * @property {HighchartsOptions} options
+ * @property {React.CSSProperties["minHeight"] fakeHeight
  */
 /**
  * @typedef {Object} MapData

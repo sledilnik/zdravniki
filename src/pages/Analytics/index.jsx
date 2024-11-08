@@ -11,10 +11,13 @@ import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 import styles from './Layout.module.css';
+import stylesCard from './Cards/Card.module.css';
+
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
 import RichInfoClick from './RichInfoClick';
 import TouchdeviceNotification from './TouchDeviceNotification';
+import { CardHeader } from './Cards/CardHeader';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
@@ -47,16 +50,22 @@ const Analytics = function Analytics() {
             {section.charts.map(chart => {
               const CardComponent = CARDS[chart.componentName];
               const chartProxy = createChartDataProxy(chart);
+
               return (
                 <RenderOnViewportEntry
                   key={chartProxy.id}
                   srOnlyComponentsBeforeEntered={
-                    <div className={styles.FakeChartTitlesWrapper}>
-                      <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
-                      <p>{chartProxy.options.subtitle.text}</p>
+                    <div className={`${stylesCard.Card} `} style={{ minHeight: chart.fakeHeight }}>
+                      <CardHeader>
+                        <div>
+                          <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
+                          <p>{chartProxy.options.subtitle.text}</p>
+                        </div>
+                      </CardHeader>
                     </div>
                   }
                   className={styles.CardWrapper}
+                  style={{ minHeight: chart.fakeHeight }}
                 >
                   <CardComponent id={chartProxy.id} options={chartProxy.options} />
                 </RenderOnViewportEntry>

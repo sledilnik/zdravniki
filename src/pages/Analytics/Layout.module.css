@@ -132,9 +132,3 @@
 .CardWrapper:not(:last-child) {
   margin-bottom: 2rem;
 }
-
-.FakeChartTitlesWrapper {
-  background: #ffffff;
-  border-radius: 6px;
-  min-height: 600px;
-}

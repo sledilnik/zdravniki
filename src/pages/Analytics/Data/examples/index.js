@@ -11,6 +11,7 @@ export const COLUMN = {
   section: 'examples 1',
   order: 2,
   componentName: 'ChartCard',
+  fakeHeight: '570px',
   options: {
     accessibility: {
       typeDescription: 'Column chart with 6 series.',
@@ -47,6 +48,7 @@ export const Line = {
   section: 'examples 2',
   order: 2,
   componentName: 'ChartCard',
+  fakeHeight: '570px',
   options: {
     chart: { type: 'line' },
     title: { text: 'Line' },
@@ -75,6 +77,7 @@ export const DRILLDOWN = {
   section: 'examples 2',
   order: 3,
   componentName: 'ChartCard',
+  fakeHeight: '541px',
   options: {
     chart: { type: 'column' },
     title: { text: 'Drilldown' },
@@ -253,6 +256,7 @@ export const SLO_UE_MAP = {
   order: 4,
   section: 'examples 1',
   componentName: 'MapCard',
+  fakeHeight: '662px',
   options: {
     chart: { map: sloUEMap },
     title: { text: 'Slo UE Map' },
@@ -337,6 +341,7 @@ const SLO_OB_MAP = {
   order: 1,
   section: 'examples 1',
   componentName: 'MapCard',
+  fakeHeight: '662px',
   options: {
     chart: { map: sloOBMap },
     title: { text: 'Slo OB Map' },
