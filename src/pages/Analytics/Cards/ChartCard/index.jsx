@@ -74,7 +74,7 @@ const ChartCard = function ChartCard({ id = undefined, options }) {
         <div className={styles.SeriesButtons}>
           <CustomSeriesButtons chart={chart} />
         </div>
-        <figcaption className="highcharts-description">{options.caption.text}</figcaption>
+        <figcaption className="highcharts-description">{options?.caption?.text}</figcaption>
       </figure>
     </article>
   );

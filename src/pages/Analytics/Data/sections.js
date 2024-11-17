@@ -1,8 +1,9 @@
 /** @import * as Types from "../types" */
 
 import examples from './examples';
+import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
-export const charts = [...Object.values(examples)];
+export const charts = [availabilityChangeByInstitutionType, ...Object.values(examples)];
 
 const groupedCharts = charts.reduce((acc, chart) => {
   const { section } = chart;

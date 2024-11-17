@@ -121,12 +121,8 @@
   margin-bottom: 1rem;
 }
 
-.ChartsSection:first-of-type {
-  min-height: 670px; /* 670px is the height of the chart and section title */
-}
-
-.ChartsSection:not(:first-of-type) {
-  margin-top: 2rem;
+.ChartSection:not(:last-child) {
+  margin-bottom: 2rem;
 }
 
 .CardWrapper:not(:last-child) {

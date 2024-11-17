@@ -38,12 +38,14 @@ const Analytics = function Analytics() {
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
         <section className={styles.ChartSection}>
-          <h2 className={styles.SectionTitle}>Some section title</h2>
-          <RichInfoClick />
+          <div className={styles.CardWrapper}>
+            <h2 className={styles.SectionTitle}>Some section title</h2>
+            <RichInfoClick />
+          </div>
         </section>
 
         {SECTIONS.map(section => (
-          <section key={section.sectionTitle} className={styles.ChartsSection}>
+          <section key={section.sectionTitle} className={styles.ChartSection}>
             <h2 className={styles.SectionTitle}>
               {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
             </h2>
@@ -58,8 +60,8 @@ const Analytics = function Analytics() {
                     <div className={`${stylesCard.Card} `} style={{ minHeight: chart.fakeHeight }}>
                       <CardHeader>
                         <div>
-                          <h3 id={chartProxy.id}>{chartProxy.options.title.text}</h3>
-                          <p>{chartProxy.options.subtitle.text}</p>
+                          <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
+                          <p>{chartProxy.options.subtitle?.text}</p>
                         </div>
                       </CardHeader>
                     </div>

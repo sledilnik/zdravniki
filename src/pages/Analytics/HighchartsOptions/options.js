@@ -15,6 +15,7 @@ export const lang = {
   downloadJPEG: 'Prenesi JPEG',
   downloadSVG: 'Prenesi SVG',
   printChart: 'Natisni graf',
+  resetZoom: 'Ponastavi povečavo',
   viewFullscreen: 'Celozaslonski pogled',
   exitFullscreen: 'Zapri celozaslonski pogled',
   decimalPoint: ',',
