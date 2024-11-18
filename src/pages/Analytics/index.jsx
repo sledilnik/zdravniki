@@ -15,16 +15,17 @@ import stylesCard from './Cards/Card.module.css';
 
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
-import RichInfoClick from './RichInfoClick';
 import TouchdeviceNotification from './TouchDeviceNotification';
 import { CardHeader } from './Cards/CardHeader';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
+const RichInfoClick = lazy(() => import('./RichInfoClick'));
 
 const CARDS = {
   ChartCard,
   MapCard,
+  RichInfoClick,
 };
 
 const Analytics = function Analytics() {
@@ -37,12 +38,6 @@ const Analytics = function Analytics() {
       <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
-        <section className={styles.ChartSection}>
-          <div>
-            <h2 className={styles.SectionTitle}>Some section title</h2>
-            <RichInfoClick id="rich-info-click" />
-          </div>
-        </section>
 
         {SECTIONS.map(section => (
           <section key={section.sectionTitle} className={styles.ChartSection}>

@@ -3,7 +3,17 @@
 import examples from './examples';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
-export const charts = [availabilityChangeByInstitutionType, ...Object.values(examples)];
+export const charts = [
+  availabilityChangeByInstitutionType,
+  {
+    section: 'real section 1',
+    order: 1,
+    componentName: 'RichInfoClick',
+    fakeHeight: '780px',
+    options: { title: { text: 'Special' } },
+  },
+  ...Object.values(examples),
+];
 
 const groupedCharts = charts.reduce((acc, chart) => {
   const { section } = chart;
