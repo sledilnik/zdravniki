@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
-/* eslint-disable no-unused-vars */
 /** @import * as Types from '../types' */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
@@ -39,7 +39,13 @@ import {
  * @property {SeriesDataItem[]} data
  */
 
-const RichInfoClick = function RichInfoClick() {
+/**
+ *
+ * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the chart.
+ * @param {React.ComponentProps<"article">["className"]} props.className - The class name for the chart. Defaults to an empty string.
+ * @returns {JSX.Element} The rendered RichInfoClick component.
+ */
+const RichInfoClick = function RichInfoClick({ id = undefined, className = '' }) {
   /** @type {[string, React.Dispatch<React.SetStateAction<Highcharts.Point[]>>]} */
   const [selectedPoints, setSelectedPoints] = useState([]);
   const [mapChartOptions, setMapChartOptions] = useState(mapOptions);
@@ -127,7 +133,7 @@ const RichInfoClick = function RichInfoClick() {
   };
 
   return (
-    <article id="rich-info-click" className={`${styles.Card} ${stylesRichInfoClick.RichInfoClick}`}>
+    <article id={id} className={`${styles.Card} ${stylesRichInfoClick.RichInfoClick} ${className}`}>
       <ChartHeader showPopover={false} title="Neki po občinah" />
       <div style={{ paddingInline: 'var(--inline-padding)', paddingBlock: '0.5em' }}>
         <label htmlFor="year-select">

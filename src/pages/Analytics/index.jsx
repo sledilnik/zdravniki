@@ -38,9 +38,9 @@ const Analytics = function Analytics() {
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
         <section className={styles.ChartSection}>
-          <div className={styles.CardWrapper}>
+          <div>
             <h2 className={styles.SectionTitle}>Some section title</h2>
-            <RichInfoClick />
+            <RichInfoClick id="rich-info-click" />
           </div>
         </section>
 
@@ -57,7 +57,7 @@ const Analytics = function Analytics() {
                 <RenderOnViewportEntry
                   key={chartProxy.id}
                   srOnlyComponentsBeforeEntered={
-                    <div className={`${stylesCard.Card} `} style={{ minHeight: chart.fakeHeight }}>
+                    <div className={`${stylesCard.Card} }`} style={{ minHeight: chart.fakeHeight }}>
                       <CardHeader>
                         <div>
                           <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
@@ -66,7 +66,6 @@ const Analytics = function Analytics() {
                       </CardHeader>
                     </div>
                   }
-                  className={styles.CardWrapper}
                   style={{ minHeight: chart.fakeHeight }}
                 >
                   <CardComponent id={chartProxy.id} options={chartProxy.options} />

@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /** @import * as Types from "../../types" */
 
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
@@ -18,12 +18,18 @@ import ChartHeader from '../ChartHeader';
  *
  * @component
  * @param {Object} props - The properties object.
- * @param {string} [props.id] - The id for the MapCard container.
+ * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the card.
+ * @param {React.ComponentProps<"article">["className"]} props.className - The class name for the card. Defaults to an empty string.
  * @param {Types.HighMapsOptions} props.options - The HighMaps options object.
  * @param {boolean} [props.showSeriesButtons=false] - Flag to show or hide series buttons.
  * @returns {JSX.Element} The rendered MapCard component.
  */
-const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = false }) {
+const MapCard = function MapCard({
+  id = undefined,
+  className = '',
+  options,
+  showSeriesButtons = false,
+}) {
   const [chartOptions] = useState(options);
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const chartRef = useRef(null);
@@ -46,7 +52,7 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   return (
-    <article id={id} className={styles.Card}>
+    <article id={id} className={`${styles.Card} ${className}`}>
       <ChartHeader
         title={options?.title?.text}
         subtitle={options?.subtitle?.text}
@@ -83,28 +89,6 @@ const MapCard = function MapCard({ id = undefined, options, showSeriesButtons = 
       </figure>
     </article>
   );
-};
-
-MapCard.propTypes = {
-  id: PropTypes.string,
-  options: PropTypes.shape({
-    title: PropTypes.shape({
-      text: PropTypes.string.isRequired,
-    }).isRequired,
-    subtitle: PropTypes.shape({
-      text: PropTypes.string,
-    }),
-    caption: PropTypes.shape({
-      text: PropTypes.string,
-    }),
-    series: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        visible: PropTypes.bool,
-      }),
-    ).isRequired,
-  }).isRequired,
-  showSeriesButtons: PropTypes.bool,
 };
 
 export default MapCard;
