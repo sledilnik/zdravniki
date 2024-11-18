@@ -1,6 +1,7 @@
 /** @import * as Types from "../types" */
 
 import examples from './examples';
+import { mapOptions } from '../RichInfoClick/chart-options';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
 export const charts = [
@@ -10,7 +11,7 @@ export const charts = [
     order: 1,
     componentName: 'RichInfoClick',
     fakeHeight: '780px',
-    options: { title: { text: 'Special' } },
+    options: { title: { text: mapOptions.title.text ? mapOptions.title.text : 'Missing Title' } },
   },
   ...Object.values(examples),
 ];

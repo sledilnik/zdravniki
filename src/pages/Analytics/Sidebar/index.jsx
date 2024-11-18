@@ -27,12 +27,6 @@ const Sidebar = function Sidebar() {
           Pojdi na graf
         </h2>
         <div className={styles.SidebarGroupsWrapper}>
-          <div className={styles.SidebarGroup}>
-            <h3 className={styles.SidebarGroupTitle}>Some section title</h3>
-            <a href="#rich-info-click" onClick={closeModal} className={styles.SidebarLink}>
-              Neki po občinah
-            </a>
-          </div>
           {SECTIONS.map(section => (
             <div key={section.sectionTitle} className={styles.SidebarGroup}>
               <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
