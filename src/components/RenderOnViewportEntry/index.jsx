@@ -5,10 +5,6 @@
 import { Suspense, useRef } from 'react';
 import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
 
-import styles from './RenderOnViewportEntry.module.css';
-
-console.log(styles);
-
 /**
  * Component that renders its children only when it enters the viewport.
  *
