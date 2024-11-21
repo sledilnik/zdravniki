@@ -6,6 +6,11 @@
   border-radius: var(--wrapper-border-radius);
 }
 
+.Card > * {
+  padding-inline: var(--inline-padding);
+  padding-block: 0.5em;
+}
+
 .Card:not(:last-child) {
   margin-bottom: 2em;
 }

@@ -64,7 +64,7 @@ const generateFakeData = municipalities => {
       fakeData.push({
         name: municipality,
         value: Math.floor(Math.random() * 1000) / 100,
-        OB_UIME: municipality,
+        // OB_UIME: municipality,
         year: i,
       });
     });
@@ -164,7 +164,8 @@ export const mapOptions = {
       type: 'map',
       name: 'Slo OB Data',
       mapData: sloOBMap,
-      joinBy: 'OB_UIME',
+      keys: ['OB_UIME', 'value'],
+      joinBy: ['OB_UIME', 'name'],
       data: firstChartSeriesMap.get(yearsSortedDesc[0]),
       allowPointSelect: true,
       cursor: 'pointer',
