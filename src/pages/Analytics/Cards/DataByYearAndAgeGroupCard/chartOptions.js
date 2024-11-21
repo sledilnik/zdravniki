@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 /** @import * as Types from "../../types"  */
 
 import sloOBMap from 'assets/maps/OB.geo.json';
@@ -6,9 +5,9 @@ import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 
 import { fakeData } from './data';
 
-export const MUNICIPALITIES = new Set(fakeData.map(item => item.name));
-export const YEARS = new Set(fakeData.map(item => item.year));
-export const AGE_GROUPS = new Set(fakeData.map(item => item.ageGroup));
+export const MUNICIPALITIES = [...new Set(fakeData.map(item => item.name))];
+export const YEARS = [...new Set(fakeData.map(item => item.year))];
+export const AGE_GROUPS = [...new Set(fakeData.map(item => item.ageGroup))];
 
 /**
  * @type {Map<import('./data').AgeGroup, Types.AgeGroupItem[]>}
@@ -65,6 +64,16 @@ export function createSeriesDataMap(data) {
   return seriesMap;
 }
 
+fakeData
+  .filter(item => item.year === [...YEARS][0] && item.ageGroup === [...AGE_GROUPS][0])
+  .map(item => {
+    const tooltipData = byAgeGroupMap
+      .get(item.ageGroup)
+      .filter(i => i.name === item.name)
+      .map(i => i.value);
+    return { ...item, eData: tooltipData };
+  });
+
 export const seriesDataMap = createSeriesDataMap(dataExample);
 
 /** @type {Types.HighMapsOptions} */
@@ -73,7 +82,24 @@ export const mapOptions = {
     map: sloOBMap,
   },
   title: {
-    text: 'Roman 1',
+    text: 'Neki po letih in starostnih skupinah',
+  },
+
+  mapNavigation: {
+    enabled: true,
+    buttonOptions: {
+      verticalAlign: 'bottom',
+      x: 10,
+    },
+  },
+  legend: {
+    enabled: true,
+    align: 'right',
+    verticalAlign: 'bottom',
+    layout: 'vertical',
+    floating: true,
+    useHTML: true,
+    padding: 12,
   },
   colorAxis: {
     minColor: '#AAE8F8',
@@ -81,15 +107,30 @@ export const mapOptions = {
     startOnTick: true,
     endOnTick: true,
   },
+  tooltip: {
+    useHTML: true,
+    headerFormat: '',
+    className: 'hc-tooltip-with-chart',
+    pointFormat:
+      '<div style="min-height: 300px; min-width: 300px;"><span style="font-size: 1rem;"><b>{point.name}</b></span><br><span>Skupina: {point.ageGroup}</span><div id="hc-tooltip-with-chart"></div></div',
+  },
+
   series: [
     {
       type: 'map',
       mapData: sloOBMap,
       keys: ['OB_UIME', 'value'],
       joinBy: ['OB_UIME', 'name'],
-      data: fakeData.filter(
-        item => item.year === [...YEARS][0] && item.ageGroup === [...AGE_GROUPS][0],
-      ),
+      data: byAgeGroupMap
+        .get('0-17')
+        .filter(item => item.year === YEARS[0])
+        .map(item => {
+          const tooltipData = byAgeGroupMap
+            .get(item.ageGroup)
+            .filter(i => i.name === item.name)
+            .map(i => i.value);
+          return { ...item, eData: tooltipData };
+        }),
     },
   ],
   responsive: {

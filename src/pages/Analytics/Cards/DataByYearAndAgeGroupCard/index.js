@@ -1,7 +1,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+
+/** @import * as Types from "../../types" */
+import { useEffect, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
@@ -13,6 +15,42 @@ import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
 
 heatmap(Highcharts);
+
+function renderChart(point) {
+  Highcharts.chart('hc-tooltip-with-chart', {
+    chart: {
+      type: 'column',
+      height: 270,
+    },
+
+    xAxis: {
+      categories: YEARS,
+      title: {
+        text: null,
+      },
+    },
+    yAxis: {
+      title: { text: null },
+    },
+
+    credits: {
+      enabled: false,
+    },
+    legend: {
+      enabled: false,
+    },
+    series: [
+      {
+        data: point.options.eData,
+        dataLabels: {
+          enabled: true,
+        },
+        title: null,
+        color: '#5DA9B5',
+      },
+    ],
+  });
+}
 
 /**
  *
@@ -29,11 +67,49 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
   const [ageGroup, setAgeGroup] = useState([...AGE_GROUPS][0]);
 
+  /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
+  const mapChartRef = useRef(null);
+
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    // console.log('useEffect 1');
+    // hack to force re-render to get the chart instance
+    setInit(true);
+  }, []);
+
+  useEffect(() => {
+    // console.log('useEffect 2');
+    if (!init) return;
+    HighMaps.addEvent(HighMaps.Tooltip, 'refresh', e => {
+      if (e.target.chart.title.textStr === mapOptions.title.text) {
+        renderChart(e.target.chart?.hoverPoint);
+      }
+    });
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      HighMaps.removeEvent(HighMaps.Tooltip, 'refresh');
+    };
+  }, [init]);
+
   const onYearChange = e => {
     const newYear = Number(e.target.value);
     const data = byAgeGroupMap.get(ageGroup);
     _setMapChartOptions({
-      series: [{ data: data.filter(item => item.year === newYear) }],
+      series: [
+        {
+          data: data
+            .filter(item => item.year === newYear)
+            .map(item => {
+              const tooltipData = byAgeGroupMap
+                .get(item.ageGroup)
+                .filter(i => i.name === item.name)
+                .map(i => i.value);
+              return { ...item, eData: tooltipData };
+            }),
+        },
+      ],
     });
     setYear(Number(newYear));
   };
@@ -42,7 +118,19 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
     const newAgeGroup = e.target.value;
     const data = byAgeGroupMap.get(newAgeGroup);
     _setMapChartOptions({
-      series: [{ data: data.filter(item => item.year === year) }],
+      series: [
+        {
+          data: data
+            .filter(item => item.year === year)
+            .map(item => {
+              const tooltipData = byAgeGroupMap
+                .get(item.ageGroup)
+                .filter(i => i.name === item.name)
+                .map(i => i.value);
+              return { ...item, eData: tooltipData };
+            }),
+        },
+      ],
     });
     setAgeGroup(newAgeGroup);
   };
@@ -61,7 +149,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
               value={year}
               style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
             >
-              {[...YEARS].map(year => (
+              {YEARS.map(year => (
                 <option key={year} value={year}>
                   {year}
                 </option>
@@ -79,7 +167,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
               onChange={onAgeGroupChange}
               style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
             >
-              {[...AGE_GROUPS].map(ageGroup => (
+              {AGE_GROUPS.map(ageGroup => (
                 <option key={ageGroup} value={ageGroup}>
                   {ageGroup}
                 </option>
@@ -90,6 +178,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
       </div>
       <figure className={styles.Figure}>
         <HighchartsReact
+          ref={mapChartRef}
           highcharts={HighMaps}
           options={mapChartOptions}
           constructorType="mapChart"
