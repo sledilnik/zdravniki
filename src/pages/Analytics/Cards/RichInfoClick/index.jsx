@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
-/** @import * as Types from '../types' */
+/** @import * as Types from '../../types' */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import styles from '../Cards/Card.module.css';
+import styles from '../Card.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
-import ChartHeader from '../Cards/ChartHeader';
-import CustomSeriesButtons from '../CustomSeriesButtons';
+import ChartHeader from '../ChartHeader';
+import CustomSeriesButtons from '../../CustomSeriesButtons';
 import {
   baseSecondChartOptions,
   firstChartSeriesMap,

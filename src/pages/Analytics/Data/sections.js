@@ -1,7 +1,7 @@
 /** @import * as Types from "../types" */
 
 import examples from './examples';
-import { mapOptions as RichInfoClickOptions } from '../RichInfoClick/chart-options';
+import { mapOptions as RichInfoClickOptions } from '../Cards/RichInfoClick/chart-options';
 import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAndAgeGroupCard/chartOptions';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 

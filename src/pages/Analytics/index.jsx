@@ -20,7 +20,7 @@ import { CardHeader } from './Cards/CardHeader';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
-const RichInfoClick = lazy(() => import('./RichInfoClick'));
+const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
 const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
 
 const CARDS = {
