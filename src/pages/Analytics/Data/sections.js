@@ -1,7 +1,8 @@
 /** @import * as Types from "../types" */
 
 import examples from './examples';
-import { mapOptions } from '../RichInfoClick/chart-options';
+import { mapOptions as RichInfoClickOptions } from '../RichInfoClick/chart-options';
+import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAndAgeGroupCard/chartOptions';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
 export const charts = [
@@ -9,9 +10,26 @@ export const charts = [
   {
     section: 'real section 1',
     order: 1,
+    componentName: 'DataByYearAndAgeGroupCard',
+    fakeHeight: '1512px',
+    options: {
+      title: {
+        text: RomanLustrikCardMapOptions.title.text
+          ? RomanLustrikCardMapOptions.title.text
+          : 'Missing Title',
+      },
+    },
+  },
+  {
+    section: 'real section 1',
+    order: 2,
     componentName: 'RichInfoClick',
     fakeHeight: '780px',
-    options: { title: { text: mapOptions.title.text ? mapOptions.title.text : 'Missing Title' } },
+    options: {
+      title: {
+        text: RichInfoClickOptions.title.text ? RichInfoClickOptions.title.text : 'Missing Title',
+      },
+    },
   },
   ...Object.values(examples),
 ];
