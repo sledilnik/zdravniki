@@ -134,7 +134,7 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
 
   return (
     <article id={id} className={`${styles.Card} ${stylesRichInfoClick.RichInfoClick} ${className}`}>
-      <ChartHeader showPopover={false} title="Neki po občinah" />
+      <ChartHeader showPopover={false} title={mapOptions.title.text} />
       <div style={{ paddingInline: 'var(--inline-padding)', paddingBlock: '0.5em' }}>
         <label htmlFor="year-select">
           Leto:{' '}
