@@ -13,44 +13,9 @@ import heatmap from 'highcharts/modules/heatmap';
 import { mapOptions, chartOptions, YEARS, AGE_GROUPS, byAgeGroupMap } from './chartOptions';
 import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
+import { renderChart } from './utils';
 
 heatmap(Highcharts);
-
-function renderChart(point) {
-  Highcharts.chart('hc-tooltip-with-chart', {
-    chart: {
-      type: 'column',
-      height: 270,
-    },
-
-    xAxis: {
-      categories: YEARS,
-      title: {
-        text: null,
-      },
-    },
-    yAxis: {
-      title: { text: null },
-    },
-
-    credits: {
-      enabled: false,
-    },
-    legend: {
-      enabled: false,
-    },
-    series: [
-      {
-        data: point.options.tooltipData,
-        dataLabels: {
-          enabled: true,
-        },
-        title: null,
-        color: '#5DA9B5',
-      },
-    ],
-  });
-}
 
 /**
  *
