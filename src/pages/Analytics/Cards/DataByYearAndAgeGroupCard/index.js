@@ -41,7 +41,7 @@ function renderChart(point) {
     },
     series: [
       {
-        data: point.options.eData,
+        data: point.options.tooltipData,
         dataLabels: {
           enabled: true,
         },
@@ -59,7 +59,7 @@ function renderChart(point) {
  * @returns {JSX.Element} The rendered RichInfoClick component.
  */
 const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, className = '' }) {
-  const [mapChartOptions, _setMapChartOptions] = useState(mapOptions);
+  const [mapChartOptions, setMapChartOptions] = useState(mapOptions);
   const [secondChartOptions, _setSecondChartOptions] = useState(chartOptions);
 
   /** @type {[import('./data').Year, React.Dispatch<React.SetStateAction<import('./data').Year]} */
@@ -96,7 +96,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   const onYearChange = e => {
     const newYear = Number(e.target.value);
     const data = byAgeGroupMap.get(ageGroup);
-    _setMapChartOptions({
+    setMapChartOptions({
       series: [
         {
           data: data
@@ -106,7 +106,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
                 .get(item.ageGroup)
                 .filter(i => i.name === item.name)
                 .map(i => i.value);
-              return { ...item, eData: tooltipData };
+              return { ...item, tooltipData };
             }),
         },
       ],
@@ -117,7 +117,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   const onAgeGroupChange = e => {
     const newAgeGroup = e.target.value;
     const data = byAgeGroupMap.get(newAgeGroup);
-    _setMapChartOptions({
+    setMapChartOptions({
       series: [
         {
           data: data
@@ -127,7 +127,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
                 .get(item.ageGroup)
                 .filter(i => i.name === item.name)
                 .map(i => i.value);
-              return { ...item, eData: tooltipData };
+              return { ...item, tooltipData };
             }),
         },
       ],

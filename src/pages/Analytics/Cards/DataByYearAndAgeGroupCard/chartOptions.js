@@ -71,7 +71,7 @@ fakeData
       .get(item.ageGroup)
       .filter(i => i.name === item.name)
       .map(i => i.value);
-    return { ...item, eData: tooltipData };
+    return { ...item, tooltipData };
   });
 
 export const seriesDataMap = createSeriesDataMap(dataExample);
@@ -129,7 +129,7 @@ export const mapOptions = {
             .get(item.ageGroup)
             .filter(i => i.name === item.name)
             .map(i => i.value);
-          return { ...item, eData: tooltipData };
+          return { ...item, tooltipData };
         }),
     },
   ],
@@ -195,6 +195,10 @@ export const chartOptions = {
     min: 0,
     minColor: '#AAE8F8',
     maxColor: '#095568',
+    minorTickInterval: 0.1,
+    minorTicks: true,
+    minorTickLength: 0,
+    tickInterval: 1,
   },
   plotOptions: {
     series: { dataLabels: { enabled: false } },
@@ -202,8 +206,7 @@ export const chartOptions = {
 
   tooltip: {
     formatter() {
-      const { point } = this;
-      const { series } = this;
+      const { point, series } = this;
       const xCategory = series.xAxis.categories[point.x];
       // const yCategory = series.yAxis.categories[point.y];
       const data = series.data.map(p => `${p.year}: ${p.value}`).join('<br>');
