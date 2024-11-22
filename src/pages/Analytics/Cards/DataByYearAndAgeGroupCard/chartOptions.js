@@ -6,7 +6,7 @@ import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 import { byAgeGroupMap, DATA } from './data';
 import { chartSeriesDataMap } from './utils';
 
-const { MUNICIPALITIES, YEARS } = DATA;
+const { MUNICIPALITIES, YEARS, defaults } = DATA;
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {
@@ -44,7 +44,7 @@ export const mapOptions = {
     headerFormat: '',
     // className: 'hc-tooltip-with-chart',
     pointFormat:
-      '<div style="min-height: 300px; min-width: 300px;"><span style="font-size: 1rem;"><b>{point.name}</b></span><br><span>Skupina: {point.ageGroup}</span><div id="hc-tooltip-with-chart"></div></div',
+      '<div style="min-height: 300px; min-width: 300px;"><span style="font-size: 1rem;"><b>{point.name}</b></span><br><span>Skupina: <b>{point.ageGroup}</b></span><span style="margin-left: 0.5em;">Leto: <b>{point.year}</b><div id="hc-tooltip-with-chart"></div></div',
   },
 
   series: [
@@ -55,7 +55,7 @@ export const mapOptions = {
       joinBy: ['OB_UIME', 'name'],
       data: byAgeGroupMap
         .get('0-17')
-        .filter(item => item.year === YEARS[0])
+        .filter(item => item.year === defaults.year)
         .map(item => {
           const tooltipData = byAgeGroupMap
             .get(item.ageGroup)

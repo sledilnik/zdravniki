@@ -59,16 +59,33 @@ function generateFakeData(municipalities) {
 export const fakeData = generateFakeData(sloMunicipalitiesJSON);
 
 /**
- * @constant {Object} DATA
- * @type {Object}
- * @property {string[]} MUNICIPALITIES - List of municipality names.
- * @property {AgeGroup[]} AGE_GROUPS - List of age groups.
- * @property {Year[]} YEARS - List of years.
+ * @typedef {("line" | "bar" | "column")} TooltipChartType
+ */
+
+/**
+ * @description The data object for the DataByYearAndAgeGroupCard component.
+ * @typedef {Object} Data
+ * @property {string[]} Data.MUNICIPALITIES - List of municipality names.
+ * @property {AgeGroup[]} Data.AGE_GROUPS - List of age groups.
+ * @property {Year[]} Data.YEARS - List of years.
+ * @property {TooltipChartType[]} Data.TOOLTIP_CHART_TYPES- The chart type for the tooltip
+ * @property {{ year: Year, ageGroup: AgeGroup, tooltipChartType: TooltipChartType }} Data.defaults - Default year and age group.
+ */
+
+/**
+ * @constant {Data} DATA
+ * @type {Data}
  */
 export const DATA = {
   MUNICIPALITIES: [...new Set(fakeData.map(item => item.name))],
   AGE_GROUPS: [...new Set(fakeData.map(item => item.ageGroup))],
   YEARS: [...new Set(fakeData.map(item => item.year))],
+  TOOLTIP_CHART_TYPES: ['line', 'bar', 'column'],
+  defaults: {
+    year: YEARS[0],
+    ageGroup: AGE_GROUPS[0],
+    tooltipChartType: 'bar',
+  },
 };
 
 /**

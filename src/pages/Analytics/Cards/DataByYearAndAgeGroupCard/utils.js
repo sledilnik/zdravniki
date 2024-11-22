@@ -3,10 +3,10 @@
 import Highcharts from 'highcharts';
 import { byAgeGroupMap, DATA } from './data';
 
-export function renderChart(point) {
+export function renderChart(point, chartType) {
   Highcharts.chart('hc-tooltip-with-chart', {
     chart: {
-      type: 'bar',
+      type: chartType,
       height: 270,
     },
 

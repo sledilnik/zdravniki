@@ -19,7 +19,7 @@ import styles from '../Card.module.css';
 
 heatmap(Highcharts);
 
-const { YEARS, AGE_GROUPS } = DATA;
+const { YEARS, AGE_GROUPS, defaults, TOOLTIP_CHART_TYPES } = DATA;
 
 /**
  *
@@ -32,9 +32,11 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   const [secondChartOptions, _setSecondChartOptions] = useState(chartOptions);
 
   /** @type {[import('./data').Year, React.Dispatch<React.SetStateAction<import('./data').Year]} */
-  const [year, setYear] = useState(YEARS[0]);
+  const [year, setYear] = useState(defaults.year);
   /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
-  const [ageGroup, setAgeGroup] = useState(AGE_GROUPS[0]);
+  const [ageGroup, setAgeGroup] = useState(defaults.ageGroup);
+  /** @type {[import('./data').TooltipChartType, React.Dispatch<React.SetStateAction<import('./data').TooltipChartType]} */
+  const [tooltipChartType, setTooltipChartType] = useState(defaults.tooltipChartType);
 
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const mapChartRef = useRef(null);
@@ -52,7 +54,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
     if (!init) return;
     HighMaps.addEvent(HighMaps.Tooltip, 'refresh', e => {
       if (e.target.chart.title.textStr === mapOptions.title.text) {
-        renderChart(e.target.chart?.hoverPoint);
+        renderChart(e.target.chart?.hoverPoint, tooltipChartType);
       }
     });
 
@@ -60,7 +62,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
     return () => {
       HighMaps.removeEvent(HighMaps.Tooltip, 'refresh');
     };
-  }, [init]);
+  }, [init, tooltipChartType]);
 
   const onYearChange = e => {
     const newYear = Number(e.target.value);
@@ -86,6 +88,11 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
       series: [{ data }],
     });
     setAgeGroup(newAgeGroup);
+  };
+
+  const onTooltipChartTypeChange = e => {
+    const newChartType = e.target.value;
+    setTooltipChartType(newChartType);
   };
 
   return (
@@ -123,6 +130,24 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
               {AGE_GROUPS.map(ageGroup => (
                 <option key={ageGroup} value={ageGroup}>
                   {ageGroup}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div style={{ display: 'inline-block', marginLeft: '0.5em' }}>
+          <label htmlFor="chart-type-select">
+            Tip grafa:{' '}
+            <select
+              id="chart-type-select"
+              name="chartType"
+              value={tooltipChartType}
+              onChange={onTooltipChartTypeChange}
+              style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
+            >
+              {TOOLTIP_CHART_TYPES.map(type => (
+                <option key={type} value={type}>
+                  {type}
                 </option>
               ))}
             </select>
