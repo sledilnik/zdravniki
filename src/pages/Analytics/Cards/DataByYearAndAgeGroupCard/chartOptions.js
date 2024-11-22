@@ -3,78 +3,10 @@
 import sloOBMap from 'assets/maps/OB.geo.json';
 import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 
-import { fakeData } from './data';
+import { byAgeGroupMap, DATA } from './data';
+import { chartSeriesDataMap } from './utils';
 
-export const MUNICIPALITIES = [...new Set(fakeData.map(item => item.name))];
-export const YEARS = [...new Set(fakeData.map(item => item.year))];
-export const AGE_GROUPS = [...new Set(fakeData.map(item => item.ageGroup))];
-
-/**
- * @type {Map<import('./data').AgeGroup, Types.AgeGroupItem[]>}
- */
-export const byAgeGroupMap = new Map(
-  [...AGE_GROUPS].map(ageGroup => [ageGroup, fakeData.filter(item => item.ageGroup === ageGroup)]),
-);
-
-export function createChartData(years, municipalities, items) {
-  return items.map(item => {
-    const x = municipalities.indexOf(item.name);
-    const y = years.indexOf(item.year);
-    if (x === -1 || y === -1) {
-      return null;
-    }
-
-    return {
-      x,
-      y,
-      name: item.name,
-      value: item.value,
-      ageGroup: item.ageGroup,
-      year: item.year,
-    };
-  });
-}
-
-const municipalitiesExample = [...MUNICIPALITIES];
-const yearsExample = [...YEARS];
-const dataExample = createChartData(
-  yearsExample,
-  municipalitiesExample,
-  byAgeGroupMap.get('0-17'),
-).filter(item => item != null);
-
-export function createSeriesDataMap(data) {
-  const seriesMap = new Map();
-  // loop through the data and create a map of series data
-  // if key exists, add to the existing array
-  // if key does not exist, create a new array
-  data.forEach(item => {
-    if (seriesMap.has(item.name)) {
-      const serie = seriesMap.get(item.name);
-      serie.data.push(item);
-      seriesMap.set(item.name, serie);
-      return;
-    }
-    seriesMap.set(item.name, {
-      name: item.name,
-      borderWidth: 0,
-      data: [item],
-    });
-  });
-  return seriesMap;
-}
-
-fakeData
-  .filter(item => item.year === [...YEARS][0] && item.ageGroup === [...AGE_GROUPS][0])
-  .map(item => {
-    const tooltipData = byAgeGroupMap
-      .get(item.ageGroup)
-      .filter(i => i.name === item.name)
-      .map(i => i.value);
-    return { ...item, tooltipData };
-  });
-
-export const seriesDataMap = createSeriesDataMap(dataExample);
+const { MUNICIPALITIES, YEARS } = DATA;
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {
@@ -110,7 +42,7 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
     headerFormat: '',
-    className: 'hc-tooltip-with-chart',
+    // className: 'hc-tooltip-with-chart',
     pointFormat:
       '<div style="min-height: 300px; min-width: 300px;"><span style="font-size: 1rem;"><b>{point.name}</b></span><br><span>Skupina: {point.ageGroup}</span><div id="hc-tooltip-with-chart"></div></div',
   },
@@ -178,7 +110,7 @@ export const chartOptions = {
     text: 'Municipality Data Heatmap',
   },
   xAxis: {
-    categories: municipalitiesExample,
+    categories: MUNICIPALITIES,
     events: {
       afterSetExtremes(e) {
         const { max, min, dataMax, dataMin } = e;
@@ -188,7 +120,7 @@ export const chartOptions = {
     },
   },
   yAxis: {
-    categories: yearsExample,
+    categories: YEARS,
     title: null,
   },
   colorAxis: {
@@ -213,5 +145,5 @@ export const chartOptions = {
       return `<b>${xCategory}</b><br><b>Starostna skupina: ${point.ageGroup}</b><br>${data}`;
     },
   },
-  series: Array.from(seriesDataMap.values()),
+  series: Array.from(chartSeriesDataMap.values()),
 };

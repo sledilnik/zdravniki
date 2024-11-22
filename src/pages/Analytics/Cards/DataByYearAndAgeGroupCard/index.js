@@ -10,12 +10,16 @@ import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 import heatmap from 'highcharts/modules/heatmap';
 
-import { mapOptions, chartOptions, YEARS, AGE_GROUPS, byAgeGroupMap } from './chartOptions';
-import styles from '../Card.module.css';
+import { mapOptions, chartOptions } from './chartOptions';
+import { byAgeGroupMap, DATA } from './data';
+import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 import ChartHeader from '../ChartHeader';
-import { renderChart } from './utils';
+
+import styles from '../Card.module.css';
 
 heatmap(Highcharts);
+
+const { YEARS, AGE_GROUPS } = DATA;
 
 /**
  *
@@ -28,9 +32,9 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   const [secondChartOptions, _setSecondChartOptions] = useState(chartOptions);
 
   /** @type {[import('./data').Year, React.Dispatch<React.SetStateAction<import('./data').Year]} */
-  const [year, setYear] = useState([...YEARS][0]);
+  const [year, setYear] = useState(YEARS[0]);
   /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
-  const [ageGroup, setAgeGroup] = useState([...AGE_GROUPS][0]);
+  const [ageGroup, setAgeGroup] = useState(AGE_GROUPS[0]);
 
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const mapChartRef = useRef(null);
@@ -60,42 +64,26 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
 
   const onYearChange = e => {
     const newYear = Number(e.target.value);
-    const data = byAgeGroupMap.get(ageGroup);
+    const data = filterDataByYearAndAgeGroup({
+      dataMap: byAgeGroupMap,
+      year: newYear,
+      ageGroup,
+    });
     setMapChartOptions({
-      series: [
-        {
-          data: data
-            .filter(item => item.year === newYear)
-            .map(item => {
-              const tooltipData = byAgeGroupMap
-                .get(item.ageGroup)
-                .filter(i => i.name === item.name)
-                .map(i => i.value);
-              return { ...item, tooltipData };
-            }),
-        },
-      ],
+      series: [{ data }],
     });
     setYear(Number(newYear));
   };
 
   const onAgeGroupChange = e => {
     const newAgeGroup = e.target.value;
-    const data = byAgeGroupMap.get(newAgeGroup);
+    const data = filterDataByYearAndAgeGroup({
+      dataMap: byAgeGroupMap,
+      year,
+      ageGroup: newAgeGroup,
+    });
     setMapChartOptions({
-      series: [
-        {
-          data: data
-            .filter(item => item.year === year)
-            .map(item => {
-              const tooltipData = byAgeGroupMap
-                .get(item.ageGroup)
-                .filter(i => i.name === item.name)
-                .map(i => i.value);
-              return { ...item, tooltipData };
-            }),
-        },
-      ],
+      series: [{ data }],
     });
     setAgeGroup(newAgeGroup);
   };

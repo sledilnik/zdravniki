@@ -11,16 +11,18 @@ import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
  */
 
 /**
+ * temporary to until we get the real data
  * @constant {AgeGroup[]} AGE_GROUPS
  * @type {AgeGroup[]}
  */
-export const AGE_GROUPS = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
+const AGE_GROUPS = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
 
 /**
+ * temporary to until we get the real data
  * @constant {Year[]} YEARS
  * @type {Year[]}
  */
-export const YEARS = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+const YEARS = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
 
 /**
  * @typedef {Object} AgeGroupItem
@@ -35,13 +37,13 @@ export const YEARS = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022
  * @param {string[]} municipalities - List of municipality names.
  * @returns {AgeGroupItem[]} - List of generated AgeGroupItem objects.
  */
-export function generateFakeData(municipalities) {
-  const fakeData = [];
+function generateFakeData(municipalities) {
+  const data = [];
 
   municipalities.forEach(municipality => {
     YEARS.forEach(year => {
       AGE_GROUPS.forEach(ageGroup => {
-        fakeData.push({
+        data.push({
           name: municipality,
           value: Math.floor(Math.random() * 1000) / 100, // Random value between 0 and 999
           year,
@@ -51,38 +53,27 @@ export function generateFakeData(municipalities) {
     });
   });
 
-  return fakeData;
+  return data;
 }
 
 export const fakeData = generateFakeData(sloMunicipalitiesJSON);
 
 /**
- * @template CityName
- * @template Year
- * @template AgeRange
- *
- * @typedef {Object} AgeRangeData
- * @property {number} value - The value associated with this age range.
- *
- * @typedef {Object<string, AgeRangeData>} YearData - Data for a single year, where keys are age ranges.
- *
- * @typedef {Object<string, YearData>} CityData - Data for a city, where keys are years.
- *
- * @typedef {Object<CityName, CityData>} CityRecord - Data for a record, where keys are city names.
- *
- * @typedef {CityRecord[]} CityRecordArray - Array of city records.
+ * @constant {Object} DATA
+ * @type {Object}
+ * @property {string[]} MUNICIPALITIES - List of municipality names.
+ * @property {AgeGroup[]} AGE_GROUPS - List of age groups.
+ * @property {Year[]} YEARS - List of years.
  */
+export const DATA = {
+  MUNICIPALITIES: [...new Set(fakeData.map(item => item.name))],
+  AGE_GROUPS: [...new Set(fakeData.map(item => item.ageGroup))],
+  YEARS: [...new Set(fakeData.map(item => item.year))],
+};
 
 /**
- * @type {CityRecordArray<string, Year, AgeGroup>}
+ * @type {Map<AgeGroup, AgeGroupItem[]>}
  */
-export const cityRecords = fakeData.reduce((acc, item) => {
-  if (!acc[item.name]) {
-    acc[item.name] = {};
-  }
-  if (!acc[item.name][item.year]) {
-    acc[item.name][item.year] = {};
-  }
-  acc[item.name][item.year][item.ageGroup] = { value: item.value };
-  return acc;
-}, {});
+export const byAgeGroupMap = new Map(
+  [...AGE_GROUPS].map(ageGroup => [ageGroup, fakeData.filter(item => item.ageGroup === ageGroup)]),
+);

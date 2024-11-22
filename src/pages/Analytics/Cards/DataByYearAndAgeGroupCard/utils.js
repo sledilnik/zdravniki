@@ -1,15 +1,17 @@
+/** @import * as DataTypes from "./data" */
+
 import Highcharts from 'highcharts';
-import { YEARS } from './chartOptions';
+import { byAgeGroupMap, DATA } from './data';
 
 export function renderChart(point) {
   Highcharts.chart('hc-tooltip-with-chart', {
     chart: {
-      type: 'column',
+      type: 'bar',
       height: 270,
     },
 
     xAxis: {
-      categories: YEARS,
+      categories: DATA.YEARS,
       title: {
         text: null,
       },
@@ -36,3 +38,81 @@ export function renderChart(point) {
     ],
   });
 }
+
+/**
+ * Filters data by the selected year and age group.
+ * @param {Object} props
+ * @param {Map<DataTypes.AgeGroup, DataTypes.AgeGroupItem[]>} props.dataMap - The data map to filter.
+ * @param {DataTypes.Year} props.year - The selected year.
+ * @param {DataTypes.AgeGroup} props.ageGroup - The selected age group.
+ * @returns {(DataTypes.AgeGroupItem & {tooltipData: number})[]} - The filtered data.
+ */
+export function filterDataByYearAndAgeGroup({ dataMap, year, ageGroup }) {
+  const data = dataMap.get(ageGroup);
+  return data
+    .filter(item => item.year === year)
+    .map(item => {
+      const tooltipData = byAgeGroupMap
+        .get(item.ageGroup)
+        .filter(i => i.name === item.name)
+        .map(i => i.value);
+      return { ...item, tooltipData };
+    });
+}
+
+/**
+ * Creates a chart data array for the heatmap.
+ * @param {DataTypes.Year[]} years - The years array.
+ * @param {string[]} municipalities - The municipalities array.
+ * @param {DataTypes.AgeGroupItem[]} items - The items array.
+ * @returns {(DataTypes.AgeGroupItem & {x: number, y: number})[]} - The chart data array.
+ */
+function createChartData(years, municipalities, items) {
+  return items.map(item => {
+    const x = municipalities.indexOf(item.name);
+    const y = years.indexOf(item.year);
+    if (x === -1 || y === -1) {
+      return null;
+    }
+
+    return {
+      x,
+      y,
+      name: item.name,
+      value: item.value,
+      ageGroup: item.ageGroup,
+      year: item.year,
+    };
+  });
+}
+
+const chartData = createChartData(
+  DATA.YEARS,
+  DATA.MUNICIPALITIES,
+  byAgeGroupMap.get('0-17'),
+).filter(item => item != null);
+
+/**
+ * Creates a map of series data.
+ * @param {(DataTypes.AgeGroupItem & {x: number, y: number})[]} data - The data array.
+ * @returns {Map<string, {name: string, borderWidth: number, data: (DataTypes.AgeGroupItem & {x: number, y: number})[]}>} - The series data map.
+ */
+export function createSeriesDataMap(data) {
+  const seriesMap = new Map();
+  data.forEach(item => {
+    if (seriesMap.has(item.name)) {
+      const serie = seriesMap.get(item.name);
+      serie.data.push(item);
+      seriesMap.set(item.name, serie);
+      return;
+    }
+    seriesMap.set(item.name, {
+      name: item.name,
+      borderWidth: 0,
+      data: [item],
+    });
+  });
+  return seriesMap;
+}
+
+export const chartSeriesDataMap = createSeriesDataMap(chartData);
