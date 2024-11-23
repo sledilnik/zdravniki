@@ -1,21 +1,24 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { cx } from 'class-variance-authority';
-// import Highcharts from 'highcharts';
+import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import { mapOptions } from './chartOptions';
+import { notSrOnly } from 'pages/Analytics/HighchartsOptions/options';
+
+import { baseSecondChartOptions, mapOptions } from './chartOptions';
 
 import Card from '../Card';
 import { CardHeader, CardSubtitle, CardTitle } from '../CardHeader';
-import { byAgeGroupMap, DATA } from '../DataByYearAndAgeGroupCard/data';
+import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
 
 import styles from './DashboardCard.module.css';
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
-// import stylesCard from '../Card.module.css';
+
+const defaultMunicipality = 'Ljubljana';
 
 /**
  * DashboardCard component renders children wrapped in a div or article.
@@ -34,6 +37,14 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
   const [year, setYear] = useState(DATA.defaults.year);
   /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
   const [ageGroup, setAgeGroup] = useState(DATA.defaults.ageGroup);
+
+  const [, setInit] = useState(false);
+
+  useEffect(() => {
+    // console.log('useEffect 1');
+    // hack to force re-render to get the chart instance
+    setInit(true);
+  }, []);
 
   const onYearChange = e => {
     const newYear = Number(e.target.value);
@@ -60,6 +71,8 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
     });
     setAgeGroup(newAgeGroup);
   };
+
+  const municipalityData = byMunicipalityMap.get(defaultMunicipality);
 
   return (
     <Card id={id} className={cx(styles.DashboardCard, className)}>
@@ -121,8 +134,41 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
           </figure>
         </div>
         <div className={cx(styles.SecondColumn, styles.Cumulative)}>cumulative</div>
-        <figure className={styles.SecondColumn}>chart 1</figure>
-        <figure className={styles.SecondColumn}>chart 2</figure>
+        <div className={cx(styles.SecondColumn, styles.LineChartsWrapper)}>
+          {[...municipalityData.entries()].slice(0, 2).map(([ageGroup, data]) => (
+            <div key={ageGroup} className={cx(styles.LineChartFigureWrapper)}>
+              <figure key={ageGroup} className={cx(styles.ChartFigure)}>
+                <HighchartsReact
+                  key={ageGroup}
+                  highcharts={Highcharts}
+                  options={{
+                    ...baseSecondChartOptions,
+                    title: {
+                      text: ageGroup,
+                      style: {
+                        ...notSrOnly,
+                      },
+                    },
+                    series: {
+                      data: data.map(item => ({
+                        y: item.value,
+                        x: item.year,
+                        name: item.name,
+                        ageGroup: item.ageGroup,
+                      })),
+                      dataLabels: {
+                        enabled: true,
+                      },
+                      title: null,
+                      color: '#5DA9B5',
+                    },
+                  }}
+                />
+              </figure>
+            </div>
+          ))}
+        </div>
+
         <table className={styles.FirstColumn}>table 1</table>
         <table className={styles.SecondColumn}>table 2</table>
       </div>

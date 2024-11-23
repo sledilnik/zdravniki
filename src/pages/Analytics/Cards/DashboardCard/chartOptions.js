@@ -1,3 +1,5 @@
+/** @import * as Types from "../../../../types" */
+
 import sloOBMap from 'assets/maps/OB.geo.json';
 
 // import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
@@ -8,6 +10,7 @@ import { byAgeGroupMap, DATA } from '../DataByYearAndAgeGroupCard/data';
 export const mapOptions = {
   chart: {
     map: sloOBMap,
+    height: 400,
   },
   title: {
     text: 'Neki Kristof',
@@ -24,8 +27,11 @@ export const mapOptions = {
   },
   tooltip: {
     useHTML: true,
+    headerFormat: '',
   },
-
+  credits: {
+    enabled: false,
+  },
   series: [
     {
       type: 'map',
@@ -44,4 +50,40 @@ export const mapOptions = {
         }),
     },
   ],
+  responsive: {},
+};
+/** @type {Types.HighchartsOptions} */
+export const baseSecondChartOptions = {
+  chart: {
+    type: 'line',
+    height: 200,
+  },
+  credits: {
+    enabled: false,
+  },
+  legend: { enabled: false },
+  tooltip: {
+    split: false,
+    shared: true,
+    useHTML: true,
+    format: '<b>{point.name}</b><br>{point.ageGroup}:{point.y}',
+  },
+  plotOptions: {
+    series: {
+      events: {},
+    },
+  },
+
+  xAxis: {
+    minTickInterval: 1,
+    tickPixelInterval: 50,
+    crosshair: true,
+    categories: DATA.YEARS,
+  },
+  yAxis: {
+    title: {
+      text: null,
+    },
+  },
+  series: [],
 };
