@@ -17,6 +17,7 @@ import {
   secondChartSeriesDataMap,
   yearsSortedDesc,
 } from './chart-options';
+import Card from '../Card';
 
 /**
  * @typedef {Object} DataItem
@@ -133,7 +134,7 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
   };
 
   return (
-    <article id={id} className={`${styles.Card} ${stylesRichInfoClick.RichInfoClick} ${className}`}>
+    <Card id={id} className={`${stylesRichInfoClick.RichInfoClick} ${className}`} as="article">
       <ChartHeader showPopover={false} title={mapOptions.title.text} />
       <div>
         <label htmlFor="year-select">
@@ -184,7 +185,7 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
         </div>
         <figcaption className="highcharts-description">Caption second chart</figcaption>
       </figure>
-    </article>
+    </Card>
   );
 };
 

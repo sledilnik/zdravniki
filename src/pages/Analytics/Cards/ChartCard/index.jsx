@@ -10,6 +10,7 @@ import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
 import CustomSeriesButtons from '../../CustomSeriesButtons';
+import Card from '../Card';
 
 import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
@@ -20,10 +21,11 @@ import ChartHeader from '../ChartHeader';
  * @param {Object} props - The properties object.
  * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the card.
  * @param {React.ComponentProps<"article">["className"]} props.className - The class name for the card. Defaults to an empty string.
- * @param {Types.HighchartsOptions} props.options - Highcharts options object.he Highcharts chart instance.
+ * @param {Types.HighchartsOptions} props.options - Highcharts options object.
+ * @param {React.ReactNode} props.children - The children to be rendered inside the card.
  * @returns {JSX.Element} The rendered ChartCard component.
  */
-const ChartCard = function ChartCard({ id = undefined, className = '', options }) {
+const ChartCard = function ChartCard({ id = undefined, className = '', options, children }) {
   const [chartOptions] = useState(options);
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const chartRef = useRef(null);
@@ -46,7 +48,7 @@ const ChartCard = function ChartCard({ id = undefined, className = '', options }
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   return (
-    <article id={id} className={`${styles.Card} ${className}`}>
+    <Card id={id} className={className} as="article">
       <ChartHeader
         title={options?.title?.text}
         subtitle={options?.subtitle?.text}
@@ -77,7 +79,8 @@ const ChartCard = function ChartCard({ id = undefined, className = '', options }
         </div>
         <figcaption className="highcharts-description">{options?.caption?.text}</figcaption>
       </figure>
-    </article>
+      {children}
+    </Card>
   );
 };
 

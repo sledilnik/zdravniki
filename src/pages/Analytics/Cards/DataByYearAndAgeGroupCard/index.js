@@ -16,6 +16,7 @@ import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 import ChartHeader from '../ChartHeader';
 
 import styles from '../Card.module.css';
+import Card from '../Card';
 
 heatmap(Highcharts);
 
@@ -96,7 +97,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   };
 
   return (
-    <article id={id} className={`${styles.Card} ${className}`}>
+    <Card id={id} className={className}>
       <ChartHeader showPopover={false} title={mapOptions.title?.text} />
       <div>
         <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
@@ -165,7 +166,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
       <figure className={`${styles.Figure}`}>
         <HighchartsReact highcharts={Highcharts} options={secondChartOptions} />
       </figure>
-    </article>
+    </Card>
   );
 };
 

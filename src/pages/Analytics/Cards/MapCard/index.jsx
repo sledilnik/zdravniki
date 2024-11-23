@@ -12,6 +12,7 @@ import CustomSeriesButtons from '../../CustomSeriesButtons';
 
 import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
+import Card from '../Card';
 
 /**
  * MapCard component renders a HighMaps chart with optional series buttons and fullscreen/print functionality.
@@ -52,7 +53,7 @@ const MapCard = function MapCard({
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   return (
-    <article id={id} className={`${styles.Card} ${className}`}>
+    <Card id={id} className={className} as="article">
       <ChartHeader
         title={options?.title?.text}
         subtitle={options?.subtitle?.text}
@@ -87,7 +88,7 @@ const MapCard = function MapCard({
         ) : null}
         <figcaption className="highcharts-description">{options.caption.text}</figcaption>
       </figure>
-    </article>
+    </Card>
   );
 };
 
