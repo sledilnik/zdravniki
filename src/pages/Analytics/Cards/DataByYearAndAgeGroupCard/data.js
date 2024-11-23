@@ -94,3 +94,18 @@ export const DATA = {
 export const byAgeGroupMap = new Map(
   [...AGE_GROUPS].map(ageGroup => [ageGroup, fakeData.filter(item => item.ageGroup === ageGroup)]),
 );
+
+/**
+ * @type {Map<string, Map<AgeGroup, AgeGroupItem[]>}
+ */
+export const byMunicipalityMap = new Map(
+  [...DATA.MUNICIPALITIES].map(municipality => [
+    municipality,
+    new Map(
+      [...AGE_GROUPS].map(ageGroup => [
+        ageGroup,
+        fakeData.filter(item => item.name === municipality && item.ageGroup === ageGroup),
+      ]),
+    ),
+  ]),
+);
