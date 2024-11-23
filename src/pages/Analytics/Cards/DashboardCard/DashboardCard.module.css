@@ -1,0 +1,42 @@
+/* .DashboardCard {
+  color: red;
+} */
+
+.DashboardCard .Body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.Body .Filters {
+  color: lightseagreen;
+}
+
+.Body .MapFigureWrapper {
+  position: relative;
+  min-height: 400px;
+  grid-row: 2 / 4;
+}
+
+.MapFigureWrapper > .MapFigure {
+  position: absolute;
+  inset: 0;
+}
+
+.Body .Cumulative {
+  background: lightblue;
+}
+
+@media (min-width: 768px) {
+  .DashboardCard .Body {
+    grid-template-columns: [first-start] 0.5fr [first-end second-start] 0.5fr [second-end];
+    gap: 0 0.5em;
+  }
+
+  .DashboardCard .Body > .FirstColumn {
+    grid-column: first;
+  }
+
+  .DashboardCard .Body > .SecondColumn {
+    grid-column: second;
+  }
+}

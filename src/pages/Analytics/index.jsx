@@ -17,17 +17,20 @@ import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
 import TouchdeviceNotification from './TouchDeviceNotification';
 import { CardHeader } from './Cards/CardHeader';
+import Card from './Cards/Card';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
 const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
 const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
+const DashboardCard = lazy(() => import('./Cards/DashboardCard'));
 
 const CARDS = {
   ChartCard,
   MapCard,
   RichInfoClick,
   DataByYearAndAgeGroupCard,
+  DashboardCard,
 };
 
 const Analytics = function Analytics() {

@@ -6,6 +6,17 @@ import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAnd
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
 export const charts = [
+  {
+    section: 'real section 1',
+    order: 0,
+    componentName: 'DashboardCard',
+    fakeHeight: 'auto',
+    options: {
+      title: {
+        text: 'Dashboard',
+      },
+    },
+  },
   availabilityChangeByInstitutionType,
   {
     section: 'real section 1',

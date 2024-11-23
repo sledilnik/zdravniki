@@ -20,27 +20,6 @@ import {
 import Card from '../Card';
 
 /**
- * @typedef {Object} DataItem
- * @property {string} name
- * @property {number} value
- * @property {string} OB_UIME
- * @property {number} year
- */
-
-/**
- * @typedef {Object} SeriesDataItem
- * @property {number} x
- * @property {number} y
- */
-
-/**
- * @typedef {Object} SeriesItem
- * @property {string} id
- * @property {string} name
- * @property {SeriesDataItem[]} data
- */
-
-/**
  *
  * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the chart.
  * @param {React.ComponentProps<"article">["className"]} props.className - The class name for the chart. Defaults to an empty string.

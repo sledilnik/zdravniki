@@ -9,8 +9,8 @@
   /** TRACK WIDTHS **/
   --full-max-width: 1fr;
   --popout-max-width: 1400px;
-  --content-max-width: 1060px;
-  --narrow-max-width: 840px;
+  --content-max-width: 1120px;
+  --narrow-max-width: 1060px;
 
   /** TRACK SIZES **/
   --full: minmax(var(--minimum-content-padding), 1fr);
