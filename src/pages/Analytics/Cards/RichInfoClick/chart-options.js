@@ -3,7 +3,7 @@
 import sloOBMap from 'assets/maps/OB.geo.json';
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
 
-import { dimensions } from '../../HighchartsOptions/options';
+import { dimensions } from '../../highcharts-options/options';
 
 /**
  * @typedef {Object} DataItem

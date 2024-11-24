@@ -7,9 +7,9 @@ import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import { notSrOnly } from 'pages/Analytics/HighchartsOptions/options';
+import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
 
-import { baseSecondChartOptions, mapOptions } from './chartOptions';
+import { baseSecondChartOptions, mapOptions } from './chart-options';
 
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
 import { Card, CardHeader, CardTitle } from '../../components/ui/card';

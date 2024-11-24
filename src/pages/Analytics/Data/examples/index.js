@@ -2,7 +2,7 @@
 
 import sloUEMap from 'assets/maps/UE.geo.json';
 import sloOBMap from 'assets/maps/OB.geo.json';
-import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
+import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
 /**
  * @type {Types.ChartData} - Column chart data.

@@ -5,15 +5,15 @@ import { useParams } from 'react-router';
 import * as SEO from 'components/SEO';
 import { t } from 'i18next';
 
-import './HighchartsOptions';
+import './highcharts-options';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 
 import styles from './Layout.module.css';
 
-import { SECTIONS } from './Data/sections';
-import { createChartDataProxy } from './Data/create-chart-data-proxy';
+import { SECTIONS } from './data/sections';
+import { createChartDataProxy } from './data/create-chart-data-proxy';
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 
 import { Card, CardHeader } from './components/ui/card';
