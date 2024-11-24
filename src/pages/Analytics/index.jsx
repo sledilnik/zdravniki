@@ -2,6 +2,8 @@
 import { lazy } from 'react';
 import { useParams } from 'react-router';
 
+import { cx } from 'class-variance-authority';
+
 import * as SEO from 'components/SEO';
 import { t } from 'i18next';
 
@@ -39,7 +41,7 @@ const Analytics = function Analytics() {
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
       <TouchdeviceNotification />
-      <main id="main-content" className={`${styles.AnalyticsLayout} ${styles.MinHeightNoHeader}`}>
+      <main id="main-content" className={cx(styles.AnalyticsLayout, styles.MinHeightNoHeader)}>
         <Sidebar />
         <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
 

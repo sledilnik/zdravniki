@@ -3,6 +3,8 @@
 // Modal as a separate component
 import { useEffect, useRef } from 'react';
 
+import { cx } from 'class-variance-authority';
+
 import styles from './Modal.module.css';
 
 /**
@@ -36,7 +38,7 @@ const Modal = function Modal({ modalOpen, className, children, ...props }) {
   };
 
   return (
-    <dialog ref={ref} {...props} className={`${styles.CustomDialog} ${className || ''}`}>
+    <dialog ref={ref} {...props} className={cx(styles.CustomDialog, className)}>
       {children}
       <button type="button" onClick={handleOnCancel} className={styles.CloseButton}>
         Close (<kbd>Esc</kbd>)

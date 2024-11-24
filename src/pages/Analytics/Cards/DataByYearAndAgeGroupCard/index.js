@@ -165,7 +165,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
           constructorType="mapChart"
         />
       </figure>
-      <figure className={`${styles.Figure}`}>
+      <figure className={styles.Figure}>
         <HighchartsReact highcharts={Highcharts} options={secondChartOptions} />
       </figure>
     </Card>

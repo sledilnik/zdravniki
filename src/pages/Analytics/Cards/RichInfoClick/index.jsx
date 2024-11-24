@@ -2,12 +2,12 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from '../../types' */
 import { useEffect, useMemo, useRef, useState } from 'react';
+
+import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import styles from '../Cards.module.css';
-import stylesRichInfoClick from './RichInfoClick.module.css';
 import ChartHeader from '../../components/chart-header';
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 import {
@@ -18,6 +18,9 @@ import {
   yearsSortedDesc,
 } from './chart-options';
 import { Card } from '../../components/ui/card';
+
+import styles from '../Cards.module.css';
+import stylesRichInfoClick from './RichInfoClick.module.css';
 
 /**
  *
@@ -113,7 +116,7 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
   };
 
   return (
-    <Card id={id} className={`${stylesRichInfoClick.RichInfoClick} ${className}`} as="article">
+    <Card id={id} className={cx(styles.RichInfoClick, className)} as="article">
       <ChartHeader showPopover={false} title={mapOptions.title.text} />
       <div>
         <label htmlFor="year-select">
@@ -142,7 +145,9 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
         <figcaption className="highcharts-description">Caption map</figcaption>
       </figure>
       <figure
-        className={`${styles.Figure} ${stylesRichInfoClick.SecondFigure} ${selectedPointsLength === 0 ? '' : stylesRichInfoClick.Expanded}`}
+        className={cx(styles.Figure, stylesRichInfoClick.SecondFigure, {
+          [stylesRichInfoClick.Expanded]: selectedPointsLength > 0,
+        })}
       >
         <div>
           <h3>

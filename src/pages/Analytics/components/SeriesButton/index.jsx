@@ -2,6 +2,8 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 
+import { cx } from 'class-variance-authority';
+
 import styles from './SeriesButton.module.css';
 
 /**
@@ -48,7 +50,7 @@ const SeriesButton = function SeriesButton({
           borderColor: isVisible ? borderColor : '#666666',
         };
 
-  const classNamesDynamic = `${styles.DynamicColor} ${isVisible ? styles.IsVisible : ''}`;
+  const isDynamic = variant === 'dynamic';
 
   return (
     <button
@@ -59,7 +61,12 @@ const SeriesButton = function SeriesButton({
       onMouseLeave={onMouseLeave}
       onFocus={onMouseEnter}
       onBlur={onMouseLeave}
-      className={`${styles.SeriesButton} ${variant === 'dynamic' ? classNamesDynamic : ''} ${className}`}
+      className={cx(
+        styles.SeriesButton,
+        { [styles.DynamicColor]: isDynamic },
+        { [styles.IsVisible]: isDynamic && isVisible },
+        className,
+      )}
       data-visible={toggleState ? isVisible : undefined}
       style={styleAttr}
     >
