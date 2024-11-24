@@ -1,0 +1,61 @@
+.Card {
+  --inline-padding: 1.25em;
+  --wrapper-border-radius: 6px;
+
+  background: #ffffff;
+  border-radius: var(--wrapper-border-radius);
+}
+
+.Card > * {
+  padding-inline: var(--inline-padding);
+  padding-block: 0.5em;
+}
+
+.Card:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.Title {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 600;
+  display: block;
+}
+
+.Subtitle {
+  font-size: 1.125rem;
+  line-height: 1.25;
+  font-weight: 500;
+  display: block;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+  padding-block: 0.5em;
+  padding-inline: var(--inline-padding);
+}
+
+/* .SeriesButtons {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+  padding-block: 0.2em;
+  padding-inline: var(--inline-padding);
+}
+
+.Figure {
+  border-radius: var(--wrapper-border-radius);
+}
+
+.Figure:not(:last-of-type) {
+  margin-bottom: 1em;
+}
+
+.Figure > *:not([data-highcharts-chart]) {
+  padding-inline: var(--inline-padding);
+  padding-block: 0.5em;
+} */
