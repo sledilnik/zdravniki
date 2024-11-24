@@ -1,9 +1,9 @@
 .Card {
   --inline-padding: 1.25em;
-  --wrapper-border-radius: 6px;
+  --card-border-radius: var(--radius);
 
   background: #ffffff;
-  border-radius: var(--wrapper-border-radius);
+  border-radius: var(--card-border-radius);
 }
 
 .Card > * {

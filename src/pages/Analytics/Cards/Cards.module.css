@@ -8,7 +8,7 @@
 }
 
 .Figure {
-  border-radius: var(--wrapper-border-radius);
+  border-radius: var(card-border-radius);
 }
 
 .Figure:not(:last-of-type) {

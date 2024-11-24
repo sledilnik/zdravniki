@@ -1,3 +1,8 @@
+.Analytics {
+  --border: #e6e6e6;
+  --radius: 0.5rem;
+}
+
 .AnalyticsLayout > *,
 .FullWidth > * {
   grid-column: content;
