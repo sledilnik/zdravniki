@@ -6,7 +6,7 @@ import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import styles from '../Card.module.css';
+import styles from '../Cards.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
 import ChartHeader from '../../components/chart-header';
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';

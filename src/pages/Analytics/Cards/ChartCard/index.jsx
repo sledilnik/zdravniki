@@ -12,7 +12,7 @@ import { getIsRequestFullscreenSupported } from 'utils';
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 import { Card } from '../../components/ui/card';
 
-import styles from '../Card.module.css';
+import styles from '../Cards.module.css';
 import ChartHeader from '../../components/chart-header';
 
 /**

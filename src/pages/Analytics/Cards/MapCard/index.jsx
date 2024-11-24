@@ -11,7 +11,7 @@ import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 
-import styles from '../Card.module.css';
+import styles from '../Cards.module.css';
 import ChartHeader from '../../components/chart-header';
 import { Card } from '../../components/ui/card';
 
