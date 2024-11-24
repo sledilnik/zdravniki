@@ -13,10 +13,10 @@ import heatmap from 'highcharts/modules/heatmap';
 import { mapOptions, chartOptions } from './chartOptions';
 import { byAgeGroupMap, DATA } from './data';
 import { filterDataByYearAndAgeGroup, renderChart } from './utils';
-import ChartHeader from '../ChartHeader';
+import ChartHeader from '../../components/chart-header';
 
 import styles from '../Card.module.css';
-import { Card } from '../../components/card';
+import { Card } from '../../components/ui/card';
 
 heatmap(Highcharts);
 

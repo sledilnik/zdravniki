@@ -9,11 +9,11 @@ import HighchartsReact from 'highcharts-react-official';
 import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
-import CustomSeriesButtons from '../../CustomSeriesButtons';
-import { Card } from '../../components/card';
+import CustomSeriesButtons from '../../components/CustomSeriesButtons';
+import { Card } from '../../components/ui/card';
 
 import styles from '../Card.module.css';
-import ChartHeader from '../ChartHeader';
+import ChartHeader from '../../components/chart-header';
 
 /**
  * ChartCard component renders a card with a chart header and children content.

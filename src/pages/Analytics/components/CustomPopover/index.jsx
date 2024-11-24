@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-/** @import * as Types from '../types' */
+/** @import * as Types from '../../types' */
 
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';

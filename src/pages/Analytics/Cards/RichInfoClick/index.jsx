@@ -8,8 +8,8 @@ import HighchartsReact from 'highcharts-react-official';
 
 import styles from '../Card.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
-import ChartHeader from '../ChartHeader';
-import CustomSeriesButtons from '../../CustomSeriesButtons';
+import ChartHeader from '../../components/chart-header';
+import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 import {
   baseSecondChartOptions,
   firstChartSeriesMap,
@@ -17,7 +17,7 @@ import {
   secondChartSeriesDataMap,
   yearsSortedDesc,
 } from './chart-options';
-import { Card } from '../../components/card';
+import { Card } from '../../components/ui/card';
 
 /**
  *

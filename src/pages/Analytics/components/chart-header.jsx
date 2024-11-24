@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-/** @import * as CustomPopoverTypes from '../../types' */
+/** @import * as CustomPopoverTypes from '../types' */
 
 import * as Icons from 'components/Shared/Icons';
-import Popover from 'pages/Analytics/CustomPopover';
+import Popover from 'pages/Analytics/components/CustomPopover';
 
-import stylesIconButton from '../../IconButton.module.css';
-import { CardHeader, CardTitle } from '../../components/card';
+import stylesIconButton from '../IconButton.module.css';
+import { CardHeader, CardTitle } from './ui/card';
 
 /**
  * @component

@@ -7,16 +7,16 @@ import { t } from 'i18next';
 
 import './HighchartsOptions';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
-import Footer from './Footer';
-import Sidebar from './Sidebar';
+import Footer from './components/Footer';
+import Sidebar from './components/Sidebar';
 
 import styles from './Layout.module.css';
 
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
-import TouchdeviceNotification from './TouchDeviceNotification';
+import TouchdeviceNotification from './components/TouchDeviceNotification';
 
-import { Card, CardHeader } from './components/card';
+import { Card, CardHeader } from './components/ui/card';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));

@@ -4,7 +4,7 @@ import { t } from 'i18next';
 import * as Icons from 'components/Shared/Icons';
 
 import styles from './Footer.module.css';
-import stylesLayout from '../Layout.module.css';
+import stylesLayout from '../../Layout.module.css';
 
 /**
  * Footer component for the Analytics page.

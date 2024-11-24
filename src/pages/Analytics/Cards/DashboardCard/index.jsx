@@ -12,7 +12,7 @@ import { notSrOnly } from 'pages/Analytics/HighchartsOptions/options';
 import { baseSecondChartOptions, mapOptions } from './chartOptions';
 
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
-import { Card, CardHeader, CardTitle } from '../../components/card';
+import { Card, CardHeader, CardTitle } from '../../components/ui/card';
 
 import styles from './DashboardCard.module.css';
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
