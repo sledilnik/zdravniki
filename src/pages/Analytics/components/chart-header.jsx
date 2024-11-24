@@ -6,6 +6,7 @@ import Popover from 'pages/Analytics/components/CustomPopover';
 
 import stylesIconButton from '../IconButton.module.css';
 import { CardHeader, CardTitle } from './ui/card';
+import { Separator } from './ui/separator';
 
 /**
  * @component
@@ -18,22 +19,25 @@ import { CardHeader, CardTitle } from './ui/card';
 const ChartHeader = function ChartHeader({ title, subtitle, popoverOptions }) {
   const showPopover = popoverOptions?.length && popoverOptions.length > 0;
   return (
-    <CardHeader>
-      <div>
-        <CardTitle>{title}</CardTitle>
-        <CardTitle variant="subtitle">{subtitle}</CardTitle>
-      </div>
+    <>
+      <CardHeader>
+        <div>
+          <CardTitle>{title}</CardTitle>
+          <CardTitle variant="subtitle">{subtitle}</CardTitle>
+        </div>
 
-      {showPopover ? (
-        <Popover
-          placement="bottom-start"
-          triggerClassname={stylesIconButton.IconButton}
-          options={popoverOptions}
-        >
-          <Icons.Icon name="VerticalDots" aria-label="more actions" />
-        </Popover>
-      ) : null}
-    </CardHeader>
+        {showPopover ? (
+          <Popover
+            placement="bottom-start"
+            triggerClassname={stylesIconButton.IconButton}
+            options={popoverOptions}
+          >
+            <Icons.Icon name="VerticalDots" aria-label="more actions" />
+          </Popover>
+        ) : null}
+      </CardHeader>
+      <Separator />
+    </>
   );
 };
 

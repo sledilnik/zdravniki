@@ -33,7 +33,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e6e6e6;
   padding-block: 0.5em;
   padding-inline: var(--inline-padding);
 }

@@ -13,9 +13,10 @@ import { baseSecondChartOptions, mapOptions } from './chart-options';
 
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
 import { Card, CardHeader, CardTitle } from '../../components/ui/card';
+import { Separator } from '../../components/ui/separator';
+import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
 import styles from './DashboardCard.module.css';
-import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
 const defaultMunicipality = 'Ljubljana';
 
@@ -81,6 +82,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
           <CardTitle variant="subtitle">Naslov 2</CardTitle>
         </div>
       </CardHeader>
+      <Separator />
       <div className={styles.Body}>
         <div className={cx(styles.FirstColumn, styles.Filters)}>
           <div>

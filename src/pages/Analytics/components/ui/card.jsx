@@ -11,6 +11,7 @@ import styles from './card.module.css';
  * @typedef {"div" | "header"} CardHeaderAs
  * @typedef {"span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h5" | "h6"} CardTitleAs
  * @typedef {"title" | "subtitle"} CardTitleVariant
+ *
  */
 
 /**
@@ -19,11 +20,11 @@ import styles from './card.module.css';
  *
  * @type {React.ForwardRefRenderFunction<
  *   HTMLDivElement,
- *   React.ComponentPropsWithRef<T> & {
- *     as?: T = "article";
+ *   React.ComponentPropsWithRef<TCardAs> & {
+ *     as?: TCardAs = "article";
  *   }
  * >}
- * @template {CardAs} T
+ * @template {CardAs} TCardAs
  */
 export const Card = forwardRef(({ as: Wrapper = 'div', className, ...props }, ref) => (
   <Wrapper ref={ref} className={cx(styles.Card, className)} {...props} />
@@ -36,12 +37,12 @@ Card.displayName = 'Card';
  * A header component that supports dynamic HTML elements via the `as` prop.
  *
  * @type {React.ForwardRefRenderFunction<
- *   HTMLElement,
- *   React.ComponentPropsWithRef<Z> & {
- *     as?: Z = "header";
+ *   HTMLElement<TCardHeaderAs>,
+ *   React.ComponentPropsWithRef<TCardHeaderAs> & {
+ *     as?: TCardHeaderAs = "header";
  *   }
  * >}
- * @template {CardHeaderAs} Z
+ * @template {CardHeaderAs} TCardHeaderAs
  */
 export const CardHeader = forwardRef(({ as: Wrapper = 'header', className, ...props }, ref) => (
   <Wrapper ref={ref} className={cx(styles.Header, className)} {...props} />
@@ -67,12 +68,12 @@ const titleVariants = cva('', {
  *
  * @type {React.ForwardRefRenderFunction<
  *   HTMLElement,
- *   React.ComponentPropsWithRef<Y> & {
- *     as?: Y = "span";
+ *   React.ComponentPropsWithRef<TCardTitleAs> & {
+ *     as?: TCardTitleAs = "span";
  *     variant?: CardTitleVariant;
  *   }
  * >}
- * @template {CardTitleAs} Y
+ * @template {CardTitleAs} TCardTitleAs
  */
 export const CardTitle = forwardRef(
   ({ as: Wrapper = 'span', variant = 'title', className, ...props }, ref) => (
