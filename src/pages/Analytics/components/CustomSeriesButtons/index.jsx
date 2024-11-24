@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-/** @import * as Types from "../types" */
+
+/** @import * as Types from "../../types" */
 
 import { useState } from 'react';
 

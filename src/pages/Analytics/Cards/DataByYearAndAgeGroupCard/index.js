@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /** @import * as Types from "../../types" */
+
 import { useEffect, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';

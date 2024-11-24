@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
+
 /** @import * as Types from '../../types' */
 
 import React, { useState, useRef, useEffect } from 'react';

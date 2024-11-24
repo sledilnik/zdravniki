@@ -23,6 +23,7 @@
  * @property {HighchartsOptions} options
  * @property {React.CSSProperties["minHeight"] fakeHeight
  */
+
 /**
  * @typedef {Object} MapData
  * @property {SectionNames[number]} section
@@ -35,7 +36,7 @@
 /** @typedef {("real section 1" | "examples 1" | "examples 2")[]} SectionNames */
 
 /**
- * @typedef {('top' | 'top-start' | 'start | 'end' | 'bottom' | 'bottom-start' | 'bottom-end' )} Placement
+ * @typedef {("top" | "top-start" | "start" | "end" | "bottom" | "bottom-start" | "bottom-end" )} Placement
  */
 
 /**
