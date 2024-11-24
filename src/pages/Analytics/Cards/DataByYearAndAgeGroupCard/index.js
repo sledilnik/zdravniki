@@ -16,7 +16,7 @@ import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 import ChartHeader from '../ChartHeader';
 
 import styles from '../Card.module.css';
-import Card from '../Card';
+import { Card } from '../../components/card';
 
 heatmap(Highcharts);
 

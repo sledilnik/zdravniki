@@ -43,11 +43,11 @@ Card.displayName = 'Card';
  * >}
  * @template {CardHeaderAs} Z
  */
-export const Header = forwardRef(({ as: Wrapper = 'header', className, ...props }, ref) => (
+export const CardHeader = forwardRef(({ as: Wrapper = 'header', className, ...props }, ref) => (
   <Wrapper ref={ref} className={cx(styles.Header, className)} {...props} />
 ));
 
-Header.displayName = 'Header';
+CardHeader.displayName = 'CardHeader';
 
 const titleVariants = cva('', {
   variants: {
@@ -74,16 +74,10 @@ const titleVariants = cva('', {
  * >}
  * @template {CardTitleAs} Y
  */
-export const Title = forwardRef(
+export const CardTitle = forwardRef(
   ({ as: Wrapper = 'span', variant = 'title', className, ...props }, ref) => (
     <Wrapper ref={ref} className={titleVariants({ variant, className })} {...props} />
   ),
 );
 
-Title.displayName = 'Title';
-
-export default {
-  Card,
-  Header,
-  Title,
-};
+CardTitle.displayName = 'CardTitle';

@@ -12,7 +12,7 @@ import CustomSeriesButtons from '../../CustomSeriesButtons';
 
 import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
-import Card from '../Card';
+import { Card } from '../../components/card';
 
 /**
  * MapCard component renders a HighMaps chart with optional series buttons and fullscreen/print functionality.

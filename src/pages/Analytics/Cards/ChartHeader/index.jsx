@@ -5,7 +5,7 @@ import * as Icons from 'components/Shared/Icons';
 import Popover from 'pages/Analytics/CustomPopover';
 
 import stylesIconButton from '../../IconButton.module.css';
-import { CardHeader, CardSubtitle, CardTitle } from '../CardHeader';
+import { CardHeader, CardTitle } from '../../components/card';
 
 /**
  * @component
@@ -21,7 +21,7 @@ const ChartHeader = function ChartHeader({ title, subtitle, popoverOptions }) {
     <CardHeader>
       <div>
         <CardTitle>{title}</CardTitle>
-        <CardSubtitle>{subtitle}</CardSubtitle>
+        <CardTitle variant="subtitle">{subtitle}</CardTitle>
       </div>
 
       {showPopover ? (

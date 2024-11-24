@@ -11,9 +11,8 @@ import { notSrOnly } from 'pages/Analytics/HighchartsOptions/options';
 
 import { baseSecondChartOptions, mapOptions } from './chartOptions';
 
-import Card from '../Card';
-import { CardHeader, CardSubtitle, CardTitle } from '../CardHeader';
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
+import { Card, CardHeader, CardTitle } from '../../components/card';
 
 import styles from './DashboardCard.module.css';
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
@@ -79,7 +78,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
       <CardHeader>
         <div>
           <CardTitle>Naslov 1</CardTitle>
-          <CardSubtitle>Naslov 2</CardSubtitle>
+          <CardTitle variant="subtitle">Naslov 2</CardTitle>
         </div>
       </CardHeader>
       <div className={styles.Body}>

@@ -11,13 +11,12 @@ import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 import styles from './Layout.module.css';
-import stylesCard from './Cards/Card.module.css';
 
 import { SECTIONS } from './Data/sections';
 import { createChartDataProxy } from './Data/create-chart-data-proxy';
 import TouchdeviceNotification from './TouchDeviceNotification';
-import { CardHeader } from './Cards/CardHeader';
-import Card from './Cards/Card';
+
+import { Card, CardHeader } from './components/card';
 
 const ChartCard = lazy(() => import('./Cards/ChartCard'));
 const MapCard = lazy(() => import('./Cards/MapCard'));
@@ -50,25 +49,25 @@ const Analytics = function Analytics() {
               {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
             </h2>
             {section.charts.map(chart => {
-              const CardComponent = CARDS[chart.componentName];
+              const Component = CARDS[chart.componentName];
               const chartProxy = createChartDataProxy(chart);
 
               return (
                 <RenderOnViewportEntry
                   key={chartProxy.id}
                   srOnlyComponentsBeforeEntered={
-                    <div className={`${stylesCard.Card} }`} style={{ minHeight: chart.fakeHeight }}>
+                    <Card style={{ minHeight: chart.fakeHeight }}>
                       <CardHeader>
                         <div>
                           <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
                           <p>{chartProxy.options.subtitle?.text}</p>
                         </div>
                       </CardHeader>
-                    </div>
+                    </Card>
                   }
                   style={{ minHeight: chart.fakeHeight }}
                 >
-                  <CardComponent id={chartProxy.id} options={chartProxy.options} />
+                  <Component id={chartProxy.id} options={chartProxy.options} />
                 </RenderOnViewportEntry>
               );
             })}

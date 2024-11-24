@@ -17,7 +17,7 @@ import {
   secondChartSeriesDataMap,
   yearsSortedDesc,
 } from './chart-options';
-import Card from '../Card';
+import { Card } from '../../components/card';
 
 /**
  *

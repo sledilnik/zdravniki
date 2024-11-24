@@ -10,7 +10,7 @@ import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
 import CustomSeriesButtons from '../../CustomSeriesButtons';
-import Card from '../Card';
+import { Card } from '../../components/card';
 
 import styles from '../Card.module.css';
 import ChartHeader from '../ChartHeader';
