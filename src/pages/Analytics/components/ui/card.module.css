@@ -24,10 +24,6 @@
   --card-block-padding: 1.25rem;
 }
 
-.Card:not(:last-child) {
-  margin-bottom: 2em;
-}
-
 .Title {
   font-size: 1.25rem;
   line-height: 1.5;
