@@ -85,43 +85,41 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
       <Separator />
       <CardContent className={styles.Body}>
         <div className={cx(styles.FirstColumn, styles.Filters)}>
-          <div>
-            <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
-              <label htmlFor={`${id}-year-select`}>
-                Leto:{' '}
-                <select
-                  id={`${id}-year-select`}
-                  name="year"
-                  onChange={onYearChange}
-                  value={year}
-                  style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
-                >
-                  {DATA.YEARS.map(year => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div style={{ display: 'inline-block' }}>
-              <label htmlFor={`${id}-age-group-select`}>
-                Skupina:{' '}
-                <select
-                  id={`${id}-age-group-select`}
-                  name="ageGroup"
-                  value={ageGroup}
-                  onChange={onAgeGroupChange}
-                  style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
-                >
-                  {DATA.AGE_GROUPS.map(ageGroup => (
-                    <option key={ageGroup} value={ageGroup}>
-                      {ageGroup}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+          <div style={{ display: 'inline-block' }}>
+            <label htmlFor={`${id}-year-select`}>
+              Leto:{' '}
+              <select
+                id={`${id}-year-select`}
+                name="year"
+                onChange={onYearChange}
+                value={year}
+                style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
+              >
+                {DATA.YEARS.map(year => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div style={{ display: 'inline-block' }}>
+            <label htmlFor={`${id}-age-group-select`}>
+              Skupina:{' '}
+              <select
+                id={`${id}-age-group-select`}
+                name="ageGroup"
+                value={ageGroup}
+                onChange={onAgeGroupChange}
+                style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
+              >
+                {DATA.AGE_GROUPS.map(ageGroup => (
+                  <option key={ageGroup} value={ageGroup}>
+                    {ageGroup}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
         </div>
         <div className={cx(styles.FirstColumn, styles.MapFigureWrapper)}>
@@ -134,7 +132,26 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
             />
           </figure>
         </div>
-        <div className={cx(styles.SecondColumn, styles.Cumulative)}>cumulative</div>
+        <div className={cx(styles.SecondColumn, styles.Cumulative)}>
+          <Card padding="small">
+            <CardHeader>
+              <CardTitle variant="title">Card 1</CardTitle>
+            </CardHeader>
+            <CardContent>neki</CardContent>
+          </Card>
+          <Card padding="small">
+            <CardHeader>
+              <CardTitle variant="title">Card 2</CardTitle>
+            </CardHeader>
+            <CardContent>neki</CardContent>
+          </Card>
+          <Card padding="small">
+            <CardHeader>
+              <CardTitle variant="title">Card 3</CardTitle>
+            </CardHeader>
+            <CardContent>neki</CardContent>
+          </Card>
+        </div>
         <div className={cx(styles.SecondColumn, styles.LineChartsWrapper)}>
           {[...municipalityData.entries()].slice(0, 2).map(([ageGroup, data]) => (
             <div key={ageGroup} className={cx(styles.LineChartFigureWrapper)}>
