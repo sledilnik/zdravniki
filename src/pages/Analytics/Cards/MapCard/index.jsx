@@ -13,7 +13,7 @@ import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 
 import styles from '../Cards.module.css';
 import ChartHeader from '../../components/chart-header';
-import { Card } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 
 /**
  * MapCard component renders a HighMaps chart with optional series buttons and fullscreen/print functionality.
@@ -73,22 +73,23 @@ const MapCard = function MapCard({
           },
         ]}
       />
-
-      <figure className={styles.Figure}>
-        <HighchartsReact
-          ref={chartRef}
-          highcharts={HighMaps}
-          constructorType="mapChart"
-          options={chartOptions}
-          aria-label={chart?.title}
-        />
-        {showSeriesButtons ? (
-          <div className={styles.SeriesButtons}>
-            <CustomSeriesButtons chart={chart} />
-          </div>
-        ) : null}
-        <figcaption className="highcharts-description">{options.caption.text}</figcaption>
-      </figure>
+      <CardContent>
+        <figure>
+          <HighchartsReact
+            ref={chartRef}
+            highcharts={HighMaps}
+            constructorType="mapChart"
+            options={chartOptions}
+            aria-label={chart?.title}
+          />
+          {showSeriesButtons ? (
+            <div className={styles.SeriesButtons}>
+              <CustomSeriesButtons chart={chart} />
+            </div>
+          ) : null}
+          <figcaption className="highcharts-description">{options.caption.text}</figcaption>
+        </figure>
+      </CardContent>
     </Card>
   );
 };

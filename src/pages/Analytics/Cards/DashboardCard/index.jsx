@@ -12,7 +12,7 @@ import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
-import { Card, CardHeader, CardTitle } from '../../components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { Separator } from '../../components/ui/separator';
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
@@ -83,7 +83,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
         </div>
       </CardHeader>
       <Separator />
-      <div className={styles.Body}>
+      <CardContent className={styles.Body}>
         <div className={cx(styles.FirstColumn, styles.Filters)}>
           <div>
             <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
@@ -172,7 +172,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
 
         <table className={styles.FirstColumn}>table 1</table>
         <table className={styles.SecondColumn}>table 2</table>
-      </div>
+      </CardContent>
     </Card>
   );
 };

@@ -256,7 +256,7 @@ export const SLO_UE_MAP = {
   order: 4,
   section: 'examples 1',
   componentName: 'MapCard',
-  fakeHeight: '610px',
+  fakeHeight: '587px',
   options: {
     chart: { map: sloUEMap },
     title: { text: 'Slo UE Map' },
@@ -341,7 +341,7 @@ const SLO_OB_MAP = {
   order: 1,
   section: 'examples 1',
   componentName: 'MapCard',
-  fakeHeight: '610px',
+  fakeHeight: '587px',
   options: {
     chart: { map: sloOBMap },
     title: { text: 'Slo OB Map' },

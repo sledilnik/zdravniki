@@ -10,6 +10,7 @@ import styles from './card.module.css';
  * @typedef {"div" | "article"} CardAs
  * @typedef {"div" | "header"} CardHeaderAs
  * @typedef {"span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h5" | "h6"} CardTitleAs
+ *
  * @typedef {"title" | "subtitle"} CardTitleVariant
  *
  */
@@ -82,3 +83,16 @@ export const CardTitle = forwardRef(
 );
 
 CardTitle.displayName = 'CardTitle';
+
+/**
+ * CardContent component
+ * A content component that supports dynamic HTML elements via the `as` prop.
+ * @type {React.ForwardRefRenderFunction<
+ *  HTMLElement,
+ * React.ComponentPropsWithRef<HTMLDivElement> >}
+ *
+ * @template {CardContentAs} TCardContentAs
+ */
+export const CardContent = forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} className={cx(styles.Content, className)} {...props} />
+));

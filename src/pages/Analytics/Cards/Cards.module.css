@@ -2,20 +2,4 @@
   display: flex;
   gap: 0.5em;
   flex-wrap: wrap;
-  margin-bottom: 1em;
-  padding-block: 0.2em;
-  padding-inline: var(--inline-padding);
-}
-
-.Figure {
-  border-radius: var(card-border-radius);
-}
-
-.Figure:not(:last-of-type) {
-  margin-bottom: 1em;
-}
-
-.Figure > *:not([data-highcharts-chart]) {
-  padding-inline: var(--inline-padding);
-  padding-block: 0.5em;
 }

@@ -70,7 +70,6 @@ const Analytics = function Analytics() {
                       </CardHeader>
                     </Card>
                   }
-                  style={{ minHeight: chart.fakeHeight }}
                 >
                   <Component id={chartProxy.id} options={chartProxy.options} />
                 </RenderOnViewportEntry>

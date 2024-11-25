@@ -16,7 +16,7 @@ import { byAgeGroupMap, DATA } from './data';
 import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 
 import ChartHeader from '../../components/chart-header';
-import { Card } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 
 import styles from '../Cards.module.css';
 
@@ -101,7 +101,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   return (
     <Card id={id} className={className}>
       <ChartHeader showPopover={false} title={mapOptions.title?.text} />
-      <div>
+      <CardContent>
         <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
           <label htmlFor="year-select">
             Leto:{' '}
@@ -156,18 +156,20 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
             </select>
           </label>
         </div>
-      </div>
-      <figure className={styles.Figure}>
-        <HighchartsReact
-          ref={mapChartRef}
-          highcharts={HighMaps}
-          options={mapChartOptions}
-          constructorType="mapChart"
-        />
-      </figure>
-      <figure className={styles.Figure}>
-        <HighchartsReact highcharts={Highcharts} options={secondChartOptions} />
-      </figure>
+      </CardContent>
+      <CardContent>
+        <figure>
+          <HighchartsReact
+            ref={mapChartRef}
+            highcharts={HighMaps}
+            options={mapChartOptions}
+            constructorType="mapChart"
+          />
+        </figure>
+        <figure>
+          <HighchartsReact highcharts={Highcharts} options={secondChartOptions} />
+        </figure>
+      </CardContent>
     </Card>
   );
 };

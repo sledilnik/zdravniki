@@ -1,6 +1,12 @@
 .Analytics {
-  --border: #e6e6e6;
   --radius: 0.5rem;
+
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+
+  --border: oklch(0.93 0 0);
 }
 
 .AnalyticsLayout > *,
@@ -116,7 +122,6 @@
 .MainTitle {
   font-size: 1.5rem;
   font-weight: 600;
-
   margin-bottom: 2rem;
 }
 
@@ -127,9 +132,5 @@
 }
 
 .ChartSection:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
-.ChartSection > *:not(:last-child) {
   margin-bottom: 2rem;
 }

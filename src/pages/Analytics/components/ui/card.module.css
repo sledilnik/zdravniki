@@ -1,14 +1,10 @@
 .Card {
-  --inline-padding: 1.25em;
-  --card-border-radius: var(--radius);
+  --card-inline-padding: 1.25rem;
+  --card-block-padding: 1.25rem;
 
-  background: #ffffff;
-  border-radius: var(--card-border-radius);
-}
-
-.Card > * {
-  padding-inline: var(--inline-padding);
-  padding-block: 0.5em;
+  background: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius);
 }
 
 .Card:not(:last-child) {
@@ -33,6 +29,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 0.5em;
-  padding-inline: var(--inline-padding);
+  padding-block: var(--card-block-padding);
+  padding-inline: var(--card-inline-padding);
+}
+
+.Content {
+  padding-block: var(--card-block-padding);
+  padding-inline: var(--card-inline-padding);
 }

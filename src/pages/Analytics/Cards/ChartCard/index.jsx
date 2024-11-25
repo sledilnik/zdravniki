@@ -10,7 +10,7 @@ import * as Icons from 'components/Shared/Icons';
 import { getIsRequestFullscreenSupported } from 'utils';
 
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
-import { Card } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 
 import styles from '../Cards.module.css';
 import ChartHeader from '../../components/chart-header';
@@ -25,7 +25,7 @@ import ChartHeader from '../../components/chart-header';
  * @param {React.ReactNode} props.children - The children to be rendered inside the card.
  * @returns {JSX.Element} The rendered ChartCard component.
  */
-const ChartCard = function ChartCard({ id = undefined, className = '', options, children }) {
+const ChartCard = function ChartCard({ id = undefined, className = '', options }) {
   const [chartOptions] = useState(options);
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */
   const chartRef = useRef(null);
@@ -67,19 +67,20 @@ const ChartCard = function ChartCard({ id = undefined, className = '', options, 
           },
         ]}
       />
-      <figure className={styles.Figure}>
-        <HighchartsReact
-          ref={chartRef}
-          highcharts={Highcharts}
-          options={chartOptions}
-          aria-label={chart?.title}
-        />
-        <div className={styles.SeriesButtons}>
-          <CustomSeriesButtons chart={chart} />
-        </div>
-        <figcaption className="highcharts-description">{options?.caption?.text}</figcaption>
-      </figure>
-      {children}
+      <CardContent>
+        <figure>
+          <HighchartsReact
+            ref={chartRef}
+            highcharts={Highcharts}
+            options={chartOptions}
+            aria-label={chart?.title}
+          />
+          <div className={styles.SeriesButtons}>
+            <CustomSeriesButtons chart={chart} />
+          </div>
+          <figcaption className="highcharts-description">{options?.caption?.text}</figcaption>
+        </figure>
+      </CardContent>
     </Card>
   );
 };

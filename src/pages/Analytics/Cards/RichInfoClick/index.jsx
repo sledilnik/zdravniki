@@ -17,7 +17,7 @@ import {
   secondChartSeriesDataMap,
   yearsSortedDesc,
 } from './chart-options';
-import { Card } from '../../components/ui/card';
+import { Card, CardContent } from '../../components/ui/card';
 
 import styles from '../Cards.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
@@ -116,9 +116,9 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
   };
 
   return (
-    <Card id={id} className={cx(styles.RichInfoClick, className)} as="article">
+    <Card id={id} className={cx(stylesRichInfoClick.RichInfoClick, className)} as="article">
       <ChartHeader showPopover={false} title={mapOptions.title.text} />
-      <div>
+      <CardContent>
         <label htmlFor="year-select">
           Leto:{' '}
           <select
@@ -134,41 +134,43 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
             ))}
           </select>
         </label>
-      </div>
-      <figure className={styles.Figure}>
-        <HighchartsReact
-          ref={mapChartRef}
-          highcharts={HighMaps}
-          constructorType="mapChart"
-          options={mapChartOptions}
-        />
-        <figcaption className="highcharts-description">Caption map</figcaption>
-      </figure>
-      <figure
-        className={cx(styles.Figure, stylesRichInfoClick.SecondFigure, {
-          [stylesRichInfoClick.Expanded]: selectedPointsLength > 0,
-        })}
-      >
-        <div>
-          <h3>
-            {selectedPointsLength > 1
-              ? 'Primerjaj po občinah'
-              : (selectedPoints[0]?.name ?? 'Klikni na občino za prikaz podatkov')}
-          </h3>
-          <p>
-            <kbd>Shift</kbd> + <kbd>klik</kbd> za več občin
-          </p>
-        </div>
-        <HighchartsReact
-          ref={secondChartRef}
-          highcharts={Highcharts}
-          options={secondChartOptions}
-        />
-        <div className={styles.SeriesButtons}>
-          <CustomSeriesButtons key={customSeriesButtonsKey} chart={secondChart} />
-        </div>
-        <figcaption className="highcharts-description">Caption second chart</figcaption>
-      </figure>
+      </CardContent>
+      <CardContent>
+        <figure>
+          <HighchartsReact
+            ref={mapChartRef}
+            highcharts={HighMaps}
+            constructorType="mapChart"
+            options={mapChartOptions}
+          />
+          <figcaption className="highcharts-description">Caption map</figcaption>
+        </figure>
+        <figure
+          className={cx(stylesRichInfoClick.SecondFigure, {
+            [stylesRichInfoClick.Expanded]: selectedPointsLength > 0,
+          })}
+        >
+          <div>
+            <h3>
+              {selectedPointsLength > 1
+                ? 'Primerjaj po občinah'
+                : (selectedPoints[0]?.name ?? 'Klikni na občino za prikaz podatkov')}
+            </h3>
+            <p>
+              <kbd>Shift</kbd> + <kbd>klik</kbd> za več občin
+            </p>
+          </div>
+          <HighchartsReact
+            ref={secondChartRef}
+            highcharts={Highcharts}
+            options={secondChartOptions}
+          />
+          <div className={styles.SeriesButtons}>
+            <CustomSeriesButtons key={customSeriesButtonsKey} chart={secondChart} />
+          </div>
+          <figcaption className="highcharts-description">Caption second chart</figcaption>
+        </figure>
+      </CardContent>
     </Card>
   );
 };

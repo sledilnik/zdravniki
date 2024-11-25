@@ -10,7 +10,7 @@ export const charts = [
     section: 'real section 1',
     order: 0,
     componentName: 'DashboardCard',
-    fakeHeight: 'auto',
+    fakeHeight: 'auto', // todo set height when dashboard is done
     options: {
       title: {
         text: 'Dashboard',
@@ -22,7 +22,7 @@ export const charts = [
     section: 'real section 1',
     order: 1,
     componentName: 'DataByYearAndAgeGroupCard',
-    fakeHeight: '1512px',
+    fakeHeight: '800px',
     options: {
       title: {
         text: RomanLustrikCardMapOptions.title.text
@@ -35,7 +35,7 @@ export const charts = [
     section: 'real section 1',
     order: 2,
     componentName: 'RichInfoClick',
-    fakeHeight: '780px',
+    fakeHeight: '735px',
     options: {
       title: {
         text: RichInfoClickOptions.title.text ? RichInfoClickOptions.title.text : 'Missing Title',
