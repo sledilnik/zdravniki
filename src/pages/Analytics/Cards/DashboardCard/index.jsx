@@ -87,10 +87,10 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
         <div className={cx(styles.FirstColumn, styles.Filters)}>
           <div>
             <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
-              <label htmlFor="year-select">
+              <label htmlFor={`${id}-year-select`}>
                 Leto:{' '}
                 <select
-                  id="year-select"
+                  id={`${id}-year-select`}
                   name="year"
                   onChange={onYearChange}
                   value={year}
@@ -105,10 +105,10 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
               </label>
             </div>
             <div style={{ display: 'inline-block' }}>
-              <label htmlFor="age-group-select">
+              <label htmlFor={`${id}-age-group-select`}>
                 Skupina:{' '}
                 <select
-                  id="age-group-select"
+                  id={`${id}-age-group-select`}
                   name="ageGroup"
                   value={ageGroup}
                   onChange={onAgeGroupChange}

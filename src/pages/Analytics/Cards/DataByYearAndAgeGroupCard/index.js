@@ -103,10 +103,10 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
       <ChartHeader showPopover={false} title={mapOptions.title?.text} />
       <CardContent>
         <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
-          <label htmlFor="year-select">
+          <label htmlFor={`${id}-year-select`}>
             Leto:{' '}
             <select
-              id="year-select"
+              id={`${id}-year-select`}
               name="year"
               onChange={onYearChange}
               value={year}
@@ -121,10 +121,10 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
           </label>
         </div>
         <div style={{ display: 'inline-block' }}>
-          <label htmlFor="age-group-select">
+          <label htmlFor={`${id}-age-group-select`}>
             Skupina:{' '}
             <select
-              id="age-group-select"
+              id={`${id}-age-group-select`}
               name="ageGroup"
               value={ageGroup}
               onChange={onAgeGroupChange}
