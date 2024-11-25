@@ -134,3 +134,7 @@
 .ChartSection:not(:last-child) {
   margin-bottom: 2rem;
 }
+
+.ChartSection > *:not(:last-child) {
+  margin-bottom: 2rem;
+}
