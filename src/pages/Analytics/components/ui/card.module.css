@@ -1,10 +1,27 @@
 .Card {
-  --card-inline-padding: 1.25rem;
-  --card-block-padding: 1.25rem;
-
   background: var(--card);
   color: var(--card-foreground);
   border-radius: var(--radius);
+}
+
+.PaddingNone {
+  --card-inline-padding: 0;
+  --card-block-padding: 0;
+}
+
+.PaddingSmall {
+  --card-inline-padding: 0.75rem;
+  --card-block-padding: 0.5rem;
+}
+
+.PaddingMedium {
+  --card-inline-padding: 1rem;
+  --card-block-padding: 1rem;
+}
+
+.PaddingLarge {
+  --card-inline-padding: 1.25rem;
+  --card-block-padding: 1.25rem;
 }
 
 .Card:not(:last-child) {

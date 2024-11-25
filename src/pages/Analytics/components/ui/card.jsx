@@ -11,9 +11,24 @@ import styles from './card.module.css';
  * @typedef {"div" | "header"} CardHeaderAs
  * @typedef {"span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h5" | "h6"} CardTitleAs
  *
+ * @typedef {"div" | "figure" | "figcaption"} CardContentAs
  * @typedef {"title" | "subtitle"} CardTitleVariant
  *
  */
+
+const cardVariants = cva(styles.Card, {
+  variants: {
+    padding: {
+      none: styles.PaddingNone,
+      small: styles.PaddingSmall,
+      medium: styles.PaddingMedium,
+      large: styles.PaddingLarge,
+    },
+  },
+  defaultVariants: {
+    padding: 'medium',
+  },
+});
 
 /**
  * Card component
@@ -27,8 +42,8 @@ import styles from './card.module.css';
  * >}
  * @template {CardAs} TCardAs
  */
-export const Card = forwardRef(({ as: Wrapper = 'div', className, ...props }, ref) => (
-  <Wrapper ref={ref} className={cx(styles.Card, className)} {...props} />
+export const Card = forwardRef(({ as: Wrapper = 'div', className, padding, ...props }, ref) => (
+  <Wrapper ref={ref} className={cardVariants({ padding, className })} {...props} />
 ));
 
 Card.displayName = 'Card';
@@ -89,10 +104,13 @@ CardTitle.displayName = 'CardTitle';
  * A content component that supports dynamic HTML elements via the `as` prop.
  * @type {React.ForwardRefRenderFunction<
  *  HTMLElement,
- * React.ComponentPropsWithRef<HTMLDivElement> >}
+ * React.ComponentPropsWithRef<HTMLDivElement> & {
+ *  as?: TCardContentAs = "div";
+ * }
+ * >}
  *
  * @template {CardContentAs} TCardContentAs
  */
-export const CardContent = forwardRef(({ className, ...props }, ref) => (
-  <div ref={ref} className={cx(styles.Content, className)} {...props} />
+export const CardContent = forwardRef(({ as: Wrapper = 'div', className, ...props }, ref) => (
+  <Wrapper ref={ref} className={cx(styles.Content, className)} {...props} />
 ));
