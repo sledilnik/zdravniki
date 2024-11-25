@@ -133,19 +133,19 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
           </figure>
         </div>
         <div className={cx(styles.SecondColumn, styles.Cumulative)}>
-          <Card padding="small">
+          <Card padding="xs">
             <CardHeader>
               <CardTitle variant="title">Card 1</CardTitle>
             </CardHeader>
             <CardContent>neki</CardContent>
           </Card>
-          <Card padding="small">
+          <Card padding="xs">
             <CardHeader>
               <CardTitle variant="title">Card 2</CardTitle>
             </CardHeader>
             <CardContent>neki</CardContent>
           </Card>
-          <Card padding="small">
+          <Card padding="xs">
             <CardHeader>
               <CardTitle variant="title">Card 3</CardTitle>
             </CardHeader>

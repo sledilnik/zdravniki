@@ -5,23 +5,38 @@
 }
 
 .PaddingNone {
-  --card-inline-padding: 0;
-  --card-block-padding: 0;
+  --card-padding: 0;
 }
 
-.PaddingSmall {
-  --card-inline-padding: 0.75rem;
-  --card-block-padding: 0.75rem;
+.PaddingXS {
+  --card-padding: 0.5rem;
 }
 
-.PaddingMedium {
-  --card-inline-padding: 1rem;
-  --card-block-padding: 1rem;
+.PaddingSM {
+  --card-padding: 0.75rem;
 }
 
-.PaddingLarge {
-  --card-inline-padding: 1.25rem;
-  --card-block-padding: 1.25rem;
+.PaddingMD {
+  --card-padding: 1rem;
+}
+
+.PaddingLG {
+  --card-padding: 1.25rem;
+}
+
+.PaddingXL {
+  --card-padding: 1.5rem;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--card-padding);
+}
+
+.Content {
+  padding: var(--card-padding);
 }
 
 .Title {
@@ -36,17 +51,4 @@
   line-height: 1.25;
   font-weight: 500;
   display: block;
-}
-
-.Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-block: var(--card-block-padding);
-  padding-inline: var(--card-inline-padding);
-}
-
-.Content {
-  padding-block: var(--card-block-padding);
-  padding-inline: var(--card-inline-padding);
 }

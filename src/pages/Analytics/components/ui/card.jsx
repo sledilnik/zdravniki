@@ -20,13 +20,15 @@ const cardVariants = cva(styles.Card, {
   variants: {
     padding: {
       none: styles.PaddingNone,
-      small: styles.PaddingSmall,
-      medium: styles.PaddingMedium,
-      large: styles.PaddingLarge,
+      xs: styles.PaddingXS,
+      sm: styles.PaddingSM,
+      md: styles.PaddingMD,
+      lg: styles.PaddingLG,
+      xl: styles.PaddingXL,
     },
   },
   defaultVariants: {
-    padding: 'medium',
+    padding: 'md',
   },
 });
 
