@@ -94,7 +94,7 @@ const titleVariants = cva('', {
  * @template {CardTitleAs} TCardTitleAs
  */
 export const CardTitle = forwardRef(
-  ({ as: Wrapper = 'span', variant = 'title', className, ...props }, ref) => (
+  ({ as: Wrapper = 'div', variant = 'title', className, ...props }, ref) => (
     <Wrapper ref={ref} className={titleVariants({ variant, className })} {...props} />
   ),
 );
