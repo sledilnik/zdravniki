@@ -12,8 +12,8 @@ import styles from './card.module.css';
  * @typedef {"span" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h5" | "h6"} CardTitleAs
  *
  * @typedef {"div" | "figure" | "figcaption"} CardContentAs
+ * @typedef {"div" | "footer"} CardFooterAs
  * @typedef {"title" | "subtitle"} CardTitleVariant
- *
  */
 
 const cardVariants = cva(styles.Card, {
@@ -116,3 +116,35 @@ CardTitle.displayName = 'CardTitle';
 export const CardContent = forwardRef(({ as: Wrapper = 'div', className, ...props }, ref) => (
   <Wrapper ref={ref} className={cx(styles.Content, className)} {...props} />
 ));
+
+/**
+ * CardDescription component
+ *
+ * @type {React.ForwardRefRenderFunction<
+ *  HTMLElement,
+ *  React.ComponentPropsWithRef<HTMLDivElement>
+ * >}
+ */
+export const CardDescription = forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} className={cx(styles.Description, className)} {...props} />
+));
+
+CardDescription.displayName = 'CardDescription';
+
+/**
+ * CardFooter component
+ * A footer component that supports dynamic HTML elements via the `as` prop.
+ * @type {React.ForwardRefRenderFunction<
+ *  HTMLElement,
+ * React.ComponentPropsWithRef<TCardFooterAs> & {
+ *  as?: TCardFooterAs = "footer";
+ * }
+ * >}
+ *
+ * @template {CardFooterAs} TCardFooterAs
+ */
+export const CardFooter = forwardRef(({ as: Wrapper = 'footer', className, ...props }, ref) => (
+  <Wrapper ref={ref} className={cx(styles.Footer, className)} {...props} />
+));
+
+CardFooter.displayName = 'CardFooter';
