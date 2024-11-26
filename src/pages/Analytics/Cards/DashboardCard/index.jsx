@@ -7,13 +7,21 @@ import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
+import Scorecard from 'pages/Analytics/components/Scorecard';
+import {
+  Card,
+  CardContent,
+  // CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'pages/Analytics//components/ui/card';
+import { Separator } from 'pages/Analytics/components/ui/separator';
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 
 import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Separator } from '../../components/ui/separator';
+
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
 import styles from './DashboardCard.module.css';
@@ -133,24 +141,18 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
           </figure>
         </div>
         <div className={cx(styles.SecondColumn, styles.Cumulative)}>
-          <Card padding="xs">
-            <CardHeader>
-              <CardTitle variant="title">Card 1</CardTitle>
-            </CardHeader>
-            <CardContent>neki</CardContent>
-          </Card>
-          <Card padding="xs">
-            <CardHeader>
-              <CardTitle variant="title">Card 2</CardTitle>
-            </CardHeader>
-            <CardContent>neki</CardContent>
-          </Card>
-          <Card padding="xs">
-            <CardHeader>
-              <CardTitle variant="title">Card 3</CardTitle>
-            </CardHeader>
-            <CardContent>neki</CardContent>
-          </Card>
+          <div>
+            <Scorecard
+              scorecardType="description"
+              valueLabel="value label"
+              changeLabel="change label"
+            />
+          </div>
+          <div className={styles.Scorecards}>
+            <Scorecard label="trend up" value={175} change={2} changeDirection="up" />
+            <Scorecard label="trend down" value={1.75} change={0.45} changeDirection="down" />
+            <Scorecard label="trend same" value={17.52} change={0} changeDirection="no" />
+          </div>
         </div>
         <div className={cx(styles.SecondColumn, styles.LineChartsWrapper)}>
           {[...municipalityData.entries()].slice(0, 2).map(([ageGroup, data]) => (

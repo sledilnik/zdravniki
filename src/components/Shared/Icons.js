@@ -73,6 +73,9 @@ export {
   Link as LinkIcon,
   PhoneEnabled as PhoneEnabledIcon,
   ExpandMore as ExpandMoreIcon,
+  TrendingFlat as TrendingFlatIcon,
+  TrendingUp as TrendingUpIcon,
+  TrendingDown as TrendingDownIcon,
 } from '@mui/icons-material';
 
 const icons = {

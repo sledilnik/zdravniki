@@ -15,18 +15,19 @@
   align-items: center;
   color: inherit;
   display: flex;
-  background: var(--bcg-color);
   border-radius: 0;
 }
 
 .Body .Cumulative {
   padding-block: 0.5rem;
-  justify-content: space-around;
-  align-items: center;
-  color: inherit;
   display: flex;
-  background: var(--bcg-color);
   border-radius: 0;
+}
+
+.Body .Cumulative .Scorecards {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
 }
 
 .Body .MapFigureWrapper {
