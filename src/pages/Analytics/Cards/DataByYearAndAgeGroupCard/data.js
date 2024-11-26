@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /** @import * as Types from "../../types"  */
 
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
@@ -109,3 +110,48 @@ export const byMunicipalityMap = new Map(
     ),
   ]),
 );
+
+/**
+ * Groups an array of objects by two specified keys, producing a nested Map structure.
+ *
+ * @template {Object} T - The type of objects in the `data` array.
+ * @template {keyof T} K1 - The first key used for grouping.
+ * @template {keyof T} K2 - The second key used for grouping.
+ * @template {Record<K1 | K2, (string | number)[]>} Keys - The type representing the valid values for each key.
+ *
+ * @param {[K1, K2]} keys - An array of two keys to group the data by, in order of nesting.
+ * @param {Keys} keysData - An object where each key is a grouping key and maps to an array of valid values.
+ * @param {T[]} data - The array of objects to group.
+ *
+ * @returns {Map<Keys[K1][number], Map<Keys[K2][number], T[]>>}
+ * A nested Map structure, where the outer Map's keys are values of `K1`,
+ * the inner Map's keys are values of `K2`, and the values are arrays of objects.
+ */
+export function groupBy(keys, keysData, data) {
+  const firstKey = keys[0];
+  const secondKey = keys[1];
+  return new Map(
+    keysData[firstKey].map(key1 => [
+      key1,
+      new Map(
+        keysData[secondKey].map(key2 => [
+          key2,
+          data.filter(item => item[firstKey] === key1 && item[secondKey] === key2),
+        ]),
+      ),
+    ]),
+  );
+}
+
+export const inputDataKeys = {
+  name: DATA.MUNICIPALITIES,
+  year: DATA.YEARS,
+  ageGroup: DATA.AGE_GROUPS,
+};
+
+export const byAgeGroupAndYearMap = groupBy(['ageGroup', 'year'], inputDataKeys, fakeData);
+// export const byYearAndAgeGroupMap = groupBy(['year', 'ageGroup'], inputDataKeys, fakeData);
+// export const byYearAndMunicipalityMap = groupBy(['year', 'name'], inputDataKeys, fakeData);
+// export const byMunicipalityAndYearMap = groupBy(['name', 'year'], inputDataKeys, fakeData);
+// export const byMunicipalityAndAgeGroupMap = groupBy(['name', 'ageGroup'], inputDataKeys, fakeData);
+// export const byAgeGroupAndMunicipalityMap = groupBy(['ageGroup', 'name'], inputDataKeys, fakeData);
