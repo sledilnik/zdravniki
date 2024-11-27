@@ -2,7 +2,7 @@
 /** @import * as Types from "../../types"  */
 /** @import * as DataTypes from "../../data/data" */
 
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
@@ -20,6 +20,9 @@ import { mapOptions as baseMapOptions } from './chart-options';
  * @param {DataTypes.AgeGroup} props.ageGroup - The age group to display.
  */
 const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
+  const mapChartRef = useRef();
+  const mapChart = mapChartRef.current?.chart;
+  const [init, setInit] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const years = useMemo(() => Array.from(data.keys()).sort((a, b) => a - b), [data]);
 
@@ -74,6 +77,17 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
     },
   });
 
+  useEffect(() => {
+    if (!init) {
+      setInit(true);
+    }
+    return () => {
+      if (mapChart) {
+        mapChart.destroy();
+      }
+    };
+  }, [mapChart, init]);
+
   const onYearChange = e => {
     yearIndexRef.current = parseInt(e.target.value, 10);
   };
@@ -102,7 +116,12 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-      <HighchartsReact highcharts={HighMaps} options={mapOptions} constructorType="mapChart" />
+      <HighchartsReact
+        ref={mapChartRef}
+        highcharts={HighMaps}
+        options={mapOptions}
+        constructorType="mapChart"
+      />
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       <div>
         <button
