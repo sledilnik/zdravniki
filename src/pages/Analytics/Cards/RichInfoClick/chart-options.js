@@ -2,7 +2,7 @@
 /** @import * as Types from "../../types"  */
 
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
-import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
+import { sloOBMap } from 'assets/maps/OB.geo.json';
 
 import { dimensions } from '../../highcharts-options/options';
 

@@ -1,6 +1,6 @@
 /** @import * as Types from "../../types"  */
 
-import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
+import { sloOBMap } from 'assets/maps/OB.geo.json';
 import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
