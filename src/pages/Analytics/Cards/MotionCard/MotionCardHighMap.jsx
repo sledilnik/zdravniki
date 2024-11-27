@@ -10,7 +10,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { merge as loMerge } from 'lodash';
 
 import { PauseIcon, PlayArrowIcon } from 'components/Shared/Icons';
-import { byMunicipalityAndAgeGroupMap } from '../../data/data';
+import { byMunicipalityAndAgeGroupMap } from 'pages/Analytics/data/data';
 
 import { mapOptions as baseMapOptions } from './chart-options';
 

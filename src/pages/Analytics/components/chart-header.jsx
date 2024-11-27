@@ -2,8 +2,8 @@
 /** @import * as CustomPopoverTypes from '../types' */
 
 import * as Icons from 'components/Shared/Icons';
+import Popover from 'pages/Analytics/components/CustomPopover';
 
-import Popover from './CustomPopover';
 import stylesIconButton from '../IconButton.module.css';
 import { CardHeader, CardTitle } from './ui/card';
 import { Separator } from './ui/separator';

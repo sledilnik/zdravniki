@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { byAgeGroupAndYearMap } from '../../data/data';
+import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import { byAgeGroupAndYearMap } from 'pages/Analytics/data/data';
 
 import MotionCardHighMap from './MotionCardHighMap';
 
