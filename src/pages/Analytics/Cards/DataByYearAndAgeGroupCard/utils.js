@@ -1,7 +1,8 @@
 /** @import * as DataTypes from "./data" */
 
 import Highcharts from 'highcharts';
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
+
+import { byAgeGroupMap, DATA } from '../../data/fake-data';
 
 export function renderChart(point, chartType) {
   Highcharts.chart('hc-tooltip-with-chart', {

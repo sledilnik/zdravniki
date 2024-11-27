@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from "../../types"  */
 
-import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
 import { sloOBMap } from 'assets/maps/OB.geo.json';
+import { fakeData } from 'pages/Analytics/data/fake-data';
 
 import { dimensions } from '../../highcharts-options/options';
 
@@ -52,28 +52,6 @@ const transformData = data => {
     data: result[key],
   }));
 };
-
-/**
- * Generates fake data for Slovenian municipalities from 2013 to 2023.
- * @param {string[]} municipalities - An array of Slovenian municipalities.
- * @returns {DataItem[]} An array of objects, each representing data for a municipality in a specific year.
- */
-const generateFakeData = municipalities => {
-  const fakeData = [];
-  for (let i = 2013; i <= 2023; i++) {
-    municipalities.forEach(municipality => {
-      fakeData.push({
-        name: municipality,
-        value: Math.floor(Math.random() * 1000) / 100,
-        // OB_UIME: municipality,
-        year: i,
-      });
-    });
-  }
-  return fakeData;
-};
-
-const fakeData = generateFakeData(sloMunicipalitiesJSON);
 
 /**
  * @type {DataItem[]}
