@@ -12,7 +12,7 @@ import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 import heatmap from 'highcharts/modules/heatmap';
 
-import { byAgeGroupMap, DATA } from '../../data/fake-data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
 
 import { mapOptions, chartOptions } from './char-options';
 import { filterDataByYearAndAgeGroup, renderChart } from './utils';

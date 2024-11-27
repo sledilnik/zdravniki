@@ -1,6 +1,6 @@
 /** @import * as Types from "../../types" */
 
-import { sloOBMap } from 'assets/maps/OB.geo.json';
+import sloOBMap from 'assets/maps/OB.geo.json';
 
 // import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 

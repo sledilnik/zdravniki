@@ -21,7 +21,7 @@ import {
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
-import { byAgeGroupMap, byMunicipalityMap, DATA } from '../../data/fake-data';
+import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/fake-data';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 

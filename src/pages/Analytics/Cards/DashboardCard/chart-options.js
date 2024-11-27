@@ -1,8 +1,8 @@
 /** @import * as Types from "../../types" */
 
-import { sloOBMap } from 'assets/maps/OB.geo.json';
+import sloOBMap from 'assets/maps/OB.geo.json';
 
-import { byAgeGroupMap, DATA } from '../../data/fake-data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

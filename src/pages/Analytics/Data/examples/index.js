@@ -1,7 +1,7 @@
 /** @import * as Types from "../../types" */
 
 import sloUEMap from 'assets/maps/UE.geo.json';
-import { sloOBMap } from 'assets/maps/OB.geo.json';
+import sloOBMap from 'assets/maps/OB.geo.json';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
 /**
