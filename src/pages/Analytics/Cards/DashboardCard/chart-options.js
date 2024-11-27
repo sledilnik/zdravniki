@@ -2,8 +2,6 @@
 
 import { sloOBMap } from 'assets/maps/OB.geo.json';
 
-// import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
-
 import { byAgeGroupMap, DATA } from '../../data/fake-data';
 
 /** @type {Types.HighMapsOptions} */
