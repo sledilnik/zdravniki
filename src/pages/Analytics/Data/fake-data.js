@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/** @import * as Types from "../../types"  */
 
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
 
