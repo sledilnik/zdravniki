@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /** @import * as Types from "../../types" */
-/** @import * as DataTypes from "../../data/data" */
+/** @import * as DataTypes from "../../data/fake-data" */
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -12,9 +12,9 @@ import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 import heatmap from 'highcharts/modules/heatmap';
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
 
-import { mapOptions, chartOptions } from './chartOptions';
+import { mapOptions, chartOptions } from './char-options';
 import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 
 import ChartHeader from '../../components/chart-header';

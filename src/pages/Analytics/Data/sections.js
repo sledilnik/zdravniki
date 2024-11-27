@@ -2,7 +2,7 @@
 
 import examples from './examples';
 import { mapOptions as RichInfoClickOptions } from '../Cards/RichInfoClick/chart-options';
-import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAndAgeGroupCard/chartOptions';
+import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAndAgeGroupCard/char-options';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
 export const charts = [
