@@ -1,5 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
+
+/** @import * as DataTypes from "../../data/data"  */
+
 import { useEffect, useRef, useState } from 'react';
 
 import { cx } from 'class-variance-authority';
@@ -16,11 +19,11 @@ import {
   CardTitle,
 } from 'pages/Analytics//components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
+
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
+import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/data';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
-
-import { byAgeGroupMap, byMunicipalityMap, DATA } from '../DataByYearAndAgeGroupCard/data';
 
 import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
@@ -41,9 +44,9 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
 
   const [mapChartOptions, setMapChartOptions] = useState(mapOptions);
 
-  /** @type {[import('./data').Year, React.Dispatch<React.SetStateAction<import('./data').Year]} */
+  /** @type {DataTypes.Year, React.Dispatch<React.SetStateAction<DataTypes.Year]} */
   const [year, setYear] = useState(DATA.defaults.year);
-  /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
+  /** @type {DataTypes.AgeGroup, React.Dispatch<React.SetStateAction<DataTypes.AgeGroup]} */
   const [ageGroup, setAgeGroup] = useState(DATA.defaults.ageGroup);
 
   const [, setInit] = useState(false);

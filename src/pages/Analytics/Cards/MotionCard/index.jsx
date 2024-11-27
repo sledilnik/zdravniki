@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import MotionCardHighMap from './MotionCardHighMap';
+import { byAgeGroupAndYearMap } from 'pages/Analytics/data/data';
 
-import { byAgeGroupAndYearMap } from '../DataByYearAndAgeGroupCard/data';
+import MotionCardHighMap from './MotionCardHighMap';
 
 const MotionCard = function MotionCard() {
   const ageGroups = Array.from(byAgeGroupAndYearMap.keys());

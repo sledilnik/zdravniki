@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /** @import * as Types from "../../types" */
+/** @import * as DataTypes from "../../data/data" */
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -11,14 +12,13 @@ import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 import heatmap from 'highcharts/modules/heatmap';
 
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
+
 import { mapOptions, chartOptions } from './chartOptions';
-import { byAgeGroupMap, DATA } from './data';
 import { filterDataByYearAndAgeGroup, renderChart } from './utils';
 
 import ChartHeader from '../../components/chart-header';
 import { Card, CardContent } from '../../components/ui/card';
-
-import styles from '../Cards.module.css';
 
 heatmap(Highcharts);
 
@@ -34,11 +34,11 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   const [mapChartOptions, setMapChartOptions] = useState(mapOptions);
   const [secondChartOptions, _setSecondChartOptions] = useState(chartOptions);
 
-  /** @type {[import('./data').Year, React.Dispatch<React.SetStateAction<import('./data').Year]} */
+  /** @type {DataTypes.Year, React.Dispatch<React.SetStateAction<DataTypes.Year]} */
   const [year, setYear] = useState(defaults.year);
-  /** @type {[import('./data').AgeGroup, React.Dispatch<React.SetStateAction<import('./data').AgeGroup]} */
+  /** @type {DataTypes.AgeGroup, React.Dispatch<React.SetStateAction<DataTypes.AgeGroup]} */
   const [ageGroup, setAgeGroup] = useState(defaults.ageGroup);
-  /** @type {[import('./data').TooltipChartType, React.Dispatch<React.SetStateAction<import('./data').TooltipChartType]} */
+  /** @type {DataTypes.TooltipChartType, React.Dispatch<React.SetStateAction<DataTypes.TooltipChartType]} */
   const [tooltipChartType, setTooltipChartType] = useState(defaults.tooltipChartType);
 
   /** @type {React.RefObject<(Types.HighchartsReactRefObject | null)>} */

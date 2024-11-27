@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "../../types"  */
-/** @import * as DataTypes from "../DataByYearAndAgeGroupCard/data" */
+/** @import * as DataTypes from "../../data/data" */
 
 import { useState, useMemo, useRef } from 'react';
 
@@ -10,10 +10,9 @@ import HighchartsReact from 'highcharts-react-official';
 import { merge as loMerge } from 'lodash';
 
 import { PauseIcon, PlayArrowIcon } from 'components/Shared/Icons';
+import { byMunicipalityAndAgeGroupMap } from 'pages/Analytics/data/data';
 
 import { mapOptions as baseMapOptions } from './chart-options';
-
-import { byMunicipalityAndAgeGroupMap } from '../DataByYearAndAgeGroupCard/data';
 
 /**
  * @param {Object} props

@@ -4,7 +4,7 @@ import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
 
 // import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 
-import { byAgeGroupMap, DATA } from '../DataByYearAndAgeGroupCard/data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

@@ -1,9 +1,9 @@
 /** @import * as Types from "../../types"  */
 
 import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
-import { byAgeGroupMap, DATA } from './data';
 import { chartSeriesDataMap } from './utils';
 
 const { MUNICIPALITIES, YEARS, defaults } = DATA;
