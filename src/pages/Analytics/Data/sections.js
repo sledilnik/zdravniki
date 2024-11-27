@@ -9,8 +9,19 @@ export const charts = [
   {
     section: 'real section 1',
     order: 0,
+    componentName: 'MotionCard',
+    fakeHeight: '2876px', // todo set height when dashboard is done
+    options: {
+      title: {
+        text: 'MotionCard',
+      },
+    },
+  },
+  {
+    section: 'real section 1',
+    order: 0,
     componentName: 'DashboardCard',
-    fakeHeight: 'auto', // todo set height when dashboard is done
+    fakeHeight: '683px', // todo set height when dashboard is done
     options: {
       title: {
         text: 'Dashboard',

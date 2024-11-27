@@ -25,8 +25,10 @@ const MapCard = lazy(() => import('./Cards/MapCard'));
 const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
 const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
 const DashboardCard = lazy(() => import('./Cards/DashboardCard'));
+const MotionCard = lazy(() => import('./Cards/MotionCard'));
 
 const CARDS = {
+  MotionCard,
   ChartCard,
   MapCard,
   RichInfoClick,
@@ -59,7 +61,10 @@ const Analytics = function Analytics() {
 
               return (
                 <RenderOnViewportEntry
+                  id={`render-on-viewport-entry-${chartProxy.id}`}
                   key={chartProxy.id}
+                  style={{ minHeight: chart.fakeHeight }}
+                  intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
                   srOnlyComponentsBeforeEntered={
                     <Card style={{ minHeight: chart.fakeHeight }}>
                       <CardHeader>

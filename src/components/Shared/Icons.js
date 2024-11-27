@@ -76,6 +76,8 @@ export {
   TrendingFlat as TrendingFlatIcon,
   TrendingUp as TrendingUpIcon,
   TrendingDown as TrendingDownIcon,
+  PlayArrow as PlayArrowIcon,
+  Pause as PauseIcon,
 } from '@mui/icons-material';
 
 const icons = {
