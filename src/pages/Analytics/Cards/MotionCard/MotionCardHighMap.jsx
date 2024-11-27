@@ -2,7 +2,7 @@
 /** @import * as Types from "../../types"  */
 /** @import * as DataTypes from "../DataByYearAndAgeGroupCard/data" */
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useRef } from 'react';
 
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
@@ -13,19 +13,44 @@ import { PauseIcon, PlayArrowIcon } from 'components/Shared/Icons';
 
 import { mapOptions as baseMapOptions } from './chart-options';
 
+import { byMunicipalityAndAgeGroupMap } from '../DataByYearAndAgeGroupCard/data';
+
 /**
  * @param {Object} props
  * @param {Map<DataTypes<DataTypes.Year, DataTypes.AgeGroupItem[]} props.data - The data for the chart.
  * @param {DataTypes.AgeGroup} props.ageGroup - The age group to display.
  */
 const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
+  const [isPlaying, setIsPlaying] = useState(false);
   const years = useMemo(() => Array.from(data.keys()).sort((a, b) => a - b), [data]);
-  const [yearIndex, setYearIndex] = useState(0);
+
+  const yearIndexRef = useRef(0);
+  const yearIndex = yearIndexRef.current;
+
+  const intervalIdRef = useRef(null);
+
   const [mapOptions, setMapOptions] = useState(
     loMerge(
       { title: { text: ageGroup }, series: [{ data: data.get(years[yearIndex]) }] },
       baseMapOptions,
     ),
+  );
+
+  const mun1 = useMemo(
+    () =>
+      byMunicipalityAndAgeGroupMap
+        .get('Ljubljana')
+        .get(ageGroup)
+        .map(item => item.value),
+    [ageGroup],
+  );
+  const mun2 = useMemo(
+    () =>
+      byMunicipalityAndAgeGroupMap
+        .get('Maribor')
+        .get(ageGroup)
+        .map(item => item.value),
+    [ageGroup],
   );
 
   const [chartOptions] = useState({
@@ -36,39 +61,43 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
     chart: {
       type: 'line',
     },
-    series: [{ data: [1, 2, 3, 4, 5] }],
+    xAxis: {
+      categories: years,
+    },
+    series: [
+      { name: 'Ljubljana', data: mun1 },
+      { name: 'Maribor', data: mun2 },
+    ],
+    tooltip: {
+      shared: true,
+      useHTML: true,
+      split: false,
+    },
   });
 
-  const year = years[yearIndex];
-
-  useEffect(() => {
-    setMapOptions({ series: [{ data: data.get(year) }] });
-  }, [data, ageGroup, year]);
-
   const onYearChange = e => {
-    setYearIndex(e.target.value);
+    yearIndexRef.current = parseInt(e.target.value, 10);
   };
-
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [intervalId, setIntervalId] = useState(null);
 
   const togglePlayPause = () => {
     if (isPlaying) {
-      clearInterval(intervalId);
+      clearInterval(intervalIdRef.current);
       setIsPlaying(false);
       return;
     }
     const id = setInterval(() => {
-      setYearIndex(prevIndex => {
-        const nextIndex = (prevIndex + 1) % years.length;
-        if (nextIndex === 0) {
-          clearInterval(id);
-          setIsPlaying(false);
-        }
-        return nextIndex;
+      yearIndexRef.current = (yearIndexRef.current + 1) % years.length;
+      const year = years[yearIndexRef.current];
+      const serieData = data.get(year);
+      setMapOptions({
+        series: [{ data: serieData }],
       });
-    }, 1000);
-    setIntervalId(id);
+      if (yearIndexRef.current === 0) {
+        clearInterval(id);
+        setIsPlaying(false);
+      }
+    }, 500);
+    intervalIdRef.current = id;
     setIsPlaying(true);
   };
 

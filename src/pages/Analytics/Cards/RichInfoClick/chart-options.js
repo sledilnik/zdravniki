@@ -1,7 +1,8 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from "../../types"  */
-import sloOBMap from 'assets/maps/OB.geo.json';
+
 import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
+import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
 
 import { dimensions } from '../../highcharts-options/options';
 
