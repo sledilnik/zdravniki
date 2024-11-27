@@ -10,18 +10,18 @@ import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
 
-import Scorecard from 'pages/Analytics/components/Scorecard';
+import Scorecard from '../../components/Scorecard';
 import {
   Card,
   CardContent,
   // CardDescription,
   CardHeader,
   CardTitle,
-} from 'pages/Analytics//components/ui/card';
-import { Separator } from 'pages/Analytics/components/ui/separator';
+} from '../../components/ui/card';
+import { Separator } from '../../components/ui/separator';
 
-import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
-import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/data';
+import { notSrOnly } from '../../highcharts-options/options';
+import { byAgeGroupMap, byMunicipalityMap, DATA } from '../../data/data';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 

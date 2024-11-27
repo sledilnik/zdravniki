@@ -1,10 +1,10 @@
 /** @import * as Types from "../../types" */
 
-import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
+import { sloOBMap } from '../../data/sloOBGeoJson';
 
-// import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
+// import { dimensions } from '../../HighchartsOptions/options';
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data/data';
+import { byAgeGroupMap, DATA } from '../../data/data';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

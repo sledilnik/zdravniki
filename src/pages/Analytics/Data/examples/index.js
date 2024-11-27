@@ -1,8 +1,8 @@
 /** @import * as Types from "../../types" */
 
 import sloUEMap from 'assets/maps/UE.geo.json';
-import { sloOBMap } from 'pages/Analytics/data/sloOBGeoJson';
-import { dimensions } from 'pages/Analytics/highcharts-options/options';
+import { dimensions } from '../../highcharts-options/options';
+import { sloOBMap } from '../sloOBGeoJson';
 
 /**
  * @type {Types.ChartData} - Column chart data.
