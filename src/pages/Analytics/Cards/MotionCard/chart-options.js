@@ -19,7 +19,17 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
   },
+  boost: {
+    useGPUTranslations: true,
+    usePreallocated: true,
+  },
   series: [
-    { type: 'map', mapData: sloOBMap, keys: ['OB_UIME', 'value'], joinBy: ['OB_UIME', 'name'] },
+    {
+      type: 'map',
+      mapData: sloOBMap,
+      keys: ['OB_UIME', 'value'],
+      joinBy: ['OB_UIME', 'name'],
+      boostThreshold: 211,
+    },
   ],
 };
