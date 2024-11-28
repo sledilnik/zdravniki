@@ -39,7 +39,8 @@ const cardVariants = cva(styles.Card, {
  * @type {React.ForwardRefRenderFunction<
  *   HTMLDivElement,
  *   React.ComponentPropsWithRef<TCardAs> & {
- *     as?: TCardAs = "article";
+ *     as?: TCardAs = "div";
+ *     padding?: import('class-variance-authority').VariantProps<typeof cardVariants>['padding'];
  *   }
  * >}
  * @template {CardAs} TCardAs
