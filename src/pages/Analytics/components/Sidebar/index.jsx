@@ -4,8 +4,8 @@ import * as Icons from 'components/Shared/Icons';
 import Modal from '../Modal';
 
 import styles from './Sidebar.module.css';
-import { SECTIONS } from '../../Data/sections';
-import { createChartDataProxy } from '../../Data/create-chart-data-proxy';
+import { SECTIONS } from '../../data-lower-case/sections';
+import { createChartDataProxy } from '../../data-lower-case/create-chart-data-proxy';
 
 const Sidebar = function Sidebar() {
   const [modalOpen, setModalOpen] = useState(false);

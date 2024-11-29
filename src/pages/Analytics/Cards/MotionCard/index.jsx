@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import { byAgeGroupAndYearMap } from 'pages/Analytics/Data/fake-data';
+import { byAgeGroupAndYearMap } from 'pages/Analytics/data-lower-case/fake-data';
 
 import MotionCardHighMap from './MotionCardHighMap';
 
