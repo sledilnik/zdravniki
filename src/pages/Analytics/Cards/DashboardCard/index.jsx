@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 
-/** @import * as DataTypes from "../../data/fake-data"  */
+/** @import * as DataTypes from "../../Data/fake-data"  */
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -21,7 +21,7 @@ import {
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
-import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/fake-data';
+import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/Data/fake-data';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 
