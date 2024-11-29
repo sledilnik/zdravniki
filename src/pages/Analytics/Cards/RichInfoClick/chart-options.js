@@ -2,7 +2,7 @@
 /** @import * as Types from "../../types"  */
 
 import sloOBMap from 'assets/maps/OB.geo.json';
-import { fakeData } from 'pages/Analytics/data-lower-case/fake-data';
+import { fakeData } from 'pages/Analytics/data/fake-data';
 
 import { dimensions } from '../../highcharts-options/options';
 

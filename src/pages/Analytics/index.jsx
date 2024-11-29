@@ -14,8 +14,8 @@ import Sidebar from './components/Sidebar';
 
 import styles from './Layout.module.css';
 
-import { SECTIONS } from './data-lower-case/sections';
-import { createChartDataProxy } from './data-lower-case/create-chart-data-proxy';
+import { SECTIONS } from './data/sections';
+import { createChartDataProxy } from './data/create-chart-data-proxy';
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 
 import { Card, CardHeader } from './components/ui/card';

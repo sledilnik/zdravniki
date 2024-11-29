@@ -2,7 +2,7 @@
 
 import sloOBMap from 'assets/maps/OB.geo.json';
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data-lower-case/fake-data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

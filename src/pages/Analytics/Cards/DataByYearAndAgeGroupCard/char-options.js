@@ -3,7 +3,7 @@
 import sloOBMap from 'assets/maps/OB.geo.json';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data-lower-case/fake-data';
+import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
 
 import { chartSeriesDataMap } from './utils';
 
