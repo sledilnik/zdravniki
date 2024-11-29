@@ -1,9 +1,9 @@
 /** @import * as Types from "../../types"  */
 
-import sloOBMap from 'assets/maps/OB.geo.json';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
 import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
+import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
 import { chartSeriesDataMap } from './utils';
 
@@ -52,8 +52,8 @@ export const mapOptions = {
     {
       type: 'map',
       mapData: sloOBMap,
-      keys: ['OB_UIME', 'value'],
-      joinBy: ['OB_UIME', 'name'],
+      keys: ['name', 'value'],
+      joinBy: 'name',
       data: byAgeGroupMap
         .get('0-17')
         .filter(item => item.year === defaults.year)

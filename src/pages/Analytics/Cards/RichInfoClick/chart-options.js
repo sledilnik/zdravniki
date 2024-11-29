@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from "../../types"  */
 
-import sloOBMap from 'assets/maps/OB.geo.json';
 import { fakeData } from 'pages/Analytics/data/fake-data';
+import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
 import { dimensions } from '../../highcharts-options/options';
 
@@ -143,8 +143,8 @@ export const mapOptions = {
       type: 'map',
       name: 'Slo OB Data',
       mapData: sloOBMap,
-      keys: ['OB_UIME', 'value'],
-      joinBy: ['OB_UIME', 'name'],
+      keys: ['name', 'value'],
+      joinBy: 'name',
       data: firstChartSeriesMap.get(yearsSortedDesc[0]),
       allowPointSelect: true,
       cursor: 'pointer',

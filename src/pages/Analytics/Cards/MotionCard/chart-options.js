@@ -1,6 +1,6 @@
 /** @import * as Types from "../../types" */
 
-import sloOBMap from 'assets/maps/OB.geo.json';
+import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
 // import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
 
@@ -27,8 +27,8 @@ export const mapOptions = {
     {
       type: 'map',
       mapData: sloOBMap,
-      keys: ['OB_UIME', 'value'],
-      joinBy: ['OB_UIME', 'name'],
+      keys: ['name', 'value'],
+      joinBy: 'name',
       boostThreshold: 211,
     },
   ],

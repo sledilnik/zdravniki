@@ -1,7 +1,6 @@
 /** @import * as Types from "../../types" */
 
-import sloUEMap from 'assets/maps/UE.geo.json';
-import sloOBMap from 'assets/maps/OB.geo.json';
+import { sloOBMap, sloUEMap } from 'pages/Analytics/data/geo-json-maps';
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
 /**
@@ -316,8 +315,8 @@ export const SLO_UE_MAP = {
         type: 'map',
         name: 'Slo UE Data',
         mapData: sloUEMap,
-        keys: ['UE_MID', 'value'],
-        joinBy: 'UE_MID',
+        keys: ['name', 'value'],
+        joinBy: 'name',
         data: [
           [10051851, 10],
           [10051860, 20],
