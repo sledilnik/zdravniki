@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { byAgeGroupAndYearMap } from 'pages/Analytics/data/fake-data';
+import ChartHeader from 'pages/Analytics/components/chart-header';
 
 import MotionCardHighMap from './MotionCardHighMap';
 
@@ -14,14 +15,17 @@ const MotionCard = function MotionCard({ id, className = '' }) {
   const ageGroups = Array.from(byAgeGroupAndYearMap.keys());
   return (
     <Card as="article" id={id} className={className}>
-      <CardHeader>
-        <CardTitle>Motion Card</CardTitle>
-      </CardHeader>
+      <ChartHeader title="Motion Card" />
+
       {ageGroups.map(ageGroup => (
-        <CardContent key={ageGroup}>
-          <CardTitle>{ageGroup}</CardTitle>
-          <MotionCardHighMap data={byAgeGroupAndYearMap.get(ageGroup)} ageGroup={ageGroup} />
-        </CardContent>
+        <>
+          <CardHeader>
+            <CardTitle variant="subtitle">Starostna skupina: {ageGroup}</CardTitle>
+          </CardHeader>
+          <CardContent key={ageGroup}>
+            <MotionCardHighMap data={byAgeGroupAndYearMap.get(ageGroup)} ageGroup={ageGroup} />
+          </CardContent>
+        </>
       ))}
     </Card>
   );
