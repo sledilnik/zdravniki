@@ -56,7 +56,7 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
   const [chartOptions] = useState({
     title: {
       text: 'Comparing chart',
-      height: '300px',
+      // height: 300,
     },
     chart: {
       type: 'line',

@@ -8,7 +8,8 @@ import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 export const mapOptions = {
   chart: {
     map: sloOBMap,
-    height: 300,
+
+    // height: 300,
   },
   colorAxis: {
     minColor: '#AAE8F8',
@@ -19,17 +20,12 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
   },
-  boost: {
-    useGPUTranslations: true,
-    usePreallocated: true,
-  },
   series: [
     {
       type: 'map',
       mapData: sloOBMap,
       keys: ['name', 'value'],
       joinBy: 'name',
-      boostThreshold: 211,
     },
   ],
 };
