@@ -68,7 +68,7 @@ export function filterDataByYearAndAgeGroup({ dataMap, year, ageGroup }) {
  * @param {DataTypes.AgeGroupItem[]} items - The items array.
  * @returns {(DataTypes.AgeGroupItem & {x: number, y: number})[]} - The chart data array.
  */
-function createChartData(years, municipalities, items) {
+export function createChartData(years, municipalities, items) {
   return items.map(item => {
     const x = municipalities.indexOf(item.name);
     const y = years.indexOf(item.year);
@@ -86,12 +86,6 @@ function createChartData(years, municipalities, items) {
     };
   });
 }
-
-const chartData = createChartData(
-  DATA.YEARS,
-  DATA.MUNICIPALITIES,
-  byAgeGroupMap.get('0-17'),
-).filter(item => item != null);
 
 /**
  * Creates a map of series data.
@@ -115,5 +109,3 @@ export function createSeriesDataMap(data) {
   });
   return seriesMap;
 }
-
-export const chartSeriesDataMap = createSeriesDataMap(chartData);

@@ -21,11 +21,9 @@ import {
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
-import { byAgeGroupMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/fake-data';
+import { byMunicipalityMap, byAgeGroupAndYearMap, DATA } from 'pages/Analytics/data/fake-data';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
-
-import { filterDataByYearAndAgeGroup } from '../DataByYearAndAgeGroupCard/utils';
 
 import styles from './DashboardCard.module.css';
 
@@ -59,11 +57,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
 
   const onYearChange = e => {
     const newYear = Number(e.target.value);
-    const data = filterDataByYearAndAgeGroup({
-      dataMap: byAgeGroupMap,
-      year: newYear,
-      ageGroup,
-    });
+    const data = byAgeGroupAndYearMap.get(ageGroup).get(newYear);
     setMapChartOptions({
       series: [{ data }],
     });
@@ -72,11 +66,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
 
   const onAgeGroupChange = e => {
     const newAgeGroup = e.target.value;
-    const data = filterDataByYearAndAgeGroup({
-      dataMap: byAgeGroupMap,
-      year,
-      ageGroup: newAgeGroup,
-    });
+    const data = byAgeGroupAndYearMap.get(newAgeGroup).get(year);
     setMapChartOptions({
       series: [{ data }],
     });

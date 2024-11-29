@@ -153,4 +153,4 @@ export const byAgeGroupAndYearMap = groupBy(['ageGroup', 'year'], inputDataKeys,
 // export const byYearAndMunicipalityMap = groupBy(['year', 'name'], inputDataKeys, fakeData);
 // export const byMunicipalityAndYearMap = groupBy(['name', 'year'], inputDataKeys, fakeData);
 export const byMunicipalityAndAgeGroupMap = groupBy(['name', 'ageGroup'], inputDataKeys, fakeData);
-// export const byAgeGroupAndMunicipalityMap = groupBy(['ageGroup', 'name'], inputDataKeys, fakeData);
+export const byAgeGroupAndMunicipalityMap = groupBy(['ageGroup', 'name'], inputDataKeys, fakeData);

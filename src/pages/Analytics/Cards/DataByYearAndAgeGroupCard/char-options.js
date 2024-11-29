@@ -2,12 +2,17 @@
 
 import { dimensions } from 'pages/Analytics/highcharts-options/options';
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
+import {
+  byAgeGroupAndMunicipalityMap,
+  byAgeGroupAndYearMap,
+  byAgeGroupMap,
+  DATA,
+} from 'pages/Analytics/data/fake-data';
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
-import { chartSeriesDataMap } from './utils';
+import { createChartData, createSeriesDataMap } from './utils';
 
-const { MUNICIPALITIES, YEARS, defaults } = DATA;
+const { MUNICIPALITIES, YEARS } = DATA;
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {
@@ -54,13 +59,13 @@ export const mapOptions = {
       mapData: sloOBMap,
       keys: ['name', 'value'],
       joinBy: 'name',
-      data: byAgeGroupMap
+      data: byAgeGroupAndYearMap
         .get('0-17')
-        .filter(item => item.year === defaults.year)
+        .get(DATA.defaults.year)
         .map(item => {
-          const tooltipData = byAgeGroupMap
+          const tooltipData = byAgeGroupAndMunicipalityMap
             .get(item.ageGroup)
-            .filter(i => i.name === item.name)
+            .get(item.name)
             .map(i => i.value);
           return { ...item, tooltipData };
         }),
@@ -146,5 +151,10 @@ export const chartOptions = {
       return `<b>${xCategory}</b><br><b>Starostna skupina: ${point.ageGroup}</b><br>${data}`;
     },
   },
-  series: Array.from(chartSeriesDataMap.values()),
+  // series: Array.from(chartSeriesDataMap.values()),
+  series: Array.from(
+    createSeriesDataMap(
+      createChartData(DATA.YEARS, DATA.MUNICIPALITIES, byAgeGroupMap.get(DATA.defaults.ageGroup)),
+    ).values(),
+  ),
 };

@@ -1,6 +1,10 @@
 /** @import * as Types from "../../types" */
 
-import { byAgeGroupMap, DATA } from 'pages/Analytics/data/fake-data';
+import {
+  // byAgeGroupAndMunicipalityMap,
+  byAgeGroupAndYearMap,
+  DATA,
+} from 'pages/Analytics/data/fake-data';
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
 /** @type {Types.HighMapsOptions} */
@@ -35,16 +39,7 @@ export const mapOptions = {
       mapData: sloOBMap,
       keys: ['name', 'value'],
       joinBy: 'name',
-      data: byAgeGroupMap
-        .get('0-17')
-        .filter(item => item.year === DATA.defaults.year)
-        .map(item => {
-          const tooltipData = byAgeGroupMap
-            .get(item.ageGroup)
-            .filter(i => i.name === item.name)
-            .map(i => i.value);
-          return { ...item, tooltipData };
-        }),
+      data: byAgeGroupAndYearMap.get('0-17').get(DATA.defaults.year),
     },
   ],
   responsive: {},
