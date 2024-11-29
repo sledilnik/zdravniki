@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /** @import * as DataTypes from "../../data/fake-data" */
 
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef } from 'react';
 
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
-import HighchartsReact from 'highcharts-react-official';
 import { merge as loMerge } from 'lodash';
 
 import { PauseIcon, PlayArrowIcon } from 'components/Shared/Icons';
 import { byMunicipalityAndAgeGroupMap } from 'pages/Analytics/data/fake-data';
+import HighchartsReactComponent from 'pages/Analytics/components/HighchartReactComponent';
 
 import { mapOptions as baseMapOptions } from './chart-options';
 
@@ -20,8 +20,7 @@ import { mapOptions as baseMapOptions } from './chart-options';
  */
 const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
   const mapChartRef = useRef();
-  const mapChart = mapChartRef.current?.chart;
-  const [init, setInit] = useState(false);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const years = useMemo(() => Array.from(data.keys()).sort((a, b) => a - b), [data]);
 
@@ -76,17 +75,6 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
     },
   });
 
-  useEffect(() => {
-    if (!init) {
-      setInit(true);
-    }
-    return () => {
-      if (mapChart) {
-        mapChart.destroy();
-      }
-    };
-  }, [mapChart, init]);
-
   const onYearChange = e => {
     yearIndexRef.current = parseInt(e.target.value, 10);
   };
@@ -115,13 +103,13 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-      <HighchartsReact
+      <HighchartsReactComponent
         ref={mapChartRef}
         highcharts={HighMaps}
         options={mapOptions}
         constructorType="mapChart"
       />
-      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      <HighchartsReactComponent highcharts={Highcharts} options={chartOptions} />
       <div>
         <button
           type="button"

@@ -6,7 +6,7 @@ import MotionCardHighMap from './MotionCardHighMap';
 const MotionCard = function MotionCard() {
   const ageGroups = Array.from(byAgeGroupAndYearMap.keys());
   return (
-    <Card>
+    <Card as="article">
       <CardHeader>
         <CardTitle>Motion Card</CardTitle>
       </CardHeader>
