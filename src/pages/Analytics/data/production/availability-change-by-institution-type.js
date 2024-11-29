@@ -35,7 +35,7 @@ export const availabilityChangeByInstitutionType = {
   order: 3,
   id: 'availabilityChangeByInstitutionType',
   componentName: 'ChartCard',
-  fakeHeight: '524px',
+  fakeHeight: '518px',
   options: {
     chart: {
       type: 'scatter',

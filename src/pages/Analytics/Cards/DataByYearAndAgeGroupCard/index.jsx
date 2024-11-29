@@ -30,7 +30,7 @@ heatmap(Highcharts);
 const { YEARS, AGE_GROUPS, defaults, TOOLTIP_CHART_TYPES } = DATA;
 
 /**
- *
+ * @param {Object} props
  * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the chart.
  * @param {React.ComponentProps<"article">["className"]} props.className - The class name for the chart. Defaults to an empty string.
  * @returns {JSX.Element} The rendered RichInfoClick component.

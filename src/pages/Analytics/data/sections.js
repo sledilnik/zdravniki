@@ -32,7 +32,7 @@ export const charts = [
     section: 'real section 1',
     order: 1,
     componentName: 'DataByYearAndAgeGroupCard',
-    fakeHeight: '800px',
+    fakeHeight: '1500px',
     options: {
       title: {
         text: RomanLustrikCardMapOptions.title.text
@@ -45,7 +45,7 @@ export const charts = [
     section: 'real section 1',
     order: 2,
     componentName: 'RichInfoClick',
-    fakeHeight: '735px',
+    fakeHeight: '822px',
     options: {
       title: {
         text: RichInfoClickOptions.title.text ? RichInfoClickOptions.title.text : 'Missing Title',
