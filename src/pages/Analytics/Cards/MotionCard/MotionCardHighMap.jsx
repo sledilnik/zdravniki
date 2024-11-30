@@ -151,15 +151,24 @@ const MotionCardHighMap = function MotionCardHighMap({ data, ageGroup }) {
           >
             {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
           </button>
+          <label
+            htmlFor={`${ageGroup}-play-range`}
+            className={styles.Label}
+            id={`${ageGroup}-play-range-label`}
+          >
+            Leto
+          </label>
           <input
             ref={buttonRef}
             id={`${ageGroup}-play-range`}
+            name={`${ageGroup}-play-range`}
             type="range"
             value={yearIndex}
             onChange={onYearChange}
             min="0"
             max={`${years.length - 1}`}
             className={styles.Range}
+            list={`${ageGroup}-play-range-tickmarks`}
           />
         </div>
       </div>
