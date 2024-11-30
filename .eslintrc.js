@@ -26,6 +26,12 @@ module.exports = {
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     // @TODO: These should be turned "ON" one by one
     'react/jsx-props-no-spreading': 'warn',
+    'jsx-a11y/label-has-associated-control': [
+      2,
+      {
+        labelAttributes: ['label'],
+      },
+    ],
   },
   settings: {
     'import/resolver': {
