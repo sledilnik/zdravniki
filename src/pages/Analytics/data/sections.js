@@ -7,7 +7,7 @@ import { availabilityChangeByInstitutionType } from './production/availability-c
 export const charts = [
   {
     section: 'real section 1',
-    order: 0,
+    order: 5,
     componentName: 'MotionCard',
     fakeHeight: '2876px', // todo set height when dashboard is done
     options: {

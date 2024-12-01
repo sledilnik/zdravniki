@@ -32,7 +32,7 @@ const datasetPublic = [
  */
 export const availabilityChangeByInstitutionType = {
   section: 'real section 1',
-  order: 3,
+  order: 4,
   id: 'availabilityChangeByInstitutionType',
   componentName: 'ChartCard',
   fakeHeight: '518px',
