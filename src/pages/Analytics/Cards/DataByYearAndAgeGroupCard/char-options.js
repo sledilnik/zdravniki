@@ -48,7 +48,9 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
     headerFormat: '',
-    // className: 'hc-tooltip-with-chart',
+    style: {
+      opacity: 0.95,
+    },
     pointFormat:
       '<div style="min-height: 300px; min-width: 300px;"><span style="font-size: 1rem;"><b>{point.name}</b></span><br><span>Skupina: <b>{point.ageGroup}</b></span><span style="margin-left: 0.5em;">Leto: <b>{point.year}</b><div id="hc-tooltip-with-chart"></div></div',
   },

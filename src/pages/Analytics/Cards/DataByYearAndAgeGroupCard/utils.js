@@ -9,6 +9,7 @@ export function renderChart(point, chartType) {
     chart: {
       type: chartType,
       height: 270,
+      backgroundColor: 'transparent',
     },
 
     xAxis: {
