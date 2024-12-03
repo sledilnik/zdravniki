@@ -43,45 +43,46 @@ const Analytics = function Analytics() {
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
       <TouchdeviceNotification />
-      <main
-        id="main-content"
-        className={cx(styles.Analytics, styles.AnalyticsLayout, styles.MinHeightNoHeader)}
-      >
+      <main id="main-content" className={cx(styles.Analytics)}>
         <Sidebar />
-        <h1 className={styles.MainTitle}>{t('SEO.title.analytics')}</h1>
+        <div className={cx(styles.AnalyticsLayout)}>
+          {SECTIONS.map(section => (
+            <section
+              key={section.sectionTitle}
+              className={styles.ChartSection}
+              aria-label={section.sectionTitle}
+            >
+              <h2 className={styles.SectionTitle}>
+                {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
+              </h2>
+              {section.charts.map(chart => {
+                const Component = CARDS[chart.componentName];
+                const chartProxy = createChartDataProxy(chart);
 
-        {SECTIONS.map(section => (
-          <section key={section.sectionTitle} className={styles.ChartSection}>
-            <h2 className={styles.SectionTitle}>
-              {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
-            </h2>
-            {section.charts.map(chart => {
-              const Component = CARDS[chart.componentName];
-              const chartProxy = createChartDataProxy(chart);
-
-              return (
-                <RenderOnViewportEntry
-                  id={`render-on-viewport-entry-${chartProxy.id}`}
-                  key={chartProxy.id}
-                  style={{ minHeight: chart.fakeHeight }}
-                  intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
-                  srOnlyComponentsBeforeEntered={
-                    <Card style={{ minHeight: chart.fakeHeight }}>
-                      <CardHeader>
-                        <div>
-                          <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
-                          <p>{chartProxy.options.subtitle?.text}</p>
-                        </div>
-                      </CardHeader>
-                    </Card>
-                  }
-                >
-                  <Component id={chartProxy.id} options={chartProxy.options} />
-                </RenderOnViewportEntry>
-              );
-            })}
-          </section>
-        ))}
+                return (
+                  <RenderOnViewportEntry
+                    id={`render-on-viewport-entry-${chartProxy.id}`}
+                    key={chartProxy.id}
+                    style={{ minHeight: chart.fakeHeight }}
+                    intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
+                    srOnlyComponentsBeforeEntered={
+                      <Card style={{ minHeight: chart.fakeHeight }}>
+                        <CardHeader>
+                          <div>
+                            <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
+                            <p>{chartProxy.options.subtitle?.text}</p>
+                          </div>
+                        </CardHeader>
+                      </Card>
+                    }
+                  >
+                    <Component id={chartProxy.id} options={chartProxy.options} />
+                  </RenderOnViewportEntry>
+                );
+              })}
+            </section>
+          ))}
+        </div>
       </main>
       <Footer lng={lng} />
     </>

@@ -1,7 +1,5 @@
 /** @import * as Types from "../../types"  */
 
-import { dimensions } from 'pages/Analytics/highcharts-options/options';
-
 import {
   byAgeGroupAndMunicipalityMap,
   byAgeGroupAndYearMap,
@@ -73,38 +71,6 @@ export const mapOptions = {
         }),
     },
   ],
-  responsive: {
-    rules: [
-      {
-        condition: {
-          minWidth: dimensions.breakpoints.sm,
-        },
-        chartOptions: {
-          chart: {
-            height: dimensions.height.md,
-          },
-        },
-      },
-      {
-        condition: {
-          maxWidth: dimensions.breakpoints.sm,
-        },
-        chartOptions: {
-          chart: {
-            height: dimensions.height.sm,
-          },
-          legend: {
-            enabled: true,
-            align: 'center',
-            verticalAlign: 'bottom',
-            layout: 'horizontal',
-            floating: false,
-            useHTML: true,
-          },
-        },
-      },
-    ],
-  },
 };
 
 /** @type {Types.HighChartsOptions} */

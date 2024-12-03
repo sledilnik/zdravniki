@@ -1,3 +1,8 @@
+.ParentWrapper {
+  container-name: motion-wrapper;
+  container-type: inline-size;
+}
+
 .Wrapper {
   display: grid;
   grid-template-columns: 1fr;
@@ -111,9 +116,9 @@
   border: 1px solid var(--color-controls);
 }
 
-@media only screen and (min-width: 768px) {
+@container motion-wrapper (width >= 400px) {
   .Wrapper {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 3fr;
   }
 
   .Map {
@@ -129,5 +134,11 @@
   .Controls {
     grid-column: 1/2;
     grid-row: 2/3;
+  }
+}
+
+@container motion-wrapper (width >= 600px) {
+  .Wrapper {
+    grid-template-columns: 4fr 5fr;
   }
 }

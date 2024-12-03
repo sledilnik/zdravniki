@@ -32,7 +32,7 @@ export const charts = [
     section: 'real section 1',
     order: 1,
     componentName: 'DataByYearAndAgeGroupCard',
-    fakeHeight: '1500px',
+    fakeHeight: '1358px',
     options: {
       title: {
         text: RomanLustrikCardMapOptions.title.text

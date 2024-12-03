@@ -4,6 +4,7 @@ import { byAgeGroupAndYearMap } from 'pages/Analytics/data/fake-data';
 import ChartHeader from 'pages/Analytics/components/chart-header';
 
 import MotionCardHighMap from './MotionCardHighMap';
+import styles from './MotionCardHighMap.module.css';
 
 /**
  * @param {Object} props
@@ -22,7 +23,7 @@ const MotionCard = function MotionCard({ id, className = '' }) {
           <CardHeader>
             <CardTitle variant="subtitle">Starostna skupina: {ageGroup}</CardTitle>
           </CardHeader>
-          <CardContent key={ageGroup}>
+          <CardContent key={ageGroup} className={styles.ParentWrapper}>
             <MotionCardHighMap data={byAgeGroupAndYearMap.get(ageGroup)} ageGroup={ageGroup} />
           </CardContent>
         </>
