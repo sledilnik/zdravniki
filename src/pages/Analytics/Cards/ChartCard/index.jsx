@@ -68,7 +68,7 @@ const ChartCard = function ChartCard({ id = undefined, className = '', options }
         ]}
       />
       <CardContent>
-        <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <figure>
           <HighchartsReact
             ref={chartRef}
             highcharts={Highcharts}

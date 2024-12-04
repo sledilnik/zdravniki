@@ -174,7 +174,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
         </div>
       </CardContent>
       <CardContent>
-        <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <figure>
           <HighchartsReact
             ref={mapChartRef}
             highcharts={HighMaps}
@@ -182,7 +182,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
             constructorType="mapChart"
           />
         </figure>
-        <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <figure>
           <HighchartsReact highcharts={Highcharts} options={secondChartOptions} />
         </figure>
       </CardContent>

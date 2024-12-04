@@ -134,7 +134,7 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
         </div>
       </CardContent>
       <CardContent>
-        <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <figure>
           <HighchartsReact
             ref={mapChartRef}
             highcharts={HighMaps}
@@ -147,7 +147,6 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
           className={cx(stylesRichInfoClick.SecondFigure, {
             [stylesRichInfoClick.Expanded]: selectedPointsLength > 0,
           })}
-          style={{ display: 'grid', gridTemplateColumns: '1fr' }}
         >
           <div>
             <h3>

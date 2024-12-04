@@ -74,7 +74,7 @@ const MapCard = function MapCard({
         ]}
       />
       <CardContent>
-        <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+        <figure>
           <HighchartsReact
             ref={chartRef}
             highcharts={HighMaps}
