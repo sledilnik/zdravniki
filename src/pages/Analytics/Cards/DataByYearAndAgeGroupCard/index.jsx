@@ -123,7 +123,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
   };
 
   return (
-    <Card id={id} className={className} style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+    <Card id={id} className={className}>
       <ChartHeader showPopover={false} title={mapOptions.title?.text} />
       <CardContent>
         <div className={stylesFilters.FiltersWrapper}>
