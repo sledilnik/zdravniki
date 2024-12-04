@@ -1,5 +1,7 @@
 /** @import * as Types from "../types" */
 
+import slugify from 'slugify';
+
 /**
  * @typedef {(Types.ChartData | Types.MapData)} ChartProxyArg
  */
@@ -19,9 +21,7 @@ export function createChartDataProxy(obj) {
         if (!target.options.title.text) {
           throw new Error('The chart title is missing.');
         }
-        return encodeURIComponent(
-          target.options.title.text.trim().toLowerCase().replace(/\s/g, '-'),
-        );
+        return slugify(target.options.title.text.toLowerCase());
       }
 
       // eslint-disable-next-line prefer-rest-params
