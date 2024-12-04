@@ -65,6 +65,9 @@ export const baseOptions = {
   },
   chart: {
     className: 'font-sans',
+    style: {
+      fontFamily: 'inherit',
+    },
   },
   legend: { enabled: false },
 };
