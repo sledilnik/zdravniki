@@ -80,6 +80,12 @@
   background-color: #f5f5f5;
 }
 
+.SidebarLink.active {
+  font-weight: bold;
+  background-color: #e0f7fa;
+  pointer-events: none;
+}
+
 @media screen and (min-width: 900px) {
   .Sidebar {
     position: sticky;

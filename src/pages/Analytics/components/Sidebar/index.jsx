@@ -7,6 +7,32 @@ import styles from './Sidebar.module.css';
 import { SECTIONS } from '../../data/sections';
 import { createChartDataProxy } from '../../data/create-chart-data-proxy';
 
+/**
+ * Renders sidebar groups with section titles and chart links.
+ *
+ * @param {Function} [closeHandler] - The function to call when a sidebar link is clicked. Can be undefined.
+ * @returns {JSX.Element[]} An array of JSX elements representing the sidebar groups.
+ */
+const renderSidebarGroups = closeHandler =>
+  SECTIONS.map(section => (
+    <div key={section.sectionTitle} className={styles.SidebarGroup}>
+      <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
+      {section.charts.map(chart => {
+        const chartProxy = createChartDataProxy(chart);
+        return (
+          <a
+            key={chartProxy.id}
+            href={`#${chartProxy.id}`}
+            onClick={closeHandler}
+            className={styles.SidebarLink}
+          >
+            {chartProxy.options.title.text}
+          </a>
+        );
+      })}
+    </div>
+  ));
+
 const Sidebar = function Sidebar() {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -17,10 +43,16 @@ const Sidebar = function Sidebar() {
   const closeModal = () => {
     setModalOpen(false);
   };
+
   return (
     <aside className={styles.Sidebar} name="sidebar">
       <div className={styles.SidebarMobile}>
-        <button type="button" onClick={openModal} aria-label="show links to charts">
+        <button
+          type="button"
+          onClick={openModal}
+          aria-label="show links to charts"
+          aria-expanded={modalOpen}
+        >
           <Icons.Icon name="Chart" />
         </button>
         <Modal
@@ -33,52 +65,14 @@ const Sidebar = function Sidebar() {
             Pojdi na graf
           </h2>
           <nav className={styles.SidebarGroupsWrapper} aria-label="Chart Navbar Mobile">
-            {SECTIONS.map(section => (
-              <div key={section.sectionTitle} className={styles.SidebarGroup}>
-                <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
-                {section.charts.map(chart => {
-                  const chartProxy = createChartDataProxy(chart);
-                  return (
-                    <a
-                      key={chartProxy.id}
-                      href={`#${chartProxy.id}`}
-                      onClick={closeModal}
-                      className={styles.SidebarLink}
-                    >
-                      {chartProxy.options.title.text}
-                    </a>
-                  );
-                })}
-              </div>
-            ))}
+            {renderSidebarGroups(closeModal)}
           </nav>
         </Modal>
       </div>
       <div className={styles.SidebarDesktop}>
         <h2 className={styles.SidebarTitle}>Grafi</h2>
         <nav className={styles.SidebarGroupsWrapper} aria-label="Chart Navbar Desktop">
-          {SECTIONS.map(section => (
-            <div
-              key={section.sectionTitle}
-              className={styles.SidebarGroup}
-              aria-label={section.sectionTitle}
-            >
-              <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
-              {section.charts.map(chart => {
-                const chartProxy = createChartDataProxy(chart);
-                return (
-                  <a
-                    key={chartProxy.id}
-                    href={`#${chartProxy.id}`}
-                    onClick={closeModal}
-                    className={styles.SidebarLink}
-                  >
-                    {chartProxy.options.title.text}
-                  </a>
-                );
-              })}
-            </div>
-          ))}
+          {renderSidebarGroups()}
         </nav>
       </div>
     </aside>
