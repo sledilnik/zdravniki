@@ -22,6 +22,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
 import { byMunicipalityMap, byAgeGroupAndYearMap, DATA } from 'pages/Analytics/data/fake-data';
+import stylesFilters from 'pages/Analytics/components/filters.module.css';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 
@@ -86,16 +87,10 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
       <Separator />
       <CardContent className={styles.Body}>
         <div className={cx(styles.FirstColumn, styles.Filters)}>
-          <div style={{ display: 'inline-block' }}>
+          <div className={stylesFilters.FiltersWrapper}>
             <label htmlFor={`${id}-year-select`}>
               Leto:{' '}
-              <select
-                id={`${id}-year-select`}
-                name="year"
-                onChange={onYearChange}
-                value={year}
-                style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
-              >
+              <select id={`${id}-year-select`} name="year" onChange={onYearChange} value={year}>
                 {DATA.YEARS.map(year => (
                   <option key={year} value={year}>
                     {year}
@@ -104,7 +99,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
               </select>
             </label>
           </div>
-          <div style={{ display: 'inline-block' }}>
+          <div>
             <label htmlFor={`${id}-age-group-select`}>
               Skupina:{' '}
               <select
@@ -112,7 +107,6 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
                 name="ageGroup"
                 value={ageGroup}
                 onChange={onAgeGroupChange}
-                style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
               >
                 {DATA.AGE_GROUPS.map(ageGroup => (
                   <option key={ageGroup} value={ageGroup}>

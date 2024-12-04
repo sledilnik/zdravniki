@@ -21,6 +21,7 @@ import { Card, CardContent } from '../../components/ui/card';
 
 import styles from '../Cards.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
+import stylesFilters from '../../components/filters.module.css';
 
 /**
  *
@@ -119,21 +120,18 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
     <Card id={id} className={cx(stylesRichInfoClick.RichInfoClick, className)} as="article">
       <ChartHeader showPopover={false} title={mapOptions.title.text} />
       <CardContent>
-        <label htmlFor="year-select">
-          Leto:{' '}
-          <select
-            id="year-select"
-            name="year-select"
-            onChange={onYearChange}
-            style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
-          >
-            {yearsSortedDesc.map(year => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className={stylesFilters.FiltersWrapper}>
+          <label htmlFor="year-select">
+            Leto:{' '}
+            <select id="year-select" name="year-select" onChange={onYearChange}>
+              {yearsSortedDesc.map(year => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </CardContent>
       <CardContent>
         <figure style={{ display: 'grid', gridTemplateColumns: '1fr' }}>

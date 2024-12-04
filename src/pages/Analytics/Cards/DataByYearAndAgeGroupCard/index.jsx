@@ -18,6 +18,7 @@ import {
   byAgeGroupMap,
   DATA,
 } from 'pages/Analytics/data/fake-data';
+import stylesFilters from 'pages/Analytics/components/filters.module.css';
 
 import { mapOptions, chartOptions } from './char-options';
 import { createChartData, createSeriesDataMap, renderChart } from './utils';
@@ -125,16 +126,10 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
     <Card id={id} className={className} style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
       <ChartHeader showPopover={false} title={mapOptions.title?.text} />
       <CardContent>
-        <div style={{ display: 'inline-block', marginRight: '0.5em' }}>
+        <div className={stylesFilters.FiltersWrapper}>
           <label htmlFor={`${id}-year-select`}>
             Leto:{' '}
-            <select
-              id={`${id}-year-select`}
-              name="year"
-              onChange={onYearChange}
-              value={year}
-              style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
-            >
+            <select id={`${id}-year-select`} name="year" onChange={onYearChange} value={year}>
               {YEARS.map(year => (
                 <option key={year} value={year}>
                   {year}
@@ -143,7 +138,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
             </select>
           </label>
         </div>
-        <div style={{ display: 'inline-block' }}>
+        <div className={stylesFilters.FiltersWrapper}>
           <label htmlFor={`${id}-age-group-select`}>
             Skupina:{' '}
             <select
@@ -151,7 +146,6 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
               name="ageGroup"
               value={ageGroup}
               onChange={onAgeGroupChange}
-              style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
             >
               {AGE_GROUPS.map(ageGroup => (
                 <option key={ageGroup} value={ageGroup}>
@@ -161,7 +155,7 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
             </select>
           </label>
         </div>
-        <div style={{ display: 'inline-block', marginLeft: '0.5em' }}>
+        <div className={stylesFilters.FiltersWrapper}>
           <label htmlFor="chart-type-select">
             Tip grafa:{' '}
             <select
@@ -169,7 +163,6 @@ const DataByYearAndAgeGroupCard = function DataByYearAndAgeGroupCard({ id, class
               name="chartType"
               value={tooltipChartType}
               onChange={onTooltipChartTypeChange}
-              style={{ padding: '0.25em 1em', borderRadius: '0.25em' }}
             >
               {TOOLTIP_CHART_TYPES.map(type => (
                 <option key={type} value={type}>
