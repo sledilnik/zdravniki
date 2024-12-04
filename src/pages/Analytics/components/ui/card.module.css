@@ -2,6 +2,7 @@
   background: var(--card);
   color: var(--card-foreground);
   border-radius: var(--radius);
+  border: 1px solid var(--border);
 }
 
 .PaddingNone {

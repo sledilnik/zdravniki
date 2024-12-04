@@ -2,6 +2,7 @@
   --danger: #dc3435;
   --success: #95c83f;
   --warn: #ffa500;
+  --border: transparent;
   background: transparent;
   border-radius: 0;
 }
