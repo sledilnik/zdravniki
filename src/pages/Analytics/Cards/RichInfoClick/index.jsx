@@ -5,23 +5,23 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
-import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
+import HighMaps from 'highcharts/highmaps';
 
 import ChartHeader from '../../components/chart-header';
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
+import { Card, CardContent } from '../../components/ui/card';
 import {
   baseSecondChartOptions,
   firstChartSeriesMap,
   mapOptions,
-  secondChartSeriesDataMap,
+  secondChartSeriesMap,
   yearsSortedDesc,
 } from './chart-options';
-import { Card, CardContent } from '../../components/ui/card';
 
+import stylesFilters from '../../components/filters.module.css';
 import styles from '../Cards.module.css';
 import stylesRichInfoClick from './RichInfoClick.module.css';
-import stylesFilters from '../../components/filters.module.css';
 
 /**
  *
@@ -47,8 +47,13 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
 
   const selectedPointsLength = selectedPoints.length;
 
-  const series = useMemo(
-    () => selectedPoints.map(name => secondChartSeriesDataMap.get(name)),
+  const secondChartSeries = useMemo(
+    () =>
+      selectedPoints.map(name => ({
+        id: name,
+        name,
+        data: secondChartSeriesMap.get(name).map(item => ({ x: item.year, y: item.value })),
+      })),
     [selectedPoints],
   );
 
@@ -95,21 +100,25 @@ const RichInfoClick = function RichInfoClick({ id = undefined, className = '' })
       return;
     }
     if (selectedPointsLength === 0) {
-      setSecondChartOptions({ series });
+      setSecondChartOptions({ series: [] });
       return;
     }
     setSecondChartOptions({
-      series,
+      series: secondChartSeries,
       chart: { type: selectedPointsLength > 1 ? 'spline' : 'area' },
     });
-  }, [secondChart, selectedPointsLength, series]);
+  }, [secondChart, selectedPointsLength, secondChartSeries]);
 
   const onYearChange = e => {
     const newYear = Number(e.target.value);
-    const newSeries = firstChartSeriesMap.get(newYear).map(item => ({
-      ...item,
-      selected: selectedPoints.includes(item.name),
-    }));
+    const newSeries = firstChartSeriesMap
+      .get(newYear)
+      .get('0-17')
+      .map(item => ({
+        ...item,
+        selected: selectedPoints.includes(item.name),
+        id: item.name,
+      }));
 
     setMapChartOptions({
       series: [{ data: newSeries }],

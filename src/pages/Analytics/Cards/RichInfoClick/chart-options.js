@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from "../../types"  */
 
-import { fakeData } from 'pages/Analytics/data/fake-data';
+import { byAgeGroupAndMunicipalityMap, byYearAndAgeGroupMap } from 'pages/Analytics/data/fake-data';
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 
 import { dimensions } from '../../highcharts-options/options';
@@ -27,42 +27,7 @@ import { dimensions } from '../../highcharts-options/options';
  * @property {SeriesDataItem[]} data
  */
 
-/**
- * @description Transforms the data into a format that Highcharts can understand.
- * @function
- * @param {DataItem[]} data - The data to transform.
- * @returns {SeriesItem[]}
- */
-const transformData = data => {
-  // Initialize an empty object to accumulate the transformed data
-  const result = data.reduce((acc, item) => {
-    // If the accumulator doesn't have an entry for the current item's name, create one
-    if (!acc[item.name]) {
-      acc[item.name] = [];
-    }
-    // Push the current item's year and value as an object into the corresponding name's array
-    acc[item.name].push({ x: item.year, y: item.value });
-    return acc;
-  }, {});
-
-  // Convert the accumulated object into an array of objects with name and data properties
-  return Object.keys(result).map(key => ({
-    id: key,
-    name: key,
-    data: result[key],
-  }));
-};
-
-/**
- * @type {DataItem[]}
- */
-export const firstChartSeriesMap = fakeData.reduce((acc, item) => {
-  if (!acc.has(item.year)) {
-    acc.set(item.year, []);
-  }
-  acc.get(item.year).push(item);
-  return acc;
-}, new Map());
+export const firstChartSeriesMap = byYearAndAgeGroupMap;
 
 export const yearsSortedDesc = Array.from(firstChartSeriesMap.keys())
   .filter(v => !Number.isNaN(v))
@@ -145,7 +110,7 @@ export const mapOptions = {
       mapData: sloOBMap,
       keys: ['name', 'value'],
       joinBy: 'name',
-      data: firstChartSeriesMap.get(yearsSortedDesc[0]),
+      data: firstChartSeriesMap.get(yearsSortedDesc[0]).get('0-17'),
       allowPointSelect: true,
       cursor: 'pointer',
       states: {
@@ -167,13 +132,13 @@ export const mapOptions = {
   ],
 };
 
-const secondChartSeries = transformData(fakeData);
-export const secondChartSeriesDataMap = new Map(secondChartSeries.map(item => [item.name, item]));
+export const secondChartSeriesMap = byAgeGroupAndMunicipalityMap.get('0-17');
 
 /** @type {Types.HighchartsOptions} */
 export const baseSecondChartOptions = {
   chart: {
     type: 'area',
+    height: dimensions.height.md,
   },
   credits: {
     enabled: false,
