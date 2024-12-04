@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
-import { lazy } from 'react';
+import { lazy, useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { cx } from 'class-variance-authority';
@@ -41,8 +42,24 @@ const Analytics = function Analytics() {
   const { lng } = useParams();
 
   /**
-   * TODO figure out fakeHeight for different cards on different viewports
+   * TODO fix the fakeHeight hack
+   * HACK to remove fakeHeight from article wrappers; this is a temporary solution util we figure out a better way to handle fake heights;
+   * The charts are loaded in a lazy way and the fakeHeight is used to prevent layout shift when the chart is loaded;
+   * The problem that I want to solve is that the fakeHeight is different for different viewports and the layout shift is still happening;
+   * Also I want to have correct scrolling position before chart is loaded.
+   * The fakeHeight is removed after the chart is loaded to prevent not consisant space between cards.
+   *
+   * I might try to wrap only the charts in the RenderOnViewportEntry component and not the whole card.
    */
+  useLayoutEffect(() => {
+    const articleWrappers = document.querySelectorAll('[data-card-id');
+    articleWrappers.forEach(articleWrapper => {
+      const article = articleWrapper.querySelector('article');
+      if (article) {
+        articleWrapper.style = undefined;
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -65,7 +82,7 @@ const Analytics = function Analytics() {
                 const chartProxy = createChartDataProxy(chart);
 
                 return (
-                  <div style={{ minHeight: chart.fakeHeight, position: 'relative' }}>
+                  <div data-card-id={chartProxy.id} style={{ minHeight: chart.fakeHeight }}>
                     <RenderOnViewportEntry
                       id={`render-on-viewport-entry-${chartProxy.id}`}
                       key={chartProxy.id}
