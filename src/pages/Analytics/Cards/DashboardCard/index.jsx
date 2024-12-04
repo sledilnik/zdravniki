@@ -7,10 +7,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
-import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
+import HighMaps from 'highcharts/highmaps';
 
-import Scorecard from 'pages/Analytics/components/Scorecard';
 import {
   Card,
   CardContent,
@@ -18,11 +17,12 @@ import {
   CardHeader,
   CardTitle,
 } from 'pages/Analytics//components/ui/card';
+import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
-import { byMunicipalityMap, byAgeGroupAndYearMap, DATA } from 'pages/Analytics/data/fake-data';
 import stylesFilters from 'pages/Analytics/components/filters.module.css';
+import { byAgeGroupAndYearMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/fake-data';
+import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 
@@ -99,7 +99,7 @@ const DashboardCard = function DashboardCard({ id = undefined, className = '' })
               </select>
             </label>
           </div>
-          <div>
+          <div className={stylesFilters.FiltersWrapper}>
             <label htmlFor={`${id}-age-group-select`}>
               Skupina:{' '}
               <select
