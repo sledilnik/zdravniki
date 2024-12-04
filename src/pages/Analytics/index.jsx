@@ -45,7 +45,7 @@ const Analytics = function Analytics() {
       <TouchdeviceNotification />
       <main id="main-content" className={cx(styles.Analytics)}>
         <Sidebar />
-        <div className={cx(styles.AnalyticsLayout)}>
+        <div className={cx(styles.AnalyticsLayout, styles.PageContent)}>
           {SECTIONS.map(section => (
             <section
               key={section.sectionTitle}
