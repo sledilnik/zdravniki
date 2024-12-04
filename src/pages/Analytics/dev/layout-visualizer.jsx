@@ -2,7 +2,7 @@ import styles from '../Layout.module.css';
 
 const LayoutVisualizer = function LayoutVisualizer() {
   return (
-    <div className={styles.AnalyticsLayout}>
+    <div className={styles.Layout}>
       <div className={styles.Full} style={{ background: 'rgba(255, 0, 0, 1)' }}>
         FULL
       </div>

@@ -28,7 +28,7 @@ import stylesLayout from '../../Layout.module.css';
 const Footer = function Footer({ lng }) {
   const tHeader = t('header', { returnObjects: true });
   return (
-    <footer className={cx(stylesLayout.AnalyticsLayout, styles.Footer)}>
+    <footer className={cx(stylesLayout.Layout, styles.Footer)}>
       <div className={cx(stylesLayout.FullContent, styles.FooterTopContainer)}>
         <div className={styles.FooterContent}>
           <Icons.Icon id="zdravniki-sledilnik-logo-footer" name="Logo" className={styles.Logo} />

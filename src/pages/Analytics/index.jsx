@@ -12,7 +12,8 @@ import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 
-import styles from './Layout.module.css';
+import styles from './Analytics.module.css';
+import stylesLayout from './Layout.module.css';
 
 import { SECTIONS } from './data/sections';
 import { createChartDataProxy } from './data/create-chart-data-proxy';
@@ -45,7 +46,7 @@ const Analytics = function Analytics() {
       <TouchdeviceNotification />
       <main id="main-content" className={cx(styles.Analytics)}>
         <Sidebar />
-        <div className={cx(styles.AnalyticsLayout, styles.PageContent)}>
+        <div className={cx(stylesLayout.Layout, styles.PageContent)}>
           {SECTIONS.map(section => (
             <section
               key={section.sectionTitle}
