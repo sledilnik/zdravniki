@@ -7,17 +7,17 @@ import { cx } from 'class-variance-authority';
 import * as SEO from 'components/SEO';
 import { t } from 'i18next';
 
-import './highcharts-options';
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
+import './highcharts-options';
 
 import styles from './Analytics.module.css';
 import stylesLayout from './Layout.module.css';
 
-import { SECTIONS } from './data/sections';
-import { createChartDataProxy } from './data/create-chart-data-proxy';
 import TouchdeviceNotification from './components/TouchDeviceNotification';
+import { createChartDataProxy } from './data/create-chart-data-proxy';
+import { SECTIONS } from './data/sections';
 
 import { Card, CardHeader } from './components/ui/card';
 
@@ -40,6 +40,10 @@ const CARDS = {
 const Analytics = function Analytics() {
   const { lng } = useParams();
 
+  /**
+   * TODO figure out fakeHeight for different cards on different viewports
+   */
+
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
@@ -61,24 +65,25 @@ const Analytics = function Analytics() {
                 const chartProxy = createChartDataProxy(chart);
 
                 return (
-                  <RenderOnViewportEntry
-                    id={`render-on-viewport-entry-${chartProxy.id}`}
-                    key={chartProxy.id}
-                    style={{ minHeight: chart.fakeHeight }}
-                    intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
-                    srOnlyComponentsBeforeEntered={
-                      <Card style={{ minHeight: chart.fakeHeight }}>
-                        <CardHeader>
-                          <div>
-                            <h3 id={chartProxy.id}>{chartProxy.options.title?.text}</h3>
-                            <p>{chartProxy.options.subtitle?.text}</p>
-                          </div>
-                        </CardHeader>
-                      </Card>
-                    }
-                  >
-                    <Component id={chartProxy.id} options={chartProxy.options} />
-                  </RenderOnViewportEntry>
+                  <div style={{ minHeight: chart.fakeHeight, position: 'relative' }}>
+                    <RenderOnViewportEntry
+                      id={`render-on-viewport-entry-${chartProxy.id}`}
+                      key={chartProxy.id}
+                      intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
+                      srOnlyComponentsBeforeEntered={
+                        <Card id={chartProxy.id}>
+                          <CardHeader>
+                            <div>
+                              <h3>{chartProxy.options.title?.text}</h3>
+                              <p>{chartProxy.options.subtitle?.text}</p>
+                            </div>
+                          </CardHeader>
+                        </Card>
+                      }
+                    >
+                      <Component id={chartProxy.id} options={chartProxy.options} />
+                    </RenderOnViewportEntry>
+                  </div>
                 );
               })}
             </section>
