@@ -28,6 +28,9 @@ const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
 const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
 const DashboardCard = lazy(() => import('./Cards/DashboardCard'));
 const MotionCard = lazy(() => import('./Cards/MotionCard'));
+const InsuredByDefinitionAndByAgeGroup = lazy(
+  () => import('./Cards/prod/InsuredByDefinitionAndByAgeGroup'),
+);
 
 const CARDS = {
   MotionCard,
@@ -36,6 +39,7 @@ const CARDS = {
   RichInfoClick,
   DataByYearAndAgeGroupCard,
   DashboardCard,
+  InsuredByDefinitionAndByAgeGroup,
 };
 
 const Analytics = function Analytics() {

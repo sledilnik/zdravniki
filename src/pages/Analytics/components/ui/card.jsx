@@ -74,6 +74,7 @@ const titleVariants = cva('', {
     variant: {
       title: styles.Title,
       subtitle: styles.Subtitle,
+      description: styles.Description,
     },
   },
   defaultVariants: {

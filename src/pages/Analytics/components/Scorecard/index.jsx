@@ -5,11 +5,26 @@ import { useParams } from 'react-router';
 
 import { cva } from 'class-variance-authority';
 
-import { TrendingFlatIcon, TrendingUpIcon, TrendingDownIcon } from 'components/Shared/Icons';
+import { TrendingDownIcon, TrendingFlatIcon, TrendingUpIcon } from 'components/Shared/Icons';
 import { Card, CardContent } from '../ui/card';
 
 import styles from './Scorecard.module.css';
 
+/**
+ * Determines the trend name based on the change value.
+ * @param {number} change - The change value.
+ * @returns {ChangeDirection} The trend name ('up', 'down', 'no').
+ */
+function determineTrendName(change) {
+  switch (true) {
+    case change > 0:
+      return 'up';
+    case change < 0:
+      return 'down';
+    default:
+      return 'no';
+  }
+}
 /**
  * @typedef {"up" | "down" | "no"} ChangeDirection
  */
@@ -74,36 +89,45 @@ const Scorecard = function Scorecard({
   label,
   value,
   change,
-  changeDirection,
+
   valueLabel,
   changeLabel,
 }) {
+  if (!['description', 'scorecard'].includes(scorecardType))
+    throw new Error("scorecardType must be either 'description' or 'scorecard'");
+
   const { lng } = useParams();
 
   const isScorecard = scorecardType === 'scorecard';
 
+  const valueFormat = Intl.NumberFormat(lng, { style: 'decimal' });
+  const changeFarmat = Intl.NumberFormat(lng, {
+    style: 'percent',
+    signDisplay: 'always',
+    maximumFractionDigits: 2,
+  });
+
+  const changeDirection = determineTrendName(change);
+
   const elements = isScorecard ? (
     <>
       <span className={styles.Label}>{label}</span>
-      <span className={styles.Value}>{value.toLocaleString(lng)}</span>
+      <span className={styles.Value}>{valueFormat.format(value)}</span>
       <div className={styles.ChangeDirection}>
         <ChangeIcon changeDirection={changeDirection} />
-        <span className={colorVariants({ changeDirection })}>
-          {change > 0 ? '+' : ''}
-          {change.toLocaleString(lng)}
-        </span>
+        <span className={colorVariants({ changeDirection })}>{changeFarmat.format(change)}</span>
       </div>
     </>
   ) : (
     <>
-      <span className={styles.Label} style={{ minHeight: '1.5rem' }} />
+      <span className={styles.Label} />
       <span className={styles.DescriptionValue}>{valueLabel}</span>
       <span className={styles.DescriptionChangeDirection}>{changeLabel}</span>
     </>
   );
 
   return (
-    <Card padding="sm" className={styles.Scorecard}>
+    <Card padding="none" className={styles.Scorecard}>
       <CardContent className={styles.Content}>{elements}</CardContent>
     </Card>
   );
