@@ -14,6 +14,8 @@ import { DATA } from 'pages/Analytics/data/fake-data';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { mapOptions, secondChartOptions } from './chart-options';
 
+import styles from './InsuredByDefinitionAndByAgeGroup.module.css';
+
 import {
   ASSIGNED_TYPES,
   calculateAssignedTypesTotals,
@@ -126,17 +128,11 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
   );
 
   return (
-    <Card
-      id={id}
-      style={{
-        display: 'grid',
-        gridTemplateAreas: '"header header" "filters scorecards" "map chart"',
-      }}
-    >
-      <CardHeader style={{ gridArea: 'header' }}>
+    <Card id={id} className={styles.InsuredByDefinitionAndByAgeGroup}>
+      <CardHeader className={styles.Header}>
         <CardTitle>{mapRef.current?.chart?.options.title.text}</CardTitle>
       </CardHeader>
-      <CardContent style={{ gridArea: 'filters' }}>
+      <CardContent className={styles.FiltersContainer}>
         <FilterForm
           filterState={filterState}
           onChange={onFilterChange}
@@ -150,8 +146,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
           }}
         />
       </CardContent>
-
-      <CardContent style={{ display: 'flex', gap: '0.5em' }}>
+      <CardContent className={styles.ScorecardsContainer}>
         <Scorecard
           valueLabel="izbrano leto"
           changeLabel="prejšnje leto"
@@ -168,7 +163,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
           change={trendUnassigned}
         />
       </CardContent>
-      <CardContent style={{ gridArea: 'map' }}>
+      <CardContent className={styles.MapContainer}>
         <figure>
           <HighchartsReact
             ref={mapRef}
@@ -178,7 +173,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
           />
         </figure>
       </CardContent>
-      <CardContent style={{ gridArea: 'chart' }}>
+      <CardContent className={styles.ChartContainer}>
         <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
         <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
           <CardTitle as="span" variant="description">

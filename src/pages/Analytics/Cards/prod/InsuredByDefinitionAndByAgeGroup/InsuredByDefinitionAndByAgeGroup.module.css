@@ -1,0 +1,29 @@
+.InsuredByDefinitionAndByAgeGroup {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'filters scorecards'
+    'map chart';
+}
+
+.Header {
+  grid-area: header;
+}
+
+.FiltersContainer {
+  grid-area: filters;
+}
+
+.ScorecardsContainer {
+  grid-area: scorecards;
+  display: flex;
+  gap: 0.5em;
+}
+
+.MapContainer {
+  grid-area: map;
+}
+
+.ChartContainer {
+  grid-area: chart;
+}
