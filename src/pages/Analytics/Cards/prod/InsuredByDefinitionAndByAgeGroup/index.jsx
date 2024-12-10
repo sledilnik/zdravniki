@@ -28,7 +28,15 @@ import { FilterForm } from './FilterForm';
 
 const { YEARS, AGE_GROUPS, MUNICIPALITIES } = DATA;
 
-const useMap = (initialFilterState, options) => {
+/**
+ *
+ * @param {Types.UserInputsValues} initialFilterState
+ * @param {{map: Highcharts.Options, chart: Highcharts.Options}} options
+ * @param {boolean} init
+ * @returns
+ */
+const useCharts = (initialFilterState, options, init) => {
+  const [filterState, setFilterState] = useState(initialFilterState);
   /** @type {[Highcharts.Options, React.Dispatch<React.SetStateAction<Highcharts.Options>>]} */
   const [mapChartOptions, setMapChartOptions] = useState(options.map);
   /** @type {[Highcharts.Options, React.Dispatch<React.SetStateAction<Highcharts.Options>>]} */
@@ -38,35 +46,8 @@ const useMap = (initialFilterState, options) => {
     }),
   );
 
-  return { mapChartOptions, barChartOptions, setMapChartOptions, setBarChartOptions };
-};
-
-const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGroup() {
-  const [filterState, setFilterState] = useState({
-    ...DEFAULTS,
-  });
-
-  const { mapChartOptions, barChartOptions, setMapChartOptions, setBarChartOptions } = useMap(
-    filterState,
-    { map: mapOptions, chart: secondChartOptions },
-  );
-  const [, setInit] = useState(false);
-
-  const mapRef = useRef(null);
-  const chartRef = useRef(null);
-  const mapChart = mapRef.current?.chart;
-
-  const onFilterChange = e => {
-    const { name, value } = e.target;
-    const newValue = name === 'year' ? Number(value) : value;
-    setFilterState({ ...filterState, [name]: newValue });
-  };
-
   useEffect(() => {
-    setInit(true);
-  }, []);
-
-  useEffect(() => {
+    if (!init) return;
     setMapChartOptions({
       plotOptions: {
         series: {
@@ -84,7 +65,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
         },
       },
     });
-  }, [mapChart, setMapChartOptions]);
+  }, [init]);
 
   useEffect(() => {
     const mapSeriesData = getMapSeriesData(filterState);
@@ -105,7 +86,38 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
         { data: newBarChartSeriesData.unassigned },
       ],
     });
-  }, [filterState, setMapChartOptions, setBarChartOptions]);
+  }, [filterState]);
+
+  return {
+    filterState,
+    setFilterState,
+    mapChartOptions,
+    barChartOptions,
+    setMapChartOptions,
+    setBarChartOptions,
+  };
+};
+
+const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGroup() {
+  const [init, setInit] = useState(false);
+  const { filterState, setFilterState, mapChartOptions, barChartOptions } = useCharts(
+    DEFAULTS,
+    { map: mapOptions, chart: secondChartOptions },
+    init,
+  );
+
+  const mapRef = useRef(null);
+  const chartRef = useRef(null);
+
+  const onFilterChange = e => {
+    const { name, value } = e.target;
+    const newValue = name === 'year' ? Number(value) : value;
+    setFilterState({ ...filterState, [name]: newValue });
+  };
+
+  useEffect(() => {
+    setInit(true);
+  }, []);
 
   const { assignedTotalsCurrent, trendAssigned, trendUnassigned } = useMemo(
     () => calculateAssignedTypesTotals(filterState),
