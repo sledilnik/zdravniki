@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 
@@ -98,7 +99,7 @@ const useCharts = (initialFilterState, options, init) => {
   };
 };
 
-const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGroup() {
+const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGroup({ id }) {
   const [init, setInit] = useState(false);
   const { filterState, setFilterState, mapChartOptions, barChartOptions } = useCharts(
     DEFAULTS,
@@ -126,6 +127,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
 
   return (
     <Card
+      id={id}
       style={{
         display: 'grid',
         gridTemplateAreas: '"header header" "filters scorecards" "map chart"',
