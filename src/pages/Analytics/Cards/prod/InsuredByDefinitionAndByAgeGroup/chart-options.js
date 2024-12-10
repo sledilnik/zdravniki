@@ -42,9 +42,8 @@ export const mapOptions = {
       allowPointSelect: true,
       states: {
         select: {
-          color: '#95C83F',
-          borderColor: 'black',
-          dashStyle: 'shortdot',
+          color: '#ffa500',
+          borderColor: '#000000',
         },
       },
       borderWidth: 0.5,
@@ -95,7 +94,17 @@ export const secondChartOptions = {
     enabled: false,
   },
   series: [
-    { id: 'assigned', name: 'opredeljeni', data: defaultSecondChartSeriesData.assigned },
-    { id: 'unassigned', name: 'neopredeljeni', data: defaultSecondChartSeriesData.unassigned },
+    {
+      id: 'assigned',
+      name: 'opredeljeni',
+      data: defaultSecondChartSeriesData.assigned,
+      color: '#0d8bab',
+    },
+    {
+      id: 'unassigned',
+      name: 'neopredeljeni',
+      data: defaultSecondChartSeriesData.unassigned,
+      color: '#095568',
+    },
   ],
 };
