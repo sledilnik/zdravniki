@@ -1,10 +1,22 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
+import { cx } from 'class-variance-authority';
+
 import { forwardRef } from 'react';
 import Select from 'react-select';
+import styles from './FilterForm.module.css';
 import { ASSIGNED_TYPES_MAP, CONTRACT_TYPES_MAP, DOCTOR_TYPES_MAP } from './data';
+
+const Label = function Label({ children, className, ...props }) {
+  return (
+    <label className={cx(styles.Label, className)} {...props}>
+      {children}
+    </label>
+  );
+};
 
 export const FilterForm = forwardRef(
   (
@@ -43,19 +55,9 @@ export const FilterForm = forwardRef(
             flex: '1 1 0',
           }}
         >
-          <label
-            htmlFor="municipality"
-            style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}
-          >
-            Občina
-          </label>
+          <Label htmlFor="municipality">Občina</Label>
           <Select
             styles={{
-              container: base => ({
-                ...base,
-                minWidth: '30ch',
-                maxWidth: '40ch',
-              }),
               control: (base, state) => ({
                 ...base,
                 cursor: 'pointer',
@@ -70,6 +72,8 @@ export const FilterForm = forwardRef(
               }),
               input: base => ({
                 ...base,
+                minWidth: '30ch',
+                maxWidth: '40ch',
               }),
               option: (base, state) => {
                 const backgroundColor = state.isSelected
@@ -103,9 +107,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <label htmlFor="year" style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}>
-            Leto
-          </label>
+          <Label htmlFor="year">Leto</Label>
           <Select
             name="year"
             id="year"
@@ -117,9 +119,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <label htmlFor="ageGroup" style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}>
-            Skupina
-          </label>
+          <Label htmlFor="ageGroup">Skupina</Label>
           <Select
             styles={{
               input: base => ({ ...base, minWidth: '5ch' }),
@@ -139,9 +139,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <label htmlFor="doctorType" style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}>
-            Zdravnik
-          </label>
+          <Label htmlFor="doctorType">Zdravnik</Label>
           <Select
             styles={{ container: base => ({ ...base, minWidth: '20ch' }) }}
             name="doctorType"
@@ -161,12 +159,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <label
-            htmlFor="contractType"
-            style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}
-          >
-            Status
-          </label>
+          <Label htmlFor="contractType">Status</Label>
           <Select
             styles={{
               input: base => ({ ...base, minWidth: '8ch' }),
@@ -190,12 +183,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <label
-            htmlFor="assignedType"
-            style={{ color: 'var(--muted-foreground)', fontWeight: 400 }}
-          >
-            Opredeljenost
-          </label>
+          <Label htmlFor="assignedType">Opredeljenost</Label>
           <Select
             styles={{
               input: base => ({ ...base, minWidth: '12ch' }),
