@@ -1,8 +1,15 @@
 .InsuredByDefinitionAndByAgeGroup {
+  container-name: something;
+  container-type: inline-size;
+}
+
+.Grid {
   display: grid;
   grid-template-areas:
     'header header'
-    'filters scorecards'
+    'separator separator'
+    'filters filters'
+    'scorecards scorecards'
     'map chart';
 }
 
@@ -18,6 +25,7 @@
   grid-area: scorecards;
   display: flex;
   gap: 0.5em;
+  margin-left: auto;
 }
 
 .MapContainer {
@@ -26,4 +34,14 @@
 
 .ChartContainer {
   grid-area: chart;
+}
+
+@container something (width >= 768px) {
+  .Grid {
+    grid-template-areas:
+      'header header'
+      'separator separator'
+      'filters scorecards'
+      'map chart';
+  }
 }

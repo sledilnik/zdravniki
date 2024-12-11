@@ -10,6 +10,7 @@ import HighMaps from 'highcharts/highmaps';
 import { merge as loMerge } from 'lodash';
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import { Separator } from 'pages/Analytics/components/ui/separator';
 import { DATA } from 'pages/Analytics/data/fake-data';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { mapOptions, secondChartOptions } from './chart-options';
@@ -129,67 +130,70 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
 
   return (
     <Card id={id} className={styles.InsuredByDefinitionAndByAgeGroup}>
-      <CardHeader className={styles.Header}>
-        <CardTitle>{mapRef.current?.chart?.options.title.text}</CardTitle>
-      </CardHeader>
-      <CardContent className={styles.FiltersContainer}>
-        <FilterForm
-          filterState={filterState}
-          onChange={onFilterChange}
-          filterOptions={{
-            municipalities: MUNICIPALITIES,
-            years: YEARS,
-            ageGroups: AGE_GROUPS,
-            doctorTypes: DOCTOR_TYPES,
-            assignedTypes: ASSIGNED_TYPES,
-            contractTypes: CONTRACT_TYPES,
-          }}
-        />
-      </CardContent>
-      <CardContent className={styles.ScorecardsContainer}>
-        <Scorecard
-          valueLabel="izbrano leto"
-          changeLabel="prejšnje leto"
-          scorecardType="description"
-        />
-        <Scorecard
-          label="Opredeljeni"
-          value={assignedTotalsCurrent.assigned}
-          change={trendAssigned}
-        />
-        <Scorecard
-          label="Neopredeljeni"
-          value={assignedTotalsCurrent.unassigned}
-          change={trendUnassigned}
-        />
-      </CardContent>
-      <CardContent className={styles.MapContainer}>
-        <figure>
-          <HighchartsReact
-            ref={mapRef}
-            highcharts={HighMaps}
-            constructorType="mapChart"
-            options={mapChartOptions}
+      <div className={styles.Grid}>
+        <CardHeader className={styles.Header}>
+          <CardTitle>{mapRef.current?.chart?.options.title.text}</CardTitle>
+        </CardHeader>
+        <Separator style={{ gridArea: 'separator' }} />
+        <CardContent className={styles.FiltersContainer}>
+          <FilterForm
+            filterState={filterState}
+            onChange={onFilterChange}
+            filterOptions={{
+              municipalities: MUNICIPALITIES,
+              years: YEARS,
+              ageGroups: AGE_GROUPS,
+              doctorTypes: DOCTOR_TYPES,
+              assignedTypes: ASSIGNED_TYPES,
+              contractTypes: CONTRACT_TYPES,
+            }}
           />
-        </figure>
-      </CardContent>
-      <CardContent className={styles.ChartContainer}>
-        <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
-        <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
-          <CardTitle as="span" variant="description">
-            Skupina: {filterState.ageGroup}
-          </CardTitle>
-          <CardTitle as="span" variant="description">
-            Status: {CONTRACT_TYPES_MAP[filterState.contractType]}
-          </CardTitle>
-          <CardTitle as="span" variant="description">
-            Zdravnik: {DOCTOR_TYPES_MAP[filterState.doctorType]}
-          </CardTitle>
-        </div>
-        <figure>
-          <HighchartsReact ref={chartRef} highcharts={Highcharts} options={barChartOptions} />
-        </figure>
-      </CardContent>
+        </CardContent>
+        <CardContent className={styles.ScorecardsContainer}>
+          <Scorecard
+            valueLabel="izbrano leto"
+            changeLabel="prejšnje leto"
+            scorecardType="description"
+          />
+          <Scorecard
+            label="Opredeljeni"
+            value={assignedTotalsCurrent.assigned}
+            change={trendAssigned}
+          />
+          <Scorecard
+            label="Neopredeljeni"
+            value={assignedTotalsCurrent.unassigned}
+            change={trendUnassigned}
+          />
+        </CardContent>
+        <CardContent className={styles.MapContainer}>
+          <figure>
+            <HighchartsReact
+              ref={mapRef}
+              highcharts={HighMaps}
+              constructorType="mapChart"
+              options={mapChartOptions}
+            />
+          </figure>
+        </CardContent>
+        <CardContent className={styles.ChartContainer}>
+          <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
+          <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
+            <CardTitle as="span" variant="description">
+              Skupina: {filterState.ageGroup}
+            </CardTitle>
+            <CardTitle as="span" variant="description">
+              Status: {CONTRACT_TYPES_MAP[filterState.contractType]}
+            </CardTitle>
+            <CardTitle as="span" variant="description">
+              Zdravnik: {DOCTOR_TYPES_MAP[filterState.doctorType]}
+            </CardTitle>
+          </div>
+          <figure>
+            <HighchartsReact ref={chartRef} highcharts={Highcharts} options={barChartOptions} />
+          </figure>
+        </CardContent>
+      </div>
     </Card>
   );
 };
