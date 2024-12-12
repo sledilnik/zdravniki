@@ -25,7 +25,7 @@ export const charts = [
     },
   },
   {
-    section: 'real section 1',
+    section: 'examples',
     order: 5,
     componentName: 'MotionCard',
     fakeHeight: '2876px',
@@ -36,7 +36,7 @@ export const charts = [
     },
   },
   {
-    section: 'real section 1',
+    section: 'examples',
     order: 0,
     componentName: 'DashboardCard',
     fakeHeight: '683px',
@@ -48,7 +48,7 @@ export const charts = [
   },
   availabilityChangeByInstitutionType,
   {
-    section: 'real section 1',
+    section: 'examples',
     order: 1,
     componentName: 'DataByYearAndAgeGroupCard',
     fakeHeight: '1358px',
@@ -61,10 +61,10 @@ export const charts = [
     },
   },
   {
-    section: 'real section 1',
+    section: 'examples',
     order: 2,
     componentName: 'RichInfoClick',
-    fakeHeight: '822px',
+    fakeHeight: '679px',
     options: {
       title: {
         text: RichInfoClickOptions.title.text ? RichInfoClickOptions.title.text : 'Missing Title',

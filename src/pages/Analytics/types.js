@@ -37,7 +37,7 @@
  * @property {HighMapsOptions} options
  */
 
-/** @typedef {("real section 1" | "examples 1" | "examples 2")[]} SectionNames */
+/** @typedef {"examples")[]} SectionNames */
 
 /**
  * @typedef {("top" | "top-start" | "start" | "end" | "bottom" | "bottom-start" | "bottom-end" )} Placement

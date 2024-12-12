@@ -44,7 +44,7 @@ figure:where(:has(div[data-highcharts-chart])) {
 }
 
 .ChartSection:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .ChartSection > *:not(:last-child) {

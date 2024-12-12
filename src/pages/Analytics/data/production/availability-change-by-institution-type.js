@@ -31,7 +31,7 @@ const datasetPublic = [
  * @type {Types.ChartData} - Column chart data.
  */
 export const availabilityChangeByInstitutionType = {
-  section: 'real section 1',
+  section: 'examples',
   order: 4,
   id: 'availabilityChangeByInstitutionType',
   componentName: 'ChartCard',
