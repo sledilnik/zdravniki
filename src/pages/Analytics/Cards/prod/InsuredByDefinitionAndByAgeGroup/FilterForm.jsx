@@ -3,20 +3,13 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-import { cx } from 'class-variance-authority';
-
+import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import { forwardRef } from 'react';
-import Select from 'react-select';
-import styles from './FilterForm.module.css';
+
+import Label from 'pages/Analytics/components/Label';
 import { ASSIGNED_TYPES_MAP, CONTRACT_TYPES_MAP, DOCTOR_TYPES_MAP } from './data';
 
-const Label = function Label({ children, className, ...props }) {
-  return (
-    <label className={cx(styles.Label, className)} {...props}>
-      {children}
-    </label>
-  );
-};
+import styles from './FilterForm.module.css';
 
 export const FilterForm = forwardRef(
   (
@@ -49,46 +42,15 @@ export const FilterForm = forwardRef(
     };
 
     return (
-      <form ref={ref} action="" style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
-        <div
-          style={{
-            flex: '1 1 0',
-          }}
-        >
+      <form ref={ref} action="" className={styles.FilterForm}>
+        <div>
           <Label htmlFor="municipality">Občina</Label>
-          <Select
+          <CustomReactSelect
             styles={{
-              control: (base, state) => ({
-                ...base,
-                cursor: 'pointer',
-                outlineColor: 'red',
-                boxShadow: state.isFocused ? '0 0 7px 0 rgba(9,175,218,0.76)' : 'none',
-                borderColor: state.isFocused
-                  ? 'rgba(9,175,218,0.76)'
-                  : state.theme.colors.neutral20,
-                ':hover': {
-                  borderColor: 'rgba(9,175,218,0.76)',
-                },
-              }),
               input: base => ({
                 ...base,
-                minWidth: '30ch',
-                maxWidth: '40ch',
+                minWidth: '28ch',
               }),
-              option: (base, state) => {
-                const backgroundColor = state.isSelected
-                  ? 'rgba(9,175,218,1)'
-                  : state.isFocused
-                    ? 'rgba(9,175,218,0.26)'
-                    : 'white';
-
-                return {
-                  ...base,
-                  cursor: 'pointer',
-                  backgroundColor,
-                  fontWeight: state.isSelected ? '500' : '400',
-                };
-              },
             }}
             name="municipality"
             id="municipality"
@@ -108,7 +70,7 @@ export const FilterForm = forwardRef(
         </div>
         <div>
           <Label htmlFor="year">Leto</Label>
-          <Select
+          <CustomReactSelect
             name="year"
             id="year"
             value={{ name: 'year', value: filterState.year, label: filterState.year }}
@@ -120,12 +82,9 @@ export const FilterForm = forwardRef(
         </div>
         <div>
           <Label htmlFor="ageGroup">Skupina</Label>
-          <Select
+          <CustomReactSelect
             styles={{
               input: base => ({ ...base, minWidth: '5ch' }),
-              menu: base => ({ ...base, minWidth: '5ch' }),
-              control: base => ({ ...base, cursor: 'pointer' }),
-              option: base => ({ ...base, cursor: 'pointer' }),
             }}
             name="ageGroup"
             id="ageGroup"
@@ -140,8 +99,8 @@ export const FilterForm = forwardRef(
         </div>
         <div>
           <Label htmlFor="doctorType">Zdravnik</Label>
-          <Select
-            styles={{ container: base => ({ ...base, minWidth: '20ch' }) }}
+          <CustomReactSelect
+            styles={{ input: base => ({ ...base, minWidth: '14ch' }) }}
             name="doctorType"
             id="doctorType"
             value={{
@@ -160,7 +119,7 @@ export const FilterForm = forwardRef(
         </div>
         <div>
           <Label htmlFor="contractType">Status</Label>
-          <Select
+          <CustomReactSelect
             styles={{
               input: base => ({ ...base, minWidth: '8ch' }),
             }}
@@ -184,11 +143,9 @@ export const FilterForm = forwardRef(
         </div>
         <div>
           <Label htmlFor="assignedType">Opredeljenost</Label>
-          <Select
+          <CustomReactSelect
             styles={{
               input: base => ({ ...base, minWidth: '12ch' }),
-              control: base => ({ ...base, cursor: 'pointer' }),
-              option: base => ({ ...base, cursor: 'pointer' }),
             }}
             name="assignedType"
             id="assignedType"
