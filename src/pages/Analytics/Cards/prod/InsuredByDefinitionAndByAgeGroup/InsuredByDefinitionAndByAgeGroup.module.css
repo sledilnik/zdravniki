@@ -40,7 +40,6 @@
 .MapContainer {
   grid-area: map;
   place-self: center;
-  min-width: 400px;
   width: 100%;
 }
 

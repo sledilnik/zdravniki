@@ -69,16 +69,29 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <Label htmlFor="year">Leto</Label>
-          <CustomReactSelect
-            name="year"
-            id="year"
-            value={{ name: 'year', value: filterState.year, label: filterState.year }}
-            onChange={onFormChange}
-            options={filterOptions.years
-              .sort((a, b) => b - a)
-              .map(year => ({ value: year, label: year, name: 'year' }))}
-          />
+          <Label htmlFor="year">Obdobje</Label>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5em' }}>
+            <CustomReactSelect
+              name="yearStart"
+              id="yearStart"
+              value={{ name: 'yearStart', value: filterState.year[0], label: filterState.year[0] }}
+              onChange={onFormChange}
+              options={filterOptions.years
+                .sort((a, b) => b - a)
+                .map(year => ({ value: year, label: year, name: 'yearStart' }))}
+              isSearchable={false}
+            />
+            <CustomReactSelect
+              name="yearEnd"
+              id="yearEnd"
+              value={{ name: 'yearEnd', value: filterState.year[1], label: filterState.year[1] }}
+              onChange={onFormChange}
+              options={filterOptions.years
+                .sort((a, b) => b - a)
+                .map(year => ({ value: year, label: year, name: 'yearEnd' }))}
+              isSearchable={false}
+            />
+          </div>
         </div>
         <div>
           <Label htmlFor="ageGroup">Skupina</Label>
@@ -95,6 +108,7 @@ export const FilterForm = forwardRef(
               label: ageGroup,
               name: 'ageGroup',
             }))}
+            isSearchable={false}
           />
         </div>
         <div>

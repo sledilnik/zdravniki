@@ -7,7 +7,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
-import { merge as loMerge } from 'lodash';
+import { filter, merge as loMerge } from 'lodash';
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
@@ -105,7 +105,7 @@ const useCharts = (initialFilterState, options, init) => {
 const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGroup({ id }) {
   const [init, setInit] = useState(false);
   const { filterState, setFilterState, mapChartOptions, barChartOptions } = useCharts(
-    DEFAULTS,
+    { ...DEFAULTS, year: [DEFAULTS.year, DEFAULTS.year] },
     { map: mapOptions, chart: secondChartOptions },
     init,
   );
@@ -115,18 +115,26 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
 
   const onFilterChange = e => {
     const { name, value } = e.target;
-    const newValue = name === 'year' ? Number(value) : value;
-    setFilterState({ ...filterState, [name]: newValue });
+    if (name !== 'yearStart' && name !== 'yearEnd') {
+      setFilterState({ ...filterState, [name]: value });
+      return;
+    }
+
+    setFilterState(prev => ({
+      ...prev,
+      year:
+        name === 'yearStart'
+          ? [value, prev.year[1]].sort((a, b) => a - b)
+          : [prev.year[0], value].sort((a, b) => a - b),
+    }));
   };
 
   useEffect(() => {
     setInit(true);
   }, []);
 
-  const { assignedTotalsCurrent, trendAssigned, trendUnassigned } = useMemo(
-    () => calculateAssignedTypesTotals(filterState),
-    [filterState],
-  );
+  const { assignedTotalsCurrent, trendAssigned, trendUnassigned, previousRange, currentRange } =
+    useMemo(() => calculateAssignedTypesTotals(filterState), [filterState]);
 
   return (
     <Card id={id} className={styles.InsuredByDefinitionAndByAgeGroup}>
@@ -150,11 +158,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
           />
         </CardContent>
         <CardContent className={styles.ScorecardsContainer}>
-          <Scorecard
-            valueLabel="izbrano leto"
-            changeLabel="prejšnje leto"
-            scorecardType="description"
-          />
+          <Scorecard valueLabel="izbrano" changeLabel="prejšnje" scorecardType="description" />
           <Scorecard
             label="Opredeljeni"
             value={assignedTotalsCurrent.assigned}

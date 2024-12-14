@@ -111,9 +111,12 @@ export const prepareMapSeriesData = (data, filterValues) => {
   const mapSeriesData = [];
   const { assignedType, contractType } = filterValues;
 
+  const length = filterValues.year[1] - filterValues.year[0] + 1;
+  const years = Array.from({ length }, (_, i) => filterValues.year[0] + i);
+
   const matchFilterValues = {
     municipalities: [],
-    years: [+filterValues.year],
+    years,
     ageGroups: [filterValues.ageGroup],
     doctorTypes: [filterValues.doctorType],
     assignedTypes: assignedType === 'all' ? [] : [assignedType],
@@ -185,11 +188,17 @@ export const prepareSecondChartSeriesData = (data, filterValues, years = YEARS) 
 export const fakeData = generateFakeData();
 
 export const getMapSeriesData = filterValues => prepareMapSeriesData(fakeData, filterValues);
-export const defaultMapSeriesData = getMapSeriesData(DEFAULTS);
+export const defaultMapSeriesData = getMapSeriesData({
+  ...DEFAULTS,
+  year: [DEFAULTS.year[0], DEFAULTS.year[0]],
+});
 
 export const getSecondChartSeriesData = filterValues =>
   prepareSecondChartSeriesData(fakeData, filterValues);
-export const defaultSecondChartSeriesData = getSecondChartSeriesData(DEFAULTS);
+export const defaultSecondChartSeriesData = getSecondChartSeriesData({
+  ...DEFAULTS,
+  year: [DEFAULTS.year[0], DEFAULTS.year[0]],
+});
 
 /**
  * Function takes a year range object and calculates the assigned and unassigned total for range.
@@ -251,14 +260,14 @@ export const getAssignedTypeTotalsForYearRange = (filterValues, yearRange) =>
  * @returns {AssignedTypesTotals} An object containing the current assigned totals and the trends for assigned and unassigned types.
  */
 export function calculateAssignedTypesTotals(filterState) {
-  const assignedTotalsCurrent = getAssignedTypeTotalsForYearRange(filterState, [
-    filterState.year,
-    filterState.year,
-  ]);
-  const assignedTotalsBefore = getAssignedTypeTotalsForYearRange(filterState, [
-    filterState.year - 1,
-    filterState.year - 1,
-  ]);
+  const currentRange = filterState.year;
+  const yearDifference = currentRange[1] - currentRange[0];
+  const previousRange = [
+    currentRange[0] - yearDifference - 1,
+    currentRange[1] - yearDifference - 1,
+  ];
+  const assignedTotalsCurrent = getAssignedTypeTotalsForYearRange(filterState, currentRange);
+  const assignedTotalsBefore = getAssignedTypeTotalsForYearRange(filterState, previousRange);
 
   const trendAssigned =
     (assignedTotalsCurrent.assigned - assignedTotalsBefore.assigned) /

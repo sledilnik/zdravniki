@@ -18,7 +18,7 @@
  *
  * @typedef {Object} UserInputsValues
  * @property {string} municipality - Municipality name.
- * @property {string} year - The year.
+ * @property {[number, number]} year - The year.
  * @property {(Types.AgeGroup)} ageGroup - The age group.
  * @property {(DoctorType)} doctorType - The type of doctor.
  * @property {(AssignedType | "all")} assignedType - The type of assignment.
