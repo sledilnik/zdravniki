@@ -1,8 +1,8 @@
 /** @import * as Types from "../../types" */
 
-import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
+import { sloOBMap } from '@/pages/Analytics/data/geo-json-maps';
 
-// import { dimensions } from 'pages/Analytics/HighchartsOptions/options';
+// import { dimensions } from '@/pages/Analytics/HighchartsOptions/options';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

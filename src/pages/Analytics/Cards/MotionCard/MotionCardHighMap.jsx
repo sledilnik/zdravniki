@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 /** @import * as DataTypes from "../../data/fake-data" */
 
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighMaps from 'highcharts/highmaps';
 import { merge as loMerge } from 'lodash';
 
-import { PauseIcon, PlayArrowIcon } from 'components/Shared/Icons';
-import { byMunicipalityAndAgeGroupMap } from 'pages/Analytics/data/fake-data';
-import HighchartsReactComponent from 'pages/Analytics/components/HighchartReactComponent';
+import { PauseIcon, PlayArrowIcon } from '@/components/Shared/Icons';
+import HighchartsReactComponent from '@/pages/Analytics/components/HighchartReactComponent';
+import { byMunicipalityAndAgeGroupMap } from '@/pages/Analytics/data/fake-data';
 
 import { mapOptions as baseMapOptions } from './chart-options';
 import styles from './MotionCardHighMap.module.css';

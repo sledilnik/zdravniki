@@ -5,10 +5,10 @@ import { useParams } from 'react-router';
 
 import { cx } from 'class-variance-authority';
 
-import * as SEO from 'components/SEO';
+import * as SEO from '@/components/SEO';
 import { t } from 'i18next';
 
-import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
+import RenderOnViewportEntry from '@/components/RenderOnViewportEntry';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import './highcharts-options';

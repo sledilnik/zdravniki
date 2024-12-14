@@ -16,13 +16,13 @@ import {
   // CardDescription,
   CardHeader,
   CardTitle,
-} from 'pages/Analytics//components/ui/card';
-import Scorecard from 'pages/Analytics/components/Scorecard';
-import { Separator } from 'pages/Analytics/components/ui/separator';
+} from '@/pages/Analytics//components/ui/card';
+import Scorecard from '@/pages/Analytics/components/Scorecard';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
 
-import stylesFilters from 'pages/Analytics/components/filters.module.css';
-import { byAgeGroupAndYearMap, byMunicipalityMap, DATA } from 'pages/Analytics/data/fake-data';
-import { notSrOnly } from 'pages/Analytics/highcharts-options/options';
+import stylesFilters from '@/pages/Analytics/components/filters.module.css';
+import { byAgeGroupAndYearMap, byMunicipalityMap, DATA } from '@/pages/Analytics/data/fake-data';
+import { notSrOnly } from '@/pages/Analytics/highcharts-options/options';
 
 import { baseSecondChartOptions, mapOptions } from './chart-options';
 

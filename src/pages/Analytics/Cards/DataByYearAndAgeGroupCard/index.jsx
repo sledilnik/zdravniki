@@ -8,19 +8,19 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';
-import HighMaps from 'highcharts/highmaps';
 import HighchartsReact from 'highcharts-react-official';
+import HighMaps from 'highcharts/highmaps';
 import heatmap from 'highcharts/modules/heatmap';
 
+import stylesFilters from '@/pages/Analytics/components/filters.module.css';
 import {
   byAgeGroupAndMunicipalityMap,
   byAgeGroupAndYearMap,
   byAgeGroupMap,
   DATA,
-} from 'pages/Analytics/data/fake-data';
-import stylesFilters from 'pages/Analytics/components/filters.module.css';
+} from '@/pages/Analytics/data/fake-data';
 
-import { mapOptions, chartOptions } from './char-options';
+import { chartOptions, mapOptions } from './char-options';
 import { createChartData, createSeriesDataMap, renderChart } from './utils';
 
 import ChartHeader from '../../components/chart-header';

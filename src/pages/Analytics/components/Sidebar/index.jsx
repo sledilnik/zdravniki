@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@mui/system';
 import { useEffect, useRef, useState } from 'react';
 
-import * as Icons from 'components/Shared/Icons';
+import * as Icons from '@/components/Shared/Icons';
 import Modal from '../Modal';
 
 import { createChartDataProxy } from '../../data/create-chart-data-proxy';

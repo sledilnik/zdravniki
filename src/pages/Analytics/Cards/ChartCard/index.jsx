@@ -2,18 +2,18 @@
 /* eslint-disable react/require-default-props */
 /** @import * as Types from "../../types" */
 
-import { useEffect, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { useEffect, useRef, useState } from 'react';
 
-import * as Icons from 'components/Shared/Icons';
-import { getIsRequestFullscreenSupported } from 'utils';
+import * as Icons from '@/components/Shared/Icons';
+import { getIsRequestFullscreenSupported } from '@/utils';
 
 import CustomSeriesButtons from '../../components/CustomSeriesButtons';
 import { Card, CardContent } from '../../components/ui/card';
 
-import styles from '../Cards.module.css';
 import ChartHeader from '../../components/chart-header';
+import styles from '../Cards.module.css';
 
 /**
  * ChartCard component renders a card with a chart header and children content.

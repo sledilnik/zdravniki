@@ -3,10 +3,11 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import { forwardRef } from 'react';
 
-import Label from 'pages/Analytics/components/Label';
+import CustomReactSelect from '@/pages/Analytics/components/CustomReactSelect';
+import Label from '@/pages/Analytics/components/Label';
+
 import { ASSIGNED_TYPES_MAP, CONTRACT_TYPES_MAP, DOCTOR_TYPES_MAP } from './data';
 
 import styles from './FilterForm.module.css';

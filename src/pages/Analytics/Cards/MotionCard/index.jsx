@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import { byAgeGroupAndYearMap } from 'pages/Analytics/data/fake-data';
-import ChartHeader from 'pages/Analytics/components/chart-header';
+import ChartHeader from '@/pages/Analytics/components/chart-header';
+import { Card, CardContent, CardHeader, CardTitle } from '@/pages/Analytics/components/ui/card';
+import { byAgeGroupAndYearMap } from '@/pages/Analytics/data/fake-data';
 
 import MotionCardHighMap from './MotionCardHighMap';
 import styles from './MotionCardHighMap.module.css';

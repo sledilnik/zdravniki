@@ -1,8 +1,11 @@
 /* eslint-disable no-plusplus */
 /** @import * as Types from "../../types"  */
 
-import { byAgeGroupAndMunicipalityMap, byYearAndAgeGroupMap } from 'pages/Analytics/data/fake-data';
-import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
+import {
+  byAgeGroupAndMunicipalityMap,
+  byYearAndAgeGroupMap,
+} from '@/pages/Analytics/data/fake-data';
+import { sloOBMap } from '@/pages/Analytics/data/geo-json-maps';
 
 import { dimensions } from '../../highcharts-options/options';
 

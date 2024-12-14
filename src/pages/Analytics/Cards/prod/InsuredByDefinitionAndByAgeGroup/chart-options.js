@@ -1,6 +1,7 @@
 /** @import * as Types from "../../../types" */
 
-import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
+import { sloOBMap } from '@/pages/Analytics/data/geo-json-maps';
+
 import { defaultMapSeriesData, DEFAULTS, defaultSecondChartSeriesData, YEARS } from './data';
 
 /** @type {Types.HighMapsOptions} */

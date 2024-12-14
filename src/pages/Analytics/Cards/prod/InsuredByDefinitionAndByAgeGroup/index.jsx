@@ -7,11 +7,12 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
+
+import Scorecard from '@/pages/Analytics/components/Scorecard';
+import { Card, CardContent, CardHeader, CardTitle } from '@/pages/Analytics/components/ui/card';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
+import { DATA } from '@/pages/Analytics/data/fake-data';
 import { filter, merge as loMerge } from 'lodash';
-import Scorecard from 'pages/Analytics/components/Scorecard';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import { Separator } from 'pages/Analytics/components/ui/separator';
-import { DATA } from 'pages/Analytics/data/fake-data';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { mapOptions, secondChartOptions } from './chart-options';
 

@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 
+import useFirstViewportEntry from '@/hooks/useFirstViewportEntry';
 import { Suspense, useRef } from 'react';
-import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
 
 /**
  * Component that renders its children only when it enters the viewport.

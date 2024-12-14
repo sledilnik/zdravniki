@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 
-import sloMunicipalitiesJSON from 'assets/data/slovenia_municipalities.json';
+import sloMunicipalitiesJSON from '@/assets/data/slovenia_municipalities.json';
 
 /**
  * @typedef {"0-17" | "18-25" | "26-35" | "36-45" | "46-55" | "56-65" | "65+"} AgeGroup

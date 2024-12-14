@@ -4,8 +4,8 @@ import {
   // byAgeGroupAndMunicipalityMap,
   byAgeGroupAndYearMap,
   DATA,
-} from 'pages/Analytics/data/fake-data';
-import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
+} from '@/pages/Analytics/data/fake-data';
+import { sloOBMap } from '@/pages/Analytics/data/geo-json-maps';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {

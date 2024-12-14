@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import { t } from 'i18next';
 import { cx } from 'class-variance-authority';
+import { t } from 'i18next';
 
-import * as Icons from 'components/Shared/Icons';
+import * as Icons from '@/components/Shared/Icons';
 
 import styles from './Footer.module.css';
 
