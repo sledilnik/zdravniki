@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 
 import { t } from 'i18next';
 
-import { styled } from '@mui/material/styles';
 import { Divider, Stack, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { toPercent } from '../utils';
 
-export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride }) {
+export const HeadQuotient = function HeadQuotient({ load, note, date, hasOverride, tooltipTitle }) {
   return (
     <Stack sx={{ textAlign: 'center' }}>
-      <Typography variant="caption">{t('headQuotient')}</Typography>
-      <Typography variant="body2">{parseFloat(load)}</Typography>
+      <Typography variant="caption">{tooltipTitle}</Typography>
+      <Typography variant="body2">{load}</Typography>
       {hasOverride && (
         <>
           <TooltipDivider />
@@ -38,6 +38,7 @@ HeadQuotient.propTypes = {
   note: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(undefined)]).isRequired,
   hasOverride: PropTypes.bool,
+  tooltipTitle: PropTypes.string.isRequired,
 };
 
 export const Availability = function Availability({ date, hasOverride, availability }) {

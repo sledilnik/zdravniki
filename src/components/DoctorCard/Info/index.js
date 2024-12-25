@@ -1,13 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import { CardContent, Stack, Typography } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { t } from 'i18next';
 
 import { useLeafletContext } from 'context/leafletContext';
 
 import PropTypes from 'prop-types';
 import DoctorActions from './DoctorActions';
 
-import * as Shared from '../Shared';
 import { DoctorPropType } from '../../../types';
+import * as Shared from '../Shared';
 
 const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) {
   const { lng } = useParams();
@@ -43,6 +45,18 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
   };
 
   const phoneNum = doctor.phone?.split(',')?.[0];
+  const formatedLoad =
+    doctor.type.startsWith('gyn') || doctor.type.startsWith('den')
+      ? Intl.NumberFormat(lng, {
+          style: 'percent',
+          maximumFractionDigits: 2,
+        }).format(doctor.load / 100)
+      : Intl.NumberFormat(lng).format(doctor.load);
+
+  const headQuotientTooltipTItle =
+    doctor.type.startsWith('gyn') || doctor.type.startsWith('den')
+      ? t('achievingAverageOE')
+      : t('headQuotient');
 
   return (
     <>
@@ -73,11 +87,12 @@ const Info = function Info({ doctor, handleZoom = () => {}, isMarker = false }) 
         <Stack direction={isMarker ? 'column' : 'row'} justifyContent="space-between">
           <Stack direction="row" alignItems="center" spacing={1}>
             <Shared.HeadQuotient
-              load={doctor.load}
+              load={formatedLoad}
               note={doctor.note}
               date={doctor.updatedAt && doctor.formatUpdatedAt(lng)}
               accepts={doctor.accepts}
               hasOverride={doctor.acceptsOverride || doctor.note ? true : undefined}
+              tooltipTitle={headQuotientTooltipTItle}
             />
             <Shared.Availability
               isFloating={doctor.isFloating}
