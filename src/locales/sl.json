@@ -37,6 +37,7 @@
     "noResults": "Noben zdravnik ne ustreza iskalnim pogojem. Preverite, če imate označeno pravilno vrsto zdravnika ali razširite pogled na zemljevidu.",
     "changedOn": "Popravek od: ",
     "headQuotient": "Glavarinski količnik",
+    "achievingAverageOE": "Doseganje povprečja OE",
     "doctorAvailabilityLabel": "Obseg zaposlitve",
     "doctorAvailability": "Obseg zaposlitve: delež je lahko nižji od 100 %, ker zdravnik določen del časa dela na preventivnih programih ali na drugih dejavnostih (recimo zobozdravnik za odrasle in mladino).",
     "yourLocation": "Tvoja lokacija",
