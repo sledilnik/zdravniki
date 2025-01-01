@@ -36,6 +36,7 @@
     "noResults": "No doctor found based on your search criteria. Check if you have the right doctor type selected or zoom out the map.",
     "changedOn": "Changed on: ",
     "headQuotient": "Capitation",
+    "achievingAverageOE": "Achieving average OE",
     "doctorAvailabilityLabel": "Availability",
     "doctorAvailability": "Availability can be lower than 100% for doctors that work part time on preventive programs or in other units (e.g. dentist working with adults and youth).",
     "yourLocation": "Your location",

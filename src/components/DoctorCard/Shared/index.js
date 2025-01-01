@@ -10,10 +10,10 @@ import * as Icons from 'components/Shared/Icons';
 import Accepts from './Accepts';
 
 import {
-  TypeTranslate,
+  AgeGroupIconTranslate,
   AgeGroupTranslate,
   TypeIconTranslate,
-  AgeGroupIconTranslate,
+  TypeTranslate,
 } from '../dicts';
 import * as Styled from '../styles';
 
@@ -22,11 +22,11 @@ import * as Tooltips from './Tooltips';
 export * as Tooltip from './Tooltips';
 
 // it would be better to import just like Tooltip but don't want to make to many changes all over the code
-export { Link, LinkNoRel, ConditionalLink } from './Links';
+export { ConditionalLink, Link, LinkNoRel } from './Links';
 
+export { default as Accepts } from './Accepts';
 export { default as DoctorLinks } from './DoctorLinks';
 export { default as PhoneButton } from './PhoneButton';
-export { default as Accepts } from './Accepts';
 
 export const DoubleChip = function DoubleChip({ type, ageGroup, isExtra, isFloating, viewType }) {
   const drType = t(TypeTranslate[type]);
@@ -113,11 +113,24 @@ DoubleChip.propTypes = {
   viewType: PropTypes.oneOf(['marker', 'list', 'page']),
 };
 
-export const HeadQuotient = function HeadQuotient({ load, note, date, accepts, hasOverride }) {
+export const HeadQuotient = function HeadQuotient({
+  load,
+  note,
+  date,
+  accepts,
+  hasOverride,
+  tooltipTitle,
+}) {
   return (
     <Tooltip
       title={
-        <Tooltips.HeadQuotient load={load} note={note} date={date} hasOverride={hasOverride} />
+        <Tooltips.HeadQuotient
+          load={load}
+          note={note}
+          date={date}
+          hasOverride={hasOverride}
+          tooltipTitle={tooltipTitle}
+        />
       }
       leaveTouchDelay={3000}
       enterTouchDelay={50}
@@ -139,6 +152,7 @@ HeadQuotient.propTypes = {
   load: PropTypes.string.isRequired,
   accepts: PropTypes.oneOf(['y', 'n']).isRequired,
   hasOverride: PropTypes.bool,
+  tooltipTitle: PropTypes.string.isRequired,
 };
 
 export const Availability = function Availability({ date, availability, hasOverride, isFloating }) {
