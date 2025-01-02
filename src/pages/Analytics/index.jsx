@@ -86,10 +86,13 @@ const Analytics = function Analytics() {
                 const chartProxy = createChartDataProxy(chart);
 
                 return (
-                  <div data-card-id={chartProxy.id} style={{ minHeight: chart.fakeHeight }}>
+                  <div
+                    key={chartProxy.id}
+                    data-card-id={chartProxy.id}
+                    style={{ minHeight: chart.fakeHeight }}
+                  >
                     <RenderOnViewportEntry
                       id={`render-on-viewport-entry-${chartProxy.id}`}
-                      key={chartProxy.id}
                       intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
                       srOnlyComponentsBeforeEntered={
                         <Card id={chartProxy.id}>
