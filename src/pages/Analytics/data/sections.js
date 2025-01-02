@@ -15,6 +15,17 @@ import { availabilityChangeByInstitutionType } from './production/availability-c
 export const charts = [
   {
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
+    order: 0,
+    componentName: 'PivotkeD',
+    fakeHeight: '0px', // TODO: check for actual fake height value
+    options: {
+      title: {
+        text: 'PivotkeD',
+      },
+    },
+  },
+  {
+    section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 1,
     componentName: 'InsuredByDefinitionAndByAgeGroup',
     fakeHeight: '500px',

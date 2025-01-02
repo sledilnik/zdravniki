@@ -31,8 +31,10 @@ const MotionCard = lazy(() => import('./Cards/MotionCard'));
 const InsuredByDefinitionAndByAgeGroup = lazy(
   () => import('./Cards/prod/InsuredByDefinitionAndByAgeGroup'),
 );
+const PivotkeD = lazy(() => import('./Cards/prod/PivotkeD'));
 
 const CARDS = {
+  PivotkeD,
   MotionCard,
   ChartCard,
   MapCard,
