@@ -84,7 +84,8 @@ export const secondChartOptions = {
     useHTML: true,
     formatter() {
       return this.points.reduce(
-        (s, point) => `${s}<br/>${point.series.name}: <b>${point.y.toFixed(2)}</b>`,
+        (s, point) =>
+          `${s}<br/><span style="color:${point.series.color}">●</span> ${point.series.name}: <b>${point.y.toFixed(2)}</b>`,
         `<b>${this.key}</b>`,
       );
     },
