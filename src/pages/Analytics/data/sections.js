@@ -12,6 +12,8 @@ import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAnd
 import { mapOptions as RichInfoClickOptions } from '../Cards/RichInfoClick/chart-options';
 import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export const charts = [
   {
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
@@ -107,7 +109,9 @@ const groupedCharts = charts.reduce((acc, chart) => {
 /**
  * @type {Array<{sectionTitle: Types.SectionNames[number], charts: Types.ChartData[]}>}
  */
-export const SECTIONS = Object.keys(groupedCharts).map(section => ({
-  sectionTitle: section,
-  charts: groupedCharts[section].sort((a, b) => a.order - b.order),
-}));
+export const SECTIONS = Object.keys(groupedCharts)
+  .map(section => ({
+    sectionTitle: section,
+    charts: groupedCharts[section].sort((a, b) => a.order - b.order),
+  }))
+  .filter(section => (isDev ? true : section.sectionTitle !== 'examples'));
