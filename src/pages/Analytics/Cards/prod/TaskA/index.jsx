@@ -2,6 +2,7 @@
 /** @import * as Types from "./types" */
 
 // import Highcharts from 'highcharts';
+import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
 import { useEffect, useRef, useState } from 'react';
@@ -11,11 +12,13 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
-import { mapOptions } from './chart-options';
+import Scorecard from 'pages/Analytics/components/Scorecard';
+import { mapOptions, secondChartOptions } from './chart-options';
 
 import styles from '../MapAndChart.module.css';
 import {
   DEFAULTS,
+  prepareDetailLineChartSeries,
   prepareOverviewMapSeriesData,
   uniqueDoctorTypesSet,
   uniqueMunicipalitiesSet,
@@ -33,6 +36,11 @@ import { FilterForm } from './FilterForm';
 const useCharts = (initialFilterState, options, init) => {
   const [filterState, setFilterState] = useState(initialFilterState);
   const [mapChartOptions, setMapChartOptions] = useState(options.map);
+  const [chartOptions, setChartOptions] = useState(options.chart);
+  /** @type {[Types.OverviewDataMapSeriesDataItem, React.Dispatch<React.SetStateAction<Types.OverviewDataMapSeriesDataItem>>]} */
+  const [selectedPoint, setSelectedPoint] = useState(
+    options.map.series[0].data.find(d => d.selected),
+  );
 
   useEffect(() => {
     if (!init) return;
@@ -60,9 +68,25 @@ const useCharts = (initialFilterState, options, init) => {
     setMapChartOptions({
       series: [{ data }],
     });
+
+    const sPoint = data.find(d => d.selected);
+    setSelectedPoint(sPoint);
+
+    const series = prepareDetailLineChartSeries(filterState);
+    setChartOptions({
+      series,
+    });
   }, [filterState]);
 
-  return { filterState, mapChartOptions, setFilterState, setMapChartOptions };
+  return {
+    filterState,
+    mapChartOptions,
+    setFilterState,
+    setMapChartOptions,
+    chartOptions,
+    setChartOptions,
+    selectedPoint,
+  };
 };
 
 /**
@@ -75,22 +99,42 @@ const useCharts = (initialFilterState, options, init) => {
 const TaskA = function TaskA({ id }) {
   const [init, setInit] = useState(false);
   const mapRef = useRef(null);
+  /** @type {[HighMaps.Point, React.D<React.SetStateAction<HighMaps.Point>]} */
 
   useEffect(() => {
     setInit(true);
   }, []);
 
-  // eslint-disable-next-line no-unused-vars
-  const { filterState, mapChartOptions, setFilterState } = useCharts(
+  const { filterState, mapChartOptions, setFilterState, chartOptions, selectedPoint } = useCharts(
     DEFAULTS,
-    { map: mapOptions },
+    { map: mapOptions, chart: secondChartOptions },
     init,
   );
+
   const onFilterChange = e => {
     const { name, value } = e.target;
     const newValue = name === 'year' ? Number(value) : value;
     setFilterState({ ...filterState, [name]: newValue });
   };
+
+  const currentInsuredPeopleCount = selectedPoint?.insuredPeopleCount ?? 0;
+  const currentInsuredPeopleCountWithIOZ = selectedPoint?.insuredPeopleCountWithIOZ ?? 0;
+
+  const previousYear = filterState.year - 1;
+  const previousYearData = prepareOverviewMapSeriesData({
+    ...filterState,
+    year: previousYear,
+  }).find(item => item.municipality === filterState.municipality);
+  const previousYearInsuredPeopleCount = previousYearData?.insuredPeopleCount ?? 0;
+  const previousYearInsuredPeopleCountWithIOZ = previousYearData?.insuredPeopleCountWithIOZ ?? 0;
+
+  const changeInsuredPeopleCount = currentInsuredPeopleCount - previousYearInsuredPeopleCount;
+  const changeInsuredPeopleCountWithIOZ =
+    currentInsuredPeopleCountWithIOZ - previousYearInsuredPeopleCountWithIOZ;
+
+  const trendInsuredPeopleCount = changeInsuredPeopleCount / previousYearInsuredPeopleCount;
+  const trendInsuredPeopleCountWithIOZ =
+    changeInsuredPeopleCountWithIOZ / previousYearInsuredPeopleCountWithIOZ;
 
   return (
     <Card id={id} className={styles.MapAndChart}>
@@ -99,7 +143,7 @@ const TaskA = function TaskA({ id }) {
           <CardTitle>TaskA</CardTitle>
         </CardHeader>
         <Separator style={{ gridArea: 'separator' }} />
-        <CardContent className={styles.FilterContainer}>
+        <CardContent className={styles.FiltersContainer}>
           <FilterForm
             filterState={filterState}
             onChange={onFilterChange}
@@ -110,7 +154,23 @@ const TaskA = function TaskA({ id }) {
             }}
           />
         </CardContent>
-        <CardContent className={styles.ScorecardContainer}>{/* Scorecard */}</CardContent>
+        <CardContent className={styles.ScorecardsContainer}>
+          <Scorecard
+            valueLabel="izbrano leto"
+            changeLabel="prejšnje leto"
+            scorecardType="description"
+          />
+          <Scorecard
+            label="Št. zavarovancev"
+            value={currentInsuredPeopleCount}
+            change={trendInsuredPeopleCount}
+          />
+          <Scorecard
+            label="Št. zav. z ioz"
+            value={currentInsuredPeopleCountWithIOZ}
+            change={trendInsuredPeopleCountWithIOZ}
+          />
+        </CardContent>
         <CardContent className={styles.MapContainer}>
           <figure>
             <HighchartsReact
@@ -121,7 +181,21 @@ const TaskA = function TaskA({ id }) {
             />
           </figure>
         </CardContent>
-        <CardContent className={styles.ChartContainer}>{/* ChartCard */}</CardContent>
+        <CardContent className={styles.ChartContainer}>
+          <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
+          <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
+            <CardTitle as="span" variant="description">
+              Zdravnik: {filterState.doctorType}
+            </CardTitle>
+          </div>
+          <figure>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={chartOptions}
+              constructorType="chart"
+            />
+          </figure>
+        </CardContent>
       </div>
     </Card>
   );

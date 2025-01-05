@@ -15,7 +15,7 @@ export const dejavnostSchema = z.enum([
   'DSO',
   'Zobozdravstvo',
 ]);
-export const overviewSchema = z.object({
+export const dataSchema = z.object({
   dejavnost: dejavnostSchema,
   leto: z.number(),
   ioz_ratio: z.number(),
@@ -26,11 +26,21 @@ export const overviewSchema = z.object({
   starostna_skupina: z.number(),
 });
 
-export const overviewSchemaTransformed = overviewSchema.transform(item => ({
+export const overviewSchemaTransformed = dataSchema.transform(item => ({
   doctorType: doctorTypesMap[item.dejavnost],
   year: item.leto,
   iozRatio: item.ioz_ratio,
   municipality: item.obcina,
-  insuredPeopleCount: item?.st_zavarovanih_oseb ?? 0,
-  insuredPeopleCountWithIOZ: item?.st_zavarovanih_oseb_z_ioz ?? 0,
+  insuredPeopleCount: item.st_zavarovanih_oseb,
+  insuredPeopleCountWithIOZ: item.st_zavarovanih_oseb_z_ioz,
+}));
+
+export const detailSchemaTransformed = dataSchema.transform(item => ({
+  doctorType: doctorTypesMap[item.dejavnost],
+  year: item.leto,
+  ageGroup: item.starostna_skupina,
+  iozRatio: item.ioz_ratio,
+  municipality: item.obcina,
+  insuredPeopleCount: item.st_zavarovanih_oseb,
+  insuredPeopleCountWithIOZ: item.st_zavarovanih_oseb_z_ioz,
 }));

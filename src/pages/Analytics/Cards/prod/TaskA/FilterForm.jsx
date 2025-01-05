@@ -85,7 +85,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <Label htmlFor="doctorType">Zdravnik</Label>
+          <Label htmlFor="doctorType">Dejavnost</Label>
           <CustomReactSelect
             styles={{
               input: base => ({

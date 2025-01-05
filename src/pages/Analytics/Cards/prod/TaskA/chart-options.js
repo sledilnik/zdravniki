@@ -1,7 +1,7 @@
 /** @import * as Types from "../../../types" */
 
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
-import { defaultOverviewMapSeriesData } from './data';
+import { defaultDetailLineChartSeries, defaultOverviewMapSeriesData, uniqueYearsSet } from './data';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {
@@ -13,7 +13,7 @@ export const mapOptions = {
     text: 'Število zavarovancev in opredeljenost po starostnih skupinah',
   },
   legend: {
-    enabled: true,
+    enabled: false,
   },
   colorAxis: {
     minColor: '#AAE8F8',
@@ -56,4 +56,37 @@ export const mapOptions = {
       borderWidth: 0.5,
     },
   ],
+};
+
+/** @type {Types.HighchartsOptions} */
+export const secondChartOptions = {
+  chart: {
+    type: 'line',
+  },
+  xAxis: {
+    categories: [...uniqueYearsSet].sort((a, b) => a - b),
+    crosshair: true,
+  },
+  yAxis: {
+    title: {
+      text: 'neki',
+    },
+  },
+  legend: {
+    enabled: false,
+  },
+  credits: {
+    enabled: false,
+  },
+  series: defaultDetailLineChartSeries,
+  tooltip: {
+    shared: true,
+    useHTML: true,
+    formatter() {
+      return this.points.reduce(
+        (s, point) => `${s}<br/>${point.series.name}: <b>${point.y.toFixed(2)}</b>`,
+        `<b>${this.key}</b>`,
+      );
+    },
+  },
 };
