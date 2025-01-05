@@ -16,6 +16,17 @@ export const charts = [
   {
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 0,
+    componentName: 'TaskA',
+    fakeHeight: '0px', // TODO: check for actual fake height value,
+    options: {
+      title: {
+        text: 'TaskA',
+      },
+    },
+  },
+  {
+    section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
+    order: 0,
     componentName: 'PivotkeD',
     fakeHeight: '0px', // TODO: check for actual fake height value
     options: {

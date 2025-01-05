@@ -32,6 +32,7 @@ const InsuredByDefinitionAndByAgeGroup = lazy(
   () => import('./Cards/prod/InsuredByDefinitionAndByAgeGroup'),
 );
 const PivotkeD = lazy(() => import('./Cards/prod/PivotkeD'));
+const TaskA = lazy(() => import('./Cards/prod/TaskA'));
 
 const CARDS = {
   PivotkeD,
@@ -42,6 +43,7 @@ const CARDS = {
   DataByYearAndAgeGroupCard,
   DashboardCard,
   InsuredByDefinitionAndByAgeGroup,
+  TaskA,
 };
 
 const Analytics = function Analytics() {

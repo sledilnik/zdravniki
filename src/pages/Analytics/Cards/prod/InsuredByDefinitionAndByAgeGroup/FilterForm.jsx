@@ -9,7 +9,7 @@ import { forwardRef } from 'react';
 import Label from 'pages/Analytics/components/Label';
 import { ASSIGNED_TYPES_MAP, CONTRACT_TYPES_MAP, DOCTOR_TYPES_MAP } from './data';
 
-import styles from './FilterForm.module.css';
+import styles from '../FilterForm.module.css';
 
 export const FilterForm = forwardRef(
   (

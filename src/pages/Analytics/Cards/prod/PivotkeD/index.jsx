@@ -9,6 +9,7 @@ import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekol
 import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.csv';
 import gpGlavarina from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.csv';
 import gpGlavarinaMean from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina_mean.csv';
+import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.csv';
 import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.csv';
 import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.csv';
 
@@ -24,6 +25,22 @@ const options = {
   type: 'line',
   xAxis: {
     type: 'datetime',
+    plotLines: [
+      {
+        color: 'red',
+        width: 1,
+        value: Date.UTC(2022, 0, 1),
+        zIndex: 5,
+        label: {
+          text: 'opis',
+          rotation: 0,
+          y: 20,
+          style: {
+            color: '#333333',
+          },
+        },
+      },
+    ],
   },
   series: [],
   tooltip: {
@@ -38,6 +55,7 @@ const files = {
   gynObseg,
   gpGlavarinaMean,
   gpGlavarina,
+  gpObseg,
   denDoseganjePovprecja,
   denObseg,
 };
@@ -115,11 +133,18 @@ function FilterForm({ filterState, onFormChange }) {
  */
 const PivotkeD = function PivotkeD({ id }) {
   const chartRef = useRef(null);
+  const [init, setInit] = useState(false);
   const [chartOptions, setChartOptions] = useState(options);
   const [filterState, setFilterState] = useState({
     data: dataOptions[0].value,
   });
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!init) {
+      setInit(true);
+    }
+  }, [init]);
 
   useEffect(() => {
     const setData = async () => {

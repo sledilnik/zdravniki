@@ -15,7 +15,7 @@ import { DATA } from 'pages/Analytics/data/fake-data';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { mapOptions, secondChartOptions } from './chart-options';
 
-import styles from './InsuredByDefinitionAndByAgeGroup.module.css';
+import styles from '../MapAndChart.module.css';
 
 import {
   ASSIGNED_TYPES,
@@ -129,7 +129,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
   );
 
   return (
-    <Card id={id} className={styles.InsuredByDefinitionAndByAgeGroup}>
+    <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
         <CardHeader className={styles.Header}>
           <CardTitle>{mapRef.current?.chart?.options.title.text}</CardTitle>
