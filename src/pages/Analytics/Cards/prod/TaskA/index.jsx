@@ -100,7 +100,8 @@ const TaskA = function TaskA({ id }) {
   const [init, setInit] = useState(false);
   const mapRef = useRef(null);
 
-  const translations = t('analytics.taskA', { returnObjects: true });
+  const tTaskA = t('analytics.taskA', { returnObjects: true });
+  const tCommon = t('analytics.common', { returnObjects: true });
 
   useEffect(() => {
     setInit(true);
@@ -109,10 +110,10 @@ const TaskA = function TaskA({ id }) {
   const { filterState, mapChartOptions, setFilterState, chartOptions, selectedPoint } = useCharts(
     DEFAULTS,
     {
-      map: { ...mapOptions, title: { text: translations.mapTitle } },
+      map: { ...mapOptions, title: { text: tTaskA.mapTitle } },
       chart: {
         ...secondChartOptions,
-        title: { text: translations.chartTitle },
+        title: { text: tTaskA.chartTitle },
       },
     },
     init,
@@ -147,7 +148,7 @@ const TaskA = function TaskA({ id }) {
     <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
         <CardHeader className={styles.Header}>
-          <CardTitle>{translations.title}</CardTitle>
+          <CardTitle>{tTaskA.title}</CardTitle>
         </CardHeader>
         <Separator style={{ gridArea: 'separator' }} />
         <CardContent className={styles.FiltersContainer}>
@@ -168,12 +169,12 @@ const TaskA = function TaskA({ id }) {
             scorecardType="description"
           />
           <Scorecard
-            label={translations.data.insuredPeopleCount}
+            label={tCommon.data.insuredPeopleCount}
             value={currentInsuredPeopleCount}
             change={trendInsuredPeopleCount}
           />
           <Scorecard
-            label={translations.data.insuredPeopleCountWithIOZ}
+            label={tCommon.data.insuredPeopleCountWithIOZ}
             value={currentInsuredPeopleCountWithIOZ}
             change={trendInsuredPeopleCountWithIOZ}
           />
@@ -192,7 +193,7 @@ const TaskA = function TaskA({ id }) {
           <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
           <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
             <CardTitle as="span" variant="description">
-              Zdravnik: {filterState.doctorType}
+              {tCommon.doctorTypes[filterState.doctorType]}
             </CardTitle>
           </div>
           <figure>

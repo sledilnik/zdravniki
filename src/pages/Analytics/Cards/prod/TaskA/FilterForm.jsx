@@ -22,8 +22,8 @@ export const FilterForm = forwardRef(
     },
     ref,
   ) => {
-    const translations = t('analytics.taskA', { returnObjects: true });
-    const { doctorTypes: doctorTypesTranslations } = translations;
+    const tCommon = t('analytics.common', { returnObjects: true });
+    const { doctorTypes: doctorTypesTranslations } = tCommon;
 
     const onFormChange = e => {
       if (e?.target) {
@@ -42,7 +42,7 @@ export const FilterForm = forwardRef(
     return (
       <form ref={ref} action="" className={styles.FilterForm}>
         <div>
-          <Label htmlFor="municipality">Občina</Label>
+          <Label htmlFor="municipality">{tCommon.municipality}</Label>
           <CustomReactSelect
             styles={{
               input: base => ({
@@ -66,7 +66,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <Label htmlFor="year">Leto</Label>
+          <Label htmlFor="year">{tCommon.year}</Label>
           <CustomReactSelect
             styles={{
               input: base => ({
@@ -90,7 +90,7 @@ export const FilterForm = forwardRef(
           />
         </div>
         <div>
-          <Label htmlFor="doctorType">Dejavnost</Label>
+          <Label htmlFor="doctorType">{tCommon.doctorType}</Label>
           <CustomReactSelect
             styles={{
               input: base => ({
