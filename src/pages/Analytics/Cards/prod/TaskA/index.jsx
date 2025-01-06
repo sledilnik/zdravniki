@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-// import Highcharts from 'highcharts';
+import { useEffect, useRef, useState } from 'react';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
-import { useEffect, useRef, useState } from 'react';
+import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
+import Scorecard from 'pages/Analytics/components/Scorecard';
+import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-
-import { t } from 'i18next';
-import Scorecard from 'pages/Analytics/components/Scorecard';
 import { mapOptions, secondChartOptions } from './chart-options';
 
 import styles from '../MapAndChart.module.css';
@@ -109,7 +108,13 @@ const TaskA = function TaskA({ id }) {
 
   const { filterState, mapChartOptions, setFilterState, chartOptions, selectedPoint } = useCharts(
     DEFAULTS,
-    { map: mapOptions, chart: secondChartOptions },
+    {
+      map: { ...mapOptions, title: { text: translations.mapTitle } },
+      chart: {
+        ...secondChartOptions,
+        title: { text: translations.chartTitle },
+      },
+    },
     init,
   );
 
@@ -158,17 +163,17 @@ const TaskA = function TaskA({ id }) {
         </CardContent>
         <CardContent className={styles.ScorecardsContainer}>
           <Scorecard
-            valueLabel="izbrano leto"
-            changeLabel="prejšnje leto"
+            valueLabel={filterState.year}
+            changeLabel={previousYear}
             scorecardType="description"
           />
           <Scorecard
-            label="Št. zavarovancev"
+            label={translations.data.insuredPeopleCount}
             value={currentInsuredPeopleCount}
             change={trendInsuredPeopleCount}
           />
           <Scorecard
-            label="Št. zav. z ioz"
+            label={translations.data.insuredPeopleCountWithIOZ}
             value={currentInsuredPeopleCountWithIOZ}
             change={trendInsuredPeopleCountWithIOZ}
           />

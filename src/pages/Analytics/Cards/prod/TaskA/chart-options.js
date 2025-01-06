@@ -9,9 +9,6 @@ export const mapOptions = {
     map: sloOBMap,
     height: 400,
   },
-  title: {
-    text: 'Število zavarovancev in opredeljenost po starostnih skupinah',
-  },
   legend: {
     enabled: false,
   },

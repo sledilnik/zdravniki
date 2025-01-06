@@ -112,12 +112,19 @@
     "analytics": {
         "taskA": {
             "title": "Task A naslov",
+            "mapTitle": "Naslov zemljevida",
+            "chartTitle": "Naslov line chart",
             "doctorTypes": {
                 "betterAccessibility": "Boljša dostopnost",
                 "gp": "Spl. dejavnost",
                 "gyn": "Ginekologija",
                 "dso": "DSO",
                 "den": "Zobozdravstvo"
+            },
+            "data": {
+                "iozRatio": "iozRatio",
+                "insuredPeopleCount": "Št. zavarovancev",
+                "insuredPeopleCountWithIOZ": "Št. zav. z ioz"
             }
         },
         "taskB": {

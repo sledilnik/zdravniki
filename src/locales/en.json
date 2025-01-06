@@ -110,12 +110,19 @@
     "analytics": {
         "taskA": {
             "title": "Task A title",
+            "mapTitle": "Naslov zemljevida",
+            "chartTitle": "Naslov line chart",
             "doctorTypes": {
                 "betterAccessibility": "Better Accessibility",
                 "gp": "General Practice",
                 "gyn": "Gynecology",
                 "dso": "DSO",
                 "den": "Dentist"
+            },
+            "data": {
+                "iozRatio": "iozRatio",
+                "insuredPeopleCount": "Insured",
+                "insuredPeopleCountWithIOZ": "Insured with ioz"
             }
         },
         "taskB": {
