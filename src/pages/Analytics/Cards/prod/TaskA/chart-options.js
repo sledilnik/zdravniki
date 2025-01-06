@@ -13,8 +13,8 @@ export const mapOptions = {
     enabled: false,
   },
   colorAxis: {
-    minColor: '#AAE8F8',
-    maxColor: '#095568',
+    minColor: '#E57373',
+    maxColor: '#81C784',
     startOnTick: true,
     endOnTick: true,
   },
