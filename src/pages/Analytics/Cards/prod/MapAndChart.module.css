@@ -34,7 +34,7 @@
   grid-area: scorecards;
   display: flex;
   gap: 0.5em;
-  margin-left: auto;
+  justify-content: end;
 }
 
 .MapContainer {

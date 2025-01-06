@@ -14,6 +14,7 @@ import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdr
 import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.csv';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
+import { t } from 'i18next';
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
@@ -140,6 +141,8 @@ const PivotkeD = function PivotkeD({ id }) {
   });
   const [error, setError] = useState(null);
 
+  const translations = t('analytics.taskD', { returnObjects: true });
+
   useEffect(() => {
     if (!init) {
       setInit(true);
@@ -175,7 +178,7 @@ const PivotkeD = function PivotkeD({ id }) {
     <Card id={id}>
       {error && <CardContent>{error.message}</CardContent>}
       <CardHeader>
-        <CardTitle>PivotkeD</CardTitle>
+        <CardTitle>{translations.title}</CardTitle>
       </CardHeader>
       <CardContent>
         <FilterForm filterState={filterState} onFormChange={onFormChange} />

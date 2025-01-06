@@ -28,10 +28,8 @@ const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
 const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
 const DashboardCard = lazy(() => import('./Cards/DashboardCard'));
 const MotionCard = lazy(() => import('./Cards/MotionCard'));
-const InsuredByDefinitionAndByAgeGroup = lazy(
-  () => import('./Cards/prod/InsuredByDefinitionAndByAgeGroup'),
-);
-const PivotkeD = lazy(() => import('./Cards/prod/PivotkeD'));
+const InsuredByDefinitionAndByAgeGroup = lazy(() => import('./Cards/prod/TaskC'));
+const PivotkeD = lazy(() => import('./Cards/prod/TaskD'));
 const TaskA = lazy(() => import('./Cards/prod/TaskA'));
 
 const CARDS = {

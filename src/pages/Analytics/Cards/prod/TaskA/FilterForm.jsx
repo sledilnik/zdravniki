@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
+import { t } from 'i18next';
+import { forwardRef } from 'react';
+
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
-import { forwardRef } from 'react';
 
 import styles from '../FilterForm.module.css';
 
@@ -20,6 +22,9 @@ export const FilterForm = forwardRef(
     },
     ref,
   ) => {
+    const translations = t('analytics.taskA', { returnObjects: true });
+    const { doctorTypes: doctorTypesTranslations } = translations;
+
     const onFormChange = e => {
       if (e?.target) {
         onChange(e);
@@ -97,13 +102,13 @@ export const FilterForm = forwardRef(
             id="doctorType"
             value={{
               name: 'doctorType',
-              label: filterState.doctorType,
+              label: doctorTypesTranslations[filterState.doctorType],
               value: filterState.doctorType,
             }}
             onChange={onFormChange}
             options={filterOptions.doctorTypes.map(doctorType => ({
               name: 'doctorType',
-              label: doctorType,
+              label: doctorTypesTranslations[doctorType],
               value: doctorType,
             }))}
           />

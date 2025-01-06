@@ -7,6 +7,7 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
+import { t } from 'i18next';
 import { merge as loMerge } from 'lodash';
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
@@ -113,6 +114,8 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
   const mapRef = useRef(null);
   const chartRef = useRef(null);
 
+  const translations = t('analytics.taskC', { returnObjects: true });
+
   const onFilterChange = e => {
     const { name, value } = e.target;
     const newValue = name === 'year' ? Number(value) : value;
@@ -132,7 +135,7 @@ const InsuredByDefinitionAndByAgeGroup = function InsuredByDefinitionAndByAgeGro
     <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
         <CardHeader className={styles.Header}>
-          <CardTitle>{mapRef.current?.chart?.options.title.text}</CardTitle>
+          <CardTitle>{translations.title}</CardTitle>
         </CardHeader>
         <Separator style={{ gridArea: 'separator' }} />
         <CardContent className={styles.FiltersContainer}>

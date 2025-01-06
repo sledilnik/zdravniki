@@ -12,6 +12,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
+import { t } from 'i18next';
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import { mapOptions, secondChartOptions } from './chart-options';
 
@@ -99,7 +100,8 @@ const useCharts = (initialFilterState, options, init) => {
 const TaskA = function TaskA({ id }) {
   const [init, setInit] = useState(false);
   const mapRef = useRef(null);
-  /** @type {[HighMaps.Point, React.D<React.SetStateAction<HighMaps.Point>]} */
+
+  const translations = t('analytics.taskA', { returnObjects: true });
 
   useEffect(() => {
     setInit(true);
@@ -140,7 +142,7 @@ const TaskA = function TaskA({ id }) {
     <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
         <CardHeader className={styles.Header}>
-          <CardTitle>TaskA</CardTitle>
+          <CardTitle>{translations.title}</CardTitle>
         </CardHeader>
         <Separator style={{ gridArea: 'separator' }} />
         <CardContent className={styles.FiltersContainer}>
