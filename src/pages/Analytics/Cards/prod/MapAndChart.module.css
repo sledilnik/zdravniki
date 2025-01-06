@@ -24,7 +24,7 @@
   grid-area: filters;
   position: sticky;
   top: 57px;
-  background: #ffffffee;
+  background: oklch(0.98 0 0 / 0.65);
   z-index: 1;
   box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);

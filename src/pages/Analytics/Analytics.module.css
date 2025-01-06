@@ -3,7 +3,7 @@
 
   --background: oklch(0.98 0 0);
   --foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
-  --card: oklch(1 0 0);
+  --card: oklch(0.98 0 0);
   --card-foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
 
   --border: oklch(0.93 0 0);

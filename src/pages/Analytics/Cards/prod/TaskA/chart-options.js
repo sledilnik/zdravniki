@@ -8,6 +8,7 @@ export const mapOptions = {
   chart: {
     map: sloOBMap,
     height: 400,
+    backgroundColor: 'oklch(0.98 0 0)',
   },
   legend: {
     enabled: false,
@@ -59,6 +60,8 @@ export const mapOptions = {
 export const secondChartOptions = {
   chart: {
     type: 'line',
+    height: 400,
+    backgroundColor: 'oklch(0.98 0 0)',
   },
   xAxis: {
     categories: [...uniqueYearsSet].sort((a, b) => a - b),

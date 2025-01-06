@@ -22,6 +22,7 @@ import Label from 'pages/Analytics/components/Label';
 const options = {
   title: {
     text: 'PivotkeD',
+    backgroundColor: 'oklch(0.98 0 0)',
   },
   type: 'line',
   xAxis: {
