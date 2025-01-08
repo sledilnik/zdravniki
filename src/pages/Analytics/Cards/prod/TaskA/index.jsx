@@ -26,6 +26,7 @@ import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
 import { useCharts } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
+import { calculateYearlyStatistics } from './scorecards-calc-util';
 
 /**
  * TaskA component
@@ -90,6 +91,12 @@ const TaskA = function TaskA({ id }) {
     setFilterState({ ...filterState, [name]: newValue });
   };
 
+  const currentSelectedYear = Number(filterState.year);
+  const stats = useMemo(
+    () => calculateYearlyStatistics(currentSelectedYear, chartSeries),
+    [currentSelectedYear, chartSeries],
+  );
+
   return (
     <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
@@ -114,8 +121,16 @@ const TaskA = function TaskA({ id }) {
             changeLabel={filterState.year - 1}
             scorecardType="description"
           />
-          <Scorecard label={tCommon.data.insuredPeopleCount} value={2} change={-1} />
-          <Scorecard label={tCommon.data.insuredPeopleCountWithIOZ} value={1} change={2} />
+          <Scorecard
+            label={tCommon.data.insuredPeopleCount}
+            value={stats.currentYear.insuredPeopleCount}
+            change={stats.differences.insuredPeopleCount.ratio}
+          />
+          <Scorecard
+            label={tCommon.data.insuredPeopleCountWithIOZ}
+            value={stats.previousYear.insuredPeopleCount}
+            change={stats.differences.insuredPeopleCountWithIOZ.ratio}
+          />
         </CardContent>
         <CardContent className={styles.MapContainer}>
           <figure>
