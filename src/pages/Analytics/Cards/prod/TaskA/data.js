@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /** @import * as Types from "./types" */
 
 import detailData from 'assets/data/analytics/task-a/podatki-detail.json';
@@ -148,7 +149,7 @@ export const detailDataMap = makeDetailDataMap();
 export const DEFAULTS = Object.freeze({
   year: `${Math.max(...uniqueYearsSet)}`,
   doctorType: 'gp',
-  municipality: [...uniqueMunicipalitiesSet][0],
+  municipalities: [],
 });
 
 /**
@@ -161,7 +162,7 @@ export const DEFAULTS = Object.freeze({
 export const transformItemForMapChart = (item, propertyAsValue, municipality) => ({
   ...item,
   value: item[propertyAsValue],
-  selected: item.municipality === municipality,
+  selected: municipality.includes(item.municipality),
 });
 
 /**
@@ -182,7 +183,7 @@ export const prepareOverviewMapSeriesData = (
 
   const seriesData = data
     .filter(item => item[propertyAsValue] != null)
-    .map(item => transformItemForMapChart(item, propertyAsValue, filterState.municipality));
+    .map(item => transformItemForMapChart(item, propertyAsValue, filterState.municipalities));
 
   // eslint-disable-next-line no-console
   console.assert(
@@ -223,27 +224,60 @@ export const prepareDetailLineChartSeries = (
   filterState = DEFAULTS,
   propertyAsValue = 'iozRatio',
 ) => {
-  const data = detailDataMap.get(filterState.municipality)?.get(filterState.doctorType);
+  const { municipalities: municipalitiesSelected, doctorType } = filterState;
+  const municipalities =
+    municipalitiesSelected.length > 0 ? municipalitiesSelected : Array.from(detailDataMap.keys());
+  /**
+   * I need sum insurePeopleCount and sum insuredPeopleCount for each year for each ageGroup for doctorType
+   * if no municipality is selected I need to sum all municipalities
+   *  municipality: ['municipality1', 'municipality2']
+   */
+  const data = municipalities
+    .map(municipality => {
+      const municipalityData = detailDataMap.get(municipality)?.get(doctorType);
+      if (!municipalityData) {
+        return [];
+      }
+      const ageGroupsKeys = Array.from(municipalityData.keys());
+      const ageGroupsData = ageGroupsKeys.map(ageGroup => {
+        const ageGroupData = municipalityData.get(ageGroup);
 
-  if (!data) {
-    return [];
-  }
+        return ageGroupData;
+      });
+      return ageGroupsData;
+    })
+    .flat(Infinity);
 
-  const ageGroups = [...data.keys()];
+  // sum insuredPeopleCount and insuredPeopleCountWithIOZ and calculate new iozRatio data for each year and ageGroup
+  // console.log(data);
+  const seriesData = data.reduce((acc, item) => {
+    const { year, ageGroup, insuredPeopleCount, insuredPeopleCountWithIOZ } = item;
 
-  return ageGroups.map(ageGroup => {
-    const ageGroupData = data
-      .get(ageGroup)
-      .filter(item => item[propertyAsValue] != null)
-      .map(item => transformItenForLineChart(item, propertyAsValue));
+    acc[ageGroup] = acc[ageGroup] || {};
+    acc[ageGroup][year] = acc[ageGroup][year] || {
+      insuredPeopleCount: 0,
+      insuredPeopleCountWithIOZ: 0,
+      iozRatio: 0,
+      id: `${ageGroup}-${year}`,
+      name: `age group ${ageGroup}`,
+    };
+    acc[ageGroup][year].insuredPeopleCount += insuredPeopleCount;
+    acc[ageGroup][year].insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
+    acc[ageGroup][year].iozRatio =
+      acc[ageGroup][year].insuredPeopleCountWithIOZ / acc[ageGroup][year].insuredPeopleCount;
+    acc[ageGroup][year].x = year;
+    acc[ageGroup][year].y = acc[ageGroup][year].iozRatio;
+    return acc;
+  }, {});
 
-    // eslint-disable-next-line no-console
-    console.assert(
-      ageGroupData.length === data.get(ageGroup).length,
-      'Some data was filtered out during transformation',
-    );
-    return { id: `ageGroup${ageGroup}`, name: `age group ${ageGroup}`, data: ageGroupData };
-  });
+  // create series for each ageGroup
+  const series = Object.entries(seriesData).map(([ageGroup, d]) => ({
+    id: `ageGroup${ageGroup}`,
+    name: `age group ${ageGroup}`,
+    data: Object.values(d),
+  }));
+
+  return series;
 };
 
 export const defaultDetailLineChartSeries = prepareDetailLineChartSeries();

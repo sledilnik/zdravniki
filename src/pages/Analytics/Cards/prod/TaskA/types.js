@@ -28,7 +28,7 @@
  * @typedef {Object} UserInputsValues
  * @property {DoctorType} doctorType - The type of doctor.
  * @property {string} year - The year.
- * @property {string} municipality - The municipality.
+ * @property {string[]} municipalities - The municipalities.
  *
  * @typedef {Object} CustomHighmapSeriesDataOption
  * @property {number} value - The value of the series data item.

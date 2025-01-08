@@ -1,3 +1,5 @@
+/** @import * as Types from "./types" */
+
 import { useEffect, useState } from 'react';
 import { prepareDetailLineChartSeries, prepareOverviewMapSeriesData } from './data';
 
@@ -6,17 +8,13 @@ import { prepareDetailLineChartSeries, prepareOverviewMapSeriesData } from './da
  * @param {Types.UserInputsValues} initialFilterState
  * @param {{map: HighMaps.Options, chart: Highcharts.Options}} options
  * @param {boolean} init
+ * @param {Highcharts.Chart} mapChart
  * @returns
  */
-export const useCharts = (initialFilterState, options, init) => {
+export const useCharts = (initialFilterState, options, init, mapChart) => {
   const [filterState, setFilterState] = useState(initialFilterState);
   const [mapChartOptions, setMapChartOptions] = useState(options.map);
   const [chartOptions, setChartOptions] = useState(options.chart);
-  /** @type {[Types.OverviewDataMapSeriesDataItem, React.Dispatch<React.SetStateAction<Types.OverviewDataMapSeriesDataItem>>]} */
-  const [selectedPoint, setSelectedPoint] = useState(
-    options.map.series[0].data.find(d => d.selected),
-  );
-
   useEffect(() => {
     if (!init) return;
     setMapChartOptions({
@@ -24,11 +22,18 @@ export const useCharts = (initialFilterState, options, init) => {
         series: {
           point: {
             events: {
-              click(e) {
-                e.point.select(true, false);
+              select() {
+                const sPoints = mapChart?.getSelectedPoints();
                 setFilterState(prev => ({
                   ...prev,
-                  municipality: e.point.name,
+                  municipalities: sPoints.map(p => p.municipality),
+                }));
+              },
+              unselect() {
+                const sPoints = mapChart?.getSelectedPoints();
+                setFilterState(prev => ({
+                  ...prev,
+                  municipalities: sPoints.map(p => p.municipality),
                 }));
               },
             },
@@ -36,16 +41,13 @@ export const useCharts = (initialFilterState, options, init) => {
         },
       },
     });
-  }, [init]);
+  }, [init, mapChart]);
 
   useEffect(() => {
     const data = prepareOverviewMapSeriesData(filterState);
     setMapChartOptions({
       series: [{ data }],
     });
-
-    const sPoint = data.find(d => d.selected);
-    setSelectedPoint(sPoint);
 
     const series = prepareDetailLineChartSeries(filterState);
     setChartOptions({
@@ -60,6 +62,5 @@ export const useCharts = (initialFilterState, options, init) => {
     setMapChartOptions,
     chartOptions,
     setChartOptions,
-    selectedPoint,
   };
 };

@@ -18,7 +18,7 @@ import { mapOptions, secondChartOptions } from './chart-options';
 import styles from '../MapAndChart.module.css';
 import {
   DEFAULTS,
-  prepareOverviewMapSeriesData,
+  // prepareOverviewMapSeriesData,
   uniqueDoctorTypesSet,
   uniqueMunicipalitiesSet,
   uniqueYearsSet,
@@ -44,7 +44,7 @@ const TaskA = function TaskA({ id }) {
     setInit(true);
   }, []);
 
-  const { filterState, mapChartOptions, setFilterState, chartOptions, selectedPoint } = useCharts(
+  const { filterState, mapChartOptions, setFilterState, chartOptions } = useCharts(
     DEFAULTS,
     {
       map: { ...mapOptions, title: { text: tTaskA.mapTitle } },
@@ -54,32 +54,15 @@ const TaskA = function TaskA({ id }) {
       },
     },
     init,
+    mapRef.current?.chart,
   );
 
   const onFilterChange = e => {
     const { name, value } = e.target;
+
     const newValue = name === 'year' ? Number(value) : value;
     setFilterState({ ...filterState, [name]: newValue });
   };
-
-  const currentInsuredPeopleCount = selectedPoint?.insuredPeopleCount ?? 0;
-  const currentInsuredPeopleCountWithIOZ = selectedPoint?.insuredPeopleCountWithIOZ ?? 0;
-
-  const previousYear = filterState.year - 1;
-  const previousYearData = prepareOverviewMapSeriesData({
-    ...filterState,
-    year: previousYear,
-  }).find(item => item.municipality === filterState.municipality);
-  const previousYearInsuredPeopleCount = previousYearData?.insuredPeopleCount ?? 0;
-  const previousYearInsuredPeopleCountWithIOZ = previousYearData?.insuredPeopleCountWithIOZ ?? 0;
-
-  const changeInsuredPeopleCount = currentInsuredPeopleCount - previousYearInsuredPeopleCount;
-  const changeInsuredPeopleCountWithIOZ =
-    currentInsuredPeopleCountWithIOZ - previousYearInsuredPeopleCountWithIOZ;
-
-  const trendInsuredPeopleCount = changeInsuredPeopleCount / previousYearInsuredPeopleCount;
-  const trendInsuredPeopleCountWithIOZ =
-    changeInsuredPeopleCountWithIOZ / previousYearInsuredPeopleCountWithIOZ;
 
   return (
     <Card id={id} className={styles.MapAndChart}>
@@ -102,19 +85,11 @@ const TaskA = function TaskA({ id }) {
         <CardContent className={styles.ScorecardsContainer}>
           <Scorecard
             valueLabel={filterState.year}
-            changeLabel={previousYear}
+            changeLabel={filterState.year - 1}
             scorecardType="description"
           />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCount}
-            value={currentInsuredPeopleCount}
-            change={trendInsuredPeopleCount}
-          />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCountWithIOZ}
-            value={currentInsuredPeopleCountWithIOZ}
-            change={trendInsuredPeopleCountWithIOZ}
-          />
+          <Scorecard label={tCommon.data.insuredPeopleCount} value={2} change={-1} />
+          <Scorecard label={tCommon.data.insuredPeopleCountWithIOZ} value={1} change={2} />
         </CardContent>
         <CardContent className={styles.MapContainer}>
           <figure>
@@ -127,12 +102,6 @@ const TaskA = function TaskA({ id }) {
           </figure>
         </CardContent>
         <CardContent className={styles.ChartContainer}>
-          <CardTitle variant="subtitle">{filterState.municipality}</CardTitle>
-          <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
-            <CardTitle as="span" variant="description">
-              {tCommon.doctorTypes[filterState.doctorType]}
-            </CardTitle>
-          </div>
           <figure>
             <HighchartsReact
               highcharts={Highcharts}

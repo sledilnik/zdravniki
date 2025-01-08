@@ -39,6 +39,11 @@ export const FilterForm = forwardRef(
       });
     };
 
+    const handleMultiSelectChange = selectedOptions => {
+      const selectedMunicipalities = selectedOptions.map(option => option.value);
+      onChange({ target: { name: 'municipalities', value: selectedMunicipalities } });
+    };
+
     return (
       <form ref={ref} action="" className={styles.FilterForm}>
         <div>
@@ -50,19 +55,21 @@ export const FilterForm = forwardRef(
                 minWidth: '28ch',
               }),
             }}
-            name="municipality"
-            id="municipality"
-            value={{
-              name: 'municipality',
-              label: filterState.municipality,
-              value: filterState.municipality,
-            }}
-            onChange={onFormChange}
-            options={filterOptions.municipalities.map(municipality => ({
-              name: 'municipality',
+            name="municipalities"
+            id="municipalities"
+            isMulti
+            onChange={handleMultiSelectChange}
+            value={filterState.municipalities.map(municipality => ({
+              name: 'municipalities',
               label: municipality,
               value: municipality,
             }))}
+            options={filterOptions.municipalities.map(municipality => ({
+              name: 'municipalities',
+              label: municipality,
+              value: municipality,
+            }))}
+            placeholder={tCommon.selectMunicipality}
           />
         </div>
         <div>

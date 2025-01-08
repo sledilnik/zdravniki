@@ -112,6 +112,7 @@
             "doctorType": "Activity",
             "municipality": "Municipality",
             "year": "Year",
+            "selectMunicipality": "Select...",
             "doctorTypes": {
                 "betterAccessibility": "Better Accessibility",
                 "gp": "General Practice",

@@ -114,6 +114,7 @@
             "doctorType": "Dejavnost",
             "municipality": "Občina",
             "year": "Leto",
+            "selectMunicipality": "Izberi...",
             "doctorTypes": {
                 "betterAccessibility": "Boljša dostopnost",
                 "gp": "Spl. dejavnost",
