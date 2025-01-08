@@ -70,7 +70,7 @@ const TaskA = function TaskA({ id }) {
 
   const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
   const chartSeries = useMemo(
-    () => prepareDetailLineChartSeries({ municipalities, doctorType }),
+    () => prepareDetailLineChartSeries(municipalities, doctorType),
     [doctorType, municipalities],
   );
 

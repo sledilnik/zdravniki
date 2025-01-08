@@ -63,4 +63,31 @@
  * @typedef {Map<Municipality, Map<DoctorType, Map<AgeGroup, DetailDataTransformedOutput[]>>>} DetailByMunicipalityAndTypeAndAgeGroupMap
  */
 
+/**
+ * @typedef {Object} AggregatedYearData
+ * @property {number} insuredPeopleCount - Total insured people count.
+ * @property {number} insuredPeopleCountWithIOZ - Total insured people count with IOZ.
+ * @property {number} iozRatio - Ratio of insured people with IOZ to total insured people.
+ * @property {string} id - Unique identifier for the aggregation (ageGroup-year).
+ * @property {string} name - Name of the age group.
+ * @property {number} year - Year of the data point.
+ */
+
+/**
+ * @typedef {Map<number, AggregatedYearData>} YearDataMap - Map of year to aggregated year data.
+ * @typedef {Map<string, YearDataMap>} AggregatedDataMap - Map of age group to year data map.
+ */
+
+/**
+ * @typedef {Object} LineChartDataOptions
+ * @property {x: string, y: number} - The x and y axis properties.
+ *
+ *
+ * @typedef {Object} LineChartSeries
+ * @property {string} id - The unique identifier of the series.
+ * @property {string} name - The name of the series.
+ * @property {(AggregatedYearData & LineChartDataOptions)[]} data - The data points of the series.
+
+ */
+
 export default {};

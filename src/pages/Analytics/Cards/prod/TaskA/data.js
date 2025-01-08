@@ -144,6 +144,9 @@ export const detailDataMap = makeDetailDataMap();
  * @constant DEFAULTS
  * @description Doctor type data map key is year and doctor type value is array of data
  * @type {Types.UserInputsValues}
+ * @default year `${Math.max(...uniqueYearsSet)}`
+ * @default doctorType 'gp'
+ * @default municipalities []
  */
 export const DEFAULTS = Object.freeze({
   year: `${Math.max(...uniqueYearsSet)}`,
@@ -196,75 +199,107 @@ export const prepareOverviewMapSeriesData = (
 export const defaultOverviewMapSeriesData = prepareOverviewMapSeriesData();
 
 /**
- * @function transformItenForLineChart
- * @param {Types.DetailDataTransformedOutput} item
- * @param {Types.PropertyAsValue} propertyAsValue
- * @returns {Types.DetailDataMapSeriesDataItem}
+ * Aggregates data by age group and year, computing metrics like `iozRatio`.
+ * @param {Types.AggregatedDataMap} acc - The accumulator for aggregated data.
+ * @param {Types.DetailDataTransformedOutput} item - A single data item to aggregate.
+ * @returns {Types.AggregatedDataMap} Updated accumulator.
  */
-export const transformItenForLineChart = (item, propertyAsValue) => ({
-  ...item,
-  x: Number(item.year),
-  y: item[propertyAsValue],
-});
+const aggregateByYearAndAgeGroup = (acc, item) => {
+  const { year, ageGroup, insuredPeopleCount, insuredPeopleCountWithIOZ } = item;
+
+  // Get or initialize the age group map
+  const yearDataMap = acc.get(ageGroup) || new Map();
+
+  // Get or initialize the year data
+  const yearData = yearDataMap.get(year) || {
+    insuredPeopleCount: 0,
+    insuredPeopleCountWithIOZ: 0,
+    iozRatio: 0,
+    id: `${ageGroup}-${year}`,
+    name: `Age Group ${ageGroup}`,
+    year,
+  };
+
+  // Update year data
+  yearData.insuredPeopleCount += insuredPeopleCount;
+  yearData.insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
+  yearData.iozRatio =
+    yearData.insuredPeopleCount > 0
+      ? yearData.insuredPeopleCountWithIOZ / yearData.insuredPeopleCount
+      : 0;
+
+  // Update maps
+  yearDataMap.set(year, yearData);
+  acc.set(ageGroup, yearDataMap);
+
+  return acc;
+};
 
 /**
- * @typedef {Object} LineChartSeries
- * @property {string} id
- * @property {string} name
- * @property {Types.DetailDataMapSeriesDataItem[]} data
- *
- * @function prepareDetailLineChartSeriesData
- * @description Prepare data for the line chart series
- * @param {Exclude<Types.UserInputsValues, "year">} filterStateNoYear
- * @returns {LineChartSeries[]}
+ * Collects and flattens data for selected municipalities and doctor types.
+ * @param {string[]} municipalities - List of selected municipalities.
+ * @param {string} doctorType - Doctor type filter.
+ * @returns {Types.DetailDataTransformedOutput[]} Collected data.
+ */
+const collectData = (municipalities, doctorType) =>
+  municipalities.flatMap(municipality => {
+    const data = detailDataMap.get(municipality)?.get(doctorType);
+    return data ? Array.from(data.values()).flat() : [];
+  });
+
+/**
+ * Converts aggregated data into a format suitable for Highcharts.
+ * @param {Types.AggregatedDataMap} aggregatedData - The aggregated data map.
+ * @param {string} xProp - Property to use as the x-axis value.
+ * @param {string} yProp - Property to use as the y-axis value.
+ * @returns {Types.LineChartSeries[]} Highcharts-compatible series data.
+ */
+const transformToChartSeries = (aggregatedData, xProp, yProp) =>
+  Array.from(aggregatedData.entries()).map(([ageGroup, yearDataMap]) => ({
+    id: `ageGroup${ageGroup}`,
+    name: `Age Group ${ageGroup}`,
+    data: Array.from(yearDataMap.values()).map(item => ({
+      ...item,
+      x: item[xProp],
+      y: item[yProp],
+    })),
+  }));
+
+/**
+ * Prepares data for the line chart series.
+ * @param {typeof DEFAULTS["municipalities"]} municipalities - List of selected municipalities.
+ * @param {typeof DEFAULTS["doctorType"]} doctorType - Doctor type filter.
+ * @param {{ xProp?: string, yProp?: string }} options - Configuration for axis mapping. Defaults to `year` and `iozRatio`. // TODO add better types
+ * @default municipalities DEFAULTS.municipalities = []
+ * @default doctorType DEFAULTS.doctorType = "gp"
+ * @default options { xProp: 'year', yProp: 'iozRatio' }
+ * @returns {Types.LineChartSeries[]} Prepared line chart series data.
  */
 export const prepareDetailLineChartSeries = (
-  { municipalities, doctorType } = {
-    municipalities: DEFAULTS.municipalities,
-    doctorType: DEFAULTS.doctorType,
-  },
+  municipalities = DEFAULTS.municipalities,
+  doctorType = DEFAULTS.doctorType,
+  { xProp = 'year', yProp = 'iozRatio' } = {},
 ) => {
+  // Use all municipalities if none are selected
   const selectedMunicipalities =
     municipalities.length > 0 ? municipalities : Array.from(detailDataMap.keys());
 
-  const data = selectedMunicipalities
-    .map(municipality => {
-      const municipalityData = detailDataMap.get(municipality)?.get(doctorType);
-      if (!municipalityData) {
-        return [];
-      }
-      const ageGroupsKeys = Array.from(municipalityData.keys());
-      return ageGroupsKeys.map(ageGroup => municipalityData.get(ageGroup));
-    })
-    .flat(Infinity);
+  // Step 1: Collect data
+  const collectedData = collectData(selectedMunicipalities, doctorType);
 
-  // sum insuredPeopleCount and insuredPeopleCountWithIOZ and calculate new iozRatio data for each year and ageGroup
-  // console.log(data);
-  const seriesData = data.reduce((acc, item) => {
-    const { year, ageGroup, insuredPeopleCount, insuredPeopleCountWithIOZ } = item;
+  /**
+   * @type {Types.AggregatedDataMap}
+   */
+  const accInitial = new Map();
 
-    acc[ageGroup] = acc[ageGroup] || {};
-    acc[ageGroup][year] = acc[ageGroup][year] || {
-      insuredPeopleCount: 0,
-      insuredPeopleCountWithIOZ: 0,
-      iozRatio: 0,
-      id: `${ageGroup}-${year}`,
-      name: `age group ${ageGroup}`,
-    };
-    acc[ageGroup][year].insuredPeopleCount += insuredPeopleCount;
-    acc[ageGroup][year].insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
-    acc[ageGroup][year].iozRatio =
-      acc[ageGroup][year].insuredPeopleCountWithIOZ / acc[ageGroup][year].insuredPeopleCount;
-    acc[ageGroup][year].x = year;
-    acc[ageGroup][year].y = acc[ageGroup][year].iozRatio;
-    return acc;
-  }, {});
+  // Step 2: Aggregate data using the properly typed Map
+  const aggregatedData = collectedData.reduce(
+    (acc, item) => aggregateByYearAndAgeGroup(acc, item),
+    accInitial,
+  );
 
-  return Object.entries(seriesData).map(([ageGroup, d]) => ({
-    id: `ageGroup${ageGroup}`,
-    name: `age group ${ageGroup}`,
-    data: Object.values(d),
-  }));
+  // Step 3: Transform to chart series
+  return transformToChartSeries(aggregatedData, xProp, yProp);
 };
 
-export const defaultDetailLineChartSeries = prepareDetailLineChartSeries().series;
+export const defaultDetailLineChartSeries = prepareDetailLineChartSeries();
