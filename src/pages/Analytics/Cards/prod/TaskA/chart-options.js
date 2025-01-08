@@ -1,7 +1,9 @@
 /** @import * as Types from "../../../types" */
 
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
-import { defaultDetailLineChartSeries, defaultOverviewMapSeriesData, uniqueYearsSet } from './data';
+import { uniqueOverviewYearsSet } from './constants';
+import { prepareDetailLineChartSeries } from './detail-data-util';
+import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 /** @type {Types.HighMapsOptions} */
 export const mapOptions = {
@@ -42,7 +44,7 @@ export const mapOptions = {
       type: 'map',
       mapData: sloOBMap,
       joinBy: ['name', 'municipality'],
-      data: defaultOverviewMapSeriesData,
+      data: prepareOverviewMapSeriesData(),
       cursor: 'pointer',
       allowPointSelect: true,
       states: {
@@ -64,7 +66,7 @@ export const secondChartOptions = {
     backgroundColor: 'oklch(0.98 0 0)',
   },
   xAxis: {
-    categories: [...uniqueYearsSet].sort((a, b) => a - b),
+    categories: [...uniqueOverviewYearsSet].sort((a, b) => a - b),
     crosshair: true,
   },
   yAxis: {
@@ -78,7 +80,7 @@ export const secondChartOptions = {
   credits: {
     enabled: false,
   },
-  series: defaultDetailLineChartSeries,
+  series: prepareDetailLineChartSeries(),
   tooltip: {
     shared: true,
     useHTML: true,

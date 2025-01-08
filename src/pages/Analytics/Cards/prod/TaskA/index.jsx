@@ -14,19 +14,18 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { mapOptions, secondChartOptions } from './chart-options';
-
-import styles from '../MapAndChart.module.css';
 import {
   DEFAULTS,
-  prepareDetailLineChartSeries,
-  prepareOverviewMapSeriesData,
-  // prepareOverviewMapSeriesData,
-  uniqueDoctorTypesSet,
-  uniqueMunicipalitiesSet,
-  uniqueYearsSet,
-} from './data';
+  uniqueOverviewDoctorTypesSet,
+  uniqueOverviewMunicipalitiesSet,
+  uniqueOverviewYearsSet,
+} from './constants';
+
+import styles from '../MapAndChart.module.css';
+import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
 import { useCharts } from './hooks';
+import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 /**
  * TaskA component
@@ -103,9 +102,9 @@ const TaskA = function TaskA({ id }) {
             filterState={filterState}
             onChange={onFilterChange}
             filterOptions={{
-              municipalities: [...uniqueMunicipalitiesSet],
-              years: [...uniqueYearsSet].sort((a, b) => b - a),
-              doctorTypes: [...uniqueDoctorTypesSet],
+              municipalities: [...uniqueOverviewMunicipalitiesSet],
+              years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
+              doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
           />
         </CardContent>
