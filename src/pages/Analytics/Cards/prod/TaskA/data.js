@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /** @import * as Types from "./types" */
 
 import detailData from 'assets/data/analytics/task-a/podatki-detail.json';
@@ -216,35 +215,26 @@ export const transformItenForLineChart = (item, propertyAsValue) => ({
  *
  * @function prepareDetailLineChartSeriesData
  * @description Prepare data for the line chart series
- * @param {Types.UserInputsValues} filterState
- * @param {Types.PropertyAsValue} propertyAsValue
+ * @param {Exclude<Types.UserInputsValues, "year">} filterStateNoYear
  * @returns {LineChartSeries[]}
  */
 export const prepareDetailLineChartSeries = (
-  filterState = DEFAULTS,
-  propertyAsValue = 'iozRatio',
+  { municipalities, doctorType } = {
+    municipalities: DEFAULTS.municipalities,
+    doctorType: DEFAULTS.doctorType,
+  },
 ) => {
-  const { municipalities: municipalitiesSelected, doctorType } = filterState;
-  const municipalities =
-    municipalitiesSelected.length > 0 ? municipalitiesSelected : Array.from(detailDataMap.keys());
-  /**
-   * I need sum insurePeopleCount and sum insuredPeopleCount for each year for each ageGroup for doctorType
-   * if no municipality is selected I need to sum all municipalities
-   *  municipality: ['municipality1', 'municipality2']
-   */
-  const data = municipalities
+  const selectedMunicipalities =
+    municipalities.length > 0 ? municipalities : Array.from(detailDataMap.keys());
+
+  const data = selectedMunicipalities
     .map(municipality => {
       const municipalityData = detailDataMap.get(municipality)?.get(doctorType);
       if (!municipalityData) {
         return [];
       }
       const ageGroupsKeys = Array.from(municipalityData.keys());
-      const ageGroupsData = ageGroupsKeys.map(ageGroup => {
-        const ageGroupData = municipalityData.get(ageGroup);
-
-        return ageGroupData;
-      });
-      return ageGroupsData;
+      return ageGroupsKeys.map(ageGroup => municipalityData.get(ageGroup));
     })
     .flat(Infinity);
 
@@ -270,14 +260,11 @@ export const prepareDetailLineChartSeries = (
     return acc;
   }, {});
 
-  // create series for each ageGroup
-  const series = Object.entries(seriesData).map(([ageGroup, d]) => ({
+  return Object.entries(seriesData).map(([ageGroup, d]) => ({
     id: `ageGroup${ageGroup}`,
     name: `age group ${ageGroup}`,
     data: Object.values(d),
   }));
-
-  return series;
 };
 
-export const defaultDetailLineChartSeries = prepareDetailLineChartSeries();
+export const defaultDetailLineChartSeries = prepareDetailLineChartSeries().series;

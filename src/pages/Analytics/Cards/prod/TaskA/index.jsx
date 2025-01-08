@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -18,6 +18,8 @@ import { mapOptions, secondChartOptions } from './chart-options';
 import styles from '../MapAndChart.module.css';
 import {
   DEFAULTS,
+  prepareDetailLineChartSeries,
+  prepareOverviewMapSeriesData,
   // prepareOverviewMapSeriesData,
   uniqueDoctorTypesSet,
   uniqueMunicipalitiesSet,
@@ -44,7 +46,14 @@ const TaskA = function TaskA({ id }) {
     setInit(true);
   }, []);
 
-  const { filterState, mapChartOptions, setFilterState, chartOptions } = useCharts(
+  const {
+    filterState,
+    mapChartOptions,
+    setFilterState,
+    chartOptions,
+    setMapChartOptions,
+    setChartOptions,
+  } = useCharts(
     DEFAULTS,
     {
       map: { ...mapOptions, title: { text: tTaskA.mapTitle } },
@@ -56,6 +65,24 @@ const TaskA = function TaskA({ id }) {
     init,
     mapRef.current?.chart,
   );
+
+  const { municipalities, doctorType } = filterState;
+
+  const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
+  const chartSeries = useMemo(
+    () => prepareDetailLineChartSeries({ municipalities, doctorType }),
+    [doctorType, municipalities],
+  );
+
+  useEffect(() => {
+    setMapChartOptions({
+      series: [{ data: mapSeriesData }],
+    });
+
+    setChartOptions({
+      series: chartSeries,
+    });
+  }, [mapSeriesData, chartSeries, setMapChartOptions, setChartOptions]);
 
   const onFilterChange = e => {
     const { name, value } = e.target;

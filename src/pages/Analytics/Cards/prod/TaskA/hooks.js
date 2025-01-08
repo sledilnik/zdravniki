@@ -1,7 +1,6 @@
 /** @import * as Types from "./types" */
 
 import { useEffect, useState } from 'react';
-import { prepareDetailLineChartSeries, prepareOverviewMapSeriesData } from './data';
 
 /**
  *
@@ -15,6 +14,7 @@ export const useCharts = (initialFilterState, options, init, mapChart) => {
   const [filterState, setFilterState] = useState(initialFilterState);
   const [mapChartOptions, setMapChartOptions] = useState(options.map);
   const [chartOptions, setChartOptions] = useState(options.chart);
+
   useEffect(() => {
     if (!init) return;
     setMapChartOptions({
@@ -42,18 +42,6 @@ export const useCharts = (initialFilterState, options, init, mapChart) => {
       },
     });
   }, [init, mapChart]);
-
-  useEffect(() => {
-    const data = prepareOverviewMapSeriesData(filterState);
-    setMapChartOptions({
-      series: [{ data }],
-    });
-
-    const series = prepareDetailLineChartSeries(filterState);
-    setChartOptions({
-      series,
-    });
-  }, [filterState]);
 
   return {
     filterState,
