@@ -1,8 +1,8 @@
 /** @import * as Types from "./types" */
 
+import { getTaskAAgeGroupString } from 'pages/Analytics/constants';
 import { DEFAULTS } from './constants';
 import { detailTransformedData } from './json-data-transform-util';
-
 /**
  * @description
  * @returns {Types.DetailByMunicipalityAndTypeAndAgeGroupMap}
@@ -39,6 +39,7 @@ const aggregateByYearAndAgeGroup = (acc, item) => {
   const { year, ageGroup, insuredPeopleCount, insuredPeopleCountWithIOZ } = item;
 
   // Get or initialize the age group map
+  /** @type {Types.YearDataMap} */
   const yearDataMap = acc.get(ageGroup) || new Map();
 
   // Get or initialize the year data
@@ -47,7 +48,7 @@ const aggregateByYearAndAgeGroup = (acc, item) => {
     insuredPeopleCountWithIOZ: 0,
     iozRatio: 0,
     id: `${ageGroup}-${year}`,
-    name: `Age Group ${ageGroup}`,
+    name: `Age Group ${ageGroup}`, // TODO: Do we need this?
     year,
   };
 
@@ -85,10 +86,10 @@ const collectData = (municipalities, doctorType) =>
  * @param {string} yProp - Property to use as the y-axis value.
  * @returns {Types.LineChartSeries[]} Highcharts-compatible series data.
  */
-const transformToChartSeries = (aggregatedData, xProp, yProp) =>
+const transformToChartSeries = (aggregatedData, xProp, yProp, doctorType) =>
   Array.from(aggregatedData.entries()).map(([ageGroup, yearDataMap]) => ({
     id: `ageGroup${ageGroup}`,
-    name: `Age Group ${ageGroup}`,
+    name: getTaskAAgeGroupString(doctorType, ageGroup),
     data: Array.from(yearDataMap.values()).map(item => ({
       ...item,
       x: item[xProp],
@@ -130,6 +131,6 @@ export const prepareDetailLineChartSeries = (
   );
 
   // Step 3: Transform to chart series
-  return transformToChartSeries(aggregatedData, xProp, yProp);
+  return transformToChartSeries(aggregatedData, xProp, yProp, doctorType);
 };
 prepareDetailLineChartSeries();

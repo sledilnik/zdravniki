@@ -3,9 +3,11 @@
 /** @import * as Schemas from './schemas'; */
 
 /**
+ * @typedef {"taskA" | "taskB" | "taskC"} TaskType
+ *
  * @typedef {string} Municipality
  * @typedef {number} Year
- * @typedef {number} AgeGroup
+ * @typedef {number} AgeGroupKey
  *
  * @typedef {z.input<typeof Schemas.dataSchema} OverviewDataInput
  * @typedef {z.output<typeof Schemas.dataSchema>} OverviewDataOutput
@@ -55,12 +57,12 @@
  * The key is the municipality (string), and the value is a nested map where:
  * - The key is the doctor type (DoctorType).
  * - The value is a nested map where:
- *  - The key is the age group (AgeGroup).
+ *  - The key is the age group (AgeGroupKey).
  * - The value is an array of detail data transformed outputs (DetailDataTransformedOutput[]).
  *
  * This structure is used to efficiently query detail data by municipality, doctor type and age group.
  *
- * @typedef {Map<Municipality, Map<DoctorType, Map<AgeGroup, DetailDataTransformedOutput[]>>>} DetailByMunicipalityAndTypeAndAgeGroupMap
+ * @typedef {Map<Municipality, Map<DoctorType, Map<AgeGroupKey, DetailDataTransformedOutput[]>>>} DetailByMunicipalityAndTypeAndAgeGroupMap
  */
 
 /**

@@ -85,11 +85,14 @@ export const secondChartOptions = {
     shared: true,
     useHTML: true,
     formatter() {
-      return this.points.reduce(
-        (s, point) =>
-          `${s}<br/><span style="color:${point.series.color}">●</span> ${point.series.name}: <b>${point.y.toFixed(2)}</b>`,
-        `<b>${this.key}</b>`,
-      );
+      return this.points.reduce((s, point) => {
+        const { options } = point.point;
+        const intlFormat = new Intl.NumberFormat('sl');
+        const totalInsured = intlFormat.format(options.insuredPeopleCount);
+        const insuredWithIOZ = intlFormat.format(options.insuredPeopleCountWithIOZ);
+        return `${s}<br/><span style="color:${point.series.color}">●</span> ${point.series.name}:
+        <b>${totalInsured}</b>,<b>${insuredWithIOZ}</b>`;
+      }, `<b>Leto</b>: ${this.x}<br/><b>Starostna skupina</b><span> vsi zav., z ioz</span></br>`);
     },
   },
 };
