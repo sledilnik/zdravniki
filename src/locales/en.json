@@ -120,6 +120,10 @@
                 "dso": "DSO",
                 "den": "Dentist"
             },
+            "buttons": {
+                "cityMunicipalitiesActive": "Cities",
+                "cityMunicipalitiesInactive": "Cities"
+            },
             "data": {
                 "iozRatio": "iozRatio",
                 "insuredPeopleCount": "Insured",

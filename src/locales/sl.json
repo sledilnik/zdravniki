@@ -122,6 +122,10 @@
                 "dso": "DSO",
                 "den": "Zobozdravstvo"
             },
+            "buttons": {
+                "cityMunicipalitiesActive": "Meste občine",
+                "cityMunicipalitiesInactive": "Meste občine"
+            },
             "data": {
                 "iozRatio": "iozRatio",
                 "insuredPeopleCount": "Št. zavarovancev",

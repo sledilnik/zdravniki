@@ -3,6 +3,21 @@
 
 import { detailTransformedData, overviewTransformedData } from './json-data-transform-util';
 
+export const CITY_MUNICIPALITIES_LIST = [
+  'Celje',
+  'Koper',
+  'Kranj',
+  'Krško',
+  'Ljubljana',
+  'Maribor',
+  'Murska Sobota',
+  'Nova Gorica',
+  'Novo mesto',
+  'Ptuj',
+  'Slovenj Gradec',
+  'Velenje',
+];
+
 export const uniqueOverviewYearsSet = new Set(overviewTransformedData.map(item => item.year));
 export const uniqueOverviewDoctorTypesSet = new Set(
   overviewTransformedData.map(item => item.doctorType),

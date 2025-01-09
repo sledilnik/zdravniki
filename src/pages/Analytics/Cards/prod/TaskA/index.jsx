@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
@@ -15,6 +16,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { mapOptions, secondChartOptions } from './chart-options';
 import {
+  CITY_MUNICIPALITIES_LIST,
   DEFAULTS,
   uniqueOverviewDoctorTypesSet,
   uniqueOverviewMunicipalitiesSet,
@@ -22,6 +24,7 @@ import {
 } from './constants';
 
 import styles from '../MapAndChart.module.css';
+import { Button } from './Buttons';
 import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
 import { useCharts } from './hooks';
@@ -38,6 +41,7 @@ import { calculateYearlyStatistics } from './scorecards-calc-util';
 const TaskA = function TaskA({ id }) {
   const [init, setInit] = useState(false);
   const mapRef = useRef(null);
+  const citiesButtonRef = useRef(null);
 
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
@@ -97,6 +101,15 @@ const TaskA = function TaskA({ id }) {
     [currentSelectedYear, chartSeries],
   );
 
+  const handleCityMunicipalitiesClick = () => {
+    const button = citiesButtonRef.current;
+    const state = button.getAttribute('data-state');
+    setFilterState(prev => ({
+      ...prev,
+      municipalities: state === 'active' ? CITY_MUNICIPALITIES_LIST : [],
+    }));
+  };
+
   return (
     <Card id={id} className={styles.MapAndChart}>
       <div className={styles.Grid}>
@@ -141,6 +154,18 @@ const TaskA = function TaskA({ id }) {
               options={mapChartOptions}
             />
           </figure>
+          <div>
+            <Button
+              ref={citiesButtonRef}
+              type="button"
+              onClick={handleCityMunicipalitiesClick}
+              data-state="inactive"
+            >
+              {citiesButtonRef.current?.getAttribute('data-state') === 'inactive'
+                ? tCommon.buttons.cityMunicipalitiesInactive
+                : tCommon.buttons.cityMunicipalitiesActive}
+            </Button>
+          </div>
         </CardContent>
         <CardContent className={styles.ChartContainer}>
           <figure>
