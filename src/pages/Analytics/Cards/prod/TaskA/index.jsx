@@ -87,7 +87,7 @@ const TaskA = function TaskA({ id }) {
     setChartOptions({
       series: chartSeries,
     });
-  }, [mapSeriesData, chartSeries, setMapChartOptions, setChartOptions]);
+  }, [chartSeries, mapSeriesData]);
 
   useEffect(() => {
     const button = citiesButtonRef.current;
