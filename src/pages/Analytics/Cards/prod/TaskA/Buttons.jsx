@@ -22,12 +22,6 @@ export const Button = forwardRef(
     const scoreRef = useRef(null);
 
     const handleClick = e => {
-      e.preventDefault();
-      const btn = ref?.current ?? scoreRef.current;
-      if (btn) {
-        const dataState = btn.getAttribute('data-state');
-        btn.setAttribute('data-state', dataState === 'inactive' ? 'active' : 'inactive');
-      }
       onClick?.(e);
     };
 

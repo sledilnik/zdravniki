@@ -16,6 +16,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { mapOptions, secondChartOptions } from './chart-options';
 import {
+  assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
   DEFAULTS,
   uniqueOverviewDoctorTypesSet,
@@ -88,6 +89,16 @@ const TaskA = function TaskA({ id }) {
     });
   }, [mapSeriesData, chartSeries, setMapChartOptions, setChartOptions]);
 
+  useEffect(() => {
+    const button = citiesButtonRef.current;
+    if (!button) return;
+    const isCitiesActive = assertSetsEqual(
+      new Set(municipalities),
+      new Set(CITY_MUNICIPALITIES_LIST),
+    );
+    button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
+  }, [municipalities]);
+
   const onFilterChange = e => {
     const { name, value } = e.target;
 
@@ -103,10 +114,15 @@ const TaskA = function TaskA({ id }) {
 
   const handleCityMunicipalitiesClick = () => {
     const button = citiesButtonRef.current;
-    const state = button.getAttribute('data-state');
+
+    if (!button) {
+      return;
+    }
+    const prevDataState = button.getAttribute('data-state');
+    button.setAttribute('data-state', prevDataState === 'inactive' ? 'active' : 'inactive');
     setFilterState(prev => ({
       ...prev,
-      municipalities: state === 'active' ? CITY_MUNICIPALITIES_LIST : [],
+      municipalities: prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : [],
     }));
   };
 
