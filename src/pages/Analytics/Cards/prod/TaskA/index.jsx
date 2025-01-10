@@ -28,7 +28,7 @@ import styles from '../MapAndChart.module.css';
 import { Button } from './Buttons';
 import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
-import { useCharts } from './hooks';
+import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 
@@ -40,37 +40,35 @@ import { calculateYearlyStatistics } from './scorecards-calc-util';
  * @returns {JSX.Element} The rendered TaskA component.
  */
 const TaskA = function TaskA({ id }) {
+  const tTaskA = t('analytics.taskA', { returnObjects: true });
+  const tCommon = t('analytics.common', { returnObjects: true });
   const [init, setInit] = useState(false);
+  const [filterState, setFilterState] = useState(DEFAULTS);
+  const [mapChartOptions, setMapChartOptions] = useState({
+    ...mapOptions,
+    title: { text: tTaskA.mapTitle },
+  });
+  const [chartOptions, setChartOptions] = useState({
+    ...secondChartOptions,
+    title: { text: tTaskA.chartTitle },
+  });
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
 
-  const tTaskA = t('analytics.taskA', { returnObjects: true });
-  const tCommon = t('analytics.common', { returnObjects: true });
-
   useEffect(() => {
     setInit(true);
   }, []);
 
-  const {
-    filterState,
-    mapChartOptions,
-    setFilterState,
-    chartOptions,
-    setMapChartOptions,
-    setChartOptions,
-  } = useCharts(
-    DEFAULTS,
+  useMapChart(
     {
-      map: { ...mapOptions, title: { text: tTaskA.mapTitle } },
-      chart: {
-        ...secondChartOptions,
-        title: { text: tTaskA.chartTitle },
-      },
+      setMapChartOptions,
+      setFilterState,
+      init,
+      mapChart: mapRef.current?.chart,
     },
-    init,
-    mapRef.current?.chart,
+    [init],
   );
 
   const { municipalities, doctorType } = filterState;

@@ -1,22 +1,18 @@
 /** @import * as Types "../../../types" */
 /** @import * as TaskATypes from "./types" */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 /**
  *
- *
- * @param {TaskATypes.UserInputsValues} initialFilterState
- * @param {{map: Types.HighMapsOptions, chart: Types.HighchartsOptions}} options
- * @param {boolean} init
- * @param {Highcharts.Chart} mapChart
- * @returns
+ * @param {Object} params
+ * @param {React.Dispatch<React.SetStateAction<TaskATypes.UserInputsValues>>} params.initialFilterState
+ * @param {React.Dispatch<React.SetStateAction<Types.HighMapsOptions>>} params.setFilterState
+ * @param {boolean} params.init
+ * @param {Highcharts.Chart} params.mapChart
+ * @returns {void}
  */
-export const useCharts = (initialFilterState, options, init, mapChart) => {
-  const [filterState, setFilterState] = useState(initialFilterState);
-  const [mapChartOptions, setMapChartOptions] = useState(options.map);
-  const [chartOptions, setChartOptions] = useState(options.chart);
-
+export const useMapChart = ({ setMapChartOptions, setFilterState, init, mapChart }) => {
   useEffect(() => {
     if (!init) return;
     setMapChartOptions({
@@ -43,14 +39,5 @@ export const useCharts = (initialFilterState, options, init, mapChart) => {
         },
       },
     });
-  }, [init, mapChart]);
-
-  return {
-    filterState,
-    mapChartOptions,
-    setFilterState,
-    setMapChartOptions,
-    chartOptions,
-    setChartOptions,
-  };
+  }, [init, mapChart, setFilterState, setMapChartOptions]);
 };
