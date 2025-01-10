@@ -41,7 +41,9 @@ import { calculateYearlyStatistics } from './scorecards-calc-util';
  */
 const TaskA = function TaskA({ id }) {
   const [init, setInit] = useState(false);
+  /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
+  /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
 
   const tTaskA = t('analytics.taskA', { returnObjects: true });

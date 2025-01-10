@@ -1,11 +1,13 @@
-/** @import * as Types from "./types" */
+/** @import * as Types "../../../types" */
+/** @import * as TaskATypes from "./types" */
 
 import { useEffect, useState } from 'react';
 
 /**
  *
- * @param {Types.UserInputsValues} initialFilterState
- * @param {{map: HighMaps.Options, chart: Highcharts.Options}} options
+ *
+ * @param {TaskATypes.UserInputsValues} initialFilterState
+ * @param {{map: Types.HighMapsOptions, chart: Types.HighchartsOptions}} options
  * @param {boolean} init
  * @param {Highcharts.Chart} mapChart
  * @returns
