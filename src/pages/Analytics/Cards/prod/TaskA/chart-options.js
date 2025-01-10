@@ -85,14 +85,37 @@ export const secondChartOptions = {
     shared: true,
     useHTML: true,
     formatter() {
-      return this.points.reduce((s, point) => {
-        const { options } = point.point;
-        const intlFormat = new Intl.NumberFormat('sl');
-        const totalInsured = intlFormat.format(options.insuredPeopleCount);
-        const insuredWithIOZ = intlFormat.format(options.insuredPeopleCountWithIOZ);
-        return `${s}<br/><span style="color:${point.series.color}">●</span> ${point.series.name}:
-        <b>${totalInsured}</b>,<b>${insuredWithIOZ}</b>`;
-      }, `<b>Leto</b>: ${this.x}<br/><b>Starostna skupina</b><span> vsi zav., z ioz</span></br>`);
+      const header = `
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid black; padding: 4px;">Age Group</th>
+              <th style="border: 1px solid black; padding: 4px;">Total Insured</th>
+              <th style="border: 1px solid black; padding: 4px;">With IOZ</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      const rows = this.points
+        .map(point => {
+          const { options } = point.point;
+          const intlFormat = new Intl.NumberFormat('sl');
+          const totalInsured = intlFormat.format(options.insuredPeopleCount);
+          const insuredWithIOZ = intlFormat.format(options.insuredPeopleCountWithIOZ);
+          return `
+            <tr>
+              <td style="border: 1px solid black; padding: 4px;">${point.series.name}</td>
+              <td style="border: 1px solid black; padding: 4px;">${totalInsured}</td>
+              <td style="border: 1px solid black; padding: 4px;">${insuredWithIOZ}</td>
+            </tr>
+          `;
+        })
+        .join('');
+
+      const footer = `</tbody></table>`;
+
+      return `<b>Year</b>: ${this.x}<br/>${header}${rows}${footer}`;
     },
   },
 };
