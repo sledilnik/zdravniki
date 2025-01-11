@@ -184,6 +184,8 @@ const TaskA = function TaskA({ id }) {
           </div>
         </CardContent>
         <CardContent className={styles.ChartContainer}>
+          <CardTitle variant="subtitle">{tTaskA.chartTitle}</CardTitle>
+          <CardTitle variant="description">{tCommon.doctorTypes[filterState.doctorType]}</CardTitle>
           <figure>
             <HighchartsReact
               highcharts={Highcharts}

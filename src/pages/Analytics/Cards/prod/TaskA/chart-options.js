@@ -1,8 +1,12 @@
 /** @import * as Types from "../../../types" */
 
+import { renderToString } from 'react-dom/server';
+
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
 import { uniqueOverviewYearsSet } from './constants';
 import { prepareDetailLineChartSeries } from './detail-data-util';
+import { LineChartTooltip, LineChartYAxisTitle } from './LineChartComponents';
+import { MapChartTooltip } from './MapChartTooltip';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 /** @type {Types.HighMapsOptions} */
@@ -24,15 +28,9 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
     headerFormat: '',
+    backgroundColor: 'oklch(1 0 0 )',
     formatter() {
-      return `
-        <b>${this.point.name}</b><br>
-        <b>${this.point.year}</b><br>
-        <b>doctorType:</b> ${this.point.doctorType}<br>
-        <b>iozRatio:</b> ${this.point.iozRatio}<br>
-        <b>insuredPeopleCount:</b> ${this.point.insuredPeopleCount}<br>
-        <b>insuredPeopleCountWithIOZ:</b> ${this.point.insuredPeopleCountWithIOZ}<br>
-      `;
+      return renderToString(<MapChartTooltip point={this.point} />);
     },
   },
   credits: {
@@ -62,7 +60,6 @@ export const mapOptions = {
 export const secondChartOptions = {
   chart: {
     type: 'line',
-    height: 400,
     backgroundColor: 'oklch(0.98 0 0)',
   },
   xAxis: {
@@ -70,8 +67,9 @@ export const secondChartOptions = {
     crosshair: true,
   },
   yAxis: {
+    useHTML: true,
     title: {
-      text: 'neki',
+      text: renderToString(<LineChartYAxisTitle />),
     },
   },
   legend: {
@@ -84,38 +82,9 @@ export const secondChartOptions = {
   tooltip: {
     shared: true,
     useHTML: true,
+    backgroundColor: 'oklch(1 0 0 )',
     formatter() {
-      const header = `
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr>
-              <th style="border: 1px solid black; padding: 4px;">Age Group</th>
-              <th style="border: 1px solid black; padding: 4px;">Total Insured</th>
-              <th style="border: 1px solid black; padding: 4px;">With IOZ</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      const rows = this.points
-        .map(point => {
-          const { options } = point.point;
-          const intlFormat = new Intl.NumberFormat('sl');
-          const totalInsured = intlFormat.format(options.insuredPeopleCount);
-          const insuredWithIOZ = intlFormat.format(options.insuredPeopleCountWithIOZ);
-          return `
-            <tr>
-              <td style="border: 1px solid black; padding: 4px;">${point.series.name}</td>
-              <td style="border: 1px solid black; padding: 4px;">${totalInsured}</td>
-              <td style="border: 1px solid black; padding: 4px;">${insuredWithIOZ}</td>
-            </tr>
-          `;
-        })
-        .join('');
-
-      const footer = `</tbody></table>`;
-
-      return `<b>Year</b>: ${this.x}<br/>${header}${rows}${footer}`;
+      return renderToString(<LineChartTooltip points={this.points} x={this.x} />);
     },
   },
 };

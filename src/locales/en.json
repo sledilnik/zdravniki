@@ -120,6 +120,7 @@
                 "dso": "DSO",
                 "den": "Dentist"
             },
+            "ageGroup": "Age Group",
             "buttons": {
                 "cityMunicipalitiesActive": "Cities",
                 "cityMunicipalitiesInactive": "Cities"
@@ -133,7 +134,10 @@
         "taskA": {
             "title": "Task A title",
             "mapTitle": "Naslov zemljevida",
-            "chartTitle": "Naslov line chart"
+            "chartTitle": "Naslov line chart",
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            }
         },
         "taskB": {
             "title": "Task B title"

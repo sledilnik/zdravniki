@@ -122,20 +122,24 @@
                 "dso": "DSO",
                 "den": "Zobozdravstvo"
             },
+            "ageGroup": "st. skupina",
             "buttons": {
                 "cityMunicipalitiesActive": "Meste občine",
                 "cityMunicipalitiesInactive": "Meste občine"
             },
             "data": {
                 "iozRatio": "iozRatio",
-                "insuredPeopleCount": "Št. zavarovancev",
-                "insuredPeopleCountWithIOZ": "Št. zav. z ioz"
+                "insuredPeopleCount": "št. zav.",
+                "insuredPeopleCountWithIOZ": "št. zav. z ioz"
             }
         },
         "taskA": {
             "title": "Task A naslov",
             "mapTitle": "Naslov zemljevida",
-            "chartTitle": "Naslov line chart"
+            "chartTitle": "Naslov line chart",
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            }
         },
         "taskB": {
             "title": "Task B naslov"
