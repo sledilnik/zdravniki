@@ -16,19 +16,20 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
           <tr>
             <th className={styles.Center}>{tCommon.ageGroup}</th>
             <th className={styles.Center}>{tCommon.data.insuredPeopleCount}</th>
-            <th className={styles.Center}>{tCommon.data.insuredPeopleCountWithIOZ}</th>
+            <th className={styles.Center}>{tCommon.data.insuredPeopleCountWithoutIOZ}</th>
           </tr>
         </thead>
         <tbody>
           {points.map(point => {
             const { options } = point.point;
+            console.log({ options });
             const totalInsured = intlFormat.format(options.insuredPeopleCount);
-            const insuredWithIOZ = intlFormat.format(options.insuredPeopleCountWithIOZ);
+            const insuredWithoutIOZ = intlFormat.format(options.insuredPeopleCountWithoutIOZ);
             return (
               <tr key={point.series.name}>
                 <td className={styles.Center}>{point.series.name}</td>
                 <td className={styles.Right}>{totalInsured}</td>
-                <td className={styles.Right}>{insuredWithIOZ}</td>
+                <td className={styles.Right}>{insuredWithoutIOZ}</td>
               </tr>
             );
           })}

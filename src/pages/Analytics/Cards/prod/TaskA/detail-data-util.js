@@ -37,7 +37,13 @@ export const detailDataMap = makeDetailDataMap();
  * @returns {Types.AggregatedDataMap} Updated accumulator.
  */
 const aggregateByYearAndAgeGroup = (acc, item) => {
-  const { year, ageGroup, insuredPeopleCount, insuredPeopleCountWithIOZ } = item;
+  const {
+    year,
+    ageGroup,
+    insuredPeopleCount,
+    insuredPeopleCountWithIOZ,
+    insuredPeopleCountWithoutIOZ,
+  } = item;
 
   // Get or initialize the age group map
   /** @type {Types.YearDataMap} */
@@ -47,6 +53,7 @@ const aggregateByYearAndAgeGroup = (acc, item) => {
   const yearData = yearDataMap.get(year) || {
     insuredPeopleCount: 0,
     insuredPeopleCountWithIOZ: 0,
+    insuredPeopleCountWithoutIOZ: 0,
     iozRatio: 0,
     id: `${ageGroup}-${year}`,
     name: `Age Group ${ageGroup}`, // TODO: Do we need this?
@@ -56,6 +63,7 @@ const aggregateByYearAndAgeGroup = (acc, item) => {
   // Update year data
   yearData.insuredPeopleCount += insuredPeopleCount;
   yearData.insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
+  yearData.insuredPeopleCountWithoutIOZ += insuredPeopleCountWithoutIOZ;
   yearData.iozRatio =
     yearData.insuredPeopleCount > 0
       ? yearData.insuredPeopleCountWithIOZ / yearData.insuredPeopleCount

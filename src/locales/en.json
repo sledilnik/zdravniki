@@ -130,7 +130,7 @@
                 "cityMunicipalitiesInactive": "Cities"
             },
             "data": {
-                "iozRatio": "iozRatio",
+                "iozRatio": "ratio insured/withIOZ",
                 "insuredPeopleCount": "Insured",
                 "insuredPeopleCountWithIOZ": "Insured with ioz",
                 "insuredPeopleCountWithoutIOZ": "Insured without ioz",

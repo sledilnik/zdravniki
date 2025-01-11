@@ -33,6 +33,7 @@ export const overviewSchemaTransformed = dataSchema.transform(item => ({
   municipality: item.obcina,
   insuredPeopleCount: item.st_zavarovanih_oseb,
   insuredPeopleCountWithIOZ: item.st_zavarovanih_oseb_z_ioz,
+  insuredPeopleCountWithoutIOZ: item.st_zavarovanih_oseb - item.st_zavarovanih_oseb_z_ioz,
 }));
 
 export const detailSchemaTransformed = dataSchema.transform(item => ({
@@ -43,4 +44,5 @@ export const detailSchemaTransformed = dataSchema.transform(item => ({
   municipality: item.obcina,
   insuredPeopleCount: item.st_zavarovanih_oseb,
   insuredPeopleCountWithIOZ: item.st_zavarovanih_oseb_z_ioz,
+  insuredPeopleCountWithoutIOZ: item.st_zavarovanih_oseb - item.st_zavarovanih_oseb_z_ioz,
 }));

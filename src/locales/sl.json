@@ -132,8 +132,8 @@
                 "cityMunicipalitiesInactive": "Meste občine"
             },
             "data": {
-                "iozRatio": "delež",
-                "insuredPeopleCount": "upravičenci",
+                "iozRatio": "delež vsi/opredeljeni",
+                "insuredPeopleCount": "vsi zav.",
                 "insuredPeopleCountWithIOZ": "opredeljeni",
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
