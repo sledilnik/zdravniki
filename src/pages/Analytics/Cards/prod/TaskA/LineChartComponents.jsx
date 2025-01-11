@@ -22,7 +22,6 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
         <tbody>
           {points.map(point => {
             const { options } = point.point;
-            console.log({ options });
             const totalInsured = intlFormat.format(options.insuredPeopleCount);
             const insuredWithoutIOZ = intlFormat.format(options.insuredPeopleCountWithoutIOZ);
             return (
