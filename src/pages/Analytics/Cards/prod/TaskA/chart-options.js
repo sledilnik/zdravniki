@@ -28,7 +28,7 @@ export const mapOptions = {
   tooltip: {
     useHTML: true,
     headerFormat: '',
-    backgroundColor: 'oklch(1 0 0 )',
+    backgroundColor: 'oklch(1 0 0 / 0.8)',
     formatter() {
       return renderToString(<MapChartTooltip point={this.point} />);
     },
@@ -82,7 +82,7 @@ export const secondChartOptions = {
   tooltip: {
     shared: true,
     useHTML: true,
-    backgroundColor: 'oklch(1 0 0 )',
+    backgroundColor: 'oklch(1 0 0 / 0.8)',
     formatter() {
       return renderToString(<LineChartTooltip points={this.points} x={this.x} />);
     },
