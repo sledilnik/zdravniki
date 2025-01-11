@@ -121,6 +121,10 @@
                 "den": "Dentist"
             },
             "ageGroup": "Age Group",
+            "contractTypes": {
+                "private": "private",
+                "public": "public"
+            },
             "buttons": {
                 "cityMunicipalitiesActive": "Cities",
                 "cityMunicipalitiesInactive": "Cities"
@@ -128,7 +132,13 @@
             "data": {
                 "iozRatio": "iozRatio",
                 "insuredPeopleCount": "Insured",
-                "insuredPeopleCountWithIOZ": "Insured with ioz"
+                "insuredPeopleCountWithIOZ": "Insured with ioz",
+                "gynObseg": "gyn. obseg",
+                "gpGlavarinaMean": "gp glavarina m",
+                "gpGlavarina": "gp glavarina",
+                "gpObseg": "gp obseg",
+                "denDoseganjePovprecja": "den avg",
+                "denObseg": "den obseg"
             }
         },
         "taskA": {

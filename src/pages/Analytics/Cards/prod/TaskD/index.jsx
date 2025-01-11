@@ -113,15 +113,17 @@ const parseCsvData = async fileUrl => {
  * FilterForm component for selecting data options
  */
 function FilterForm({ filterState, onFormChange }) {
+  const tCommon = t('analytics.common', { returnObjects: true });
+  const { data: tData } = tCommon;
   return (
     <form>
       <Label htmlFor="data">Data</Label>
       <CustomReactSelect
         id="data"
         name="data"
-        value={{ name: 'data', label: filterState.data, value: filterState.data }}
+        value={{ name: 'data', label: tData[filterState.data], value: filterState.data }}
         onChange={onFormChange}
-        options={dataOptions}
+        options={dataOptions.map(option => ({ ...option, label: tData[option.label] }))}
       />
     </form>
   );

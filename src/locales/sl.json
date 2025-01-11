@@ -123,6 +123,10 @@
                 "den": "Zobozdravstvo"
             },
             "ageGroup": "st. skupina",
+            "contractTypes": {
+                "private": "zasebni",
+                "public": "javni"
+            },
             "buttons": {
                 "cityMunicipalitiesActive": "Meste občine",
                 "cityMunicipalitiesInactive": "Meste občine"
@@ -130,7 +134,14 @@
             "data": {
                 "iozRatio": "iozRatio",
                 "insuredPeopleCount": "št. zav.",
-                "insuredPeopleCountWithIOZ": "št. zav. z ioz"
+                "insuredPeopleCountWithIOZ": "št. zav. z ioz",
+                "gynDoseganjePovprecja": "gin. avg",
+                "gynObseg": "gin. obseg",
+                "gpGlavarinaMean": "sp. p. glavarina m",
+                "gpGlavarina": "sp. p. glavarina",
+                "gpObseg": "sp. p. obseg",
+                "denDoseganjePovprecja": "zob. avg",
+                "denObseg": "zob. obseg"
             }
         },
         "taskA": {
