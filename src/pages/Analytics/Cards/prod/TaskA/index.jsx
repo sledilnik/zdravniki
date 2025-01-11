@@ -32,6 +32,12 @@ import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 
+const COLORS = Object.freeze({
+  minColor: '#E57373',
+  maxColor: '#81C784',
+  selectColor: '#ffa500',
+});
+
 /**
  * TaskA component
  * A card component that displays the TaskA card.
@@ -56,6 +62,8 @@ const TaskA = function TaskA({ id }) {
   const mapRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
+
+  const [colors, setColors] = useState({ ...COLORS });
 
   useEffect(() => {
     setInit(true);
@@ -98,6 +106,29 @@ const TaskA = function TaskA({ id }) {
     );
     button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
   }, [municipalities]);
+
+  useEffect(() => {
+    setMapChartOptions(() => ({
+      colorAxis: {
+        minColor: colors.minColor,
+        maxColor: colors.maxColor,
+      },
+      series: [
+        {
+          states: {
+            select: {
+              color: colors.selectColor,
+            },
+          },
+        },
+      ],
+    }));
+  }, [colors, setMapChartOptions]);
+
+  const onColorChange = e => {
+    const { name, value } = e.target;
+    setColors({ ...colors, [name]: value });
+  };
 
   const onFilterChange = e => {
     const { name, value } = e.target;
@@ -143,6 +174,41 @@ const TaskA = function TaskA({ id }) {
               doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
           />
+        </CardContent>
+        <CardContent>
+          <h3>Nastavitve zemljevida</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <label>
+              min:{' '}
+              <input
+                type="color"
+                value={colors.minColor}
+                onChange={onColorChange}
+                name="minColor"
+              />
+            </label>
+            <label>
+              max:{' '}
+              <input
+                type="color"
+                value={colors.maxColor}
+                onChange={onColorChange}
+                name="maxColor"
+              />
+            </label>
+            <label>
+              izbor:{' '}
+              <input
+                type="color"
+                value={colors.selectColor}
+                onChange={e => setColors({ ...colors, selectColor: e.target.value })}
+                name="selectColor"
+              />
+            </label>
+            <button type="button" onClick={() => setColors({ ...COLORS })}>
+              Reset
+            </button>
+          </div>
         </CardContent>
         <CardContent className={styles.ScorecardsContainer}>
           <Scorecard
