@@ -134,12 +134,16 @@
                 "insuredPeopleCount": "Insured",
                 "insuredPeopleCountWithIOZ": "Insured with ioz",
                 "insuredPeopleCountWithoutIOZ": "Insured without ioz",
-                "gynObseg": "gyn. obseg",
-                "gpGlavarinaMean": "gp glavarina m",
-                "gpGlavarina": "gp glavarina",
-                "gpObseg": "gp obseg",
-                "denDoseganjePovprecja": "den avg",
-                "denObseg": "den obseg"
+                "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
+                "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
+                "gpGlavarinaMean": "$t(analytics.common.doctorTypes.gp)",
+                "gpGlavarina": "$t(analytics.common.doctorTypes.gp)",
+                "gpObseg": "$t(analytics.common.doctorTypes.gp)",
+                "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
+                "denObseg": "$t(analytics.common.doctorTypes.den)",
+                "capitation": "Capitation",
+                "vol": "Volume",
+                "avg": "Average"
             }
         },
         "taskA": {
