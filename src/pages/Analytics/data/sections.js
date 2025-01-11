@@ -8,111 +8,76 @@
  *
  */
 
-import { mapOptions as RomanLustrikCardMapOptions } from '../Cards/DataByYearAndAgeGroupCard/char-options';
-import { mapOptions as RichInfoClickOptions } from '../Cards/RichInfoClick/chart-options';
-import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
+// import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-export const charts = [
+/**
+ * @type {Types.Section[]}
+ */
+export const cards = [
   {
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 0,
     componentName: 'TaskA',
+    titleTranslationKey: 'analytics.taskA.title',
     fakeHeight: '827px', // TODO: check for actual fake height value,
-    options: {
-      title: {
-        text: 'Task A Naslov',
-      },
-    },
   },
   {
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 0,
     componentName: 'PivotkeD',
+    titleTranslationKey: 'analytics.taskD.title',
     fakeHeight: '584px', // TODO: check for actual fake height value
-    options: {
-      title: {
-        text: 'Task D Naslov',
-      },
-    },
   },
-  {
-    section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
-    order: 1,
-    componentName: 'InsuredByDefinitionAndByAgeGroup',
-    fakeHeight: '500px',
-    options: {
-      title: {
-        // text: 'Število zavarovancev in opredeljenost po starostnih skupinah',
-        text: 'Task C Naslov',
-      },
-    },
-  },
-  {
-    section: 'examples',
-    order: 5,
-    componentName: 'MotionCard',
-    fakeHeight: '2876px',
-    options: {
-      title: {
-        text: 'MotionCard',
-      },
-    },
-  },
-  {
-    section: 'examples',
-    order: 0,
-    componentName: 'DashboardCard',
-    fakeHeight: '683px',
-    options: {
-      title: {
-        text: 'Dashboard',
-      },
-    },
-  },
-  availabilityChangeByInstitutionType,
-  {
-    section: 'examples',
-    order: 1,
-    componentName: 'DataByYearAndAgeGroupCard',
-    fakeHeight: '1358px',
-    options: {
-      title: {
-        text: RomanLustrikCardMapOptions.title.text
-          ? RomanLustrikCardMapOptions.title.text
-          : 'Missing Title',
-      },
-    },
-  },
-  {
-    section: 'examples',
-    order: 2,
-    componentName: 'RichInfoClick',
-    fakeHeight: '679px',
-    options: {
-      title: {
-        text: RichInfoClickOptions.title.text ? RichInfoClickOptions.title.text : 'Missing Title',
-      },
-    },
-  },
+  // {
+  //   section: 'examples',
+  //   order: 0,
+  //   componentName: 'InsuredByDefinitionAndByAgeGroup',
+  //   fakeHeight: '500px',
+  // },
+  // {
+  //   section: 'examples',
+  //   order: 5,
+  //   componentName: 'MotionCard',
+  //   fakeHeight: '2876px',
+  // },
+  // {
+  //   section: 'examples',
+  //   order: 0,
+  //   componentName: 'DashboardCard',
+  //   fakeHeight: '683px',
+  // },
+  // availabilityChangeByInstitutionType,
+  // {
+  //   section: 'examples',
+  //   order: 1,
+  //   componentName: 'DataByYearAndAgeGroupCard',
+  //   fakeHeight: '1358px',
+  // },
+  // {
+  //   section: 'examples',
+  //   order: 2,
+  //   componentName: 'RichInfoClick',
+  //   fakeHeight: '679px',
+  // },
 ];
 
-const groupedCharts = charts.reduce((acc, chart) => {
-  const { section } = chart;
+const groupedCards = cards.reduce((acc, card) => {
+  const { section } = card;
   if (!acc[section]) {
     acc[section] = [];
   }
-  acc[section].push(chart);
+  acc[section].push(card);
   return acc;
 }, {});
 
 /**
- * @type {Array<{sectionTitle: Types.SectionNames[number], charts: Types.ChartData[]}>}
+ * @type {Array<{sectionTitle: Types.SectionNames[number], cards: Types.Section[]}>}
  */
-export const SECTIONS = Object.keys(groupedCharts)
+export const SECTIONS = Object.keys(groupedCards)
   .map(section => ({
     sectionTitle: section,
-    charts: groupedCharts[section].sort((a, b) => a.order - b.order),
+    cards: groupedCards[section].sort((a, b) => a.order - b.order),
   }))
   .filter(section => (isDev ? true : section.sectionTitle !== 'examples'));

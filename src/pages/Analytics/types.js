@@ -23,8 +23,8 @@
  * @property {SectionNames[number]} section
  * @property {number} order
  * @property {string} id
+ * @property {string} titleTranslationKey
  * @property {"ChartCard" } componentName
- * @property {HighchartsOptions} options
  * @property {React.CSSProperties["minHeight"] fakeHeight
  */
 
@@ -48,6 +48,16 @@
  * @property {string} label - The label of the option.
  * @property {React.MouseEventHandler<HTMLButtonElement>} onClick - The function to call when the option is clicked.
  * @property {React.JSX.Element} Icon - The icon to display next to the option.
+ */
+
+/**
+ * @typedef {Object} Section
+ * @property {string} section
+ * @property {number} order
+ * @property {string} componentName
+ * @property {string} titleTranslationKey
+ * @property {React.CSSProperties["minHeight"]} fakeHeight
+ * @property {string} [title]
  */
 
 export default {};

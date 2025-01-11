@@ -1,9 +1,9 @@
-/** @import * as Types from "../types" */
+/** @import * as Types from "../../types" */
 
 import slugify from 'slugify';
 
 /**
- * @typedef {(Types.ChartData | Types.MapData)} ChartProxyArg
+ * @typedef {Types.Section} CardProxyArg
  */
 
 /**
@@ -11,17 +11,17 @@ import slugify from 'slugify';
  * The proxy intercepts property access to provide custom functionality:
  * - If the property is 'id', returns a formatted version of the chart title.
  * - If the property is 'mergedOptions', returns the merged options of the target and common options.
- * @param {ChartProxyArg} obj - The target object to proxy.
- * @returns {ChartProxyArg & {id: string}} - A new Proxy instance for the target object with custom property access behavior.
+ * @param {CardProxyArg} obj - The target object to proxy.
+ * @returns {CardProxyArg & {id: string}} - A new Proxy instance for the target object with custom property access behavior.
  */
-export function createChartDataProxy(obj) {
+export function createCardDataProxy(obj) {
   const handler = {
     get(target, prop, _receiver) {
       if (prop === 'id') {
-        if (!target.options.title.text) {
-          throw new Error('The chart title is missing.');
+        if (!target?.title) {
+          throw new Error('The card title is missing.');
         }
-        return slugify(target.options.title.text.toLowerCase());
+        return slugify(target.title.toLowerCase());
       }
 
       // eslint-disable-next-line prefer-rest-params

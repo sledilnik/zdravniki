@@ -17,8 +17,8 @@ import styles from './Analytics.module.css';
 import stylesLayout from './Layout.module.css';
 
 import TouchdeviceNotification from './components/TouchDeviceNotification';
-import { createChartDataProxy } from './data/create-chart-data-proxy';
 import { SECTIONS } from './data/sections';
+import { createCardDataProxy } from './data/utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
 
@@ -83,15 +83,17 @@ const Analytics = function Analytics() {
               <h2 className={styles.SectionTitle}>
                 {section.sectionTitle[0].toUpperCase() + section.sectionTitle.slice(1)}
               </h2>
-              {section.charts.map(chart => {
-                const Component = CARDS[chart.componentName];
-                const chartProxy = createChartDataProxy(chart);
+              {section.cards.map(card => {
+                const Component = CARDS[card.componentName];
+                const title = t(card.titleTranslationKey);
+
+                const chartProxy = createCardDataProxy({ ...card, title });
 
                 return (
                   <div
                     key={chartProxy.id}
                     data-card-id={chartProxy.id}
-                    style={{ minHeight: chart.fakeHeight }}
+                    style={{ minHeight: card.fakeHeight }}
                   >
                     <RenderOnViewportEntry
                       id={`render-on-viewport-entry-${chartProxy.id}`}
@@ -100,14 +102,13 @@ const Analytics = function Analytics() {
                         <Card id={chartProxy.id}>
                           <CardHeader>
                             <div>
-                              <h3>{chartProxy.options.title?.text}</h3>
-                              <p>{chartProxy.options.subtitle?.text}</p>
+                              <h3>{title}</h3>
                             </div>
                           </CardHeader>
                         </Card>
                       }
                     >
-                      <Component id={chartProxy.id} options={chartProxy.options} />
+                      <Component id={chartProxy.id} options={chartProxy?.options} />
                     </RenderOnViewportEntry>
                   </div>
                 );

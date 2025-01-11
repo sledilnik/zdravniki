@@ -13,7 +13,8 @@
     'filters'
     'scorecards'
     'map'
-    'chart';
+    'chart'
+    'settings';
 }
 
 .Header {
@@ -40,7 +41,6 @@
 .MapContainer {
   grid-area: map;
   place-self: center;
-  min-width: 400px;
   width: 100%;
 }
 
@@ -55,7 +55,8 @@
       'separator separator'
       'filters filters'
       'map scorecards'
-      'map chart';
+      'map chart'
+      'settings settings';
   }
 
   .MapContainer {
