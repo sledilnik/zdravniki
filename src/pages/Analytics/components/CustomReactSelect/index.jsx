@@ -50,6 +50,8 @@ const CustomReactSelect = function CustomReactSelect(props) {
             styles.ReactSelectDropdownIndicator,
             menuIsOpen && styles.ReactSelectDropdownIndicatorIsOpen,
           ),
+        group: () => styles.ReactSelectGroup,
+        groupHeading: () => styles.ReactSelectGroupHeading,
         indicatorsContainer: () => styles.ReactSelectIndicatorContainer,
         indicatorSeparator: () => styles.ReactSelectIndicatorSeparator,
         input: () => styles.ReactSelectInput,

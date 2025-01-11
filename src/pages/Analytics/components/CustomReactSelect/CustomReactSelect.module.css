@@ -37,6 +37,24 @@
   rotate: 180deg;
 }
 
+/* .ReactSelectGroup {
+} */
+
+.ReactSelectGroupHeading {
+  color: rgba(128, 128, 128, 1);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  padding-block: 0.5em;
+  padding-inline: var(--select-padding-inline);
+}
+
+.ReactSelectGroupHeading > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .ReactSelectIndicatorSeparator {
   background-color: rgba(212, 212, 212, 1); /* converted from oklch(0.83 0 0) */
   margin-block: 0.5em;
