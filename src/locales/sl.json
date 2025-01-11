@@ -135,6 +135,7 @@
                 "iozRatio": "delež",
                 "insuredPeopleCount": "upravičenci",
                 "insuredPeopleCountWithIOZ": "opredeljeni",
+                "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "gin. avg",
                 "gynObseg": "gin. obseg",
                 "gpGlavarinaMean": "sp. p. glavarina m",

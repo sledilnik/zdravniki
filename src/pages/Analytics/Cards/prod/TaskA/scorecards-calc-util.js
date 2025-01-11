@@ -16,8 +16,16 @@ export const calculateYearlyStatistics = (selectedYear, chartSeries) => {
   const previousYear = selectedYear - 1;
 
   const sums = {
-    currentYear: { insuredPeopleCount: 0, insuredPeopleCountWithIOZ: 0 },
-    previousYear: { insuredPeopleCount: 0, insuredPeopleCountWithIOZ: 0 },
+    currentYear: {
+      insuredPeopleCount: 0,
+      insuredPeopleCountWithIOZ: 0,
+      insuredPeopleCountWithoutIOZ: 0,
+    },
+    previousYear: {
+      insuredPeopleCount: 0,
+      insuredPeopleCountWithIOZ: 0,
+      insuredPeopleCountWithoutIOZ: 0,
+    },
   };
 
   chartSeries.forEach(({ data }) => {
@@ -25,9 +33,13 @@ export const calculateYearlyStatistics = (selectedYear, chartSeries) => {
       if (year === selectedYear) {
         sums.currentYear.insuredPeopleCount += insuredPeopleCount;
         sums.currentYear.insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
+        sums.currentYear.insuredPeopleCountWithoutIOZ +=
+          insuredPeopleCount - insuredPeopleCountWithIOZ;
       } else if (year === previousYear) {
         sums.previousYear.insuredPeopleCount += insuredPeopleCount;
         sums.previousYear.insuredPeopleCountWithIOZ += insuredPeopleCountWithIOZ;
+        sums.previousYear.insuredPeopleCountWithoutIOZ +=
+          insuredPeopleCount - insuredPeopleCountWithIOZ;
       }
     });
   });
@@ -49,6 +61,10 @@ export const calculateYearlyStatistics = (selectedYear, chartSeries) => {
       insuredPeopleCountWithIOZ: calculateDiffAndRatio(
         sums.currentYear.insuredPeopleCountWithIOZ,
         sums.previousYear.insuredPeopleCountWithIOZ,
+      ),
+      insuredPeopleCountWithoutIOZ: calculateDiffAndRatio(
+        sums.currentYear.insuredPeopleCountWithoutIOZ,
+        sums.previousYear.insuredPeopleCountWithoutIOZ,
       ),
     },
   };

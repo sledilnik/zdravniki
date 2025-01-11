@@ -222,9 +222,9 @@ const TaskA = function TaskA({ id }) {
             change={stats.differences.insuredPeopleCount.ratio}
           />
           <Scorecard
-            label={tCommon.data.insuredPeopleCountWithIOZ}
-            value={stats.previousYear.insuredPeopleCount}
-            change={stats.differences.insuredPeopleCountWithIOZ.ratio}
+            label={tCommon.data.insuredPeopleCountWithoutIOZ}
+            value={stats.currentYear.insuredPeopleCountWithoutIOZ}
+            change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
           />
         </CardContent>
         <CardContent className={styles.MapContainer}>

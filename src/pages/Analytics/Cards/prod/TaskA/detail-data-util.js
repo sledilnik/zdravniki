@@ -3,6 +3,7 @@
 import { getTaskAAgeGroupString } from 'pages/Analytics/constants';
 import { DEFAULTS } from './constants';
 import { detailTransformedData } from './json-data-transform-util';
+
 /**
  * @description
  * @returns {Types.DetailByMunicipalityAndTypeAndAgeGroupMap}

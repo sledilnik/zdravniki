@@ -133,6 +133,7 @@
                 "iozRatio": "iozRatio",
                 "insuredPeopleCount": "Insured",
                 "insuredPeopleCountWithIOZ": "Insured with ioz",
+                "insuredPeopleCountWithoutIOZ": "Insured without ioz",
                 "gynObseg": "gyn. obseg",
                 "gpGlavarinaMean": "gp glavarina m",
                 "gpGlavarina": "gp glavarina",
