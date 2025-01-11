@@ -19,10 +19,10 @@ export const charts = [
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 0,
     componentName: 'TaskA',
-    fakeHeight: '0px', // TODO: check for actual fake height value,
+    fakeHeight: '827px', // TODO: check for actual fake height value,
     options: {
       title: {
-        text: 'TaskA',
+        text: 'Task A Naslov',
       },
     },
   },
@@ -30,10 +30,10 @@ export const charts = [
     section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
     order: 0,
     componentName: 'PivotkeD',
-    fakeHeight: '0px', // TODO: check for actual fake height value
+    fakeHeight: '584px', // TODO: check for actual fake height value
     options: {
       title: {
-        text: 'PivotkeD',
+        text: 'Task D Naslov',
       },
     },
   },
@@ -44,7 +44,8 @@ export const charts = [
     fakeHeight: '500px',
     options: {
       title: {
-        text: 'Število zavarovancev in opredeljenost po starostnih skupinah',
+        // text: 'Število zavarovancev in opredeljenost po starostnih skupinah',
+        text: 'Task C Naslov',
       },
     },
   },
