@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { t } from 'i18next';
 
 import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
 import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.json';
@@ -11,49 +12,13 @@ import gpGlavarinaMean from 'assets/data/analytics/pivotke-D/pivot_zdravniki_gla
 import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.json';
 import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.json';
 import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.json';
+import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { t } from 'i18next';
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
-/** @type {Highcharts["options"]} */
-const initialChartOptions = {
-  title: {
-    text: 'PivotkeD',
-    backgroundColor: 'oklch(0.98 0 0)',
-  },
-  type: 'line',
-  xAxis: {
-    type: 'datetime',
-    tickPositions: [], // To be dynamically set
-    labels: {
-      format: '{value:%Y}', // Display the year only
-    },
-    plotLines: [
-      {
-        color: 'red',
-        width: 1,
-        value: Date.UTC(2022, 0, 1),
-        zIndex: 5,
-        label: {
-          text: 'opis',
-          rotation: 0,
-          y: 20,
-          style: {
-            color: '#333333',
-          },
-        },
-      },
-    ],
-  },
-  series: [],
-  tooltip: {
-    xDateFormat: '%e %B %Y',
-    shared: true,
-    crosshairs: true,
-  },
-};
+import { initialChartOptions } from './chart-options';
 
 const files = Object.freeze({
   gynDoseganjePovprecja,
