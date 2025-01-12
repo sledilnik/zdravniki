@@ -1,8 +1,10 @@
 /** @type {Highcharts["options"]} */
 export const initialChartOptions = {
+  chart: {
+    backgroundColor: 'oklch(0.98 0 0)',
+  },
   title: {
     text: 'PivotkeD',
-    backgroundColor: 'oklch(0.98 0 0)',
   },
   type: 'line',
   xAxis: {
@@ -31,7 +33,9 @@ export const initialChartOptions = {
   series: [],
   tooltip: {
     xDateFormat: '%e %B %Y',
+    useHtml: true,
     shared: true,
     crosshairs: true,
+    backgroundColor: 'oklch(1 0 0 / 0.8)',
   },
 };
