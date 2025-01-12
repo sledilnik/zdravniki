@@ -24,6 +24,9 @@
  *
  * @typedef {[Timestamp, number]} ParsedDataItem - The parsed data item as a tuple of timestamp and value.
  *
+ * @typedef {Object} ParsedData - The parsed data object.
+ * @property {ParsedDataItem[]} public - The public data.
+ * @property {ParsedDataItem[]} private - The private data.
  */
 
 export default {};

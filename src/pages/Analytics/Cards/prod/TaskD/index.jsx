@@ -33,7 +33,7 @@ const PivotkeD = function PivotkeD({ id }) {
     group: groupOptions[0].options[0].group,
   });
 
-  const translations = t('analytics.taskD', { returnObjects: true });
+  const tTaskD = t('analytics.taskD', { returnObjects: true });
 
   useEffect(() => {
     if (!init) {
@@ -41,8 +41,9 @@ const PivotkeD = function PivotkeD({ id }) {
     }
   }, [init]);
 
+  /** @type {TaskDTypes.ParsedData} */
   const data = useMemo(() => parsedData[filterState.data], [filterState.data]);
-
+  const yAxisTitle = t(`analytics.taskD.yAxis.${filterState.group}Title`);
   useEffect(() => {
     if (!init) return;
 
@@ -64,12 +65,17 @@ const PivotkeD = function PivotkeD({ id }) {
       xAxis: {
         tickPositions,
       },
+      yAxis: {
+        title: {
+          text: yAxisTitle,
+        },
+      },
       series: [
-        { name: 'Javni', data: data.public },
-        { name: 'Zasebni', data: data.private },
+        { name: t('analytics.common.contractTypes.public'), data: data.public },
+        { name: t('analytics.common.contractTypes.private'), data: data.private },
       ],
     });
-  }, [init, data]);
+  }, [init, data, yAxisTitle]);
 
   const onFormChange = e => {
     const { name, value } = e;
@@ -79,7 +85,7 @@ const PivotkeD = function PivotkeD({ id }) {
   return (
     <Card id={id}>
       <CardHeader>
-        <CardTitle>{translations.title}</CardTitle>
+        <CardTitle>{tTaskD.title}</CardTitle>
       </CardHeader>
       <CardContent>
         <FilterForm filterState={filterState} onFormChange={onFormChange} />

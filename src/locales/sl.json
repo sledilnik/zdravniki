@@ -163,7 +163,12 @@
             "title": "Task C naslov"
         },
         "taskD": {
-            "title": "Primerjava glede na lastništvo"
+            "title": "Primerjava glede na lastništvo",
+            "yAxis": {
+                "capitationTitle": "glavarina",
+                "volTitle": "odstotek",
+                "avgTitle": "odstotek"
+            }
         }
     }
 }

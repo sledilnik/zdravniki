@@ -47,6 +47,7 @@ export const groupOptions = Object.entries(dataGroups)
   }))
   .sort((a, b) => groupOrder[a.label] - groupOrder[b.label]);
 
+/** @type {Record<TaskDTypes.FileKey, TaskDTypes.ParsedData} */
 export const parsedData = Object.entries(files)?.reduce((acc, [fileName, items]) => {
   const data = { public: [], private: [] };
   items.forEach(item => {

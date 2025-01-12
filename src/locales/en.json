@@ -161,7 +161,12 @@
             "title": "Task C title"
         },
         "taskD": {
-            "title": "Task D title"
+            "title": "Task D title",
+            "yAxis": {
+                "capitationTitle": "glavarina",
+                "volTitle": "percent",
+                "avgTitle": "percent"
+            }
         }
     }
 }
