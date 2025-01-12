@@ -18,7 +18,7 @@ import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
 /** @type {Highcharts["options"]} */
-const nekiOptions = {
+const initialChartOptions = {
   title: {
     text: 'PivotkeD',
     backgroundColor: 'oklch(0.98 0 0)',
@@ -158,7 +158,7 @@ function FilterForm({ filterState, onFormChange }) {
 const PivotkeD = function PivotkeD({ id }) {
   const chartRef = useRef(null);
   const [init, setInit] = useState(false);
-  const [chartOptions, setChartOptions] = useState(nekiOptions);
+  const [chartOptions, setChartOptions] = useState(initialChartOptions);
   const [filterState, setFilterState] = useState({
     data: groupOptions[0].options[0].value,
     group: groupOptions[0].options[0].group,
