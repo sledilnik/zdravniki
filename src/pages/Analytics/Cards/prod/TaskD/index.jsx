@@ -26,6 +26,10 @@ const nekiOptions = {
   type: 'line',
   xAxis: {
     type: 'datetime',
+    tickPositions: [], // To be dynamically set
+    labels: {
+      format: '{value:%Y}', // Display the year only
+    },
     plotLines: [
       {
         color: 'red',
@@ -171,13 +175,32 @@ const PivotkeD = function PivotkeD({ id }) {
   const data = useMemo(() => parsedData[filterState.data], [filterState]);
 
   useEffect(() => {
+    if (!init) return;
+
+    const publicData = data.public;
+    const privateData = data.private;
+
+    // Extract unique years from both public and private data
+    const uniqueYears = new Set([
+      ...publicData.map(point => new Date(point[0]).getUTCFullYear()),
+      ...privateData.map(point => new Date(point[0]).getUTCFullYear()),
+    ]);
+
+    // Calculate tick positions for starting years
+    const tickPositions = Array.from(uniqueYears)
+      .sort((a, b) => a - b) // Ensure years are sorted
+      .map(year => Date.UTC(year, 0, 1)); // Start of each year
+
     setChartOptions({
+      xAxis: {
+        tickPositions,
+      },
       series: [
         { name: 'Javni', data: data.public },
         { name: 'Zasebni', data: data.private },
       ],
     });
-  }, [data]);
+  }, [init, data]);
 
   const onFormChange = e => {
     const { name, value } = e;
