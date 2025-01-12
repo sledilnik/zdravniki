@@ -136,7 +136,7 @@
                 "insuredPeopleCountWithoutIOZ": "Insured without ioz",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
-                "gpGlavarinaMean": "$t(analytics.common.doctorTypes.gp)",
+                "gpGlavarinaMean": "$t(analytics.common.doctorTypes.gp) - Mean",
                 "gpGlavarina": "$t(analytics.common.doctorTypes.gp)",
                 "gpObseg": "$t(analytics.common.doctorTypes.gp)",
                 "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
@@ -163,9 +163,15 @@
         "taskD": {
             "title": "Task D title",
             "yAxis": {
-                "capitationTitle": "glavarina",
-                "volTitle": "percent",
-                "avgTitle": "percent"
+                "titles": {
+                    "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                    "gynObseg": "št. programov",
+                    "gpGlavarinaMean": "povprečna glavarina na 1 izvajalca",
+                    "gpGlavarina": "glavarina",
+                    "gpObseg": "št. programov",
+                    "denDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                    "denObseg": "št. programov"
+                }
             }
         }
     }

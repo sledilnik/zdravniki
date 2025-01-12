@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /** @import * as TaskDTypes from "./types" */
 
 import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
@@ -21,15 +22,25 @@ const files = Object.freeze({
 
 // Define data groups for categorization
 const dataGroups = Object.freeze({
-  avg: Object.freeze(['gynDoseganjePovprecja', 'gpGlavarinaMean', 'denDoseganjePovprecja']),
+  avg: Object.freeze(['gynDoseganjePovprecja', 'denDoseganjePovprecja']),
   vol: Object.freeze(['gynObseg', 'gpObseg', 'denObseg']),
-  capitation: Object.freeze(['gpGlavarina']),
+  capitation: Object.freeze(['gpGlavarina', 'gpGlavarinaMean']),
 });
 
 const groupOrder = Object.freeze({
   avg: 2,
   vol: 1,
   capitation: 0,
+});
+
+export const groupYAxisLabelFormat = Object.freeze({
+  gynDoseganjePovprecja: 'percent',
+  gynObseg: 'decimal',
+  gpGlavarinaMean: 'decimal',
+  gpGlavarina: 'decimal',
+  gpObseg: 'decimal',
+  denDoseganjePovprecja: 'percent',
+  denObseg: 'decimal',
 });
 
 /**
@@ -47,16 +58,31 @@ export const groupOptions = Object.entries(dataGroups)
   }))
   .sort((a, b) => groupOrder[a.label] - groupOrder[b.label]);
 
-/** @type {Record<TaskDTypes.FileKey, TaskDTypes.ParsedData} */
-export const parsedData = Object.entries(files)?.reduce((acc, [fileName, items]) => {
-  const data = { public: [], private: [] };
-  items.forEach(item => {
-    const { datum, javni, zasebni } = item;
-    const [year, month, day] = datum.split('-');
-    const date = Date.UTC(year, month - 1, day);
-    data.public.push([date, Number(parseFloat(javni).toFixed(2))]);
-    data.private.push([date, Number(parseFloat(zasebni).toFixed(2))]);
-  });
-  acc[fileName] = data;
-  return acc;
-}, {});
+/**
+ * @function neki
+ * @param {Record<TaskDTypes.FileKey, TaskDTypes.JsonItem[]>} files
+ * @returns {Map<TaskDTypes.FileKey, TaskDTypes.ParsedData>}
+ */
+// eslint-disable-next-line no-shadow
+const neki = files => {
+  const parsedDataMap = new Map();
+
+  for (const [fileName, items] of Object.entries(files)) {
+    const data = { public: [], private: [] };
+
+    for (const item of items) {
+      const { datum, javni, zasebni } = item;
+      const [year, month, day] = datum.split('-');
+      const date = Date.UTC(year, month - 1, day);
+      data.public.push([date, Number(parseFloat(javni).toFixed(2))]);
+      data.private.push([date, Number(parseFloat(zasebni).toFixed(2))]);
+    }
+
+    parsedDataMap.set(fileName, Object.freeze(data));
+  }
+
+  return parsedDataMap;
+};
+
+/** @type {Map<TaskDTypes.FileKey, TaskDTypes.ParsedData} */
+export const parsedData = neki(files);

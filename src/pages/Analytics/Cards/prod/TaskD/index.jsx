@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
+import { useParams } from 'react-router';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
@@ -13,7 +14,7 @@ import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
-import { groupOptions, parsedData } from './parsed-files';
+import { groupOptions, groupYAxisLabelFormat, parsedData } from './parsed-files';
 
 /**
  * PivotkeD component renders a card with a content.
@@ -22,6 +23,7 @@ import { groupOptions, parsedData } from './parsed-files';
  * @returns {JSX.Element} The rendered PivotkeD component.
  */
 const PivotkeD = function PivotkeD({ id }) {
+  const { lng } = useParams();
   /** @type {Types.HighchartsReactRefObject} */
   const chartRef = useRef(null);
   const [init, setInit] = useState(false);
@@ -42,18 +44,15 @@ const PivotkeD = function PivotkeD({ id }) {
   }, [init]);
 
   /** @type {TaskDTypes.ParsedData} */
-  const data = useMemo(() => parsedData[filterState.data], [filterState.data]);
-  const yAxisTitle = t(`analytics.taskD.yAxis.${filterState.group}Title`);
+  const data = useMemo(() => parsedData.get(filterState.data), [filterState]);
+  const yAxisTitle = t(`analytics.taskD.yAxis.titles.${filterState.data}`);
+  const labelFormat = groupYAxisLabelFormat[filterState.data];
+
   useEffect(() => {
-    if (!init) return;
-
-    const publicData = data.public;
-    const privateData = data.private;
-
     // Extract unique years from both public and private data
     const uniqueYears = new Set([
-      ...publicData.map(point => new Date(point[0]).getUTCFullYear()),
-      ...privateData.map(point => new Date(point[0]).getUTCFullYear()),
+      ...data.public.map(point => new Date(point[0]).getUTCFullYear()),
+      ...data.private.map(point => new Date(point[0]).getUTCFullYear()),
     ]);
 
     // Calculate tick positions for starting years
@@ -69,13 +68,44 @@ const PivotkeD = function PivotkeD({ id }) {
         title: {
           text: yAxisTitle,
         },
+        labels: {
+          format: labelFormat,
+          formatter() {
+            const localeBase = lng.split('-')[0];
+            const suffixMap = {
+              sl: 'tis.',
+              en: 'k',
+            };
+            const { value } = this;
+
+            const suffix = suffixMap[localeBase] || 'k';
+            // eslint-disable-next-line react/no-this-in-sfc
+            const { format } = this.chart.userOptions.yAxis[0].labels;
+
+            if (value >= 1_000_000) {
+              const formatted = new Intl.NumberFormat(lng, {
+                style: format,
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(value / 1_000); // Convert to "thousands"
+              return `${formatted} ${suffix}`;
+            }
+
+            return new Intl.NumberFormat(lng, {
+              style: format,
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2,
+              useGrouping: 'auto',
+            }).format(format === 'percent' ? value / 100 : value);
+          },
+        },
       },
       series: [
-        { name: t('analytics.common.contractTypes.public'), data: data.public },
-        { name: t('analytics.common.contractTypes.private'), data: data.private },
+        { name: t('analytics.common.contractTypes.public'), data: [...data.public] },
+        { name: t('analytics.common.contractTypes.private'), data: [...data.private] },
       ],
     });
-  }, [init, data, yAxisTitle]);
+  }, [data, labelFormat, yAxisTitle, lng]);
 
   const onFormChange = e => {
     const { name, value } = e;

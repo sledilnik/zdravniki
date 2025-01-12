@@ -31,6 +31,9 @@ export const initialChartOptions = {
     ],
   },
   series: [],
+  yAxis: {
+    useHtml: true,
+  },
   tooltip: {
     xDateFormat: '%e %B %Y',
     useHtml: true,
