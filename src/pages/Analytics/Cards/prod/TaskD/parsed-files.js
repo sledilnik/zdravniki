@@ -1,3 +1,5 @@
+/** @import * as TaskDTypes from "./types" */
+
 import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
 import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.json';
 import gpGlavarina from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.json';
@@ -6,6 +8,7 @@ import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.json'
 import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.json';
 import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.json';
 
+/** @type {Record<TaskDTypes.FileKey, TaskDTypes.JsonItem[]>} */
 const files = Object.freeze({
   gynDoseganjePovprecja,
   gynObseg,
@@ -30,7 +33,7 @@ const groupOrder = Object.freeze({
 });
 
 /**
- * @type {readonly { label: string, options: {name: string, label: string, value: string} }[]}
+ * @type {TaskDTypes.GroupOption[]}
  */
 export const groupOptions = Object.entries(dataGroups)
   .map(([label, opts]) => ({
