@@ -2,16 +2,15 @@
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import Papa from 'papaparse';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.csv';
-import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.csv';
-import gpGlavarina from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.csv';
-import gpGlavarinaMean from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina_mean.csv';
-import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.csv';
-import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.csv';
-import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.csv';
+import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
+import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.json';
+import gpGlavarina from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.json';
+import gpGlavarinaMean from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina_mean.json';
+import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.json';
+import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.json';
+import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.json';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { t } from 'i18next';
@@ -90,46 +89,18 @@ const groupOptions = Object.entries(dataGroups)
   }))
   .sort((a, b) => groupOrder[a.label] - groupOrder[b.label]);
 
-/**
- * Utility to parse CSV file
- * @param {string} fileUrl
- * @returns {Promise<{ public: number[][], private: number[][] }>}
- */
-const parseCsvData = async fileUrl => {
-  const response = await fetch(fileUrl);
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  let text;
-  try {
-    text = await response.text();
-  } catch (error) {
-    throw new Error('An error occurred while fetching the data.', { cause: error });
-  }
-  if (!text) {
-    throw new Error('An error occurred while fetching the data.');
-  }
-
+const parsedData = Object.entries(files)?.reduce((acc, [fileName, items]) => {
   const data = { public: [], private: [] };
-
-  return new Promise((resolve, reject) => {
-    Papa.parse(text, {
-      header: true,
-      delimiter: ',',
-      skipEmptyLines: true,
-      step: results => {
-        const { datum, javni, zasebni } = results.data;
-        const [year, month, day] = datum.split('-');
-        const date = Date.UTC(year, month - 1, day);
-        data.public.push([date, Number(parseFloat(javni).toFixed(2))]);
-        data.private.push([date, Number(parseFloat(zasebni).toFixed(2))]);
-      },
-      complete: () => resolve(data),
-      error: error => reject(error),
-    });
+  items.forEach(item => {
+    const { datum, javni, zasebni } = item;
+    const [year, month, day] = datum.split('-');
+    const date = Date.UTC(year, month - 1, day);
+    data.public.push([date, Number(parseFloat(javni).toFixed(2))]);
+    data.private.push([date, Number(parseFloat(zasebni).toFixed(2))]);
   });
-};
+  acc[fileName] = data;
+  return acc;
+}, {});
 
 function formatGroupLabel(data) {
   return (
@@ -188,7 +159,6 @@ const PivotkeD = function PivotkeD({ id }) {
     data: groupOptions[0].options[0].value,
     group: groupOptions[0].options[0].group,
   });
-  const [error, setError] = useState(null);
 
   const translations = t('analytics.taskD', { returnObjects: true });
 
@@ -198,25 +168,16 @@ const PivotkeD = function PivotkeD({ id }) {
     }
   }, [init]);
 
+  const data = useMemo(() => parsedData[filterState.data], [filterState]);
+
   useEffect(() => {
-    const setData = async () => {
-      try {
-        const data = await parseCsvData(files[filterState.data]);
-        setChartOptions({
-          series: [
-            { name: 'Javni', data: data.public },
-            { name: 'Zasebni', data: data.private },
-          ],
-        });
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        }
-        setError(new Error('An error occurred while fetching the data.', { cause: err }));
-      }
-    };
-    setData();
-  }, [filterState.data]);
+    setChartOptions({
+      series: [
+        { name: 'Javni', data: data.public },
+        { name: 'Zasebni', data: data.private },
+      ],
+    });
+  }, [data]);
 
   const onFormChange = e => {
     const { name, value } = e;
@@ -225,7 +186,6 @@ const PivotkeD = function PivotkeD({ id }) {
 
   return (
     <Card id={id}>
-      {error && <CardContent>{error.message}</CardContent>}
       <CardHeader>
         <CardTitle>{translations.title}</CardTitle>
       </CardHeader>
