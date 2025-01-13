@@ -57,6 +57,7 @@ export const FilterForm = forwardRef(
             }}
             name="municipalities"
             id="municipalities"
+            delimitier=","
             isMulti
             onChange={handleMultiSelectChange}
             value={filterState.municipalities.map(municipality => ({

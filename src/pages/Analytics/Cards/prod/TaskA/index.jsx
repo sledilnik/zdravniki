@@ -14,6 +14,9 @@ import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
+// eslint-disable-next-line import/no-named-as-default
+import Icon from 'components/Shared/Icons';
+import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -24,13 +27,15 @@ import {
   uniqueOverviewYearsSet,
 } from './constants';
 
-import styles from '../MapAndChart.module.css';
 import { Button } from './Buttons';
 import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
 import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
+
+import styles from '../MapAndChart.module.css';
+import buttonStyles from './Buttons.module.css';
 
 const COLORS = Object.freeze({
   minColor: '#E57373',
@@ -62,6 +67,8 @@ const TaskA = function TaskA({ id }) {
   const mapRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
+  /** @type {React.RefObject<HTMLButtonElement>} */
+  const allCitiesButtonRef = useRef(null);
 
   const [colors, setColors] = useState({ ...COLORS });
 
@@ -99,12 +106,17 @@ const TaskA = function TaskA({ id }) {
 
   useEffect(() => {
     const button = citiesButtonRef.current;
-    if (!button) return;
+    const allButton = allCitiesButtonRef.current;
+    if (!button || !allButton) return;
     const isCitiesActive = assertSetsEqual(
       new Set(municipalities),
       new Set(CITY_MUNICIPALITIES_LIST),
     );
     button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
+
+    const isAllCitiesActive = municipalities.length === 0;
+    allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
+    allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
   }, [municipalities]);
 
   useEffect(() => {
@@ -143,6 +155,25 @@ const TaskA = function TaskA({ id }) {
     [currentSelectedYear, chartSeries],
   );
 
+  const handleAllCitiesClick = () => {
+    const button = allCitiesButtonRef.current;
+
+    if (!button) {
+      return;
+    }
+    const prevDataState = button.getAttribute('data-state');
+
+    if (prevDataState === 'active') {
+      return;
+    }
+
+    button.setAttribute('data-state', prevDataState === 'inactive' ? 'active' : 'inactive');
+    setFilterState(prev => ({
+      ...prev,
+      municipalities: [],
+    }));
+  };
+
   const handleCityMunicipalitiesClick = () => {
     const button = citiesButtonRef.current;
 
@@ -175,7 +206,7 @@ const TaskA = function TaskA({ id }) {
             }}
           />
         </CardContent>
-        <CardContent>
+        <CardContent style={{ gridArea: 'settings' }}>
           <h3>Nastavitve zemljevida</h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <label>
@@ -236,7 +267,15 @@ const TaskA = function TaskA({ id }) {
               options={mapChartOptions}
             />
           </figure>
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <Button
+              ref={allCitiesButtonRef}
+              type="button"
+              data-state="active"
+              onClick={handleAllCitiesClick}
+            >
+              Cela Slovenija
+            </Button>
             <Button
               ref={citiesButtonRef}
               type="button"
@@ -247,6 +286,25 @@ const TaskA = function TaskA({ id }) {
                 ? tCommon.buttons.cityMunicipalitiesInactive
                 : tCommon.buttons.cityMunicipalitiesActive}
             </Button>
+            {filterState.municipalities.map(municipality => (
+              <label key={municipality} className={buttonStyles.MunicipalityCheckbox}>
+                <input
+                  style={{
+                    ...srOnly,
+                  }}
+                  type="checkbox"
+                  value={municipality}
+                  checked
+                  onChange={e => {
+                    setFilterState(prev => ({
+                      ...prev,
+                      municipalities: prev.municipalities.filter(m => m !== e.target.value),
+                    }));
+                  }}
+                />
+                {municipality} <Icon name="Close" width="0.5rem" height="0.5rem" />
+              </label>
+            ))}
           </div>
         </CardContent>
         <CardContent className={styles.ChartContainer}>

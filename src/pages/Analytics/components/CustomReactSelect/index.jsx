@@ -17,14 +17,12 @@ import styles from './CustomReactSelect.module.css';
  * clearIndicator,
  * container,
  * group,
- * groupHeading,
  * loadingIndicator,
  * loadingMessage,
  * menuPortal,
  * multiValue,
  * multiValueLabel,
  * multiValueRemove,
- * noOptionsMessage,
  * placeholder,
  * singleValue,
  * valueContainer
@@ -57,6 +55,10 @@ const CustomReactSelect = function CustomReactSelect(props) {
         input: () => styles.ReactSelectInput,
         menu: () => styles.ReactSelectMenu,
         menuList: () => styles.ReactSelectMenuList,
+        multiValue: () => styles.ReactSelectMultiValue,
+        multiValueLabel: () => styles.ReactSelectMultiValueLabel,
+        multiValueRemove: () => styles.ReactSelectMultiValueRemove,
+
         noOptionsMessage: () => styles.ReactSelectNoOptionsMessage,
         option: state =>
           cx(

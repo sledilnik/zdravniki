@@ -5,6 +5,12 @@
   --indicator-color: var(--border);
 }
 
+/* .ReactSelectClearIndicator {
+} */
+
+/* .ReactSelectContainer {
+} */
+
 .ReactSelectControl {
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -64,6 +70,12 @@
   cursor: pointer;
 }
 
+/* .ReactSelectLoadingIndicator {
+} */
+
+/* .ReactSelectLoadingMessage {
+} */
+
 .ReactSelectMenu {
   background-color: var(--bcg-color);
   padding-block: 0.25em;
@@ -73,6 +85,21 @@
 
 .ReactSelectMenuList {
   background-color: var(--bcg-color);
+}
+
+/* .ReactSelectMenuPortal {
+} */
+
+.ReactSelectMultiValue {
+  display: none !important;
+}
+
+.ReactSelectMultiValueLabel {
+  display: none;
+}
+
+.ReactSelectMultiValueRemove {
+  display: none;
 }
 
 .ReactSelectNoOptionsMessage {
@@ -86,6 +113,15 @@
 
   cursor: pointer;
 }
+
+/* .ReactSelectPlaceholder {
+} */
+
+/* .ReactSelectSingleValue {
+} */
+
+/* .ReactSelectValueContainer {
+} */
 
 .ReactSelectOption:hover,
 .ReactSelectOptionIsFocused {
