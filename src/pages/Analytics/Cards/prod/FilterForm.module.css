@@ -4,6 +4,6 @@
   flex-wrap: wrap;
 }
 
-.MunValueContainer {
-  min-width: 28ch;
+.MunClearAll {
+  min-width: 29.5ch; /* hardcoded based on input base minWidth in TaskA.FilterForm component */
 }

@@ -103,7 +103,7 @@ export const FilterForm = forwardRef(
               ValueContainer: props => (
                 <CustomValueContainer
                   text={tButtons.clearAll}
-                  clearAllClassName={styles.MunValueContainer}
+                  clearAllClassName={styles.MunClearAll}
                   {...props}
                 />
               ),
