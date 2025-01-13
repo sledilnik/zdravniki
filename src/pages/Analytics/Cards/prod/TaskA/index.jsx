@@ -113,6 +113,7 @@ const TaskA = function TaskA({ id }) {
       new Set(CITY_MUNICIPALITIES_LIST),
     );
     button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
+    button.style.pointerEvents = isCitiesActive ? 'none' : 'auto';
 
     const isAllCitiesActive = municipalities.length === 0;
     allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
