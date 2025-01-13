@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import { cx } from 'class-variance-authority';
 import { useState } from 'react';

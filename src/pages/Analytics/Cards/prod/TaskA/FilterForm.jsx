@@ -1,13 +1,39 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
+/** @typedef {import('react-select').ValueContainerProps} ValueContainerProps */
+
+import { forwardRef } from 'react';
 
 import { t } from 'i18next';
-import { forwardRef } from 'react';
+import { components } from 'react-select';
 
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
 import styles from '../FilterForm.module.css';
+
+/**
+ * CustomValueContainer component for react-select
+ * Displays "clear all" text when there are selected values, otherwise shows default children
+ *
+ * @param {ValueContainerProps & {text: string}} props - Component props from react-select ValueContainerProps
+ * @returns {JSX.Element} Rendered value container
+ */
+export function CustomValueContainer(props) {
+  const { children, getValue, text, ...restProps } = props;
+  const selectedValues = getValue();
+  return (
+    <components.ValueContainer {...restProps}>
+      {selectedValues.length > 0 ? (
+        <div className={styles.ReactSelectClearAll}>{text}</div>
+      ) : (
+        children
+      )}
+    </components.ValueContainer>
+  );
+}
 
 export const FilterForm = forwardRef(
   (
@@ -23,7 +49,7 @@ export const FilterForm = forwardRef(
     ref,
   ) => {
     const tCommon = t('analytics.common', { returnObjects: true });
-    const { doctorTypes: doctorTypesTranslations } = tCommon;
+    const { doctorTypes: doctorTypesTranslations, buttons: tButtons } = tCommon;
 
     const onFormChange = e => {
       if (e?.target) {
@@ -71,6 +97,9 @@ export const FilterForm = forwardRef(
               value: municipality,
             }))}
             placeholder={tCommon.selectMunicipality}
+            components={{
+              ValueContainer: props => <CustomValueContainer text={tButtons.clearAll} {...props} />,
+            }}
           />
         </div>
         <div>

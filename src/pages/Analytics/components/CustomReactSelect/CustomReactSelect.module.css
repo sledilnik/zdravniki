@@ -136,3 +136,7 @@
 .ReactSelectOptionIsSelected:hover {
   --bcg-color: rgba(9, 175, 218, 1);
 }
+
+/* Special Custom Components */
+.ReactSelectClearAll {
+}

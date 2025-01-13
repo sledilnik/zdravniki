@@ -128,8 +128,10 @@
                 "public": "javni"
             },
             "buttons": {
-                "cityMunicipalitiesActive": "Meste občine",
-                "cityMunicipalitiesInactive": "Meste občine"
+                "cityMunicipalitiesActive": "Mestne občine",
+                "cityMunicipalitiesInactive": "Mestne občine",
+                "clearAll": "počisti izbor",
+                "allCities": "Vse občine"
             },
             "data": {
                 "iozRatio": "delež vsi/opredeljeni",
