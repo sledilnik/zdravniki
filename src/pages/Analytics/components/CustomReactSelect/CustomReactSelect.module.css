@@ -139,4 +139,7 @@
 
 /* Special Custom Components */
 .ReactSelectClearAll {
+  width: 100%;
+  color: currentColor;
+  font-size: 0.875rem;
 }

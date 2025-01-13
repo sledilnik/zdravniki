@@ -6,28 +6,30 @@
 
 import { forwardRef } from 'react';
 
+import { cx } from 'class-variance-authority';
 import { t } from 'i18next';
 import { components } from 'react-select';
 
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
+import reactSelectStyles from '../../../components/CustomReactSelect/CustomReactSelect.module.css';
 import styles from '../FilterForm.module.css';
 
 /**
  * CustomValueContainer component for react-select
  * Displays "clear all" text when there are selected values, otherwise shows default children
  *
- * @param {ValueContainerProps & {text: string}} props - Component props from react-select ValueContainerProps
+ * @param {ValueContainerProps & {text: string, clearAllClassName: string}} props - Component props from react-select ValueContainerProps
  * @returns {JSX.Element} Rendered value container
  */
 export function CustomValueContainer(props) {
-  const { children, getValue, text, ...restProps } = props;
+  const { children, getValue, text, clearAllClassName, ...restProps } = props;
   const selectedValues = getValue();
   return (
     <components.ValueContainer {...restProps}>
       {selectedValues.length > 0 ? (
-        <div className={styles.ReactSelectClearAll}>{text}</div>
+        <div className={cx(reactSelectStyles.ReactSelectClearAll, clearAllClassName)}>{text}</div>
       ) : (
         children
       )}
@@ -98,7 +100,13 @@ export const FilterForm = forwardRef(
             }))}
             placeholder={tCommon.selectMunicipality}
             components={{
-              ValueContainer: props => <CustomValueContainer text={tButtons.clearAll} {...props} />,
+              ValueContainer: props => (
+                <CustomValueContainer
+                  text={tButtons.clearAll}
+                  clearAllClassName={styles.MunValueContainer}
+                  {...props}
+                />
+              ),
             }}
           />
         </div>
