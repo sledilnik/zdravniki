@@ -134,7 +134,7 @@
                 "allCities": "Vse občine"
             },
             "data": {
-                "iozRatio": "delež vsi/opredeljeni",
+                "iozRatio": "delež opredeljeni/vsi",
                 "insuredPeopleCount": "vsi zav.",
                 "insuredPeopleCountWithIOZ": "opredeljeni",
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",

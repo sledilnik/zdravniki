@@ -16,14 +16,16 @@ export function MapChartTooltip({ point }) {
         <thead>
           <tr>
             <th className={styles.Center}>{tCommon.data.insuredPeopleCount}</th>
-            <th className={styles.Center}>{tCommon.data.insuredPeopleCountWithIOZ}</th>
+            <th className={styles.Center}>{tCommon.data.insuredPeopleCountWithoutIOZ}</th>
             <th className={styles.Center}>{tCommon.data.iozRatio}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td className={styles.Right}>{intlFormat.format(point.insuredPeopleCount)}</td>
-            <td className={styles.Right}>{intlFormat.format(point.insuredPeopleCountWithIOZ)}</td>
+            <td className={styles.Right}>
+              {intlFormat.format(point.insuredPeopleCountWithoutIOZ)}
+            </td>
             <td className={styles.Right}>{intlFormat.format(point.iozRatio)}</td>
           </tr>
         </tbody>
