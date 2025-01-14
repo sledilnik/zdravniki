@@ -13,26 +13,23 @@ import { components } from 'react-select';
 import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
 
-import reactSelectStyles from '../../../components/CustomReactSelect/CustomReactSelect.module.css';
 import styles from '../FilterForm.module.css';
 
 /**
  * CustomValueContainer component for react-select
- * Displays "clear all" text when there are selected values, otherwise shows default children
+ * Displays "clear all" text when there are selected values and not focused,
+ * shows search input when focused or no values selected
  *
- * @param {ValueContainerProps & {text: string, clearAllClassName: string}} props - Component props from react-select ValueContainerProps
+ * @param {ValueContainerProps & {text: string, clearAllClassName?: string}} props - Component props from react-select ValueContainerProps
  * @returns {JSX.Element} Rendered value container
  */
 export function CustomValueContainer(props) {
-  const { children, getValue, text, clearAllClassName, ...restProps } = props;
-  const selectedValues = getValue();
+  const { children, hasValue, text, clearAllClassName, ...restProps } = props;
+
   return (
     <components.ValueContainer {...restProps}>
-      {selectedValues.length > 0 ? (
-        <div className={cx(reactSelectStyles.ReactSelectClearAll, clearAllClassName)}>{text}</div>
-      ) : (
-        children
-      )}
+      {hasValue ? <span className={cx(clearAllClassName)}>{text}</span> : null}
+      {children}
     </components.ValueContainer>
   );
 }
@@ -100,6 +97,7 @@ export const FilterForm = forwardRef(
             }))}
             placeholder={tCommon.selectMunicipality}
             components={{
+              ...components,
               ValueContainer: props => (
                 <CustomValueContainer
                   text={tButtons.clearAll}

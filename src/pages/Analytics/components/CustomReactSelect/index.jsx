@@ -42,6 +42,7 @@ const CustomReactSelect = function CustomReactSelect(props) {
       className={styles.ReactSelect}
       classNamePrefix="ReactSelect"
       classNames={{
+        clearIndicator: () => styles.ReactSelectClearIndicator,
         control: state =>
           cx(styles.ReactSelectControl, state.isFocused && styles.ReactSelectControlIsFocused),
         dropdownIndicator: () =>
@@ -67,6 +68,7 @@ const CustomReactSelect = function CustomReactSelect(props) {
             state.isFocused && styles.ReactSelectOptionIsFocused,
             state.isSelected && styles.ReactSelectOptionIsSelected,
           ),
+        valueContainer: () => styles.ReactSelectValueContainer,
       }}
       onMenuOpen={() => setMenuIsOpen(true)}
       onMenuClose={() => setMenuIsOpen(false)}
