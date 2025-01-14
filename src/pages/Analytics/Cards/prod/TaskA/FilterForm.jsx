@@ -29,13 +29,20 @@ export function CustomValueContainer(props) {
   const { hasValue } = restProps;
   const { menuIsOpen } = restProps.selectProps;
 
+  const value = restProps.getValue();
+  const valueCount = value ? value.length : 0;
+
   return (
     <components.ValueContainer
       hasValue={hasValue}
       {...restProps}
       className={cx(!hasValue && styles.HasValue)}
     >
-      {hasValue && !menuIsOpen ? <span className={cx(clearAllClassName)}>{text}</span> : null}
+      {hasValue && !menuIsOpen ? (
+        <span className={cx(clearAllClassName)}>
+          ({valueCount}) {text}
+        </span>
+      ) : null}
       {children}
     </components.ValueContainer>
   );
