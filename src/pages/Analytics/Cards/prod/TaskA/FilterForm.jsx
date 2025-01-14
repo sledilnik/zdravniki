@@ -30,7 +30,11 @@ export function CustomValueContainer(props) {
   const { menuIsOpen } = restProps.selectProps;
 
   return (
-    <components.ValueContainer hasValue={hasValue} {...restProps}>
+    <components.ValueContainer
+      hasValue={hasValue}
+      {...restProps}
+      className={cx(!hasValue && styles.HasValue)}
+    >
       {hasValue && !menuIsOpen ? <span className={cx(clearAllClassName)}>{text}</span> : null}
       {children}
     </components.ValueContainer>

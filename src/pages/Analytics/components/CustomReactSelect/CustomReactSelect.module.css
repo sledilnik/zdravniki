@@ -17,10 +17,6 @@
   border-radius: 20px;
 }
 
-.ReactSelectControl > div:first-child {
-  padding-inline: var(--select-padding-inline);
-}
-
 .ReactSelectControl:hover {
   --border: var(--hover-color);
   --indicator-color: rgba(186, 186, 186, 1); /* converted from oklch(0.73 0 0) */
@@ -133,6 +129,7 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  padding-inline: var(--select-padding-inline);
 }
 
 .ReactSelectOption:hover,

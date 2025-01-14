@@ -11,3 +11,7 @@
   left: 0.6em;
   transform: translateY(-50%);
 }
+
+.HasValue {
+  padding-inline: var(--select-padding-inline) calc(var(--select-padding-inline) + 20px); /* size of clear indicator svg */
+}
