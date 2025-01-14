@@ -1,3 +1,12 @@
+export const sectionNames = Object.freeze([
+  'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
+  'examples',
+]);
+
+/**
+ * @typedef {typeof sectionNames[number]} SectionNames
+ */
+
 /**
  * @typedef {import('highcharts-react-official').HighchartsReactRefObject} HighchartsReactRefObject
  */
@@ -36,8 +45,6 @@
  * @property {"MapCard"} componentName
  * @property {HighMapsOptions} options
  */
-
-/** @typedef {"examples")[]} SectionNames */
 
 /**
  * @typedef {("top" | "top-start" | "start" | "end" | "bottom" | "bottom-start" | "bottom-end" )} Placement

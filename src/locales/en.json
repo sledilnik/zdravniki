@@ -175,6 +175,9 @@
                     "denObseg": "št. programov"
                 }
             }
+        },
+        "taskSpecial": {
+            "title": "Task Special"
         }
     }
 }

@@ -1,5 +1,7 @@
 /** @import * as Types from "../types" */
 
+import { sectionNames } from '../types';
+
 /**
  * TODO
  *  - check for actual fake height values; card height can be different on mobile or desktop or other devices:
@@ -17,50 +19,26 @@ const isDev = process.env.NODE_ENV === 'development';
  */
 export const cards = [
   {
-    section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
+    section: sectionNames[0],
     order: 0,
+    componentName: 'TaskSpecial',
+    titleTranslationKey: 'analytics.taskSpecial.title',
+    fakeHeight: '100px', // TODO: check for actual fake height value,
+  },
+  {
+    section: sectionNames[0],
+    order: 1,
     componentName: 'TaskA',
     titleTranslationKey: 'analytics.taskA.title',
     fakeHeight: '827px', // TODO: check for actual fake height value,
   },
   {
-    section: 'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
-    order: 0,
+    section: sectionNames[0],
+    order: 2,
     componentName: 'PivotkeD',
     titleTranslationKey: 'analytics.taskD.title',
     fakeHeight: '584px', // TODO: check for actual fake height value
   },
-  // {
-  //   section: 'examples',
-  //   order: 0,
-  //   componentName: 'InsuredByDefinitionAndByAgeGroup',
-  //   fakeHeight: '500px',
-  // },
-  // {
-  //   section: 'examples',
-  //   order: 5,
-  //   componentName: 'MotionCard',
-  //   fakeHeight: '2876px',
-  // },
-  // {
-  //   section: 'examples',
-  //   order: 0,
-  //   componentName: 'DashboardCard',
-  //   fakeHeight: '683px',
-  // },
-  // availabilityChangeByInstitutionType,
-  // {
-  //   section: 'examples',
-  //   order: 1,
-  //   componentName: 'DataByYearAndAgeGroupCard',
-  //   fakeHeight: '1358px',
-  // },
-  // {
-  //   section: 'examples',
-  //   order: 2,
-  //   componentName: 'RichInfoClick',
-  //   fakeHeight: '679px',
-  // },
 ];
 
 const groupedCards = cards.reduce((acc, card) => {

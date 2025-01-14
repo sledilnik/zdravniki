@@ -31,6 +31,7 @@ const MotionCard = lazy(() => import('./Cards/MotionCard'));
 const InsuredByDefinitionAndByAgeGroup = lazy(() => import('./Cards/prod/TaskC'));
 const PivotkeD = lazy(() => import('./Cards/prod/TaskD'));
 const TaskA = lazy(() => import('./Cards/prod/TaskA'));
+const TaskSpecial = lazy(() => import('./Cards/prod/TaskSpecial'));
 
 const CARDS = {
   PivotkeD,
@@ -42,6 +43,7 @@ const CARDS = {
   DashboardCard,
   InsuredByDefinitionAndByAgeGroup,
   TaskA,
+  TaskSpecial,
 };
 
 const Analytics = function Analytics() {
