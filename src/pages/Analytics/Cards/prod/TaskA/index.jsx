@@ -17,7 +17,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 // eslint-disable-next-line import/no-named-as-default
 import Icon from 'components/Shared/Icons';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
-import { mapOptions, secondChartOptions } from './chart-options';
+import { COLORS, mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
@@ -36,12 +36,6 @@ import { calculateYearlyStatistics } from './scorecards-calc-util';
 
 import styles from '../MapAndChart.module.css';
 import buttonStyles from './Buttons.module.css';
-
-const COLORS = Object.freeze({
-  minColor: '#E57373',
-  maxColor: '#81C784',
-  selectColor: '#ffa500',
-});
 
 /**
  * TaskA component
