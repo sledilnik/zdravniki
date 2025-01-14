@@ -24,11 +24,14 @@ import styles from '../FilterForm.module.css';
  * @returns {JSX.Element} Rendered value container
  */
 export function CustomValueContainer(props) {
-  const { children, hasValue, text, clearAllClassName, ...restProps } = props;
+  const { children, text, clearAllClassName, ...restProps } = props;
+
+  const { hasValue } = restProps;
+  const { menuIsOpen } = restProps.selectProps;
 
   return (
-    <components.ValueContainer {...restProps}>
-      {hasValue ? <span className={cx(clearAllClassName)}>{text}</span> : null}
+    <components.ValueContainer hasValue={hasValue} {...restProps}>
+      {hasValue && !menuIsOpen ? <span className={cx(clearAllClassName)}>{text}</span> : null}
       {children}
     </components.ValueContainer>
   );
