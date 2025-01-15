@@ -3,9 +3,9 @@
 
 /** @import * as Types from '../../types' */
 
-import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './CustomPopover.module.css';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './Popover.module.css';
 
 /**
  * Customizable popover component that manages visibility and interaction with popover items.
