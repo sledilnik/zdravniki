@@ -1,4 +1,4 @@
-import styles from '../Layout.module.css';
+import styles from '../styles/Layout.module.css';
 
 const LayoutVisualizer = function LayoutVisualizer() {
   return (

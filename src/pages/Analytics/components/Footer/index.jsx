@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import { t } from 'i18next';
 import { cx } from 'class-variance-authority';
+import { t } from 'i18next';
 
 import * as Icons from 'components/Shared/Icons';
 
 import styles from './Footer.module.css';
 
-import stylesLayout from '../../Layout.module.css';
+import stylesLayout from '../../styles/Layout.module.css';
 
 /**
  * Footer component for the Analytics page.

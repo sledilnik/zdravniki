@@ -13,8 +13,8 @@ import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import './highcharts-options';
 
-import styles from './Analytics.module.css';
-import stylesLayout from './Layout.module.css';
+import styles from './styles/Analytics.module.css';
+import stylesLayout from './styles/Layout.module.css';
 
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 import { SECTIONS } from './data/sections';
