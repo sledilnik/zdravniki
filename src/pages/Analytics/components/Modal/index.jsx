@@ -4,6 +4,7 @@
 import { useEffect, useRef } from 'react';
 
 import { cx } from 'class-variance-authority';
+import { t } from 'i18next';
 
 import styles from './Modal.module.css';
 
@@ -41,7 +42,7 @@ const Modal = function Modal({ modalOpen, className, children, ...props }) {
     <dialog ref={ref} {...props} className={cx(styles.CustomDialog, className)}>
       {children}
       <button type="button" onClick={handleOnCancel} className={styles.CloseButton}>
-        Close
+        {t('analytics.common.buttons.close')}
       </button>
     </dialog>
   );

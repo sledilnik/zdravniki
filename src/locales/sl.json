@@ -131,7 +131,8 @@
                 "cityMunicipalitiesActive": "Mestne občine",
                 "cityMunicipalitiesInactive": "Mestne občine",
                 "clearAll": "počisti izbor",
-                "allCities": "Vse občine"
+                "allCities": "Vse občine",
+                "close": "Zapri"
             },
             "data": {
                 "iozRatio": "delež opredeljeni/vsi",

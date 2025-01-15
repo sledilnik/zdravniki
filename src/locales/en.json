@@ -129,7 +129,8 @@
                 "cityMunicipalitiesActive": "Cities",
                 "cityMunicipalitiesInactive": "Cities",
                 "clearAll": "clear selection",
-                "allCities": "All municipalities"
+                "allCities": "All municipalities",
+                "close": "Close"
             },
             "data": {
                 "iozRatio": "ratio withIOZ/all",
