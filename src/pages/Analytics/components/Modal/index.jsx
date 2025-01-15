@@ -41,7 +41,7 @@ const Modal = function Modal({ modalOpen, className, children, ...props }) {
     <dialog ref={ref} {...props} className={cx(styles.CustomDialog, className)}>
       {children}
       <button type="button" onClick={handleOnCancel} className={styles.CloseButton}>
-        Close (<kbd>Esc</kbd>)
+        Close
       </button>
     </dialog>
   );
