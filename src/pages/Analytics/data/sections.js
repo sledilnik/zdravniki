@@ -10,8 +10,6 @@ import { sectionNames } from '../types';
  *
  */
 
-// import { availabilityChangeByInstitutionType } from './production/availability-change-by-institution-type';
-
 const isDev = process.env.NODE_ENV === 'development';
 
 /**
