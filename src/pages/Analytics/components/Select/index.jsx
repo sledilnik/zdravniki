@@ -4,7 +4,7 @@ import { cx } from 'class-variance-authority';
 import { useState } from 'react';
 import Select from 'react-select';
 
-import styles from './CustomReactSelect.module.css';
+import styles from './Select.module.css';
 
 /**
  * Custom React Select component
@@ -40,7 +40,7 @@ const CustomReactSelect = function CustomReactSelect(props) {
     <Select
       unstyled
       className={styles.ReactSelect}
-      classNamePrefix="ReactSelect"
+      classNamePrefix="Select"
       classNames={{
         clearIndicator: () => styles.ReactSelectClearIndicator,
         control: state =>

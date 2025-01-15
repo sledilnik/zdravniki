@@ -10,8 +10,8 @@ import { cx } from 'class-variance-authority';
 import { t } from 'i18next';
 import { components } from 'react-select';
 
-import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
+import CustomReactSelect from 'pages/Analytics/components/Select';
 
 import styles from '../FilterForm.module.css';
 

@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
+import CustomReactSelect from 'pages/Analytics/components/Select';
 import { forwardRef } from 'react';
 
 import Label from 'pages/Analytics/components/Label';

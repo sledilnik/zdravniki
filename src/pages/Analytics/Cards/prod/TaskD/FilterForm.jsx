@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { t } from 'i18next';
 
-import CustomReactSelect from 'pages/Analytics/components/CustomReactSelect';
 import Label from 'pages/Analytics/components/Label';
+import CustomReactSelect from 'pages/Analytics/components/Select';
 
 import { groupOptions } from './parsed-files';
 
