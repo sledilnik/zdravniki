@@ -108,6 +108,10 @@
         "description": "The Doctors Tracker portal was created to bring the healthcare system closer to the patient. In Slovenia, we are facing a shortage of doctors at primary level. This leaves many patients without the basic right of access to a personal GP. In the Scientific association Tracker, we imported the data that was publicly available every 15 days in a spreadsheet that was not user friendly into our portal and allowed users to suggest corrections for faulty data in real time. This gave patients seeking primary care user-friendly and up-to-date information."
     },
     "analytics": {
+        "touchDevice": {
+            "text": "Use desktop for the best experience.",
+            "checkboxLabel": "Don't show this message"
+        },
         "common": {
             "doctorType": "Activity",
             "municipality": "Municipality",

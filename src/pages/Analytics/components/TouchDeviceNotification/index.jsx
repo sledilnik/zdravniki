@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { t } from 'i18next';
 import Modal from '../Modal';
 import styles from './TouchDeviceNotification.module.css';
 
@@ -8,6 +9,7 @@ const TouchdeviceNotification = function TouchDeviceNotification() {
   /** @type {React.RefObject<HTMLInputElement | undefined>} */
   const ref = useRef();
   const checkboxElement = ref.current;
+  const tTouchDevice = t('analytics.touchDevice', { returnObjects: true });
 
   useEffect(() => {
     const isTouchDevice =
@@ -31,10 +33,10 @@ const TouchdeviceNotification = function TouchDeviceNotification() {
       onCancel={handleCloseModal}
       className={styles.TouchDeviceNotification}
     >
-      <p>Za najboljšo izkušnjo uporabite namizni računalnik.</p>
+      <p>{tTouchDevice.text}</p>
       <label htmlFor="checkbox">
         <input ref={ref} id="checkbox" type="checkbox" />
-        Ne prikaži več tega sporočila.
+        {tTouchDevice.checkboxLabel}
       </label>
     </Modal>
   );
