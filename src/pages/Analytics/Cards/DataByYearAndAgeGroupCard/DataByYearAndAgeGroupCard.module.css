@@ -1,9 +1,0 @@
-.DataByYearAndAgeGroupCard .SecondFigure {
-  height: 100px;
-  overflow: hidden;
-}
-
-.DataByYearAndAgeGroupCard .SecondFigure.Expanded {
-  height: auto;
-  overflow: auto;
-}

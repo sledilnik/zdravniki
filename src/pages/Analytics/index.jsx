@@ -22,26 +22,12 @@ import { createCardDataProxy } from './data/utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
 
-const ChartCard = lazy(() => import('./Cards/ChartCard'));
-const MapCard = lazy(() => import('./Cards/MapCard'));
-const RichInfoClick = lazy(() => import('./Cards/RichInfoClick'));
-const DataByYearAndAgeGroupCard = lazy(() => import('./Cards/DataByYearAndAgeGroupCard'));
-const DashboardCard = lazy(() => import('./Cards/DashboardCard'));
-const MotionCard = lazy(() => import('./Cards/MotionCard'));
-const InsuredByDefinitionAndByAgeGroup = lazy(() => import('./Cards/prod/TaskC'));
 const PivotkeD = lazy(() => import('./Cards/prod/TaskD'));
 const TaskA = lazy(() => import('./Cards/prod/TaskA'));
 const TaskSpecial = lazy(() => import('./Cards/prod/TaskSpecial'));
 
 const CARDS = {
   PivotkeD,
-  MotionCard,
-  ChartCard,
-  MapCard,
-  RichInfoClick,
-  DataByYearAndAgeGroupCard,
-  DashboardCard,
-  InsuredByDefinitionAndByAgeGroup,
   TaskA,
   TaskSpecial,
 };
