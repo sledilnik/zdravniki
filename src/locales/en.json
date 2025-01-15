@@ -134,7 +134,12 @@
                 "cityMunicipalitiesInactive": "Cities",
                 "clearAll": "clear selection",
                 "allCities": "All municipalities",
-                "close": "Close"
+                "close": "Close",
+                "mapSettings": "map options",
+                "min": "min",
+                "max": "maks",
+                "selected": "selection",
+                "reset": "$t(reportError.reset)"
             },
             "data": {
                 "iozRatio": "ratio withIOZ/all",

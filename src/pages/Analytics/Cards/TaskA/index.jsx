@@ -202,10 +202,10 @@ const TaskA = function TaskA({ id }) {
           />
         </CardContent>
         <CardContent style={{ gridArea: 'settings' }}>
-          <h3>Nastavitve zemljevida</h3>
+          <h3>{tCommon.buttons.mapSettings}</h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <label>
-              min:{' '}
+              {tCommon.buttons.min}:{' '}
               <input
                 type="color"
                 value={colors.minColor}
@@ -214,7 +214,7 @@ const TaskA = function TaskA({ id }) {
               />
             </label>
             <label>
-              max:{' '}
+              {tCommon.buttons.max}:{' '}
               <input
                 type="color"
                 value={colors.maxColor}
@@ -223,7 +223,7 @@ const TaskA = function TaskA({ id }) {
               />
             </label>
             <label>
-              izbor:{' '}
+              {tCommon.buttons.selected}:{' '}
               <input
                 type="color"
                 value={colors.selectColor}
@@ -232,7 +232,7 @@ const TaskA = function TaskA({ id }) {
               />
             </label>
             <button type="button" onClick={() => setColors({ ...COLORS })}>
-              Reset
+              {tCommon.buttons.reset}
             </button>
           </div>
         </CardContent>

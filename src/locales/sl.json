@@ -136,7 +136,12 @@
                 "cityMunicipalitiesInactive": "Mestne občine",
                 "clearAll": "počisti izbor",
                 "allCities": "Vse občine",
-                "close": "Zapri"
+                "close": "Zapri",
+                "mapSettings": "možnosti zemljevida",
+                "min": "min",
+                "max": "maks",
+                "selected": "izbor",
+                "reset": "$t(reportError.reset)"
             },
             "data": {
                 "iozRatio": "delež opredeljeni/vsi",
