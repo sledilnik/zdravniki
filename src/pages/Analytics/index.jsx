@@ -22,7 +22,7 @@ import { createCardDataProxy } from './utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
 
-const TaskD = lazy(() => import('./Cards/prod/TaskD'));
+const TaskD = lazy(() => import('./Cards/TaskD'));
 const TaskA = lazy(() => import('./Cards/TaskA'));
 const TaskSpecial = lazy(() => import('./Cards/TaskSpecial'));
 
