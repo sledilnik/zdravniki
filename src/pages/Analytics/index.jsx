@@ -22,12 +22,12 @@ import { createCardDataProxy } from './data/utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
 
-const PivotkeD = lazy(() => import('./Cards/prod/TaskD'));
+const TaskD = lazy(() => import('./Cards/prod/TaskD'));
 const TaskA = lazy(() => import('./Cards/prod/TaskA'));
 const TaskSpecial = lazy(() => import('./Cards/prod/TaskSpecial'));
 
 const CARDS = {
-  PivotkeD,
+  TaskD,
   TaskA,
   TaskSpecial,
 };

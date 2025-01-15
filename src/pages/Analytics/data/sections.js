@@ -35,7 +35,7 @@ export const cards = [
   {
     section: sectionNames[0],
     order: 2,
-    componentName: 'PivotkeD',
+    componentName: 'TaskD',
     titleTranslationKey: 'analytics.taskD.title',
     fakeHeight: '584px', // TODO: check for actual fake height value
   },

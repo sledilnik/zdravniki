@@ -4,7 +4,7 @@ export const initialChartOptions = {
     backgroundColor: 'rgb(248 248 248)',
   },
   title: {
-    text: 'PivotkeD',
+    text: 'TaskD',
   },
   type: 'line',
   xAxis: {

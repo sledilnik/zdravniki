@@ -17,12 +17,12 @@ import FilterForm from './FilterForm';
 import { groupOptions, groupYAxisLabelFormat, parsedData } from './parsed-files';
 
 /**
- * PivotkeD component renders a card with a content.
+ * TaskD component renders a card with a content.
  * @param {Object} props - The properties object.
  * @param {React.ComponentProps<"article">["id"]} props.id - The unique identifier for the card.
- * @returns {JSX.Element} The rendered PivotkeD component.
+ * @returns {JSX.Element} The rendered TaskD component.
  */
-const PivotkeD = function PivotkeD({ id }) {
+const TaskD = function TaskD({ id }) {
   const { lng } = useParams();
   /** @type {Types.HighchartsReactRefObject} */
   const chartRef = useRef(null);
@@ -129,4 +129,4 @@ const PivotkeD = function PivotkeD({ id }) {
   );
 };
 
-export default withErrorBoundary(PivotkeD);
+export default withErrorBoundary(TaskD);
