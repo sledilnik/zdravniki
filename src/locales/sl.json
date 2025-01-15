@@ -166,9 +166,6 @@
         "taskB": {
             "title": "Task B naslov"
         },
-        "taskC": {
-            "title": "Task C naslov"
-        },
         "taskD": {
             "title": "Primerjava glede na lastništvo",
             "yAxis": {

@@ -164,9 +164,6 @@
         "taskB": {
             "title": "Task B title"
         },
-        "taskC": {
-            "title": "Task C title"
-        },
         "taskD": {
             "title": "Task D title",
             "yAxis": {
