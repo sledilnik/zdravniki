@@ -14,13 +14,13 @@ import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
 import { prepareDetailLineChartSeries } from './data';
 
 const COLORS = {
-  insuredPeopleCount: 'oklch(0.7 0.2 240 / 0.8)',
-  insuredPeopleCountWithIOZ: 'oklch(0.2 50 0 / 0.2)',
-  insuredPeopleCountWithoutIOZ: 'oklch(1 50 0)',
-  iozRatio: 'oklch(0.6 0.1 250 / 0.7)',
+  insuredPeopleCount: 'rgba(58, 105, 217, 0.8)', // Light blue
+  insuredPeopleCountWithIOZ: 'rgba(255, 153, 153, 0.5)', // Pale red
+  insuredPeopleCountWithoutIOZ: 'rgba(255, 51, 51, 1)', // Bright red
+  iozRatio: 'rgba(81, 122, 217, 0.7)', // Muted blue
 
-  backgroundColor: 'oklch(0.98 0 0)',
-  tooltipBackgroundColor: 'oklch(1 0 0 / 0.8)',
+  backgroundColor: 'rgba(250, 250, 250, 1)', // Near white
+  tooltipBackgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white
 };
 
 const options = {
