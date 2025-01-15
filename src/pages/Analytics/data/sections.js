@@ -2,6 +2,12 @@
 
 import { sectionNames } from '../types';
 
+export const sectionTranslationKeys = sectionNames.reduce((acc, sectionName, index) => {
+  console.log(index);
+  acc[sectionName] = `analytics.sectionTitle.${index + 1}`;
+  return acc;
+}, {});
+
 /**
  * TODO
  *  - check for actual fake height values; card height can be different on mobile or desktop or other devices:

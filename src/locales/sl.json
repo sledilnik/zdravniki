@@ -114,6 +114,10 @@
             "text": "Za najboljšo izkušnjo uporabite namizni računalnik.",
             "checkboxLabel": "Ne prikaži več tega sporočila"
         },
+        "sectionTitle": {
+            "1": "Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe",
+            "2": "Dev Primeri"
+        },
         "common": {
             "doctorType": "Dejavnost",
             "municipality": "Občina",

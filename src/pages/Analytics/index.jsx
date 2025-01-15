@@ -4,9 +4,9 @@ import { lazy, useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { cx } from 'class-variance-authority';
+import { t } from 'i18next';
 
 import * as SEO from 'components/SEO';
-import { t } from 'i18next';
 
 import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './components/Footer';
@@ -17,7 +17,7 @@ import styles from './styles/Analytics.module.css';
 import stylesLayout from './styles/Layout.module.css';
 
 import TouchdeviceNotification from './components/TouchDeviceNotification';
-import { SECTIONS } from './data/sections';
+import { SECTIONS, sectionTranslationKeys } from './data/sections';
 import { createCardDataProxy } from './utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
@@ -55,6 +55,11 @@ const Analytics = function Analytics() {
     });
   }, []);
 
+  const sections = SECTIONS.map(section => ({
+    ...section,
+    sectionTitle: t(sectionTranslationKeys[section.sectionTitle]),
+  }));
+
   return (
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
@@ -62,7 +67,7 @@ const Analytics = function Analytics() {
       <main id="main-content" className={cx(styles.Analytics)}>
         <Sidebar />
         <div className={cx(stylesLayout.Layout, styles.PageContent)}>
-          {SECTIONS.map(section => (
+          {sections.map(section => (
             <section
               key={section.sectionTitle}
               className={styles.ChartSection}

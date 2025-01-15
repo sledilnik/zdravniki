@@ -8,7 +8,7 @@ import { t } from 'i18next';
 import * as Icons from 'components/Shared/Icons';
 import Modal from '../Modal';
 
-import { SECTIONS } from '../../data/sections';
+import { SECTIONS, sectionTranslationKeys } from '../../data/sections';
 import { createCardDataProxy } from '../../utils/create-card-data-proxy';
 import styles from './Sidebar.module.css';
 
@@ -62,6 +62,11 @@ const Sidebar = function Sidebar() {
     setModalOpen(false);
   };
 
+  const sections = SECTIONS.map(section => ({
+    ...section,
+    sectionTitle: t(sectionTranslationKeys[section.sectionTitle]),
+  }));
+
   return (
     <aside className={styles.Sidebar} name="sidebar">
       {mediaQuery ? (
@@ -72,7 +77,7 @@ const Sidebar = function Sidebar() {
             className={styles.SidebarGroupsWrapper}
             aria-label="Chart Navbar Desktop"
           >
-            {renderSidebarGroups(undefined, SECTIONS)}
+            {renderSidebarGroups(undefined, sections)}
           </nav>
         </div>
       ) : (
@@ -99,7 +104,7 @@ const Sidebar = function Sidebar() {
               className={styles.SidebarGroupsWrapper}
               aria-label="Chart Navbar Mobile"
             >
-              {renderSidebarGroups(closeModal, SECTIONS)}
+              {renderSidebarGroups(closeModal, sections)}
             </nav>
           </Modal>
         </div>
