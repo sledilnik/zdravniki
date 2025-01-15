@@ -20,8 +20,8 @@
 }
 
 .Controls {
-  --color-controls: oklch(0.59 0.11 218);
-  --color-controls-accent: oklch(0.68 0.11 218);
+  --color-controls: rgb(0, 140, 168);
+  --color-controls-accent: rgb(47, 168, 197);
   --color-controls-button: #ffffff;
   grid-column: 1/2;
   grid-row: 2/3;

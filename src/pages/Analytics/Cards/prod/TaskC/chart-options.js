@@ -8,7 +8,7 @@ export const mapOptions = {
   chart: {
     map: sloOBMap,
     height: 400,
-    backgroundColor: 'oklch(0.98 0 0)',
+    backgroundColor: 'rgb(248 248 248)',
   },
   title: {
     text: 'Število zavarovancev in opredeljenost po starostnih skupinah',

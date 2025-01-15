@@ -1,7 +1,7 @@
 /** @type {Highcharts["options"]} */
 export const initialChartOptions = {
   chart: {
-    backgroundColor: 'oklch(0.98 0 0)',
+    backgroundColor: 'rgb(248 248 248)',
   },
   title: {
     text: 'PivotkeD',
@@ -39,6 +39,6 @@ export const initialChartOptions = {
     useHtml: true,
     shared: true,
     crosshairs: true,
-    backgroundColor: 'oklch(1 0 0 / 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
 };

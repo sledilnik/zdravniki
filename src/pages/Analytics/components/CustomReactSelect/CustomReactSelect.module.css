@@ -19,13 +19,13 @@
 
 .ReactSelectControl:hover {
   --border: var(--hover-color);
-  --indicator-color: rgba(186, 186, 186, 1); /* converted from oklch(0.73 0 0) */
+  --indicator-color: rgba(186, 186, 186, 1);
 }
 
 .ReactSelectControlIsFocused,
 .ReactSelectControlIsFocused:hover {
   --border: var(--hover-color);
-  --indicator-color: rgba(128, 128, 128, 1); /* converted from oklch(0.5 0 0) */
+  --indicator-color: rgba(128, 128, 128, 1);
   box-shadow: 0 0 7px 0 var(--hover-color);
 }
 
@@ -62,7 +62,7 @@
 } */
 
 .ReactSelectIndicatorSeparator {
-  background-color: rgba(212, 212, 212, 1); /* converted from oklch(0.83 0 0) */
+  background-color: rgba(212, 212, 212, 1);
   margin-block: 0.5em;
 }
 

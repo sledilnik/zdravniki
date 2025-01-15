@@ -14,8 +14,8 @@ export const COLORS = Object.freeze({
   maxColor: '#D8E8D8',
   selectColor: '#f8a808',
   selectBorderColor: '#000000',
-  backgroundColor: 'oklch(0.98 0 0)',
-  tooltipBackgroundColor: 'oklch(1 0 0 / 0.8)',
+  backgroundColor: 'rgb(248 248 248)',
+  tooltipBackgroundColor: 'rgba(255, 255, 255, 0.8)',
 });
 
 /** @type {Types.HighMapsOptions} */

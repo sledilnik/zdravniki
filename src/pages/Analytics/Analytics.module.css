@@ -1,13 +1,13 @@
 .Analytics {
   --radius: 0.5rem;
 
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
-  --card: oklch(0.98 0 0);
-  --card-foreground: oklch(0 0 0 / 97); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+  --background: rgb(248 248 248);
+  --foreground: rgb(0 0 0); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+  --card: rgb(248 248 248);
+  --card-foreground: rgb(0 0 0); /* vscode bug: no contrast; value: 0 0 0 / 87 */
 
-  --border: oklch(0.93 0 0);
-  --muted-foreground: oklch(0.41 0 0);
+  --border: rgb(232 232 232);
+  --muted-foreground: rgb(74 74 74);
 
   display: grid;
   grid-template-columns: 1;
