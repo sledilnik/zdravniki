@@ -24,7 +24,7 @@ import { Card, CardHeader } from './components/ui/card';
 
 const TaskD = lazy(() => import('./Cards/prod/TaskD'));
 const TaskA = lazy(() => import('./Cards/TaskA'));
-const TaskSpecial = lazy(() => import('./Cards/prod/TaskSpecial'));
+const TaskSpecial = lazy(() => import('./Cards/TaskSpecial'));
 
 const CARDS = {
   TaskD,
