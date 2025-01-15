@@ -96,7 +96,7 @@ const calculateSumOfInsuredPeopleCount = data => {
  */
 export const transformToChartSeries = (data, series) =>
   series.flatMap(serie => {
-    const keys = data.keys();
+    const keys = [...data.keys()];
     /** @type {Types.LineChartSeries.data[number]} */
     const serieData = [];
     keys.forEach(key => {
