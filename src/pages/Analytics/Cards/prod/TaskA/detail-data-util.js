@@ -142,4 +142,3 @@ export const prepareDetailLineChartSeries = (
   // Step 3: Transform to chart series
   return transformToChartSeries(aggregatedData, xProp, yProp, doctorType);
 };
-prepareDetailLineChartSeries();
