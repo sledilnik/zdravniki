@@ -13,7 +13,7 @@ import { components } from 'react-select';
 import Label from 'pages/Analytics/components/Label';
 import CustomReactSelect from 'pages/Analytics/components/Select';
 
-import styles from '../prod/FilterForm.module.css';
+import styles from '../FilterForm.module.css';
 
 /**
  * CustomValueContainer component for react-select
