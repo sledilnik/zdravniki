@@ -9,7 +9,7 @@ import * as Icons from 'components/Shared/Icons';
 import Modal from '../Modal';
 
 import { SECTIONS } from '../../data/sections';
-import { createCardDataProxy } from '../../data/utils/create-card-data-proxy';
+import { createCardDataProxy } from '../../utils/create-card-data-proxy';
 import styles from './Sidebar.module.css';
 
 /**

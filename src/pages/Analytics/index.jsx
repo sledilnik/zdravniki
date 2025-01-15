@@ -18,7 +18,7 @@ import stylesLayout from './Layout.module.css';
 
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 import { SECTIONS } from './data/sections';
-import { createCardDataProxy } from './data/utils/create-card-data-proxy';
+import { createCardDataProxy } from './utils/create-card-data-proxy';
 
 import { Card, CardHeader } from './components/ui/card';
 
