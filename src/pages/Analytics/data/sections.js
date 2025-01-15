@@ -3,7 +3,6 @@
 import { sectionNames } from '../types';
 
 export const sectionTranslationKeys = sectionNames.reduce((acc, sectionName, index) => {
-  console.log(index);
   acc[sectionName] = `analytics.sectionTitle.${index + 1}`;
   return acc;
 }, {});
