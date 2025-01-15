@@ -10,7 +10,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import FilterForm from './FilterForm';
 
-import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
+import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../../TaskA/constants';
 import { prepareDetailLineChartSeries } from './data';
 
 const COLORS = {

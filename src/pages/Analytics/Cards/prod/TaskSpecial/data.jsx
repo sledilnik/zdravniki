@@ -1,5 +1,5 @@
 /** @import * as Types from '../TaskA/types' */
-import { detailTransformedData } from '../TaskA/json-data-transform-util';
+import { detailTransformedData } from '../../TaskA/json-data-transform-util';
 
 /**
  * @description

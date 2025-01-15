@@ -34,7 +34,7 @@ import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 
-import styles from '../MapAndChart.module.css';
+import styles from '../prod/MapAndChart.module.css';
 import buttonStyles from './Buttons.module.css';
 
 /**
