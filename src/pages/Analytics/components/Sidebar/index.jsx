@@ -71,7 +71,7 @@ const Sidebar = function Sidebar() {
     <aside className={styles.Sidebar} name="sidebar">
       {mediaQuery ? (
         <div className={styles.SidebarDesktop}>
-          <h2 className={styles.SidebarTitle}>Grafi</h2>
+          <h2 className={styles.SidebarTitle}>{t('analytics.sidebar.title')}</h2>
           <nav
             ref={navRef}
             className={styles.SidebarGroupsWrapper}
@@ -97,7 +97,7 @@ const Sidebar = function Sidebar() {
             aria-labelledby="go-to-graph"
           >
             <h2 id="go-to-graph" className={styles.SidebarTitle}>
-              Pojdi na graf
+              {t('analytics.sidebar.title')}
             </h2>
             <nav
               ref={navRef}

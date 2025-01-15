@@ -116,6 +116,9 @@
             "text": "Use desktop for the best experience.",
             "checkboxLabel": "Don't show this message"
         },
+        "sidebar": {
+            "title": "Charts"
+        },
         "common": {
             "doctorType": "Activity",
             "municipality": "Municipality",
