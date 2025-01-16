@@ -191,7 +191,11 @@
             }
         },
         "taskSpecial": {
-            "title": "Task Special"
+            "title": "EN Gibanje števila neopredeljenih skozi čas",
+            "chartTitle": "EN $t(analytics.taskASpecial.title)",
+            "yAxis": {
+                "title": "EN št. zavarovancev"
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
+import loMerege from 'lodash/merge';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
@@ -11,40 +12,27 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 import FilterForm from './FilterForm';
 
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
-import { prepareDetailLineChartSeries } from './data';
+import { prepareDetailLineChartSeries, seriesToShow } from './data';
 
 const COLORS = {
-  insuredPeopleCount: 'rgba(58, 105, 217, 0.8)', // Light blue
-  insuredPeopleCountWithIOZ: 'rgba(255, 153, 153, 0.5)', // Pale red
-  insuredPeopleCountWithoutIOZ: 'rgba(255, 51, 51, 1)', // Bright red
-  iozRatio: 'rgba(81, 122, 217, 0.7)', // Muted blue
-
-  backgroundColor: 'rgba(250, 250, 250, 1)', // Near white
-  tooltipBackgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white
+  insuredPeopleCount: 'rgba(75, 20, 20, 1)',
+  insuredPeopleCountWithIOZ: 'rgba(20, 72, 29, 1)',
+  insuredPeopleCountWithoutIOZ: 'rgba(224, 20, 20, 1)',
+  iozRatio: 'rgba(81, 122, 217, 0.7)',
+  backgroundColor: 'rgba(250, 250, 250, 1)',
+  tooltipBackgroundColor: 'rgba(255, 255, 255, 0.8)',
 };
 
 const options = {
   chart: { type: 'line', backgroundColor: COLORS.backgroundColor },
-  title: {
-    text: 'My chart',
-  },
   xAxis: {
     crosshair: true,
-    title: { text: 'year' },
   },
-  yAxis: [
-    { id: 'count', title: { text: 'count' } },
-    { id: 'percent', title: { text: 'percent' }, opposite: true },
-  ],
+  yAxis: [{ id: 'count' }],
   plotOptions: {
-    column: {
-      stacking: 'normal', // Enable stacking for column series
-      borderWidth: 0,
+    series: {
+      marker: { radius: 2 },
     },
-    // dataLabels: {
-    //   enabled: true,
-    //   // inside: true,
-    // },
   },
   series: [],
   tooltip: {
@@ -55,15 +43,32 @@ const options = {
 };
 
 const TaskSpecial = function TaskSpecial({ id }) {
+  const tTaskSpecial = t('analytics.taskSpecial', { returnObjects: true });
+  const tCommon = t('analytics.common', { returnObjects: true });
+
   const [init, setInit] = useState(false);
-  const [chartOptions, setChartOptions] = useState(options);
+  const [chartOptions, setChartOptions] = useState(
+    loMerege(
+      {
+        series: seriesToShow.map(name => ({
+          name: tCommon.data[name],
+          color: COLORS[name],
+        })),
+        yAxis: [
+          {
+            id: 'count',
+            title: { text: tTaskSpecial.yAxis.title },
+          },
+        ],
+      },
+      options,
+    ),
+  );
   const [filterState, setFilterState] = useState({
     doctorType: DEFAULTS.doctorType,
   });
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
-
-  const tTaskSpecial = t('analytics.taskSpecial', { returnObjects: true });
 
   useEffect(() => {
     if (!init) {
@@ -71,28 +76,12 @@ const TaskSpecial = function TaskSpecial({ id }) {
     }
   }, [init]);
 
-  const chartTitle = tTaskSpecial.title;
+  const { chartTitle } = tTaskSpecial;
 
   const chartSeries = useMemo(
     () =>
-      prepareDetailLineChartSeries(filterState.doctorType).map(serie => ({
+      prepareDetailLineChartSeries(filterState.doctorType, seriesToShow).map(serie => ({
         ...serie,
-        visible: !['insuredPeopleCount'].includes(serie.id),
-        color: COLORS[serie.id],
-        type: ['insuredPeopleCount', 'iozRatio'].includes(serie.id) ? 'line' : 'column', // Line for count and ratio, bar for others
-        stacking: ['insuredPeopleCountWithIOZ', 'insuredPeopleCountWithoutIOZ'].includes(serie.id)
-          ? 'normal'
-          : undefined, // Stack for IOZ series
-        // dataLabels: {
-        //   enabled: ['insuredPeopleCountWithIOZ', 'insuredPeopleCountWithoutIOZ'].includes(serie.id),
-        //   // inside: true,
-        //   style: {
-        //     fontSize: '0.75rem',
-        //     color: 'black',
-        //     textOutline: 'none', // Optional: Remove the default text outline
-        //   },
-        // },
-        marker: { radius: 2, enabled: false },
       })),
 
     [filterState.doctorType],

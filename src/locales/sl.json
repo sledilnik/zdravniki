@@ -175,9 +175,6 @@
                 "title": "$t(analytics.common.data.iozRatio)"
             }
         },
-        "taskB": {
-            "title": "Task B naslov"
-        },
         "taskD": {
             "title": "Primerjava glede na lastništvo",
             "yAxis": {
@@ -193,7 +190,11 @@
             }
         },
         "taskSpecial": {
-            "title": "Task Special"
+            "title": "Gibanje števila neopredeljenih skozi čas",
+            "chartTitle": "$t(analytics.taskSpecial.title)",
+            "yAxis": {
+                "title": "št. zavarovancev"
+            }
         }
     }
 }

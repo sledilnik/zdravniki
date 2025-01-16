@@ -71,7 +71,7 @@
  * @property {number} insuredPeopleCountWithIOZ - Total insured people count with IOZ.
  * @property {number} iozRatio - Ratio of insured people with IOZ to total insured people.
  * @property {string} id - Unique identifier for the aggregation (ageGroup-year).
- * @property {string} name - Name of the age group.
+ * @property {string} name - Name of the age group. // TODO fix this comment, somewhere we are using as serie name
  * @property {number} year - Year of the data point.
  */
 

@@ -110,7 +110,6 @@ export const transformToChartSeries = (data, series) =>
     });
     return {
       id: serie,
-      name: serie,
       yAxis: serie.includes('iozRatio') ? 1 : 0,
       data: serieData,
     };
@@ -133,3 +132,5 @@ export const prepareDetailLineChartSeries = (
 
   return [...chartSeries];
 };
+
+export const seriesToShow = Object.freeze(['insuredPeopleCount', 'insuredPeopleCountWithoutIOZ']);
