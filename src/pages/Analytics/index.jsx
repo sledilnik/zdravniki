@@ -5,22 +5,20 @@ import { useParams } from 'react-router';
 
 import { cx } from 'class-variance-authority';
 import { t } from 'i18next';
+import './highcharts-options';
 
 import * as SEO from 'components/SEO';
 
-import RenderOnViewportEntry from 'components/RenderOnViewportEntry';
 import Footer from './components/Footer';
+import RenderOnViewportEntry from './components/RenderOnViewportEntry';
 import Sidebar from './components/Sidebar';
-import './highcharts-options';
-
-import styles from './styles/Analytics.module.css';
-import stylesLayout from './styles/Layout.module.css';
-
 import TouchdeviceNotification from './components/TouchDeviceNotification';
+import { Card, CardHeader } from './components/ui/card';
 import { SECTIONS, sectionTranslationKeys } from './data/sections';
 import { createCardDataProxy } from './utils/create-card-data-proxy';
 
-import { Card, CardHeader } from './components/ui/card';
+import styles from './styles/Analytics.module.css';
+import stylesLayout from './styles/Layout.module.css';
 
 const TaskD = lazy(() => import('./Cards/TaskD'));
 const TaskA = lazy(() => import('./Cards/TaskA'));
