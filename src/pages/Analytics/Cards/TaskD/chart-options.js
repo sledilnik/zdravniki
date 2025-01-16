@@ -1,7 +1,9 @@
+import { CHART_COLORS } from 'pages/Analytics/constants';
+
 /** @type {Highcharts["options"]} */
 export const initialChartOptions = {
   chart: {
-    backgroundColor: 'rgb(248 248 248)',
+    backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
   title: {
     text: 'TaskD',
@@ -39,6 +41,6 @@ export const initialChartOptions = {
     useHtml: true,
     shared: true,
     crosshairs: true,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: CHART_COLORS.tooltip.backgroundColor,
   },
 };
