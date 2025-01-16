@@ -152,7 +152,7 @@
             },
             "data": {
                 "iozRatio": "delež opredeljeni/vsi",
-                "insuredPeopleCount": "vsi zav.",
+                "insuredPeopleCount": "vsi zavarovanci",
                 "insuredPeopleCountWithIOZ": "opredeljeni",
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
