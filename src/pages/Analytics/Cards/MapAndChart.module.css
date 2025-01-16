@@ -1,5 +1,5 @@
 .MapAndChart {
-  container-name: something;
+  container-name: map-and-chart-container;
   container-type: inline-size;
   overflow: clip;
 }
@@ -48,7 +48,7 @@
   grid-area: chart;
 }
 
-@container something (width >= 768px) {
+@container map-and-chart-container (width >= 768px) {
   .Grid {
     grid-template-areas:
       'header header'

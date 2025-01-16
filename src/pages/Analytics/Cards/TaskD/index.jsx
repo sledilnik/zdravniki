@@ -8,13 +8,14 @@ import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 import { useParams } from 'react-router';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
+import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions, groupYAxisLabelFormat, parsedData } from './parsed-files';
+
+import styles from '../Chart.module.css';
 
 /**
  * TaskD component renders a card with a content.
@@ -113,18 +114,20 @@ const TaskD = function TaskD({ id }) {
   };
 
   return (
-    <Card id={id}>
-      <CardHeader>
-        <CardTitle>{tTaskD.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <FilterForm filterState={filterState} onFormChange={onFormChange} />
-      </CardContent>
-      <CardContent>
-        <figure>
-          <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
-        </figure>
-      </CardContent>
+    <Card id={id} className={styles.Chart}>
+      <div className={styles.Grid}>
+        <CardHeader className={styles.Header}>
+          <CardTitle>{tTaskD.title}</CardTitle>
+        </CardHeader>
+        <CardContent className={styles.FiltersContainer}>
+          <FilterForm filterState={filterState} onFormChange={onFormChange} />
+        </CardContent>
+        <CardContent className={styles.ChartContainer}>
+          <figure>
+            <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
+          </figure>
+        </CardContent>
+      </div>
     </Card>
   );
 };

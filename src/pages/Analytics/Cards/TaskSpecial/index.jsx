@@ -15,6 +15,8 @@ import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
 import { COLORS, options } from './chart-options';
 import { prepareDetailLineChartSeries, seriesToShow } from './data';
 
+import styles from '../Chart.module.css';
+
 const TaskSpecial = function TaskSpecial({ id }) {
   const tTaskSpecial = t('analytics.taskSpecial', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
@@ -83,27 +85,29 @@ const TaskSpecial = function TaskSpecial({ id }) {
   };
 
   return (
-    <Card id={id}>
-      <CardHeader>
-        <CardTitle>{tTaskSpecial.title}</CardTitle>
-      </CardHeader>
-      <Separator />
-      <CardContent>
-        <FilterForm
-          filterState={filterState}
-          onChange={onFilterChange}
-          filterOptions={{
-            doctorTypes: [...uniqueOverviewDoctorTypesSet].filter(item =>
-              ['gp', 'den', 'gyn'].includes(item),
-            ),
-          }}
-        />
-      </CardContent>
-      <CardContent>
-        <figure>
-          <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
-        </figure>
-      </CardContent>
+    <Card id={id} className={styles.Chart}>
+      <div className={styles.Grid}>
+        <CardHeader className={styles.Header}>
+          <CardTitle>{tTaskSpecial.title}</CardTitle>
+        </CardHeader>
+        <Separator className={styles.Separator} />
+        <CardContent className={styles.FiltersContainer}>
+          <FilterForm
+            filterState={filterState}
+            onChange={onFilterChange}
+            filterOptions={{
+              doctorTypes: [...uniqueOverviewDoctorTypesSet].filter(item =>
+                ['gp', 'den', 'gyn'].includes(item),
+              ),
+            }}
+          />
+        </CardContent>
+        <CardContent className={styles.ChartContainer}>
+          <figure>
+            <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
+          </figure>
+        </CardContent>
+      </div>
     </Card>
   );
 };
