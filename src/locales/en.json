@@ -174,10 +174,10 @@
             }
         },
         "taskB": {
-            "title": "Task B title"
+            "title": "Insured without IOZ"
         },
         "taskD": {
-            "title": "Task D title",
+            "title": "Comparison by ownership",
             "yAxis": {
                 "titles": {
                     "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
