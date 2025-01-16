@@ -18,22 +18,6 @@ export const initialChartOptions = {
     labels: {
       format: '{value:%Y}', // Display the year only
     },
-    plotLines: [
-      {
-        color: 'red',
-        width: 1,
-        value: Date.UTC(2022, 0, 1),
-        zIndex: 5,
-        label: {
-          text: 'opis',
-          rotation: 0,
-          y: 20,
-          style: {
-            color: '#333333',
-          },
-        },
-      },
-    ],
   },
   series: [],
   yAxis: {
