@@ -5,6 +5,9 @@ export const initialChartOptions = {
   chart: {
     backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
+  plotOptions: {
+    series: { marker: { radius: 2 } },
+  },
   title: {
     text: 'TaskD',
   },

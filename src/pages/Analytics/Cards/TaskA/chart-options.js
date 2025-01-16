@@ -70,6 +70,9 @@ export const secondChartOptions = {
     type: 'line',
     backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
+  plotOptions: {
+    series: { marker: { radius: 2 } },
+  },
   xAxis: {
     categories: [...uniqueOverviewYearsSet].sort((a, b) => a - b),
     crosshair: true,
