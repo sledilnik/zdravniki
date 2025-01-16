@@ -26,7 +26,7 @@ export const cards = [
     order: 0,
     componentName: 'TaskSpecial',
     titleTranslationKey: 'analytics.taskSpecial.title',
-    fakeHeight: '100px', // TODO: check for actual fake height value,
+    fakeHeight: '583px', // TODO: check for actual fake height value,
   },
   {
     section: sectionNames[0],
