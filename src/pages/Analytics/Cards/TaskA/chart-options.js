@@ -68,7 +68,7 @@ export const mapOptions = {
 export const secondChartOptions = {
   chart: {
     type: 'line',
-    backgroundColor: COLORS.backgroundColor,
+    backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
   xAxis: {
     categories: [...uniqueOverviewYearsSet].sort((a, b) => a - b),
@@ -90,7 +90,7 @@ export const secondChartOptions = {
   tooltip: {
     shared: true,
     useHTML: true,
-    backgroundColor: COLORS.tooltipBackgroundColor,
+    backgroundColor: CHART_COLORS.tooltip.backgroundColor,
     formatter() {
       return renderToString(<LineChartTooltip points={this.points} x={this.x} />);
     },
