@@ -41,9 +41,6 @@ export const mapOptions = {
       return renderToString(<MapChartTooltip point={this.point} />);
     },
   },
-  credits: {
-    enabled: false,
-  },
   series: [
     {
       id: 'municipalities',
@@ -84,9 +81,6 @@ export const secondChartOptions = {
     },
   },
   legend: {
-    enabled: false,
-  },
-  credits: {
     enabled: false,
   },
   series: prepareDetailLineChartSeries(),

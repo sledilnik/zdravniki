@@ -69,6 +69,7 @@ export const baseOptions = {
       fontFamily: 'inherit',
     },
   },
+  credits: { enabled: false },
   legend: { enabled: false },
 };
 
