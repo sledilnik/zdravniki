@@ -196,6 +196,9 @@
             "yAxis": {
                 "title": "EN št. zavarovancev"
             }
+        },
+        "footer": {
+            "doctors": "Doctors"
         }
     }
 }

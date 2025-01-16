@@ -27,6 +27,7 @@ import stylesLayout from '../../styles/Layout.module.css';
  */
 const Footer = function Footer({ lng }) {
   const tHeader = t('header', { returnObjects: true });
+  const tFooter = t('analytics.footer', { returnObjects: true });
   return (
     <footer className={cx(stylesLayout.Layout, styles.Footer)}>
       <div className={cx(stylesLayout.FullContent, styles.FooterTopContainer)}>
@@ -49,10 +50,7 @@ const Footer = function Footer({ lng }) {
               Covid-19 Sledilnik
             </a>
             <a href={`https://zdravniki.sledilnik.org/${lng}/`} target="_blank" rel="noreferrer">
-              Zdravniki
-            </a>
-            <a href={`https://podnebnik.org/${lng}/`} target="_blank" rel="noreferrer">
-              Podnebnik
+              {tFooter.doctors}
             </a>
           </nav>
         </div>
