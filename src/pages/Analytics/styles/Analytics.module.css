@@ -42,6 +42,7 @@ figure:where(:has(div[data-highcharts-chart])) {
   font-weight: 500;
   margin-bottom: 1rem;
   margin-top: 1.5rem;
+  text-wrap: balance;
 }
 
 .ChartSection:not(:last-child) {

@@ -61,6 +61,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.85;
+  text-wrap: balance;
 }
 
 .SidebarLink {
@@ -70,6 +71,7 @@
   color: var(--foreground);
   text-decoration: none;
   transition: all 0.3s ease;
+  text-wrap: balance;
 }
 
 .SidebarLink:not(:last-child) {
