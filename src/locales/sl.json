@@ -157,8 +157,8 @@
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
-                "gpGlavarinaMean": "$t(analytics.common.doctorTypes.gp) - Mean",
-                "gpGlavarina": "$t(analytics.common.doctorTypes.gp)",
+                "gpGlavarinaMean": "Povprečna glavarina na izvajalca programa",
+                "gpGlavarina": "Skupna glavarina vseh programov glede na lastništvo izvajalca",
                 "gpObseg": "$t(analytics.common.doctorTypes.gp)",
                 "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
@@ -180,7 +180,7 @@
             }
         },
         "taskD": {
-            "title": "Primerjava glede na lastništvo",
+            "title": "Primerjava glede na status izvajalca (javni-zasebni)",
             "chartTitle": "{{value}}: $t(analytics.taskD.title)",
             "yAxis": {
                 "titles": {

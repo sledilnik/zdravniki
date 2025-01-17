@@ -36,6 +36,12 @@ const FilterForm = function FilterForm({ filterState, onFormChange }) {
     options: option.options.map(o => ({ ...o, label: tData[o.label] })),
   }));
 
+  const { group } = filterState;
+  const isCapitation = group === 'capitation';
+  const label = isCapitation
+    ? tData[filterState.data]
+    : `${tData[filterState.group]}: ${tData[filterState.data]}`;
+
   return (
     <form>
       <Label htmlFor="data">Data</Label>
@@ -44,7 +50,7 @@ const FilterForm = function FilterForm({ filterState, onFormChange }) {
         name="data"
         value={{
           name: 'data',
-          label: `${tData[filterState.group]}: ${tData[filterState.data]}`,
+          label,
           value: filterState.data,
         }}
         onChange={onFormChange}
