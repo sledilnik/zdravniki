@@ -188,7 +188,7 @@ const TaskA = function TaskA({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle>{tTaskA.title}</CardTitle>
+          <CardTitle as="div">{tTaskA.title}</CardTitle>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
