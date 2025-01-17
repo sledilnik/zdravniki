@@ -22,10 +22,10 @@ function formatGroupLabel(data) {
  * @param {Object} props.filterState - The current filter state
  * @param {number} props.filterState.data - The current data value
  * @param {string} props.filterState.group - The current group value
- * @param {Function} props.onFormChange - The function to handle form changes.
+ * @param {Function} props.onChange - The function to handle form changes.
  * @returns {JSX.Element} The rendered FilterForm component.
  */
-const FilterForm = function FilterForm({ filterState, onFormChange }) {
+const FilterForm = function FilterForm({ filterState, onChange }) {
   const tCommon = t('analytics.common', { returnObjects: true });
   const { data: tData } = tCommon;
 
@@ -41,6 +41,21 @@ const FilterForm = function FilterForm({ filterState, onFormChange }) {
   const label = isCapitation
     ? tData[filterState.data]
     : `${tData[filterState.group]}: ${tData[filterState.data]}`;
+
+  const onFormChange = e => {
+    if (e?.target) {
+      onChange(e);
+      return;
+    }
+
+    onChange({
+      target: {
+        name: e.name,
+        value: e.value,
+        group: e.group,
+      },
+    });
+  };
 
   return (
     <form>

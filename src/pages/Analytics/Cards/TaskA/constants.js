@@ -66,12 +66,12 @@ if (isDev) {
  * @constant DEFAULTS
  * @description Doctor type data map key is year and doctor type value is array of data
  * @type {Types.UserInputsValues}
- * @default year `${Math.max(...uniqueYearsSet)}`
+ * @default year Math.max(...uniqueYearsSet)
  * @default doctorType 'gp'
  * @default municipalities []
  */
 export const DEFAULTS = Object.freeze({
-  year: `${Math.max(...uniqueOverviewYearsSet)}`,
+  year: Math.max(...uniqueOverviewYearsSet),
   doctorType: 'gp',
   municipalities: [],
 });

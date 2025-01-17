@@ -18,6 +18,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 import { cx } from 'class-variance-authority';
 import { Icon } from 'components/Shared/Icons';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
+import { useFilterState } from 'pages/Analytics/hooks';
 import { COLORS, mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -49,7 +50,7 @@ const TaskA = function TaskA({ id }) {
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
   const [init, setInit] = useState(false);
-  const [filterState, setFilterState] = useState(DEFAULTS);
+  const { filterState, onFilterChange, setFilterState } = useFilterState(DEFAULTS);
 
   const doctorTypeTranslation = tCommon.doctorTypes[filterState.doctorType];
 
@@ -161,13 +162,6 @@ const TaskA = function TaskA({ id }) {
   const onColorChange = e => {
     const { name, value } = e.target;
     setColors({ ...colors, [name]: value });
-  };
-
-  const onFilterChange = e => {
-    const { name, value } = e.target;
-
-    const newValue = name === 'year' ? Number(value) : value;
-    setFilterState({ ...filterState, [name]: newValue });
   };
 
   const currentSelectedYear = Number(filterState.year);

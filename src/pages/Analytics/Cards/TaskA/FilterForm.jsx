@@ -70,10 +70,11 @@ export const FilterForm = forwardRef(
         return;
       }
 
+      const value = e.name === 'year' ? Number(e?.value ?? '') : (e?.value ?? '');
       onChange({
         target: {
           name: e.name,
-          value: e?.value ?? '',
+          value,
         },
       });
     };

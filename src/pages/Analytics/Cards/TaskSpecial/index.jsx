@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { cx } from 'class-variance-authority';
+import { useFilterState } from 'pages/Analytics/hooks';
 import FilterForm from './FilterForm';
 
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
@@ -24,9 +25,7 @@ const TaskSpecial = function TaskSpecial({ id }) {
   const tCommon = t('analytics.common', { returnObjects: true });
 
   const [init, setInit] = useState(false);
-  const [filterState, setFilterState] = useState({
-    doctorType: DEFAULTS.doctorType,
-  });
+  const { filterState, onFilterChange } = useFilterState({ doctorType: DEFAULTS.doctorType });
 
   const chartTitle = t('analytics.taskSpecial.chartTitle', {
     value: tCommon.doctorTypes[filterState.doctorType],
@@ -88,12 +87,6 @@ const TaskSpecial = function TaskSpecial({ id }) {
       series: chartSeries,
     });
   }, [init, chartTitle, chartSeries]);
-
-  const onFilterChange = e => {
-    const { name, value } = e.target;
-
-    setFilterState({ ...filterState, [name]: value });
-  };
 
   return (
     <Card id={id} className={styles.CardWrapper}>

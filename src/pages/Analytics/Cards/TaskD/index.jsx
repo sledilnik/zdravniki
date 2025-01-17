@@ -15,6 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 
 import { cx } from 'class-variance-authority';
 import { Separator } from 'pages/Analytics/components/ui/separator';
+import { useFilterState } from 'pages/Analytics/hooks';
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions, groupYAxisLabelFormat, parsedData } from './parsed-files';
@@ -37,10 +38,11 @@ const TaskD = function TaskD({ id }) {
   const chartRef = useRef(null);
   const [init, setInit] = useState(false);
   /** @type {[TaskDTypes.FilterState, React.Dispatch<React.SetStateAction<TaskDTypes.FilterState>>]} */
-  const [filterState, setFilterState] = useState({
+  const { filterState, onFilterChange } = useFilterState({
     data: groupOptions[0].options[0].value,
     group: groupOptions[0].options[0].group,
   });
+
   const chartTitle = t('analytics.taskD.chartTitle', {
     value: tCommon.data[filterState.data],
   });
@@ -131,11 +133,6 @@ const TaskD = function TaskD({ id }) {
     });
   }, [data, labelFormat, yAxisTitle, lng]);
 
-  const onFormChange = e => {
-    const { name, value } = e;
-    setFilterState(prev => ({ ...prev, [name]: value, group: e.group }));
-  };
-
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
@@ -144,7 +141,7 @@ const TaskD = function TaskD({ id }) {
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
-          <FilterForm filterState={filterState} onFormChange={onFormChange} />
+          <FilterForm filterState={filterState} onChange={onFilterChange} />
         </CardContent>
         <CardContent className={styles.ChartWrapper}>
           <figure>
