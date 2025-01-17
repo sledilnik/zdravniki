@@ -169,14 +169,19 @@
         },
         "taskA": {
             "title": "Neopredeljeni v Sloveniji",
-            "mapTitle": "Naslov zemljevida",
-            "chartTitle": "Trend skozi čas",
+            "mapTitle": "$t(analytics.taskA.title): {{suffix}}",
+            "mapTitleSuffix": "Delež opredeljenih po občinah",
+            "mapSubtitle": "{{doctorType}} za {{year}}",
+            "chartTitle": "$t(analytics.taskA.title): {{suffix}}",
+            "chartTitleSuffix": "Trend skozi čas",
+            "chartSubtitle": "{{doctorType}} po starostnih skupinah",
             "yAxis": {
                 "title": "$t(analytics.common.data.iozRatio)"
             }
         },
         "taskD": {
             "title": "Primerjava glede na lastništvo",
+            "chartTitle": "{{value}}: $t(analytics.taskD.title)",
             "yAxis": {
                 "titles": {
                     "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
@@ -191,7 +196,7 @@
         },
         "taskSpecial": {
             "title": "Gibanje števila neopredeljenih skozi čas",
-            "chartTitle": "$t(analytics.taskSpecial.title)",
+            "chartTitle": "{{value}}: $t(analytics.taskSpecial.title)",
             "yAxis": {
                 "title": "št. zavarovancev"
             }

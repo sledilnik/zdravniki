@@ -3,11 +3,12 @@
 /** @import * as Types from "../../../types" */
 /** @import * as TaskDTypes from "./types" */
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
-import { useParams } from 'react-router';
+import loMerge from 'lodash/merge';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
@@ -28,18 +29,37 @@ import styles from '../Cards.module.css';
  */
 const TaskD = function TaskD({ id }) {
   const { lng } = useParams();
+
+  const tTaskD = t('analytics.taskD', { returnObjects: true });
+  const tCommon = t('analytics.common', { returnObjects: true });
+
   /** @type {Types.HighchartsReactRefObject} */
   const chartRef = useRef(null);
   const [init, setInit] = useState(false);
-  /** @type {[Types.HighchartsOptions, React.Dispatch<React.SetStateAction<"HighchartsOptions">>]} */
-  const [chartOptions, setChartOptions] = useState(initialChartOptions);
   /** @type {[TaskDTypes.FilterState, React.Dispatch<React.SetStateAction<TaskDTypes.FilterState>>]} */
   const [filterState, setFilterState] = useState({
     data: groupOptions[0].options[0].value,
     group: groupOptions[0].options[0].group,
   });
-
-  const tTaskD = t('analytics.taskD', { returnObjects: true });
+  const chartTitle = t('analytics.taskD.chartTitle', {
+    value: tCommon.data[filterState.data],
+  });
+  /** @type {[Types.HighchartsOptions, React.Dispatch<React.SetStateAction<"HighchartsOptions">>]} */
+  const [chartOptions, setChartOptions] = useState(
+    loMerge(
+      {
+        title: {
+          text: chartTitle,
+        },
+        accessibility: {
+          screenReaderSection: {
+            beforeChartFormat: '<h4>{chartTitle}</h4>',
+          },
+        },
+      },
+      initialChartOptions,
+    ),
+  );
 
   useEffect(() => {
     if (!init) {
@@ -120,7 +140,7 @@ const TaskD = function TaskD({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle>{tTaskD.title}</CardTitle>
+          <CardTitle as="h3">{tTaskD.title}</CardTitle>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

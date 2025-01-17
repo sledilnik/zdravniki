@@ -8,9 +8,6 @@ export const initialChartOptions = {
   plotOptions: {
     series: { marker: { radius: 2 } },
   },
-  title: {
-    text: 'TaskD',
-  },
   type: 'line',
   xAxis: {
     type: 'datetime',

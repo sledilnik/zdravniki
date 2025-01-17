@@ -50,13 +50,38 @@ const TaskA = function TaskA({ id }) {
   const tCommon = t('analytics.common', { returnObjects: true });
   const [init, setInit] = useState(false);
   const [filterState, setFilterState] = useState(DEFAULTS);
+
+  const doctorTypeTranslation = tCommon.doctorTypes[filterState.doctorType];
+
+  const mapTitle = t('analytics.taskA.mapTitle', { suffix: tTaskA.mapTitleSuffix });
+  const mapSubtitle = t('analytics.taskA.mapSubtitle', {
+    doctorType: doctorTypeTranslation,
+    year: filterState.year,
+  });
+  const chartTitle = t('analytics.taskA.chartTitle', { suffix: tTaskA.chartTitleSuffix });
+  const chartSubtitle = t('analytics.taskA.chartSubtitle', {
+    doctorType: doctorTypeTranslation,
+  });
+
   const [mapChartOptions, setMapChartOptions] = useState({
     ...mapOptions,
-    title: { text: tTaskA.mapTitle },
+    title: { text: mapTitle },
+    subtitle: { text: mapSubtitle },
+    accessibility: {
+      screenReaderSection: {
+        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
+      },
+    },
   });
   const [chartOptions, setChartOptions] = useState({
     ...secondChartOptions,
-    title: { text: tTaskA.chartTitle },
+    title: { text: chartTitle },
+    subtitle: { text: chartSubtitle },
+    accessibility: {
+      screenReaderSection: {
+        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
+      },
+    },
   });
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
@@ -188,7 +213,7 @@ const TaskA = function TaskA({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="div">{tTaskA.title}</CardTitle>
+          <CardTitle as="h3">{tTaskA.title}</CardTitle>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
@@ -304,8 +329,8 @@ const TaskA = function TaskA({ id }) {
           </div>
         </CardContent>
         <CardContent className={styles.ChartWrapper}>
-          <CardTitle variant="subtitle">{tTaskA.chartTitle}</CardTitle>
-          <CardTitle variant="description">{tCommon.doctorTypes[filterState.doctorType]}</CardTitle>
+          <CardTitle variant="subtitle">{tTaskA.chartTitleSuffix}</CardTitle>
+          <CardTitle variant="description">{doctorTypeTranslation}</CardTitle>
           <figure>
             <HighchartsReact
               highcharts={Highcharts}

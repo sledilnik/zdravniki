@@ -24,9 +24,20 @@ const TaskSpecial = function TaskSpecial({ id }) {
   const tCommon = t('analytics.common', { returnObjects: true });
 
   const [init, setInit] = useState(false);
+  const [filterState, setFilterState] = useState({
+    doctorType: DEFAULTS.doctorType,
+  });
+
+  const chartTitle = t('analytics.taskSpecial.chartTitle', {
+    value: tCommon.doctorTypes[filterState.doctorType],
+  });
+
   const [chartOptions, setChartOptions] = useState(
     loMerege(
       {
+        title: {
+          text: chartTitle,
+        },
         series: seriesToShow.map(name => ({
           name: tCommon.data[name],
           color: COLORS[name],
@@ -37,13 +48,16 @@ const TaskSpecial = function TaskSpecial({ id }) {
             title: { text: tTaskSpecial.yAxis.title },
           },
         ],
+        accessibility: {
+          screenReaderSection: {
+            beforeChartFormat: '<h4>{chartTitle}</h4>',
+          },
+        },
       },
       options,
     ),
   );
-  const [filterState, setFilterState] = useState({
-    doctorType: DEFAULTS.doctorType,
-  });
+
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
 
@@ -52,8 +66,6 @@ const TaskSpecial = function TaskSpecial({ id }) {
       setInit(true);
     }
   }, [init]);
-
-  const { chartTitle } = tTaskSpecial;
 
   const chartSeries = useMemo(
     () =>
@@ -68,9 +80,6 @@ const TaskSpecial = function TaskSpecial({ id }) {
     if (!init) return;
 
     setChartOptions({
-      title: {
-        text: chartTitle,
-      },
       xAxis: {
         categories: [...new Set(chartSeries.flatMap(serie => serie.data.map(item => item.x)))].sort(
           (a, b) => a - b,
@@ -90,7 +99,7 @@ const TaskSpecial = function TaskSpecial({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle>{tTaskSpecial.title}</CardTitle>
+          <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

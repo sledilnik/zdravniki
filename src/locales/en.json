@@ -166,9 +166,13 @@
             }
         },
         "taskA": {
-            "title": "Task A title",
-            "mapTitle": "Naslov zemljevida",
-            "chartTitle": "Naslov line chart",
+            "title": "EN Neopredeljeni v Sloveniji",
+            "mapTitle": "$t(analytics.taskA.title): {{suffix}}",
+            "mapTitleSuffix": "Delež opredeljenih po občinah",
+            "mapSubtitle": "{{doctorType}} za {{year}}",
+            "chartTitle": "$t(analytics.taskA.title): {{suffix}}",
+            "chartTitleSuffix": "Trend skozi čas",
+            "chartSubtitle": "{{doctorType}} po starostnih skupinah",
             "yAxis": {
                 "title": "$t(analytics.common.data.iozRatio)"
             }
@@ -178,6 +182,7 @@
         },
         "taskD": {
             "title": "Comparison by ownership",
+            "chartTitle": "{{value}}: $t(analytics.taskD.title)",
             "yAxis": {
                 "titles": {
                     "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
@@ -192,7 +197,7 @@
         },
         "taskSpecial": {
             "title": "EN Gibanje števila neopredeljenih skozi čas",
-            "chartTitle": "EN $t(analytics.taskASpecial.title)",
+            "chartTitle": "{{value}}: $t(analytics.taskSpecial.title)",
             "yAxis": {
                 "title": "EN št. zavarovancev"
             }
