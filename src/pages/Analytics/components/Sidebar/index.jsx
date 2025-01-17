@@ -22,7 +22,7 @@ import styles from './Sidebar.module.css';
 const renderSidebarGroups = (closeHandler, sections) =>
   sections.map(section => (
     <div key={section.sectionTitle} className={styles.SidebarGroup}>
-      <h3 className={styles.SidebarGroupTitle}>{section.sectionTitle}</h3>
+      <div className={styles.SidebarGroupTitle}>{section.sectionTitle}</div>
       {section.cards.map(card => {
         const title = t(card.titleTranslationKey);
         const chartProxy = createCardDataProxy({ ...card, title });
@@ -71,7 +71,7 @@ const Sidebar = function Sidebar() {
     <aside className={styles.Sidebar} name="sidebar">
       {mediaQuery ? (
         <div className={styles.SidebarDesktop}>
-          <h2 className={styles.SidebarTitle}>{t('analytics.sidebar.title')}</h2>
+          <div className={styles.SidebarTitle}>{t('analytics.sidebar.title')}</div>
           <nav
             ref={navRef}
             className={styles.SidebarGroupsWrapper}
@@ -96,9 +96,9 @@ const Sidebar = function Sidebar() {
             onCancel={closeModal}
             aria-labelledby="go-to-graph"
           >
-            <h2 id="go-to-graph" className={styles.SidebarTitle}>
+            <div id="go-to-graph" className={styles.SidebarTitle}>
               {t('analytics.sidebar.title')}
-            </h2>
+            </div>
             <nav
               ref={navRef}
               className={styles.SidebarGroupsWrapper}
