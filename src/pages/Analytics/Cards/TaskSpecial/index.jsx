@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from 'react';
 

@@ -1,6 +1,4 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-vars */
-import { lazy, useLayoutEffect } from 'react';
+import { lazy } from 'react';
 import { useParams } from 'react-router';
 
 import { cx } from 'class-variance-authority';
@@ -9,11 +7,12 @@ import './highcharts-options';
 
 import * as SEO from 'components/SEO';
 
+import { CircularProgress } from '@mui/material';
 import Footer from './components/Footer';
 import RenderOnViewportEntry from './components/RenderOnViewportEntry';
 import Sidebar from './components/Sidebar';
 import TouchdeviceNotification from './components/TouchDeviceNotification';
-import { Card, CardHeader } from './components/ui/card';
+import { Card, CardContent, CardHeader } from './components/ui/card';
 import { SECTIONS, sectionTranslationKeys } from './data/sections';
 import { createCardDataProxy } from './utils/create-card-data-proxy';
 
@@ -30,28 +29,10 @@ const CARDS = {
   TaskSpecial,
 };
 
+// TODO move RenderOnViewPortEntry to Components; If we move to Components there will be no need for srOnlyComponentsBeforeEntered
+
 const Analytics = function Analytics() {
   const { lng } = useParams();
-
-  /**
-   * TODO fix the fakeHeight hack
-   * HACK to remove fakeHeight from article wrappers; this is a temporary solution util we figure out a better way to handle fake heights;
-   * The charts are loaded in a lazy way and the fakeHeight is used to prevent layout shift when the chart is loaded;
-   * The problem that I want to solve is that the fakeHeight is different for different viewports and the layout shift is still happening;
-   * Also I want to have correct scrolling position before chart is loaded.
-   * The fakeHeight is removed after the chart is loaded to prevent not consisant space between cards.
-   *
-   * I might try to wrap only the charts in the RenderOnViewportEntry component and not the whole card.
-   */
-  useLayoutEffect(() => {
-    const articleWrappers = document.querySelectorAll('[data-card-id');
-    articleWrappers.forEach(articleWrapper => {
-      const article = articleWrapper.querySelector('article');
-      if (article) {
-        articleWrapper.style = undefined;
-      }
-    });
-  }, []);
 
   const sections = SECTIONS.map(section => ({
     ...section,
@@ -81,25 +62,31 @@ const Analytics = function Analytics() {
                 const chartProxy = createCardDataProxy({ ...card, title });
 
                 return (
-                  <div
-                    key={chartProxy.id}
-                    data-card-id={chartProxy.id}
-                    style={{ minHeight: card.fakeHeight }}
-                  >
+                  <div key={chartProxy.id}>
                     <RenderOnViewportEntry
                       id={`render-on-viewport-entry-${chartProxy.id}`}
                       intersectionObserverInit={{ threshold: 0, rootMargin: '0px 0px 100px 0px' }}
                       srOnlyComponentsBeforeEntered={
-                        <Card id={chartProxy.id}>
+                        <Card
+                          id={chartProxy.id}
+                          style={{
+                            display: 'grid',
+                            gridTemplateRows: 'auto 1fr',
+                            height: card.fakeHeight,
+                          }}
+                        >
                           <CardHeader>
                             <div>
                               <h3>{title}</h3>
                             </div>
                           </CardHeader>
+                          <CardContent style={{ display: 'grid', placeItems: 'center' }}>
+                            <CircularProgress />
+                          </CardContent>
                         </Card>
                       }
                     >
-                      <Component id={chartProxy.id} options={chartProxy?.options} />
+                      <Component id={chartProxy.id} />
                     </RenderOnViewportEntry>
                   </div>
                 );

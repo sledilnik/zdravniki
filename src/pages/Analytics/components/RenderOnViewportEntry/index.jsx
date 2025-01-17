@@ -2,8 +2,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 
-import { Suspense, useRef } from 'react';
+import { cx } from 'class-variance-authority';
 import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
+import { Suspense, useRef } from 'react';
+
+import styles from './RenderOnViewportEntry.module.css';
 
 /**
  * Component that renders its children only when it enters the viewport.
@@ -17,6 +20,7 @@ import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
  * @returns {JSX.Element} The rendered component.
  */
 const RenderOnViewportEntry = function RenderOnViewportEntry({
+  // eslint-disable-next-line no-unused-vars
   children,
   intersectionObserverInit = { threshold: 0, root: null, rootMargin: '0px' },
   srOnlyComponentsBeforeEntered,
@@ -28,9 +32,17 @@ const RenderOnViewportEntry = function RenderOnViewportEntry({
   const hasEntered = useFirstViewportEntry(ref, { threshold, root, rootMargin });
 
   return (
-    <div ref={ref} className={className} {...divProps}>
-      {!hasEntered ? srOnlyComponentsBeforeEntered : null}
-      {hasEntered ? <Suspense fallback={<div>Loading....</div>}>{children}</Suspense> : null}
+    <div
+      ref={ref}
+      className={cx(styles.RenderOnViewPortEntry, className)}
+      {...divProps}
+      data-entered={hasEntered ? 'yes' : 'no'}
+    >
+      {hasEntered ? (
+        <Suspense fallback={srOnlyComponentsBeforeEntered}>{children}</Suspense>
+      ) : (
+        srOnlyComponentsBeforeEntered
+      )}
     </div>
   );
 };
