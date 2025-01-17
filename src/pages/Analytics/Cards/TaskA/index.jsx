@@ -203,7 +203,7 @@ const TaskA = function TaskA({ id }) {
           />
         </CardContent>
         <CardContent className={styles.SettingsWrapper}>
-          <h3>{tCommon.buttons.mapSettings}</h3>
+          <div>{tCommon.buttons.mapSettings}</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <label>
               {tCommon.buttons.min}:{' '}
