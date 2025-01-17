@@ -15,7 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 // eslint-disable-next-line import/no-named-as-default
-import Icon from 'components/Shared/Icons';
+import { cx } from 'class-variance-authority';
+import { Icon } from 'components/Shared/Icons';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { COLORS, mapOptions, secondChartOptions } from './chart-options';
 import {
@@ -34,7 +35,7 @@ import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 
-import styles from '../MapAndChart.module.css';
+import styles from '../Cards.module.css';
 import buttonStyles from './Buttons.module.css';
 
 /**
@@ -184,13 +185,13 @@ const TaskA = function TaskA({ id }) {
   };
 
   return (
-    <Card id={id} className={styles.MapAndChart}>
-      <div className={styles.Grid}>
+    <Card id={id} className={styles.CardWrapper}>
+      <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle>{tTaskA.title}</CardTitle>
         </CardHeader>
-        <Separator style={{ gridArea: 'separator' }} />
-        <CardContent className={styles.FiltersContainer}>
+        <Separator className={styles.Separator} />
+        <CardContent className={styles.FiltersWrapper}>
           <FilterForm
             filterState={filterState}
             onChange={onFilterChange}
@@ -201,7 +202,7 @@ const TaskA = function TaskA({ id }) {
             }}
           />
         </CardContent>
-        <CardContent style={{ gridArea: 'settings' }}>
+        <CardContent className={styles.SettingsWrapper}>
           <h3>{tCommon.buttons.mapSettings}</h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <label>
@@ -236,7 +237,7 @@ const TaskA = function TaskA({ id }) {
             </button>
           </div>
         </CardContent>
-        <CardContent className={styles.ScorecardsContainer}>
+        <CardContent className={styles.ScorecardsWrapper}>
           <Scorecard
             valueLabel={filterState.year}
             changeLabel={filterState.year - 1}
@@ -253,7 +254,7 @@ const TaskA = function TaskA({ id }) {
             change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
           />
         </CardContent>
-        <CardContent className={styles.MapContainer}>
+        <CardContent className={styles.MapWrapper}>
           <figure>
             <HighchartsReact
               ref={mapRef}
@@ -302,7 +303,7 @@ const TaskA = function TaskA({ id }) {
             ))}
           </div>
         </CardContent>
-        <CardContent className={styles.ChartContainer}>
+        <CardContent className={styles.ChartWrapper}>
           <CardTitle variant="subtitle">{tTaskA.chartTitle}</CardTitle>
           <CardTitle variant="description">{tCommon.doctorTypes[filterState.doctorType]}</CardTitle>
           <figure>

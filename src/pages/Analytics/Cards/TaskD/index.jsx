@@ -11,11 +11,13 @@ import { useParams } from 'react-router';
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
+import { cx } from 'class-variance-authority';
+import { Separator } from 'pages/Analytics/components/ui/separator';
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions, groupYAxisLabelFormat, parsedData } from './parsed-files';
 
-import styles from '../Chart.module.css';
+import styles from '../Cards.module.css';
 
 /**
  * TaskD component renders a card with a content.
@@ -114,15 +116,16 @@ const TaskD = function TaskD({ id }) {
   };
 
   return (
-    <Card id={id} className={styles.Chart}>
-      <div className={styles.Grid}>
+    <Card id={id} className={styles.CardWrapper}>
+      <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle>{tTaskD.title}</CardTitle>
         </CardHeader>
-        <CardContent className={styles.FiltersContainer}>
+        <Separator className={styles.Separator} />
+        <CardContent className={styles.FiltersWrapper}>
           <FilterForm filterState={filterState} onFormChange={onFormChange} />
         </CardContent>
-        <CardContent className={styles.ChartContainer}>
+        <CardContent className={styles.ChartWrapper}>
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>

@@ -9,13 +9,14 @@ import loMerege from 'lodash/merge';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
+import { cx } from 'class-variance-authority';
 import FilterForm from './FilterForm';
 
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
 import { COLORS, options } from './chart-options';
 import { prepareDetailLineChartSeries, seriesToShow } from './data';
 
-import styles from '../Chart.module.css';
+import styles from '../Cards.module.css';
 
 const TaskSpecial = function TaskSpecial({ id }) {
   const tTaskSpecial = t('analytics.taskSpecial', { returnObjects: true });
@@ -85,13 +86,13 @@ const TaskSpecial = function TaskSpecial({ id }) {
   };
 
   return (
-    <Card id={id} className={styles.Chart}>
-      <div className={styles.Grid}>
+    <Card id={id} className={styles.CardWrapper}>
+      <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle>{tTaskSpecial.title}</CardTitle>
         </CardHeader>
         <Separator className={styles.Separator} />
-        <CardContent className={styles.FiltersContainer}>
+        <CardContent className={styles.FiltersWrapper}>
           <FilterForm
             filterState={filterState}
             onChange={onFilterChange}
@@ -102,7 +103,7 @@ const TaskSpecial = function TaskSpecial({ id }) {
             }}
           />
         </CardContent>
-        <CardContent className={styles.ChartContainer}>
+        <CardContent className={styles.ChartWrapper}>
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>

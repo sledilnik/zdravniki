@@ -1,0 +1,95 @@
+.CardWrapper {
+  container-name: card-container;
+  container-type: inline-size;
+  overflow: clip;
+}
+
+.Grid {
+  position: relative;
+  display: grid;
+}
+
+.SingleChartGrid {
+  grid-template-areas:
+    'header'
+    'separator'
+    'filters'
+    'chart';
+}
+
+.DoubleChartGrid {
+  grid-template-areas:
+    'header'
+    'separator'
+    'filters'
+    'scorecards'
+    'map'
+    'chart'
+    'settings';
+}
+
+.Header {
+  grid-area: header;
+}
+
+.Separator {
+  grid-area: separator;
+}
+
+.FiltersWrapper {
+  grid-area: filters;
+  position: sticky;
+  top: 57px;
+  background: rgba(248, 248, 248, 0.65);
+  z-index: 1;
+  box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.ScorecardsWrapper {
+  grid-area: scorecards;
+  display: flex;
+  gap: 0.5em;
+  justify-content: end;
+}
+
+.MapWrapper {
+  grid-area: map;
+  place-self: center;
+  width: 100%;
+}
+
+.ChartWrapper {
+  grid-area: chart;
+}
+
+.SettingsWrapper {
+  grid-area: settings;
+}
+
+@container card-container (width >= 768px) {
+  .DoubleChartGrid {
+    grid-template-areas:
+      'header header'
+      'separator separator'
+      'filters filters'
+      'map scorecards'
+      'map chart'
+      'settings settings';
+  }
+
+  .DoubleChartGrid > .MapWrapper {
+    min-width: 400px;
+    width: 100%;
+  }
+
+  .DoubleChartGrid > .ChartWrapper {
+    max-width: 470px;
+  }
+}
+
+@media screen and (min-width > 600) {
+  .FiltersWrapper {
+    top: 65px;
+  }
+}
