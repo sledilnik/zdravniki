@@ -1,5 +1,10 @@
 import { CHART_COLORS } from 'pages/Analytics/constants';
 
+export const COLORS = {
+  public: '#ff9900',
+  private: '#00cc66',
+};
+
 /** @type {Highcharts["options"]} */
 export const initialChartOptions = {
   chart: {

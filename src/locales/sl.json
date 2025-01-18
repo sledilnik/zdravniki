@@ -164,7 +164,9 @@
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
                 "capitation": "Glavarina",
                 "vol": "Št. programov",
-                "avg": "Povprečje"
+                "avg": "Povprečje",
+                "private": "zasebni",
+                "public": "javni"
             }
         },
         "taskA": {

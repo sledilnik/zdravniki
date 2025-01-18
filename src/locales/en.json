@@ -162,7 +162,9 @@
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
                 "capitation": "Capitation",
                 "vol": "Volume",
-                "avg": "Average"
+                "avg": "Average",
+                "private": "private",
+                "public": "public"
             }
         },
         "taskA": {

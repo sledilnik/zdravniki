@@ -115,8 +115,15 @@ export const transformToChartSeries = (data, series) =>
     };
   });
 
+/**
+ * @function prepareDetailLineChartSeries
+ * @description Prepares data for line chart.
+ * @param {Omit<Types.UserInputsValues, "year" | "municipalities">} filterState - Doctor type filter.
+ * @param {string[]} serieNames - List of series to show.
+ * @returns {Types.LineChartSeries[]}
+ */
 export const prepareDetailLineChartSeries = (
-  doctorType = 'gp',
+  filterState = { doctorType: 'gp' },
   serieNames = [
     'insuredPeopleCount',
     'insuredPeopleCountWithIOZ',
@@ -125,12 +132,12 @@ export const prepareDetailLineChartSeries = (
   ],
 ) => {
   const municipalities = Array.from(detailDataMap.keys());
-  const data = collectData(municipalities, doctorType);
+  const data = collectData(municipalities, filterState.doctorType);
   const doctorTypeData = calculateSumOfInsuredPeopleCount(data);
 
   const chartSeries = transformToChartSeries(doctorTypeData, serieNames);
 
-  return [...chartSeries];
+  return chartSeries;
 };
 
 export const seriesToShow = Object.freeze(['insuredPeopleCount', 'insuredPeopleCountWithoutIOZ']);

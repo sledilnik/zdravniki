@@ -29,4 +29,9 @@
  * @property {ParsedDataItem[]} private - The private data.
  */
 
+/**
+ * @typedef {typeof  import("./parsed-files").groupYAxisLabelFormat} YAxisLabelFormat
+ * @typedef {YAxisLabelFormat[FileKey]} YAxisLabelFormatValue
+ */
+
 export default {};

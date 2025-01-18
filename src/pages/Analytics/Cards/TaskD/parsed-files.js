@@ -64,7 +64,7 @@ export const groupOptions = Object.entries(dataGroups)
  * @returns {Map<TaskDTypes.FileKey, TaskDTypes.ParsedData>}
  */
 // eslint-disable-next-line no-shadow
-const neki = files => {
+const parseFiles = files => {
   const parsedDataMap = new Map();
 
   for (const [fileName, items] of Object.entries(files)) {
@@ -85,4 +85,4 @@ const neki = files => {
 };
 
 /** @type {Map<TaskDTypes.FileKey, TaskDTypes.ParsedData} */
-export const parsedData = neki(files);
+export const parsedData = parseFiles(files);
