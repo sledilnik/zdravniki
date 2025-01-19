@@ -2,19 +2,20 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from 'react';
 
+import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
+import { useFilterState } from 'pages/Analytics/hooks';
 
-import { cx } from 'class-variance-authority';
-import { useChartOptions, useFilterState } from 'pages/Analytics/hooks';
 import FilterForm from './FilterForm';
+import { options } from './chart-options';
+import { useChart } from './useChart';
 
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
-import { options } from './chart-options';
 
 import styles from '../Cards.module.css';
 
@@ -27,17 +28,13 @@ const TaskSpecial = function TaskSpecial({ id }) {
   const [init, setInit] = useState(false);
   const { filterState, onFilterChange } = useFilterState({ doctorType: DEFAULTS.doctorType });
 
-  const { chartOptions } = useChartOptions({
-    initialOptions: options,
-    taskName: 'taskSpecial',
-    filterState,
-  });
-
   useEffect(() => {
     if (!init) {
       setInit(true);
     }
   }, [init]);
+
+  const { chartOptions } = useChart(options, { filterState });
 
   return (
     <Card id={id} className={styles.CardWrapper}>

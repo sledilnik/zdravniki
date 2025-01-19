@@ -1,5 +1,8 @@
 /** @import * as Types from '../TaskA/types' */
 import { detailTransformedData } from '../TaskA/json-data-transform-util';
+import { COLORS } from './chart-options';
+
+export const seriesToShow = Object.freeze(['insuredPeopleCount', 'insuredPeopleCountWithoutIOZ']);
 
 /**
  * @description
@@ -25,7 +28,7 @@ const makeDetailDataMap = () => {
   return doctorTypeDataMap;
 };
 
-export const detailDataMap = makeDetailDataMap();
+const detailDataMap = makeDetailDataMap();
 
 /**
  * Collects and flattens data for selected municipalities and doctor types.
@@ -111,6 +114,7 @@ export const transformToChartSeries = (data, series) =>
     return {
       id: serie,
       yAxis: serie.includes('iozRatio') ? 1 : 0,
+      color: COLORS[serie],
       data: serieData,
     };
   });
@@ -124,6 +128,7 @@ export const transformToChartSeries = (data, series) =>
  */
 export const prepareDetailLineChartSeries = (
   filterState = { doctorType: 'gp' },
+  seriesTranslations = {},
   serieNames = [
     'insuredPeopleCount',
     'insuredPeopleCountWithIOZ',
@@ -135,9 +140,43 @@ export const prepareDetailLineChartSeries = (
   const data = collectData(municipalities, filterState.doctorType);
   const doctorTypeData = calculateSumOfInsuredPeopleCount(data);
 
-  const chartSeries = transformToChartSeries(doctorTypeData, serieNames);
+  const chartSeries = transformToChartSeries(doctorTypeData, serieNames).map(serie => ({
+    ...serie,
+    name: seriesTranslations[serie.id],
+  }));
 
   return chartSeries;
 };
 
-export const seriesToShow = Object.freeze(['insuredPeopleCount', 'insuredPeopleCountWithoutIOZ']);
+const prepareXAxis = series => {
+  const categories = [...new Set(series.flatMap(serie => serie.data.map(item => item.x)))].sort(
+    (a, b) => a - b,
+  );
+  return { categories };
+};
+
+const prepareYAxis = title => [{ title: { text: title } }];
+
+const prepareAccessibility = () => ({
+  screenReaderSection: {
+    beforeChartFormat: '<h4>{chartTitle}</h4>',
+  },
+});
+
+export const prepareTaskSpecialChartOptions = ({
+  filterState,
+  seriesTranslations,
+  yAxisTitle,
+  chartTitle,
+}) => {
+  const series = prepareDetailLineChartSeries(filterState, seriesTranslations, seriesToShow);
+  const xAxis = prepareXAxis(series);
+
+  return {
+    title: { text: chartTitle },
+    series,
+    xAxis,
+    yAxis: prepareYAxis(yAxisTitle),
+    accessibility: prepareAccessibility(),
+  };
+};
