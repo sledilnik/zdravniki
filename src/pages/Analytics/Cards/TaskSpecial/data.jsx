@@ -163,20 +163,15 @@ const prepareAccessibility = () => ({
   },
 });
 
-export const prepareTaskSpecialChartOptions = ({
-  filterState,
-  seriesTranslations,
-  yAxisTitle,
-  chartTitle,
-}) => {
-  const series = prepareDetailLineChartSeries(filterState, seriesTranslations, seriesToShow);
+export const prepareTaskSpecialChartOptions = ({ filterState, translations }) => {
+  const series = prepareDetailLineChartSeries(filterState, translations.series, seriesToShow);
   const xAxis = prepareXAxis(series);
 
   return {
-    title: { text: chartTitle },
+    title: { text: translations.title },
     series,
     xAxis,
-    yAxis: prepareYAxis(yAxisTitle),
+    yAxis: prepareYAxis(translations.yAxis.title),
     accessibility: prepareAccessibility(),
   };
 };

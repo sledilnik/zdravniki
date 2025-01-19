@@ -17,21 +17,18 @@ import { prepareTaskSpecialChartOptions } from './data';
  * }} - merge of the initial and extra options.
  */
 export const useChart = (initialOptions, { filterState }) => {
-  const taskTranslation = useMemo(() => t(`analytics.taskSpecial`, { returnObjects: true }), []);
-  const tCommon = useMemo(() => t('analytics.common', { returnObjects: true }), []);
-
-  const { chartTitle } = taskTranslation;
-  const yAxisTitle = taskTranslation.yAxis.title;
+  const chartTranslations = useMemo(
+    () => t(`analytics.taskSpecial.chart`, { returnObjects: true }),
+    [],
+  );
 
   const memoChartOptions = useMemo(
     () =>
       prepareTaskSpecialChartOptions({
         filterState,
-        seriesTranslations: tCommon.data,
-        chartTitle,
-        yAxisTitle,
+        translations: chartTranslations,
       }),
-    [chartTitle, filterState, tCommon.data, yAxisTitle],
+    [filterState, chartTranslations],
   );
 
   const memoOptions = useMemo(

@@ -183,24 +183,38 @@
         },
         "taskD": {
             "title": "Primerjava glede na status izvajalca (javni-zasebni)",
-            "chartTitle": "{{value}}: $t(analytics.taskD.title)",
-            "yAxis": {
-                "titles": {
-                    "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
-                    "gynObseg": "št. programov",
-                    "gpGlavarinaMean": "povprečna glavarina na 1 izvajalca",
-                    "gpGlavarina": "glavarina",
-                    "gpObseg": "št. programov",
-                    "denDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
-                    "denObseg": "št. programov"
+            "chart": {
+                "title": "{{value}}: $t(analytics.taskD.title)",
+                "yAxis": {
+                    "titles": {
+                        "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                        "gynObseg": "št. programov",
+                        "gpGlavarinaMean": "povprečna glavarina na 1 izvajalca",
+                        "gpGlavarina": "glavarina",
+                        "gpObseg": "št. programov",
+                        "denDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                        "denObseg": "št. programov"
+                    }
+                },
+                "series": {
+                    "public": "$t(analytics.common.data.public)",
+                    "private": "$t(analytics.common.data.private)"
                 }
             }
         },
         "taskSpecial": {
             "title": "Gibanje števila neopredeljenih skozi čas",
-            "chartTitle": "{{value}}: $t(analytics.taskSpecial.title)",
-            "yAxis": {
-                "title": "št. zavarovancev"
+            "chart": {
+                "title": "{{value}}: $t(analytics.taskSpecial.title)",
+                "yAxis": {
+                    "title": "št. zavarovancev"
+                },
+                "series": {
+                    "insuredPeopleCount": "$t(analytics.common.data.insuredPeopleCount)",
+                    "insuredPeopleCountWithIOZ": "$t(analytics.common.data.insuredPeopleCountWithIOZ)",
+                    "insuredPeopleCountWithoutIOZ": "$t(analytics.common.data.insuredPeopleCountWithoutIOZ)",
+                    "iozRatio": "$t(analytics.common.data.iozRatio)"
+                }
             }
         },
         "footer": {

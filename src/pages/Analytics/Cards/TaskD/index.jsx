@@ -16,7 +16,7 @@ import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { initialChartOptions } from './chart-options';
-import { seriesToShow } from './data';
+
 import FilterForm from './FilterForm';
 import { groupOptions } from './parsed-files';
 
@@ -50,7 +50,6 @@ const TaskD = function TaskD({ id }) {
   /** @type {{chartOptions : Types.HighchartsOptions} } */
   const { chartOptions } = useChart(initialChartOptions, {
     filterState,
-    seriesToShow,
   });
 
   return (

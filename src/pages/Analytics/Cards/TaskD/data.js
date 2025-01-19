@@ -5,10 +5,6 @@ import { groupYAxisLabelFormat, parsedData } from './parsed-files';
 export const seriesToShow = ['public', 'private'];
 
 const prepareSeries = ({ filterState, seriesTranslations, serieNames = ['public', 'private'] }) => {
-  if (!seriesTranslations) {
-    throw new Error('y is required.');
-  }
-
   const series = serieNames.map(serie => {
     const serieData = parsedData.get(filterState.data)[serie];
     if (!serieData) {
@@ -113,18 +109,17 @@ const prepareAccessibility = () => ({
   },
 });
 
-export const prepareTaskDChartOptions = ({
-  filterState,
-  lng,
-  chartTitle,
-  yAxisTitle,
-  seriesTranslations,
-}) => {
-  const series = prepareSeries({ filterState, seriesTranslations, seriesToShow });
+export const prepareTaskDChartOptions = ({ filterState, translations, lng }) => {
+  const series = prepareSeries({
+    filterState,
+    seriesTranslations: translations.series,
+    seriesToShow,
+  });
+
   return {
-    title: { text: chartTitle },
+    title: { text: translations.title },
     xAxis: prepareXAxis(series),
-    yAxis: prepareYAxis(filterState, lng, yAxisTitle),
+    yAxis: prepareYAxis(filterState, lng, translations.yAxis.titles[filterState.data]),
     series,
     accessibility: prepareAccessibility(),
   };
