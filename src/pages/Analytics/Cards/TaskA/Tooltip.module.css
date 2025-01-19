@@ -17,3 +17,16 @@
 .TooltipTable td.Right {
   text-align: right;
 }
+
+.SeriesLabel {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+}
+
+.SeriesIndicator {
+  margin-right: auto;
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}

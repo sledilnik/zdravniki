@@ -26,7 +26,15 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
             const insuredWithoutIOZ = intlFormat.format(options.insuredPeopleCountWithoutIOZ);
             return (
               <tr key={point.series.name}>
-                <td className={styles.Center}>{point.series.name}</td>
+                <td className={styles.Center}>
+                  <span className={styles.SeriesLabel}>
+                    <span
+                      className={styles.SeriesIndicator}
+                      style={{ backgroundColor: point.series.color }}
+                    />
+                    {point.series.name}
+                  </span>
+                </td>
                 <td className={styles.Right}>{totalInsured}</td>
                 <td className={styles.Right}>{insuredWithoutIOZ}</td>
               </tr>
