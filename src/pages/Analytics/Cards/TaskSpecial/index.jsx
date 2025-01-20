@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 
+import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
 import { useChart } from './useChart';
@@ -18,6 +19,14 @@ import { useChart } from './useChart';
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from '../TaskA/constants';
 
 import styles from '../Cards.module.css';
+
+const csvHeaders = [
+  'year',
+  'insuredPeopleCount',
+  'insuredPeopleCountWithIOZ',
+  'insuredPeopleCountWithoutIOZ',
+  'iozRatio',
+];
 
 const TaskSpecial = function TaskSpecial({ id }) {
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
@@ -35,6 +44,22 @@ const TaskSpecial = function TaskSpecial({ id }) {
   }, [init]);
 
   const { chartOptions } = useChart(options, { filterState });
+
+  const handleCsvDownload = () => {
+    const filename = `${filterState.doctorType}_sum.csv`;
+    const pointsWithData = chartRef.current?.chart?.series[0].points.map(point =>
+      Object.fromEntries(Object.entries(point.options).filter(([key]) => csvHeaders.includes(key))),
+    );
+    exportToCsv(createCSVContent(pointsWithData, csvHeaders), filename);
+  };
+
+  const handleJsonDownload = () => {
+    const filename = `${filterState.doctorType}_sum.json`;
+    const pointsWithData = chartRef.current?.chart?.series[0].points.map(point =>
+      Object.fromEntries(Object.entries(point.options).filter(([key]) => csvHeaders.includes(key))),
+    );
+    exportToJson({ doctorType: filterState.doctorType, data: pointsWithData }, filename);
+  };
 
   return (
     <Card id={id} className={styles.CardWrapper}>
@@ -55,6 +80,14 @@ const TaskSpecial = function TaskSpecial({ id }) {
           />
         </CardContent>
         <CardContent className={styles.ChartWrapper}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <button type="button" onClick={handleCsvDownload}>
+              CSV
+            </button>
+            <button type="button" onClick={handleJsonDownload}>
+              JSON
+            </button>
+          </div>
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
