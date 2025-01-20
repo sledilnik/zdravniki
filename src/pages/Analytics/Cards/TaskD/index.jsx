@@ -4,6 +4,7 @@
 /** @import * as TaskDTypes from "./types" */
 import { useEffect, useRef, useState } from 'react';
 
+import { IconButton } from '@mui/material';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
@@ -12,7 +13,9 @@ import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 
 import { cx } from 'class-variance-authority';
+import { Icon } from 'components/Shared/Icons';
 import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
+import Popover from 'pages/Analytics/components/Popover';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
@@ -91,14 +94,16 @@ const TaskD = function TaskD({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskD.title}</CardTitle>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
-            <button type="button" onClick={handleCsvDownload}>
-              CSV
-            </button>
-            <button type="button" onClick={handleJsonDownload}>
-              JSON
-            </button>
-          </div>
+          <Popover
+            options={[
+              { label: 'Download CSV', onClick: handleCsvDownload },
+              { label: 'Download JSON', onClick: handleJsonDownload },
+            ]}
+          >
+            <IconButton>
+              <Icon name="VerticalDots" />
+            </IconButton>
+          </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

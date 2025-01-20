@@ -4,6 +4,8 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import { IconButton } from '@mui/material';
+import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
@@ -14,9 +16,8 @@ import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-// eslint-disable-next-line import/no-named-as-default
-import { cx } from 'class-variance-authority';
 import { Icon } from 'components/Shared/Icons';
+import Popover from 'pages/Analytics/components/Popover';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
@@ -273,14 +274,16 @@ const TaskA = function TaskA({ id }) {
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
-            <button type="button" onClick={handleCsvChartDownload}>
-              CSV Line
-            </button>
-            <button type="button" onClick={handleJsonChartDownload}>
-              JSON Line
-            </button>
-          </div>
+          <Popover
+            options={[
+              { label: 'Download Age Groups CSV ', onClick: handleCsvChartDownload },
+              { label: 'Download Age Groups JSON', onClick: handleJsonChartDownload },
+            ]}
+          >
+            <IconButton>
+              <Icon name="VerticalDots" />
+            </IconButton>
+          </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

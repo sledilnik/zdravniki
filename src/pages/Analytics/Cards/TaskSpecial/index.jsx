@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from 'react';
 
+import { IconButton } from '@mui/material';
 import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -11,6 +12,8 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 
+import { Icon } from 'components/Shared/Icons';
+import Popover from 'pages/Analytics/components/Popover';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
@@ -66,14 +69,16 @@ const TaskSpecial = function TaskSpecial({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
-            <button type="button" onClick={handleCsvDownload}>
-              CSV
-            </button>
-            <button type="button" onClick={handleJsonDownload}>
-              JSON
-            </button>
-          </div>
+          <Popover
+            options={[
+              { label: 'Download CSV', onClick: handleCsvDownload },
+              { label: 'Download JSON', onClick: handleJsonDownload },
+            ]}
+          >
+            <IconButton>
+              <Icon name="VerticalDots" />
+            </IconButton>
+          </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
