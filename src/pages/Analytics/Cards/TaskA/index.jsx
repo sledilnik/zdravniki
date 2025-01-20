@@ -249,7 +249,7 @@ const TaskA = function TaskA({ id }) {
   };
 
   const handleJsonChartDownload = () => {
-    const filename = `neopredeljeni-${filterState.doctorType}.json`;
+    const filename = `age-group-neopredeljeni-${filterState.doctorType}.json`;
     const isSloveniaSelected = filterState.municipalities.length === 0;
     const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
     const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
@@ -269,6 +269,26 @@ const TaskA = function TaskA({ id }) {
     exportToJson({ type: filterState.doctorType, stats, isCities, selection, data }, filename);
   };
 
+  const handleCsvMapDownload = () => {
+    const filename = `map-neopredeljeni-${filterState.doctorType}.csv`;
+    const data = mapSeriesData.map(item =>
+      Object.assign(item, { selected: undefined, type: filterState.doctorType }),
+    );
+    exportToCsv(
+      createCSVContent(
+        data,
+        Object.keys(data[0]).filter(key => !['selected', 'value', 'doctorType'].includes(key)),
+      ),
+      filename,
+    );
+  };
+
+  const handleJsonMapDownload = () => {
+    const filename = `map-neopredeljeni-${filterState.doctorType}.json`;
+    const data = mapSeriesData.map(item => Object.assign(item, { selected: undefined }));
+    exportToJson({ type: filterState.doctorType, data }, filename);
+  };
+
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
@@ -278,6 +298,8 @@ const TaskA = function TaskA({ id }) {
             options={[
               { label: 'Download Age Groups CSV ', onClick: handleCsvChartDownload },
               { label: 'Download Age Groups JSON', onClick: handleJsonChartDownload },
+              { label: 'Download Map CSV', onClick: handleCsvMapDownload },
+              { label: 'Download Map JSON', onClick: handleJsonMapDownload },
             ]}
           >
             <IconButton>
