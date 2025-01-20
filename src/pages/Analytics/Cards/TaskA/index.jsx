@@ -19,6 +19,7 @@ import { cx } from 'class-variance-authority';
 import { Icon } from 'components/Shared/Icons';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
+import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 import { COLORS, mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -84,8 +85,11 @@ const TaskA = function TaskA({ id }) {
       },
     },
   });
+
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
+  /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
+  const chartRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
@@ -203,11 +207,80 @@ const TaskA = function TaskA({ id }) {
     }));
   };
 
+  const handleCsvChartDownload = () => {
+    const filename = `neopredeljeni-${filterState.doctorType}.csv`;
+    const isSloveniaSelected = filterState.municipalities.length === 0;
+    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
+    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
+
+    const data = chartSeries.map(item => ({
+      ageGroup: item.name,
+      data: item.data.map(d => ({
+        year: d.year,
+        ageGroup: item.name,
+        insuredPeopleCount: d.insuredPeopleCount,
+        insuredPeopleCountWithIOZ: d.insuredPeopleCountWithIOZ,
+        insuredPeopleCountWithoutIOZ: d.insuredPeopleCountWithoutIOZ,
+        iozRatio: d.iozRatio,
+        selection: selection.join(','),
+        isCities: isCities ? 'Da' : 'Ne',
+      })),
+    }));
+
+    const csvHeaders = [
+      'year',
+      'ageGroup',
+      'insuredPeopleCount',
+      'insuredPeopleCountWithIOZ',
+      'insuredPeopleCountWithoutIOZ',
+      'iozRatio',
+      'selection',
+      'isCities',
+    ];
+
+    exportToCsv(
+      createCSVContent(
+        data.flatMap(d => d.data),
+        csvHeaders,
+      ),
+      filename,
+    );
+  };
+
+  const handleJsonChartDownload = () => {
+    const filename = `neopredeljeni-${filterState.doctorType}.json`;
+    const isSloveniaSelected = filterState.municipalities.length === 0;
+    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
+    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
+
+    const data = chartSeries.map(item => ({
+      ageGroup: item.name,
+      data: item.data.map(d => ({
+        year: d.year,
+        ageGroup: item.name,
+        insuredPeopleCount: d.insuredPeopleCount,
+        insuredPeopleCountWithIOZ: d.insuredPeopleCountWithIOZ,
+        insuredPeopleCountWithoutIOZ: d.insuredPeopleCountWithoutIOZ,
+        iozRatio: d.iozRatio,
+      })),
+    }));
+
+    exportToJson({ type: filterState.doctorType, stats, isCities, selection, data }, filename);
+  };
+
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
+            <button type="button" onClick={handleCsvChartDownload}>
+              CSV Line
+            </button>
+            <button type="button" onClick={handleJsonChartDownload}>
+              JSON Line
+            </button>
+          </div>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
@@ -327,6 +400,7 @@ const TaskA = function TaskA({ id }) {
           <CardTitle variant="description">{doctorTypeTranslation}</CardTitle>
           <figure>
             <HighchartsReact
+              ref={chartRef}
               highcharts={Highcharts}
               options={chartOptions}
               constructorType="chart"
