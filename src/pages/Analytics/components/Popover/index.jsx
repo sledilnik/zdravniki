@@ -34,6 +34,7 @@ const Popover = function Popover({
   const [focusedIndex, setFocusedIndex] = useState(-1); // Manages the focus state of the popover items
   const popoverRef = useRef(null); // Reference to the popover element
   const triggerRef = useRef(null); // Reference to the button element that triggers the popover
+  const [position, setPosition] = useState({ top: 0, left: 0 });
 
   const validOptions = options.filter(option => option !== null);
 
@@ -100,6 +101,39 @@ const Popover = function Popover({
     }
   };
 
+  const updatePosition = React.useCallback(() => {
+    if (!isVisible || !popoverRef.current || !triggerRef.current) return;
+
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const popoverRect = popoverRef.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+
+    let top = triggerRect.bottom;
+    let { left } = triggerRect;
+
+    // Check vertical overflow
+    if (placement.startsWith('top')) {
+      top = triggerRect.top - popoverRect.height;
+    }
+    if (top + popoverRect.height > viewportHeight) {
+      top = triggerRect.top - popoverRect.height;
+    }
+    if (top < 0) {
+      top = triggerRect.bottom;
+    }
+
+    // Check horizontal overflow
+    if (left + popoverRect.width > viewportWidth) {
+      left = triggerRect.right - popoverRect.width;
+    }
+    if (left < 0) {
+      left = 0;
+    }
+
+    setPosition({ top, left });
+  }, [isVisible, placement]);
+
   useEffect(() => {
     const handleClickOutside = event => {
       if (
@@ -130,6 +164,16 @@ const Popover = function Popover({
     }
   }, [isVisible, focusedIndex]);
 
+  useEffect(() => {
+    updatePosition();
+    window.addEventListener('scroll', updatePosition);
+    window.addEventListener('resize', updatePosition);
+    return () => {
+      window.removeEventListener('scroll', updatePosition);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [isVisible, updatePosition]);
+
   return (
     <div className={styles.PopoverContainer}>
       <button
@@ -154,6 +198,10 @@ const Popover = function Popover({
           data-placement={placement ?? 'bottom-center'}
           onKeyDown={handleKeyDown}
           onMouseDown={handlePopoverContentClick}
+          style={{
+            top: `${position.top}px`,
+            left: `${position.left}px`,
+          }}
         >
           {validOptions.map((option, index) =>
             renderItem({
