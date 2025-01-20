@@ -66,6 +66,14 @@ const TaskSpecial = function TaskSpecial({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.5rem' }}>
+            <button type="button" onClick={handleCsvDownload}>
+              CSV
+            </button>
+            <button type="button" onClick={handleJsonDownload}>
+              JSON
+            </button>
+          </div>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
@@ -80,14 +88,6 @@ const TaskSpecial = function TaskSpecial({ id }) {
           />
         </CardContent>
         <CardContent className={styles.ChartWrapper}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button type="button" onClick={handleCsvDownload}>
-              CSV
-            </button>
-            <button type="button" onClick={handleJsonDownload}>
-              JSON
-            </button>
-          </div>
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
