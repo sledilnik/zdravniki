@@ -4,7 +4,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { IconButton } from '@mui/material';
 import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -301,10 +300,9 @@ const TaskA = function TaskA({ id }) {
               { label: 'Download Map CSV', onClick: handleCsvMapDownload },
               { label: 'Download Map JSON', onClick: handleJsonMapDownload },
             ]}
+            triggerClassname={styles.IconButton}
           >
-            <IconButton>
-              <Icon name="VerticalDots" />
-            </IconButton>
+            <Icon name="VerticalDots" />
           </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />

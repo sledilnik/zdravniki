@@ -4,7 +4,6 @@
 /** @import * as TaskDTypes from "./types" */
 import { useEffect, useRef, useState } from 'react';
 
-import { IconButton } from '@mui/material';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
@@ -99,10 +98,9 @@ const TaskD = function TaskD({ id }) {
               { label: 'Download CSV', onClick: handleCsvDownload },
               { label: 'Download JSON', onClick: handleJsonDownload },
             ]}
+            triggerClassname={styles.IconButton}
           >
-            <IconButton>
-              <Icon name="VerticalDots" />
-            </IconButton>
+            <Icon name="VerticalDots" />
           </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />

@@ -10,14 +10,6 @@
   border: 1px solid transparent;
 }
 
-.PopoverTrigger:hover {
-  background: #f4f8f8;
-}
-
-.PopoverTrigger:focus-visible {
-  outline: 2px solid #333;
-}
-
 .PopoverContent {
   position: fixed; /* Change from absolute to fixed */
   max-height: 80vh; /* Limit maximum height */

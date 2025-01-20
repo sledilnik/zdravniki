@@ -3,6 +3,7 @@
 
 /** @import * as Types from '../../types' */
 
+import { cx } from 'class-variance-authority';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Popover.module.css';
@@ -180,7 +181,7 @@ const Popover = function Popover({
         ref={triggerRef}
         type="button"
         onClick={toggleVisibility}
-        className={triggerClassname}
+        className={cx(triggerClassname, styles.PopoverTrigger)}
         aria-haspopup="true"
         aria-expanded={isVisible}
         aria-controls="popover-content"

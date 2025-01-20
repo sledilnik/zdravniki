@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from 'react';
 
-import { IconButton } from '@mui/material';
 import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -74,10 +73,9 @@ const TaskSpecial = function TaskSpecial({ id }) {
               { label: 'Download CSV', onClick: handleCsvDownload },
               { label: 'Download JSON', onClick: handleJsonDownload },
             ]}
+            triggerClassname={styles.IconButton}
           >
-            <IconButton>
-              <Icon name="VerticalDots" />
-            </IconButton>
+            <Icon name="VerticalDots" />
           </Popover>
         </CardHeader>
         <Separator className={styles.Separator} />
