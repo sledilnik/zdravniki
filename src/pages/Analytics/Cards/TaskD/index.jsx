@@ -4,22 +4,29 @@
 /** @import * as TaskDTypes from "./types" */
 import { useEffect, useRef, useState } from 'react';
 
+import { cx } from 'class-variance-authority';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-
-import { cx } from 'class-variance-authority';
 import { Icon } from 'components/Shared/Icons';
 import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
-import Popover from 'pages/Analytics/components/Popover';
+import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from 'pages/Analytics/components/ui/dropdown-menu';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
-import { initialChartOptions } from './chart-options';
 
+import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions } from './parsed-files';
 
@@ -93,15 +100,30 @@ const TaskD = function TaskD({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskD.title}</CardTitle>
-          <Popover
-            options={[
-              { label: 'Download CSV', onClick: handleCsvDownload },
-              { label: 'Download JSON', onClick: handleJsonDownload },
-            ]}
-            triggerClassname={styles.IconButton}
-          >
-            <Icon name="VerticalDots" />
-          </Popover>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" aria-label="Options" className={styles.IconButton}>
+                <Icon name="VerticalDots" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Export</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
+                    CSV
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
+                    JSON
+                  </button>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

@@ -12,7 +12,15 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 
 import { Icon } from 'components/Shared/Icons';
-import Popover from 'pages/Analytics/components/Popover';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from 'pages/Analytics/components/ui/dropdown-menu';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
@@ -68,15 +76,30 @@ const TaskSpecial = function TaskSpecial({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
-          <Popover
-            options={[
-              { label: 'Download CSV', onClick: handleCsvDownload },
-              { label: 'Download JSON', onClick: handleJsonDownload },
-            ]}
-            triggerClassname={styles.IconButton}
-          >
-            <Icon name="VerticalDots" />
-          </Popover>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" aria-label="Options" className={styles.IconButton}>
+                <Icon name="VerticalDots" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Export</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
+                    CSV
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
+                    JSON
+                  </button>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

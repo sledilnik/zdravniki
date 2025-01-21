@@ -16,10 +16,19 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { Icon } from 'components/Shared/Icons';
-import Popover from 'pages/Analytics/components/Popover';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from 'pages/Analytics/components/ui/dropdown-menu';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
+
 import { COLORS, mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -293,17 +302,43 @@ const TaskA = function TaskA({ id }) {
       <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
-          <Popover
-            options={[
-              { label: 'Download Age Groups CSV ', onClick: handleCsvChartDownload },
-              { label: 'Download Age Groups JSON', onClick: handleJsonChartDownload },
-              { label: 'Download Map CSV', onClick: handleCsvMapDownload },
-              { label: 'Download Map JSON', onClick: handleJsonMapDownload },
-            ]}
-            triggerClassname={styles.IconButton}
-          >
-            <Icon name="VerticalDots" />
-          </Popover>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" aria-label="Options" className={styles.IconButton}>
+                <Icon name="VerticalDots" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Export Line</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleCsvChartDownload} style={{ width: '100%' }}>
+                    CSV
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleJsonChartDownload} style={{ width: '100%' }}>
+                    JSON
+                  </button>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Export Map</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleCsvMapDownload} style={{ width: '100%' }}>
+                    CSV
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={handleJsonMapDownload} style={{ width: '100%' }}>
+                    JSON
+                  </button>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
