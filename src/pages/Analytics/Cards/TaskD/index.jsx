@@ -107,10 +107,10 @@ const TaskD = function TaskD({ id }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuLabel>{tTaskD.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuLabel>Export</DropdownMenuLabel>
+                <DropdownMenuLabel>{tTaskD.export}</DropdownMenuLabel>
                 <DropdownMenuItem asChild>
                   <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
                     CSV

@@ -309,10 +309,12 @@ const TaskA = function TaskA({ id }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuLabel>{tTaskA.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuLabel>Export Line</DropdownMenuLabel>
+                <DropdownMenuLabel>
+                  {t('analytics.taskA.export', { value: tCommon.ageGroup })}
+                </DropdownMenuLabel>
                 <DropdownMenuItem asChild>
                   <button type="button" onClick={handleCsvChartDownload} style={{ width: '100%' }}>
                     CSV
@@ -325,7 +327,9 @@ const TaskA = function TaskA({ id }) {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuGroup>
-                <DropdownMenuLabel>Export Map</DropdownMenuLabel>
+                <DropdownMenuLabel>
+                  {t('analytics.taskA.export', { value: tCommon.municipalities })}
+                </DropdownMenuLabel>
                 <DropdownMenuItem asChild>
                   <button type="button" onClick={handleCsvMapDownload} style={{ width: '100%' }}>
                     CSV

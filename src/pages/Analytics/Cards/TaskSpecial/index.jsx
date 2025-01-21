@@ -83,10 +83,10 @@ const TaskSpecial = function TaskSpecial({ id }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Menu</DropdownMenuLabel>
+              <DropdownMenuLabel>{tTaskSpecial.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuLabel>Export</DropdownMenuLabel>
+                <DropdownMenuLabel>{tTaskSpecial.export}</DropdownMenuLabel>
                 <DropdownMenuItem asChild>
                   <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
                     CSV

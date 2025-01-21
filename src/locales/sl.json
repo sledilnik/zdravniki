@@ -124,6 +124,7 @@
         "common": {
             "doctorType": "Dejavnost",
             "municipality": "Občina",
+            "municipalities": "občine",
             "year": "Leto",
             "selectMunicipality": "Izberi...",
             "doctorTypes": {
@@ -148,7 +149,8 @@
                 "min": "min",
                 "max": "maks",
                 "selected": "izbor",
-                "reset": "$t(reportError.reset)"
+                "reset": "$t(reportError.reset)",
+                "export": "Izvoz"
             },
             "data": {
                 "iozRatio": "delež opredeljeni/vsi",
@@ -179,7 +181,9 @@
             "chartSubtitle": "{{doctorType}} po starostnih skupinah",
             "yAxis": {
                 "title": "$t(analytics.common.data.iozRatio)"
-            }
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export) {{value}}"
         },
         "taskD": {
             "title": "Primerjava glede na status izvajalca (javni-zasebni)",
@@ -200,7 +204,9 @@
                     "public": "$t(analytics.common.data.public)",
                     "private": "$t(analytics.common.data.private)"
                 }
-            }
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export)"
         },
         "taskSpecial": {
             "title": "Gibanje števila neopredeljenih skozi čas",
@@ -215,7 +221,9 @@
                     "insuredPeopleCountWithoutIOZ": "$t(analytics.common.data.insuredPeopleCountWithoutIOZ)",
                     "iozRatio": "$t(analytics.common.data.iozRatio)"
                 }
-            }
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export)"
         },
         "footer": {
             "doctors": "Zdravniki"
