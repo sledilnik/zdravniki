@@ -1,8 +1,7 @@
 .Separator {
-  --border-color: #e6e6e6;
   padding-inline: 0;
   padding-block: 0;
-  background-color: var(--border-color);
+  background-color: var(--border);
 
   &[data-orientation='horizontal'] {
     height: 1px;

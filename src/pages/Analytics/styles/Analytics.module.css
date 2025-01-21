@@ -1,14 +1,24 @@
-.Analytics {
+:root {
   --radius: 0.5rem;
 
   --background: rgb(248 248 248);
-  --foreground: rgb(0 0 0); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+  --foreground: rgb(0 0 0);
   --card: rgb(248 248 248);
-  --card-foreground: rgb(0 0 0); /* vscode bug: no contrast; value: 0 0 0 / 87 */
+  --card-foreground: rgb(0 0 0);
+
+  --popover: rgb(248 248 248);
+  --popover-foreground: rgb(0 0 0);
+
+  --muted: rgb(235, 235, 235);
+  --muted-foreground: rgb(39, 39, 39);
+
+  --accent: rgb(235, 235, 235);
+  --accent-foreground: rgb(39, 39, 39);
 
   --border: rgb(232 232 232);
-  --muted-foreground: rgb(74 74 74);
+}
 
+.Analytics {
   display: grid;
   grid-template-columns: 1;
 
