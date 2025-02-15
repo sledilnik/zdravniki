@@ -29,7 +29,7 @@ import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
-import { COLORS, mapOptions, secondChartOptions } from './chart-options';
+import { mapOptions, secondChartOptions } from './chart-options';
 import {
   assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
@@ -104,8 +104,6 @@ const TaskA = function TaskA({ id }) {
   /** @type {React.RefObject<HTMLButtonElement>} */
   const allCitiesButtonRef = useRef(null);
 
-  const [colors, setColors] = useState({ ...COLORS });
-
   useEffect(() => {
     setInit(true);
   }, []);
@@ -153,29 +151,6 @@ const TaskA = function TaskA({ id }) {
     allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
     allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
   }, [municipalities]);
-
-  useEffect(() => {
-    setMapChartOptions(() => ({
-      colorAxis: {
-        minColor: colors.minColor,
-        maxColor: colors.maxColor,
-      },
-      series: [
-        {
-          states: {
-            select: {
-              color: colors.selectColor,
-            },
-          },
-        },
-      ],
-    }));
-  }, [colors, setMapChartOptions]);
-
-  const onColorChange = e => {
-    const { name, value } = e.target;
-    setColors({ ...colors, [name]: value });
-  };
 
   const currentSelectedYear = Number(filterState.year);
   const stats = useMemo(
@@ -356,41 +331,7 @@ const TaskA = function TaskA({ id }) {
             }}
           />
         </CardContent>
-        <CardContent className={styles.SettingsWrapper}>
-          <div>{tCommon.buttons.mapSettings}</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <label>
-              {tCommon.buttons.min}:{' '}
-              <input
-                type="color"
-                value={colors.minColor}
-                onChange={onColorChange}
-                name="minColor"
-              />
-            </label>
-            <label>
-              {tCommon.buttons.max}:{' '}
-              <input
-                type="color"
-                value={colors.maxColor}
-                onChange={onColorChange}
-                name="maxColor"
-              />
-            </label>
-            <label>
-              {tCommon.buttons.selected}:{' '}
-              <input
-                type="color"
-                value={colors.selectColor}
-                onChange={e => setColors({ ...colors, selectColor: e.target.value })}
-                name="selectColor"
-              />
-            </label>
-            <button type="button" onClick={() => setColors({ ...COLORS })}>
-              {tCommon.buttons.reset}
-            </button>
-          </div>
-        </CardContent>
+
         <CardContent className={styles.ScorecardsWrapper}>
           <Scorecard
             valueLabel={filterState.year}

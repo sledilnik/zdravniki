@@ -28,8 +28,7 @@
     'filters'
     'scorecards'
     'map'
-    'chart'
-    'settings';
+    'chart';
 }
 
 .Header {
@@ -67,10 +66,6 @@
   grid-area: chart;
 }
 
-.SettingsWrapper {
-  grid-area: settings;
-}
-
 .IconButton {
   border-radius: 50%;
   aspect-ratio: 1;
@@ -94,8 +89,7 @@
       'separator separator'
       'filters filters'
       'map scorecards'
-      'map chart'
-      'settings settings';
+      'map chart';
   }
 
   .DoubleChartGrid > .MapWrapper {
