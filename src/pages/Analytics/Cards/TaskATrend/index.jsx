@@ -239,8 +239,6 @@ const TaskATrend = function TaskATrend({ id }) {
           />
         </CardContent>
         <CardContent className={styles.ChartWrapper}>
-          <CardTitle variant="subtitle">{tTaskA.chartTitleSuffix}</CardTitle>
-          <CardTitle variant="description">{doctorTypeTranslation}</CardTitle>
           <figure>
             <HighchartsReact
               ref={chartRef}
