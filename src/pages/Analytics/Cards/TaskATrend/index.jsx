@@ -44,13 +44,6 @@ import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 
 import styles from '../Cards.module.css';
 
-/**
- * TaskA component
- * A card component that displays the TaskA card.
- * It uses the Card component from the ui folder.
- * @param {string} id - The ID of the taskA card.
- * @returns {JSX.Element} The rendered TaskA component.
- */
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
@@ -185,7 +178,7 @@ const TaskATrend = function TaskATrend({ id }) {
 
   return (
     <Card id={id} className={styles.CardWrapper}>
-      <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
+      <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
           <DropdownMenu>

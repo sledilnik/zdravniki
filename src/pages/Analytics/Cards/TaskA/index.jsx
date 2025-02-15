@@ -5,13 +5,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { cx } from 'class-variance-authority';
-import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HighMaps from 'highcharts/highmaps';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
@@ -29,7 +27,7 @@ import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
-import { mapOptions, secondChartOptions } from './chart-options';
+import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
@@ -40,11 +38,9 @@ import {
 } from './constants';
 
 import { Button } from './Buttons';
-import { prepareDetailLineChartSeries } from './detail-data-util';
 import { FilterForm } from './FilterForm';
 import { useMapChart } from './hooks';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
-import { calculateYearlyStatistics } from './scorecards-calc-util';
 
 import styles from '../Cards.module.css';
 import buttonStyles from './Buttons.module.css';
@@ -69,10 +65,6 @@ const TaskA = function TaskA({ id }) {
     doctorType: doctorTypeTranslation,
     year: filterState.year,
   });
-  const chartTitle = t('analytics.taskA.chartTitle', { suffix: tTaskA.chartTitleSuffix });
-  const chartSubtitle = t('analytics.taskA.chartSubtitle', {
-    doctorType: doctorTypeTranslation,
-  });
 
   const [mapChartOptions, setMapChartOptions] = useState({
     ...mapOptions,
@@ -84,21 +76,9 @@ const TaskA = function TaskA({ id }) {
       },
     },
   });
-  const [chartOptions, setChartOptions] = useState({
-    ...secondChartOptions,
-    title: { text: chartTitle },
-    subtitle: { text: chartSubtitle },
-    accessibility: {
-      screenReaderSection: {
-        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
-      },
-    },
-  });
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
-  /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
-  const chartRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
   const citiesButtonRef = useRef(null);
   /** @type {React.RefObject<HTMLButtonElement>} */
@@ -118,23 +98,15 @@ const TaskA = function TaskA({ id }) {
     [init],
   );
 
-  const { municipalities, doctorType } = filterState;
+  const { municipalities } = filterState;
 
   const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
-  const chartSeries = useMemo(
-    () => prepareDetailLineChartSeries(municipalities, doctorType),
-    [doctorType, municipalities],
-  );
 
   useEffect(() => {
     setMapChartOptions({
       series: [{ data: mapSeriesData }],
     });
-
-    setChartOptions({
-      series: chartSeries,
-    });
-  }, [chartSeries, mapSeriesData]);
+  }, [mapSeriesData]);
 
   useEffect(() => {
     const button = citiesButtonRef.current;
@@ -151,12 +123,6 @@ const TaskA = function TaskA({ id }) {
     allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
     allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
   }, [municipalities]);
-
-  const currentSelectedYear = Number(filterState.year);
-  const stats = useMemo(
-    () => calculateYearlyStatistics(currentSelectedYear, chartSeries),
-    [currentSelectedYear, chartSeries],
-  );
 
   const handleAllCitiesClick = () => {
     const button = allCitiesButtonRef.current;
@@ -189,67 +155,6 @@ const TaskA = function TaskA({ id }) {
       ...prev,
       municipalities: prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : [],
     }));
-  };
-
-  const handleCsvChartDownload = () => {
-    const filename = `neopredeljeni-${filterState.doctorType}.csv`;
-    const isSloveniaSelected = filterState.municipalities.length === 0;
-    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
-    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
-
-    const data = chartSeries.map(item => ({
-      ageGroup: item.name,
-      data: item.data.map(d => ({
-        year: d.year,
-        ageGroup: item.name,
-        insuredPeopleCount: d.insuredPeopleCount,
-        insuredPeopleCountWithIOZ: d.insuredPeopleCountWithIOZ,
-        insuredPeopleCountWithoutIOZ: d.insuredPeopleCountWithoutIOZ,
-        iozRatio: d.iozRatio,
-        selection: selection.join(','),
-        isCities: isCities ? 'Da' : 'Ne',
-      })),
-    }));
-
-    const csvHeaders = [
-      'year',
-      'ageGroup',
-      'insuredPeopleCount',
-      'insuredPeopleCountWithIOZ',
-      'insuredPeopleCountWithoutIOZ',
-      'iozRatio',
-      'selection',
-      'isCities',
-    ];
-
-    exportToCsv(
-      createCSVContent(
-        data.flatMap(d => d.data),
-        csvHeaders,
-      ),
-      filename,
-    );
-  };
-
-  const handleJsonChartDownload = () => {
-    const filename = `age-group-neopredeljeni-${filterState.doctorType}.json`;
-    const isSloveniaSelected = filterState.municipalities.length === 0;
-    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
-    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
-
-    const data = chartSeries.map(item => ({
-      ageGroup: item.name,
-      data: item.data.map(d => ({
-        year: d.year,
-        ageGroup: item.name,
-        insuredPeopleCount: d.insuredPeopleCount,
-        insuredPeopleCountWithIOZ: d.insuredPeopleCountWithIOZ,
-        insuredPeopleCountWithoutIOZ: d.insuredPeopleCountWithoutIOZ,
-        iozRatio: d.iozRatio,
-      })),
-    }));
-
-    exportToJson({ type: filterState.doctorType, stats, isCities, selection, data }, filename);
   };
 
   const handleCsvMapDownload = () => {
@@ -286,21 +191,7 @@ const TaskA = function TaskA({ id }) {
             <DropdownMenuContent>
               <DropdownMenuLabel>{tTaskA.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>
-                  {t('analytics.taskA.export', { value: tCommon.ageGroup })}
-                </DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleCsvChartDownload} style={{ width: '100%' }}>
-                    CSV
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleJsonChartDownload} style={{ width: '100%' }}>
-                    JSON
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
+
               <DropdownMenuGroup>
                 <DropdownMenuLabel>
                   {t('analytics.taskA.export', { value: tCommon.municipalities })}
@@ -332,23 +223,6 @@ const TaskA = function TaskA({ id }) {
           />
         </CardContent>
 
-        <CardContent className={styles.ScorecardsWrapper}>
-          <Scorecard
-            valueLabel={filterState.year}
-            changeLabel={filterState.year - 1}
-            scorecardType="description"
-          />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCount}
-            value={stats.currentYear.insuredPeopleCount}
-            change={stats.differences.insuredPeopleCount.ratio}
-          />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCountWithoutIOZ}
-            value={stats.currentYear.insuredPeopleCountWithoutIOZ}
-            change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
-          />
-        </CardContent>
         <CardContent className={styles.MapWrapper}>
           <figure>
             <HighchartsReact
@@ -397,18 +271,6 @@ const TaskA = function TaskA({ id }) {
               </label>
             ))}
           </div>
-        </CardContent>
-        <CardContent className={styles.ChartWrapper}>
-          <CardTitle variant="subtitle">{tTaskA.chartTitleSuffix}</CardTitle>
-          <CardTitle variant="description">{doctorTypeTranslation}</CardTitle>
-          <figure>
-            <HighchartsReact
-              ref={chartRef}
-              highcharts={Highcharts}
-              options={chartOptions}
-              constructorType="chart"
-            />
-          </figure>
         </CardContent>
       </div>
     </Card>
