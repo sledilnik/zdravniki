@@ -29,7 +29,6 @@ import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/uti
 
 import { secondChartOptions } from '../TaskA/chart-options';
 import {
-  assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
   DEFAULTS,
   uniqueOverviewDoctorTypesSet,
@@ -45,22 +44,13 @@ import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 import styles from '../Cards.module.css';
 
 const TaskATrend = function TaskATrend({ id }) {
-  const tTaskA = t('analytics.taskA', { returnObjects: true });
+  const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
   const [, setInit] = useState(false);
   const { filterState, onFilterChange } = useFilterState(DEFAULTS);
 
-  const doctorTypeTranslation = tCommon.doctorTypes[filterState.doctorType];
-
-  const chartTitle = t('analytics.taskA.chartTitle', { suffix: tTaskA.chartTitleSuffix });
-  const chartSubtitle = t('analytics.taskA.chartSubtitle', {
-    doctorType: doctorTypeTranslation,
-  });
-
   const [chartOptions, setChartOptions] = useState({
     ...secondChartOptions,
-    title: { text: chartTitle },
-    subtitle: { text: chartSubtitle },
     accessibility: {
       screenReaderSection: {
         beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
@@ -70,10 +60,6 @@ const TaskATrend = function TaskATrend({ id }) {
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
-  /** @type {React.RefObject<HTMLButtonElement>} */
-  const citiesButtonRef = useRef(null);
-  /** @type {React.RefObject<HTMLButtonElement>} */
-  const allCitiesButtonRef = useRef(null);
 
   useEffect(() => {
     setInit(true);
@@ -92,22 +78,6 @@ const TaskATrend = function TaskATrend({ id }) {
       series: chartSeries,
     });
   }, [chartSeries, mapSeriesData]);
-
-  useEffect(() => {
-    const button = citiesButtonRef.current;
-    const allButton = allCitiesButtonRef.current;
-    if (!button || !allButton) return;
-    const isCitiesActive = assertSetsEqual(
-      new Set(municipalities),
-      new Set(CITY_MUNICIPALITIES_LIST),
-    );
-    button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
-    button.style.pointerEvents = isCitiesActive ? 'none' : 'auto';
-
-    const isAllCitiesActive = municipalities.length === 0;
-    allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
-    allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
-  }, [municipalities]);
 
   const currentSelectedYear = Number(filterState.year);
   const stats = useMemo(
@@ -180,7 +150,7 @@ const TaskATrend = function TaskATrend({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="h3">{tTaskA.title}</CardTitle>
+          <CardTitle as="h3">{tTaskATrend.title}</CardTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button type="button" aria-label="Options" className={styles.IconButton}>
@@ -188,7 +158,7 @@ const TaskATrend = function TaskATrend({ id }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>{tTaskA.menu}</DropdownMenuLabel>
+              <DropdownMenuLabel>{tTaskATrend.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuLabel>
