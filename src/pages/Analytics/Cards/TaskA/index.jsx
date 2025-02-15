@@ -179,7 +179,7 @@ const TaskA = function TaskA({ id }) {
 
   return (
     <Card id={id} className={styles.CardWrapper}>
-      <div className={cx(styles.Grid, styles.DoubleChartGrid)}>
+      <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
           <DropdownMenu>
@@ -223,7 +223,7 @@ const TaskA = function TaskA({ id }) {
           />
         </CardContent>
 
-        <CardContent className={styles.MapWrapper}>
+        <CardContent className={styles.ChartWrapper}>
           <figure>
             <HighchartsReact
               ref={mapRef}
