@@ -22,10 +22,12 @@ import Sidebar from './components/Sidebar';
 const TaskD = lazy(() => import('./Cards/TaskD'));
 const TaskA = lazy(() => import('./Cards/TaskA'));
 const TaskSpecial = lazy(() => import('./Cards/TaskSpecial'));
+const TaskATrend = lazy(() => import('./Cards/TaskATrend'));
 
 const CARDS = {
   TaskD,
   TaskA,
+  TaskATrend,
   TaskSpecial,
 };
 
