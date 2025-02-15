@@ -39,7 +39,7 @@ export const cards = [
     section: sectionNames[0],
     order: 2,
     componentName: 'TaskATrend',
-    titleTranslationKey: 'analytics.taskA.title',
+    titleTranslationKey: 'analytics.taskATrend.title',
     fakeHeight: '827px', // TODO: check for actual fake height value,
   },
   {
