@@ -67,6 +67,7 @@
 }
 
 .IconButton {
+  background-color: inherit;
   border-radius: 50%;
   aspect-ratio: 1;
   display: inline-flex;
