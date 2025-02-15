@@ -32,13 +32,11 @@ import {
   CITY_MUNICIPALITIES_LIST,
   DEFAULTS,
   uniqueOverviewDoctorTypesSet,
-  uniqueOverviewMunicipalitiesSet,
   uniqueOverviewYearsSet,
 } from '../TaskA/constants';
 
 import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
 import { FilterForm } from '../TaskA/FilterForm';
-import { prepareOverviewMapSeriesData } from '../TaskA/overview-data-util';
 import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 
 import styles from '../Cards.module.css';
@@ -65,19 +63,15 @@ const TaskATrend = function TaskATrend({ id }) {
     setInit(true);
   }, []);
 
-  const { municipalities, doctorType } = filterState;
+  const { doctorType } = filterState;
 
-  const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
-  const chartSeries = useMemo(
-    () => prepareDetailLineChartSeries(municipalities, doctorType),
-    [doctorType, municipalities],
-  );
+  const chartSeries = useMemo(() => prepareDetailLineChartSeries([], doctorType), [doctorType]);
 
   useEffect(() => {
     setChartOptions({
       series: chartSeries,
     });
-  }, [chartSeries, mapSeriesData]);
+  }, [chartSeries]);
 
   const currentSelectedYear = Number(filterState.year);
   const stats = useMemo(
@@ -179,12 +173,13 @@ const TaskATrend = function TaskATrend({ id }) {
           </DropdownMenu>
         </CardHeader>
         <Separator className={styles.Separator} />
+
         <CardContent className={styles.FiltersWrapper}>
           <FilterForm
             filterState={filterState}
             onChange={onFilterChange}
             filterOptions={{
-              municipalities: [...uniqueOverviewMunicipalitiesSet],
+              municipalities: [],
               years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
               doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
@@ -208,6 +203,7 @@ const TaskATrend = function TaskATrend({ id }) {
             change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
           />
         </CardContent>
+
         <CardContent className={styles.ChartWrapper}>
           <figure>
             <HighchartsReact
