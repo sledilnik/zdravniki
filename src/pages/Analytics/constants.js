@@ -61,7 +61,7 @@ export const getTaskAAgeGroupString = createGetAgeGroupString('taskA');
 
 export const CHART_COLORS = Object.freeze({
   chart: {
-    backgroundColor: 'rgb(248 248 248)',
+    backgroundColor: 'rgb(255, 255, 255)',
   },
   tooltip: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',

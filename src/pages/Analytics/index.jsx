@@ -10,7 +10,6 @@ import * as SEO from 'components/SEO';
 import { CircularProgress } from '@mui/material';
 import Footer from './components/Footer';
 import RenderOnViewportEntry from './components/RenderOnViewportEntry';
-import Sidebar from './components/Sidebar';
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 import { Card, CardContent, CardHeader } from './components/ui/card';
 import { SECTIONS, sectionTranslationKeys } from './data/sections';
@@ -18,6 +17,7 @@ import { createCardDataProxy } from './utils/create-card-data-proxy';
 
 import styles from './styles/Analytics.module.css';
 import stylesLayout from './styles/Layout.module.css';
+import Sidebar from './components/Sidebar';
 
 const TaskD = lazy(() => import('./Cards/TaskD'));
 const TaskA = lazy(() => import('./Cards/TaskA'));
@@ -43,8 +43,8 @@ const Analytics = function Analytics() {
     <>
       <SEO.Dynamic title={t('SEO.title.analytics')} lang={lng} />
       <TouchdeviceNotification />
+      <Sidebar />
       <main id="main-content" className={cx(styles.Analytics)}>
-        <Sidebar />
         <div className={cx(stylesLayout.Layout, styles.PageContent)}>
           {sections.map(section => (
             <section

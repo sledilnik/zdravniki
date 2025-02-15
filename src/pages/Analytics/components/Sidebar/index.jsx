@@ -1,11 +1,9 @@
 /** @import * as Types from "./types" */
 
-import { useMediaQuery } from '@mui/system';
-import { useEffect, useRef, useState } from 'react';
-
 import { t } from 'i18next';
 
 import * as Icons from 'components/Shared/Icons';
+import { useState, useRef } from 'react';
 import Modal from '../Modal';
 
 import { SECTIONS, sectionTranslationKeys } from '../../data/sections';
@@ -43,16 +41,7 @@ const renderSidebarGroups = (closeHandler, sections) =>
 
 const Sidebar = function Sidebar() {
   const [modalOpen, setModalOpen] = useState(false);
-  const mediaQuery = useMediaQuery('(min-width: 900px)');
   const navRef = useRef(null);
-
-  const shouldModalBeClosed = mediaQuery && modalOpen;
-  useEffect(() => {
-    if (shouldModalBeClosed) {
-      setModalOpen(false);
-    }
-    return () => setModalOpen(false); // Ensure modal is closed when component unmounts
-  }, [shouldModalBeClosed]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -69,46 +58,33 @@ const Sidebar = function Sidebar() {
 
   return (
     <aside className={styles.Sidebar} name="sidebar">
-      {mediaQuery ? (
-        <div className={styles.SidebarDesktop}>
-          <div className={styles.SidebarTitle}>{t('analytics.sidebar.title')}</div>
+      <div className={styles.SidebarMobile}>
+        <button
+          type="button"
+          onClick={openModal}
+          aria-label="show links to charts"
+          aria-expanded={modalOpen}
+        >
+          <Icons.Icon name="Chart" />
+        </button>
+        <Modal
+          className={styles.SidebarModal}
+          modalOpen={modalOpen}
+          onCancel={closeModal}
+          aria-labelledby="go-to-graph"
+        >
+          <div id="go-to-graph" className={styles.SidebarTitle}>
+            {t('analytics.sidebar.title')}
+          </div>
           <nav
             ref={navRef}
             className={styles.SidebarGroupsWrapper}
-            aria-label="Chart Navbar Desktop"
+            aria-label="Chart Navbar Mobile"
           >
-            {renderSidebarGroups(undefined, sections)}
+            {renderSidebarGroups(closeModal, sections)}
           </nav>
-        </div>
-      ) : (
-        <div className={styles.SidebarMobile}>
-          <button
-            type="button"
-            onClick={openModal}
-            aria-label="show links to charts"
-            aria-expanded={modalOpen}
-          >
-            <Icons.Icon name="Chart" />
-          </button>
-          <Modal
-            className={styles.SidebarModal}
-            modalOpen={modalOpen}
-            onCancel={closeModal}
-            aria-labelledby="go-to-graph"
-          >
-            <div id="go-to-graph" className={styles.SidebarTitle}>
-              {t('analytics.sidebar.title')}
-            </div>
-            <nav
-              ref={navRef}
-              className={styles.SidebarGroupsWrapper}
-              aria-label="Chart Navbar Mobile"
-            >
-              {renderSidebarGroups(closeModal, sections)}
-            </nav>
-          </Modal>
-        </div>
-      )}
+        </Modal>
+      </div>
     </aside>
   );
 };
