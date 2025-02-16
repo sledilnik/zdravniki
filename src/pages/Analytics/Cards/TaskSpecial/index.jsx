@@ -53,7 +53,10 @@ const TaskSpecial = function TaskSpecial({ id }) {
     }
   }, [init]);
 
-  const { chartOptions } = useChart(options, { filterState });
+  const { chartOptions } = useChart(options, {
+    filterState,
+    notVisibleSeries: ['insuredPeopleCountWithoutIOZ'],
+  });
 
   const handleCsvDownload = () => {
     const filename = `${filterState.doctorType}_sum.csv`;

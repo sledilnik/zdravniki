@@ -16,7 +16,7 @@ import { prepareTaskSpecialChartOptions } from './data';
  *    setChartOptions: React.Dispatch<React.SetStateAction<Highcharts.Options>>
  * }} - merge of the initial and extra options.
  */
-export const useChart = (initialOptions, { filterState }) => {
+export const useChart = (initialOptions, { filterState, notVisibleSeries = [] }) => {
   const chartTranslations = useMemo(
     () => t(`analytics.taskSpecial.chart`, { returnObjects: true }),
     [],
@@ -42,7 +42,14 @@ export const useChart = (initialOptions, { filterState }) => {
     [memoChartOptions],
   );
 
-  const [chartOptions, setChartOptions] = useState(loMerge(memoOptions, initialOptions));
+  const [chartOptions, setChartOptions] = useState(
+    loMerge(memoOptions, initialOptions, {
+      series: memoOptions.series.map(serie => ({
+        ...serie,
+        visible: !notVisibleSeries.includes(serie.id),
+      })),
+    }),
+  );
 
   useEffect(() => {
     setChartOptions(loMerge(memoOptions));

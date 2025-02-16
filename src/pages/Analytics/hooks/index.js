@@ -1,14 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useMemo, useState } from 'react';
-
-import { t } from 'i18next';
-import loMerge from 'lodash/merge';
-import { COLORS as taskDColors } from '../Cards/TaskD/chart-options';
-import { COLORS as taskSpecialColors } from '../Cards/TaskSpecial/chart-options';
-import {
-  prepareDetailLineChartSeries as prepareTaskSpecialSeries,
-  seriesToShow as taskSpecialSeriesToShow,
-} from '../Cards/TaskSpecial/data';
+import { useState } from 'react';
 
 /**
  * A custom React hook for managing a filter state object.
