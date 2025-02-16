@@ -27,6 +27,7 @@ import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
+import Scorecard from 'pages/Analytics/components/Scorecard';
 import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -44,6 +45,8 @@ import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 import styles from '../Cards.module.css';
 import buttonStyles from './Buttons.module.css';
+import { calculateYearlyStatistics } from './scorecards-calc-util';
+import { prepareDetailLineChartSeries } from './detail-data-util';
 
 /**
  * TaskA component
@@ -98,7 +101,7 @@ const TaskA = function TaskA({ id }) {
     [init],
   );
 
-  const { municipalities } = filterState;
+  const { municipalities, doctorType } = filterState;
 
   const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
 
@@ -123,6 +126,17 @@ const TaskA = function TaskA({ id }) {
     allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
     allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
   }, [municipalities]);
+
+  const chartSeries = useMemo(
+    () => prepareDetailLineChartSeries(municipalities, doctorType),
+    [doctorType, municipalities],
+  );
+
+  const currentSelectedYear = Number(filterState.year);
+  const stats = useMemo(
+    () => calculateYearlyStatistics(currentSelectedYear, chartSeries),
+    [currentSelectedYear, chartSeries],
+  );
 
   const handleAllCitiesClick = () => {
     const button = allCitiesButtonRef.current;
@@ -220,6 +234,24 @@ const TaskA = function TaskA({ id }) {
               years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
               doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
+          />
+        </CardContent>
+
+        <CardContent className={styles.ScorecardsWrapper}>
+          <Scorecard
+            valueLabel={filterState.year}
+            changeLabel={filterState.year - 1}
+            scorecardType="description"
+          />
+          <Scorecard
+            label={tCommon.data.insuredPeopleCount}
+            value={stats.currentYear.insuredPeopleCount}
+            change={stats.differences.insuredPeopleCount.ratio}
+          />
+          <Scorecard
+            label={tCommon.data.insuredPeopleCountWithoutIOZ}
+            value={stats.currentYear.insuredPeopleCountWithoutIOZ}
+            change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
           />
         </CardContent>
 

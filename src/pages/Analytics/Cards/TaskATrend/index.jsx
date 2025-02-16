@@ -10,7 +10,6 @@ import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import Scorecard from 'pages/Analytics/components/Scorecard';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
@@ -183,24 +182,6 @@ const TaskATrend = function TaskATrend({ id }) {
               years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
               doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
-          />
-        </CardContent>
-
-        <CardContent className={styles.ScorecardsWrapper}>
-          <Scorecard
-            valueLabel={filterState.year}
-            changeLabel={filterState.year - 1}
-            scorecardType="description"
-          />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCount}
-            value={stats.currentYear.insuredPeopleCount}
-            change={stats.differences.insuredPeopleCount.ratio}
-          />
-          <Scorecard
-            label={tCommon.data.insuredPeopleCountWithoutIOZ}
-            value={stats.currentYear.insuredPeopleCountWithoutIOZ}
-            change={stats.differences.insuredPeopleCountWithoutIOZ.ratio}
           />
         </CardContent>
 
