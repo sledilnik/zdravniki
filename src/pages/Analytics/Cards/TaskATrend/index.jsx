@@ -35,7 +35,7 @@ import {
 } from '../TaskA/constants';
 
 import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
-import { FilterForm } from '../TaskA/FilterForm';
+import { FilterForm } from './FilterForm';
 import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 
 import styles from '../Cards.module.css';
