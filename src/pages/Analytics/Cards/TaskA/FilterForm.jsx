@@ -20,11 +20,11 @@ import styles from '../FilterForm.module.css';
  * Displays "clear all" text when there are selected values and not focused,
  * shows search input when focused or no values selected
  *
- * @param {ValueContainerProps & {text: string, clearAllClassName?: string}} props - Component props from react-select ValueContainerProps
+ * @param {ValueContainerProps & {isSelectedText: string, clearAllText: string, clearAllClassName?: string}} props - Component props from react-select ValueContainerProps
  * @returns {JSX.Element} Rendered value container
  */
 export function CustomValueContainer(props) {
-  const { children, text, clearAllClassName, ...restProps } = props;
+  const { children, clearAllText, clearAllClassName, isSelectedText, ...restProps } = props;
 
   const { hasValue } = restProps;
   const { menuIsOpen } = restProps.selectProps;
@@ -40,7 +40,9 @@ export function CustomValueContainer(props) {
     >
       {hasValue && !menuIsOpen ? (
         <span className={cx(clearAllClassName)}>
-          ({valueCount}) {text}
+          <span>({valueCount})</span>
+          <span>{isSelectedText}</span>
+          <span style={{ marginLeft: 'auto' }}>{clearAllText}</span>
         </span>
       ) : null}
       {children}
@@ -115,8 +117,9 @@ export const FilterForm = forwardRef(
               ...components,
               ValueContainer: props => (
                 <CustomValueContainer
-                  text={tButtons.clearAll}
+                  clearAllText=""
                   clearAllClassName={styles.MunClearAll}
+                  isSelectedText={tButtons.isSelectedText}
                   {...props}
                 />
               ),

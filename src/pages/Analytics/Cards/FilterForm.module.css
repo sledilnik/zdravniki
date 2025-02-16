@@ -7,8 +7,11 @@
 .MunClearAll {
   cursor: pointer;
   position: absolute;
+  display: flex;
+  gap: 0.5rem;
   top: 50%;
   left: 0.6em;
+  right: 0;
   transform: translateY(-50%);
 }
 

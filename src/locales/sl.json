@@ -142,6 +142,7 @@
       "buttons": {
         "cityMunicipalitiesActive": "Mestne občine",
         "cityMunicipalitiesInactive": "Mestne občine",
+        "isSelectedText": "izberi",
         "clearAll": "počisti izbor",
         "allCities": "Vse občine",
         "close": "Zapri",
