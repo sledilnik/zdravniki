@@ -27,12 +27,7 @@ import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
 import { secondChartOptions } from '../TaskA/chart-options';
-import {
-  CITY_MUNICIPALITIES_LIST,
-  DEFAULTS,
-  uniqueOverviewDoctorTypesSet,
-  uniqueOverviewYearsSet,
-} from '../TaskA/constants';
+import { DEFAULTS, uniqueOverviewDoctorTypesSet } from './constants';
 
 import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
 import { FilterForm } from './FilterForm';
@@ -80,9 +75,6 @@ const TaskATrend = function TaskATrend({ id }) {
 
   const handleCsvChartDownload = () => {
     const filename = `neopredeljeni-${filterState.doctorType}.csv`;
-    const isSloveniaSelected = filterState.municipalities.length === 0;
-    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
-    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
 
     const data = chartSeries.map(item => ({
       ageGroup: item.name,
@@ -93,8 +85,8 @@ const TaskATrend = function TaskATrend({ id }) {
         insuredPeopleCountWithIOZ: d.insuredPeopleCountWithIOZ,
         insuredPeopleCountWithoutIOZ: d.insuredPeopleCountWithoutIOZ,
         iozRatio: d.iozRatio,
-        selection: selection.join(','),
-        isCities: isCities ? 'Da' : 'Ne',
+        selection: ['Slovenija'],
+        isCities: 'Ne',
       })),
     }));
 
@@ -120,10 +112,6 @@ const TaskATrend = function TaskATrend({ id }) {
 
   const handleJsonChartDownload = () => {
     const filename = `age-group-neopredeljeni-${filterState.doctorType}.json`;
-    const isSloveniaSelected = filterState.municipalities.length === 0;
-    const isCities = CITY_MUNICIPALITIES_LIST.every(m => filterState.municipalities.includes(m));
-    const selection = isSloveniaSelected ? ['Slovenija'] : filterState.municipalities;
-
     const data = chartSeries.map(item => ({
       ageGroup: item.name,
       data: item.data.map(d => ({
@@ -136,7 +124,10 @@ const TaskATrend = function TaskATrend({ id }) {
       })),
     }));
 
-    exportToJson({ type: filterState.doctorType, stats, isCities, selection, data }, filename);
+    exportToJson(
+      { type: filterState.doctorType, stats, isCities: false, selection: ['Slovenija'], data },
+      filename,
+    );
   };
 
   return (
@@ -178,8 +169,6 @@ const TaskATrend = function TaskATrend({ id }) {
             filterState={filterState}
             onChange={onFilterChange}
             filterOptions={{
-              municipalities: [],
-              years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
               doctorTypes: [...uniqueOverviewDoctorTypesSet],
             }}
           />
