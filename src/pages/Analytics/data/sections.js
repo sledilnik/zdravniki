@@ -33,14 +33,14 @@ export const cards = [
     order: 1,
     componentName: 'TaskA',
     titleTranslationKey: 'analytics.taskA.title',
-    fakeHeight: '827px', // TODO: check for actual fake height value,
+    fakeHeight: '935px', // TODO: check for actual fake height value,
   },
   {
     section: sectionNames[0],
     order: 2,
     componentName: 'TaskATrend',
     titleTranslationKey: 'analytics.taskATrend.title',
-    fakeHeight: '827px', // TODO: check for actual fake height value,
+    fakeHeight: '585px', // TODO: check for actual fake height value,
   },
   {
     section: sectionNames[0],

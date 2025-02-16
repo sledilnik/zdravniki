@@ -21,11 +21,11 @@ export const COLORS = Object.freeze({
 export const mapOptions = {
   chart: {
     map: sloOBMap,
-    height: 400,
+    height: 600,
     backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
   legend: {
-    enabled: false,
+    enabled: true,
   },
   colorAxis: {
     minColor: COLORS.minColor,
@@ -81,7 +81,7 @@ export const secondChartOptions = {
     },
   },
   legend: {
-    enabled: false,
+    enabled: true,
   },
   series: prepareDetailLineChartSeries(),
   tooltip: {
