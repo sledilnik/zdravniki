@@ -21,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from 'pages/Analytics/components/ui/dropdown-menu';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
+import { getIsRequestFullscreenSupported } from 'utils';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
 import { useChart } from './useChart';
@@ -95,12 +96,13 @@ const TaskSpecial = function TaskSpecial({ id }) {
             <DropdownMenuContent>
               <DropdownMenuLabel>{tTaskSpecial.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-
-              <DropdownMenuItem asChild>
-                <button type="button" onClick={openFullScreen} style={{ width: '100%' }}>
-                  FullScreen
-                </button>
-              </DropdownMenuItem>
+              {getIsRequestFullscreenSupported(document) ? (
+                <DropdownMenuItem asChild>
+                  <button type="button" onClick={openFullScreen} style={{ width: '100%' }}>
+                    FullScreen
+                  </button>
+                </DropdownMenuItem>
+              ) : null}
               <DropdownMenuItem asChild>
                 <button type="button" onClick={printChart} style={{ width: '100%' }}>
                   Print
