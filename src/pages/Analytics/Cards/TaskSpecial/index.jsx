@@ -15,7 +15,6 @@ import { Icon } from 'components/Shared/Icons';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -74,6 +73,14 @@ const TaskSpecial = function TaskSpecial({ id }) {
     exportToJson({ doctorType: filterState.doctorType, data: pointsWithData }, filename);
   };
 
+  const openFullScreen = () => {
+    chartRef.current.chart.fullscreen.open();
+  };
+
+  const printChart = () => {
+    chartRef.current.chart.print();
+  };
+
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
@@ -88,19 +95,28 @@ const TaskSpecial = function TaskSpecial({ id }) {
             <DropdownMenuContent>
               <DropdownMenuLabel>{tTaskSpecial.menu}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>{tTaskSpecial.export}</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
-                    CSV
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
-                    JSON
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
+
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={openFullScreen} style={{ width: '100%' }}>
+                  FullScreen
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={printChart} style={{ width: '100%' }}>
+                  Print
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuLabel>{tTaskSpecial.export}</DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
+                  CSV
+                </button>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
+                  JSON
+                </button>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </CardHeader>
