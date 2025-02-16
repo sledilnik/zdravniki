@@ -3,6 +3,22 @@
 import { DEFAULTS } from './constants';
 import { overviewTransformedData } from './json-data-transform-util';
 
+export const overviewYearsDSO = new Set(
+  overviewTransformedData.filter(item => item.doctorType === 'dso').map(item => item.year),
+);
+
+export const overviewYearsGP = new Set(
+  overviewTransformedData.filter(item => item.doctorType === 'gp').map(item => item.year),
+);
+
+export const overviewYearsGYN = new Set(
+  overviewTransformedData.filter(item => item.doctorType === 'gyn').map(item => item.year),
+);
+
+export const overviewYearsDEN = new Set(
+  overviewTransformedData.filter(item => item.doctorType === 'den').map(item => item.year),
+);
+
 /**
  *
  * @description
