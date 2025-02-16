@@ -11,17 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 
-import { Icon } from 'components/Shared/Icons';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from 'pages/Analytics/components/ui/dropdown-menu';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
-import { getIsRequestFullscreenSupported } from 'utils';
+import ChartActions from 'pages/Analytics/components/ChartActions';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
 import { useChart } from './useChart';
@@ -87,40 +78,14 @@ const TaskSpecial = function TaskSpecial({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button type="button" aria-label="Options" className={styles.IconButton}>
-                <Icon name="VerticalDots" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{tTaskSpecial.menu}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              {getIsRequestFullscreenSupported(document) ? (
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={openFullScreen} style={{ width: '100%' }}>
-                    FullScreen
-                  </button>
-                </DropdownMenuItem>
-              ) : null}
-              <DropdownMenuItem asChild>
-                <button type="button" onClick={printChart} style={{ width: '100%' }}>
-                  Print
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuLabel>{tTaskSpecial.export}</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
-                  CSV
-                </button>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
-                  JSON
-                </button>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ChartActions
+            actions={{
+              openFullScreen,
+              printChart,
+              handleCsvDownload,
+              handleJsonDownload,
+            }}
+          />
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

@@ -150,7 +150,10 @@
         "max": "maks",
         "selected": "izbor",
         "reset": "$t(reportError.reset)",
-        "export": "Izvoz"
+        "export": "Izvoz",
+        "menu": "$t(header.menu)",
+        "fullScreen": "Celozaslonski način",
+        "print": "Natisni"
       },
       "data": {
         "iozRatio": "delež opredeljeni/vsi",

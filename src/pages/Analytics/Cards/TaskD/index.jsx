@@ -10,22 +10,14 @@ import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { Icon } from 'components/Shared/Icons';
 import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from 'pages/Analytics/components/ui/dropdown-menu';
+
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
+import ChartActions from 'pages/Analytics/components/ChartActions';
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions } from './parsed-files';
@@ -95,35 +87,27 @@ const TaskD = function TaskD({ id }) {
     exportToJson({ type: filterState.data, data: joinedData }, filename);
   };
 
+  const openFullScreen = () => {
+    chartRef.current.chart.fullscreen.open();
+  };
+
+  const printChart = () => {
+    chartRef.current.chart.print();
+  };
+
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskD.title}</CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button type="button" aria-label="Options" className={styles.IconButton}>
-                <Icon name="VerticalDots" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{tTaskD.menu}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>{tTaskD.export}</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
-                    CSV
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
-                    JSON
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ChartActions
+            actions={{
+              openFullScreen,
+              printChart,
+              handleCsvDownload,
+              handleJsonDownload,
+            }}
+          />
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>

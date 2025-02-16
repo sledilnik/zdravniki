@@ -13,19 +13,10 @@ import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { Icon } from 'components/Shared/Icons';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from 'pages/Analytics/components/ui/dropdown-menu';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
+import ChartActions from 'pages/Analytics/components/ChartActions';
 import { secondChartOptions } from '../TaskA/chart-options';
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from './constants';
 
@@ -37,7 +28,6 @@ import styles from '../Cards.module.css';
 
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
-  const tCommon = t('analytics.common', { returnObjects: true });
   const [, setInit] = useState(false);
   const { filterState, onFilterChange } = useFilterState(DEFAULTS);
 
@@ -73,7 +63,7 @@ const TaskATrend = function TaskATrend({ id }) {
     [currentSelectedYear, chartSeries],
   );
 
-  const handleCsvChartDownload = () => {
+  const handleCsvDownload = () => {
     const filename = `neopredeljeni-${filterState.doctorType}.csv`;
 
     const data = chartSeries.map(item => ({
@@ -110,7 +100,7 @@ const TaskATrend = function TaskATrend({ id }) {
     );
   };
 
-  const handleJsonChartDownload = () => {
+  const handleJsonDownload = () => {
     const filename = `age-group-neopredeljeni-${filterState.doctorType}.json`;
     const data = chartSeries.map(item => ({
       ageGroup: item.name,
@@ -130,37 +120,27 @@ const TaskATrend = function TaskATrend({ id }) {
     );
   };
 
+  const openFullScreen = () => {
+    chartRef.current.chart.fullscreen.open();
+  };
+
+  const printChart = () => {
+    chartRef.current.chart.print();
+  };
+
   return (
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskATrend.title}</CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button type="button" aria-label="Options" className={styles.IconButton}>
-                <Icon name="VerticalDots" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{tTaskATrend.menu}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>
-                  {t('analytics.taskA.export', { value: tCommon.ageGroup })}
-                </DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleCsvChartDownload} style={{ width: '100%' }}>
-                    CSV
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleJsonChartDownload} style={{ width: '100%' }}>
-                    JSON
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ChartActions
+            actions={{
+              openFullScreen,
+              printChart,
+              handleCsvDownload,
+              handleJsonDownload,
+            }}
+          />
         </CardHeader>
         <Separator className={styles.Separator} />
 

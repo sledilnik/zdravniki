@@ -14,20 +14,12 @@ import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/compon
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { Icon } from 'components/Shared/Icons';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from 'pages/Analytics/components/ui/dropdown-menu';
 import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
 import Scorecard from 'pages/Analytics/components/Scorecard';
+import ChartActions from 'pages/Analytics/components/ChartActions';
 import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -171,7 +163,7 @@ const TaskA = function TaskA({ id }) {
     }));
   };
 
-  const handleCsvMapDownload = () => {
+  const handleCsvDownload = () => {
     const filename = `map-neopredeljeni-${filterState.doctorType}.csv`;
     const data = mapSeriesData.map(item =>
       Object.assign(item, { selected: undefined, type: filterState.doctorType }),
@@ -185,10 +177,18 @@ const TaskA = function TaskA({ id }) {
     );
   };
 
-  const handleJsonMapDownload = () => {
+  const handleJsonDownload = () => {
     const filename = `map-neopredeljeni-${filterState.doctorType}.json`;
     const data = mapSeriesData.map(item => Object.assign(item, { selected: undefined }));
     exportToJson({ type: filterState.doctorType, data }, filename);
+  };
+
+  const openFullScreen = () => {
+    mapRef.current.chart.fullscreen.open();
+  };
+
+  const printChart = () => {
+    mapRef.current.chart.print();
   };
 
   return (
@@ -196,33 +196,14 @@ const TaskA = function TaskA({ id }) {
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
           <CardTitle as="h3">{tTaskA.title}</CardTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button type="button" aria-label="Options" className={styles.IconButton}>
-                <Icon name="VerticalDots" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>{tTaskA.menu}</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>
-                  {t('analytics.taskA.export', { value: tCommon.municipalities })}
-                </DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleCsvMapDownload} style={{ width: '100%' }}>
-                    CSV
-                  </button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <button type="button" onClick={handleJsonMapDownload} style={{ width: '100%' }}>
-                    JSON
-                  </button>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <ChartActions
+            actions={{
+              openFullScreen,
+              printChart,
+              handleCsvDownload,
+              handleJsonDownload,
+            }}
+          />
         </CardHeader>
         <Separator className={styles.Separator} />
         <CardContent className={styles.FiltersWrapper}>
