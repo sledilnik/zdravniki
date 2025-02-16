@@ -1,4 +1,4 @@
-/** @import * as Types from "../../../types" */
+/** @import * as Types from "../../types" */
 
 import { renderToString } from 'react-dom/server';
 
