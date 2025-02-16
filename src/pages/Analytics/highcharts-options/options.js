@@ -125,7 +125,7 @@ export const chartEvents = {
   afterPrint() {
     this.update({
       legend: {
-        enabled: false,
+        enabled: true,
       },
       title: {
         style: {
@@ -169,7 +169,7 @@ export const chartEvents = {
   fullscreenClose() {
     this.update({
       legend: {
-        enabled: false,
+        enabled: true,
       },
       title: {
         style: {
