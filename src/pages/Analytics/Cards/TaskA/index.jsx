@@ -232,7 +232,9 @@ const TaskA = function TaskA({ id }) {
             filterOptions={{
               municipalities: [...uniqueOverviewMunicipalitiesSet],
               years: [...uniqueOverviewYearsSet].sort((a, b) => b - a),
-              doctorTypes: [...uniqueOverviewDoctorTypesSet],
+              doctorTypes: [...uniqueOverviewDoctorTypesSet].filter(
+                v => v !== 'betterAccessibility',
+              ),
             }}
           />
         </CardContent>

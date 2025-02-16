@@ -169,7 +169,9 @@ const TaskATrend = function TaskATrend({ id }) {
             filterState={filterState}
             onChange={onFilterChange}
             filterOptions={{
-              doctorTypes: [...uniqueOverviewDoctorTypesSet],
+              doctorTypes: [...uniqueOverviewDoctorTypesSet].filter(
+                v => v !== 'betterAccessibility',
+              ),
             }}
           />
         </CardContent>
