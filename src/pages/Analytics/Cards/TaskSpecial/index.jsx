@@ -55,7 +55,7 @@ const TaskSpecial = function TaskSpecial({ id }) {
 
   const { chartOptions } = useChart(options, {
     filterState,
-    notVisibleSeries: ['insuredPeopleCountWithoutIOZ'],
+    notVisibleSeries: [],
   });
 
   const handleCsvDownload = () => {

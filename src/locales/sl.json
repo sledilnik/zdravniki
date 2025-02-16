@@ -222,7 +222,12 @@
       "chart": {
         "title": "{{value}}: $t(analytics.taskSpecial.title)",
         "yAxis": {
-          "title": "št. zavarovancev"
+          "0": {
+            "title": "št. zavarovancev"
+          },
+          "1": {
+            "title": "delež neopredeljenih"
+          }
         },
         "series": {
           "insuredPeopleCount": "$t(analytics.common.data.insuredPeopleCount)",

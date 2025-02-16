@@ -2,7 +2,11 @@
 import { detailTransformedData } from '../TaskA/json-data-transform-util';
 import { COLORS } from './chart-options';
 
-export const seriesToShow = Object.freeze(['insuredPeopleCount', 'insuredPeopleCountWithoutIOZ']);
+export const seriesToShow = Object.freeze([
+  'insuredPeopleCountWithIOZ',
+  'insuredPeopleCountWithoutIOZ',
+  'iozRatio',
+]);
 
 /**
  * @description
@@ -143,8 +147,11 @@ export const prepareDetailLineChartSeries = (
   const chartSeries = transformToChartSeries(doctorTypeData, serieNames).map(serie => ({
     ...serie,
     name: seriesTranslations[serie.id],
+    type: ['insuredPeopleCount', 'iozRatio'].includes(serie.id) ? 'spline' : 'column', // Line for count and ratio, bar for others
+    stacking: ['insuredPeopleCountWithIOZ', 'insuredPeopleCountWithoutIOZ'].includes(serie.id)
+      ? 'normal'
+      : undefined,
   }));
-
   return chartSeries;
 };
 
@@ -155,7 +162,10 @@ const prepareXAxis = series => {
   return { categories };
 };
 
-const prepareYAxis = title => [{ title: { text: title } }];
+const prepareYAxis = ({ titles }) => [
+  { title: { text: titles[0].title } },
+  { title: { text: titles[1].title } },
+];
 
 const prepareAccessibility = () => ({
   screenReaderSection: {
@@ -171,7 +181,7 @@ export const prepareTaskSpecialChartOptions = ({ filterState, translations }) =>
     title: { text: translations.title },
     series,
     xAxis,
-    yAxis: prepareYAxis(translations.yAxis.title),
+    yAxis: prepareYAxis({ titles: translations.yAxis }),
     accessibility: prepareAccessibility(),
   };
 };

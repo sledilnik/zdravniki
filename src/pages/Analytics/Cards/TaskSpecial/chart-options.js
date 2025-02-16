@@ -4,7 +4,7 @@ export const COLORS = {
   insuredPeopleCount: 'rgba(75, 20, 20, 1)',
   insuredPeopleCountWithIOZ: 'rgba(20, 72, 29, 1)',
   insuredPeopleCountWithoutIOZ: 'rgba(224, 20, 20, 1)',
-  iozRatio: 'rgba(81, 122, 217, 0.7)',
+  iozRatio: 'rgba(224, 20, 20, 1)',
 };
 
 export const options = {
@@ -12,10 +12,31 @@ export const options = {
   xAxis: {
     crosshair: true,
   },
-  yAxis: [{ id: 'count' }],
+  yAxis: [
+    { id: 'count' },
+    {
+      id: 'ratio',
+      opposite: true,
+      labels: {
+        formatter() {
+          const lang = document.documentElement.lang || 'en-US';
+          const intl = new Intl.NumberFormat(lang, {
+            style: 'percent',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          });
+          return intl.format(this.value);
+        },
+      },
+    },
+  ],
   plotOptions: {
     series: {
       marker: { radius: 2 },
+    },
+    column: {
+      stacking: 'normal',
+      borderWidth: 0,
     },
   },
   series: [],
