@@ -7,6 +7,48 @@ export const COLORS = {
   iozRatio: 'rgba(224, 20, 20, 1)',
 };
 
+function formatPercentage(value) {
+  const lang = document.documentElement.lang || 'en-US';
+  const intl = new Intl.NumberFormat(lang, {
+    style: 'percent',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  return intl.format(value);
+}
+
+function formatNumber(value) {
+  const lang = document.documentElement.lang || 'en-US';
+  const intl = new Intl.NumberFormat(lang);
+  return intl.format(value);
+}
+/**
+ *
+ * @param {Number} value
+ * @param {"count" | ratio} type
+ * @returns formatted value
+ */
+function formatValue(value, type) {
+  switch (type) {
+    case 'ratio':
+      return formatPercentage(value);
+    case 'count':
+      return formatNumber(value);
+    default:
+      return formatNumber(value);
+  }
+}
+
+function formatTooltip(context) {
+  const { points } = context;
+
+  return points.reduce(
+    (s, point) =>
+      `${s}<br/>${point.series.name}: ${formatValue(point.y, point.series.yAxis.userOptions.id)}`,
+    `<b>${context.x}</b>`,
+  );
+}
+
 export const options = {
   chart: { type: 'line', backgroundColor: CHART_COLORS.chart.backgroundColor },
   xAxis: {
@@ -19,13 +61,7 @@ export const options = {
       opposite: true,
       labels: {
         formatter() {
-          const lang = document.documentElement.lang || 'en-US';
-          const intl = new Intl.NumberFormat(lang, {
-            style: 'percent',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          });
-          return intl.format(this.value);
+          return formatPercentage(this.value);
         },
       },
     },
@@ -44,5 +80,8 @@ export const options = {
     useHTML: true,
     shared: true,
     backgroundColor: CHART_COLORS.tooltip.backgroundColor,
+    formatter() {
+      return formatTooltip(this);
+    },
   },
 };
