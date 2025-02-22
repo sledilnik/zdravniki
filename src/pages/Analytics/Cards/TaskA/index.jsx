@@ -32,7 +32,7 @@ import {
 
 import { Button } from './Buttons';
 import { FilterForm } from './FilterForm';
-import { useChart, useMapChart } from './hooks';
+import { useChart, useSelectedPoints } from './hooks';
 
 import styles from '../Cards.module.css';
 import buttonStyles from './Buttons.module.css';
@@ -62,7 +62,7 @@ const TaskA = function TaskA({ id }) {
     filterState,
   });
 
-  useMapChart(
+  useSelectedPoints(
     {
       setMapChartOptions,
       setFilterState,

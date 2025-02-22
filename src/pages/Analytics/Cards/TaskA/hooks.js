@@ -14,7 +14,7 @@ import { prepareOverviewMapSeriesData } from './overview-data-util';
  * @param {Highcharts.Chart} params.mapChart
  * @returns {void}
  */
-export const useMapChart = ({ setMapChartOptions, setFilterState, init, mapChart }) => {
+export const useSelectedPoints = ({ setMapChartOptions, setFilterState, init, mapChart }) => {
   useEffect(() => {
     if (!init) return;
     setMapChartOptions({
