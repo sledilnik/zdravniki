@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /** @import * as Types from "./types" */
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import { cx } from 'class-variance-authority';
 import HighchartsReact from 'highcharts-react-official';
@@ -32,8 +32,7 @@ import {
 
 import { Button } from './Buttons';
 import { FilterForm } from './FilterForm';
-import { useMapChart } from './hooks';
-import { prepareOverviewMapSeriesData } from './overview-data-util';
+import { useChart, useMapChart } from './hooks';
 
 import styles from '../Cards.module.css';
 import buttonStyles from './Buttons.module.css';
@@ -50,27 +49,7 @@ import { prepareDetailLineChartSeries } from './detail-data-util';
 const TaskA = function TaskA({ id }) {
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
-  const [init, setInit] = useState(false);
   const { filterState, onFilterChange, setFilterState } = useFilterState(DEFAULTS);
-
-  const doctorTypeTranslation = tCommon.doctorTypes[filterState.doctorType];
-
-  const mapTitle = t('analytics.taskA.mapTitle', { suffix: tTaskA.mapTitleSuffix });
-  const mapSubtitle = t('analytics.taskA.mapSubtitle', {
-    doctorType: doctorTypeTranslation,
-    year: filterState.year,
-  });
-
-  const [mapChartOptions, setMapChartOptions] = useState({
-    ...mapOptions,
-    title: { text: mapTitle },
-    subtitle: { text: mapSubtitle },
-    accessibility: {
-      screenReaderSection: {
-        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
-      },
-    },
-  });
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
@@ -79,9 +58,9 @@ const TaskA = function TaskA({ id }) {
   /** @type {React.RefObject<HTMLButtonElement>} */
   const allCitiesButtonRef = useRef(null);
 
-  useEffect(() => {
-    setInit(true);
-  }, []);
+  const { mapChartOptions, setMapChartOptions, mapSeriesData, init } = useChart(mapOptions, {
+    filterState,
+  });
 
   useMapChart(
     {
@@ -94,14 +73,6 @@ const TaskA = function TaskA({ id }) {
   );
 
   const { municipalities, doctorType } = filterState;
-
-  const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
-
-  useEffect(() => {
-    setMapChartOptions({
-      series: [{ data: mapSeriesData }],
-    });
-  }, [mapSeriesData]);
 
   useEffect(() => {
     const button = citiesButtonRef.current;
