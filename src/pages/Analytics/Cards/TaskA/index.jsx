@@ -3,18 +3,13 @@
 /** @import * as Types from "./types" */
 
 import { useEffect, useMemo, useRef } from 'react';
-
 import { cx } from 'class-variance-authority';
-import HighchartsReact from 'highcharts-react-official';
-import HighMaps from 'highcharts/highmaps';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { Icon } from 'components/Shared/Icons';
-import { srOnly } from 'pages/Analytics/highcharts-options/options';
 import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
@@ -30,12 +25,12 @@ import {
   uniqueOverviewYearsSet,
 } from './constants';
 
-import { Button } from './Buttons';
 import { FilterForm } from './FilterForm';
 import { useChart, useSelectedPoints } from './hooks';
+import { CityButtons } from './components/CityButtons';
+import { MapChart } from './components/MapChart';
 
 import styles from '../Cards.module.css';
-import buttonStyles from './Buttons.module.css';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 import { prepareDetailLineChartSeries } from './detail-data-util';
 
@@ -100,39 +95,6 @@ const TaskA = function TaskA({ id }) {
     () => calculateYearlyStatistics(currentSelectedYear, chartSeries),
     [currentSelectedYear, chartSeries],
   );
-
-  const handleAllCitiesClick = () => {
-    const button = allCitiesButtonRef.current;
-
-    if (!button) {
-      return;
-    }
-    const prevDataState = button.getAttribute('data-state');
-
-    if (prevDataState === 'active') {
-      return;
-    }
-
-    button.setAttribute('data-state', prevDataState === 'inactive' ? 'active' : 'inactive');
-    setFilterState(prev => ({
-      ...prev,
-      municipalities: [],
-    }));
-  };
-
-  const handleCityMunicipalitiesClick = () => {
-    const button = citiesButtonRef.current;
-
-    if (!button) {
-      return;
-    }
-    const prevDataState = button.getAttribute('data-state');
-    button.setAttribute('data-state', prevDataState === 'inactive' ? 'active' : 'inactive');
-    setFilterState(prev => ({
-      ...prev,
-      municipalities: prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : [],
-    }));
-  };
 
   const handleCsvDownload = () => {
     const filename = `map-neopredeljeni-${filterState.doctorType}.csv`;
@@ -210,53 +172,8 @@ const TaskA = function TaskA({ id }) {
         </CardContent>
 
         <CardContent className={styles.ChartWrapper}>
-          <figure>
-            <HighchartsReact
-              ref={mapRef}
-              highcharts={HighMaps}
-              constructorType="mapChart"
-              options={mapChartOptions}
-            />
-          </figure>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <Button
-              ref={allCitiesButtonRef}
-              type="button"
-              data-state="active"
-              onClick={handleAllCitiesClick}
-            >
-              Cela Slovenija
-            </Button>
-            <Button
-              ref={citiesButtonRef}
-              type="button"
-              onClick={handleCityMunicipalitiesClick}
-              data-state="inactive"
-            >
-              {citiesButtonRef.current?.getAttribute('data-state') === 'inactive'
-                ? tCommon.buttons.cityMunicipalitiesInactive
-                : tCommon.buttons.cityMunicipalitiesActive}
-            </Button>
-            {filterState.municipalities.map(municipality => (
-              <label key={municipality} className={buttonStyles.MunicipalityCheckbox}>
-                <input
-                  style={{
-                    ...srOnly,
-                  }}
-                  type="checkbox"
-                  value={municipality}
-                  checked
-                  onChange={e => {
-                    setFilterState(prev => ({
-                      ...prev,
-                      municipalities: prev.municipalities.filter(m => m !== e.target.value),
-                    }));
-                  }}
-                />
-                {municipality} <Icon name="Close" width="0.5rem" height="0.5rem" />
-              </label>
-            ))}
-          </div>
+          <MapChart ref={mapRef} options={mapChartOptions} />
+          <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
         </CardContent>
       </div>
     </Card>
