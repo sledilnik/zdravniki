@@ -13,16 +13,13 @@ export const useChart = (initialOptions, { filterState }) => {
   const chartTranslations = t('analytics.taskATrend', { returnObjects: true });
   const { doctorType } = filterState;
 
-  const memoChartOptions = useMemo(
-    () => prepareDetailLineChartSeries([], doctorType),
-    [doctorType],
-  );
+  const memoChartSeries = useMemo(() => prepareDetailLineChartSeries([], doctorType), [doctorType]);
 
-  const [chartOptions, setChartOptions] = useState(loMerge(memoChartOptions, initialOptions));
+  const [chartOptions, setChartOptions] = useState(loMerge(memoChartSeries, initialOptions));
 
   useEffect(() => {
-    setChartOptions(memoChartOptions);
-  }, [memoChartOptions]);
+    setChartOptions(memoChartSeries);
+  }, [memoChartSeries]);
 
-  return { chartOptions, setChartOptions };
+  return { chartOptions, setChartOptions, chartSeries: memoChartSeries };
 };

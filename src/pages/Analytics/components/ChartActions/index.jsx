@@ -14,6 +14,8 @@ import {
 } from '../ui/dropdown-menu';
 
 const ChartActions = function ChartActions({ actions }) {
+  const { openFullScreen, printChart, handleCsvDownload, handleJsonDownload } = actions;
+
   const isRequestFullscreenSupported = getIsRequestFullscreenSupported(document.documentElement);
 
   const tCommonButtons = t('analytics.common.buttons', { returnObjects: true });
@@ -30,29 +32,35 @@ const ChartActions = function ChartActions({ actions }) {
         <DropdownMenuSeparator />
         {isRequestFullscreenSupported ? (
           <DropdownMenuItem asChild>
-            <button type="button" onClick={actions.openFullScreen} style={{ width: '100%' }}>
+            <button type="button" onClick={openFullScreen} style={{ width: '100%' }}>
               {tCommonButtons.fullScreen}
             </button>
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuItem asChild>
-          <button type="button" onClick={actions.printChart} style={{ width: '100%' }}>
+          <button type="button" onClick={printChart} style={{ width: '100%' }}>
             {tCommonButtons.print}
           </button>
         </DropdownMenuItem>
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>{tCommonButtons.export}</DropdownMenuLabel>
-          <DropdownMenuItem asChild>
-            <button type="button" onClick={actions.handleCsvDownload} style={{ width: '100%' }}>
-              CSV
-            </button>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <button type="button" onClick={actions.handleJsonDownload} style={{ width: '100%' }}>
-              JSON
-            </button>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        {!!handleCsvDownload || !!handleJsonDownload ? (
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>{tCommonButtons.export}</DropdownMenuLabel>
+            {handleCsvDownload ? (
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={handleCsvDownload} style={{ width: '100%' }}>
+                  CSV
+                </button>
+              </DropdownMenuItem>
+            ) : null}
+            {handleJsonDownload ? (
+              <DropdownMenuItem asChild>
+                <button type="button" onClick={handleJsonDownload} style={{ width: '100%' }}>
+                  JSON
+                </button>
+              </DropdownMenuItem>
+            ) : null}
+          </DropdownMenuGroup>
+        ) : null}
       </DropdownMenuContent>
     </DropdownMenu>
   );
