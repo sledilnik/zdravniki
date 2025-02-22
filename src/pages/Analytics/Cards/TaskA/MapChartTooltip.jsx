@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 
-import styles from './Tooltip.module.css';
+import styles from '../Tooltip.module.css';
 
 /* eslint-disable react/prop-types */
 export function MapChartTooltip({ point }) {

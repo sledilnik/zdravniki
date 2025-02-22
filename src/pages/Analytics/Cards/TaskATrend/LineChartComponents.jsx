@@ -2,7 +2,7 @@
 
 import { t } from 'i18next';
 
-import styles from './Tooltip.module.css';
+import styles from '../Tooltip.module.css';
 
 export const LineChartTooltip = function LineChartTooltip({ points, x }) {
   const intlFormat = new Intl.NumberFormat('sl');
