@@ -9,16 +9,16 @@ import { prepareTaskDChartOptions } from './data';
 export const useChart = (initialOptions, { filterState }) => {
   const { lng } = useParams();
 
-  const chartTransaltions = useMemo(() => t(`analytics.taskD.chart`, { returnObjects: true }), []);
+  const chartTranslations = useMemo(() => t(`analytics.taskD.chart`, { returnObjects: true }), []);
 
   const memoChartOptions = useMemo(
     () =>
       prepareTaskDChartOptions({
         filterState,
-        translations: chartTransaltions,
+        translations: chartTranslations,
         lng,
       }),
-    [chartTransaltions, filterState, lng],
+    [chartTranslations, filterState, lng],
   );
 
   const [chartOptions, setChartOptions] = useState(loMerge(memoChartOptions, initialOptions));
