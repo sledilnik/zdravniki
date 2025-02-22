@@ -25,20 +25,14 @@ import { FilterForm } from './FilterForm';
 import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 
 import styles from '../Cards.module.css';
+import { useChart } from './useChart';
 
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
   const [, setInit] = useState(false);
   const { filterState, onFilterChange } = useFilterState(DEFAULTS);
 
-  const [chartOptions, setChartOptions] = useState({
-    ...secondChartOptions,
-    accessibility: {
-      screenReaderSection: {
-        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
-      },
-    },
-  });
+  const { chartOptions } = useChart(secondChartOptions, { filterState });
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
@@ -50,12 +44,6 @@ const TaskATrend = function TaskATrend({ id }) {
   const { doctorType } = filterState;
 
   const chartSeries = useMemo(() => prepareDetailLineChartSeries([], doctorType), [doctorType]);
-
-  useEffect(() => {
-    setChartOptions({
-      series: chartSeries,
-    });
-  }, [chartSeries]);
 
   const currentSelectedYear = Number(filterState.year);
   const stats = useMemo(

@@ -59,6 +59,11 @@ export const mapOptions = {
       borderWidth: 0.5,
     },
   ],
+  accessibility: {
+    screenReaderSection: {
+      beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
+    },
+  },
 };
 
 /** @type {Types.HighchartsOptions} */
