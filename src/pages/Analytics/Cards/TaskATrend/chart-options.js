@@ -1,7 +1,6 @@
 import { CHART_COLORS } from 'pages/Analytics/constants';
 import { renderToString } from 'react-dom/server';
 import { uniqueOverviewYearsSet } from '../TaskA/constants';
-import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
 import { LineChartTooltip, LineChartYAxisTitle } from './LineChartComponents';
 
 /** @type {Types.HighchartsOptions} */
@@ -26,7 +25,7 @@ export const initialCharOptions = {
   legend: {
     enabled: true,
   },
-  series: prepareDetailLineChartSeries(),
+
   tooltip: {
     shared: true,
     useHTML: true,

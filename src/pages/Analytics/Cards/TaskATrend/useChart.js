@@ -15,10 +15,12 @@ export const useChart = (initialOptions, { filterState }) => {
 
   const memoChartSeries = useMemo(() => prepareDetailLineChartSeries([], doctorType), [doctorType]);
 
-  const [chartOptions, setChartOptions] = useState(loMerge(memoChartSeries, initialOptions));
+  const [chartOptions, setChartOptions] = useState(
+    loMerge(initialOptions, { series: memoChartSeries }),
+  );
 
   useEffect(() => {
-    setChartOptions(memoChartSeries);
+    setChartOptions({ series: memoChartSeries });
   }, [memoChartSeries]);
 
   return { chartOptions, setChartOptions, chartSeries: memoChartSeries };

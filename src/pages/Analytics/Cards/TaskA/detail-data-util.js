@@ -97,7 +97,7 @@ const collectData = (municipalities, doctorType) =>
  */
 const transformToChartSeries = (aggregatedData, xProp, yProp, doctorType) =>
   Array.from(aggregatedData.entries()).map(([ageGroup, yearDataMap]) => ({
-    id: `ageGroup${ageGroup}`,
+    id: `${doctorType}ageGroup${ageGroup}`,
     name: getTaskAAgeGroupString(doctorType, ageGroup),
     data: Array.from(yearDataMap.values()).map(item => ({
       ...item,
