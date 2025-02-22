@@ -69,12 +69,8 @@ ChartActions.propTypes = {
   actions: PropTypes.shape({
     openFullScreen: PropTypes.func.isRequired,
     printChart: PropTypes.func.isRequired,
-    handleCsvDownload: PropTypes.func.isRequired,
-    handleJsonDownload: PropTypes.func.isRequired,
-  }).isRequired,
-  translations: PropTypes.shape({
-    menu: PropTypes.string.isRequired,
-    export: PropTypes.string.isRequired,
+    handleCsvDownload: PropTypes.func,
+    handleJsonDownload: PropTypes.func,
   }).isRequired,
 };
 
