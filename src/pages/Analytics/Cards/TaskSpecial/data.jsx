@@ -124,13 +124,13 @@ export const transformToChartSeries = (data, series) =>
   });
 
 /**
- * @function prepareDetailLineChartSeries
+ * @function prepareTaskSpecialSeries
  * @description Prepares data for line chart.
  * @param {Omit<Types.UserInputsValues, "year" | "municipalities">} filterState - Doctor type filter.
  * @param {string[]} serieNames - List of series to show.
  * @returns {Types.LineChartSeries[]}
  */
-export const prepareDetailLineChartSeries = (
+const prepareTaskSpecialSeries = (
   filterState = { doctorType: 'gp' },
   seriesTranslations = {},
   serieNames = [
@@ -174,7 +174,7 @@ const prepareAccessibility = () => ({
 });
 
 export const prepareTaskSpecialChartOptions = ({ filterState, translations }) => {
-  const series = prepareDetailLineChartSeries(filterState, translations.series, seriesToShow);
+  const series = prepareTaskSpecialSeries(filterState, translations.series, seriesToShow);
   const xAxis = prepareXAxis(series);
 
   return {
