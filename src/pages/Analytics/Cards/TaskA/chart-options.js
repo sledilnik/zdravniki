@@ -4,9 +4,7 @@ import { renderToString } from 'react-dom/server';
 
 import { CHART_COLORS } from 'pages/Analytics/constants';
 import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
-import { uniqueOverviewYearsSet } from './constants';
-import { prepareDetailLineChartSeries } from './detail-data-util';
-import { LineChartTooltip, LineChartYAxisTitle } from './LineChartComponents';
+
 import { MapChartTooltip } from './MapChartTooltip';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 
@@ -62,39 +60,6 @@ export const mapOptions = {
   accessibility: {
     screenReaderSection: {
       beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
-    },
-  },
-};
-
-/** @type {Types.HighchartsOptions} */
-export const secondChartOptions = {
-  chart: {
-    type: 'line',
-    backgroundColor: CHART_COLORS.chart.backgroundColor,
-  },
-  plotOptions: {
-    series: { marker: { radius: 2 } },
-  },
-  xAxis: {
-    categories: [...uniqueOverviewYearsSet].sort((a, b) => a - b),
-    crosshair: true,
-  },
-  yAxis: {
-    useHTML: true,
-    title: {
-      text: renderToString(<LineChartYAxisTitle />),
-    },
-  },
-  legend: {
-    enabled: true,
-  },
-  series: prepareDetailLineChartSeries(),
-  tooltip: {
-    shared: true,
-    useHTML: true,
-    backgroundColor: CHART_COLORS.tooltip.backgroundColor,
-    formatter() {
-      return renderToString(<LineChartTooltip points={this.points} x={this.x} />);
     },
   },
 };

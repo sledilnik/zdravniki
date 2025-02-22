@@ -17,7 +17,6 @@ import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
 import ChartActions from 'pages/Analytics/components/ChartActions';
-import { secondChartOptions } from '../TaskA/chart-options';
 import { DEFAULTS, uniqueOverviewDoctorTypesSet } from './constants';
 
 import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
@@ -26,13 +25,16 @@ import { calculateYearlyStatistics } from '../TaskA/scorecards-calc-util';
 
 import styles from '../Cards.module.css';
 import { useChart } from './useChart';
+import { initialCharOptions } from './chart-options';
 
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
   const [, setInit] = useState(false);
   const { filterState, onFilterChange } = useFilterState(DEFAULTS);
 
-  const { chartOptions } = useChart(secondChartOptions, { filterState });
+  const { chartOptions } = useChart(initialCharOptions, {
+    filterState,
+  });
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
