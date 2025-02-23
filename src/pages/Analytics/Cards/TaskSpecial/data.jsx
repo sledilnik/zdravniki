@@ -147,7 +147,8 @@ const prepareTaskSpecialSeries = (
   const chartSeries = transformToChartSeries(doctorTypeData, serieNames).map(serie => ({
     ...serie,
     name: seriesTranslations[serie.id],
-    type: ['insuredPeopleCount', 'iozRatio'].includes(serie.id) ? 'spline' : 'column', // Line for count and ratio, bar for others
+    type: ['insuredPeopleCount', 'iozRatio'].includes(serie.id) ? 'spline' : 'column',
+    valueType: ['iozRatio'].includes(serie.id) ? 'ratio' : 'count',
     stacking: ['insuredPeopleCountWithIOZ', 'insuredPeopleCountWithoutIOZ'].includes(serie.id)
       ? 'normal'
       : undefined,

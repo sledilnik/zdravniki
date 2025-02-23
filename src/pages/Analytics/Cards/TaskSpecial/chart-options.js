@@ -67,7 +67,7 @@ function formatTooltip(context) {
         break;
     }
 
-    return `${s}<br/><span style="color: ${point.series.color};">${symbol}</span> ${point.series.name}: ${formatValue(point.y, point.series.userOptions.id)}`;
+    return `${s}<br/><span style="color: ${point.series.color};">${symbol}</span> ${point.series.name}: <b>${formatValue(point.y, point.series.userOptions.valueType)}</b>`;
   }, `<b>${context.x}</b>`);
 }
 
