@@ -20,6 +20,7 @@ export const initialChartOptions = {
     labels: {
       format: '{value:%Y}', // Display the year only
     },
+    crosshair: true,
   },
   series: [],
   yAxis: {
@@ -35,8 +36,9 @@ export const initialChartOptions = {
       zIndex: 9000,
     },
     formatter() {
+      const { symbolName } = this.point.series.legendItem.symbol;
       let symbol = '';
-      switch (this.point.graphic.symbolName) {
+      switch (symbolName) {
         case 'circle':
           symbol = '●';
           break;
@@ -53,7 +55,7 @@ export const initialChartOptions = {
           symbol = '▼';
           break;
         default:
-          symbol = 'x';
+          symbol = '-';
           break;
       }
 

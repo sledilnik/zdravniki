@@ -42,11 +42,33 @@ function formatValue(value, type) {
 function formatTooltip(context) {
   const { points } = context;
 
-  return points.reduce(
-    (s, point) =>
-      `${s}<br/><span style="color: ${point.series.color};">●</span> ${point.series.name}: ${formatValue(point.y, point.series.userOptions.id)}`,
-    `<b>${context.x}</b>`,
-  );
+  return points.reduce((s, point) => {
+    const { symbolName } = point.series.legendItem.symbol;
+    let symbol = '';
+
+    switch (symbolName) {
+      case 'circle':
+        symbol = '●';
+        break;
+      case 'diamond':
+        symbol = '♦';
+        break;
+      case 'square':
+        symbol = '■';
+        break;
+      case 'triangle':
+        symbol = '▲';
+        break;
+      case 'triangle-down':
+        symbol = '▼';
+        break;
+      default:
+        symbol = '-';
+        break;
+    }
+
+    return `${s}<br/><span style="color: ${point.series.color};">${symbol}</span> ${point.series.name}: ${formatValue(point.y, point.series.userOptions.id)}`;
+  }, `<b>${context.x}</b>`);
 }
 
 export const options = {
