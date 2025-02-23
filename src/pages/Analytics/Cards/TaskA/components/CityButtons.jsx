@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
 import { Icon } from 'components/Shared/Icons';
@@ -12,42 +12,40 @@ export function CityButtons({ municipalities, setFilterState }) {
   const citiesButtonRef = useRef(null);
   const allCitiesButtonRef = useRef(null);
 
+  const isCitiesActive = useCallback(
+    () => assertSetsEqual(new Set(municipalities), new Set(CITY_MUNICIPALITIES_LIST)),
+    [municipalities],
+  );
+
+  const isAllCitiesActive = useCallback(() => municipalities.length === 0, [municipalities]);
+
+  const updateButtonState = (button, isActive) => {
+    if (!button) return;
+    button.setAttribute('data-state', isActive ? 'active' : 'inactive');
+    const buttonStyle = button.style;
+    buttonStyle.pointerEvents = isActive ? 'none' : 'auto';
+  };
+
   useEffect(() => {
-    const button = citiesButtonRef.current;
-    const allButton = allCitiesButtonRef.current;
-    if (!button || !allButton) return;
-
-    const isCitiesActive = assertSetsEqual(
-      new Set(municipalities),
-      new Set(CITY_MUNICIPALITIES_LIST),
-    );
-    button.setAttribute('data-state', isCitiesActive ? 'active' : 'inactive');
-    button.style.pointerEvents = isCitiesActive ? 'none' : 'auto';
-
-    const isAllCitiesActive = municipalities.length === 0;
-    allButton.setAttribute('data-state', isAllCitiesActive ? 'active' : 'inactive');
-    allButton.style.pointerEvents = isAllCitiesActive ? 'none' : 'auto';
-  }, [municipalities]);
+    updateButtonState(citiesButtonRef.current, isCitiesActive());
+    updateButtonState(allCitiesButtonRef.current, isAllCitiesActive());
+  }, [isAllCitiesActive, isCitiesActive, municipalities]);
 
   const handleAllCitiesClick = () => {
-    if (!allCitiesButtonRef.current) return;
-
-    const prevDataState = allCitiesButtonRef.current.getAttribute('data-state');
-    if (prevDataState === 'active') return;
-
-    allCitiesButtonRef.current.setAttribute('data-state', 'active');
+    if (allCitiesButtonRef.current?.getAttribute('data-state') === 'active') return;
     setFilterState('municipalities', []);
   };
 
   const handleCityMunicipalitiesClick = () => {
-    if (!citiesButtonRef.current) return;
+    const isActive = citiesButtonRef.current?.getAttribute('data-state') === 'inactive';
+    setFilterState('municipalities', isActive ? CITY_MUNICIPALITIES_LIST : []);
+  };
 
-    const prevDataState = citiesButtonRef.current.getAttribute('data-state');
-    citiesButtonRef.current.setAttribute(
-      'data-state',
-      prevDataState === 'inactive' ? 'active' : 'inactive',
+  const handleMunicipalityChange = municipality => {
+    setFilterState(
+      'municipalities',
+      municipalities.filter(m => m !== municipality),
     );
-    setFilterState('municipalities', prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : []);
   };
 
   return (
@@ -77,12 +75,7 @@ export function CityButtons({ municipalities, setFilterState }) {
             type="checkbox"
             value={municipality}
             checked
-            onChange={e => {
-              setFilterState(
-                'municipalities',
-                municipalities.filter(m => m !== e.target.value),
-              );
-            }}
+            onChange={() => handleMunicipalityChange(municipality)}
           />
           {municipality} <Icon name="Close" width="0.5rem" height="0.5rem" />
         </label>
