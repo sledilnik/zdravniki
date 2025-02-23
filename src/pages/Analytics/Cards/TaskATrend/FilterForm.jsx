@@ -54,13 +54,14 @@ export const FilterForm = forwardRef(
       filterState,
       onChange,
       filterOptions = {
+        municipalities: [],
         doctorTypes: [],
       },
     },
     ref,
   ) => {
     const tCommon = t('analytics.common', { returnObjects: true });
-    const { doctorTypes: doctorTypesTranslations } = tCommon;
+    const { doctorTypes: doctorTypesTranslations, buttons: tButtons } = tCommon;
 
     const onFormChange = e => {
       if (e?.target) {
@@ -77,8 +78,51 @@ export const FilterForm = forwardRef(
       });
     };
 
+    const handleMultiSelectChange = selectedOptions => {
+      const selectedMunicipalities = selectedOptions.map(option => option.value);
+      onChange({ target: { name: 'municipalities', value: selectedMunicipalities } });
+    };
+
     return (
       <form ref={ref} action="" className={styles.FilterForm}>
+        <div>
+          <Label htmlFor="municipality">{tCommon.municipality}</Label>
+          <CustomReactSelect
+            styles={{
+              input: base => ({
+                ...base,
+                minWidth: '28ch',
+              }),
+            }}
+            name="municipalities"
+            id="municipalities"
+            delimitier=","
+            isMulti
+            onChange={handleMultiSelectChange}
+            value={filterState.municipalities.map(municipality => ({
+              name: 'municipalities',
+              label: municipality,
+              value: municipality,
+            }))}
+            options={filterOptions.municipalities.map(municipality => ({
+              name: 'municipalities',
+              label: municipality,
+              value: municipality,
+            }))}
+            placeholder={tCommon.selectMunicipality}
+            components={{
+              ...components,
+              ValueContainer: props => (
+                <CustomValueContainer
+                  clearAllText=""
+                  clearAllClassName={styles.MunClearAll}
+                  isSelectedText={tButtons.isSelectedText}
+                  {...props}
+                />
+              ),
+            }}
+          />
+        </div>
         <div>
           <Label htmlFor="doctorType">{tCommon.doctorType}</Label>
           <CustomReactSelect

@@ -23,15 +23,19 @@ import { FilterForm } from './FilterForm';
 import styles from '../Cards.module.css';
 import { useChart } from './useChart';
 import { initialCharOptions } from './chart-options';
+import { uniqueOverviewMunicipalitiesSet } from '../TaskA/constants';
+import { CityButtons } from '../TaskA/components/CityButtons';
 
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
   const [, setInit] = useState(false);
-  const { filterState, onFilterChange } = useFilterState(DEFAULTS);
+  const { filterState, onFilterChange, setFilterState } = useFilterState(DEFAULTS);
 
   const { chartOptions } = useChart(initialCharOptions, {
     filterState,
   });
+
+  const { municipalities } = filterState;
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const chartRef = useRef(null);
@@ -67,6 +71,7 @@ const TaskATrend = function TaskATrend({ id }) {
             filterState={filterState}
             onChange={onFilterChange}
             filterOptions={{
+              municipalities: [...uniqueOverviewMunicipalitiesSet],
               doctorTypes: [...uniqueOverviewDoctorTypesSet].filter(
                 v => v !== 'betterAccessibility',
               ),
@@ -83,6 +88,7 @@ const TaskATrend = function TaskATrend({ id }) {
               constructorType="chart"
             />
           </figure>
+          <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
         </CardContent>
       </div>
     </Card>

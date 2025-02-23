@@ -40,5 +40,6 @@ if (isDev) {
  * @default doctorType 'gp'
  */
 export const DEFAULTS = Object.freeze({
+  municipalities: [],
   doctorType: 'gp',
 });

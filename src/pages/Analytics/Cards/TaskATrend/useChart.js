@@ -11,9 +11,12 @@ export const useChart = (initialOptions, { filterState }) => {
   const { lng } = useParams();
 
   const chartTranslations = t('analytics.taskATrend', { returnObjects: true });
-  const { doctorType } = filterState;
+  const { doctorType, municipalities } = filterState;
 
-  const memoChartSeries = useMemo(() => prepareDetailLineChartSeries([], doctorType), [doctorType]);
+  const memoChartSeries = useMemo(
+    () => prepareDetailLineChartSeries(municipalities, doctorType),
+    [doctorType, municipalities],
+  );
 
   const [chartOptions, setChartOptions] = useState(
     loMerge(initialOptions, { series: memoChartSeries }),
