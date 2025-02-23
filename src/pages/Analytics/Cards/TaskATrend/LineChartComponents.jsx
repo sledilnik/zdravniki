@@ -9,7 +9,7 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
   const tCommon = t('analytics.common', { returnObjects: true });
 
   return (
-    <div>
+    <div className={styles.Tooltip}>
       <b>{tCommon.year}:</b> {x}
       <table className={styles.TooltipTable}>
         <thead>

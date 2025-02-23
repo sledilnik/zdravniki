@@ -44,7 +44,7 @@ function formatTooltip(context) {
 
   return points.reduce(
     (s, point) =>
-      `${s}<br/>${point.series.name}: ${formatValue(point.y, point.series.yAxis.userOptions.id)}`,
+      `${s}<br/><span style="color: ${point.series.color};">●</span> ${point.series.name}: ${formatValue(point.y, point.series.userOptions.id)}`,
     `<b>${context.x}</b>`,
   );
 }
@@ -80,8 +80,12 @@ export const options = {
     useHTML: true,
     shared: true,
     backgroundColor: CHART_COLORS.tooltip.backgroundColor,
+    padding: 0,
+    style: {
+      zIndex: 9000,
+    },
     formatter() {
-      return formatTooltip(this);
+      return `<div style="padding: 0.5em;background-color: ${CHART_COLORS.tooltip.backgroundColor}">${formatTooltip(this)}</div>`;
     },
   },
 };

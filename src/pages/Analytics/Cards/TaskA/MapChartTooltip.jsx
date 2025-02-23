@@ -8,7 +8,7 @@ export function MapChartTooltip({ point }) {
 
   const tCommon = t('analytics.common', { returnObjects: true });
   return (
-    <div>
+    <div className={styles.Tooltip}>
       <div>
         {point.municipality}, {point.year}, {tCommon.doctorTypes[point.doctorType]}
       </div>

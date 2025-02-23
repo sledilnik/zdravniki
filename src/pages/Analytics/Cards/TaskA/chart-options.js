@@ -35,6 +35,10 @@ export const mapOptions = {
     useHTML: true,
     headerFormat: '',
     backgroundColor: CHART_COLORS.tooltip.backgroundColor,
+    padding: 0,
+    style: {
+      zIndex: 9000,
+    },
     formatter() {
       return renderToString(<MapChartTooltip point={this.point} />);
     },

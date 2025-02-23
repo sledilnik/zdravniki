@@ -30,6 +30,10 @@ export const initialCharOptions = {
     shared: true,
     useHTML: true,
     backgroundColor: CHART_COLORS.tooltip.backgroundColor,
+    padding: 0,
+    style: {
+      zIndex: 9000,
+    },
     formatter() {
       return renderToString(<LineChartTooltip points={this.points} x={this.x} />);
     },
