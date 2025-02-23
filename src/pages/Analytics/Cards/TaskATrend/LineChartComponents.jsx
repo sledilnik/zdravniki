@@ -22,16 +22,37 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
         <tbody>
           {points.map(point => {
             const { options } = point.point;
+            const { symbolName } = point.point.series.legendItem.symbol;
+            let symbol = '';
+            switch (symbolName) {
+              case 'circle':
+                symbol = '●';
+                break;
+              case 'diamond':
+                symbol = '♦';
+                break;
+              case 'square':
+                symbol = '■';
+                break;
+              case 'triangle':
+                symbol = '▲';
+                break;
+              case 'triangle-down':
+                symbol = '▼';
+                break;
+              default:
+                symbol = '-';
+                break;
+            }
             const totalInsured = intlFormat.format(options.insuredPeopleCount);
             const insuredWithoutIOZ = intlFormat.format(options.insuredPeopleCountWithoutIOZ);
             return (
               <tr key={point.series.name}>
                 <td className={styles.Center}>
                   <span className={styles.SeriesLabel}>
-                    <span
-                      className={styles.SeriesIndicator}
-                      style={{ backgroundColor: point.series.color }}
-                    />
+                    <span className={styles.SeriesIndicator} style={{ color: point.series.color }}>
+                      {symbol}
+                    </span>{' '}
                     {point.series.name}
                   </span>
                 </td>

@@ -31,7 +31,6 @@
 
 .SeriesIndicator {
   margin-right: auto;
-  width: 0.5em;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: 2ch;
+  text-align: center;
 }
