@@ -24,17 +24,17 @@ export const useSelectedPoints = ({ setMapChartOptions, setFilterState, init, ma
             events: {
               select() {
                 const sPoints = mapChart?.getSelectedPoints();
-                setFilterState(prev => ({
-                  ...prev,
-                  municipalities: sPoints.map(p => p.municipality),
-                }));
+                setFilterState(
+                  'municipalities',
+                  sPoints.map(p => p.municipality),
+                );
               },
               unselect() {
                 const sPoints = mapChart?.getSelectedPoints();
-                setFilterState(prev => ({
-                  ...prev,
-                  municipalities: sPoints.map(p => p.municipality),
-                }));
+                setFilterState(
+                  'municipalities',
+                  sPoints.map(p => p.municipality),
+                );
               },
             },
           },

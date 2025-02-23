@@ -10,16 +10,15 @@ import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import ChartActions from 'pages/Analytics/components/ChartActions';
+import useFilterStore from 'pages/Analytics/store/filterStore';
 import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
   CITY_MUNICIPALITIES_LIST,
-  DEFAULTS,
   uniqueOverviewDoctorTypesSet,
   uniqueOverviewMunicipalitiesSet,
   uniqueOverviewYearsSet,
@@ -44,7 +43,7 @@ import { prepareDetailLineChartSeries } from './detail-data-util';
 const TaskA = function TaskA({ id }) {
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
-  const { filterState, onFilterChange, setFilterState } = useFilterState(DEFAULTS);
+  const { filterState, setFilterState } = useFilterStore();
 
   /** @type {React.RefObject<Types.HighchartsReactRefObject>} */
   const mapRef = useRef(null);
@@ -122,6 +121,11 @@ const TaskA = function TaskA({ id }) {
 
   const printChart = () => {
     mapRef.current.chart.print();
+  };
+
+  const onFilterChange = e => {
+    const { name, value } = e.target;
+    setFilterState(name, value);
   };
 
   return (

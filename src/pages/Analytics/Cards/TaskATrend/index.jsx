@@ -13,10 +13,9 @@ import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
-import { useFilterState } from 'pages/Analytics/hooks';
-
 import ChartActions from 'pages/Analytics/components/ChartActions';
-import { DEFAULTS, uniqueOverviewDoctorTypesSet } from './constants';
+import useFilterStore from 'pages/Analytics/store/filterStore';
+import { uniqueOverviewDoctorTypesSet } from './constants';
 
 import { FilterForm } from './FilterForm';
 
@@ -29,7 +28,7 @@ import { CityButtons } from '../TaskA/components/CityButtons';
 const TaskATrend = function TaskATrend({ id }) {
   const tTaskATrend = t('analytics.taskATrend', { returnObjects: true });
   const [, setInit] = useState(false);
-  const { filterState, onFilterChange, setFilterState } = useFilterState(DEFAULTS);
+  const { filterState, setFilterState } = useFilterStore();
 
   const { chartOptions } = useChart(initialCharOptions, {
     filterState,
@@ -50,6 +49,11 @@ const TaskATrend = function TaskATrend({ id }) {
 
   const printChart = () => {
     chartRef.current.chart.print();
+  };
+
+  const onFilterChange = e => {
+    const { name, value } = e.target;
+    setFilterState(name, value);
   };
 
   return (
