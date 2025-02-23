@@ -36,7 +36,7 @@ export function CityButtons({ municipalities, setFilterState }) {
     if (prevDataState === 'active') return;
 
     allCitiesButtonRef.current.setAttribute('data-state', 'active');
-    setFilterState(prev => ({ ...prev, municipalities: [] }));
+    setFilterState('municipalities', []);
   };
 
   const handleCityMunicipalitiesClick = () => {
@@ -47,10 +47,7 @@ export function CityButtons({ municipalities, setFilterState }) {
       'data-state',
       prevDataState === 'inactive' ? 'active' : 'inactive',
     );
-    setFilterState(prev => ({
-      ...prev,
-      municipalities: prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : [],
-    }));
+    setFilterState('municipalities', prevDataState === 'inactive' ? CITY_MUNICIPALITIES_LIST : []);
   };
 
   return (
@@ -81,10 +78,10 @@ export function CityButtons({ municipalities, setFilterState }) {
             value={municipality}
             checked
             onChange={e => {
-              setFilterState(prev => ({
-                ...prev,
-                municipalities: prev.municipalities.filter(m => m !== e.target.value),
-              }));
+              setFilterState(
+                'municipalities',
+                municipalities.filter(m => m !== e.target.value),
+              );
             }}
           />
           {municipality} <Icon name="Close" width="0.5rem" height="0.5rem" />
