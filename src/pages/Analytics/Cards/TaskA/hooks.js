@@ -59,14 +59,16 @@ export const useChart = (initialOptions, { filterState }) => {
     year: filterState.year,
     cities,
   });
+  const legendTitle = t('analytics.taskA.chart.legendTitle');
 
   const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
   const memoTitles = useMemo(
     () => ({
       title: { text: title },
       subtitle: { text: subtitle },
+      legend: { title: { text: legendTitle } },
     }),
-    [subtitle, title],
+    [legendTitle, subtitle, title],
   );
 
   const [init, setInit] = useState(false);

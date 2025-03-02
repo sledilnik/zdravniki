@@ -115,8 +115,7 @@
       "checkboxLabel": "Ne prikaži več tega sporočila"
     },
     "sectionTitle": {
-      "1": "Dostopnost do primarne zdravstvene oskrbe",
-      "2": "Dev Primeri"
+      "1": "Dostopnost do primarne zdravstvene oskrbe"
     },
     "sidebar": {
       "title": "Grafi"
@@ -146,7 +145,6 @@
         "clearAll": "počisti izbor",
         "allCities": "Cela Slovenija",
         "close": "Zapri",
-        "mapSettings": "možnosti zemljevida",
         "min": "min",
         "max": "maks",
         "selected": "izbor",
@@ -180,7 +178,8 @@
       "subtitle": "Regionalna dostopnost do primarne zdravstvene oskrbe po občinah v Sloveniji",
       "chart": {
         "title": "$t(analytics.taskATrend.title)",
-        "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}"
+        "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}",
+        "legendTitle": "legend title"
       },
 
       "yAxis": {
