@@ -71,6 +71,17 @@ export const baseOptions = {
   },
   credits: { enabled: false },
   legend: { enabled: false },
+
+  colors: [
+    'rgba(255,87,51,1)',
+    'rgba(51,181,229,1)',
+    'rgba(255,36,213,1)',
+    'rgba(139,195,74,1)',
+    'rgba(156,39,176,1)',
+    'rgba(255,152,0,1)',
+    'rgba(96,125,139,1)',
+  ],
+
   accessibility: {
     screenReaderSection: {
       beforeChartFormat: '<h4>{chartTitle} - {chartSubtitle}</h4>',

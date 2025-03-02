@@ -1,11 +1,14 @@
 /** @import * as TaskDTypes from "./types" */
 
+import Highcharts from 'highcharts';
+
 import { groupYAxisLabelFormat, parsedData } from './parsed-files';
 
 export const seriesToShow = ['public', 'private'];
+const colorIndex = [3, 4];
 
 const prepareSeries = ({ filterState, seriesTranslations, serieNames = ['public', 'private'] }) => {
-  const series = serieNames.map(serie => {
+  const series = serieNames.map((serie, index) => {
     const serieData = parsedData.get(filterState.data)[serie];
     if (!serieData) {
       throw new Error(`Invalid serie name: ${serie}`);
@@ -14,6 +17,7 @@ const prepareSeries = ({ filterState, seriesTranslations, serieNames = ['public'
       id: serie,
       name: seriesTranslations[serie],
       data: serieData,
+      color: Highcharts.getOptions().colors[colorIndex[index]],
     };
   });
   return series;
