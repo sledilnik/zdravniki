@@ -71,6 +71,11 @@ export const baseOptions = {
   },
   credits: { enabled: false },
   legend: { enabled: false },
+  accessibility: {
+    screenReaderSection: {
+      beforeChartFormat: '<h4>{chartTitle} - {chartSubtitle}</h4>',
+    },
+  },
 };
 
 /** @type {React.CSSProperties}  */

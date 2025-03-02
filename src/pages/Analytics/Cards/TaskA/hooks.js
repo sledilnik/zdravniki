@@ -73,11 +73,6 @@ export const useChart = (initialOptions, { filterState }) => {
   const [mapChartOptions, setMapChartOptions] = useState({
     ...initialOptions,
     ...memoTitles,
-    accessibility: {
-      screenReaderSection: {
-        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>', // TODO: move to use effect and apply for all charts
-      },
-    },
   });
 
   useEffect(() => {
