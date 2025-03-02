@@ -4,8 +4,23 @@ import { t } from 'i18next';
 
 import styles from '../Tooltip.module.css';
 
+function formatPercentage(value) {
+  const lang = document.documentElement.lang || 'en-US';
+  const intl = new Intl.NumberFormat(lang, {
+    style: 'percent',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  return intl.format(value);
+}
+
+function formatNumber(value) {
+  const lang = document.documentElement.lang || 'en-US';
+  const intl = new Intl.NumberFormat(lang);
+  return intl.format(value);
+}
+
 export const LineChartTooltip = function LineChartTooltip({ points, x }) {
-  const intlFormat = new Intl.NumberFormat('sl');
   const tCommon = t('analytics.common', { returnObjects: true });
 
   return (
@@ -17,6 +32,7 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
             <th className={styles.Center}>{tCommon.ageGroup}</th>
             <th className={styles.Center}>{tCommon.data.insuredPeopleCount}</th>
             <th className={styles.Center}>{tCommon.data.insuredPeopleCountWithoutIOZ}</th>
+            <th className={styles.Center}>{tCommon.data.iozRatio}</th>
           </tr>
         </thead>
         <tbody>
@@ -44,8 +60,9 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
                 symbol = '-';
                 break;
             }
-            const totalInsured = intlFormat.format(options.insuredPeopleCount);
-            const insuredWithoutIOZ = intlFormat.format(options.insuredPeopleCountWithoutIOZ);
+            const totalInsured = formatNumber(options.insuredPeopleCount);
+            const insuredWithoutIOZ = formatNumber(options.insuredPeopleCountWithoutIOZ);
+            const iozRatio = formatPercentage(options.iozRatio);
             return (
               <tr key={point.series.name}>
                 <td className={styles.Center}>
@@ -58,6 +75,7 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
                 </td>
                 <td className={styles.Right}>{totalInsured}</td>
                 <td className={styles.Right}>{insuredWithoutIOZ}</td>
+                <td className={styles.Right}>{iozRatio}</td>
               </tr>
             );
           })}
