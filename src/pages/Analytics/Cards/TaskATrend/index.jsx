@@ -68,7 +68,7 @@ const TaskATrend = function TaskATrend({ id }) {
         <CardHeader className={styles.Header}>
           <div>
             <CardTitle as="h3">{tTaskATrend.title}</CardTitle>
-            <CardTitle variant="subtitle">{tTaskATrend.subtitle}</CardTitle>
+            <CardDescription>{tTaskATrend.subtitle}</CardDescription>
           </div>
           <ChartActions
             actions={{
