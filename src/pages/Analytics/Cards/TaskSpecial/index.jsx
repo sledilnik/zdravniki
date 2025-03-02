@@ -7,7 +7,13 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
 
@@ -77,7 +83,10 @@ const TaskSpecial = function TaskSpecial({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
+          <div>
+            <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
+            <CardDescription>{tTaskSpecial.subtitle}</CardDescription>
+          </div>
           <ChartActions
             actions={{
               openFullScreen,
@@ -103,6 +112,9 @@ const TaskSpecial = function TaskSpecial({ id }) {
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
+          <CardDescription style={{ fontSize: '0.75em', paddingBlock: '0.5em' }}>
+            {tTaskSpecial.popup.withoutIOZ}
+          </CardDescription>
         </CardContent>
       </div>
     </Card>

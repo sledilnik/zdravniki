@@ -115,7 +115,7 @@
       "checkboxLabel": "Ne prikaži več tega sporočila"
     },
     "sectionTitle": {
-      "1": "Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe",
+      "1": "Dostopnost do primarne zdravstvene oskrbe",
       "2": "Dev Primeri"
     },
     "sidebar": {
@@ -192,6 +192,9 @@
 
     "taskATrend": {
       "title": "Trend skozi čas",
+      "chart": {
+        "title": "$t(analytics.taskATrend.title)"
+      },
       "yAxis": {
         "title": "$t(analytics.common.data.iozRatio)"
       },
@@ -223,8 +226,10 @@
     },
     "taskSpecial": {
       "title": "Gibanje števila neopredeljenih skozi čas",
+      "subtitle": "Število in razmerje opredeljenih/neopredeljenih zavarovancev po posameznih dejavnostih",
       "chart": {
         "title": "{{value}}: $t(analytics.taskSpecial.title)",
+        "subtitle": "$t(analytics.taskSpecial.subtitle)",
         "yAxis": {
           "0": {
             "title": "št. zavarovancev"

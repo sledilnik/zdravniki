@@ -5,21 +5,20 @@ import { t } from 'i18next';
 import loMerge from 'lodash/merge';
 import { prepareTaskSpecialChartOptions } from './data';
 
-/**
- * A custom React hook for managing chart options.
- *
- * @param {Highcharts.Options} extraOptions - Additional options to merge with the initial options.
- * @param {Highcharts.Options} initialOptions - The initial options for the chart.
- * @param {string} taskName
- * @return {{
- *    chartOptions: Highcharts.Options,
- *    setChartOptions: React.Dispatch<React.SetStateAction<Highcharts.Options>>
- * }} - merge of the initial and extra options.
- */
 export const useChart = (initialOptions, { filterState, notVisibleSeries = [] }) => {
+  const { doctorType } = filterState;
+  const title = t(`analytics.taskSpecial.chart.title`, {
+    value: t(`analytics.common.doctorTypes.${doctorType}`),
+  });
+  const subtitle = t(`analytics.taskSpecial.chart.subtitle`);
+
   const chartTranslations = useMemo(
-    () => t(`analytics.taskSpecial.chart`, { returnObjects: true }),
-    [],
+    () => ({
+      ...t(`analytics.taskSpecial.chart`, { returnObjects: true }),
+      title,
+      subtitle,
+    }),
+    [subtitle, title],
   );
 
   const memoChartOptions = useMemo(
@@ -34,6 +33,7 @@ export const useChart = (initialOptions, { filterState, notVisibleSeries = [] })
   const memoOptions = useMemo(
     () => ({
       title: memoChartOptions.title,
+      subtitle: memoChartOptions.subtitle,
       xAxis: memoChartOptions.xAxis,
       yAxis: memoChartOptions.yAxis,
       series: memoChartOptions.series,

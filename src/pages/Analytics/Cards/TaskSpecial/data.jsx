@@ -119,6 +119,7 @@ export const transformToChartSeries = (data, series) =>
       id: serie,
       yAxis: serie.includes('iozRatio') ? 1 : 0,
       color: COLORS[serie],
+      borderColor: COLORS.borderColors[serie],
       data: serieData,
     };
   });
@@ -180,6 +181,7 @@ export const prepareTaskSpecialChartOptions = ({ filterState, translations }) =>
 
   return {
     title: { text: translations.title },
+    subtitle: { text: translations.subtitle },
     series,
     xAxis,
     yAxis: prepareYAxis({ titles: translations.yAxis }),

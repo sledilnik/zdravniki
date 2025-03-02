@@ -2,9 +2,15 @@ import { CHART_COLORS } from 'pages/Analytics/constants';
 
 export const COLORS = {
   insuredPeopleCount: 'rgba(75, 20, 20, 1)',
-  insuredPeopleCountWithIOZ: 'rgba(20, 72, 29, 1)',
-  insuredPeopleCountWithoutIOZ: 'rgba(224, 20, 20, 1)',
-  iozRatio: 'rgba(224, 20, 20, 1)',
+  insuredPeopleCountWithIOZ: 'rgba(40,167,69,0.31)',
+  insuredPeopleCountWithoutIOZ: '#DC3545',
+  iozRatio: '#DC3545',
+  borderColors: {
+    insuredPeopleCount: 'rgba(75, 20, 20, 1)',
+    insuredPeopleCountWithIOZ: 'rgba(40,167,69,1)',
+    insuredPeopleCountWithoutIOZ: '#C62F3F',
+    iozRatio: '#DC3545',
+  },
 };
 
 function formatPercentage(value) {
@@ -90,11 +96,11 @@ export const options = {
   ],
   plotOptions: {
     series: {
-      marker: { radius: 2 },
+      marker: { radius: 4 },
     },
     column: {
       stacking: 'normal',
-      borderWidth: 0,
+      borderWidth: 1,
     },
   },
   series: [],
