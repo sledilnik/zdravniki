@@ -208,9 +208,11 @@
       }
     },
     "taskD": {
-      "title": "Primerjava glede na status izvajalca (javni-zasebni)",
+      "title": "Primerjava glede na lastništvo javnega in zasebnega izvajalca",
+      "subtitle": "Primerjava glavarnine, števila programov in obseg dela javnih zavodov in zasebnih  na primarnem nivoju zdravstvene oskrbe",
       "chart": {
-        "title": "{{value}}: $t(analytics.taskD.title)",
+        "title": "$t(analytics.taskD.title)",
+        "subtitle": "$t(analytics.taskD.subtitle) - {{value}}",
         "yAxis": {
           "titles": {
             "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
@@ -228,7 +230,11 @@
         }
       },
       "menu": "$t(header.menu)",
-      "export": "$t(analytics.common.buttons.export)"
+      "export": "$t(analytics.common.buttons.export)",
+      "popup": {
+        "private": "Zasebni izvajalci so zdravstvene ustanove ali posamezniki, ki samostojno opravljajo zdravstvene storitve (npr.zasebniki s koncesijo) s sklenjeno pogodbo z ZZZS.",
+        "public": "Javni izvajalci so zdravstvene ustanove v lasti države, občin ali drugih javnih institucij s sklenjeno pogodbo z ZZZS (npr. javni zavodi - zdravstveni dom, bolnica)"
+      }
     },
     "taskSpecial": {
       "title": "Gibanje števila neopredeljenih skozi čas",

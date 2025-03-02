@@ -118,6 +118,7 @@ export const prepareTaskDChartOptions = ({ filterState, translations, lng }) => 
 
   return {
     title: { text: translations.title },
+    subtitle: { text: translations.subtitle },
     xAxis: prepareXAxis(series),
     yAxis: prepareYAxis(filterState, lng, translations.yAxis.titles[filterState.data]),
     series,

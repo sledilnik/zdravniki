@@ -9,7 +9,19 @@ import { prepareTaskDChartOptions } from './data';
 export const useChart = (initialOptions, { filterState }) => {
   const { lng } = useParams();
 
-  const chartTranslations = useMemo(() => t(`analytics.taskD.chart`, { returnObjects: true }), []);
+  const tCommon = t('analytics.common', { returnObjects: true });
+  const { data: tData } = tCommon;
+  const subtitle = t('analytics.taskD.chart.subtitle', {
+    value: tData[filterState.data],
+  });
+
+  const chartTranslations = useMemo(
+    () => ({
+      ...t(`analytics.taskD.chart`, { returnObjects: true }),
+      subtitle,
+    }),
+    [subtitle],
+  );
 
   const memoChartOptions = useMemo(
     () =>

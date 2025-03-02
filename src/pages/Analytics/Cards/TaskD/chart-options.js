@@ -11,7 +11,7 @@ export const initialChartOptions = {
     backgroundColor: CHART_COLORS.chart.backgroundColor,
   },
   plotOptions: {
-    series: { marker: { radius: 2 } },
+    series: { marker: { radius: 4 } },
   },
   type: 'line',
   xAxis: {

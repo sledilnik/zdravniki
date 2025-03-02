@@ -11,7 +11,13 @@ import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
 import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'pages/Analytics/components/ui/card';
 
 import { Separator } from 'pages/Analytics/components/ui/separator';
 import { useFilterState } from 'pages/Analytics/hooks';
@@ -99,7 +105,10 @@ const TaskD = function TaskD({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="h3">{tTaskD.title}</CardTitle>
+          <div>
+            <CardTitle as="h3">{tTaskD.title}</CardTitle>
+            <CardDescription>{tTaskD.subtitle}</CardDescription>
+          </div>
           <ChartActions
             actions={{
               openFullScreen,
@@ -117,6 +126,11 @@ const TaskD = function TaskD({ id }) {
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
+          <CardDescription style={{ fontSize: '0.75em', paddingBlock: '0.5em' }}>
+            {tTaskD.popup.private}
+            <br />
+            {tTaskD.popup.public}
+          </CardDescription>
         </CardContent>
       </div>
     </Card>
