@@ -21,6 +21,7 @@ import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import ChartActions from 'pages/Analytics/components/ChartActions';
 import useFilterStore from 'pages/Analytics/store/filterStore';
+import { Link } from 'pages/Analytics/components/ui/link';
 import { uniqueOverviewDoctorTypesSet } from './constants';
 
 import { FilterForm } from './FilterForm';
@@ -103,9 +104,14 @@ const TaskATrend = function TaskATrend({ id }) {
           </figure>
           <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
           <CardDescription
-            style={{ marginTop: '0.5em', fontSize: '0.75em', paddingBlock: '0.5em' }}
+            style={{ marginTop: '0.5em', fontSize: '0.875em', paddingBlock: '0.5em' }}
           >
-            {tTaskATrend.popup.withoutIOZ}
+            <p>
+              {tTaskATrend.popup.withoutIOZ}{' '}
+              <Link href="https://e-uprava.gov.si/si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html">
+                {t('doctorCard.more')}
+              </Link>
+            </p>
           </CardDescription>
         </CardContent>
       </div>

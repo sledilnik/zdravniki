@@ -24,6 +24,7 @@ import { useFilterState } from 'pages/Analytics/hooks';
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 
 import ChartActions from 'pages/Analytics/components/ChartActions';
+import { Link } from 'pages/Analytics/components/ui/link';
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions } from './parsed-files';
@@ -126,10 +127,14 @@ const TaskD = function TaskD({ id }) {
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
-          <CardDescription style={{ fontSize: '0.75em', paddingBlock: '0.5em' }}>
-            {tTaskD.popup.private}
-            <br />
-            {tTaskD.popup.public}
+          <CardDescription style={{ fontSize: '0.875em', paddingBlock: '0.5em' }}>
+            <p>{tTaskD.popup.private}</p>
+            <p>
+              {tTaskD.popup.public}{' '}
+              <Link href="https://www.zzzs.si/zzzs-api/izvajalci-zdravstvenih-storitev/po-vrsti-izvajalcev/">
+                {t('doctorCard.more')}
+              </Link>
+            </p>
           </CardDescription>
         </CardContent>
       </div>

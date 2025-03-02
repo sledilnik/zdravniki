@@ -21,6 +21,7 @@ import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/uti
 import Scorecard from 'pages/Analytics/components/Scorecard';
 import ChartActions from 'pages/Analytics/components/ChartActions';
 import useFilterStore from 'pages/Analytics/store/filterStore';
+import { Link } from 'pages/Analytics/components/ui/link';
 import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -188,11 +189,15 @@ const TaskA = function TaskA({ id }) {
           <MapChart ref={mapRef} options={mapChartOptions} />
           <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
           <CardDescription
-            style={{ marginTop: '0.5em', fontSize: '0.75em', paddingBlock: '0.5em' }}
+            style={{ marginTop: '0.5em', fontSize: '0.875em', paddingBlock: '0.5em' }}
           >
-            {tTaskA.popup.map}
-            <br />
-            {tTaskA.popup.withoutIOZ}
+            <p>{tTaskA.popup.map}</p>
+            <p>
+              {tTaskA.popup.withoutIOZ}{' '}
+              <Link href="https://e-uprava.gov.si/si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html">
+                {t('doctorCard.more')}
+              </Link>
+            </p>
           </CardDescription>
         </CardContent>
       </div>

@@ -19,6 +19,7 @@ import { useFilterState } from 'pages/Analytics/hooks';
 
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
 import ChartActions from 'pages/Analytics/components/ChartActions';
+import { Link } from 'pages/Analytics/components/ui/link';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
 import { useChart } from './useChart';
@@ -112,8 +113,15 @@ const TaskSpecial = function TaskSpecial({ id }) {
           <figure>
             <HighchartsReact ref={chartRef} highcharts={Highcharts} options={chartOptions} />
           </figure>
-          <CardDescription style={{ fontSize: '0.75em', paddingBlock: '0.5em' }}>
-            {tTaskSpecial.popup.withoutIOZ}
+          <CardDescription
+            style={{ marginTop: '0.5em', fontSize: '0.875em', paddingBlock: '0.5em' }}
+          >
+            <p>
+              {tTaskSpecial.popup.withoutIOZ}{' '}
+              <Link href="https://e-uprava.gov.si/si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html">
+                {t('doctorCard.more')}
+              </Link>
+            </p>
           </CardDescription>
         </CardContent>
       </div>
