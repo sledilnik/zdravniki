@@ -36,6 +36,16 @@ Sodelavci in sodelavke projekta:
 - [Nedžad Beus](https://beus.cc) — prevodi
 - [Sara Kikec](https://www.linkedin.com/in/sarakikec/) — prevodi
 
+## Dostopnost do primarne zdravstvene oskrbe (Analitika)
+
+**Namen projekta** je na pregleden način prikazati javno dostopne podatke s področja zdravstva in omogočiti boljše razumevanje dostopnosti primarne zdravstvene oskrbe v Sloveniji. S pomočjo vizualizacij analiziramo spremembe skozi čas ter primerjamo regionalne razlike pri dostopu do osebnih zdravnikov, zobozdravnikov in ginekologov.
+
+Projekt ponuja vpogled v kazalnike, kot so število neopredeljenih zavarovancev, razlike med javnimi in zasebnimi izvajalci ter starostno strukturo oseb brez izbranega zdravnika. Na podlagi teh podatkov želimo osvetliti trende v zdravstvenem sistemu ter prispevati k boljšemu razumevanju in iskanju rešitev za izboljšanje dostopnosti zdravstvenih storitev.
+
+Projekt Analitike so podprli: [Zdravniška zbornica Slovenije](https://www.zdravniskazbornica.si/), Znanstveno Društvo Sledilnik - projekt Zdravniki.
+
+Viri: Vsi podatki uporabljeni v vizualizaciji so bili pridobljeni preko [Zavoda za Zdravstveno Zavarovanje Slovenije](https://www.zzzs.si/).
+
 ## Pogoji uporabe
 
 Uporaba podatkov, povratne informacije in sodelovanje so zaželjeni. [Podatki](https://github.com/sledilnik/zdravniki-data) so zbrani iz virov v javni domeni in jih lahko prosto uporabljate, urejate, predelujete ali vključujete v vse netržne vsebine ob navedbi vira – zdravniki.sledilnik.org. Če ni določeno drugače, velja za vso vsebino na tej strani licenca Creative Commons: [Priznanje avtorstva-Deljenje pod enakimi pogoji 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.sl).
