@@ -56,7 +56,7 @@ export function CityButtons({ municipalities, setFilterState }) {
         data-state="active"
         onClick={handleAllCitiesClick}
       >
-        Cela Slovenija
+        {tCommon.buttons.allCities}
       </Button>
       <Button
         ref={citiesButtonRef}

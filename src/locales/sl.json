@@ -144,7 +144,7 @@
         "cityMunicipalitiesInactive": "Mestne občine",
         "isSelectedText": "izberi",
         "clearAll": "počisti izbor",
-        "allCities": "Vse občine",
+        "allCities": "Cela Slovenija",
         "close": "Zapri",
         "mapSettings": "možnosti zemljevida",
         "min": "min",
@@ -177,6 +177,7 @@
     },
     "taskA": {
       "title": "Neopredeljeni v Sloveniji",
+      "subtitle": "Regionalna dostopnost do primarne zdravstvene oskrbe po občinah v Sloveniji",
       "mapTitle": "$t(analytics.taskA.title): {{suffix}}",
       "mapTitleSuffix": "Delež opredeljenih po občinah",
       "mapSubtitle": "{{doctorType}} za {{year}}",
@@ -191,15 +192,20 @@
     },
 
     "taskATrend": {
-      "title": "Trend skozi čas",
+      "title": "Neopredeljeni po starostnih skupinah skozi čas",
+      "subtitle": "Prikaz starostnih skupin neopredeljenih zavarovancev po posameznih dejavnostih",
       "chart": {
-        "title": "$t(analytics.taskATrend.title)"
+        "title": "$t(analytics.taskATrend.title)",
+        "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}}"
       },
       "yAxis": {
         "title": "$t(analytics.common.data.iozRatio)"
       },
       "menu": "$t(header.menu)",
-      "export": "$t(analytics.common.buttons.export) {{value}}"
+      "export": "$t(analytics.common.buttons.export) {{value}}",
+      "popup": {
+        "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+      }
     },
     "taskD": {
       "title": "Primerjava glede na status izvajalca (javni-zasebni)",
@@ -246,7 +252,10 @@
         }
       },
       "menu": "$t(header.menu)",
-      "export": "$t(analytics.common.buttons.export)"
+      "export": "$t(analytics.common.buttons.export)",
+      "popup": {
+        "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+      }
     },
     "footer": {
       "doctors": "Zdravniki"

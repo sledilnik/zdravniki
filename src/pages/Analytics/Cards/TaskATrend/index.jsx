@@ -10,7 +10,13 @@ import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import ChartActions from 'pages/Analytics/components/ChartActions';
@@ -60,7 +66,10 @@ const TaskATrend = function TaskATrend({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="h3">{tTaskATrend.title}</CardTitle>
+          <div>
+            <CardTitle as="h3">{tTaskATrend.title}</CardTitle>
+            <CardTitle variant="subtitle">{tTaskATrend.subtitle}</CardTitle>
+          </div>
           <ChartActions
             actions={{
               openFullScreen,
@@ -93,6 +102,11 @@ const TaskATrend = function TaskATrend({ id }) {
             />
           </figure>
           <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
+          <CardDescription
+            style={{ marginTop: '0.5em', fontSize: '0.75em', paddingBlock: '0.5em' }}
+          >
+            {tTaskATrend.popup.withoutIOZ}
+          </CardDescription>
         </CardContent>
       </div>
     </Card>

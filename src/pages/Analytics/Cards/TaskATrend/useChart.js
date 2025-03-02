@@ -1,16 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useMemo, useState } from 'react';
 
 import { t } from 'i18next';
 import loMerge from 'lodash/merge';
 
-import { useParams } from 'react-router';
 import { prepareDetailLineChartSeries } from '../TaskA/detail-data-util';
 
 export const useChart = (initialOptions, { filterState }) => {
-  const { lng } = useParams();
-
-  const chartTranslations = t('analytics.taskATrend', { returnObjects: true });
   const { doctorType, municipalities } = filterState;
 
   const memoChartSeries = useMemo(
@@ -18,13 +13,34 @@ export const useChart = (initialOptions, { filterState }) => {
     [doctorType, municipalities],
   );
 
+  const cities = municipalities.join(', ') || t('analytics.common.buttons.allCities');
+  const doctorTypeTranslation = t(`analytics.common.doctorTypes.${doctorType}`);
+
+  const title = t('analytics.taskATrend.chart.title');
+  const subtitle = t('analytics.taskATrend.chart.subtitle', {
+    doctorType: doctorTypeTranslation,
+    cities,
+  });
+
+  const chartTitles = useMemo(
+    () => ({
+      title: {
+        text: title,
+      },
+      subtitle: {
+        text: subtitle,
+      },
+    }),
+    [subtitle, title],
+  );
+
   const [chartOptions, setChartOptions] = useState(
-    loMerge(initialOptions, { series: memoChartSeries }),
+    loMerge(initialOptions, { series: memoChartSeries, ...chartTitles }),
   );
 
   useEffect(() => {
-    setChartOptions({ series: memoChartSeries });
-  }, [memoChartSeries]);
+    setChartOptions({ series: memoChartSeries, ...chartTitles });
+  }, [chartTitles, chartTitles.chart, memoChartSeries]);
 
   return { chartOptions, setChartOptions, chartSeries: memoChartSeries };
 };
