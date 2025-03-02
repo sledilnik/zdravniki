@@ -107,7 +107,7 @@ const TaskD = function TaskD({ id }) {
         <CardHeader className={styles.Header}>
           <div>
             <CardTitle as="h3">{tTaskD.title}</CardTitle>
-            <CardDescription>{tTaskD.subtitle}</CardDescription>
+            <CardTitle variant="description">{tTaskD.subtitle}</CardTitle>
           </div>
           <ChartActions
             actions={{

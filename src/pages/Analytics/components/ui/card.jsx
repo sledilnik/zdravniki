@@ -13,7 +13,7 @@ import styles from './card.module.css';
  *
  * @typedef {"div" | "figure" | "figcaption"} CardContentAs
  * @typedef {"div" | "footer"} CardFooterAs
- * @typedef {"title" | "subtitle"} CardTitleVariant
+ * @typedef {"title" | "subtitle" | "description"} CardTitleVariant
  */
 
 const cardVariants = cva(styles.Card, {
@@ -69,7 +69,7 @@ export const CardHeader = forwardRef(({ as: Wrapper = 'header', className, ...pr
 
 CardHeader.displayName = 'CardHeader';
 
-const titleVariants = cva('', {
+const titleVariants = cva(styles.Title, {
   variants: {
     variant: {
       title: styles.Title,

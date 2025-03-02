@@ -85,7 +85,7 @@ const TaskSpecial = function TaskSpecial({ id }) {
         <CardHeader className={styles.Header}>
           <div>
             <CardTitle as="h3">{tTaskSpecial.title}</CardTitle>
-            <CardDescription>{tTaskSpecial.subtitle}</CardDescription>
+            <CardTitle variant="description">{tTaskSpecial.subtitle}</CardTitle>
           </div>
           <ChartActions
             actions={{
