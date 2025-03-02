@@ -178,17 +178,20 @@
     "taskA": {
       "title": "Neopredeljeni v Sloveniji",
       "subtitle": "Regionalna dostopnost do primarne zdravstvene oskrbe po občinah v Sloveniji",
-      "mapTitle": "$t(analytics.taskA.title): {{suffix}}",
-      "mapTitleSuffix": "Delež opredeljenih po občinah",
-      "mapSubtitle": "{{doctorType}} za {{year}}",
-      "chartTitle": "$t(analytics.taskA.title): {{suffix}}",
-      "chartTitleSuffix": "Trend skozi čas",
-      "chartSubtitle": "{{doctorType}} po starostnih skupinah",
+      "chart": {
+        "title": "$t(analytics.taskATrend.title)",
+        "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}"
+      },
+
       "yAxis": {
         "title": "$t(analytics.common.data.iozRatio)"
       },
       "menu": "$t(header.menu)",
-      "export": "$t(analytics.common.buttons.export) {{value}}"
+      "export": "$t(analytics.common.buttons.export) {{value}}",
+      "popup": {
+        "map": "Geografski prikaz števila neopredeljenih zavarovancev in deleža opredeljenih po posameznih dejavnostih. Izbrana občina ali skupina občin je prikazana primerjalno s trendom iz prejšnjega leta.",
+        "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+      }
     },
 
     "taskATrend": {

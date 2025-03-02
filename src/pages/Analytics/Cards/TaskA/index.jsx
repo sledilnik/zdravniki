@@ -7,7 +7,13 @@ import { cx } from 'class-variance-authority';
 import { t } from 'i18next';
 
 import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { Card, CardContent, CardHeader, CardTitle } from 'pages/Analytics/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'pages/Analytics/components/ui/card';
 import { Separator } from 'pages/Analytics/components/ui/separator';
 
 import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
@@ -132,7 +138,10 @@ const TaskA = function TaskA({ id }) {
     <Card id={id} className={styles.CardWrapper}>
       <div className={cx(styles.Grid, styles.SingleChartGrid)}>
         <CardHeader className={styles.Header}>
-          <CardTitle as="h3">{tTaskA.title}</CardTitle>
+          <div>
+            <CardTitle as="h3">{tTaskA.title}</CardTitle>
+            <CardTitle variant="description">{tTaskA.subtitle}</CardTitle>
+          </div>
           <ChartActions
             actions={{
               openFullScreen,
@@ -178,6 +187,13 @@ const TaskA = function TaskA({ id }) {
         <CardContent className={styles.ChartWrapper}>
           <MapChart ref={mapRef} options={mapChartOptions} />
           <CityButtons municipalities={municipalities} setFilterState={setFilterState} />
+          <CardDescription
+            style={{ marginTop: '0.5em', fontSize: '0.75em', paddingBlock: '0.5em' }}
+          >
+            {tTaskA.popup.map}
+            <br />
+            {tTaskA.popup.withoutIOZ}
+          </CardDescription>
         </CardContent>
       </div>
     </Card>

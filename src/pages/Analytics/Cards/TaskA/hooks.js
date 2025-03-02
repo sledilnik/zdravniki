@@ -48,24 +48,34 @@ export const useChart = (initialOptions, { filterState }) => {
   const tTaskA = t('analytics.taskA', { returnObjects: true });
   const tCommon = t('analytics.common', { returnObjects: true });
 
+  const { municipalities } = filterState;
+
   const doctorTypeTranslation = tCommon.doctorTypes[filterState.doctorType];
 
-  const mapTitle = t('analytics.taskA.mapTitle', { suffix: tTaskA.mapTitleSuffix });
-  const mapSubtitle = t('analytics.taskA.mapSubtitle', {
+  const title = t(tTaskA.chart.title);
+  const cities = municipalities.join(', ') || t('analytics.common.buttons.allCities');
+  const subtitle = t('analytics.taskA.chart.subtitle', {
     doctorType: doctorTypeTranslation,
     year: filterState.year,
+    cities,
   });
 
   const mapSeriesData = useMemo(() => prepareOverviewMapSeriesData(filterState), [filterState]);
+  const memoTitles = useMemo(
+    () => ({
+      title: { text: title },
+      subtitle: { text: subtitle },
+    }),
+    [subtitle, title],
+  );
 
   const [init, setInit] = useState(false);
   const [mapChartOptions, setMapChartOptions] = useState({
     ...initialOptions,
-    title: { text: mapTitle },
-    subtitle: { text: mapSubtitle },
+    ...memoTitles,
     accessibility: {
       screenReaderSection: {
-        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>',
+        beforeChartFormat: '<h4>{chartSubtitle} {chartTitle}</h4>', // TODO: move to use effect and apply for all charts
       },
     },
   });
@@ -77,9 +87,10 @@ export const useChart = (initialOptions, { filterState }) => {
   useEffect(() => {
     if (!init) return;
     setMapChartOptions({
+      ...memoTitles,
       series: [{ data: mapSeriesData }],
     });
-  }, [init, mapSeriesData]);
+  }, [init, mapSeriesData, memoTitles]);
 
   return { mapChartOptions, setMapChartOptions, mapSeriesData, init };
 };

@@ -9,10 +9,13 @@ import { MapChartTooltip } from './MapChartTooltip';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 export const COLORS = Object.freeze({
-  minColor: '#E57373',
-  maxColor: '#D8E8D8',
-  selectColor: '#f8a808',
-  selectBorderColor: '#000000',
+  minColor: 'rgba(220,53,69,1)',
+  maxColor: 'rgba(64,210,98,1)',
+  selectColor: 'rgba(198,190,29,1)',
+  border: {
+    select: 'rgba(178,171,26,1)',
+  },
+  outerShadow: 'rgba(133,127,0,0.47)',
 });
 
 /** @type {Types.HighMapsOptions} */
@@ -28,6 +31,7 @@ export const mapOptions = {
   colorAxis: {
     minColor: COLORS.minColor,
     maxColor: COLORS.maxColor,
+    type: 'linear',
     startOnTick: true,
     endOnTick: true,
   },
@@ -55,7 +59,7 @@ export const mapOptions = {
       states: {
         select: {
           color: COLORS.selectColor,
-          borderColor: COLORS.selectBorderColor,
+          borderColor: COLORS.border.select,
         },
       },
       borderWidth: 0.5,
