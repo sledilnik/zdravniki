@@ -243,7 +243,7 @@
       "title": "Gibanje števila neopredeljenih skozi čas",
       "subtitle": "Število in razmerje opredeljenih/neopredeljenih zavarovancev po posameznih dejavnostih",
       "chart": {
-        "title": "{{value}}: $t(analytics.taskSpecial.title)",
+        "title": "$t(analytics.taskSpecial.title) - {{value}}",
         "subtitle": "$t(analytics.taskSpecial.subtitle)",
         "yAxis": {
           "0": {
