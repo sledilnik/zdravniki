@@ -48,9 +48,11 @@ Projekt Analitike so podprli: [Zdravniška zbornica Slovenije](https://www.zdrav
 
 - [Branko Jevtić](https://www.bananica.com) — ZD Sledilnik (oblikovanje)
 - [Jaka Daneu](https://github.com/jalezi) — ZD Sledilnik (spletna stran)
-- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — Zdravniška Zbornica Slovenije (vsebina)
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — (vsebina)
 - [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — ZD Sledilnik (analitika, organizacija dela)
 - Roman Luštrik - ZD Sledilnik (analitika)
+
+Za vsa vprašanja, pobude in predloge smo na voljo na [zdravniki@sledilnik.org](mailto:zdravniki@sledilnik.org).
 
 Viri: Vsi podatki uporabljeni v vizualizaciji so bili pridobljeni preko [Zavoda za Zdravstveno Zavarovanje Slovenije](https://www.zzzs.si/).
 

@@ -211,7 +211,7 @@
     },
     "taskD": {
       "title": "Primerjava glede na lastništvo javnega in zasebnega izvajalca",
-      "subtitle": "Primerjava glavarnine, števila programov in obseg dela javnih zavodov in zasebnih  na primarnem nivoju zdravstvene oskrbe",
+      "subtitle": "Primerjava glavarnine, števila programov in obseg dela javnih zavodov in zasebnih izvajalcev na primarnem nivoju zdravstvene oskrbe",
       "chart": {
         "title": "$t(analytics.taskD.title)",
         "subtitle": "$t(analytics.taskD.subtitle) - {{value}}",
