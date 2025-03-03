@@ -179,7 +179,7 @@
       "chart": {
         "title": "$t(analytics.taskATrend.title)",
         "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}",
-        "legendTitle": "legend title"
+        "legendTitle": "delež opredeljenih (več je bolje)"
       },
 
       "yAxis": {
