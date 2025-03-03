@@ -44,6 +44,14 @@ Projekt ponuja vpogled v kazalnike, kot so število neopredeljenih zavarovancev,
 
 Projekt Analitike so podprli: [Zdravniška zbornica Slovenije](https://www.zdravniskazbornica.si/), Znanstveno Društvo Sledilnik - projekt Zdravniki.
 
+### Ekipa:
+
+- [Branko Jevtić](https://www.bananica.com) — ZD Sledilnik (oblikovanje)
+- [Jaka Daneu](https://github.com/jalezi) — ZD Sledilnik (spletna stran)
+- [Krištof Zevnik](https://www.zevnik.eu/blog-kristof-zevnik) — Zdravniška Zbornica Slovenije (vsebina)
+- [Luka Petravić](https://www.linkedin.com/in/luka-petravić-77608423a/) — ZD Sledilnik (analitika, organizacija dela)
+- Roman Luštrik - ZD Sledilnik (analitika)
+
 Viri: Vsi podatki uporabljeni v vizualizaciji so bili pridobljeni preko [Zavoda za Zdravstveno Zavarovanje Slovenije](https://www.zzzs.si/).
 
 ## Pogoji uporabe
