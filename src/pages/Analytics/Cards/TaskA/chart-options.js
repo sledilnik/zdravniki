@@ -10,10 +10,11 @@ import { prepareOverviewMapSeriesData } from './overview-data-util';
 
 export const COLORS = Object.freeze({
   minColor: 'rgba(220,53,69,1)',
-  maxColor: 'rgba(64,210,98,1)',
-  selectColor: 'rgba(198,190,29,1)',
+  maxColor: 'rgba(228, 237, 231, 1)',
+  selectColor: 'rgba(38,197,237,0.1)',
   border: {
-    select: 'rgba(178,171,26,1)',
+    normal: 'rgba(158, 163, 159)',
+    select: 'rgba(38,197,237,0.5)',
   },
   outerShadow: 'rgba(133,127,0,0.47)',
 });
@@ -34,6 +35,44 @@ export const mapOptions = {
     type: 'linear',
     startOnTick: true,
     endOnTick: true,
+    dataClassColor: 'tween',
+    dataClasses: [
+      {
+        from: 0,
+        to: 0.5,
+        id: 'low',
+      },
+      {
+        from: 0.5,
+        to: 0.75,
+        id: 'medium',
+      },
+      {
+        from: 0.75,
+        to: 0.8,
+        id: 'high',
+      },
+      {
+        from: 0.8,
+        to: 0.85,
+        id: 'very-high',
+      },
+      {
+        from: 0.85,
+        to: 0.9,
+        id: 'extreme',
+      },
+      {
+        from: 0.9,
+        to: 0.95,
+        id: 'very-extreme',
+      },
+      {
+        from: 0.95,
+        to: 1,
+        id: 'extreme-extreme',
+      },
+    ],
   },
   tooltip: {
     useHTML: true,
@@ -62,7 +101,12 @@ export const mapOptions = {
           borderColor: COLORS.border.select,
         },
       },
-      borderWidth: 0.5,
+      borderColor: COLORS.border.normal,
+      borderWidth: 1,
+      tooltip: {
+        headerFormat: '',
+        pointFormat: '{point.municipality}: {point.value}',
+      },
     },
   ],
   accessibility: {
