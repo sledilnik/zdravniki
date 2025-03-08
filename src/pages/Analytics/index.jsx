@@ -7,14 +7,10 @@ import './highcharts-options';
 
 import * as SEO from '@/components/SEO';
 
-import RenderOnViewportEntry from '@/components/RenderOnViewportEntry';
+import RenderOnViewportEntry from './components/RenderOnViewportEntry';
 import { CircularProgress } from '@mui/material';
 import Footer from './components/Footer';
-import Sidebar from './components/Sidebar';
 import './highcharts-options';
-
-import styles from './Analytics.module.css';
-import stylesLayout from './Layout.module.css';
 
 import TouchdeviceNotification from './components/TouchDeviceNotification';
 import { Card, CardContent, CardHeader } from './components/ui/card';
@@ -41,7 +37,6 @@ const CARDS = {
 
 const Analytics = function Analytics() {
   const { lng } = useParams();
-
   const sections = SECTIONS.map(section => ({
     ...section,
     sectionTitle: t(sectionTranslationKeys[section.sectionTitle]),

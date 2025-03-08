@@ -6,22 +6,18 @@ import { useEffect, useMemo, useRef } from 'react';
 import { cx } from 'class-variance-authority';
 import { t } from 'i18next';
 
-import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
+
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from 'pages/Analytics/components/ui/card';
-import { Separator } from 'pages/Analytics/components/ui/separator';
+  createCSVContent,
+  exportToCsv,
+  exportToJson,
+} from '@/pages/Analytics/utils/download-utils';
 
-import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
-
-import Scorecard from 'pages/Analytics/components/Scorecard';
-import ChartActions from 'pages/Analytics/components/ChartActions';
-import useFilterStore from 'pages/Analytics/store/filterStore';
-import { Link } from 'pages/Analytics/components/ui/link';
+import Scorecard from '@/pages/Analytics/components/Scorecard';
+import ChartActions from '@/pages/Analytics/components/ChartActions';
+import useFilterStore from '@/pages/Analytics/store/filterStore';
+import { Link } from '@/pages/Analytics/components/ui/link';
 import { mapOptions } from './chart-options';
 import {
   assertSetsEqual,
@@ -39,6 +35,14 @@ import { MapChart } from './components/MapChart';
 import styles from '../Cards.module.css';
 import { calculateYearlyStatistics } from './scorecards-calc-util';
 import { prepareDetailLineChartSeries } from './detail-data-util';
+import { withErrorBoundary } from 'react-error-boundary';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../../components/ui/card';
 
 /**
  * TaskA component

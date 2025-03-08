@@ -9,19 +9,19 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
-import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
+import { withErrorBoundary } from '@/components/Shared/ErrorBoundary';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'pages/Analytics/components/ui/card';
-import { Separator } from 'pages/Analytics/components/ui/separator';
+} from '@/pages/Analytics/components/ui/card';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
 
-import ChartActions from 'pages/Analytics/components/ChartActions';
-import useFilterStore from 'pages/Analytics/store/filterStore';
-import { Link } from 'pages/Analytics/components/ui/link';
+import ChartActions from '@/pages/Analytics/components/ChartActions';
+import useFilterStore from '@/pages/Analytics/store/filterStore';
+import { Link } from '@/pages/Analytics/components/ui/link';
 import { uniqueOverviewDoctorTypesSet } from './constants';
 
 import { FilterForm } from './FilterForm';

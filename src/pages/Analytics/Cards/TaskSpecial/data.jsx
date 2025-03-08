@@ -1,5 +1,5 @@
 /** @import * as Types from '../TaskA/types' */
-import { labelsFormatter } from 'pages/Analytics/utils/utils';
+import { labelsFormatter } from '@/pages/Analytics/utils/utils';
 import { detailTransformedData } from '../TaskA/json-data-transform-util';
 
 import { COLORS } from './chart-options';

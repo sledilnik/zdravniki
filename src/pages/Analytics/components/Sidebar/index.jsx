@@ -8,6 +8,7 @@ import Modal from '../Modal';
 import { SECTIONS, sectionTranslationKeys } from '../../data/sections';
 import { createCardDataProxy } from '../../utils/create-card-data-proxy';
 import styles from './Sidebar.module.css';
+import { useRef, useState } from 'react';
 
 /**
  * Renders sidebar groups with section titles and chart links.

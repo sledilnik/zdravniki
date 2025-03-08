@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Link as LinkShared } from 'components/DoctorCard/Shared';
+import { Link as LinkShared } from '@/components/DoctorCard/Shared';
 
 import styles from './link.module.css';
 

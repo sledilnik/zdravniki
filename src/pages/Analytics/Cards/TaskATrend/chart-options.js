@@ -1,4 +1,4 @@
-import { CHART_COLORS } from 'pages/Analytics/constants';
+import { CHART_COLORS } from '@/pages/Analytics/constants';
 import { renderToString } from 'react-dom/server';
 import { uniqueOverviewYearsSet } from '../TaskA/constants';
 import { LineChartTooltip, LineChartYAxisTitle } from './LineChartComponents';

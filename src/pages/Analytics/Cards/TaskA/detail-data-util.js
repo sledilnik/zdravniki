@@ -1,6 +1,6 @@
 /** @import * as Types from "./types" */
 
-import { getTaskAAgeGroupString } from 'pages/Analytics/constants';
+import { getTaskAAgeGroupString } from '@/pages/Analytics/constants';
 import { DEFAULTS } from './constants';
 import { detailTransformedData } from './json-data-transform-util';
 

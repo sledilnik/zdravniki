@@ -1,7 +1,7 @@
 /** @import * as Types from "./types" */
 
-import detailData from 'assets/data/analytics/task-a/podatki-detail.json';
-import overviewData from 'assets/data/analytics/task-a/podatki-overview.json';
+import detailData from '@/assets/data/analytics/task-a/podatki-detail.json';
+import overviewData from '@/assets/data/analytics/task-a/podatki-overview.json';
 import { detailSchemaTransformed, overviewSchemaTransformed } from './schemas';
 
 const isDev = process.env.NODE_ENV === 'development';

@@ -1,13 +1,13 @@
 /* eslint-disable no-restricted-syntax */
 /** @import * as TaskDTypes from "./types" */
 
-import gynDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
-import gynObseg from 'assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.json';
-import gpGlavarina from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.json';
-import gpGlavarinaMean from 'assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina_mean.json';
-import gpObseg from 'assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.json';
-import denDoseganjePovprecja from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.json';
-import denObseg from 'assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.json';
+import gynDoseganjePovprecja from '@/assets/data/analytics/pivotke-D/pivot_ginekologi_doseganje_povprecja.json';
+import gynObseg from '@/assets/data/analytics/pivotke-D/pivot_ginekologi_obseg.json';
+import gpGlavarina from '@/assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina.json';
+import gpGlavarinaMean from '@/assets/data/analytics/pivotke-D/pivot_zdravniki_glavarina_mean.json';
+import gpObseg from '@/assets/data/analytics/pivotke-D/pivot_zdravniki_obseg.json';
+import denDoseganjePovprecja from '@/assets/data/analytics/pivotke-D/pivot_zobozdravniki_doseganje_povprecja.json';
+import denObseg from '@/assets/data/analytics/pivotke-D/pivot_zobozdravniki_obseg.json';
 
 /** @type {Record<TaskDTypes.FileKey, TaskDTypes.JsonItem[]>} */
 const files = Object.freeze({
