@@ -3,9 +3,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { t } from 'i18next';
 
 import loMerge from 'lodash/merge';
+import { useParams } from 'react-router';
 import { prepareTaskSpecialChartOptions } from './data';
 
 export const useChart = (initialOptions, { filterState, notVisibleSeries = [] }) => {
+  const { lng } = useParams();
   const { doctorType } = filterState;
   const title = t(`analytics.taskSpecial.chart.title`, {
     value: t(`analytics.common.doctorTypes.${doctorType}`),
@@ -26,8 +28,9 @@ export const useChart = (initialOptions, { filterState, notVisibleSeries = [] })
       prepareTaskSpecialChartOptions({
         filterState,
         translations: chartTranslations,
+        lng,
       }),
-    [filterState, chartTranslations],
+    [filterState, chartTranslations, lng],
   );
 
   const memoOptions = useMemo(
@@ -43,16 +46,20 @@ export const useChart = (initialOptions, { filterState, notVisibleSeries = [] })
   );
 
   const [chartOptions, setChartOptions] = useState(
-    loMerge(memoOptions, initialOptions, {
-      series: memoOptions.series.map(serie => ({
-        ...serie,
-        visible: !notVisibleSeries.includes(serie.id),
-      })),
-    }),
+    loMerge(
+      memoOptions,
+      {
+        series: memoOptions.series.map(serie => ({
+          ...serie,
+          visible: !notVisibleSeries.includes(serie.id),
+        })),
+      },
+      initialOptions,
+    ),
   );
 
   useEffect(() => {
-    setChartOptions(loMerge(memoOptions));
+    setChartOptions(memoOptions);
   }, [memoOptions]);
 
   return { chartOptions, setChartOptions };

@@ -1,5 +1,6 @@
 /** @import * as Types from '../TaskA/types' */
 import { detailTransformedData } from '../TaskA/json-data-transform-util';
+import { labelsFormatter } from '../TaskD/data';
 import { COLORS } from './chart-options';
 
 export const seriesToShow = Object.freeze([
@@ -164,8 +165,16 @@ const prepareXAxis = series => {
   return { categories };
 };
 
-const prepareYAxis = ({ titles }) => [
-  { title: { text: titles[0].title } },
+const prepareYAxis = ({ titles, lng }) => [
+  {
+    title: { text: titles[0].title },
+    id: 'count',
+    labels: {
+      formatter() {
+        return labelsFormatter.call(this, {}, lng);
+      },
+    },
+  },
   { title: { text: titles[1].title } },
 ];
 
@@ -175,7 +184,7 @@ const prepareAccessibility = () => ({
   },
 });
 
-export const prepareTaskSpecialChartOptions = ({ filterState, translations }) => {
+export const prepareTaskSpecialChartOptions = ({ filterState, translations, lng }) => {
   const series = prepareTaskSpecialSeries(filterState, translations.series, seriesToShow);
   const xAxis = prepareXAxis(series);
 
@@ -184,7 +193,7 @@ export const prepareTaskSpecialChartOptions = ({ filterState, translations }) =>
     subtitle: { text: translations.subtitle },
     series,
     xAxis,
-    yAxis: prepareYAxis({ titles: translations.yAxis }),
+    yAxis: prepareYAxis({ titles: translations.yAxis, lng }),
     accessibility: prepareAccessibility(),
   };
 };

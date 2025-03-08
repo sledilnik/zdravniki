@@ -5,44 +5,8 @@ export const time = {
   timezone: 'Europe/Ljubljana',
 };
 
-/** @type {Types.HighchartsOptions["lang"]} */
-export const lang = {
-  accessibility: {
-    chartContainerLabel: 'Title: {title}.',
-  },
-  downloadPDF: 'Prenesi PDF',
-  downloadPNG: 'Prenesi PNG',
-  downloadJPEG: 'Prenesi JPEG',
-  downloadSVG: 'Prenesi SVG',
-  printChart: 'Natisni graf',
-  resetZoom: 'Ponastavi povečavo',
-  viewFullscreen: 'Celozaslonski pogled',
-  exitFullscreen: 'Zapri celozaslonski pogled',
-  decimalPoint: ',',
-  thousandsSep: '.',
-  numericSymbols: [' tis.', ' mio.', ' mlrd.', ' t'],
-  shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'],
-  months: [
-    'Januar',
-    'Februar',
-    'Marec',
-    'April',
-    'Maj',
-    'Junij',
-    'Julij',
-    'Avgust',
-    'September',
-    'Oktober',
-    'November',
-    'December',
-  ],
-  weekdays: ['Nedelja', 'Ponedeljek', 'Torek', 'Sreda', 'Četrtek', 'Petek', 'Sobota'],
-  shortWeekdays: ['Ned', 'Pon', 'Tor', 'Sre', 'Čet', 'Pet', 'Sob'],
-};
-
 /** @type {Types.HighchartsOptions} */
 export const baseOptions = {
-  lang,
   time,
   exporting: {
     enabled: false, // it's not working. Fetch error

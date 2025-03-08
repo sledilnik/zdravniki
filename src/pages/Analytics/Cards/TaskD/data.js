@@ -61,7 +61,7 @@ export const prepareYAxisLabelFormat = label => groupYAxisLabelFormat[label];
  * @param {string} lng - Language code.
  * @returns {string} Formatted label based on the selected value and language.
  */
-function labelsFormatter(selectedValue, lng) {
+export function labelsFormatter(selectedValue, lng) {
   if (!selectedValue || !lng) {
     throw new Error('Both selectedValue and lng are required.');
   }
