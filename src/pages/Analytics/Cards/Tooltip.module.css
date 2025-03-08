@@ -1,6 +1,7 @@
 .Tooltip {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5em;
+  font-size: 0.8em;
 }
 
 .TooltipTable {
@@ -14,6 +15,13 @@
   padding: 0.5em;
 }
 
+.TooltipTableHead > tr > th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
 .TooltipTable th.Center,
 .TooltipTable td.Center {
   text-align: center;
@@ -24,13 +32,28 @@
 }
 
 .SeriesLabel {
-  display: inline-flex;
-  width: 100%;
-  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
+  display: block;
 }
 
 .SeriesIndicator {
   margin-right: auto;
   width: 2ch;
   text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .Tooltip {
+    font-size: unset;
+  }
+
+  .TooltipTableHead > tr > th {
+    white-space: unset;
+    overflow: unset;
+    text-overflow: unset;
+    max-width: unset;
+  }
 }

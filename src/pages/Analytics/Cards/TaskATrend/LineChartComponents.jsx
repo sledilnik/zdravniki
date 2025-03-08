@@ -27,7 +27,7 @@ export const LineChartTooltip = function LineChartTooltip({ points, x }) {
     <div className={styles.Tooltip}>
       <b>{tCommon.year}:</b> {x}
       <table className={styles.TooltipTable}>
-        <thead>
+        <thead className={styles.TooltipTableHead}>
           <tr>
             <th className={styles.Center}>{tCommon.ageGroup}</th>
             <th className={styles.Center}>{tCommon.data.insuredPeopleCount}</th>
