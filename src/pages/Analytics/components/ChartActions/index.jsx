@@ -1,7 +1,7 @@
 import { Icon } from 'components/Shared/Icons';
-import { getIsRequestFullscreenSupported } from 'utils';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
+import { getIsRequestFullscreenSupported } from 'pages/Analytics/utils/utils';
 import styles from '../../Cards/Cards.module.css';
 import {
   DropdownMenu,
