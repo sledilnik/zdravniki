@@ -67,7 +67,24 @@ export const baseOptions = {
     className: 'font-sans',
     style: {
       fontFamily: 'inherit',
+      fontSize: '1rem',
     },
+  },
+  responsive: {
+    rules: [
+      {
+        condition: {
+          maxWidth: 600,
+        },
+        chartOptions: {
+          chart: {
+            style: {
+              fontSize: '0.875rem',
+            },
+          },
+        },
+      },
+    ],
   },
   credits: { enabled: false },
   legend: { enabled: false },
@@ -219,6 +236,7 @@ export const commonOptions = {
   },
   chart: {
     events: { ...chartEvents },
+    reflow: true,
   },
   title: {
     useHTML: true,
