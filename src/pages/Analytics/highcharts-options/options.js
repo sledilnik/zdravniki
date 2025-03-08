@@ -1,0 +1,244 @@
+/** @import * as Types from "../types" */
+
+/** @type {Types.HighchartsOptions["time"]} */
+export const time = {
+  timezone: 'Europe/Ljubljana',
+};
+
+/** @type {Types.HighchartsOptions} */
+export const baseOptions = {
+  time,
+  exporting: {
+    enabled: false, // it's not working. Fetch error
+    menuItemDefinitions: {},
+    buttons: {
+      contextButton: {
+        menuItems: [
+          // on mobile full screen does not work, at least not on iOS
+          'viewFullscreen',
+          'printChart',
+          'separator',
+          'downloadPNG',
+          'downloadJPEG',
+          'downloadPDF',
+          'downloadSVG',
+        ],
+      },
+    },
+    type: ['image/png', 'image/jpeg', 'application/pdf', 'image/svg+xml'],
+  },
+  chart: {
+    className: 'font-sans',
+    style: {
+      fontFamily: 'inherit',
+      fontSize: '1rem',
+    },
+  },
+  responsive: {
+    rules: [
+      {
+        condition: {
+          maxWidth: 600,
+        },
+        chartOptions: {
+          chart: {
+            style: {
+              fontSize: '0.875rem',
+            },
+          },
+        },
+      },
+    ],
+  },
+  credits: { enabled: false },
+  legend: { enabled: false },
+
+  colors: [
+    'rgba(255,87,51,1)',
+    'rgba(51,181,229,1)',
+    'rgba(255,36,213,1)',
+    'rgba(139,195,74,1)',
+    'rgba(156,39,176,1)',
+    'rgba(255,152,0,1)',
+    'rgba(96,125,139,1)',
+  ],
+
+  accessibility: {
+    screenReaderSection: {
+      beforeChartFormat: '<h4>{chartTitle} - {chartSubtitle}</h4>',
+    },
+  },
+};
+
+/** @type {React.CSSProperties}  */
+export const srOnly = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: '0',
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  borderWidth: '0',
+};
+
+/** @type {React.CSSProperties}  */
+export const notSrOnly = {
+  position: 'absolute',
+  width: 'auto',
+  height: 'auto',
+  padding: '0',
+  margin: '0',
+  overflow: 'visible',
+  clip: 'auto',
+  whiteSpace: 'normal',
+};
+
+/** @type {Types.HighchartsOptions["chart"]["events"]} */
+export const chartEvents = {
+  beforePrint() {
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+    });
+  },
+  afterPrint() {
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...srOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...srOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...srOnly,
+        },
+      },
+    });
+  },
+  fullscreenOpen() {
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...notSrOnly,
+        },
+      },
+    });
+  },
+  fullscreenClose() {
+    this.update({
+      legend: {
+        enabled: true,
+      },
+      title: {
+        style: {
+          ...srOnly,
+        },
+      },
+      subtitle: {
+        style: {
+          ...srOnly,
+        },
+      },
+      caption: {
+        style: {
+          ...srOnly,
+        },
+      },
+    });
+  },
+};
+
+/** @type {Types.HighchartsOptions} */
+export const commonOptions = {
+  exporting: {
+    chartOptions: {
+      legend: { enabled: true },
+    },
+  },
+  legend: {
+    enabled: true,
+    useHTML: true,
+  },
+  chart: {
+    events: { ...chartEvents },
+    reflow: true,
+  },
+  title: {
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+  subtitle: {
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+  caption: {
+    useHTML: true,
+    style: {
+      ...srOnly,
+    },
+  },
+};
+
+/**
+ * @constant
+ * @typedef {Object} Dimensions - Dimensions for responsive design.
+ * @property {Object} breakpoints - Breakpoints for responsive design.
+ * @property {670} breakpoints.sm - Breakpoint for small devices.
+ * @property {Object} height - Height for different devices.
+ * @property {600} height.sm - Height for small devices.
+ * @property {"56.25%"} height.md - Height for medium devices.
+ */
+
+/** @type {Dimensions} */
+export const dimensions = {
+  breakpoints: {
+    sm: 670,
+  },
+  height: {
+    sm: 600,
+    md: `${(9 / 16) * 100}%`,
+  },
+};

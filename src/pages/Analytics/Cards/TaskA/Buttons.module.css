@@ -1,0 +1,42 @@
+.Buttons,
+.MunicipalityCheckbox {
+  --color: var(--card-foreground);
+  --border-color: var(--border);
+  --bg-opacity: 0.1;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 0.35em 0.75em;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background-color: rgba(var(--color), var(--bg-opacity));
+  color: var(--color);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.Buttons[data-state='inactive'] {
+  text-decoration: none;
+  opacity: 0.6;
+  background-color: transparent;
+}
+
+.Buttons[data-state='active'] {
+  text-decoration: none;
+  --bg-opacity: 0.15;
+  font-weight: 600;
+}
+
+.Buttons:hover,
+.MunicipalityCheckbox:hover {
+  --bg-opacity: 0.2;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

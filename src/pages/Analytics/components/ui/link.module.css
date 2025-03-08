@@ -1,0 +1,14 @@
+.Link {
+  --color: rgba(0, 0, 0, 0.8);
+  --color-brand: #26c5ed;
+  --box-shadow: inset 0 0px 0 white, inset 0 -4px var(--color-brand);
+  color: var(--color);
+  font-weight: 600;
+  transition: all 0.35s ease-in-out;
+  box-shadow: var(--box-shadow);
+  text-decoration: 'none';
+}
+
+.Link:hover {
+  --box-shadow: inset 0 0px 0 white, inset 0 -20px var(--color-brand);
+}
