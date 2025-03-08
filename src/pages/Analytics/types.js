@@ -1,10 +1,11 @@
-export const sectionNames = Object.freeze([
-  'Analitični prikaz podatkov o dostopnosti do primarne zdravstvene oskrbe',
-  'examples',
-]);
+/**
+ * Those names are just for grouping the sections in the sidebar.
+ * The actual section title is translated.
+ */
+export const sectionNames = Object.freeze(['Dostopnost do primarne zdravstvene oskrbe']);
 
 /**
- * @typedef {typeof sectionNames[number]} SectionNames
+ * @typedef {typeof sectionNames[number]} SectionName
  */
 
 /**
@@ -29,7 +30,7 @@ export const sectionNames = Object.freeze([
 
 /**
  * @typedef {Object} ChartData
- * @property {SectionNames[number]} section
+ * @property {SectionName[number]} section
  * @property {number} order
  * @property {string} id
  * @property {string} titleTranslationKey
@@ -39,7 +40,7 @@ export const sectionNames = Object.freeze([
 
 /**
  * @typedef {Object} MapData
- * @property {SectionNames[number]} section
+ * @property {SectionName[number]} section
  * @property {number} order
  * @property {string} id
  * @property {"MapCard"} componentName

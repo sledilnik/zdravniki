@@ -61,7 +61,7 @@ const groupedCards = cards.reduce((acc, card) => {
 }, {});
 
 /**
- * @type {Array<{sectionTitle: Types.SectionNames[number], cards: Types.Section[]}>}
+ * @type {Array<{sectionTitle: Types.SectionName, cards: Types.Section[]}>}
  */
 export const SECTIONS = Object.keys(groupedCards)
   .map(section => ({
