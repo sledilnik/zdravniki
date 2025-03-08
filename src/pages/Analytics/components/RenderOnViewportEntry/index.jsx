@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 
+import useFirstViewportEntry from '@/hooks/useFirstViewportEntry';
 import { cx } from 'class-variance-authority';
-import useFirstViewportEntry from 'hooks/useFirstViewportEntry';
 import { Suspense, useRef } from 'react';
 
 import styles from './RenderOnViewportEntry.module.css';

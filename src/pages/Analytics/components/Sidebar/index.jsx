@@ -2,8 +2,7 @@
 
 import { t } from 'i18next';
 
-import * as Icons from 'components/Shared/Icons';
-import { useState, useRef } from 'react';
+import * as Icons from '@/components/Shared/Icons';
 import Modal from '../Modal';
 
 import { SECTIONS, sectionTranslationKeys } from '../../data/sections';
