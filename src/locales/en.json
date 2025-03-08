@@ -173,7 +173,7 @@
         },
         "taskA": {
             "title": "Neopredeljeni v Sloveniji",
-            "subtitle": "Regionalna accessibility of primary health care by municipalities in Slovenia",
+            "subtitle": "Regional accessibility of primary health care by municipalities in Slovenia",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
                 "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}",
