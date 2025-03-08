@@ -116,45 +116,45 @@
             "1": "Dostopnost do primarne zdravstvene oskrbe"
         },
         "sidebar": {
-            "title": "Grafi"
+            "title": "Charts"
         },
         "common": {
             "doctorType": "Dejavnost",
-            "municipality": "Občina",
-            "municipalities": "občine",
-            "year": "Leto",
-            "selectMunicipality": "Izberi...",
+            "municipality": "Municipality",
+            "municipalities": "municipalities",
+            "year": "Year",
+            "selectMunicipality": "Choose...",
             "doctorTypes": {
-                "betterAccessibility": "Boljša dostopnost",
-                "gp": "Družinski zdravniki",
-                "gyn": "Ginekologija",
-                "dso": "DSO",
-                "den": "Zobozdravstvo"
+                "betterAccessibility": "Better accessibility",
+                "gp": "General practice",
+                "gyn": "Gynecology",
+                "dso": "Nursing homes",
+                "den": "Dentistry"
             },
-            "ageGroup": "st. skupina",
+            "ageGroup": "age group",
             "contractTypes": {
-                "private": "zasebni",
-                "public": "javni"
+                "private": "private",
+                "public": "public"
             },
             "buttons": {
-                "cityMunicipalitiesActive": "Mestne občine",
-                "cityMunicipalitiesInactive": "Mestne občine",
-                "isSelectedText": "izberi",
-                "clearAll": "počisti izbor",
-                "allCities": "Cela Slovenija",
-                "close": "Zapri",
+                "cityMunicipalitiesActive": "City municipalities",
+                "cityMunicipalitiesInactive": "City municipalities",
+                "isSelectedText": "choose",
+                "clearAll": "clear selection",
+                "allCities": "Whole Slovenia",
+                "close": "Close",
                 "min": "min",
-                "max": "maks",
-                "selected": "izbor",
+                "max": "max",
+                "selected": "select",
                 "reset": "$t(reportError.reset)",
-                "export": "Izvoz",
+                "export": "Export",
                 "menu": "$t(header.menu)",
-                "fullScreen": "Celozaslonski način",
-                "print": "Natisni"
+                "fullScreen": "Fullscreen mode",
+                "print": "Print"
             },
             "data": {
                 "iozRatio": "delež opredeljeni/vsi",
-                "insuredPeopleCount": "vsi zavarovanci",
+                "insuredPeopleCount": "all insured",
                 "insuredPeopleCountWithIOZ": "opredeljeni",
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
@@ -166,14 +166,14 @@
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
                 "capitation": "Glavarina",
                 "vol": "Št. programov",
-                "avg": "Povprečje",
-                "private": "zasebni",
-                "public": "javni"
+                "avg": "Average",
+                "private": "private",
+                "public": "public"
             }
         },
         "taskA": {
             "title": "Neopredeljeni v Sloveniji",
-            "subtitle": "Regionalna dostopnost do primarne zdravstvene oskrbe po občinah v Sloveniji",
+            "subtitle": "Regionalna accessibility of primary health care by municipalities in Slovenia",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
                 "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}",
@@ -262,7 +262,7 @@
             }
         },
         "footer": {
-            "doctors": "Zdravniki"
+            "doctors": "Doctors"
         }
     }
 }
