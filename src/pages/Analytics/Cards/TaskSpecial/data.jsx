@@ -1,6 +1,7 @@
 /** @import * as Types from '../TaskA/types' */
+import { labelsFormatter } from 'pages/Analytics/utils/utils';
 import { detailTransformedData } from '../TaskA/json-data-transform-util';
-import { labelsFormatter } from '../TaskD/data';
+
 import { COLORS } from './chart-options';
 
 export const seriesToShow = Object.freeze([
@@ -171,7 +172,7 @@ const prepareYAxis = ({ titles, lng }) => [
     id: 'count',
     labels: {
       formatter() {
-        return labelsFormatter.call(this, {}, lng);
+        return labelsFormatter.call(this, 'taskSpecialLeft', lng);
       },
     },
   },

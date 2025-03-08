@@ -41,6 +41,7 @@ export const groupYAxisLabelFormat = Object.freeze({
   gpObseg: 'decimal',
   denDoseganjePovprecja: 'percent',
   denObseg: 'decimal',
+  taskSpecialLeft: 'decimal',
 });
 
 /**
