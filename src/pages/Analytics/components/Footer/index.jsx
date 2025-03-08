@@ -57,7 +57,7 @@ const Footer = function Footer({ lng }) {
         <div className={styles.FooterContent}>
           <h2>{t('footer.links')}</h2>
           <nav aria-label="social links">
-            <a href="https://www.facebook.com/Sledilnik" target="_blank" rel="noreferrer">
+            <a href="https://www.facebook.com/SledilnikOrg" target="_blank" rel="noreferrer">
               <Icons.Icon name="Facebook" className={styles.Icon} />
               Facebook
             </a>
