@@ -27,6 +27,8 @@ function formatGroupLabel(data) {
  */
 const FilterForm = function FilterForm({ filterState, onChange }) {
   const tCommon = t('analytics.common', { returnObjects: true });
+  const tDropdownLabel = t('analytics.taskD.dropdownLabel');
+
   const { data: tData } = tCommon;
 
   // eslint-disable-next-line no-shadow
@@ -59,7 +61,7 @@ const FilterForm = function FilterForm({ filterState, onChange }) {
 
   return (
     <form>
-      <Label htmlFor="data">Data</Label>
+      <Label htmlFor="data">{tDropdownLabel}</Label>
       <CustomReactSelect
         id="data"
         name="data"
