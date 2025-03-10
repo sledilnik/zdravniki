@@ -153,9 +153,9 @@
                 "print": "Print"
             },
             "data": {
-                "iozRatio": "Ratio between people with personal physician and all patients",
+                "iozRatio": "Ratio of Individuals with a Personal Physician to Total Patients",
                 "insuredPeopleCount": "all insured",
-                "insuredPeopleCountWithIOZ": "Patients who have personal physician",
+                "insuredPeopleCountWithIOZ": "People who have personal physician",
                 "insuredPeopleCountWithoutIOZ": "People without personal physician",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
@@ -167,12 +167,12 @@
                 "capitation": "Capitation",
                 "vol": "Number of contractual programmes",
                 "avg": "Average",
-                "private": "private",
-                "public": "public"
+                "private": "Privately owned",
+                "public": "Publicly owned"
             }
         },
         "taskA": {
-            "title": "Persons without primary care physician in  Slovenia",
+            "title": "Persons without primary care physician in Slovenia",
             "subtitle": "Regional accessibility of primary health care by municipalities in Slovenia",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
@@ -190,8 +190,8 @@
             }
         },
         "taskATrend": {
-            "title": "Persons without primary care physician stratified by age groups through time.",
-            "subtitle": " Age groups of persons without primary care physician by primary care specialty.",
+            "title": "Trends in the Number of Individuals Without a Primary Care Physician, Stratified by Age Groups Over Time",
+            "subtitle": "Age Group Distribution of Individuals Without a Primary Care Physician, Stratified by Primary Care Specialty",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
                 "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}}"
@@ -207,7 +207,7 @@
         },
         "taskD": {
             "title": "Comparison based on ownership of provider.",
-            "subtitle": "Comparison of capitation, number of contractual programmes and  realisation based on ownership of primary care institution.",
+            "subtitle": "Comparison of capitation, number of contractual programmes and realisation based on ownership of primary care institution.",
             "chart": {
                 "title": "$t(analytics.taskD.title)",
                 "subtitle": "$t(analytics.taskD.subtitle) - {{value}}",
@@ -235,8 +235,8 @@
             }
         },
         "taskSpecial": {
-            "title": "Movement of number of people without primary care physician through time",
-            "subtitle": "Number and ration of persons with and without primary care physician stratified by specialties",
+            "title": "Trends in the Number of Individuals Without a Primary Care Physician Over Time",
+            "subtitle": "Number and Proportion of Individuals With and Without a Primary Care Physician, Stratified by Medical Specialties",
             "chart": {
                 "title": "$t(analytics.taskSpecial.title) - {{value}}",
                 "subtitle": "$t(analytics.taskSpecial.subtitle)",
