@@ -5,7 +5,8 @@ import { useParams } from 'react-router';
 
 import { cva } from 'class-variance-authority';
 
-import { TrendingDownIcon, TrendingFlatIcon, TrendingUpIcon } from 'components/Shared/Icons';
+import { TrendingDownIcon, TrendingFlatIcon, TrendingUpIcon } from '@/components/Shared/Icons';
+
 import { Card, CardContent } from '../ui/card';
 
 import styles from './Scorecard.module.css';

@@ -1,4 +1,4 @@
-import { CHART_COLORS } from 'pages/Analytics/constants';
+import { CHART_COLORS } from '@/pages/Analytics/constants';
 
 export const COLORS = {
   public: '#ff9900',

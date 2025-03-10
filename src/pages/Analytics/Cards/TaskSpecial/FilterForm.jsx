@@ -2,8 +2,8 @@
 import { forwardRef } from 'react';
 
 import { t } from 'i18next';
-import Label from 'pages/Analytics/components/Label';
-import CustomReactSelect from 'pages/Analytics/components/Select';
+import Label from '@/pages/Analytics/components/Label';
+import CustomReactSelect from '@/pages/Analytics/components/Select';
 
 const FilterForm = forwardRef(
   (

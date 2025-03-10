@@ -9,22 +9,26 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { t } from 'i18next';
 
-import { withErrorBoundary } from 'components/Shared/ErrorBoundary';
-import { useChart } from 'pages/Analytics/Cards/TaskD/useChart';
+import { withErrorBoundary } from '@/components/Shared/ErrorBoundary';
+import { useChart } from '@/pages/Analytics/Cards/TaskD/useChart';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'pages/Analytics/components/ui/card';
+} from '@/pages/Analytics/components/ui/card';
 
-import { Separator } from 'pages/Analytics/components/ui/separator';
-import { useFilterState } from 'pages/Analytics/hooks';
-import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
+import { useFilterState } from '@/pages/Analytics/hooks';
+import {
+  createCSVContent,
+  exportToCsv,
+  exportToJson,
+} from '@/pages/Analytics/utils/download-utils';
 
-import ChartActions from 'pages/Analytics/components/ChartActions';
-import { Link } from 'pages/Analytics/components/ui/link';
+import ChartActions from '@/pages/Analytics/components/ChartActions';
+import { Link } from '@/pages/Analytics/components/ui/link';
 import { initialChartOptions } from './chart-options';
 import FilterForm from './FilterForm';
 import { groupOptions } from './parsed-files';
