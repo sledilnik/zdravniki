@@ -159,8 +159,8 @@
                 "insuredPeopleCountWithoutIOZ": "People without personal physician",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
-                "gpGlavarinaMean": "Average capitation per institution",
-                "gpGlavarina": "Sum of capitation based on institution ownership structure",
+                "gpGlavarinaMean": "Average GP capitation per institution",
+                "gpGlavarina": "Sum of GP capitation based on institution ownership structure",
                 "gpObseg": "$t(analytics.common.doctorTypes.gp)",
                 "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
@@ -245,7 +245,7 @@
                         "title": "number of insured persons"
                     },
                     "1": {
-                        "title": "ration of persons without primary care physician"
+                        "title": "Ratio persons with primary care physicians / all persons"
                     }
                 },
                 "series": {
