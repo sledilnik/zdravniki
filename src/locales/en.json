@@ -4,6 +4,7 @@
         "menu": "Menu",
         "home": "Home",
         "about": "About",
+        "analytics": "Analytics",
         "faq": "FAQ",
         "support": "Support!",
         "sledilnik": "Sledilnik.org"
@@ -59,6 +60,7 @@
         "title": {
             "notFound": "404: page not found",
             "home": "Doctors - Sledilnik",
+            "analytics": "Analytics",
             "about": "About",
             "faq": "FAQ"
         }
@@ -93,7 +95,9 @@
     },
     "footer": {
         "dataSource": "Data source",
-        "lastChange": "Last data update on"
+        "lastChange": "Last data update on",
+        "ourProjects": "Our projects",
+        "links": "Links"
     },
     "orderform": "get appointment",
     "timestamps": {
@@ -102,5 +106,163 @@
     },
     "sozialmarie": {
         "description": "The Doctors Tracker portal was created to bring the healthcare system closer to the patient. In Slovenia, we are facing a shortage of doctors at primary level. This leaves many patients without the basic right of access to a personal GP. In the Scientific association Tracker, we imported the data that was publicly available every 15 days in a spreadsheet that was not user friendly into our portal and allowed users to suggest corrections for faulty data in real time. This gave patients seeking primary care user-friendly and up-to-date information."
+    },
+    "analytics": {
+        "touchDevice": {
+            "text": "Use desktop for the best experience.",
+            "checkboxLabel": "Don't show this message"
+        },
+        "sectionTitle": {
+            "1": "Dostopnost do primarne zdravstvene oskrbe"
+        },
+        "sidebar": {
+            "title": "Charts"
+        },
+        "common": {
+            "doctorType": "Dejavnost",
+            "municipality": "Municipality",
+            "municipalities": "municipalities",
+            "year": "Year",
+            "selectMunicipality": "Choose...",
+            "doctorTypes": {
+                "betterAccessibility": "Better accessibility",
+                "gp": "General practice",
+                "gyn": "Gynecology",
+                "dso": "Nursing homes",
+                "den": "Dentistry"
+            },
+            "ageGroup": "age group",
+            "contractTypes": {
+                "private": "private",
+                "public": "public"
+            },
+            "buttons": {
+                "cityMunicipalitiesActive": "City municipalities",
+                "cityMunicipalitiesInactive": "City municipalities",
+                "isSelectedText": "choose",
+                "clearAll": "clear selection",
+                "allCities": "Whole Slovenia",
+                "close": "Close",
+                "min": "min",
+                "max": "max",
+                "selected": "select",
+                "reset": "$t(reportError.reset)",
+                "export": "Export",
+                "menu": "$t(header.menu)",
+                "fullScreen": "Fullscreen mode",
+                "print": "Print"
+            },
+            "data": {
+                "iozRatio": "delež opredeljeni/vsi",
+                "insuredPeopleCount": "all insured",
+                "insuredPeopleCountWithIOZ": "opredeljeni",
+                "insuredPeopleCountWithoutIOZ": "neopredeljeni",
+                "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
+                "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
+                "gpGlavarinaMean": "Povprečna glavarina na izvajalca programa",
+                "gpGlavarina": "Skupna glavarina vseh programov glede na lastništvo izvajalca",
+                "gpObseg": "$t(analytics.common.doctorTypes.gp)",
+                "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
+                "denObseg": "$t(analytics.common.doctorTypes.den)",
+                "capitation": "Glavarina",
+                "vol": "Št. programov",
+                "avg": "Average",
+                "private": "private",
+                "public": "public"
+            }
+        },
+        "taskA": {
+            "title": "Neopredeljeni v Sloveniji",
+            "subtitle": "Regional accessibility of primary health care by municipalities in Slovenia",
+            "chart": {
+                "title": "$t(analytics.taskATrend.title)",
+                "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}} - {{year}}",
+                "legendTitle": "legend title"
+            },
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export) {{value}}",
+            "popup": {
+                "map": "Geografski prikaz števila neopredeljenih zavarovancev in deleža opredeljenih po posameznih dejavnostih. Izbrana občina ali skupina občin je prikazana primerjalno s trendom iz prejšnjega leta.",
+                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+            }
+        },
+        "taskATrend": {
+            "title": "Neopredeljeni po starostnih skupinah skozi čas",
+            "subtitle": "Prikaz starostnih skupin neopredeljenih zavarovancev po posameznih dejavnostih",
+            "chart": {
+                "title": "$t(analytics.taskATrend.title)",
+                "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}}"
+            },
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export) {{value}}",
+            "popup": {
+                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+            }
+        },
+        "taskD": {
+            "title": "Primerjava glede na lastništvo javnega in zasebnega izvajalca",
+            "subtitle": "Primerjava glavarnine, števila programov in obseg dela javnih zavodov in zasebnih  na primarnem nivoju zdravstvene oskrbe",
+            "chart": {
+                "title": "$t(analytics.taskD.title)",
+                "subtitle": "$t(analytics.taskD.subtitle) - {{value}}",
+                "yAxis": {
+                    "titles": {
+                        "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                        "gynObseg": "št. programov",
+                        "gpGlavarinaMean": "povprečna glavarina na 1 izvajalca",
+                        "gpGlavarina": "glavarina",
+                        "gpObseg": "št. programov",
+                        "denDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
+                        "denObseg": "št. programov"
+                    }
+                },
+                "series": {
+                    "public": "$t(analytics.common.data.public)",
+                    "private": "$t(analytics.common.data.private)"
+                }
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export)",
+            "popup": {
+                "private": "Zasebni izvajalci so zdravstvene ustanove ali posamezniki, ki samostojno opravljajo zdravstvene storitve (npr.zasebniki s koncesijo) s sklenjeno pogodbo z ZZZS.",
+                "public": "Javni izvajalci so zdravstvene ustanove v lasti države, občin ali drugih javnih institucij s sklenjeno pogodbo z ZZZS (npr. javni zavodi - zdravstveni dom, bolnica)"
+            }
+        },
+        "taskSpecial": {
+            "title": "Gibanje števila neopredeljenih skozi čas",
+            "subtitle": "Število in razmerje opredeljenih/neopredeljenih zavarovancev po posameznih dejavnostih",
+            "chart": {
+                "title": "$t(analytics.taskSpecial.title) - {{value}}",
+                "subtitle": "$t(analytics.taskSpecial.subtitle)",
+                "yAxis": {
+                    "0": {
+                        "title": "št. zavarovancev"
+                    },
+                    "1": {
+                        "title": "delež neopredeljenih"
+                    }
+                },
+                "series": {
+                    "insuredPeopleCount": "$t(analytics.common.data.insuredPeopleCount)",
+                    "insuredPeopleCountWithIOZ": "$t(analytics.common.data.insuredPeopleCountWithIOZ)",
+                    "insuredPeopleCountWithoutIOZ": "$t(analytics.common.data.insuredPeopleCountWithoutIOZ)",
+                    "iozRatio": "$t(analytics.common.data.iozRatio)"
+                }
+            },
+            "menu": "$t(header.menu)",
+            "export": "$t(analytics.common.buttons.export)",
+            "popup": {
+                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+            }
+        },
+        "footer": {
+            "doctors": "Doctors"
+        }
     }
 }
