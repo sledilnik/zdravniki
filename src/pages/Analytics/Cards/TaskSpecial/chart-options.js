@@ -4,12 +4,12 @@ export const COLORS = {
   insuredPeopleCount: 'rgba(75, 20, 20, 1)',
   insuredPeopleCountWithIOZ: 'rgba(40,167,69,0.31)',
   insuredPeopleCountWithoutIOZ: '#DC3545',
-  iozRatio: '#DC3545',
+  iozRatio: '#FFC107',
   borderColors: {
     insuredPeopleCount: 'rgba(75, 20, 20, 1)',
     insuredPeopleCountWithIOZ: 'rgba(40,167,69,1)',
     insuredPeopleCountWithoutIOZ: '#C62F3F',
-    iozRatio: '#DC3545',
+    iozRatio: '#FFC107',
   },
 };
 
