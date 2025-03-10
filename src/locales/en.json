@@ -113,13 +113,13 @@
             "checkboxLabel": "Don't show this message"
         },
         "sectionTitle": {
-            "1": "Dostopnost do primarne zdravstvene oskrbe"
+            "1": "Primary care accessibility"
         },
         "sidebar": {
             "title": "Charts"
         },
         "common": {
-            "doctorType": "Dejavnost",
+            "doctorType": "Type of activity",
             "municipality": "Municipality",
             "municipalities": "municipalities",
             "year": "Year",
@@ -153,26 +153,26 @@
                 "print": "Print"
             },
             "data": {
-                "iozRatio": "delež opredeljeni/vsi",
+                "iozRatio": "Ratio between people with personal physician and all patients",
                 "insuredPeopleCount": "all insured",
-                "insuredPeopleCountWithIOZ": "opredeljeni",
-                "insuredPeopleCountWithoutIOZ": "neopredeljeni",
+                "insuredPeopleCountWithIOZ": "Patients who have personal physician",
+                "insuredPeopleCountWithoutIOZ": "People without personal physician",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
-                "gpGlavarinaMean": "Povprečna glavarina na izvajalca programa",
-                "gpGlavarina": "Skupna glavarina vseh programov glede na lastništvo izvajalca",
+                "gpGlavarinaMean": "Average GP capitation per institution",
+                "gpGlavarina": "Sum of GP capitation based on institution ownership structure",
                 "gpObseg": "$t(analytics.common.doctorTypes.gp)",
                 "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
-                "capitation": "Glavarina",
-                "vol": "Št. programov",
+                "capitation": "Capitation",
+                "vol": "Number of contractual programmes",
                 "avg": "Average",
                 "private": "private",
                 "public": "public"
             }
         },
         "taskA": {
-            "title": "Neopredeljeni v Sloveniji",
+            "title": "Persons without primary care physician in  Slovenia",
             "subtitle": "Regional accessibility of primary health care by municipalities in Slovenia",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
@@ -185,13 +185,13 @@
             "menu": "$t(header.menu)",
             "export": "$t(analytics.common.buttons.export) {{value}}",
             "popup": {
-                "map": "Geografski prikaz števila neopredeljenih zavarovancev in deleža opredeljenih po posameznih dejavnostih. Izbrana občina ali skupina občin je prikazana primerjalno s trendom iz prejšnjega leta.",
-                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+                "map": "Geographical breakdown of the number of persons without primary care physician and the share of persons with primary care physician stratified by the primary care specialty. The selected municipality or group of municipalities is shown against the trend of the previous year.",
+                "withoutIOZ": "Persons without a primary care physician are those who pay regular health insurance contributions and do not have a chosen personal doctor, dentist or gynaecologist.."
             }
         },
         "taskATrend": {
-            "title": "Neopredeljeni po starostnih skupinah skozi čas",
-            "subtitle": "Prikaz starostnih skupin neopredeljenih zavarovancev po posameznih dejavnostih",
+            "title": "Persons without primary care physician stratified by age groups through time.",
+            "subtitle": " Age groups of persons without primary care physician by primary care specialty.",
             "chart": {
                 "title": "$t(analytics.taskATrend.title)",
                 "subtitle": "$t(analytics.taskATrend.subtitle) - {{doctorType}} - {{cities}}"
@@ -202,24 +202,24 @@
             "menu": "$t(header.menu)",
             "export": "$t(analytics.common.buttons.export) {{value}}",
             "popup": {
-                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+                "withoutIOZ": "Persons without primary care physician are those who  pay regular health insurance contributions and do not have a GP, dentist or gynaecologist."
             }
         },
         "taskD": {
-            "title": "Primerjava glede na lastništvo javnega in zasebnega izvajalca",
-            "subtitle": "Primerjava glavarnine, števila programov in obseg dela javnih zavodov in zasebnih  na primarnem nivoju zdravstvene oskrbe",
+            "title": "Comparison based on ownership of provider.",
+            "subtitle": "Comparison of capitation, number of contractual programmes and  realisation based on ownership of primary care institution.",
             "chart": {
                 "title": "$t(analytics.taskD.title)",
                 "subtitle": "$t(analytics.taskD.subtitle) - {{value}}",
                 "yAxis": {
                     "titles": {
-                        "gynDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
-                        "gynObseg": "št. programov",
-                        "gpGlavarinaMean": "povprečna glavarina na 1 izvajalca",
-                        "gpGlavarina": "glavarina",
-                        "gpObseg": "št. programov",
-                        "denDoseganjePovprecja": "delež doseganja sl. povprečja obsega dela",
-                        "denObseg": "št. programov"
+                        "gynDoseganjePovprecja": "Ratio of achieving Slovenian average for programme realisation ",
+                        "gynObseg": "Number of contractual programmes",
+                        "gpGlavarinaMean": "Average capitation per one provider ",
+                        "gpGlavarina": "capitation",
+                        "gpObseg": "number of contractual programmes",
+                        "denDoseganjePovprecja": "ratio of achieving slovenian average for programme realisation",
+                        "denObseg": "number of contractual programmes"
                     }
                 },
                 "series": {
@@ -230,22 +230,22 @@
             "menu": "$t(header.menu)",
             "export": "$t(analytics.common.buttons.export)",
             "popup": {
-                "private": "Zasebni izvajalci so zdravstvene ustanove ali posamezniki, ki samostojno opravljajo zdravstvene storitve (npr.zasebniki s koncesijo) s sklenjeno pogodbo z ZZZS.",
-                "public": "Javni izvajalci so zdravstvene ustanove v lasti države, občin ali drugih javnih institucij s sklenjeno pogodbo z ZZZS (npr. javni zavodi - zdravstveni dom, bolnica)"
+                "private": "Privately owned providers are institutions or individuals who are independent providers of health services (e.g. private concessionaires) with a contract with the Health Insurance Fund (ZZZS).",
+                "public": "Publically owned providers are institutions who are owned by municipality, state or other public institutions (ex. hospitals) who have contracts with National Insurance Fund (ZZZS)."
             }
         },
         "taskSpecial": {
-            "title": "Gibanje števila neopredeljenih skozi čas",
-            "subtitle": "Število in razmerje opredeljenih/neopredeljenih zavarovancev po posameznih dejavnostih",
+            "title": "Movement of number of people without primary care physician through time",
+            "subtitle": "Number and ration of persons with and without primary care physician stratified by specialties",
             "chart": {
                 "title": "$t(analytics.taskSpecial.title) - {{value}}",
                 "subtitle": "$t(analytics.taskSpecial.subtitle)",
                 "yAxis": {
                     "0": {
-                        "title": "št. zavarovancev"
+                        "title": "number of insured persons"
                     },
                     "1": {
-                        "title": "delež neopredeljenih"
+                        "title": "Ratio persons with primary care physicians / all persons"
                     }
                 },
                 "series": {
@@ -258,7 +258,7 @@
             "menu": "$t(header.menu)",
             "export": "$t(analytics.common.buttons.export)",
             "popup": {
-                "withoutIOZ": "Neopredeljeni zavarovanci so osebe, ki redno plačujejo zdravstvene prispevke in nimajo izbranega osebnega zdravnika, zobozdravnika ali ginekologa."
+                "withoutIOZ": "Persons without primary care physician are persons who pay regular health insurance contributions and do not have a chosen personal doctor, dentist or gynaecologist."
             }
         },
         "footer": {

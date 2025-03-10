@@ -160,8 +160,8 @@
                 "insuredPeopleCountWithoutIOZ": "neopredeljeni",
                 "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
                 "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
-                "gpGlavarinaMean": "Povprečna glavarina na izvajalca programa",
-                "gpGlavarina": "Skupna glavarina vseh programov glede na lastništvo izvajalca",
+                "gpGlavarinaMean": "Povprečna glavarina na izvajalca programa družinske medicine",
+                "gpGlavarina": "Skupna glavarina vseh programov glede na lastništvo izvajalca ambulante družinske medicine",
                 "gpObseg": "$t(analytics.common.doctorTypes.gp)",
                 "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
                 "denObseg": "$t(analytics.common.doctorTypes.den)",
@@ -246,7 +246,7 @@
                         "title": "št. zavarovancev"
                     },
                     "1": {
-                        "title": "delež neopredeljenih"
+                        "title": "delež opredeljeni/vsi"
                     }
                 },
                 "series": {
