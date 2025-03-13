@@ -233,7 +233,8 @@
             "popup": {
                 "private": "Zasebni izvajalci so zdravstvene ustanove ali posamezniki, ki samostojno opravljajo zdravstvene storitve (npr.zasebniki s koncesijo) s sklenjeno pogodbo z ZZZS.",
                 "public": "Javni izvajalci so zdravstvene ustanove v lasti države, občin ali drugih javnih institucij s sklenjeno pogodbo z ZZZS (npr. javni zavodi - zdravstveni dom, bolnica)"
-            }
+            },
+            "dropdownLabel": "Izberi primerjavo"
         },
         "taskSpecial": {
             "title": "Gibanje števila neopredeljenih skozi čas",
