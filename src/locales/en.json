@@ -232,7 +232,8 @@
             "popup": {
                 "private": "Privately owned providers are institutions or individuals who are independent providers of health services (e.g. private concessionaires) with a contract with the Health Insurance Fund (ZZZS).",
                 "public": "Publically owned providers are institutions who are owned by municipality, state or other public institutions (ex. hospitals) who have contracts with National Insurance Fund (ZZZS)."
-            }
+            },
+             "dropdownLabel": "Choose a comparison"
         },
         "taskSpecial": {
             "title": "Trends in the Number of Individuals Without a Primary Care Physician Over Time",
