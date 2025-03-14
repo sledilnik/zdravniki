@@ -1,8 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { t } from 'i18next';
-import { Icon } from 'components/Shared/Icons';
-import { srOnly } from 'pages/Analytics/highcharts-options/options';
+import { Icon } from '@/components/Shared/Icons';
+import { srOnly } from '@/pages/Analytics/highcharts-options/options';
 import { Button } from '../Buttons';
 import { CITY_MUNICIPALITIES_LIST, assertSetsEqual } from '../constants';
 import styles from '../Buttons.module.css';
