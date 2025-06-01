@@ -7,7 +7,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
-    "@mui/system": "^6.1.7",
+    "@mui/system": "^7.1.0",
     "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@tanstack/react-table": "^8.20.5",
     "@testing-library/jest-dom": "^6.5.0",
