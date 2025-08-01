@@ -63,7 +63,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@playwright/test": "^1.46.1",
+    "@playwright/test": "^1.54.2",
     "@types/highcharts": "^7.0.0",
     "@types/node": "^22.5.0",
     "env-cmd": "^10.1.0",
