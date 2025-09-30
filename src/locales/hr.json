@@ -13,7 +13,8 @@
         "menu": "Izbornik",
         "about": "O projektu",
         "faq": "ČPP",
-        "home": "Imenik"
+        "home": "Imenik",
+        "analytics": "Analitika"
     },
     "all": "svi",
     "map": "Karta",
@@ -53,7 +54,9 @@
     },
     "footer": {
         "dataSource": "Izvor podataka",
-        "lastChange": "Zadnje ažuriranje podataka"
+        "lastChange": "Zadnje ažuriranje podataka",
+        "ourProjects": "Naši projekti",
+        "links": "Poveznice"
     },
     "loading": "Učitavam…",
     "students": "studenti",
@@ -87,7 +90,8 @@
             "home": "Liječnici – Sledilnik",
             "notFound": "404: stranica nije pronađena",
             "about": "O projektu",
-            "faq": "ČPP"
+            "faq": "ČPP",
+            "analytics": "Analitika"
         }
     },
     "error": {
@@ -98,5 +102,169 @@
     "totalResults_few": "{{count}} pogotka",
     "totalResults_other": "{{count}} pogodaka",
     "clinicForBetterAccessibilityDesc": "U ambulantama za bolju dostupnost, osigurane osobe koje nemaju osobnog liječnika (liječnika opće prakse ili pedijatra) mogu izabrati svog osobnog liječnika (u slučaju da nema slobodnog liječnika ili ako je izabrani osobni liječnik trajno odsutan).",
-    "clinicForBetterAccessibility": "Ambulanta za bolju dostupnost"
+    "clinicForBetterAccessibility": "Ambulanta za bolju dostupnost",
+    "analytics": {
+        "touchDevice": {
+            "text": "Za najbolje iskustvo koristi desktop računalo.",
+            "checkboxLabel": "Ne prikazuj ovu poruku"
+        },
+        "sectionTitle": {
+            "1": "Pristupačnost primarnoj zdravstvenoj zaštiti"
+        },
+        "sidebar": {
+            "title": "Dijagrami"
+        },
+        "common": {
+            "doctorType": "Vrsta aktivnosti",
+            "municipality": "Općina",
+            "municipalities": "općine",
+            "year": "Godina",
+            "selectMunicipality": "Odaberi …",
+            "doctorTypes": {
+                "betterAccessibility": "Bolja pristupačnost",
+                "gp": "Opća praksa",
+                "gyn": "Ginekologija",
+                "dso": "Domovi za starije i nemoćne",
+                "den": "Stomatologija"
+            },
+            "ageGroup": "dobna grupa",
+            "contractTypes": {
+                "private": "privatno",
+                "public": "javno"
+            },
+            "buttons": {
+                "cityMunicipalitiesActive": "Gradske općine",
+                "cityMunicipalitiesInactive": "Gradske općine",
+                "isSelectedText": "odaberi",
+                "clearAll": "izbriši odabir",
+                "allCities": "Cijela Slovenija",
+                "close": "Zatvori",
+                "min": "min.",
+                "max": "maks.",
+                "selected": "odaberi",
+                "reset": "$t(reportError.reset)",
+                "export": "Izvezi",
+                "menu": "$t(header.menu)",
+                "fullScreen": "Modus cjeloekranskog prikaza",
+                "print": "Ispiši"
+            },
+            "data": {
+                "iozRatio": "Omjer osoba s osobnim liječnikom i ukupnog broja pacijenata",
+                "insuredPeopleCount": "svi osigurani",
+                "insuredPeopleCountWithIOZ": "Osobe koje imaju osobnog liječnika",
+                "insuredPeopleCountWithoutIOZ": "Osobe koje nemaju osobnog liječnika",
+                "gynDoseganjePovprecja": "$t(analytics.common.doctorTypes.gyn)",
+                "gynObseg": "$t(analytics.common.doctorTypes.gyn)",
+                "gpObseg": "$t(analytics.common.doctorTypes.gp)",
+                "denDoseganjePovprecja": "$t(analytics.common.doctorTypes.den)",
+                "denObseg": "$t(analytics.common.doctorTypes.den)",
+                "vol": "Broj ugovornih programa",
+                "capitation": "Kapitacija",
+                "gpGlavarinaMean": "Prosječna kapitacija liječnika opće prakse po ustanovi",
+                "gpGlavarina": "Zbroj kapitacije liječnika opće prakse prema vlasničkoj strukturi ustanova",
+                "avg": "Prosjek",
+                "private": "U privatnom vlasništvu",
+                "public": "U javnom vlasništvu"
+            }
+        },
+        "taskA": {
+            "menu": "$t(header.menu)",
+            "title": "Osobe bez liječnika primarne zdravstvene zaštite u Sloveniji",
+            "subtitle": "Regionalna pristupačnost primarne zdravstvene zaštite po općinama u Sloveniji",
+            "chart": {
+                "title": "$t(analytics.taskATrend.title)",
+                "subtitle": "$t(analytics.taskATrend.subtitle) – {{doctorType}} – {{cities}} – {{year}}",
+                "legendTitle": "naslov legende"
+            },
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            },
+            "export": "$t(analytics.common.buttons.export) {{value}}",
+            "popup": {
+                "withoutIOZ": "Osobe bez izabranog liječnika primarne zdravstvene zaštite su one koje redovito uplaćuju doprinose za zdravstveno osiguranje, ali nemaju izabranog osobnog liječnika, stomatologa ili ginekologa.",
+                "map": "Geografska raspodjela broja osoba bez izabranog liječnika primarne zdravstvene zaštite i udjela osoba s izabranim liječnikom, razvrstano prema specijalnostima primarne zaštite. Odabrana općina ili skupina općina prikazana je u usporedbi s trendom iz prethodne godine."
+            }
+        },
+        "taskATrend": {
+            "menu": "$t(header.menu)",
+            "chart": {
+                "title": "$t(analytics.taskATrend.title)",
+                "subtitle": "$t(analytics.taskATrend.subtitle) – {{doctorType}} – {{cities}}"
+            },
+            "yAxis": {
+                "title": "$t(analytics.common.data.iozRatio)"
+            },
+            "export": "$t(analytics.common.buttons.export) {{value}}",
+            "popup": {
+                "withoutIOZ": "Osobe bez liječnika primarne zdravstvene zaštite su one koje redovito plaćaju doprinose za zdravstveno osiguranje i nemaju liječnika opće prakse, stomatologa ili ginekologa."
+            },
+            "title": "Trendovi u broju osoba bez izabranog liječnika primarne zdravstvene zaštite, razvrstani po dobnim grupama kroz vrijeme",
+            "subtitle": "Raspodjela osoba bez izabranog liječnika primarne zdravstvene zaštite prema dobnim skupinama, razvrstana prema specijalnostima primarne zdravstvene zaštite"
+        },
+        "taskD": {
+            "menu": "$t(header.menu)",
+            "chart": {
+                "yAxis": {
+                    "titles": {
+                        "gynObseg": "Broj ugovornih programa",
+                        "gpObseg": "broj ugovornih programa",
+                        "denObseg": "broj ugovornih programa",
+                        "denDoseganjePovprecja": "omjer postizanja slovenskog prosjeka za realizaciju programa",
+                        "gynDoseganjePovprecja": "Omjer postizanja slovenskog prosjeka za realizaciju programa ",
+                        "gpGlavarina": "kapitacija",
+                        "gpGlavarinaMean": "Prosječna kapitacija po jednom pružatelju zdravstvenih usluga "
+                    }
+                },
+                "series": {
+                    "public": "$t(analytics.common.data.public)",
+                    "private": "$t(analytics.common.data.private)"
+                },
+                "title": "$t(analytics.taskD.title)",
+                "subtitle": "$t(analytics.taskD.subtitle) – {{value}}"
+            },
+            "export": "$t(analytics.common.buttons.export)",
+            "dropdownLabel": "Odaberi usporedbu",
+            "title": "Usporedba na temelju vlasništva pružatelja usluga.",
+            "popup": {
+                "private": "Privatni pružatelji zdravstvenih usluga su ustanove ili pojedinci koji samostalno pružaju zdravstvene usluge (npr. privatni koncesionari) i imaju ugovor sa Zavodom za zdravstveno osiguranje.",
+                "public": "Javni pružatelji zdravstvenih usluga su ustanove u vlasništvu općine, države ili drugih javnih institucija (npr. bolnice) koje imaju ugovor sa Zavodom za zdravstveno osiguranje."
+            },
+            "subtitle": "Usporedba kapitacije, broja ugovornih programa i realizacije prema vlasništvu ustanova primarne zdravstvene zaštite."
+        },
+        "taskSpecial": {
+            "menu": "$t(header.menu)",
+            "title": "Trendovi u broju osoba bez liječnika primarne zdravstvene zaštite tijekom vremena",
+            "subtitle": "Broj i udio osoba sa i bez liječnika primarne zdravstvene zaštite, razvrstano prema medicinskim specijalnostima",
+            "chart": {
+                "title": "$t(analytics.taskSpecial.title) – {{value}}",
+                "subtitle": "$t(analytics.taskSpecial.subtitle)",
+                "yAxis": {
+                    "0": {
+                        "title": "broj osiguranih osoba"
+                    },
+                    "1": {
+                        "title": "Osobe s liječnicima primarne zdravstvene zaštite / Svi"
+                    }
+                },
+                "series": {
+                    "insuredPeopleCount": "$t(analytics.common.data.insuredPeopleCount)",
+                    "insuredPeopleCountWithIOZ": "$t(analytics.common.data.insuredPeopleCountWithIOZ)",
+                    "insuredPeopleCountWithoutIOZ": "$t(analytics.common.data.insuredPeopleCountWithoutIOZ)",
+                    "iozRatio": "$t(analytics.common.data.iozRatio)"
+                }
+            },
+            "export": "$t(analytics.common.buttons.export)",
+            "popup": {
+                "withoutIOZ": "Osobe bez izabranog liječnika primarne zdravstvene zaštite su osobe koje redovito uplaćuju doprinose za zdravstveno osiguranje, ali nemaju izabranog osobnog liječnika, stomatologa ili ginekologa."
+            }
+        },
+        "footer": {
+            "doctors": "Liiječnici"
+        }
+    },
+    "headQuotient": "Kapitacija",
+    "achievingAverageOE": "Postizanje prosječnog OE-a",
+    "sozialmarie": {
+        "description": "Portal Zdravniki Sledilnik je nastao s ciljem približavanja zdravstvenog sustava pacijentima. U Sloveniji se suočavamo s nedostatkom liječnika na razini primarne zdravstvene zaštite, što mnoge pacijente ostavlja bez osnovnog prava na pristup osobnom liječniku opće prakse. U Znanstvenem društvu Sledilnik smo svakih 15 dana prenosili javno objavljene podatke u proračunsku tablicu u naš portal te omogućili korisnicima da u stvarnom vremenu predlažu ispravke netočnih podataka. Time smo pacijentima koji traže primarnu zdravstvenu zaštitu osigurali pregledne i aktualne informacije."
+    }
 }
