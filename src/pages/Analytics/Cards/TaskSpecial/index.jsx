@@ -13,13 +13,17 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from 'pages/Analytics/components/ui/card';
-import { Separator } from 'pages/Analytics/components/ui/separator';
-import { useFilterState } from 'pages/Analytics/hooks';
+} from '@/pages/Analytics/components/ui/card';
+import { Separator } from '@/pages/Analytics/components/ui/separator';
+import { useFilterState } from '@/pages/Analytics/hooks';
 
-import { createCSVContent, exportToCsv, exportToJson } from 'pages/Analytics/utils/download-utils';
-import ChartActions from 'pages/Analytics/components/ChartActions';
-import { Link } from 'pages/Analytics/components/ui/link';
+import {
+  createCSVContent,
+  exportToCsv,
+  exportToJson,
+} from '@/pages/Analytics/utils/download-utils';
+import ChartActions from '@/pages/Analytics/components/ChartActions';
+import { Link } from '@/pages/Analytics/components/ui/link';
 import FilterForm from './FilterForm';
 import { options } from './chart-options';
 import { useChart } from './useChart';

@@ -2,7 +2,7 @@
 
 import Highcharts from 'highcharts';
 
-import { labelsFormatter } from 'pages/Analytics/utils/utils';
+import { labelsFormatter } from '@/pages/Analytics/utils/utils';
 import { parsedData } from './parsed-files';
 
 export const seriesToShow = ['public', 'private'];

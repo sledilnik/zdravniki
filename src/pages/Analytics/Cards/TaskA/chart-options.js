@@ -2,8 +2,8 @@
 
 import { renderToString } from 'react-dom/server';
 
-import { CHART_COLORS } from 'pages/Analytics/constants';
-import { sloOBMap } from 'pages/Analytics/data/geo-json-maps';
+import { CHART_COLORS } from '@/pages/Analytics/constants';
+import { sloOBMap } from '@/pages/Analytics/data/geo-json-maps';
 
 import { MapChartTooltip } from './MapChartTooltip';
 import { prepareOverviewMapSeriesData } from './overview-data-util';
