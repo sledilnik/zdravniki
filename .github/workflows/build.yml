@@ -1,9 +1,14 @@
 name: Build mainline image
 
-# Every push to the default branch builds and pushes a multi-arch `latest`
-# image. Stage tracks this tag (deploy/chart/values-stage.yaml). Deployment is
-# GitOps via sledilnik/infrastructure. Promotion to prod is a vYYYY.MM.DD
-# GitHub release, which builds its own pinned image (prod.yml).
+# Every push to the default branch builds and pushes a multi-arch image under
+# two tags:
+#   - `latest`                 human/compat pointer to the newest master build
+#   - `master-<sha>-<ts>`      immutable tag ArgoCD image-updater orders and
+#                              pins into deploy/chart/values-stage.yaml (stage
+#                              auto-deploy). See the zdravniki-stage ImageUpdater
+#                              CR in sledilnik/infrastructure.
+# Deployment is GitOps. Promotion to prod is a vYYYY.MM.DD GitHub release, which
+# builds its own pinned image (prod.yml).
 
 on:
   push:
@@ -28,6 +33,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
 
+      - name: Compute image tag
+        id: tag
+        run: echo "tag=master-$(git rev-parse --short HEAD)-$(date +%s)" >> "$GITHUB_OUTPUT"
+
       - name: Build and push docker container image
         uses: docker/build-push-action@v6
         with:
@@ -35,4 +44,6 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ github.repository_owner }}/doctors-website:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/doctors-website:latest
+            ghcr.io/${{ github.repository_owner }}/doctors-website:${{ steps.tag.outputs.tag }}
