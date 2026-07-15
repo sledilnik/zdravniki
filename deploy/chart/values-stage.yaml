@@ -1,7 +1,9 @@
-# Stage overrides. image.tag is bumped automatically by argocd-image-updater
-# (write-back target in sledilnik/infrastructure's zdravniki-stage pointer).
+# Stage tracks the mainline `latest` image (multi-arch, rebuilt on every push
+# to master by .github/workflows/build.yml). pullPolicy Always so a rollout
+# picks up a freshly pushed `latest`.
 image:
   tag: latest
+  pullPolicy: Always
 
 host: stage-zdravniki.sledilnik.org
 

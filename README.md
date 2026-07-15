@@ -174,21 +174,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 ### Deployment
 
 Deployment is GitOps, driven by [sledilnik/infrastructure](https://github.com/sledilnik/infrastructure)
-(ArgoCD on srv3). The Helm chart lives in this repo under [`deploy/chart/`](deploy/chart);
-the infra repo only holds the `Application` pointers.
+(ArgoCD). The Helm chart lives in this repo under [`deploy/chart/`](deploy/chart);
+the infra repo only holds the `Application` pointers. All images are built
+**multi-arch** (`linux/amd64,linux/arm64`) — the cluster node is arm64.
 
 - **Image** — the [`Dockerfile`](Dockerfile) builds the CRA output and serves it
   with Caddy. One image serves every environment: per-environment settings
   (Google form IDs, content endpoint, mode) are injected at runtime into
   [`public/env.js`](public/env.js) by Caddy from the pod's env vars (set by the
   chart's `env` values) and read via [`src/env.js`](src/env.js).
-- **Stage** — every push to `master` builds `doctors-website:master-<sha>-<ts>`
-  ([`build.yml`](.github/workflows/build.yml)); ArgoCD image-updater bumps
-  `deploy/chart/values-stage.yaml` and deploys to
-  [stage-zdravniki.sledilnik.org](https://stage-zdravniki.sledilnik.org).
-- **Prod** — pinned. Promote a stage-tested build by setting `image.tag` in
-  `deploy/chart/values-prod.yaml` to its `master-<sha>-<ts>` tag and merging;
-  ArgoCD deploys to [zdravniki.sledilnik.org](https://zdravniki.sledilnik.org).
+- **Stage** — every push to `master` builds `doctors-website:latest`
+  ([`build.yml`](.github/workflows/build.yml)), which
+  [stage-zdravniki.sledilnik.org](https://stage-zdravniki.sledilnik.org) tracks
+  via `deploy/chart/values-stage.yaml`.
+- **Prod** — pinned. A published GitHub release (tag `vYYYY.MM.DD`) builds
+  `doctors-website:<tag>` ([`prod.yml`](.github/workflows/prod.yml)); promote by
+  bumping `image.tag` in `deploy/chart/values-prod.yaml` to that release and
+  merging. ArgoCD deploys to [zdravniki.sledilnik.org](https://zdravniki.sledilnik.org).
 - **Preview** — label a PR `preview-deploy`: [`pr.yml`](.github/workflows/pr.yml)
   builds `doctors-website:pr-<n>` and ArgoCD renders the chart from the PR head
   at `zdravniki-pr-<n>.preview.sledilnik.org`. Closing the PR or removing the

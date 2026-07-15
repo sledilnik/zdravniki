@@ -1,7 +1,11 @@
-# Prod overrides. Prod is pinned: promote a stage-tested build by setting
-# image.tag to its `master-<sha>-<ts>` tag here and merging.
+# Prod overrides. Prod is pinned to a vYYYY.MM.DD release image (built
+# multi-arch by .github/workflows/prod.yml on release publish). Promote by
+# bumping this to a newer release tag.
+# NOTE: releases from before the multi-arch switch (<= v2025.03.14) are
+# amd64-only and will not run on the arm64 node — pin only a release built
+# after that change.
 image:
-  tag: latest
+  tag: v2025.03.14
 
 host: zdravniki.sledilnik.org
 

@@ -1,18 +1,16 @@
-name: Build mainline image
+name: Build production image
 
-# Every push to the default branch builds and pushes a multi-arch `latest`
-# image. Stage tracks this tag (deploy/chart/values-stage.yaml). Deployment is
-# GitOps via sledilnik/infrastructure. Promotion to prod is a vYYYY.MM.DD
-# GitHub release, which builds its own pinned image (prod.yml).
+# A published GitHub release (tag vYYYY.MM.DD) builds and pushes a multi-arch
+# image tagged with the release name. Deployment is GitOps: pin image.tag in
+# deploy/chart/values-prod.yaml (sledilnik/infrastructure -> zdravniki-prod) to
+# that tag to promote it to production.
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
 
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, 'NOBUILD')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -35,4 +33,4 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ github.repository_owner }}/doctors-website:latest
+          tags: ghcr.io/${{ github.repository_owner }}/doctors-website:${{ github.event.release.tag_name }}
