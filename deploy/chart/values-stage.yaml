@@ -1,0 +1,9 @@
+# Stage overrides. image.tag is bumped automatically by argocd-image-updater
+# (write-back target in sledilnik/infrastructure's zdravniki-stage pointer).
+image:
+  tag: latest
+
+host: stage-zdravniki.sledilnik.org
+
+env:
+  REACT_APP_MODE: staging

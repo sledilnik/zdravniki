@@ -1,3 +1,5 @@
+import env from 'env';
+
 /**
  * Object containing the form field IDs.
  * @typedef {Object} FormFieldIds
@@ -28,21 +30,7 @@ export const HIDDEN_FIELDS = ['name', 'url', 'type', 'instId', 'provider'];
  * @returns {FormFieldIds} The form field IDs.
  */
 export function getGSheetFormFieldIds() {
-  return {
-    name: process.env.REACT_APP_GOOGLE_FORM_INPUT_NAME,
-    url: process.env.REACT_APP_GOOGLE_FORM_INPUT_URL,
-    type: process.env.REACT_APP_GOOGLE_FORM_INPUT_TYPE,
-    instId: process.env.REACT_APP_GOOGLE_FORM_INPUT_INSTID,
-    provider: process.env.REACT_APP_GOOGLE_FORM_INPUT_PROVIDER,
-    address: process.env.REACT_APP_GOOGLE_FORM_INPUT_ADDRESS,
-    accepts: process.env.REACT_APP_GOOGLE_FORM_INPUT_ACCEPTS,
-    availability: process.env.REACT_APP_GOOGLE_FORM_INPUT_AVAILABILITY,
-    website: process.env.REACT_APP_GOOGLE_FORM_INPUT_WEBSITE,
-    phone: process.env.REACT_APP_GOOGLE_FORM_INPUT_PHONE,
-    email: process.env.REACT_APP_GOOGLE_FORM_INPUT_EMAIL,
-    orderform: process.env.REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM,
-    note: process.env.REACT_APP_GOOGLE_FORM_INPUT_NOTE,
-  };
+  return { ...env.googleFormInputs };
 }
 
 /**
@@ -51,7 +39,7 @@ export function getGSheetFormFieldIds() {
  *
  * */
 export function getGSheetFormUrl() {
-  return `https://docs.google.com/forms/d/${process.env.REACT_APP_GOOGLE_FORM_ID}/formResponse`;
+  return `https://docs.google.com/forms/d/${env.googleFormId}/formResponse`;
 }
 
 /**

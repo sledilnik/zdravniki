@@ -1,0 +1,24 @@
+// Runtime configuration. Caddy renders the env placeholders below from the
+// container's environment variables on every request (see Caddyfile); the app
+// reads window._env_ via src/env.js. This lets one image serve every
+// environment. Under local `yarn start` this file is served verbatim (no
+// Caddy), so the placeholders stay literal — src/env.js detects that and
+// falls back to the build-time .env values.
+window._env_ = {
+  REACT_APP_MODE: '{{env "REACT_APP_MODE"}}',
+  REACT_APP_CONTENT_ENDPOINT_BASE: '{{env "REACT_APP_CONTENT_ENDPOINT_BASE"}}',
+  REACT_APP_GOOGLE_FORM_ID: '{{env "REACT_APP_GOOGLE_FORM_ID"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_NAME: '{{env "REACT_APP_GOOGLE_FORM_INPUT_NAME"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_URL: '{{env "REACT_APP_GOOGLE_FORM_INPUT_URL"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_TYPE: '{{env "REACT_APP_GOOGLE_FORM_INPUT_TYPE"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_INSTID: '{{env "REACT_APP_GOOGLE_FORM_INPUT_INSTID"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_PROVIDER: '{{env "REACT_APP_GOOGLE_FORM_INPUT_PROVIDER"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_ADDRESS: '{{env "REACT_APP_GOOGLE_FORM_INPUT_ADDRESS"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_AVAILABILITY: '{{env "REACT_APP_GOOGLE_FORM_INPUT_AVAILABILITY"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_ACCEPTS: '{{env "REACT_APP_GOOGLE_FORM_INPUT_ACCEPTS"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_WEBSITE: '{{env "REACT_APP_GOOGLE_FORM_INPUT_WEBSITE"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_PHONE: '{{env "REACT_APP_GOOGLE_FORM_INPUT_PHONE"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_EMAIL: '{{env "REACT_APP_GOOGLE_FORM_INPUT_EMAIL"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM: '{{env "REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM"}}',
+  REACT_APP_GOOGLE_FORM_INPUT_NOTE: '{{env "REACT_APP_GOOGLE_FORM_INPUT_NOTE"}}',
+};

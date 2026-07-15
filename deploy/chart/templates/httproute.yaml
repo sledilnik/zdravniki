@@ -1,0 +1,18 @@
+# Attaches to the shared Gateway `main` in kube-system (TLS + DNS are handled
+# there — no per-app Ingress/cert/DNS). `host` is set per environment.
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "zdravniki.fullname" . }}
+  labels:
+    {{- include "zdravniki.labels" . | nindent 4 }}
+spec:
+  parentRefs:
+    - name: main
+      namespace: kube-system
+  hostnames:
+    - {{ .Values.host | quote }}
+  rules:
+    - backendRefs:
+        - name: {{ include "zdravniki.fullname" . }}
+          port: 80

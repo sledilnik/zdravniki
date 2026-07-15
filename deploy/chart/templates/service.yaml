@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "zdravniki.fullname" . }}
+  labels:
+    {{- include "zdravniki.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "zdravniki.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

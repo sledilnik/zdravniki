@@ -1,0 +1,9 @@
+apiVersion: v2
+name: zdravniki
+description: >-
+  zdravniki.sledilnik.org (find-available-doctor) — a static CRA build served
+  by Caddy. One image is promoted stage -> prod; per-environment settings are
+  injected at runtime via /env.js (see the app's Caddyfile + src/env.js).
+type: application
+version: 1.0.0
+appVersion: "0.1.0"

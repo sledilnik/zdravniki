@@ -1,0 +1,42 @@
+# Base values shared by every environment. values-stage.yaml / values-prod.yaml
+# layer their differences on top (Helm merges maps key-by-key), and the
+# app-of-apps in sledilnik/infrastructure injects `host` on test clusters.
+
+image:
+  repository: ghcr.io/sledilnik/doctors-website
+  # Overridden per environment: image-updater writes the newest mainline tag
+  # into values-stage.yaml; values-prod.yaml pins a promoted one.
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+# Hostname the Gateway routes to this app. Production default; overridden in
+# values-stage.yaml and (on test clusters) by the app-of-apps `host` parameter.
+host: zdravniki.sledilnik.org
+
+# Runtime configuration. Passed to the container as environment variables and
+# surfaced to the browser by /env.js, so a single image serves every
+# environment (see the app's Caddyfile + src/env.js). Keys are the app's
+# REACT_APP_* names. Defaults here are environment-neutral; values-prod.yaml
+# fills in the real Google "report error" form IDs.
+env:
+  REACT_APP_MODE: production
+  REACT_APP_CONTENT_ENDPOINT_BASE: https://backend.sledilnik.org/api/v1
+  # Empty = the "report error" form is unconfigured (as staging has always run).
+  REACT_APP_GOOGLE_FORM_ID: ""
+  REACT_APP_GOOGLE_FORM_INPUT_NAME: ""
+  REACT_APP_GOOGLE_FORM_INPUT_URL: ""
+  REACT_APP_GOOGLE_FORM_INPUT_TYPE: ""
+  REACT_APP_GOOGLE_FORM_INPUT_INSTID: ""
+  REACT_APP_GOOGLE_FORM_INPUT_PROVIDER: ""
+  REACT_APP_GOOGLE_FORM_INPUT_ADDRESS: ""
+  REACT_APP_GOOGLE_FORM_INPUT_AVAILABILITY: ""
+  REACT_APP_GOOGLE_FORM_INPUT_ACCEPTS: ""
+  REACT_APP_GOOGLE_FORM_INPUT_WEBSITE: ""
+  REACT_APP_GOOGLE_FORM_INPUT_PHONE: ""
+  REACT_APP_GOOGLE_FORM_INPUT_EMAIL: ""
+  REACT_APP_GOOGLE_FORM_INPUT_ORDERFORM: ""
+  REACT_APP_GOOGLE_FORM_INPUT_NOTE: ""
+
+resources: {}

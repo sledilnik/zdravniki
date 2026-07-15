@@ -1,7 +1,6 @@
 # Zdravniki - available doctors in Slovenia
 
-[![Build and deploy (production)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/prod.yml)
-[![Build and deploy (staging)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/stage.yml)
+[![Build mainline image](https://github.com/sledilnik/zdravniki/actions/workflows/build.yml/badge.svg)](https://github.com/sledilnik/zdravniki/actions/workflows/build.yml)
 [![Stanje prevoda](https://hosted.weblate.org/widgets/sledilnik/-/zdravniki/svg-badge.svg)](https://hosted.weblate.org/projects/sledilnik/zdravniki/)
 
 ## Develop
@@ -174,7 +173,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Deployment is GitOps, driven by [sledilnik/infrastructure](https://github.com/sledilnik/infrastructure)
+(ArgoCD on srv3). The Helm chart lives in this repo under [`deploy/chart/`](deploy/chart);
+the infra repo only holds the `Application` pointers.
+
+- **Image** — the [`Dockerfile`](Dockerfile) builds the CRA output and serves it
+  with Caddy. One image serves every environment: per-environment settings
+  (Google form IDs, content endpoint, mode) are injected at runtime into
+  [`public/env.js`](public/env.js) by Caddy from the pod's env vars (set by the
+  chart's `env` values) and read via [`src/env.js`](src/env.js).
+- **Stage** — every push to `master` builds `doctors-website:master-<sha>-<ts>`
+  ([`build.yml`](.github/workflows/build.yml)); ArgoCD image-updater bumps
+  `deploy/chart/values-stage.yaml` and deploys to
+  [stage-zdravniki.sledilnik.org](https://stage-zdravniki.sledilnik.org).
+- **Prod** — pinned. Promote a stage-tested build by setting `image.tag` in
+  `deploy/chart/values-prod.yaml` to its `master-<sha>-<ts>` tag and merging;
+  ArgoCD deploys to [zdravniki.sledilnik.org](https://zdravniki.sledilnik.org).
+- **Preview** — label a PR `preview-deploy`: [`pr.yml`](.github/workflows/pr.yml)
+  builds `doctors-website:pr-<n>` and ArgoCD renders the chart from the PR head
+  at `zdravniki-pr-<n>.preview.sledilnik.org`. Closing the PR or removing the
+  label tears it down.
 
 ### `yarn build` fails to minify
 

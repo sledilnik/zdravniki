@@ -1,9 +1,25 @@
 :80 {
 	root * /app
-	try_files {path} /index.html
-	file_server {
-		index index.html
+
+	# Runtime config: render /env.js from the container's environment so one
+	# image serves every environment (values come from the Deployment's env,
+	# set by the Helm chart). Scoped to this one file so the JS bundle is never
+	# run through the template engine, and never cached across deploys.
+	@envjs path /env.js
+	handle @envjs {
+		header Cache-Control "no-store"
+		templates {
+			mime text/javascript application/javascript
+		}
+		file_server
 	}
-	header * Cache-Control public, max-age=60, s-maxage=60
-	templates
+
+	# SPA: everything else falls back to index.html.
+	handle {
+		try_files {path} /index.html
+		file_server {
+			index index.html
+		}
+		header Cache-Control "public, max-age=60, s-maxage=60"
+	}
 }
