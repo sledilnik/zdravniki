@@ -15,6 +15,12 @@ replicaCount: 1
 # values-stage.yaml and (on test clusters) by the app-of-apps `host` parameter.
 host: zdravniki.sledilnik.org
 
+# Additional hostnames that serve the same site (added to the HTTPRoute, so
+# external-dns creates their DNS records too). Empty by default; prod adds the
+# zdravnik.sledilnik.org alias. On test clusters the app-of-apps remaps these
+# under the test domain.
+extraHosts: []
+
 # Runtime configuration. Passed to the container as environment variables and
 # surfaced to the browser by /env.js, so a single image serves every
 # environment (see the app's Caddyfile + src/env.js). Keys are the app's

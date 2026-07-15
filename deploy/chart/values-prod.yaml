@@ -9,6 +9,11 @@ image:
 
 host: zdravniki.sledilnik.org
 
+# Also serve the site on the zdravnik.sledilnik.org alias (same content). Both
+# are single-level subdomains covered by the Gateway's *.sledilnik.org cert.
+extraHosts:
+  - zdravnik.sledilnik.org
+
 env:
   REACT_APP_MODE: production
   # Real "report error" Google form (was .env.production).

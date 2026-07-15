@@ -12,6 +12,9 @@ spec:
       namespace: kube-system
   hostnames:
     - {{ .Values.host | quote }}
+    {{- range .Values.extraHosts }}
+    - {{ . | quote }}
+    {{- end }}
   rules:
     - backendRefs:
         - name: {{ include "zdravniki.fullname" . }}

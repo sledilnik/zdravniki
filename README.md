@@ -190,7 +190,9 @@ the infra repo only holds the `Application` pointers. All images are built
 - **Prod** — pinned. A published GitHub release (tag `vYYYY.MM.DD`) builds
   `doctors-website:<tag>` ([`prod.yml`](.github/workflows/prod.yml)); promote by
   bumping `image.tag` in `deploy/chart/values-prod.yaml` to that release and
-  merging. ArgoCD deploys to [zdravniki.sledilnik.org](https://zdravniki.sledilnik.org).
+  merging. ArgoCD deploys to [zdravniki.sledilnik.org](https://zdravniki.sledilnik.org)
+  (also served on the `zdravnik.sledilnik.org` alias — see `extraHosts` in
+  `deploy/chart/values-prod.yaml`).
 - **Preview** — label a PR `preview-deploy`: [`pr.yml`](.github/workflows/pr.yml)
   builds `doctors-website:pr-<n>` and ArgoCD renders the chart from the PR head
   at `zdravniki-pr-<n>.preview.sledilnik.org`. Closing the PR or removing the
