@@ -1,1 +1,4 @@
 build
+# Caddy runtime-config template — contains {{env "..."}} placeholders, served
+# as-is (not app source). See Caddyfile + src/env.js.
+public/env.js

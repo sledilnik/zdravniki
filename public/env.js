@@ -1,10 +1,10 @@
 // Runtime configuration. Caddy renders the env placeholders below from the
 // container's environment variables on every request (see Caddyfile); the app
-// reads window._env_ via src/env.js. This lets one image serve every
+// reads window.runtimeConfig via src/env.js. This lets one image serve every
 // environment. Under local `yarn start` this file is served verbatim (no
 // Caddy), so the placeholders stay literal — src/env.js detects that and
 // falls back to the build-time .env values.
-window._env_ = {
+window.runtimeConfig = {
   REACT_APP_MODE: '{{env "REACT_APP_MODE"}}',
   REACT_APP_CONTENT_ENDPOINT_BASE: '{{env "REACT_APP_CONTENT_ENDPOINT_BASE"}}',
   REACT_APP_GOOGLE_FORM_ID: '{{env "REACT_APP_GOOGLE_FORM_ID"}}',

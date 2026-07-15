@@ -4,16 +4,22 @@
  * In the container these values are injected by `/env.js` (rendered by Caddy
  * from the pod's environment variables — see the Caddyfile and deploy/chart),
  * so one image can be promoted stage -> prod without a rebuild. During local
- * development and tests `window._env_` is absent and we fall back to the
- * build-time `process.env.REACT_APP_*` values from the `.env*` files.
+ * development and tests `window.runtimeConfig` is absent and we fall back to
+ * the build-time `process.env.REACT_APP_*` values from the `.env*` files.
  *
  * Note: build-time-constant vars (REACT_APP_TITLE / _DESC / _URL /
  * _DEFAULT_LANGUAGE) are the same in every environment and stay baked in via
  * CRA's `%VAR%` / `process.env` substitution — they are intentionally not
  * part of this runtime config.
  */
-const runtime =
-  typeof window !== 'undefined' && window._env_ ? window._env_ : null;
+const getRuntimeConfig = () => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  return window.runtimeConfig || null;
+};
+
+const runtime = getRuntimeConfig();
 
 const read = key => {
   const v = runtime ? runtime[key] : undefined;
