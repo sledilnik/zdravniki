@@ -46,3 +46,10 @@ env:
   REACT_APP_GOOGLE_FORM_INPUT_NOTE: ""
 
 resources: {}
+
+# Extra annotations for the HTTPRoute. The sledilnik/infrastructure preview
+# ApplicationSet sets external-dns.alpha.kubernetes.io/cloudflare-proxied:
+# "false" here so preview DNS records stay grey-cloud; stage/prod leave it empty
+# and inherit external-dns's proxied (orange-cloud) default.
+httproute:
+  annotations: {}

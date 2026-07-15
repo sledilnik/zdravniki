@@ -6,6 +6,10 @@ metadata:
   name: {{ include "zdravniki.fullname" . }}
   labels:
     {{- include "zdravniki.labels" . | nindent 4 }}
+  {{- with .Values.httproute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   parentRefs:
     - name: main
