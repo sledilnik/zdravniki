@@ -2,7 +2,7 @@
 # to master by .github/workflows/build.yml). pullPolicy Always so a rollout
 # picks up a freshly pushed `latest`.
 image:
-  tag: master-090aeb4-1784160387
+  tag: master-72de0e6-1784189019
   pullPolicy: Always
   repository: ghcr.io/sledilnik/doctors-website
 host: stage-zdravniki.sledilnik.org
