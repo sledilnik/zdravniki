@@ -5,7 +5,7 @@
 # amd64-only and will not run on the arm64 node — pin only a release built
 # after that change.
 image:
-  tag: v2025.03.14
+  tag: v2026.07.16
 
 host: zdravniki.sledilnik.org
 
