@@ -14,6 +14,11 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      # ArgoCD image-updater commits the new tag back into deploy/ after each
+      # build. Ignore it so that write-back doesn't retrigger build -> push ->
+      # write-back forever.
+      - 'deploy/**'
 
 jobs:
   build:
