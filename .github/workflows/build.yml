@@ -11,6 +11,7 @@ name: Build mainline image
 # builds its own pinned image (prod.yml).
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
